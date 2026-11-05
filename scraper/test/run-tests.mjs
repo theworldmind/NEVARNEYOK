@@ -93,9 +93,11 @@ t("Dünkü kayıt: sayfa bugün okunduysa ve seans artık yoksa silinir; ikizler
   assert.equal(p.length, 1); assert.equal(p[0].tickets.length, 2);
 });
 t("Yapısal saat 3 saat kaymışsa sayfada görünen saat esas alınır", () => {
-  const h = "<div>7 Kasım Cumartesi 20:00</div><div>16 Kasım 22:00</div><div>8 Kasım 23:00</div>";
-  const r = fixShiftedTimes([{ d: "2026-11-07", t: "23:00" }, { d: "2026-11-17", t: "01:00" }, { d: "2026-11-08", t: "23:00" }, { d: "2026-11-09", t: "20:30" }], h);
-  assert.deepEqual(r.map((e) => e.d + " " + e.t), ["2026-11-07 20:00", "2026-11-16 22:00", "2026-11-08 23:00", "2026-11-09 20:30"]);
+  const h = "<div>7 Kasım Cumartesi 20:00</div><div>16 Kasım 22:00</div>";
+  const r = fixShiftedTimes([{ d: "2026-11-07", t: "23:00" }, { d: "2026-11-17", t: "01:00" }, { d: "2026-11-09", t: "20:30" }], h);
+  assert.deepEqual(r.map((e) => e.d + " " + e.t), ["2026-11-07 20:00", "2026-11-16 22:00", "2026-11-09 20:30"]);
+  // gerçekten 23:00'te olan gece gösterisi (sayfada 23:00 yazıyor) değişmez
+  assert.equal(fixShiftedTimes([{ d: "2026-11-08", t: "23:00" }], "<p>8 Kasım 23:00</p><p>20:00</p>")[0].t, "23:00");
   assert.ok(isJunk({ title: "Fenerbahçe Gelişim - MKE Ankaragücü" }));
 });
 t("Fiyat okuma", () => {
