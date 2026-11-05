@@ -1,0 +1,20 @@
+{
+  "name": "nevarneyok-scraper",
+  "private": true,
+  "type": "module",
+  "description": "Ne Var Ne Yok? Ankara — etkinlik toplayıcı, sayfa üretici ve Instagram görsel hazırlayıcı",
+  "scripts": {
+    "scrape": "node run.mjs",
+    "refresh": "node run.mjs --refresh",
+    "pages": "node build-pages.mjs",
+    "social": "node social.mjs",
+    "all": "node run.mjs && node build-pages.mjs && node social.mjs",
+    "test": "node test/run-tests.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

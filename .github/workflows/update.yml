@@ -1,0 +1,126 @@
+# Her sabah: 32 kaynağı tara → veriyi birleştir → Google sayfalarını ve Instagram görsellerini üret → siteyi yayınla
+# Her öğleden sonra: yalnızca bilinen etkinliklerin fiyat ve satış durumunu tazele
+name: Etkinlikleri güncelle
+
+on:
+  schedule:
+    - cron: "30 3 * * *"   # 06:30 Türkiye saati — tam tarama
+    - cron: "0 13 * * *"   # 16:00 Türkiye saati — fiyat/durum tazeleme
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Tarama türü"
+        type: choice
+        options: [tam, tazele]
+        default: tam
+      only:
+        description: "Yalnızca bu kaynaklar (virgülle, boş = hepsi). Örnek: biletinial,bubilet"
+        required: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  issues: write
+
+concurrency:
+  group: guncelleme
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    env:
+      TZ: Europe/Istanbul
+      SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+      SHEET_CSV_URL: ${{ vars.SHEET_CSV_URL }}
+      MODE_FLAG: ${{ (github.event.schedule == '0 13 * * *' || github.event.inputs.mode == 'tazele') && '--refresh' || '' }}
+      ONLY_FLAG: ${{ github.event.inputs.only && format('--only={0}', github.event.inputs.only) || '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Bağımlılıkları kur
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Denemeleri çalıştır
+        working-directory: scraper
+        continue-on-error: true
+        run: node test/run-tests.mjs
+
+      - name: Kaynakları tara
+        id: scrape
+        working-directory: scraper
+        continue-on-error: true   # tarama çökse bile dünkü veriyle site yayında kalır
+        run: node run.mjs $MODE_FLAG $ONLY_FLAG
+
+      - name: Google sayfalarını üret
+        working-directory: scraper
+        run: node build-pages.mjs
+
+      - name: Instagram görsellerini hazırla
+        if: env.MODE_FLAG == ''
+        working-directory: scraper
+        continue-on-error: true
+        run: node social.mjs
+
+      - name: Hata ayıklama dosyalarını sakla (7 gün)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-${{ github.run_number }}
+          path: |
+            scraper/out/
+            data/health.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Değişiklikleri kaydet
+        run: |
+          git config user.name "nevarneyok-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data index.html || true   # üretilen sayfalar ve görseller depoya değil, yalnızca yayına gider
+          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
+          git commit -m "Etkinlikler güncellendi: $(date '+%d.%m.%Y %H:%M')"
+          for i in 1 2 3; do git pull --rebase -X ours && git push && break; sleep 5; done
+
+      - name: Kaynak sağlık raporu (sorun varsa GitHub'da konu açar/günceller)
+        if: always() && hashFiles('scraper/out/health.md') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BAD=$(node -e "const h=require('./data/health.json');const b=Object.values(h.sources).filter(s=>!s.ok&&s.failStreak>=2&&s.status!=='bos');console.log(b.length)")
+          NUM=$(gh issue list --state open --search "Kaynak sağlık raporu in:title" --json number --jq '.[0].number' || true)
+          if [ "$BAD" -gt 0 ]; then
+            if [ -n "$NUM" ]; then gh issue edit "$NUM" --body-file scraper/out/health.md
+            else gh issue create --title "Kaynak sağlık raporu" --body-file scraper/out/health.md; fi
+          elif [ -n "$NUM" ]; then
+            gh issue close "$NUM" --comment "Bütün kaynaklar yeniden çalışıyor. ✅"
+          fi
+
+      - name: Yayın klasörünü hazırla
+        run: |
+          mkdir -p _site
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'scraper' --exclude '_site' --exclude 'README.md' ./ _site/
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
