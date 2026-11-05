@@ -17,7 +17,7 @@ export function rawToEvent(r, src) {
   const ev = {
     d: r.d, t: r.t || "", title, venue,
     cat: src.forceCat || guessCat({ title, desc: r.desc, url: r.url, catHint: r.catHint || src.defaultCat || "", genre: r.genre }),
-    tickets: [{ site, url: tUrl, ...(r.price ? { price: r.price } : {}), src: src.id }],
+    tickets: [{ site, url: tUrl, ...(r.price ? { price: r.price, pc: r.pc || 1 } : {}), src: src.id }],
   };
   if (r.desc) ev.desc = r.desc;
   if (r.status) ev.status = r.status;
@@ -30,7 +30,9 @@ export function rawToEvent(r, src) {
 function addTicket(ev, tk) {
   const same = ev.tickets.find((x) => x.site === tk.site);
   if (!same) { ev.tickets.push(tk); return; }
-  if (tk.price && (!same.price || tk.price < same.price)) { same.price = tk.price; same.url = tk.url; }
+  // aynı siteden iki fiyat: önce güvenilirlik (yapısal veri > arka plan JSON > metin), eşitse küçük olan
+  const a = tk.pc || 0, b = same.pc || 0;
+  if (tk.price && (!same.price || a > b || (a === b && tk.price < same.price))) { same.price = tk.price; same.pc = tk.pc; same.url = tk.url; }
 }
 function absorb(into, ev) {
   for (const tk of ev.tickets) addTicket(into, tk);

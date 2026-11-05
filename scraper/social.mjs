@@ -4,10 +4,11 @@
 import { join } from "node:path";
 import { rm, mkdir } from "node:fs/promises";
 import { ROOT, esc, readJSON, writeText, writeJSON, todayIST, log, slugOf } from "./lib/util.mjs";
-import { CATS, CAT_COLOR, AY, fmtDate, dayName, dayShort, fmtTL, minPrice, pickTop, weekendRange, addDaysISO, pdate, siteUrl, siteConfig } from "./lib/site.mjs";
+import { CATS, CAT_COLOR, AY, fmtDate, dayName, dayShort, fmtTL, minPrice, pickTop, onlyFreshPrices, weekendRange, addDaysISO, pdate, siteUrl, siteConfig } from "./lib/site.mjs";
 
 const OUT = join(ROOT, "paylas");
-const data = await readJSON(join(ROOT, "data/events.json"), { events: [] });
+const data0 = await readJSON(join(ROOT, "data/events.json"), { events: [] });
+const data = { ...data0, events: onlyFreshPrices(data0.events, data0.baseline) };
 const BASE = await siteUrl();
 const CFG = await siteConfig();
 const domain = BASE ? BASE.replace(/^https?:\/\//, "") : "nevarneyok";

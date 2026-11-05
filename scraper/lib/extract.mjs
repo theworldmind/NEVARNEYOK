@@ -2,7 +2,7 @@
 //  1) schema.org Event (JSON-LD): bilet sitelerinin Google için gömdüğü standart veri
 //  2) Sayfanın arka planda çektiği JSON yanıtları (tarayıcıda yakalanır)
 //  3) Sezgisel okuma: başlık + metindeki tarih/saat/fiyat (son çare)
-import { clean, stripTags, parseISOish, parseTrDate, parsePrice, minPriceInText, absUrl, decodeEntities } from "./util.mjs";
+import { clean, stripTags, parseISOish, parseTrDate, parsePrice, absUrl, decodeEntities } from "./util.mjs";
 
 const EVENT_TYPES = /(^|:)(Event|MusicEvent|TheaterEvent|ComedyEvent|DanceEvent|ChildrensEvent|Festival|ScreeningEvent|EducationEvent|SocialEvent|ExhibitionEvent|LiteraryEvent|VisualArtsEvent|SportsEvent|PerformingArtsEvent)$/;
 const TYPE_CAT = { MusicEvent: "konser", TheaterEvent: "tiyatro", ComedyEvent: "standup", DanceEvent: "sahne", ChildrensEvent: "cocuk", Festival: "festival", ScreeningEvent: "sinema", EducationEvent: "atolye", LiteraryEvent: "atolye", ExhibitionEvent: "atolye", VisualArtsEvent: "atolye" };
@@ -69,16 +69,19 @@ function placeOf(loc) {
 }
 function offersOf(o) {
   const list = [].concat(o || []).flatMap((x) => (x && x["@type"] === "AggregateOffer" ? [x, ...[].concat(x.offers || [])] : [x])).filter(Boolean);
-  const prices = [];
+  // Tükenmiş kategorilerin (ör. biten erken bilet) fiyatı "en uygun fiyat" sayılmaz: yalnızca satıştaki kategoriler
+  const onSale = [], all = [];
   let soldOut = list.length > 0, url = "", free = false;
   for (const x of list) {
-    for (const k of ["lowPrice", "price", "minPrice"]) { const p = parsePrice(x[k]); if (p) prices.push(p); }
-    if (x.price === 0 || x.price === "0") free = true;
     const av = String(x.availability || "");
-    if (!/SoldOut|OutOfStock|Discontinued/i.test(av)) soldOut = false;
+    const out = /SoldOut|OutOfStock|Discontinued/i.test(av);
+    if (!out) soldOut = false;
+    for (const k of ["lowPrice", "price", "minPrice"]) { const p = parsePrice(x[k]); if (p) { all.push(p); if (!out) onSale.push(p); } }
+    if (x.price === 0 || x.price === "0") free = true;
     if (!url && x.url) url = x.url;
   }
-  return { price: prices.length ? Math.min(...prices) : null, soldOut: list.length > 0 && soldOut, url, free };
+  const pick = onSale.length ? onSale : soldOut ? all : [];
+  return { price: pick.length ? Math.min(...pick) : null, soldOut: list.length > 0 && soldOut, url, free };
 }
 export function eventsFromLd(html, pageUrl) {
   const nodes = flatten(jsonLdBlocks(html)).filter(isEventNode);
@@ -103,7 +106,7 @@ export function eventsFromLd(html, pageUrl) {
       buyUrl: of.url ? absUrl(of.url, pageUrl) : "",
       org: clean(str(n.organizer)),
       catHint: types.map((t) => TYPE_CAT[t]).find(Boolean) || "",
-      via: "jsonld",
+      via: "jsonld", pc: 3,
     });
   }
   return out.filter((e) => e.title);
@@ -141,7 +144,7 @@ export function eventsFromJson(data, baseUrl, depth = 0, acc = []) {
         url: typeof url === "string" ? absUrl(url, baseUrl) : "",
         status: /sold.?out|tukendi|tükendi/i.test(JSON.stringify([data.status, data.state, data.saleStatus, data.isSoldOut === true ? "soldout" : ""])) ? "tukendi" : "",
         desc: clean(stripTags(String(pick(data, ["description", "summary", "shortDescription", "aciklama"]) || ""))).slice(0, 400),
-        via: "json",
+        via: "json", pc: 2,
       });
     }
   }
@@ -163,11 +166,24 @@ export function eventFromHeuristics(html, url, cfg = {}) {
   if (vm) venue = clean(vm[1]);
   return {
     title, d: when.d, t: when.t, venue, address: "",
-    price: minPriceInText(text),
+    price: priceNearKeywords(text), // yalnızca "Fiyat: …", "…'den itibaren" gibi açık ifadelerden
+    pc: 1,
     status: /t[üu]kendi|sold out/i.test(text.slice(0, 4000)) ? "tukendi" : /ertelendi/i.test(text.slice(0, 4000)) ? "ertelendi" : /iptal edildi/i.test(text.slice(0, 4000)) ? "iptal" : "",
     desc: clean(m["og:description"] || m.description || "").slice(0, 400),
     image: m["og:image"] || "", url: m.canonical ? absUrl(m.canonical, url) : url, via: "heuristic",
   };
+}
+
+// Sezgisel fiyat: sayfadaki rastgele bir sayı değil, fiyat olduğu açıkça yazan ifadeler
+function priceNearKeywords(text) {
+  const out = [];
+  const res = [/(?:fiyat|bilet fiyat[ıi]|ücret|bilet)\s*[:：]?\s*(?:₺\s*)?([\d.]+(?:,\d{1,2})?)\s*(?:₺|TL)/gi,
+    /([\d.]+(?:,\d{1,2})?)\s*(?:₺|TL)\s*['’]?\s*(?:den|dan|ten|tan)\s+(?:itibaren|başlayan)/gi];
+  for (const re of res) { let m; while ((m = re.exec(text || ""))) {
+    const near = text.slice(Math.max(0, m.index - 40), m.index + m[0].length + 40);
+    if (/t[üu]kendi|sold out|hizmet bedeli|kargo/i.test(near)) continue;
+    const p = parsePrice(m[1]); if (p && p >= 20) out.push(p); } }
+  return out.length ? Math.min(...out) : null;
 }
 
 // Bir detay sayfasından en iyi sonucu döndür

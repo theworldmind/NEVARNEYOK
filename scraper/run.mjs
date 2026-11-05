@@ -100,7 +100,7 @@ log(`Bitti: ${out.events.length} etkinlik · bugün yeni ${newOnes} · çalışa
 function strip(e) {
   const o = { ...e };
   delete o._h; delete o._w;
-  o.tickets = o.tickets.map(({ site, url, price, est, src, seen }) => ({ site, url, ...(price ? { price } : {}), ...(est ? { est } : {}), ...(src ? { src } : {}), ...(seen ? { seen } : {}) }));
+  o.tickets = o.tickets.map(({ site, url, price, pc, src, seen }) => ({ site, url, ...(price ? { price, pc } : {}), ...(src ? { src } : {}), ...(seen ? { seen } : {}) }));
   return o;
 }
 

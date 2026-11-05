@@ -8,7 +8,7 @@ import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 import { parseTrDate, parsePrice, parseISOish, istanbulParts } from "../lib/util.mjs";
-import { eventsFromLd, eventsFromJson } from "../lib/extract.mjs";
+import { eventsFromLd, eventsFromJson, eventFromHeuristics } from "../lib/extract.mjs";
 import { sameEvent, loadVenues, canonVenue, guessCat } from "../lib/normalize.mjs";
 import { parseManualCsv } from "../lib/manual.mjs";
 
@@ -62,6 +62,18 @@ t("JSON-LD okuma (çoklu seans, tükendi)", () => {
   assert.equal(ev[0].status, "tukendi");
   assert.equal(ev[1].price, 100);
   assert.equal(ev[1].catHint, "tiyatro");
+});
+t("Fiyat: tükenmiş erken bilet en uygun fiyat sayılmaz", () => {
+  const html = `<script type="application/ld+json">{"@type":"MusicEvent","name":"Redd","startDate":"${D1}T21:00:00+03:00","location":{"name":"Jolly Joker Ankara"},"offers":[{"@type":"Offer","name":"Erken bilet","price":"855","availability":"https://schema.org/SoldOut"},{"@type":"Offer","name":"Genel","price":"1254","availability":"https://schema.org/InStock"}]}</script>`;
+  const ev = eventsFromLd(html, "https://ornek.com/redd");
+  assert.equal(ev[0].price, 1254);
+  assert.equal(ev[0].status, "");
+});
+t("Fiyat: sayfadaki rastgele sayı fiyat sanılmaz", () => {
+  const ev = eventFromHeuristics(`<html><head><meta property="og:title" content="Gece"></head><body><h1>Gece</h1><p>${trDate(D2)} 21:00</p><p>Salon 250 TL'lik ses sistemiyle yenilendi. 1500 kişilik.</p></body></html>`, "https://x.com/g");
+  assert.equal(ev.price, null);
+  const ev2 = eventFromHeuristics(`<html><body><h1>Gece</h1><p>${trDate(D2)} 21:00</p><p>Biletler 450 TL'den itibaren</p></body></html>`, "https://x.com/g");
+  assert.equal(ev2.price, 450);
 });
 t("Arka plan JSON'u okuma", () => {
   const ev = eventsFromJson({ data: { items: [{ eventName: "Can Bonomo", sessionDate: `${D2}T21:00:00`, venue: { name: "Jolly Joker Ankara", city: { name: "Ankara" } }, minPrice: 684, slug: "can-bonomo" }] } }, "https://bilet.example/");

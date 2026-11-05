@@ -7,9 +7,10 @@ import { readFile, writeFile, rm } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { ROOT, esc, slugOf, slugify, readJSON, writeText, todayIST, log } from "./lib/util.mjs";
-import { CATS, CAT_COLOR, fmtDate, dayName, dayShort, fmtTL, minPrice, siteUrl, siteConfig, pickTop, weekendRange, addDaysISO } from "./lib/site.mjs";
+import { CATS, CAT_COLOR, fmtDate, dayName, dayShort, fmtTL, minPrice, siteUrl, siteConfig, pickTop, onlyFreshPrices, weekendRange, addDaysISO } from "./lib/site.mjs";
 
-const data = await readJSON(join(ROOT, "data/events.json"), { events: [] });
+const data0 = await readJSON(join(ROOT, "data/events.json"), { events: [] });
+const data = { ...data0, events: onlyFreshPrices(data0.events, data0.baseline) };
 const venues = await readJSON(join(ROOT, "data/venues.json"), {});
 const BASE = await siteUrl();
 const CFG = await siteConfig();

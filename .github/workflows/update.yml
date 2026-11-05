@@ -89,7 +89,20 @@ jobs:
           git add -A data index.html || true   # üretilen sayfalar ve görseller depoya değil, yalnızca yayına gider
           if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
           git commit -m "Etkinlikler güncellendi: $(date '+%d.%m.%Y %H:%M')"
-          for i in 1 2 3; do git pull --rebase -X ours && git push && break; sleep 5; done
+          for i in 1 2 3; do git pull --rebase --autostash -X ours && git push && break; sleep 5; done
+
+      - name: Hata ayıklama örneklerini "debug" dalına koy (kaynak düzeltmek için)
+        if: always() && env.MODE_FLAG == ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf /tmp/dbg && mkdir -p /tmp/dbg
+          cp -r scraper/out /tmp/dbg/ 2>/dev/null || true
+          cp data/health.json data/events.json /tmp/dbg/ 2>/dev/null || true
+          cd /tmp/dbg && git init -q -b debug && git add -A
+          git -c user.name="nevarneyok-bot" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "Tarama örnekleri: $(date '+%d.%m.%Y %H:%M')"
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" debug
 
       - name: Kaynak sağlık raporu (sorun varsa GitHub'da konu açar/günceller)
         if: always() && hashFiles('scraper/out/health.md') != ''

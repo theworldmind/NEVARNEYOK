@@ -58,7 +58,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
       notes.push(`${listing.replace(/^https?:\/\//, "")}: ${links.length} bağlantı, ${ld.length} yapısal, ${js.length} JSON kaydı, durum ${page.status}`);
       if (debug) {
         const slug = listing.replace(/^https?:\/\//, "").replace(/[^a-z0-9]+/gi, "_").slice(0, 80);
-        await writeText(join(DEBUG, src.id, slug + ".html"), page.html.slice(0, 3e6));
+        await writeText(join(DEBUG, src.id, slug + ".html"), page.html.slice(0, 6e5));
         if (page.jsons?.length) await writeJSON(join(DEBUG, src.id, slug + ".json"), page.jsons.map((j) => ({ url: j.url, sample: JSON.stringify(j.data).slice(0, 4000) })), true);
       }
     }
@@ -74,12 +74,13 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
   const knownSet = new Set(known);
   const list = [...detail].sort((a, b) => knownSet.has(a) - knownSet.has(b)).slice(0, mode === "full" ? src.maxDetail ?? 250 : src.maxRefresh ?? 150);
   let okDetail = 0, gone = [];
-  let skipped = 0;
+  let skipped = 0, savedDetail = 0;
   await pool(list, src.concurrency || 3, async (u) => {
     if (Date.now() > deadline) { skipped++; return; }
     const page = await getPage(u, { render: src.renderDetail, scrolls: 1, captureJson: !!src.renderDetail });
     if (page.status === 404 || page.status === 410) { gone.push(u); return; }
     if (!page.html) return;
+    if (debug && savedDetail < 3) { savedDetail++; await writeText(join(DEBUG, src.id, "detay-" + savedDetail + ".html"), `<!-- ${u} -->\n` + page.html.slice(0, 6e5)); }
     let evs = extractDetail(page.html, page.url || u, src);
     if (!evs.length && page.jsons?.length) evs = page.jsons.flatMap((j) => eventsFromJson(j.data, j.url));
     if (evs.length) okDetail++;

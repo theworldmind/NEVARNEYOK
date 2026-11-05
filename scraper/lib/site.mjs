@@ -17,6 +17,13 @@ export const fmtTL = (n) => n.toLocaleString("tr-TR", { maximumFractionDigits: 0
 export const minPrice = (e) => { const p = (e.tickets || []).filter((t) => t.price && !t.est).map((t) => t.price); return p.length ? Math.min(...p) : null; };
 export const addDaysISO = (s, n) => { const d = pdate(s); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 
+// Sitedeki kuralın aynısı: yalnızca son 36 saatte doğrulanmış fiyatlar gösterilir (eski/tahmini fiyat asla)
+export function onlyFreshPrices(events, baseline, now = Date.now()) {
+  return events.map((e) => ({ ...e, tickets: (e.tickets || []).map((t) => {
+    const ok = t.price && !t.est && t.seen && t.seen !== baseline && (now - Date.parse(t.seen)) / 36e5 <= 36;
+    const { price, ...rest } = t; return ok ? t : rest; }) }));
+}
+
 // Site adresi: CNAME dosyası > SITE_URL ortam değişkeni > boş (göreli bağlantılar)
 export async function siteUrl() {
   if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");

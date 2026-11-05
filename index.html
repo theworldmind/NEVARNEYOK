@@ -98,7 +98,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @keyframes tapring{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.9);opacity:0}}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 .splash.leaving{pointer-events:none}
-.splash.leaving .sp-bg,.splash.leaving .sp-blob,.splash.leaving .sp-glow,.splash.leaving .sp-stars,.splash.leaving .sp-tap,.splash.leaving .hint{transition:opacity 1s cubic-bezier(.4,0,.2,1);opacity:0!important}
+.splash{will-change:opacity}
+.splash.leaving{opacity:0;transition:opacity .95s cubic-bezier(.4,0,.2,1)}
+
+/* gökyüzü katmanları: bulutlar ekran kartıyla kayar */
+.hero .sky-clouds{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(#000 84%,transparent);mask-image:linear-gradient(#000 84%,transparent)}
+#sky{visibility:hidden}
+.hero .sky-img{position:absolute;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none;-webkit-mask-image:linear-gradient(#000 84%,transparent);mask-image:linear-gradient(#000 84%,transparent)}
+.hero .sky-img:not([src]){visibility:hidden}
+.hero canvas.sky-flag{position:absolute;inset:auto;z-index:-2;-webkit-mask-image:none;mask-image:none}
+.hero canvas.sky-rain[hidden]{display:none}
+.hero .sky-clouds img{position:absolute;left:0;top:0;inset:auto;z-index:auto;-webkit-mask-image:none;mask-image:none;will-change:transform;backface-visibility:hidden}
+/* SVG içindeki animasyonlar (soru işareti salınımı) her karede boyama ister; kendi katmanına alınca sayfanın geri kalanı yeniden boyanmaz */
+.logo .O{will-change:transform}
+.nw-ic{will-change:transform}
+.tix .tp.nop{font:700 15px var(--f-body);opacity:.85}
+.tix .tp small.den{font:600 12px var(--f-body);opacity:.7;margin-left:2px}
+.logo.fly{filter:drop-shadow(0 6px 30px rgba(0,0,0,.25))}
 .splash.quick .sp-hi{display:none}.splash.quick .sp-logo{animation-delay:.05s!important}.splash.quick .sp-logo .wm>span{animation-delay:.1s!important}.splash.quick .sp-logo .wm>span+span{animation-delay:.22s!important}.splash.quick .sp-tap{animation-delay:.2s}
 .splash.fading{transition:opacity .8s ease;opacity:0;pointer-events:none}
 .sp-stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -550,7 +566,7 @@ window.NVNY_SITE={contact:"",instagram:"",repo:"theworldmind/nevarneyok"};
   function j(u){return fetch(u+"?v="+v,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
   Promise.all([j("data/events.json"),j("data/venues.json")]).then(function(r){
     window.NVNY_DATA=r[0]||{updated:null,events:[],failed:true};window.NVNY_VENUES=r[1]||{};
-    var s=document.createElement("script");s.src="app.js?v=6f8411eec3";document.body.appendChild(s)})})();
+    var s=document.createElement("script");s.src="app.js?v=8dd42424f1";document.body.appendChild(s)})})();
 </script>
 <noscript><p style="color:#fff;text-align:center;padding:24px">Bu site JavaScript ile çalışır. Etkinlik listesini görmek için JavaScript'i açın.</p></noscript>
 
