@@ -8,7 +8,7 @@ import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 import { parseTrDate, parsePrice, parseISOish, istanbulParts } from "../lib/util.mjs";
-import { eventsFromLd, eventsFromJson, eventFromHeuristics } from "../lib/extract.mjs";
+import { eventsFromLd, eventsFromJson, eventFromHeuristics, fixShiftedTimes } from "../lib/extract.mjs";
 import { sameEvent, loadVenues, canonVenue, guessCat } from "../lib/normalize.mjs";
 import { parseManualCsv } from "../lib/manual.mjs";
 import { fold } from "../lib/util.mjs";
@@ -91,6 +91,12 @@ t("Dünkü kayıt: sayfa bugün okunduysa ve seans artık yoksa silinir; ikizler
   assert.equal(b.length, 1); assert.equal(b[0].t, "20:00"); assert.equal(b[0].tickets[0].price, 550);
   const p = out.filter((e) => /2000/.test(e.title));
   assert.equal(p.length, 1); assert.equal(p[0].tickets.length, 2);
+});
+t("Yapısal saat 3 saat kaymışsa sayfada görünen saat esas alınır", () => {
+  const h = "<div>7 Kasım Cumartesi 20:00</div><div>16 Kasım 22:00</div><div>8 Kasım 23:00</div>";
+  const r = fixShiftedTimes([{ d: "2026-11-07", t: "23:00" }, { d: "2026-11-17", t: "01:00" }, { d: "2026-11-08", t: "23:00" }, { d: "2026-11-09", t: "20:30" }], h);
+  assert.deepEqual(r.map((e) => e.d + " " + e.t), ["2026-11-07 20:00", "2026-11-16 22:00", "2026-11-08 23:00", "2026-11-09 20:30"]);
+  assert.ok(isJunk({ title: "Fenerbahçe Gelişim - MKE Ankaragücü" }));
 });
 t("Fiyat okuma", () => {
   assert.equal(parsePrice("1.250,00 TL"), 1250);

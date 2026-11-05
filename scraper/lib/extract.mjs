@@ -190,7 +190,26 @@ function priceNearKeywords(text) {
 export function extractDetail(html, url, cfg = {}) {
   if (cfg.parse) { const own = cfg.parse(html, url); if (own) return own; }
   const ld = eventsFromLd(html, url, cfg);
-  if (ld.length) return ld;
+  if (ld.length) return fixShiftedTimes(ld, html);
   const h = cfg.heuristics === false ? null : eventFromHeuristics(html, url, cfg);
   return h ? [h] : [];
+}
+
+// Bazı sayfalarda (ör. Biletinial'ın bir kısmı) yapısal veri saati 3 saat ileri yazıyor: sayfada "20:00" yazarken
+// startDate 23:00 diyor. Yapısal saat sayfa metninde hiç geçmiyor ama 3 saat öncesi geçiyorsa, sayfada görünen saat esas alınır.
+export function fixShiftedTimes(list, html) {
+  const text = stripTags(html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " "));
+  const has = (t) => new RegExp(`(^|[^0-9])${t.replace(":", "[:.]")}([^0-9]|$)`).test(text);
+  return list.map((e) => {
+    if (!e.t) return e;
+    const [h, m] = e.t.split(":").map(Number);
+    if (has(e.t)) return e;
+    for (const back of [3]) {
+      let nh = h - back, d = e.d;
+      if (nh < 0) { nh += 24; const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() - 1); d = x.toISOString().slice(0, 10); }
+      const nt = `${String(nh).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+      if (has(nt)) return { ...e, d, t: nt, fixedTime: true };
+    }
+    return e;
+  });
 }

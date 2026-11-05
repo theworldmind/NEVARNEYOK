@@ -108,11 +108,12 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
 
 // Etkinlik olmayan kayıtlar: haberler, başvuru formları, kategori sayfaları, sezon kombineleri, spor maçları
 const JUNK_TITLE = /(başvuru formu|basvuru formu|belli oldu|duyuru|haberler?$|^etkinlikler$|^kategoriler$|^fuar$|^şura$|kombine|abonman|sezon kart|season ticket|hediye çeki|gift card)/i;
+const TEAMS = /\b(ankaragücü|ankaragucu|gençlerbirliği|genclerbirligi|keçiörengücü|keciorengucu|hacettepe sk|fenerbahçe|galatasaray|beşiktaş|trabzonspor|türk telekom|halkbank|ziraat bankkart)\b/i;
 const SPORT = /(\b(fk|sk|spor|futbol|kul[uü]b[uü]?|basketbol|voleybol|hentbol|gençlik ?gücü|gücü)\b.*\s[-–]\s|\s[-–]\s.*\b(fk|sk|spor|futbol|kul[uü]b[uü]?|basketbol|voleybol)\b|\bmaç(ı|lar)?\b)/i;
 export function isJunk(r) {
   const title = String(r.title || "");
   if (JUNK_TITLE.test(title)) return true;
-  if (SPORT.test(title) || /stad(yum|ı)/i.test(r.venue || "")) return true;
+  if (SPORT.test(title) || (TEAMS.test(title) && /\s[-–]\s|\bvs\.?\b/i.test(title)) || /stad(yum|ı)/i.test(r.venue || "")) return true;
   // genel metin tahmini: ne saat ne mekân bulunduysa sayfa büyük ihtimalle etkinlik değil (haber, liste...)
   if (r.via === "heuristic" && !r.t && !r.venue) return true;
   return false;
