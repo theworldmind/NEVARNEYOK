@@ -83,11 +83,11 @@ function offersOf(o) {
   const pick = onSale.length ? onSale : soldOut ? all : [];
   return { price: pick.length ? Math.min(...pick) : null, soldOut: list.length > 0 && soldOut, url, free };
 }
-export function eventsFromLd(html, pageUrl) {
+export function eventsFromLd(html, pageUrl, cfg = {}) {
   const nodes = flatten(jsonLdBlocks(html)).filter(isEventNode);
   const out = [];
   for (const n of nodes) {
-    const when = parseISOish(str(n.startDate));
+    const when = parseISOish(str(n.startDate), { zLocal: !!cfg.zLocal });
     if (!when) continue;
     const pl = placeOf(n.location);
     const of = offersOf(n.offers);
@@ -127,7 +127,7 @@ export function eventsFromJson(data, baseUrl, depth = 0, acc = []) {
   if (typeof data !== "object") return acc;
   const title = pick(data, K_TITLE), dateRaw = pick(data, K_DATE);
   if (typeof title === "string" && title.length > 1 && dateRaw != null) {
-    const when = typeof dateRaw === "number" ? parseISOish(new Date(dateRaw > 1e12 ? dateRaw : dateRaw * 1000).toISOString()) : parseISOish(String(dateRaw)) || parseTrDate(String(dateRaw));
+    const when = typeof dateRaw === "number" ? parseISOish(new Date(dateRaw > 1e12 ? dateRaw : dateRaw * 1000).toISOString(), { exact: true }) : parseISOish(String(dateRaw)) || parseTrDate(String(dateRaw));
     if (when) {
       let venue = pick(data, K_VENUE);
       if (venue && typeof venue === "object") venue = venue.name || venue.title || venue.venueName || "";
@@ -188,7 +188,8 @@ function priceNearKeywords(text) {
 
 // Bir detay sayfasından en iyi sonucu döndür
 export function extractDetail(html, url, cfg = {}) {
-  const ld = eventsFromLd(html, url);
+  if (cfg.parse) { const own = cfg.parse(html, url); if (own) return own; }
+  const ld = eventsFromLd(html, url, cfg);
   if (ld.length) return ld;
   const h = cfg.heuristics === false ? null : eventFromHeuristics(html, url, cfg);
   return h ? [h] : [];

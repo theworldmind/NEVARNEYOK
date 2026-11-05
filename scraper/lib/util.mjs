@@ -9,8 +9,8 @@ export const TZ = "Europe/Istanbul";
 // Sitedeki app.js ile birebir aynı: bağlantı adresleri (#e/...) ikisinde de aynı çıkmalı
 export const fold = (s) =>
   (s || "")
-    .toLocaleLowerCase("tr")
-    .replace(/[ıi̇]/g, "i").replace(/ğ/g, "g").replace(/ü/g, "u").replace(/ş/g, "s")
+    .normalize("NFC").toLocaleLowerCase("tr").replace(/\u0307/g, "").replace(/['’‘`´]/g, "")
+    .replace(/ı/g, "i").replace(/ğ/g, "g").replace(/ü/g, "u").replace(/ş/g, "s")
     .replace(/ö/g, "o").replace(/ç/g, "c").replace(/â/g, "a")
     .replace(/[^a-z0-9 ]+/g, " ");
 export const slugOf = (e) => e.d + "-" + fold(e.title).trim().replace(/\s+/g, "-").slice(0, 48);
@@ -46,7 +46,8 @@ export function decodeEntities(s) {
 export const stripTags = (html) =>
   decodeEntities(String(html ?? "").replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<noscript[\s\S]*?<\/noscript>/gi, " ").replace(/<br\s*\/?>|<\/(p|div|li|h\d|tr)>/gi, "\n").replace(/<[^>]+>/g, " "))
     .replace(/[ \t\r\f\v]+/g, " ").replace(/\n\s*/g, "\n").trim();
-export const clean = (s) => decodeEntities(String(s ?? "")).replace(/\s+/g, " ").trim();
+// U+0307 (birleşik nokta): "Kuli̇s" gibi bozuk yazımları "Kulis" yapar
+export const clean = (s) => decodeEntities(String(s ?? "")).normalize("NFC").replace(/\u0307/g, "").replace(/\s+/g, " ").trim();
 
 /* ---------- Tarih ---------- */
 const AYLAR = { ocak: 1, subat: 2, mart: 3, nisan: 4, mayis: 5, haziran: 6, temmuz: 7, agustos: 8, eylul: 9, ekim: 10, kasim: 11, aralik: 12,
@@ -63,7 +64,7 @@ export function istanbulParts(date) {
 export const todayIST = () => istanbulParts(new Date()).d;
 
 // "2026-11-07T20:00:00+03:00", "2026-11-07 20:00", "2026-11-07" → {d,t}
-export function parseISOish(s) {
+export function parseISOish(s, opt = {}) {
   if (!s) return null;
   s = String(s).trim();
   let m = s.match(/^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{1,2}):(\d{2})(?::\d{2}(?:\.\d+)?)?\s*(Z|[+-]\d{2}:?\d{2})?)?/);
@@ -72,7 +73,19 @@ export function parseISOish(s) {
   if (h == null) return { d: `${y}-${mo}-${d}`, t: "" };
   if (tz) {
     const dt = new Date(`${y}-${mo}-${d}T${pad(h)}:${mi}:00${tz === "Z" ? "Z" : tz.length === 5 ? tz.slice(0, 3) + ":" + tz.slice(3) : tz}`);
-    if (!isNaN(dt)) return istanbulParts(dt);
+    if (!isNaN(dt)) {
+      const loc = istanbulParts(dt);
+      // Bazı siteler yerel saati yanlışlıkla "Z"/"+00:00" ile yazıyor (20:00 seans → 23:00 görünür).
+      // Çevrilmiş saat gece yarısı civarına düşüyor ama yazılan saat makul bir seans saatiyse, yazılanı esas al.
+      const utc0 = tz === "Z" || /^[+-]00:?00$/.test(tz);
+      const lh = +(loc.t || "00:00").slice(0, 2), rh = +h;
+      const midnight = loc.t === "00:00";
+      if (utc0 && !opt.exact && (opt.zLocal || ((lh >= 23 || lh < 6) && !midnight && rh >= 9 && rh <= 22))) {
+        const t = `${pad(h)}:${mi}`;
+        return { d: `${y}-${mo}-${d}`, t: t === "00:00" ? "" : t };
+      }
+      return loc.t === "00:00" ? { d: loc.d, t: "" } : loc;
+    }
   }
   const t = `${pad(h)}:${mi}`;
   return { d: `${y}-${mo}-${d}`, t: t === "00:00" ? "" : t };
@@ -82,11 +95,11 @@ export function parseISOish(s) {
 export function parseTrDate(text, refYear = new Date().getFullYear()) {
   if (!text) return null;
   // fold() ":" ve "." işaretlerini siler; saat için onları koruyan ayrı bir sadeleştirme
-  const s = String(text).toLocaleLowerCase("tr").replace(/[ıi̇]/g, "i").replace(/ğ/g, "g").replace(/ü/g, "u").replace(/ş/g, "s")
+  const s = String(text).normalize("NFC").toLocaleLowerCase("tr").replace(/\u0307/g, "").replace(/ı/g, "i").replace(/ğ/g, "g").replace(/ü/g, "u").replace(/ş/g, "s")
     .replace(/ö/g, "o").replace(/ç/g, "c").replace(/[^a-z0-9:.\/ ]+/g, " ").replace(/\s+/g, " ");
   let m = s.match(/\b(\d{1,2})[.\/](\d{1,2})[.\/](\d{4})\b(?:\D{0,12}(\d{1,2})[:.](\d{2}))?/);
   if (m) return mk(+m[3], +m[2], +m[1], m[4], m[5]);
-  m = s.match(/\b(\d{1,2}) (ocak|subat|mart|nisan|mayis|haziran|temmuz|agustos|eylul|ekim|kasim|aralik|oca|sub|mar|nis|may|haz|tem|agu|eyl|eki|kas|ara)[a-z]*\.?(?: (\d{4}))?(?:[^0-9]{0,24}(\d{1,2})[:.](\d{2}))?/);
+  m = s.match(/\b(\d{1,2}) (ocak|subat|mart|nisan|mayis|haziran|temmuz|agustos|eylul|ekim|kasim|aralik|oca|sub|mar|nis|may|haz|tem|agu|eyl|eki|kas|ara|january|february|march|april|june|july|august|september|october|november|december)[a-z]*\.?,?(?: (\d{4}))?(?:[^0-9]{0,24}(\d{1,2})[:.](\d{2}))?/);
   if (m) {
     let y = m[3] ? +m[3] : refYear;
     const mo = AYLAR[m[2]];

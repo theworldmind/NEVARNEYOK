@@ -75,10 +75,26 @@ export function guessCat({ title = "", desc = "", url = "", catHint = "", genre 
 }
 
 /* ---------- Başlık ve eşleştirme anahtarı ---------- */
+// TAMAMI BÜYÜK HARF başlıklar → "Kan Kardeşler" (kısaltmalar korunur)
+const KEEP_UP = new Set(["DOB", "DT", "CSO", "ABB", "ODTÜ", "AKM", "ATO", "BSO", "TRT", "DJ", "MKE", "KKM", "ASM", "KM", "AŞ", "TV", "USA", "UK", "AC/DC", "ABBA", "BTS", "MFÖ", "TNT", "II", "III", "IV", "VI", "VII", "VIII", "IX", "XI", "XII", "TBMM", "ODTU", "METU", "TOBB", "ETÜ", "TED", "IF", "JJ"]);
+const SMALL = new Set(["ve", "ile", "ya", "da", "de", "mi", "mı", "için", "of", "and", "the", "in", "on", "a"]);
+export function fixCaps(t) {
+  const letters = t.replace(/[^\p{L}]/gu, "");
+  if (letters.length < 4 || letters !== letters.toLocaleUpperCase("tr")) return t;
+  return t.split(/(\s+|[-–—/(),:&"“”]+)/).map((w, i) => {
+    if (!/\p{L}/u.test(w)) return w;
+    const core = w.replace(/['’].*$/, "");
+    if (KEEP_UP.has(core)) return w;
+    const low = w.toLocaleLowerCase("tr");
+    if (i > 0 && SMALL.has(low)) return low;
+    return low.charAt(0).toLocaleUpperCase("tr") + low.slice(1);
+  }).join("");
+}
 export function cleanTitle(t) {
-  return clean(t)
+  return fixCaps(clean(t))
     .replace(/\s*[|]\s*(biletix|biletinial|bubilet|passo|mobilet|iticket|bugece|sanatçepte|sanatcepte).*$/i, "")
     .replace(/\s+(bileti|biletleri|bilet al)$/i, "")
+    .replace(/\s*[|]\s*ankara(\s*[|].*)?$/i, "")   // Passo: "Duvar | Ankara | Yaşar Kemal KM"
     .replace(/\s*[-–]\s*ankara$/i, "")
     .replace(/\s*\(\s*ankara\s*\)\s*/i, " ")
     .replace(/\s+/g, " ").trim();

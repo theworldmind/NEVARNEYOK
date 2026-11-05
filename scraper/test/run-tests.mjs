@@ -11,6 +11,11 @@ import { parseTrDate, parsePrice, parseISOish, istanbulParts } from "../lib/util
 import { eventsFromLd, eventsFromJson, eventFromHeuristics } from "../lib/extract.mjs";
 import { sameEvent, loadVenues, canonVenue, guessCat } from "../lib/normalize.mjs";
 import { parseManualCsv } from "../lib/manual.mjs";
+import { fold } from "../lib/util.mjs";
+import { cleanTitle, titleKey } from "../lib/normalize.mjs";
+import { isJunk } from "../lib/runner.mjs";
+import { mergeWithPrevious } from "../lib/merge.mjs";
+import * as P from "../sources/parsers.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SCRAPER = join(HERE, "..");
@@ -30,6 +35,62 @@ t("ISO tarih ve saat dilimi", () => {
   assert.deepEqual(parseISOish("2026-11-07T17:00:00Z"), { d: "2026-11-07", t: "20:00" });
   assert.deepEqual(parseISOish("2026-11-07T20:00:00+03:00"), { d: "2026-11-07", t: "20:00" });
   assert.deepEqual(parseISOish("2026-11-07"), { d: "2026-11-07", t: "" });
+});
+t("Yerel saati 'Z' ile yazan site: 20:00 seans 23:00 görünmez", () => {
+  assert.deepEqual(parseISOish("2026-11-07T20:00:00Z"), { d: "2026-11-07", t: "20:00" });
+  assert.deepEqual(parseISOish("2026-11-07T20:30:00+00:00"), { d: "2026-11-07", t: "20:30" });
+  assert.deepEqual(parseISOish("2026-11-06T21:00:00Z"), { d: "2026-11-07", t: "" }); // yerel gece yarısı = yalnız tarih
+  assert.deepEqual(parseISOish("2026-11-07T20:00:00Z", { exact: true }), { d: "2026-11-07", t: "23:00" });
+});
+t("Başlık anahtarı: kesme işareti ve bozuk İ", () => {
+  assert.equal(titleKey("2000'ler Partisi"), titleKey("2000ler Partisi"));
+  assert.equal(fold("Kuli̇s Sanat Ti̇yatrosu").trim(), "kulis sanat tiyatrosu");
+  assert.equal(cleanTitle("KAN KARDEŞLER"), "Kan Kardeşler");
+  assert.equal(cleanTitle("ŞEBNEM FERAH VE DOB KONSERİ"), "Şebnem Ferah ve DOB Konseri");
+  assert.equal(cleanTitle("Duvar | Ankara | Yaşar Kemal KM"), "Duvar");
+  assert.equal(cleanTitle("Redd"), "Redd");
+});
+t("Etkinlik olmayanlar ayıklanır (maç, kombine, haber)", () => {
+  assert.ok(isJunk({ title: "MKE Ankaragücü - Akedaş Kahramanmaraş İstiklal Spor", venue: "Eryaman Stadyumu" }));
+  assert.ok(isJunk({ title: "MKE Ankaragücü 26/27 Kombine" }));
+  assert.ok(isJunk({ title: "37. Ankara Film Festivalinin afişi belli oldu" }));
+  assert.ok(isJunk({ title: "Bir haber", via: "heuristic", t: "", venue: "" }));
+  assert.ok(!isJunk({ title: "Redd - Aşk Dünyanın Sonu", venue: "IF Performance" }));
+});
+t("Sanatçepte: süre seans saati sanılmaz, seanslar ayrı ayrı okunur", () => {
+  const h = `<h1 itemprop="name">TAV&#x15E;AN</h1><span class="eventAddress">Ankara - K&#xFC;&#xE7;&#xFC;k Tiyatro </span>
+    <div>02:35:00 dakika</div><div class="location">K&#xFC;&#xE7;&#xFC;k Tiyatro</div><div class="date-container">
+    <button class="seanceSelect">06 Kas&#x131;m 2026 Cuma <span>20:00</span></button>
+    <button class="seanceSelect">07 Kas&#x131;m 2026 Cumartesi <span>15:00</span></button></div>`;
+  const r = P.sanatcepte(h, "https://x/1");
+  assert.equal(r.length, 2);
+  assert.deepEqual([r[0].d, r[0].t, r[0].venue, r[0].city, r[0].dur], ["2026-11-06", "20:00", "Küçük Tiyatro", "Ankara", "2 sa 35 dk"]);
+  assert.equal(r[1].t, "15:00");
+});
+t("Bilkent: yalnızca boş koltuğu olan fiyat grubu en düşük fiyat sayılır", () => {
+  const h = `<h1>In Memory</h1><div class="time">07 November 2026, 20:00</div><div class="place">Bilkent Concert Hall</div>
+    priceGroups: [{"id":1,"price":"840"},{"id":2,"price":"450"}],
+    seats: [{"price_group_id":"1","unavailable":"N","hidden":"N","closed":"N"},{"price_group_id":"2","unavailable":"Y","hidden":"N","closed":"N"}],
+`;
+  const r = P.bilkent(h, "https://x/2");
+  assert.deepEqual([r[0].d, r[0].t, r[0].price, r[0].venue], ["2026-11-07", "20:00", 840, "Bilkent Konser Salonu"]);
+});
+t("Dünkü kayıt: sayfa bugün okunduysa ve seans artık yoksa silinir; ikizler birleşir", () => {
+  const now = new Date().toISOString(), old = new Date(Date.now() - 864e5).toISOString();
+  const prev = { events: [
+    { d: D1, t: "23:00", title: "Beatrice", venue: "Bambu Sahne", cat: "tiyatro", tickets: [{ site: "Biletinial", url: "https://b/beatrice", price: 500, src: "biletinial", seen: old }] },
+    { d: D1, t: "21:00", title: "2000'ler Partisi", venue: "Kite", cat: "parti", tickets: [{ site: "Biletix", url: "https://x/2000", price: 300, src: "biletix", seen: old }] },
+  ] };
+  const fresh = [
+    { d: D1, t: "20:00", title: "Beatrice", venue: "Bambu Sahne", cat: "tiyatro", tickets: [{ site: "Biletinial", url: "https://b/beatrice", price: 550, pc: 3, src: "biletinial" }] },
+    { d: D1, t: "21:00", title: "2000ler Partisi", venue: "Kite", cat: "parti", tickets: [{ site: "Biletinial", url: "https://b/2000", price: 280, pc: 3, src: "biletinial" }] },
+  ];
+  const health = { biletinial: { ok: true }, biletix: { ok: true } };
+  const out = mergeWithPrevious(prev, fresh, health, { now, readUrls: new Set(["https://b/beatrice"]) });
+  const b = out.filter((e) => e.title === "Beatrice");
+  assert.equal(b.length, 1); assert.equal(b[0].t, "20:00"); assert.equal(b[0].tickets[0].price, 550);
+  const p = out.filter((e) => /2000/.test(e.title));
+  assert.equal(p.length, 1); assert.equal(p[0].tickets.length, 2);
 });
 t("Fiyat okuma", () => {
   assert.equal(parsePrice("1.250,00 TL"), 1250);

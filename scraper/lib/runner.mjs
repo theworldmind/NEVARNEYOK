@@ -48,7 +48,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
     for (const listing of src.listings || []) {
       const page = await getPage(listing, { render: src.render, loadMore: src.loadMore || [], scrolls: src.scrolls ?? 6 });
       if (!page.html) { notes.push(`liste açılmadı: ${listing} (${page.status || page.error || "?"})`); continue; }
-      const ld = eventsFromLd(page.html, page.url || listing);
+      const ld = eventsFromLd(page.html, page.url || listing, src);
       const js = (page.jsons || []).flatMap((j) => eventsFromJson(j.data, j.url));
       raws.push(...ld, ...js);
       const links = linksIn(page.html, page.url || listing).filter((u) => src.link.test(u));
@@ -74,6 +74,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
   const knownSet = new Set(known);
   const list = [...detail].sort((a, b) => knownSet.has(a) - knownSet.has(b)).slice(0, mode === "full" ? src.maxDetail ?? 250 : src.maxRefresh ?? 150);
   let okDetail = 0, gone = [];
+  const readUrls = [];
   let skipped = 0, savedDetail = 0;
   await pool(list, src.concurrency || 3, async (u) => {
     if (Date.now() > deadline) { skipped++; return; }
@@ -83,7 +84,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
     if (debug && savedDetail < 3) { savedDetail++; await writeText(join(DEBUG, src.id, "detay-" + savedDetail + ".html"), `<!-- ${u} -->\n` + page.html.slice(0, 6e5)); }
     let evs = extractDetail(page.html, page.url || u, src);
     if (!evs.length && page.jsons?.length) evs = page.jsons.flatMap((j) => eventsFromJson(j.data, j.url));
-    if (evs.length) okDetail++;
+    if (evs.length) { okDetail++; readUrls.push(u); }
     for (const e of evs) { if (!e.url || e.url === page.url) e.url = u; raws.push(e); }
   });
 
@@ -91,6 +92,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
   const seen = new Set();
   const out = raws.filter((r) => {
     if (!r.d || r.d < today || !r.title) return false;
+    if (isJunk(r)) return false;
     if (src.city !== "ankara" && !looksAnkara(r)) return false;
     if (src.city === "ankara" && r.city && !/ankara/i.test(r.city) && !looksAnkara(r)) return false;
     const k = r.d + r.t + r.title + (r.url || "");
@@ -101,5 +103,17 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
   const ms = Date.now() - t0;
   if (skipped) notes.push(`süre doldu: ${skipped} detay sayfası bu tur atlandı`);
   log(`  ${src.name}: ${out.length} kayıt (${detail.size} aday, ${okDetail} detay okundu${skipped ? `, ${skipped} atlandı` : ""}, ${Math.round(ms / 1000)} sn)`);
-  return { raws: out, detailCount: detail.size, okDetail, gone, notes, ms };
+  return { raws: out, detailCount: detail.size, okDetail, gone, notes, ms, readUrls };
+}
+
+// Etkinlik olmayan kayıtlar: haberler, başvuru formları, kategori sayfaları, sezon kombineleri, spor maçları
+const JUNK_TITLE = /(başvuru formu|basvuru formu|belli oldu|duyuru|haberler?$|^etkinlikler$|^kategoriler$|^fuar$|^şura$|kombine|abonman|sezon kart|season ticket|hediye çeki|gift card)/i;
+const SPORT = /(\b(fk|sk|spor|futbol|kul[uü]b[uü]?|basketbol|voleybol|hentbol|gençlik ?gücü|gücü)\b.*\s[-–]\s|\s[-–]\s.*\b(fk|sk|spor|futbol|kul[uü]b[uü]?|basketbol|voleybol)\b|\bmaç(ı|lar)?\b)/i;
+export function isJunk(r) {
+  const title = String(r.title || "");
+  if (JUNK_TITLE.test(title)) return true;
+  if (SPORT.test(title) || /stad(yum|ı)/i.test(r.venue || "")) return true;
+  // genel metin tahmini: ne saat ne mekân bulunduysa sayfa büyük ihtimalle etkinlik değil (haber, liste...)
+  if (r.via === "heuristic" && !r.t && !r.venue) return true;
+  return false;
 }

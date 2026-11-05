@@ -17,17 +17,20 @@
 // ve "Kaynak sağlık raporu" konusu hangi kaynağın kaç etkinlik getirdiğini gösterir; boş gelenlerin
 // listings/link alanları o raporla ve kaydedilen sayfa örnekleriyle (debug artifact) düzeltilir.
 
+import * as P from "./parsers.mjs";
+
 export default [
   /* ===================== BİLET SİTELERİ ===================== */
   { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com",
     listings: ["https://www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Ankara"],
-    link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, loadMore: ["Daha fazla", "Daha Fazla Göster"], city: "tr", maxDetail: 220 },
+    link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, loadMore: ["Daha fazla", "Daha Fazla Göster"], city: "tr", maxDetail: 220, budgetMin: 24, concurrency: 4 },
   { id: "biletinial", name: "Biletinial", kind: "bilet", home: "https://biletinial.com",
     listings: ["https://biletinial.com/tr-tr/sehrineozel/ankara", "https://biletinial.com/tr-tr/tiyatro/ankara", "https://biletinial.com/tr-tr/muzik/ankara", "https://biletinial.com/tr-tr/opera-bale/ankara"],
     link: /biletinial\.com\/tr-tr\/(tiyatro|muzik|opera-bale|etkinlik|stand-up|festival|cocuk-aktiviteleri|egitim)\/[a-z0-9-]+/i, render: true, loadMore: ["Daha fazlasını göster", "Daha Fazla"], city: "tr", maxDetail: 320 },
   { id: "sanatcepte", name: "Sanatçepte", kind: "bilet", home: "https://www.sanatcepte.gov.tr",
     listings: ["https://www.sanatcepte.gov.tr/etkinlik/etkinlikler?search=ankara", "https://www.sanatcepte.gov.tr/etkinlik/etkinlikler"],
-    link: /sanatcepte\.gov\.tr\/etkinlik\/etkinlik-detay\/[a-z0-9-]+/i, render: true, loadMore: ["Daha fazla"], city: "tr", maxDetail: 260 },
+    link: /sanatcepte\.gov\.tr\/etkinlik\/etkinlik-detay\/[a-z0-9-]+/i, render: true, loadMore: ["Daha fazla"], city: "tr", maxDetail: 450, concurrency: 5,
+    parse: P.sanatcepte, heuristics: false },
   { id: "bubilet", name: "Bubilet", kind: "bilet", home: "https://www.bubilet.com.tr",
     listings: ["https://www.bubilet.com.tr/ankara"],
     link: /bubilet\.com\.tr\/ankara\/(etkinlik|sanatci)\/[a-z0-9-]+/i, render: true, loadMore: ["Daha fazla"], city: "ankara" },
@@ -48,7 +51,8 @@ export default [
     link: /tiyatrolar\.com\.tr\/tiyatro(-bilet)?\/[a-z0-9-]+/i, sitemap: true, render: true, city: "tr", defaultCat: "tiyatro" },
   { id: "bilkent", name: "Bilkent Bilet", kind: "bilet", home: "https://ticket.bilkent.edu.tr",
     listings: ["https://ticket.bilkent.edu.tr/"],
-    link: /ticket\.bilkent\.edu\.tr\/bilet\/\d+/i, city: "ankara", defaultVenue: "Bilkent Konser Salonu", defaultCat: "konser" },
+    link: /ticket\.bilkent\.edu\.tr\/bilet\/\d+/i, city: "ankara", defaultVenue: "Bilkent Konser Salonu", defaultCat: "konser",
+    parse: P.bilkent, heuristics: false },
   { id: "biletino", name: "Biletino", kind: "bilet", home: "https://biletino.com",
     listings: ["https://biletino.com/tr/ankara/"],
     link: /biletino\.com\/(tr\/)?e\/[a-z0-9-]+/i, render: true, city: "tr" },
@@ -68,7 +72,7 @@ export default [
     link: /ankara\.bel\.tr\/(sehir-tiyatrolari|oyunlar|tiyatro)\/[^?#]+/i, render: true, city: "ankara", defaultCat: "tiyatro" },
   { id: "abb-kultur", name: "Ankara Büyükşehir Kültür", kind: "kurum", home: "https://www.ankara.bel.tr",
     listings: ["https://www.ankara.bel.tr/etkinlikler", "https://www.ankara.bel.tr/kultur-sanat"],
-    link: /ankara\.bel\.tr\/(etkinlik|etkinlikler)\/[^?#]+/i, render: true, city: "ankara" },
+    link: /ankara\.bel\.tr\/etkinlik\/[a-z0-9-]+-\d+$/i, render: true, city: "ankara" }, // /etkinlikler/<kategori> sayfaları etkinlik değildir
   { id: "cankaya", name: "Çankaya Belediyesi", kind: "kurum", home: "https://www.cankaya.bel.tr",
     listings: ["https://www.cankaya.bel.tr/etkinlikler"],
     link: /cankaya\.bel\.tr\/(etkinlik|etkinlikler)\/[^?#]+/i, render: true, city: "ankara" },
@@ -80,7 +84,7 @@ export default [
     link: /kecioren\.bel\.tr\/(etkinlik|etkinlikler)\/[^?#]+/i, render: true, city: "ankara" },
   { id: "etimesgut", name: "Etimesgut Belediyesi", kind: "kurum", home: "https://www.etimesgut.bel.tr",
     listings: ["https://www.etimesgut.bel.tr/etkinlikler"],
-    link: /etimesgut\.bel\.tr\/(etkinlik|etkinlikler)\/[^?#]+/i, render: true, city: "ankara" },
+    link: /etimesgut\.bel\.tr\/etkinlik\/[^?#]+/i, render: true, city: "ankara", defaultVenue: "Etimesgut Belediyesi", parse: P.etimesgut, heuristics: false },
   { id: "mamak", name: "Mamak Belediyesi", kind: "kurum", home: "https://www.mamak.bel.tr",
     listings: ["https://www.mamak.bel.tr/etkinlikler"],
     link: /mamak\.bel\.tr\/(etkinlik|etkinlikler)\/[^?#]+/i, render: true, city: "ankara" },
@@ -100,7 +104,8 @@ export default [
     link: /ankarajazzfestival\.com\/(program|konser|etkinlik)[^?#]*/i, render: true, city: "ankara", defaultCat: "konser" },
   { id: "film-ankara", name: "Ankara Film Festivali", kind: "mekan", home: "https://www.filmfestankara.org.tr",
     listings: ["https://www.filmfestankara.org.tr/program"],
-    link: /filmfestankara\.org\.tr\/[^?#]*(film|gosterim|program)[^?#]*/i, render: true, city: "ankara", forceCat: "sinema" },
+    // Program yayınlanınca seans sayfaları JSON-LD ile okunur; haber/başvuru sayfaları etkinlik sayılmaz
+    link: /filmfestankara\.org\.tr\/(program|gosterim|seans)\/[^?#]+/i, render: true, city: "ankara", forceCat: "sinema", heuristics: false },
   { id: "if", name: "IF Performance Hall", kind: "mekan", home: "https://www.ifperformance.com",
     listings: ["https://www.ifperformance.com/ankara"],
     link: /ifperformance\.com\/[^?#]*(etkinlik|event|konser)[^?#]*/i, render: true, city: "tr" },

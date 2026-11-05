@@ -5,8 +5,8 @@
 import { join } from "node:path";
 import { readFile } from "node:fs/promises";
 import { ROOT, log, readJSON, writeJSON, writeText, pool, withTimeout, todayIST } from "./lib/util.mjs";
-import { loadVenues } from "./lib/normalize.mjs";
-import { runSource } from "./lib/runner.mjs";
+import { loadVenues, cleanTitle } from "./lib/normalize.mjs";
+import { runSource, isJunk } from "./lib/runner.mjs";
 import { rawToEvent, dedupe, mergeWithPrevious, applyManual } from "./lib/merge.mjs";
 import { closeBrowser, fetchText } from "./lib/net.mjs";
 import { parseManualCsv } from "./lib/manual.mjs";
@@ -25,6 +25,10 @@ loadVenues(await readJSON(join(ROOT, "data/venues.json"), {}));
 const SOURCES = (await import(process.env.SOURCES_FILE || "./sources/index.mjs")).default
   .filter((s) => s.enabled !== false && (!ONLY.length || ONLY.includes(s.id)));
 const prevHealth = await readJSON(HEALTH, { sources: {} });
+// dünkü veriye de bugünkü kurallar uygulanır (maç/kombine/haber ayıklama, başlık düzeltme)
+// ne saati ne mekânı olan, ilk taramalarda metin tahminiyle gelmiş kayıtlar da (haber sayfaları) bırakılır
+const vagueBot = (e) => !e.manual && !e.t && /^(çeşitli mekânlar|)$/i.test(e.venue || "") && (e.tickets || []).every((t) => t.src !== "elle" && t.seen && t.seen !== prev.baseline);
+if (prev.events) prev.events = prev.events.filter((e) => e.manual || (!isJunk(e) && !vagueBot(e))).map((e) => (e.manual ? e : { ...e, title: cleanTitle(e.title) }));
 
 log(`Mod: ${MODE} · ${SOURCES.length} kaynak · önceki veri: ${prev.events?.length || 0} etkinlik`);
 
@@ -34,7 +38,8 @@ await pool(SOURCES, PARALLEL, async (src) => {
   const known = [...new Set((prev.events || []).flatMap((e) => (e.tickets || []).filter((t) => t.src === src.id && t.url).map((t) => t.url)))];
   log(`→ ${src.name}`);
   try {
-    results[src.id] = await withTimeout(runSource(src, { known, mode: MODE, budgetMs: SOURCE_TIMEOUT - 60e3 }), SOURCE_TIMEOUT + 120e3, src.name);
+    const lim = (src.budgetMin ? src.budgetMin * 60e3 : SOURCE_TIMEOUT);
+    results[src.id] = await withTimeout(runSource(src, { known, mode: MODE, budgetMs: lim - 60e3 }), lim + 120e3, src.name);
   } catch (e) {
     log(`  ✗ ${src.name}: ${e.message}`);
     results[src.id] = { raws: [], error: e.message, notes: [], gone: [] };
@@ -62,7 +67,8 @@ for (const src of SOURCES) {
 const fresh = dedupe(SOURCES.flatMap((src) => (results[src.id]?.raws || []).map((r) => rawToEvent(r, src))));
 // bugün tarama yapmayan (--only) kaynaklar "çalışmadı" sayılır → eski kayıtları korunur
 const ranHealth = Object.fromEntries(Object.entries(health).map(([k, h]) => [k, h]));
-let events = mergeWithPrevious(prev, fresh, ranHealth, { now, refresh: MODE === "refresh" });
+const readUrls = new Set(SOURCES.flatMap((src) => (health[src.id].ok ? results[src.id]?.readUrls || [] : [])));
+let events = mergeWithPrevious(prev, fresh, ranHealth, { now, refresh: MODE === "refresh", readUrls });
 
 // artık bulunmayan (404) bilet sayfaları
 // (yalnızca sağlıklı kaynaklarda ve az sayıdaysa: her sayfa 404 veriyorsa site yapısı değişmiştir, silme)

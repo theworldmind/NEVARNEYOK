@@ -30,6 +30,12 @@ export function rawToEvent(r, src) {
 function addTicket(ev, tk) {
   const same = ev.tickets.find((x) => x.site === tk.site);
   if (!same) { ev.tickets.push(tk); return; }
+  // eski kayıtla yeni kayıt çakışırsa: en son görülen bilgi kazanır (eski fiyat asla yeniyi ezmez)
+  if (tk.seen && same.seen && tk.seen !== same.seen) {
+    if (tk.seen > same.seen) Object.assign(same, { url: tk.url, price: tk.price, pc: tk.pc, seen: tk.seen, src: tk.src });
+    if (!same.price) delete same.price; if (!same.pc) delete same.pc;
+    return;
+  }
   // aynı siteden iki fiyat: önce güvenilirlik (yapısal veri > arka plan JSON > metin), eşitse küçük olan
   const a = tk.pc || 0, b = same.pc || 0;
   if (tk.price && (!same.price || a > b || (a === b && tk.price < same.price))) { same.price = tk.price; same.pc = tk.pc; same.url = tk.url; }
@@ -37,6 +43,9 @@ function addTicket(ev, tk) {
 function absorb(into, ev) {
   for (const tk of ev.tickets) addTicket(into, tk);
   if (!into.t && ev.t) into.t = ev.t;
+  if (ev.firstSeen && (!into.firstSeen || ev.firstSeen < into.firstSeen)) into.firstSeen = ev.firstSeen;
+  if (ev.lastSeen && (!into.lastSeen || ev.lastSeen > into.lastSeen)) into.lastSeen = ev.lastSeen;
+  if (ev.catLocked && !into.catLocked) { into.cat = ev.cat; into.catLocked = true; }
   if ((into.venue === "Çeşitli mekânlar" || !into.venue) && ev.venue && ev.venue !== "Çeşitli mekânlar") into.venue = ev.venue;
   for (const k of KEEP_FIELDS) if (!into[k] && ev[k]) into[k] = ev[k];
   if ((!into.desc || into.desc.length < (ev.desc || "").length / 2) && ev.desc) into.desc = ev.desc;
@@ -66,13 +75,15 @@ const minReal = (e) => { const p = e.tickets.filter((x) => x.price && !x.est).ma
  * prev: dünkü events.json, fresh: bugün toplananlar (dedupe edilmiş), health: {srcId:{ok,count,prevCount}}
  * Döner: birleşik etkinlik listesi
  */
-export function mergeWithPrevious(prev, fresh, health, { now = new Date().toISOString(), refresh = false } = {}) {
+export function mergeWithPrevious(prev, fresh, health, { now = new Date().toISOString(), refresh = false, readUrls = new Set() } = {}) {
   const today = todayIST();
   const prevEvents = (prev?.events || []).filter((e) => e.d >= today);
   const degraded = new Set(Object.entries(health).filter(([, h]) => !h.ok).map(([k]) => k));
   const ran = new Set(Object.keys(health));
   const result = [];
   const used = new Set();
+  // Bilet sayfası bugün başarıyla okunduysa ve bu seans orada yoksa → seans kalkmış (ya da dünkü kayıt hatalıydı): tutma
+  const reread = (tk) => tk.url && readUrls.has(tk.url) && !degraded.has(tk.src);
 
   for (const ev of fresh) {
     const old = prevEvents.find((p, i) => !used.has(i) && sameEvent(p, ev) && (used.add(i), true));
@@ -86,7 +97,9 @@ export function mergeWithPrevious(prev, fresh, health, { now = new Date().toISOS
     for (const tk of old.tickets || []) {
       if (m.tickets.some((x) => x.site === tk.site)) continue;
       const age = tk.seen ? (Date.parse(now) - Date.parse(tk.seen)) / 864e5 : 0;
-      if (tk.src === "elle" || degraded.has(tk.src) || !ran.has(tk.src) || refresh || age < STALE_TICKET_DAYS) m.tickets.push(tk);
+      if (tk.src === "elle") { m.tickets.push(tk); continue; }
+      if (reread(tk)) continue;
+      if (degraded.has(tk.src) || !ran.has(tk.src) || refresh || age < STALE_TICKET_DAYS) m.tickets.push(tk);
     }
     // fiyat değişimi
     const was = old.price ?? minReal(old), is = minReal(m);
@@ -101,6 +114,7 @@ export function mergeWithPrevious(prev, fresh, health, { now = new Date().toISOS
     if (used.has(i)) return;
     const tickets = (old.tickets || []).filter((tk) => {
       if (tk.src === "elle") return true;
+      if (reread(tk)) return false;
       if (degraded.has(tk.src) || !ran.has(tk.src) || refresh) return true; // kaynak bozuk/çalışmadı → koru
       const age = tk.seen ? (Date.parse(now) - Date.parse(tk.seen)) / 864e5 : 0;
       return age < STALE_TICKET_DAYS; // kısa süreli kayıpta hemen silme
@@ -108,9 +122,11 @@ export function mergeWithPrevious(prev, fresh, health, { now = new Date().toISOS
     if (tickets.length) result.push({ ...old, tickets });
   });
 
-  // son dokunuşlar
+  // son dokunuşlar: eski + yeni kayıtların ikizlerini birleştir (ör. "2000'ler" / "2000ler", saat düzeltmesi öncesi kalanlar)
+  for (const e of result) e.tickets.forEach((tk) => { if (!tk.seen) tk.seen = now; }); // bugün toplananlar (ve eski kayıtsızlar)
+  const merged = dedupe(result.map((e) => ({ ...e, tickets: (e.tickets || []).map((t) => ({ ...t })) })));
+  result.length = 0; result.push(...merged);
   for (const e of result) {
-    e.tickets.forEach((tk) => { if (!tk.seen) tk.seen = now; }); // bugün toplananlar (ve eski kayıtsızlar) için
     const p = minReal(e);
     if (p) e.price = p; else delete e.price;
   }
