@@ -52,6 +52,15 @@ function card(e, depth) {
 }
 const list = (arr, depth) => arr.length ? `<ul class="list">${arr.map((e) => card(e, depth)).join("")}</ul>` : `<p class="none">Şu an listelenen etkinlik yok.</p>`;
 
+// Etkinlik tanımı: bilet sitelerinin tanıtım metni değil, olgulardan bizim kurduğumuz kısa cümle.
+// Organizatörün kendi gönderdiği (elle eklenen) metin varsa o kullanılır.
+const SALES = /^(biletix|biletinial|passo|bubilet|biletino|mobilet|sanatçepte|sanatcepte|iticket|bilkent bilet)$/i;
+const orgOf = (e) => (e.org && !SALES.test(e.org.trim()) ? e.org : "");
+function ourDesc(e) {
+  const f = [e.dur && `süre ${e.dur}`, e.age && `${e.age.replace("+", "")} yaş ve üzeri`, orgOf(e) && `düzenleyen ${orgOf(e)}`].filter(Boolean).join(" · ");
+  return `${e.genre || CATS[e.cat] || "Etkinlik"} · ${e.venue}.${f ? " " + f[0].toLocaleUpperCase("tr") + f.slice(1) + "." : ""} Kadro, program ve kurallar için bilet sayfasına göz at.`;
+}
+const descOf = (e) => (e.manual && e.desc ? e.desc : ourDesc(e));
 function eventLd(e) {
   const v = venues[e.venue] || {};
   const p = minPrice(e);
@@ -62,10 +71,10 @@ function eventLd(e) {
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: { "@type": "Place", name: e.venue, address: { "@type": "PostalAddress", streetAddress: v.addr || "", addressLocality: v.ilce || "Ankara", addressRegion: "Ankara", addressCountry: "TR" },
       ...(v.lat ? { geo: { "@type": "GeoCoordinates", latitude: v.lat, longitude: v.lng } } : {}) },
-    ...(e.desc ? { description: e.desc } : {}),
+    description: descOf(e),
     offers: e.tickets.map((t) => ({ "@type": "Offer", url: t.url, ...(t.price && !t.est ? { price: t.price, priceCurrency: "TRY" } : {}),
       availability: e.status === "tukendi" ? "https://schema.org/SoldOut" : "https://schema.org/InStock", seller: { "@type": "Organization", name: t.site } })),
-    ...(e.org ? { organizer: { "@type": "Organization", name: e.org } } : {}),
+    ...(orgOf(e) ? { organizer: { "@type": "Organization", name: orgOf(e) } } : {}),
   };
 }
 
@@ -78,13 +87,13 @@ for (const e of pageEvents) {
   const v = venues[e.venue] || {};
   const others = events.filter((x) => x !== e && x.title === e.title).slice(0, 10);
   const p = minPrice(e);
-  const desc = `${fmtDate(e.d)} ${dayName(e.d)}${e.t ? " " + e.t : ""} · ${e.venue}, Ankara. ${p ? `Biletler ${fmtTL(p)}'den başlıyor. ` : ""}${(e.desc || "").slice(0, 110)}`;
+  const desc = `${fmtDate(e.d)} ${dayName(e.d)}${e.t ? " " + e.t : ""} · ${e.venue}, Ankara. ${p ? `Biletler ${fmtTL(p)}'den başlıyor. ` : ""}${e.genre || CATS[e.cat] || ""}${e.dur ? ", " + e.dur : ""}${e.age ? ", " + e.age : ""}.`;
   const body = `<article class="det" style="--c:${CAT_COLOR[e.cat]}"><p class="kicker">${esc(CATS[e.cat] || "")}${e.genre ? " · " + esc(e.genre) : ""}</p>
 <h1>${esc(e.title)}</h1>
 <p class="when">${esc(fmtDate(e.d))} ${esc(dayName(e.d))}${e.t ? ` · <b>${esc(e.t)}</b>` : ""}</p>
 <p class="where"><a href="../../mekan/${esc(venueSlug(e.venue))}/">${esc(e.venue)}</a>${v.addr ? ` · ${esc(v.addr)}` : ""}</p>
-${e.desc ? `<p class="desc">${esc(e.desc)}</p>` : ""}
-<dl>${[["Süre", e.dur], ["Yaş sınırı", e.age], ["Kapı açılış", e.door], ["Organizasyon", e.org], ["Bilgi", e.note]].filter((x) => x[1]).map(([k, x]) => `<div><dt>${k}</dt><dd>${esc(x)}</dd></div>`).join("")}</dl>
+<p class="desc">${esc(descOf(e))}</p>
+<dl>${[["Süre", e.dur], ["Yaş sınırı", e.age], ["Kapı açılış", e.door], ["Organizasyon", orgOf(e)], ["Bilgi", e.note]].filter((x) => x[1]).map(([k, x]) => `<div><dt>${k}</dt><dd>${esc(x)}</dd></div>`).join("")}</dl>
 <h2>Biletler</h2><ul class="tix">${e.tickets.map((t) => `<li><span>${esc(t.site)}</span><b>${t.price && !t.est ? esc(fmtTL(t.price)) : ""}</b><a rel="nofollow noopener" target="_blank" href="${esc(t.url)}">Bilet al ↗</a></li>`).join("")}</ul>
 <p class="cta"><a class="btn" href="../../#e/${esc(s)}">Sitede aç: hava durumu ve diğer bilgiler</a>${v.place ? ` <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${v.lat},${v.lng}&query_place_id=${v.place}">Haritada aç ↗</a>` : ""}</p>
 ${others.length ? `<h2>Diğer tarihler</h2>${list(others, 2)}` : ""}</article>`;

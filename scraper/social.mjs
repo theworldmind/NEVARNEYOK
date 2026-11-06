@@ -70,7 +70,7 @@ li{display:grid;grid-template-columns:110px 1fr auto;gap:22px;align-items:center
 <div class="logo">NE VAR<br>NE YOK<b>?</b></div><div class="city">ANKARA</div>
 <h1>${esc(set.title)}</h1><div class="sub">${esc(set.sub)} · ${set.list.length} etkinlik</div>
 <ul>${rows}</ul>
-<div class="foot"><span>Bütün liste ve bilet fiyatları</span><div class="u">${esc(domain)}</div></div>
+<div class="foot"><span>Etkinlik listesi ve bilet bağlantıları</span><div class="u">${esc(domain)}</div></div>
 </body></html>`;
 }
 

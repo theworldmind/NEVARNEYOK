@@ -25,6 +25,26 @@ Bozulmaması gereken kurallar:
 - **Giriş ekranı sırası:** `afterIntro()` / `introDone()` ile giriş ekranı bitene kadar ağır işler bekletilir.
 - Bot korumalı sitelerin (Bubilet, Passo, Biletino, Mobilet) korumasını aşmaya çalışma. API anahtarı gerektiren hiçbir şey ekleme. Yasal ortaklık önerme.
 
+## 2b. Hukuki kurallar (risk en aza indirildi; bozma)
+- **Yalnızca olgular.** Kaynaklardan ad, tarih, saat, mekân, fiyat, satış durumu, süre, yaş, tür ve düzenleyen alınır.
+  - **Tanıtım metni (`desc`), afiş ve görsel yayımlanmaz ve saklanmaz.** `run.mjs` içindeki `strip()` bunları siler. Metinden yalnızca süre ve yaş ayıklanır (`factsFrom`).
+  - Etkinlik tanımını olgulardan kendimiz kurarız: `app.js` ve `build-pages.mjs` içindeki `descOf()`.
+  - Organizatörün kendi gönderdiği metin (elle eklenen, `manual`) gösterilebilir.
+- **Başkasının metnini başka kelimelerle yeniden yazma.** Bu da "işleme" sayılır. Olgulardan bağımsız cümle kur.
+- **Açık kimlik ve robots.txt.**
+  - Toplayıcı kendini `NeVarNeYokBot` diye tanıtır (`lib/net.mjs`).
+  - Her sitenin robots.txt kuralına ve Crawl-delay değerine uyar.
+  - Otomasyonu gizleyen ayarlar ve bot korumasını aşan yöntemler eklenmez.
+- **Kaldırma talebi.**
+  - Gelen talepler `data/blocklist.txt` dosyasına bir satır olarak eklenir; biçimler: `site:`, `mekan:`, `etkinlik:`, `duzenleyen:`. Bir sonraki taramada içerik siteden kalkar.
+  - Talep en geç 48 saat içinde yerine getirilir.
+  - İletişim adresi: contact.openmind.vision@gmail.com (`NVNY_SITE.contact`).
+- **İddialar.**
+  - "Bütün etkinlikler", "en ucuz" gibi doğrulanamayan iddialar kullanılmaz. Slogan: "Ankara'nın etkinliklerine göz at."
+  - Site reklam ve komisyon almaz. Para kazanma eklenecekse önce bir avukata danışılmalı.
+- **Kaynak önceliği.** Kamu kurumları, mekânların kendi siteleri ve organizatörün kendi gönderdiği etkinlikler önce gelir. Ticari bilet siteleri öncelikle "Bilet al" bağlantısı olarak kullanılır.
+
+
 ## 3. Marka ve tasarım kararları (kullanıcının onayladıkları)
 - **Logo:** "NE VAR NE YOK" beyaz. YOK'taki O, **canlı cam mercek** (C tasarımı). Sapı nar rengi `#FF3B6B`. Camın rengi zaman dilimine göre değişir (`--g1..3`, `data-period`). **Soru işareti yok.** Sap yanında nokta yok.
 - **Dört tema:** Sabah, Gün, Gün batımı, Gece.

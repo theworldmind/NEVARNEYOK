@@ -25,6 +25,8 @@ loadVenues(await readJSON(join(ROOT, "data/venues.json"), {}));
 const SOURCES = (await import(process.env.SOURCES_FILE || "./sources/index.mjs")).default
   .filter((s) => s.enabled !== false && (!ONLY.length || ONLY.includes(s.id)));
 const prevHealth = await readJSON(HEALTH, { sources: {} });
+{ const BL0 = await loadBlocklist(), sites = BL0.filter((b) => b.k === "site").map((b) => b.v);
+  for (let i = SOURCES.length - 1; i >= 0; i--) if (sites.some((v) => (SOURCES[i].home || "").toLocaleLowerCase("tr").includes(v))) { log(`  engel listesinde, taranmıyor: ${SOURCES[i].name}`); SOURCES.splice(i, 1); } }
 // dünkü veriye de bugünkü kurallar uygulanır (maç/kombine/haber ayıklama, başlık düzeltme)
 // ne saati ne mekânı olan, ilk taramalarda metin tahminiyle gelmiş kayıtlar da (haber sayfaları) bırakılır
 const vagueBot = (e) => !e.manual && !e.t && /^(çeşitli mekânlar|)$/i.test(e.venue || "") && (e.tickets || []).every((t) => t.src !== "elle" && t.seen && t.seen !== prev.baseline);
@@ -87,6 +89,15 @@ for (const csv of [process.env.SHEET_CSV_URL ? await fetchText(process.env.SHEET
 if (manualRows.length) { events = applyManual(events, manualRows, now); log(`Elle eklenen/düzenlenen satır: ${manualRows.length}`); }
 events = events.filter((e) => e.d >= todayIST());
 
+/* ---------- 4b) Engel listesi: kaldırılmasını isteyen hak sahipleri (data/blocklist.txt) ---------- */
+const BL = await loadBlocklist();
+if (BL.length) {
+  const before = events.length;
+  events = events.map((e) => ({ ...e, tickets: e.tickets.filter((t) => !blocked(BL, { site: t.url })) }))
+    .filter((e) => e.tickets.length && !blocked(BL, e));
+  log(`Engel listesi: ${BL.length} kural · ${before - events.length} etkinlik çıkarıldı`);
+}
+
 /* ---------- 5) Yaz ---------- */
 const sourcesMeta = SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, ok: health[s.id].ok, count: health[s.id].count }));
 const out = { updated: now, mode: MODE, baseline: prev.baseline || null, sources: sourcesMeta, events: events.map(strip) };
@@ -103,9 +114,23 @@ const newOnes = out.events.filter((e) => e.firstSeen === now).length;
 log(`Bitti: ${out.events.length} etkinlik · bugün yeni ${newOnes} · çalışan kaynak ${Object.values(health).filter((h) => h.ok).length}/${SOURCES.length}`);
 
 /* ---------- yardımcılar ---------- */
+async function loadBlocklist() {
+  const txt = await readFile(process.env.BLOCKLIST_FILE || join(ROOT, "data/blocklist.txt"), "utf8").catch(() => "");
+  return txt.split(/\r?\n/).map((l) => l.replace(/#.*/, "").trim()).filter(Boolean).map((l) => {
+    const m = l.match(/^(site|mekan|mekân|etkinlik|duzenleyen|düzenleyen)\s*:\s*(.+)$/i);
+    return m ? { k: m[1].toLocaleLowerCase("tr").replace("â", "a").replace("ü", "u"), v: m[2].trim().toLocaleLowerCase("tr") } : null;
+  }).filter(Boolean);
+}
+function blocked(BL, e) {
+  const has = (a, b) => (a || "").toLocaleLowerCase("tr").includes(b);
+  return BL.some(({ k, v }) => (k === "site" && e.site !== undefined && has(e.site, v)) || (k === "mekan" && has(e.venue, v)) ||
+    (k === "etkinlik" && has(e.title, v)) || (k === "duzenleyen" && has(e.org, v)) ||
+    (k === "site" && e.tickets && e.tickets.every((t) => has(t.url, v))));
+}
 function strip(e) {
   const o = { ...e };
-  delete o._h; delete o._w;
+  delete o._h; delete o._w; delete o.image;
+  if (!o.manual) delete o.desc; // bilet sitelerinin tanıtım metinleri yayımlanmaz; yalnızca organizatörün kendi gönderdiği metin kalır
   o.tickets = o.tickets.map(({ site, url, price, pc, src, seen }) => ({ site, url, ...(price ? { price, pc } : {}), ...(src ? { src } : {}), ...(seen ? { seen } : {}) }));
   return o;
 }

@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ne Var Ne Yok? Ankara">
-<meta property="og:description" content="Ankara'daki bütün etkinlikler ve bilet fiyatları tek yerde. Her sabah güncellenir.">
+<meta property="og:description" content="Ankara'nın etkinliklerine tek yerden göz at. Bilet siteleri yan yana, her gün güncellenir.">
 <meta property="og:image" content="icons/og.png">
 <meta property="og:locale" content="tr_TR">
 <link rel="alternate" type="application/rss+xml" title="Ne Var Ne Yok? Ankara · yeni etkinlikler" href="feed.xml">
@@ -606,20 +606,20 @@ D.dataset.period=q;D.dataset.theme=(q==="sabah"||q==="gun")?"light":"dark";for(v
 
 <footer class="wrap">
   <p class="upd" id="upd"></p>
-  <p><b>Ne Var Ne Yok? Ankara</b>, Ankara'daki etkinlikleri bilet sitelerinden toplayıp tek yerde gösterir. Bilet satmaz; her “Bilet al” düğmesi etkinliğin satıldığı sitenin kendi sayfasına gider ve satın alma o sitede yapılır.</p>
+  <p><b>Ne Var Ne Yok? Ankara</b> bağımsız bir etkinlik rehberidir; etkinlik bilgilerini herkese açık kaynaklardan derler. Bilet satmaz, reklam ve komisyon almaz; her “Bilet al” düğmesi etkinliğin satıldığı sitenin kendi sayfasına gider ve satın alma, iade ve değişiklik o sitenin kurallarına tabidir. Etkinlik adları ve markalar sahiplerine aittir. Kaldırma talepleri: <a href="mailto:contact.openmind.vision@gmail.com">contact.openmind.vision@gmail.com</a></p>
   <nav class="flinks" aria-label="Site bilgileri"><button type="button" data-p="hakkinda">Hakkında</button><button type="button" data-p="kaynaklar">Veri kaynakları ve güncelleme</button><button type="button" data-p="gizlilik">Gizlilik</button><button type="button" data-p="kosullar">Kullanım koşulları</button><button type="button" data-p="iletisim">İletişim</button></nav>
 </footer>
 <dialog class="sheet" id="sheet" aria-labelledby="sheetT"><div class="sh-in"><div class="sh-top"><div class="sh-brand">Ne Var Ne Yok? <span>Ankara</span></div><button class="sh-x" type="button" aria-label="Kapat">✕</button></div><div class="sh-body" id="sheetB"></div></div></dialog>
 
 <script>
 /* Site ayarları: kendi bilgilerinle doldur (README'de anlatılıyor) */
-window.NVNY_SITE={contact:"",instagram:"",repo:"theworldmind/nevarneyok"};
+window.NVNY_SITE={contact:"contact.openmind.vision@gmail.com",instagram:"",repo:"theworldmind/nevarneyok"};
 /* Veriyi her açılışta taze çek: önbelleğe takılmasın diye no-store + dakikalık sürüm */
 (function(){var v=Math.floor(Date.now()/6e4);
   function j(u){return fetch(u+"?v="+v,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
   Promise.all([j("data/events.json"),j("data/venues.json")]).then(function(r){
     window.NVNY_DATA=r[0]||{updated:null,events:[],failed:true};window.NVNY_VENUES=r[1]||{};
-    var s=document.createElement("script");s.src="app.js?v=8cea5bb591";document.body.appendChild(s)})})();
+    var s=document.createElement("script");s.src="app.js?v=28767ff15b";document.body.appendChild(s)})})();
 </script>
 <noscript><p style="color:#fff;text-align:center;padding:24px">Bu site JavaScript ile çalışır. Etkinlik listesini görmek için JavaScript'i açın.</p></noscript>
 

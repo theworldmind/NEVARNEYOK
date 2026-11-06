@@ -16,6 +16,8 @@ import { cleanTitle, titleKey } from "../lib/normalize.mjs";
 import { isJunk } from "../lib/runner.mjs";
 import { mergeWithPrevious } from "../lib/merge.mjs";
 import * as P from "../sources/parsers.mjs";
+import { factsFrom } from "../lib/normalize.mjs";
+import { parseRobots, ruleMatch } from "../lib/net.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SCRAPER = join(HERE, "..");
@@ -151,6 +153,19 @@ t("Arka plan JSON'u okuma", () => {
   assert.equal(ev[0].city, "Ankara");
   assert.equal(ev[0].url, "https://bilet.example/can-bonomo");
 });
+t("Tanıtım metninden yalnızca olgular: süre ve yaş", () => {
+  assert.deepEqual(factsFrom("Oyun 2 saat 20 dakikadır. 12 yaş ve üzeri izleyiciler içindir."), { dur: "2 sa 20 dk", age: "12+" });
+  assert.deepEqual(factsFrom("Süre: 90 dk, 18+"), { dur: "1 sa 30 dk", age: "18+" });
+  assert.deepEqual(factsFrom("2026 yılının en güzel konseri, 3000 kişilik salonda"), {});
+});
+t("robots.txt: yasaklanan sayfaya girilmez, en uzun kural kazanır", () => {
+  const R = parseRobots("User-agent: *\nDisallow: /hesap\nAllow: /hesap/acik\nDisallow: /*?sort=\nCrawl-delay: 2\n\nUser-agent: NeVarNeYokBot\nDisallow: /ozel");
+  const ok = (p) => { let b = null; for (const r of R.rules) if (ruleMatch(p, r) && (!b || r.path.length > b.path.length || (r.path.length === b.path.length && r.allow))) b = r; return !b || b.allow; };
+  assert.equal(ok("/ozel/1"), false); assert.equal(ok("/hesap"), true, "bize özel grup varsa yalnızca o grup geçerli");
+  const G = parseRobots("User-agent: *\nDisallow: /hesap\nAllow: /hesap/acik\nDisallow: /*?sort=\nCrawl-delay: 2");
+  const ok2 = (p) => { let b = null; for (const r of G.rules) if (ruleMatch(p, r) && (!b || r.path.length > b.path.length || (r.path.length === b.path.length && r.allow))) b = r; return !b || b.allow; };
+  assert.equal(ok2("/etkinlik/x"), true); assert.equal(ok2("/hesap/giris"), false); assert.equal(ok2("/hesap/acik/1"), true); assert.equal(ok2("/liste?sort=1"), false); assert.equal(G.delay, 2);
+});
 t("Elle ekleme tablosu (CSV)", () => {
   const rows = parseManualCsv(`tarih,saat,baslik,mekan,kategori,bilet_linki,fiyat,durum\n${D3},20:00,"Kapıda Ödemeli Caz Gecesi",Sahne X,konser,,150,\n7 Kasım 2026,,Yanlış Etkinlik,,,,,gizle\n`);
   assert.equal(rows.length, 2);
@@ -188,13 +203,14 @@ const prev = { updated: "2026-01-01T00:00:00Z", baseline: "2026-01-01T00:00:00Z"
 ] };
 await writeFile(join(dir, "data/events.json"), JSON.stringify(prev));
 await writeFile(join(dir, "data/manual.csv"), `tarih,saat,baslik,mekan,kategori,bilet_linki,fiyat,durum\n${D3},20:00,Kapıda Ödemeli Caz Gecesi,Altı Üstü Bar,konser,,150,\n`);
+await writeFile(join(dir, "blocklist.txt"), "# deneme\netkinlik: B Etkinliği 5\n");
 await writeFile(join(dir, "sources.mjs"), `export default [
   { id: "sahte-a", name: "SahteA", kind: "bilet", home: "${H}", listings: ["${H}/a/liste"], link: /\\/a\\/etkinlik\\//, city: "tr" },
   { id: "sahte-b", name: "SahteB", kind: "bilet", home: "${H}", listings: ["${H}/b/liste"], link: /\\/b\\/e\\//, city: "ankara" },
 ];`);
 
 const code = await new Promise((ok) => {
-  const p = spawn(process.execPath, [join(SCRAPER, "run.mjs")], { stdio: "inherit", env: { ...process.env, NO_BROWSER: "1", SOURCES_FILE: join(dir, "sources.mjs"), OUT_FILE: join(dir, "data/events.json"), DEBUG_DIR: join(dir, "debug"), ROOT_OVERRIDE: dir } });
+  const p = spawn(process.execPath, [join(SCRAPER, "run.mjs")], { stdio: "inherit", env: { ...process.env, NO_BROWSER: "1", BLOCKLIST_FILE: join(dir, "blocklist.txt"), SOURCES_FILE: join(dir, "sources.mjs"), OUT_FILE: join(dir, "data/events.json"), DEBUG_DIR: join(dir, "debug"), ROOT_OVERRIDE: dir } });
   p.on("exit", ok);
 });
 server.close();
@@ -207,6 +223,8 @@ t("sezgisel sayfa okundu", () => { const e = find("Akustik Gece"); assert.ok(e);
 t("bozulan kaynağın eski etkinlikleri korundu", () => { assert.ok(find("Bozuk Siteden Etkinlik")); assert.ok(find("B Etkinliği 3")); });
 t("geçmiş tarihli etkinlik silindi", () => assert.ok(!find("Geçmiş Etkinlik")));
 t("elle eklenen etkinlik listede", () => { const e = find("Kapıda Ödemeli Caz Gecesi"); assert.ok(e); assert.equal(e.cat, "konser"); });
+t("bilet sitelerinin tanıtım metni ve görseli yayımlanmaz", () => assert.ok(out.events.every((e) => e.manual || (!e.desc && !e.image))));
+t("engel listesindeki etkinlik çıkarıldı, diğerleri duruyor", () => { assert.ok(!find("B Etkinliği 5")); assert.ok(find("B Etkinliği 4")); });
 t("sağlık raporu: SahteA çalışıyor, SahteB düştü", () => { const s = Object.fromEntries(out.sources.map((x) => [x.id, x])); assert.equal(s["sahte-a"].ok, true); assert.equal(s["sahte-b"].ok, false); });
 
 console.log(failed ? `\n${failed} deneme başarısız` : "\nBütün denemeler geçti");

@@ -127,3 +127,15 @@ export function sameEvent(a, b) {
 
 const ANKARA_RE = /ankara|çankaya|cankaya|yenimahalle|keçiören|kecioren|etimesgut|mamak|sincan|gölbaşı|golbasi|altındağ|altindag|pursaklar|kızılay|kizilay|bilkent|ümitköy|umitkoy|çayyolu|cayyolu|kavaklıdere|kavaklidere|ulus|söğütözü|sogutozu/i;
 export const looksAnkara = (r) => ANKARA_RE.test([r.venue, r.address, r.city, r.url].join(" ")) || knownVenue(r.venue);
+
+/* Tanıtım metinleri yayımlanmaz. Metinden yalnızca olgular (süre, yaş sınırı) ayıklanır; metnin kendisi saklanmaz. */
+export function factsFrom(text = "") {
+  const s = String(text).toLocaleLowerCase("tr"), out = {};
+  let m = s.match(/(\d{1,2})\s*saat\s*(?:ve\s*)?(\d{1,2})\s*(?:dk|dakika)/);
+  if (m) out.dur = `${+m[1]} sa ${+m[2]} dk`;
+  else if ((m = s.match(/(\d{2,3})\s*(?:dk|dakika)/)) && +m[1] >= 20 && +m[1] <= 300) { const n = +m[1]; out.dur = n >= 60 ? `${Math.floor(n / 60)} sa${n % 60 ? ` ${n % 60} dk` : ""}` : `${n} dk`; }
+  else if ((m = s.match(/(\d)\s*saat\b/)) && +m[1] <= 6) out.dur = `${+m[1]} sa`;
+  m = s.match(/(\d{1,2})\s*(?:\+|yaş\s*(?:ve\s*)?(?:üzeri|üstü|ve üstü|sınırı))/) || s.match(/(\d{1,2})\s*yaş\s*altı(?:ndaki)?\s*(?:izleyici|seyirci)[^.]*(?:alınmaz|giremez)/);
+  if (m && +m[1] >= 3 && +m[1] <= 21) out.age = `${+m[1]}+`;
+  return out;
+}

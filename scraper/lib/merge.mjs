@@ -2,10 +2,10 @@
 //  - aynı etkinlik farklı sitelerde → tek kart, bilet siteleri yan yana
 //  - yeni eklenen (firstSeen), fiyatı değişen (prevPrice), durumu değişen
 //  - bir site bozulduysa o sitenin eski kayıtları korunur (site boşalmaz)
-import { cleanTitle, canonVenue, guessCat, sameEvent, siteNameOf } from "./normalize.mjs";
+import { cleanTitle, canonVenue, guessCat, sameEvent, siteNameOf, factsFrom } from "./normalize.mjs";
 import { todayIST } from "./util.mjs";
 
-const KEEP_FIELDS = ["desc", "age", "dur", "genre", "org", "door", "note"];
+const KEEP_FIELDS = ["age", "dur", "genre", "org", "door", "note"];
 const STALE_TICKET_DAYS = 10; // bir bilet bağlantısı bu kadar gün görülmezse düşer
 const DROP_SHOW_DAYS = 7;     // "fiyatı düştü" rozeti kaç gün kalsın
 
@@ -19,7 +19,7 @@ export function rawToEvent(r, src) {
     cat: src.forceCat || guessCat({ title, desc: r.desc, url: r.url, catHint: r.catHint || src.defaultCat || "", genre: r.genre }),
     tickets: [{ site, url: tUrl, ...(r.price ? { price: r.price, pc: r.pc || 1 } : {}), src: src.id }],
   };
-  if (r.desc) ev.desc = r.desc;
+  if (r.desc) { const f = factsFrom(r.desc); if (f.dur && !r.dur) ev.dur = f.dur; if (f.age && !r.age) ev.age = f.age; } // metnin kendisi saklanmaz
   if (r.status) ev.status = r.status;
   if (r.org) ev.org = r.org;
   if (r.free && !r.price) ev.note = "Ücretsiz";
@@ -48,7 +48,6 @@ function absorb(into, ev) {
   if (ev.catLocked && !into.catLocked) { into.cat = ev.cat; into.catLocked = true; }
   if ((into.venue === "Çeşitli mekânlar" || !into.venue) && ev.venue && ev.venue !== "Çeşitli mekânlar") into.venue = ev.venue;
   for (const k of KEEP_FIELDS) if (!into[k] && ev[k]) into[k] = ev[k];
-  if ((!into.desc || into.desc.length < (ev.desc || "").length / 2) && ev.desc) into.desc = ev.desc;
   if (ev.status === "iptal" || ev.status === "ertelendi") into.status = ev.status;
   else if (ev.status === "tukendi" && !into.tickets.some((x) => x.price && x.site !== ev.tickets[0].site)) into.status = into.status || "tukendi";
 }
