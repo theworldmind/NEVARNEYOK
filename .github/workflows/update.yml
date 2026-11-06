@@ -121,7 +121,7 @@ jobs:
       - name: Yayın klasörünü hazırla
         run: |
           mkdir -p _site
-          rsync -a --exclude '.git' --exclude '.github' --exclude 'scraper' --exclude '_site' --exclude 'README.md' ./ _site/
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'scraper' --exclude '_site' --exclude 'README.md' --exclude 'CLAUDE.md' ./ _site/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
