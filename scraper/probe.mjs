@@ -6,7 +6,9 @@ const DATE = /(\d{1,2}[./]\d{1,2}[./]\d{2,4}|\d{1,2}\s+(Ocak|Şubat|Mart|Nisan|M
 
 function shape(path) { return path.split("/").map(s => /^\d+$/.test(s) ? "{n}" : /\d/.test(s) && s.length > 12 ? "{slug-n}" : s.length > 25 ? "{slug}" : s).slice(0, 5).join("/"); }
 
-for (const url of process.argv.slice(2)) {
+for (const arg of process.argv.slice(2)) {
+  // adres#yakın=METİN → sayfa yapısını görmek için o metnin çevresindeki işaretlemeyi de yaz
+  const [url, near] = arg.split("#yakin=");
   console.log("\n================", url);
   const rb = await robotsAllows(url);
   console.log("robots:", rb.ok ? "izin var" : "İZİN YOK", "gecikme:", rb.delay);
@@ -43,6 +45,12 @@ for (const url of process.argv.slice(2)) {
   console.log("h1:", (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 120));
   const lines = text.split("\n").map(l => l.trim()).filter(l => l && (DATE.test(l) || /\b\d{1,2}[:.]\d{2}\b/.test(l)) && l.length < 200).slice(0, 12);
   for (const l of lines) console.log("   ·", l.slice(0, 150));
+  if (near) {
+    const key = decodeURIComponent(near).replace(/_/g, " ");
+    let at = html.indexOf(key), shown = 0;
+    while (at >= 0 && shown < 2) { console.log(`--- "${key}" çevresi ---\n` + html.slice(Math.max(0, at - 900), at + 900).replace(/\s+/g, " ")); shown++; at = html.indexOf(key, at + 2000); }
+    if (!shown) console.log(`--- "${key}" bulunamadı`);
+  }
   const iframes = [...html.matchAll(/<iframe[^>]+src="([^"]+)"/gi)].map(m => m[1]).slice(0, 5);
   if (iframes.length) console.log("iframe:", iframes.join("  "));
   const dates = (html.replace(/<[^>]+>/g, " ").match(new RegExp(DATE.source, "gi")) || []).length;
