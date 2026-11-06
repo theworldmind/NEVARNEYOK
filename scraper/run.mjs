@@ -66,7 +66,11 @@ for (const src of SOURCES) {
 }
 
 /* ---------- 3) Birleştir ---------- */
-const fresh = dedupe(SOURCES.flatMap((src) => (results[src.id]?.raws || []).map((r) => rawToEvent(r, src))));
+// Kaynak önceliği: aynı etkinlik birden çok yerde görünürse ad, saat ve mekân önce kamu kurumundan,
+// sonra mekânın kendi sitesinden alınır; ticari bilet siteleri yalnızca bilet bağlantısı ve fiyat ekler.
+const RANK = { kurum: 0, mekan: 1, toplayici: 2, bilet: 3 };
+const BY_RANK = [...SOURCES].sort((a, b) => (RANK[a.kind] ?? 9) - (RANK[b.kind] ?? 9));
+const fresh = dedupe(BY_RANK.flatMap((src) => (results[src.id]?.raws || []).map((r) => rawToEvent(r, src))));
 // bugün tarama yapmayan (--only) kaynaklar "çalışmadı" sayılır → eski kayıtları korunur
 const ranHealth = Object.fromEntries(Object.entries(health).map(([k, h]) => [k, h]));
 const readUrls = new Set(SOURCES.flatMap((src) => (health[src.id].ok ? results[src.id]?.readUrls || [] : [])));

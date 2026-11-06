@@ -44,6 +44,16 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
   const notes = [];
   const today = todayIST();
 
+  // Kurumun kendi sitesinin kullandığı açık veri uç noktası (anahtar gerekmez): kaynak kendi toplayıcısını verir.
+  // Ucuzdur ve satış durumunu da taşır; bu yüzden tazeleme turunda da çalışır.
+  if (src.collect) {
+    try {
+      const got = (await src.collect({ fetchText, getPage, today, log })) || [];
+      raws.push(...got);
+      notes.push(`açık veri: ${got.length} seans`);
+    } catch (e) { notes.push(`açık veri okunamadı: ${e.message}`); }
+  }
+
   if (mode === "full") {
     for (const listing of src.listings || []) {
       const page = await getPage(listing, { render: src.render, loadMore: src.loadMore || [], scrolls: src.scrolls ?? 6 });
@@ -51,11 +61,14 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
       const ld = eventsFromLd(page.html, page.url || listing, src);
       const js = (page.jsons || []).flatMap((j) => eventsFromJson(j.data, j.url));
       raws.push(...ld, ...js);
-      const links = linksIn(page.html, page.url || listing).filter((u) => src.link.test(u));
+      // Liste sayfasının kendisi tarih, saat ve adı veriyorsa (takvim sayfaları) doğrudan oradan okunur
+      const listed = src.parseList ? src.parseList(page.html, page.url || listing) || [] : [];
+      raws.push(...listed);
+      const links = src.link ? linksIn(page.html, page.url || listing).filter((u) => src.link.test(u)) : [];
       links.forEach((u) => detail.add(u));
       // JSON'dan gelen bağlantılar da detay adayıdır
-      js.forEach((e) => e.url && src.link.test(e.url) && detail.add(e.url));
-      notes.push(`${listing.replace(/^https?:\/\//, "")}: ${links.length} bağlantı, ${ld.length} yapısal, ${js.length} JSON kaydı, durum ${page.status}`);
+      js.forEach((e) => e.url && src.link?.test(e.url) && detail.add(e.url));
+      notes.push(`${listing.replace(/^https?:\/\//, "")}: ${links.length} bağlantı, ${ld.length} yapısal, ${js.length} JSON kaydı${src.parseList ? `, ${listed.length} takvim satırı` : ""}, durum ${page.status}`);
       if (debug) {
         const slug = listing.replace(/^https?:\/\//, "").replace(/[^a-z0-9]+/gi, "_").slice(0, 80);
         await writeText(join(DEBUG, src.id, slug + ".html"), page.html.slice(0, 6e5));
@@ -72,6 +85,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
 
   // detay sayfaları: önce bilinmeyenler (yeni etkinlikler), sonra bilinenler (tazeleme)
   const knownSet = new Set(known);
+  if (!src.link) detail.clear(); // yalnızca açık veri / takvim sayfasıyla çalışan kaynak
   const list = [...detail].sort((a, b) => knownSet.has(a) - knownSet.has(b)).slice(0, mode === "full" ? src.maxDetail ?? 250 : src.maxRefresh ?? 150);
   let okDetail = 0, gone = [];
   const readUrls = [];

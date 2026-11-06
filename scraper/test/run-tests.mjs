@@ -158,6 +158,26 @@ t("Tanıtım metninden yalnızca olgular: süre ve yaş", () => {
   assert.deepEqual(factsFrom("Süre: 90 dk, 18+"), { dur: "1 sa 30 dk", age: "18+" });
   assert.deepEqual(factsFrom("2026 yılının en güzel konseri, 3000 kişilik salonda"), {});
 });
+t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
+  const er = P.erimtanList(`<li> <a href="https://erimtanmuseum.org/tr/erken-roma-kameo-camlari"> <time datetime="2026-11-05 15:00">05 Kasım 2026 Perşembe, 15:00</time> <h3>Konferanslar</h3> <h2>Erken Roma Kameo Camları</h2> <span class="h5"><p>Konuşmacı: X</p></span></a></li>`, "https://erimtanmuseum.org/tr/takvim");
+  assert.equal(er.length, 1); assert.equal(er[0].title, "Erken Roma Kameo Camları"); assert.equal(er[0].d, "2026-11-05"); assert.equal(er[0].t, "15:00"); assert.ok(!er[0].desc);
+  const cer = P.cermodernList(`<div class="event-box"> <a href="https://www.cermodern.org/etkinlikler-entrikali-dolap-komedyasi" title=""> <img src="x.png"> <div class="overlay"> <div class="event-info"> <span class="category">Tiyatro</span> <h3>Entrikalı Dolap Komedyası</h3> <span class="date"> 15 Kasım 2026 <span>-</span> 15 Kasım 2026 </span> </div> </div> </a> </div>
+    <div class="event-box"> <a href="https://www.cermodern.org/dizi" title=""> <div class="event-info"> <span class="category"></span> <h3>Atölye Dizisi</h3> <span class="date"> 01 Kasım 2026 <span>-</span> 29 Kasım 2026 </span> </div> </a> </div>`, "https://www.cermodern.org/etkinlikler");
+  assert.equal(cer.length, 1, "birkaç güne yayılan dizi alınmaz"); assert.equal(cer[0].d, "2026-11-15"); assert.equal(cer[0].catHint, "tiyatro");
+  const abb = P.abbList(`<a href="/etkinlik/anneler-gunu-183" title="Anneler Günü Kadınlar Matinesi" class="event-list-item circle-animate-light"> <span class="category">Konser</span> <div class="info"> <strong>Anneler Günü Kadınlar Matinesi</strong> <div> <i class="fal fa-calendar"></i> <span>10 Mayıs 2027 15:00</span> </div> <div> <i class="fal fa-location-dot"></i> <span>Başkent Sosyal Tesisi Salonu Susuz Mah. Göksu Parkı İçi No:17 Etimesgut/ ANKARA</span> </div> </div> </a>`, "https://www.ankara.bel.tr/etkinlikler");
+  assert.equal(abb.length, 1); assert.equal(abb[0].d, "2027-05-10"); assert.equal(abb[0].t, "15:00"); assert.equal(abb[0].venue, "Başkent Sosyal Tesisi Salonu"); assert.equal(abb[0].url, "https://www.ankara.bel.tr/etkinlik/anneler-gunu-183");
+});
+{
+  const fake = async () => ({ status: 200, text: JSON.stringify({ toplamSayfaSayisi: 1, data: [
+    { oyunTarihi: "2027-01-08T13:00:00", oyunSaatleri: ["13:00", "16:00"], mudurlukAdi: "ANKARA", sahneAdi: "OPERA SAHNESİ", eserAdi: "KUĞU GÖLÜ", eserKonu: "uzun tanıtım", seoUrl: "kugu-golu-1", seoFullUrl: "https://biletinial.com/opera-bale/kugu-golu" },
+    { oyunTarihi: "2027-01-08T20:00:00", oyunSaatleri: ["20:00"], mudurlukAdi: "İZMİR", sahneAdi: "X", eserAdi: "TOSCA", seoUrl: "tosca-88" }] }) });
+  const dob = await P.dobCollect({ fetchText: fake });
+  t("açık veri: DOB yalnızca Ankara temsilleri, her seans ayrı, satış bağlantısı ayrı", () => {
+    assert.equal(dob.length, 2); assert.deepEqual(dob.map((x) => x.t), ["13:00", "16:00"]);
+    assert.equal(dob[0].url, "https://www.operabale.gov.tr/eser/kugu-golu-1"); assert.equal(dob[0].buyUrl, "https://biletinial.com/opera-bale/kugu-golu");
+    assert.ok(!dob[0].desc, "konu metni alınmaz");
+  });
+}
 t("robots.txt: yasaklanan sayfaya girilmez, en uzun kural kazanır", () => {
   const R = parseRobots("User-agent: *\nDisallow: /hesap\nAllow: /hesap/acik\nDisallow: /*?sort=\nCrawl-delay: 2\n\nUser-agent: NeVarNeYokBot\nDisallow: /ozel");
   const ok = (p) => { let b = null; for (const r of R.rules) if (ruleMatch(p, r) && (!b || r.path.length > b.path.length || (r.path.length === b.path.length && r.allow))) b = r; return !b || b.allow; };

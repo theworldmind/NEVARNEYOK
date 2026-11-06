@@ -19,6 +19,9 @@
 
 import * as P from "./parsers.mjs";
 
+// Aylık takvim sayfası: bu ay (k=0) ve gelecek ay (k=1)
+function monthUrl(base, k) { const d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + k); return `${base}?&month=${d.getMonth() + 1}&year=${d.getFullYear()}`; }
+
 export default [
   /* ===================== BİLET SİTELERİ ===================== */
   { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com",
@@ -61,9 +64,9 @@ export default [
   { id: "devtiyatro", name: "Devlet Tiyatroları", kind: "kurum", home: "https://www.devtiyatro.gov.tr",
     listings: ["https://www.devtiyatro.gov.tr/DevletTiyatro/tr/oyunlar/ankara"],
     link: /devtiyatro\.gov\.tr\/.+\/(oyun|oyundetay|eser)\/[^/?#]+/i, render: true, city: "tr", defaultCat: "tiyatro" },
+  // Program sayfasının kendi kullandığı açık liste; Ankara Müdürlüğü'nün temsilleri ayıklanır
   { id: "dob", name: "Ankara DOB", kind: "kurum", home: "https://www.operabale.gov.tr",
-    listings: ["https://www.operabale.gov.tr/tr-TR/Sayfalar/Program.aspx?mudurluk=ankara"],
-    link: /operabale\.gov\.tr\/.+(Eser|Etkinlik|Detay)[^?#]*/i, render: true, city: "tr", defaultCat: "sahne" },
+    collect: P.dobCollect, listings: [], link: null, city: "ankara", defaultCat: "sahne" },
   { id: "cso", name: "CSO", kind: "kurum", home: "https://www.cso.gov.tr",
     listings: ["https://www.cso.gov.tr/tr/konserler"],
     link: /cso\.gov\.tr\/(tr\/)?(konser|konserler|etkinlik)\/[^?#]+/i, render: true, city: "ankara", defaultVenue: "CSO Ada · Ziraat Bankası Ana Salon", defaultCat: "konser" },
@@ -71,8 +74,7 @@ export default [
     listings: ["https://www.ankara.bel.tr/sehir-tiyatrolari"],
     link: /ankara\.bel\.tr\/(sehir-tiyatrolari|oyunlar|tiyatro)\/[^?#]+/i, render: true, city: "ankara", defaultCat: "tiyatro" },
   { id: "abb-kultur", name: "Ankara Büyükşehir Kültür", kind: "kurum", home: "https://www.ankara.bel.tr",
-    listings: ["https://www.ankara.bel.tr/etkinlikler", "https://www.ankara.bel.tr/kultur-sanat"],
-    link: /ankara\.bel\.tr\/etkinlik\/[a-z0-9-]+-\d+$/i, render: true, city: "ankara" }, // /etkinlikler/<kategori> sayfaları etkinlik değildir
+    listings: ["https://www.ankara.bel.tr/etkinlikler"], parseList: P.abbList, link: null, render: true, city: "ankara" }, // ad, tarih, saat ve yer liste kartında
   { id: "cankaya", name: "Çankaya Belediyesi", kind: "kurum", home: "https://www.cankaya.bel.tr",
     listings: ["https://www.cankaya.bel.tr/etkinlikler"],
     link: /cankaya\.bel\.tr\/(etkinlik|etkinlikler)\/[^?#]+/i, render: true, city: "ankara" },
@@ -86,33 +88,32 @@ export default [
     listings: ["https://www.etimesgut.bel.tr/etkinlikler"],
     link: /etimesgut\.bel\.tr\/etkinlik\/[^?#]+/i, render: true, city: "ankara", defaultVenue: "Etimesgut Belediyesi", parse: P.etimesgut, heuristics: false },
   { id: "mamak", name: "Mamak Belediyesi", kind: "kurum", home: "https://www.mamak.bel.tr",
-    listings: ["https://www.mamak.bel.tr/etkinlikler"],
-    link: /mamak\.bel\.tr\/(etkinlik|etkinlikler)\/[^?#]+/i, render: true, city: "ankara" },
+    collect: P.mamakCollect, listings: [], link: null, city: "ankara", defaultVenue: "Mamak" },
 
   /* ===================== MEKÂNLAR VE FESTİVALLER ===================== */
   { id: "odtu-kkm", name: "ODTÜ KKM", kind: "mekan", home: "https://kkm.metu.edu.tr",
     listings: ["https://kkm.metu.edu.tr/tr/etkinlikler"],
     link: /kkm\.metu\.edu\.tr\/(tr\/)?(etkinlik|event)[^?#]*/i, render: true, city: "ankara", defaultVenue: "ODTÜ Kültür ve Kongre Merkezi" },
   { id: "cermodern", name: "CerModern", kind: "mekan", home: "https://cermodern.org",
-    listings: ["https://cermodern.org/etkinlikler"],
-    link: /cermodern\.org\/(etkinlik|etkinlikler|event)\/[^?#]+/i, render: true, city: "ankara", defaultVenue: "CerModern", defaultCat: "atolye" },
+    listings: ["https://www.cermodern.org/etkinlikler"], parseList: P.cermodernList, link: null,
+    render: true, city: "ankara", defaultVenue: "CerModern", defaultCat: "atolye" },
   { id: "erimtan", name: "Erimtan Müzesi", kind: "mekan", home: "https://erimtanmuseum.org",
-    listings: ["https://erimtanmuseum.org/tr/etkinlikler"],
-    link: /erimtanmuseum\.org\/(tr\/)?(etkinlik|etkinlikler|event)[^?#]*/i, render: true, city: "ankara", defaultVenue: "Erimtan Arkeoloji ve Sanat Müzesi", defaultCat: "atolye" },
-  { id: "ankara-caz", name: "Ankara Caz Festivali", kind: "mekan", home: "https://www.ankarajazzfestival.com",
+    listings: [monthUrl("https://erimtanmuseum.org/tr/takvim", 0), monthUrl("https://erimtanmuseum.org/tr/takvim", 1)], parseList: P.erimtanList, link: null,
+    render: true, city: "ankara", defaultVenue: "Erimtan Arkeoloji ve Sanat Müzesi", defaultCat: "atolye" },
+  { id: "ankara-caz", enabled: false, /* alan adı artık çözülmüyor (06.11.2026) */ name: "Ankara Caz Festivali", kind: "mekan", home: "https://www.ankarajazzfestival.com",
     listings: ["https://www.ankarajazzfestival.com/program"],
     link: /ankarajazzfestival\.com\/(program|konser|etkinlik)[^?#]*/i, render: true, city: "ankara", defaultCat: "konser" },
   { id: "film-ankara", name: "Ankara Film Festivali", kind: "mekan", home: "https://www.filmfestankara.org.tr",
     listings: ["https://www.filmfestankara.org.tr/program"],
     // Program yayınlanınca seans sayfaları JSON-LD ile okunur; haber/başvuru sayfaları etkinlik sayılmaz
     link: /filmfestankara\.org\.tr\/(program|gosterim|seans)\/[^?#]+/i, render: true, city: "ankara", forceCat: "sinema", heuristics: false },
-  { id: "if", name: "IF Performance Hall", kind: "mekan", home: "https://www.ifperformance.com",
+  { id: "if", enabled: false, /* Cloudflare bot koruması; korumayı aşmıyoruz (06.11.2026) */ name: "IF Performance Hall", kind: "mekan", home: "https://www.ifperformance.com",
     listings: ["https://www.ifperformance.com/ankara"],
     link: /ifperformance\.com\/[^?#]*(etkinlik|event|konser)[^?#]*/i, render: true, city: "tr" },
-  { id: "congresium", name: "Congresium", kind: "mekan", home: "https://www.congresium.com",
+  { id: "congresium", enabled: false, /* site GL events tanıtım sayfasına dönüştü, etkinlik listesi yok (06.11.2026) */ name: "Congresium", kind: "mekan", home: "https://www.congresium.com",
     listings: ["https://www.congresium.com/etkinlikler"],
     link: /congresium\.com\/(etkinlik|etkinlikler|event)\/[^?#]+/i, render: true, city: "ankara", defaultVenue: "Congresium Ankara" },
-  { id: "jollyjoker", name: "Jolly Joker", kind: "mekan", home: "https://www.jollyjoker.com.tr",
+  { id: "jollyjoker", enabled: false, /* /ankara sayfası yok; /kesif yalnızca blog ve galeri (06.11.2026) */ name: "Jolly Joker", kind: "mekan", home: "https://www.jollyjoker.com.tr",
     listings: ["https://www.jollyjoker.com.tr/ankara"],
     link: /jollyjoker\.com\.tr\/[^?#]*(etkinlik|event)[^?#]*/i, render: true, city: "tr", defaultVenue: "Jolly Joker Ankara", defaultCat: "konser" },
 
@@ -123,7 +124,7 @@ export default [
   { id: "ra", name: "Resident Advisor", kind: "toplayici", home: "https://ra.co",
     listings: ["https://ra.co/events/tr/ankara"],
     link: /ra\.co\/events\/\d+/i, render: true, renderDetail: true, city: "tr", defaultCat: "parti" },
-  { id: "kultur-ankara", name: "Kültür Ankara", kind: "toplayici", home: "https://kultur.ankara.bel.tr",
+  { id: "kultur-ankara", enabled: false, /* alan adı artık çözülmüyor (06.11.2026) */ name: "Kültür Ankara", kind: "toplayici", home: "https://kultur.ankara.bel.tr",
     listings: ["https://kultur.ankara.bel.tr/etkinlikler"],
     link: /kultur\.ankara\.bel\.tr\/(etkinlik|etkinlikler)\/[^?#]+/i, render: true, city: "ankara" },
 ];
