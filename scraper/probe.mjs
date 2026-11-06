@@ -31,7 +31,18 @@ for (const url of process.argv.slice(2)) {
   for (const [k, g] of [...groups].sort((a, b) => b[1].n - a[1].n).slice(0, 18)) console.log(`  ${String(g.n).padStart(3)} ${String(g.dated).padStart(3)}  ${k}   ${g.ex.join("  ")}`);
   const ld = [...html.matchAll(/<script[^>]+ld\+json[^>]*>([\s\S]*?)<\/script>/gi)].map(m => { try { const j = JSON.parse(m[1]); return [].concat(j["@graph"] || j).map(x => x["@type"]).join(","); } catch { return "?"; } });
   console.log("JSON-LD türleri:", ld.join(" | ") || "yok");
-  console.log("JSON yanıtları:", r.jsons.length); for (const j of r.jsons.slice(0, 12)) console.log("  ", j.url.slice(0, 160), Array.isArray(j.data) ? `[dizi ${j.data.length}]` : Object.keys(j.data || {}).slice(0, 8).join(","));
+  console.log("JSON yanıtları:", r.jsons.length);
+  for (const j of r.jsons.slice(0, 12)) {
+    if (/twitter|youtube|google|eskimi|facebook/.test(j.url)) continue;
+    console.log("  ", j.url.slice(0, 200), Array.isArray(j.data) ? `[dizi ${j.data.length}]` : Object.keys(j.data || {}).slice(0, 8).join(","));
+    const first = (o, d = 0) => Array.isArray(o) ? o[0] : (o && typeof o === "object" && d < 3) ? first(Object.values(o).find(v => Array.isArray(v) && v.length) ?? Object.values(o).find(v => v && typeof v === "object"), d + 1) : o;
+    const f = first(j.data);
+    if (f && typeof f === "object") console.log("      örnek kayıt:", JSON.stringify(f, (k, v) => typeof v === "string" && v.length > 80 ? v.slice(0, 80) + "…" : v).slice(0, 900));
+  }
+  const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ").replace(/<(br|\/p|\/div|\/li|\/h\d|\/tr)[^>]*>/gi, "\n").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/[ \t]+/g, " ");
+  console.log("h1:", (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 120));
+  const lines = text.split("\n").map(l => l.trim()).filter(l => l && (DATE.test(l) || /\b\d{1,2}[:.]\d{2}\b/.test(l)) && l.length < 200).slice(0, 12);
+  for (const l of lines) console.log("   ·", l.slice(0, 150));
   const iframes = [...html.matchAll(/<iframe[^>]+src="([^"]+)"/gi)].map(m => m[1]).slice(0, 5);
   if (iframes.length) console.log("iframe:", iframes.join("  "));
   const dates = (html.replace(/<[^>]+>/g, " ").match(new RegExp(DATE.source, "gi")) || []).length;
