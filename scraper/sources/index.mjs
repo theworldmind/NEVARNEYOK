@@ -61,7 +61,7 @@ export default [
     link: /biletino\.com\/(tr\/)?e\/[a-z0-9-]+/i, render: true, city: "tr" },
 
   /* ===================== KURUMLAR ===================== */
-  { id: "devtiyatro", name: "Devlet Tiyatroları", kind: "kurum", home: "https://www.devtiyatro.gov.tr",
+  { id: "devtiyatro", enabled: false, /* yeni sitede seans listesi yok; DT seansları Bakanlığın Sanatçepte sitesinden geliyor (06.11.2026) */ name: "Devlet Tiyatroları", kind: "kurum", home: "https://www.devtiyatro.gov.tr",
     listings: ["https://www.devtiyatro.gov.tr/DevletTiyatro/tr/oyunlar/ankara"],
     link: /devtiyatro\.gov\.tr\/.+\/(oyun|oyundetay|eser)\/[^/?#]+/i, render: true, city: "tr", defaultCat: "tiyatro" },
   // Program sayfasının kendi kullandığı açık liste; Ankara Müdürlüğü'nün temsilleri ayıklanır

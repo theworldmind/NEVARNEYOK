@@ -95,7 +95,7 @@ export function cleanTitle(t) {
     .replace(/\s*[|]\s*(biletix|biletinial|bubilet|passo|mobilet|iticket|bugece|sanatçepte|sanatcepte).*$/i, "")
     .replace(/\s+(bileti|biletleri|bilet al)$/i, "")
     .replace(/\s*[|]\s*ankara(\s*[|].*)?$/i, "")   // Passo: "Duvar | Ankara | Yaşar Kemal KM"
-    .replace(/\s*[-–]\s*ankara$/i, "")
+    .replace(/\s*[-–]\s*ankara( dob| devlet opera ve balesi| dt| devlet tiyatrosu)?$/i, "")
     .replace(/\s*\(\s*ankara\s*\)\s*/i, " ")
     .replace(/\s+/g, " ").trim();
 }

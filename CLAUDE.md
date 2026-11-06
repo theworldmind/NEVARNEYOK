@@ -13,6 +13,8 @@ Kullanıcıyla her zaman Türkçe konuş.
 | `index.html` | Görünüm (CSS + işaretleme). En altta veri yükleyici: `data/events.json` ve `data/venues.json` dosyalarını `no-store` ile çeker, sonra `app.js?v=…` dosyasını ekler. |
 | `app.js` | Bütün çalışan kod. |
 | `scraper/run.mjs` | 32 kaynak (`scraper/sources/index.mjs`). Her sabah 06:30 tam tarama, 16:00'da yalnızca fiyat ve durum tazeleme (`update.yml`). |
+| `scraper/sources/` | Kaynak türleri: detay sayfası (`link`), takvim sayfası (`parseList`: ad, tarih, saat, yer liste sayfasında), kurumun kendi sitesinin kullandığı açık veri (`collect`: DOB, Mamak). Kapanan kaynaklar `enabled: false` ve gerekçesiyle durur. |
+| `probe.yml` / `scraper/probe.mjs` | **Kaynak keşfi.** Bir sayfanın bağlantı kalıplarını, JSON isteklerini ve tarih satırlarını yalnızca iş akışı günlüğüne yazar. Yeni kaynak eklemeden ya da bozulanı onarmadan önce bununla bak (bu çalışma alanı sitelere doğrudan bağlanamaz). |
 | `scraper/build-pages.mjs` | Etkinlik, mekân ve kategori sayfaları, sitemap ve feed üretir. `app.js?v=` sürümünü kendiliğinden günceller, **elle değiştirme**. |
 | `scraper/social.mjs` | Günün Instagram görselleri (`paylas/`). |
 | `data/health.json` | Kaynak sağlığı. `data/manual.csv` elle eklenen etkinlikleri, `data/venues.json` mekânları tutar. |
@@ -42,7 +44,7 @@ Bozulmaması gereken kurallar:
 - **İddialar.**
   - "Bütün etkinlikler", "en ucuz" gibi doğrulanamayan iddialar kullanılmaz. Slogan: "Ankara'nın etkinliklerine göz at."
   - Site reklam ve komisyon almaz. Para kazanma eklenecekse önce bir avukata danışılmalı.
-- **Kaynak önceliği.** Kamu kurumları, mekânların kendi siteleri ve organizatörün kendi gönderdiği etkinlikler önce gelir. Ticari bilet siteleri öncelikle "Bilet al" bağlantısı olarak kullanılır.
+- **Kaynak önceliği.** Kamu kurumları, mekânların kendi siteleri ve organizatörün kendi gönderdiği etkinlikler önce gelir. Ticari bilet siteleri öncelikle "Bilet al" bağlantısı olarak kullanılır. Uygulama: `run.mjs` birleştirmeden önce kaynakları `kurum → mekan → toplayici → bilet` sırasına dizer; ad, saat ve mekân ilk gelenden alınır, bilet siteleri bağlantı ve fiyat ekler.
 
 
 ## 3. Marka ve tasarım kararları (kullanıcının onayladıkları)
