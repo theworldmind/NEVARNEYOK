@@ -16,6 +16,9 @@ export function rawToEvent(r, src) {
   const site = src.kind === "bilet" ? src.name : siteNameOf(tUrl, src.name);
   const ev = {
     d: r.d, t: r.t || "", title, venue,
+    // Kurum listeleri adı BÜYÜK HARFLE verir; otomatik küçültme yabancı adları bozar ("Dı Fıgaro").
+    // Aynı etkinliğin başka kaynakta düzgün yazılmış adı varsa birleştirirken o kullanılır.
+    ...(isCaps(r.title) ? { _caps: true } : {}),
     cat: src.forceCat || guessCat({ title, desc: r.desc, url: r.url, catHint: r.catHint || src.defaultCat || "", genre: r.genre }),
     tickets: [{ site, url: tUrl, ...(r.price ? { price: r.price, pc: r.pc || 1 } : {}), src: src.id }],
   };
@@ -40,8 +43,10 @@ function addTicket(ev, tk) {
   const a = tk.pc || 0, b = same.pc || 0;
   if (tk.price && (!same.price || a > b || (a === b && tk.price < same.price))) { same.price = tk.price; same.pc = tk.pc; same.url = tk.url; }
 }
+const isCaps = (t) => { const l = String(t || "").replace(/[^A-Za-zÇĞİÖŞÜçğıöşü]/g, ""); return l.length > 3 && l === l.toLocaleUpperCase("tr"); };
 function absorb(into, ev) {
   for (const tk of ev.tickets) addTicket(into, tk);
+  if (into._caps && !ev._caps && ev.title) { into.title = ev.title; delete into._caps; }
   if (!into.t && ev.t) into.t = ev.t;
   if (ev.firstSeen && (!into.firstSeen || ev.firstSeen < into.firstSeen)) into.firstSeen = ev.firstSeen;
   if (ev.lastSeen && (!into.lastSeen || ev.lastSeen > into.lastSeen)) into.lastSeen = ev.lastSeen;
@@ -92,6 +97,7 @@ export function mergeWithPrevious(prev, fresh, health, { now = new Date().toISOS
     if (old.cat && old.catLocked) m.cat = old.cat;
     if (!ev.status && !old.manual) delete m.status; // dün tükenmişti, bugün yeniden satışta olabilir
     if (old.title.length > ev.title.length && ev.title.length < 6) m.title = old.title;
+    if (ev._caps && old.title && old.title !== ev.title) { m.title = old.title; delete m._caps; } // düzgün yazılmış dünkü ad korunur
     // bugün görülmeyen ama siteleri bozuk olan / bugün çalışmayan sitelerden gelen biletleri koru
     for (const tk of old.tickets || []) {
       if (m.tickets.some((x) => x.site === tk.site)) continue;

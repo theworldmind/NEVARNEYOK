@@ -133,7 +133,7 @@ function blocked(BL, e) {
 }
 function strip(e) {
   const o = { ...e };
-  delete o._h; delete o._w; delete o.image;
+  delete o._h; delete o._w; delete o._caps; delete o.image;
   if (!o.manual) delete o.desc; // bilet sitelerinin tanıtım metinleri yayımlanmaz; yalnızca organizatörün kendi gönderdiği metin kalır
   o.tickets = o.tickets.map(({ site, url, price, pc, src, seen }) => ({ site, url, ...(price ? { price, pc } : {}), ...(src ? { src } : {}), ...(seen ? { seen } : {}) }));
   return o;

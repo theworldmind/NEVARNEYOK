@@ -97,12 +97,13 @@ export async function dobCollect({ fetchText }) {
 
 // Mamak Belediyesi: /mamak/etkinlikler sayfasının kullandığı aylık faaliyet listesi (bu ay ve gelecek ay)
 const MAMAK_CAT = { konser: "konser", tiyatro: "tiyatro", sinema: "sinema", film: "sinema", çocuk: "cocuk", atölye: "atolye", söyleşi: "atolye", sergi: "sahne", festival: "festival", şenlik: "festival" };
-export async function mamakCollect({ fetchText }) {
-  const out = [], now = new Date();
-  for (let k = 0; k < 2; k++) {
-    const m = new Date(now.getFullYear(), now.getMonth() + k, 1);
-    const j = await getJSON(fetchText, `https://www.mamak.bel.tr/mamak/getFaaliyetByMonthV2?year=${m.getFullYear()}&month=${m.getMonth() + 1}`);
-    const rows = Array.isArray(j.result) ? j.result : j.result?.items || [];
+export async function mamakCollect({ getPage }) {
+  // Sayfa açılınca tarayıcının kendi yaptığı aylık istek yakalanır (doğrudan istekte sunucu boş liste dönüyor)
+  const page = await getPage("https://www.mamak.bel.tr/mamak/etkinlikler", { render: true, scrolls: 1 });
+  const out = [];
+  for (const j of (page.jsons || []).filter((x) => /getFaaliyet/i.test(x.url))) {
+    const r = j.data?.result;
+    const rows = Array.isArray(r) ? r : Array.isArray(r?.items) ? r.items : Object.values(r || {}).flat().filter((x) => x && typeof x === "object");
     for (const x of rows) {
       if (!/etkinlik/i.test(x.hizmetKategorisi || "") || !x.baslamaTarihi) continue;
       const kind = clean(x.hizmetAdi || "");
