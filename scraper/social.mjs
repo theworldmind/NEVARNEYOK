@@ -1,5 +1,5 @@
 // Instagram paylaşım seti: her sabah günün görsellerini ve açıklama metnini hazırlar.
-// Çıktı: paylas/ klasörü (gönderi 1080×1350 portre ve açıklama metni; hikâyede aynı görsel paylaşılır) ve paylas/index.html
+// Çıktı: paylas/ klasörü (kaydırmalı gönderi: en fazla 4 sayfa 1080×1350 portre, açıklama metni; hikâyede ilk sayfa paylaşılır) ve paylas/index.html
 //
 // Görseller sitenin kendisiyle çizilir: depo yerel bir sunucuda açılır, istenen tema (Sabah / Gün /
 // Gün batımı / Gece) seçilir, etkinlikler sitedeki ticket() ile gerçek yatay bilet olarak üretilir
@@ -61,7 +61,7 @@ const CTA = {
 function caption(set, top) {
   const multi = new Set(top.map((e) => e.d)).size > 1;
   const pick = (a) => a[(pdate(today).getUTCDate()) % a.length];
-  const lines = top.map((e) => `${EMO[e.cat] || "📍"} ${multi ? fmtDate(e.d) + (e.t ? " " : "") : ""}${e.t || ""}${e.t || multi ? " · " : ""}${e.title} — ${e.venue}`);
+  const lines = top.slice(0, 15).map((e) => `${EMO[e.cat] || "📍"} ${multi ? fmtDate(e.d) + (e.t ? " " : "") : ""}${e.t || ""}${e.t || multi ? " · " : ""}${e.title} — ${e.venue}`);
   const tagsBase = ["#ankara", "#ankaraetkinlik", "#ankarakonser", "#ankaratiyatro", "#başkent", "#neyapsam"];
   const tagsCat = [...new Set(top.map((e) => ({ konser: "#konser", tiyatro: "#tiyatro", standup: "#standup", sahne: "#opera #bale", cocuk: "#çocuketkinliği", festival: "#festival", parti: "#ankaraparti", atolye: "#atölye", sinema: "#sinema" })[e.cat]).filter(Boolean))];
   const extra = set.id === "aksam" || set.id === "gun" ? ["#ankaradabugün"] : set.id === "hafta-sonu" ? ["#haftasonu"] : [];
@@ -90,59 +90,72 @@ function serve() {
 }
 
 /* ---------- Kompozisyon (sayfanın içinde çalışır) ---------- */
-function compose({ keys, w, h, kicker, h1, hl, story }) {
+// cover: ilk sayfa (logo + başlık). Diğer sayfalarda üstte ince bir başlık şeridi olur.
+function compose({ keys, w, h, kicker, h1, hl, cover }) {
   const D = document.documentElement;
   D.style.overflow = "hidden"; document.body.style.overflow = "hidden"; scrollTo(0, 0);
+  document.getElementById("ig")?.remove();
   const evs = keys.map((k) => E.find((e) => e.d + "|" + e.title === k)).filter(Boolean);
-  const S = story ? 1 : 0;
-  const st = document.createElement("style");
-  st.textContent = `
+  const Z = 0.8, PAD = 36, listTop = cover ? 352 : 150;
+  if (!document.getElementById("igcss")) {
+    const st = document.createElement("style"); st.id = "igcss";
+    st.textContent = `
   html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
   #ig{position:fixed;left:0;top:0;z-index:2147483000;width:${w}px;height:${h}px;overflow:hidden;color:#fff;
     background:radial-gradient(60% 34% at 10% 18%,color-mix(in srgb,var(--g2) 40%,transparent),transparent 70%),
                radial-gradient(55% 30% at 95% 12%,color-mix(in srgb,var(--g1) 34%,transparent),transparent 70%),
                linear-gradient(180deg,var(--sky1),var(--sky2) 50%,var(--sky3));font-family:var(--f-body)}
   #ig *{animation:none!important;transition:none!important}
-  #ig .top{position:absolute;left:0;right:0;top:${S ? 150 : 52}px;display:flex;flex-direction:column;align-items:center;text-align:center}
-  #ig .logo{font-size:${S ? 128 : 88}px;filter:drop-shadow(0 10px 30px rgba(8,6,30,.22))}
-  #ig .kick{margin-top:${S ? 34 : 24}px;font:700 ${S ? 21 : 17}px var(--f-mono);letter-spacing:.42em;padding-left:.42em}
+  #ig .top{position:absolute;left:0;right:0;top:50px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  #ig .top .logo{font-size:86px;filter:drop-shadow(0 10px 30px rgba(8,6,30,.22))}
+  #ig .kick{margin-top:22px;font:700 17px var(--f-mono);letter-spacing:.42em;padding-left:.42em}
   #ig .kick i{font-style:normal}
-  #ig .ttl{margin-top:${S ? 22 : 14}px;display:flex;align-items:center;gap:.24em;font:800 ${S ? 92 : 70}px/.95 var(--f-disp);font-stretch:75%;letter-spacing:-.03em}
+  #ig .ttl{margin-top:12px;display:flex;align-items:center;gap:.24em;font:800 68px/.95 var(--f-disp);font-stretch:75%;letter-spacing:-.03em}
   #ig .ttl b{font-weight:800;text-shadow:0 6px 30px rgba(8,6,30,.25)}
   #ig .ttl span{padding:.02em .2em .1em;border-radius:.14em;background:var(--nar);box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 45%,transparent)}
-  #ig .list{position:absolute;left:${S ? 36 : 40}px;right:${S ? 36 : 40}px;top:${S ? 560 : 360}px;display:flex;flex-direction:column;gap:${S ? 22 : 14}px}
-  #ig .tkw{content-visibility:visible!important;contain-intrinsic-size:none!important;filter:drop-shadow(0 18px 30px rgba(8,6,30,.30))!important;transform:none!important}
-  #ig .tk{min-height:0!important;--photo:${S ? 236 : 222}px;--stub:${S ? 200 : 188}px}
+  #ig .hbar{position:absolute;left:${PAD}px;right:${PAD}px;top:44px;display:flex;align-items:center;justify-content:space-between}
+  #ig .hbar .logo{font-size:44px}
+  #ig .hbar .ttl{margin:0;font-size:46px}
+  #ig .wrap{position:absolute;left:${PAD - 16}px;right:${PAD}px}
+  #ig .list{zoom:${Z};width:${(w - 2 * PAD) / Z}px;display:flex;flex-direction:column;gap:16px}
+  #ig .tkw{content-visibility:visible!important;contain-intrinsic-size:none!important;filter:drop-shadow(0 14px 24px rgba(8,6,30,.30))!important;transform:none!important}
+  #ig .tk{min-height:0!important;--photo:232px;--stub:196px}
   #ig .tk .desc,#ig .tk .info,#ig .tk .tixes,#ig .tk .foot,#ig .tk .vlink small,#ig .ph .nb.dr,#ig .tk .goldbar,#ig .stub .src{display:none!important}
-  #ig .tk .content{padding-top:${S ? 18 : 14}px!important;padding-bottom:${S ? 18 : 14}px!important;gap:${S ? 8 : 6}px!important}
-  #ig .tk h3{font-size:${S ? 36 : 32}px!important;line-height:1.02!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  #ig .ph{min-height:${S ? 214 : 186}px}
-  #ig .ph .art{top:22px!important;width:${S ? 120 : 108}px!important}
-  #ig .stamp .dn{font-size:${S ? 64 : 58}px!important}
-  #ig .url{position:absolute;left:50%;bottom:${S ? 120 : 34}px;transform:translateX(-50%);padding:${S ? "18px 40px" : "14px 32px"};border-radius:999px;background:var(--nar);color:#fff;font:800 ${S ? 40 : 32}px var(--f-disp);font-stretch:88%;letter-spacing:-.01em;box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 50%,transparent);white-space:nowrap}
-  #ig .more{position:absolute;left:50%;bottom:${S ? 214 : 104}px;transform:translateX(-50%);color:#fff!important;background:rgba(10,8,34,.40)!important;box-shadow:none!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:999px;padding:8px 16px 8px 20px;font:700 ${S ? 20 : 16}px var(--f-mono);letter-spacing:.22em;white-space:nowrap}
+  #ig .tk .content{padding-top:14px!important;padding-bottom:14px!important;gap:6px!important}
+  #ig .tk h3{font-size:36px!important;line-height:1.02!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  #ig .tk .meta{font-size:17px!important}
+  #ig .ph{min-height:186px}
+  #ig .ph .art{top:22px!important;width:108px!important}
+  #ig .stamp .dn{font-size:58px!important}
+  #ig .url{position:absolute;left:50%;bottom:32px;transform:translateX(-50%);padding:13px 30px;border-radius:999px;background:var(--nar);color:#fff;font:800 30px var(--f-disp);font-stretch:88%;letter-spacing:-.01em;box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 50%,transparent);white-space:nowrap}
+  #ig .more{position:absolute;left:50%;bottom:98px;transform:translateX(-50%);color:#fff!important;background:rgba(10,8,34,.40)!important;box-shadow:none!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:999px;padding:8px 16px 8px 20px;font:700 16px var(--f-mono);letter-spacing:.22em;white-space:nowrap}
   #ig .more:empty{display:none}`;
-  document.head.append(st);
+    document.head.append(st);
+  }
   const box = document.createElement("div"); box.id = "ig";
-  const logo = document.getElementById("heroLogo").cloneNode(true);
-  logo.removeAttribute("id"); logo.querySelectorAll("[id]").forEach((n) => n.id = n.id + "IG");
-  logo.querySelectorAll("[fill^='url(#']").forEach((n) => n.setAttribute("fill", n.getAttribute("fill").replace(")", "IG)")));
-  const top = document.createElement("div"); top.className = "top";
-  top.append(logo);
-  top.insertAdjacentHTML("beforeend", `<div class="kick"><i>📍</i>&nbsp; ${kicker}</div><div class="ttl"><b></b><span></span></div>`);
-  top.querySelector(".ttl b").textContent = h1; top.querySelector(".ttl span").textContent = hl;
-  box.append(top);
-  const list = document.createElement("div"); list.className = "list"; box.append(list);
+  const mkLogo = () => {
+    const l = document.getElementById("heroLogo").cloneNode(true);
+    l.removeAttribute("id"); l.querySelectorAll("[id]").forEach((n) => n.id = n.id + "IG");
+    l.querySelectorAll("[fill^='url(#']").forEach((n) => n.setAttribute("fill", n.getAttribute("fill").replace(")", "IG)")));
+    return l;
+  };
+  const head = document.createElement("div"); head.className = cover ? "top" : "hbar";
+  head.append(mkLogo());
+  head.insertAdjacentHTML("beforeend", cover ? `<div class="kick"><i>📍</i>&nbsp; ${kicker}</div><div class="ttl"><b></b><span></span></div>` : `<div class="ttl"><b></b><span></span></div>`);
+  head.querySelector(".ttl b").textContent = h1; head.querySelector(".ttl span").textContent = hl;
+  box.append(head);
+  const wrap = document.createElement("div"); wrap.className = "wrap"; wrap.style.top = listTop + "px"; box.append(wrap);
+  const list = document.createElement("div"); list.className = "list"; wrap.append(list);
   for (const e of evs) list.append(ticket(e));
   box.insertAdjacentHTML("beforeend", `<div class="more"></div><div class="url">nevarneyok.net.tr</div>`);
   document.body.append(box);
-  // Sığmayan bileti çıkar (uzun adlar iki satıra taşabilir)
-  const limit = h - (S ? 250 : 156);
-  while (list.children.length > 2 && list.getBoundingClientRect().bottom > limit) list.lastElementChild.remove();
+  const limit = h - 150; // "+N" etiketi ve adres için yer
+  while (list.children.length > 1 && list.getBoundingClientRect().bottom > limit) list.lastElementChild.remove();
   return list.children.length;
 }
 
 /* ---------- Üret ---------- */
+const PAGES = 4; // kaydırmalı gönderide en fazla sayfa
 await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });
 const made = [];
@@ -158,27 +171,33 @@ try {
   for (const set of sets) {
     if (!set.list.length) continue;
     const fresh = set.list.filter((e) => !used.has(e.d + "|" + e.title));
-    const pool = fresh.length >= 4 ? fresh : set.list;
-    const top = pickTop(pool, 5, all);
-    const files = [];
-    for (const [kind, w, h] of [["gonderi", 1080, 1350]]) { // hikâyede aynı gönderi görseli paylaşılır
-      const page = await browser.newPage({ viewport: { width: w, height: h }, reducedMotion: "reduce" });
-      page.on("pageerror", (e) => log("sayfa hatası:", e.message));
-      await page.addInitScript((t) => { try { localStorage.setItem("nvny-tema", t); } catch {} }, set.theme);
-      await page.goto(url, { waitUntil: "networkidle", timeout: 45000 }).catch(() => {});
-      await page.mouse.click(w / 2, h / 2).catch(() => {});
-      await page.waitForTimeout(1800);
-      await page.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
-      const placed = await page.evaluate(compose, { keys: top.map((e) => e.d + "|" + e.title), w, h, kicker: set.kicker, h1: set.h1, hl: set.hl, story: kind === "hikaye" });
-      if (kind === "gonderi") top.slice(0, placed).forEach((e) => used.add(e.d + "|" + e.title));
-      await page.evaluate((txt) => { const m = document.querySelector("#ig .more"); if (m) m.textContent = txt; }, set.list.length > placed ? `+${set.list.length - placed} ETKİNLİK DAHA` : "");
-      await page.waitForTimeout(600);
-      const f = `${set.id}-${kind}.png`;
+    const pool = fresh.length >= 6 ? fresh : set.list;
+    const picks = pickTop(pool, 30, all); // saate göre sıralı
+    const w = 1080, h = 1350;
+    const page = await browser.newPage({ viewport: { width: w, height: h }, reducedMotion: "reduce" });
+    page.on("pageerror", (e) => log("sayfa hatası:", e.message));
+    await page.addInitScript((t) => { try { localStorage.setItem("nvny-tema", t); } catch {} }, set.theme);
+    await page.goto(url, { waitUntil: "networkidle", timeout: 45000 }).catch(() => {});
+    await page.mouse.click(w / 2, h / 2).catch(() => {});
+    await page.waitForTimeout(1800);
+    await page.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
+    const files = [], shown = [];
+    let rest = picks.slice();
+    for (let p = 1; p <= PAGES && rest.length; p++) {
+      const placed = await page.evaluate(compose, { keys: rest.map((e) => e.d + "|" + e.title), w, h, kicker: set.kicker, h1: set.h1, hl: set.hl, cover: p === 1 });
+      shown.push(...rest.slice(0, placed));
+      rest = rest.slice(placed);
+      const left = set.list.length - shown.length;
+      const label = left <= 0 ? "" : rest.length && p < PAGES ? `KAYDIR → +${left} ETKİNLİK` : `+${left} ETKİNLİK DAHA`;
+      await page.evaluate((txt) => { const m = document.querySelector("#ig .more"); if (m) m.textContent = txt; }, label);
+      await page.waitForTimeout(500);
+      const f = `${set.id}-${p}.png`;
       await page.screenshot({ path: join(OUT, f) });
-      await page.close();
-      files.push({ kind, file: f });
+      files.push({ kind: "gonderi", file: f });
     }
-    made.push({ id: set.id, slot: set.slot, theme: set.theme, title: `${set.h1} ${set.hl.replace(/\.$/, "")}`, sub: set.sub, count: set.list.length, files, caption: caption(set, top), events: top.map((e) => ({ d: e.d, t: e.t, title: e.title, venue: e.venue, cat: e.cat, link: `${BASE}/etkinlik/${slugOf(e)}/` })) });
+    await page.close();
+    shown.forEach((e) => used.add(e.d + "|" + e.title));
+    made.push({ id: set.id, slot: set.slot, theme: set.theme, title: `${set.h1} ${set.hl.replace(/\.$/, "")}`, sub: set.sub, count: set.list.length, files, caption: caption(set, shown), events: shown.map((e) => ({ d: e.d, t: e.t, title: e.title, venue: e.venue, cat: e.cat, link: `${BASE}/etkinlik/${slugOf(e)}/` })) });
   }
 } finally { if (browser) await browser.close(); srv.close(); }
 
