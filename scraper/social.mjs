@@ -1,15 +1,14 @@
 // Instagram paylaşım seti: her sabah günün görsellerini ve açıklama metnini hazırlar.
-// Çıktı: paylas/ klasörü (gönderi 1080×1350 portre, hikâye 1080×1920, açıklama metni) ve paylas/index.html
+// Çıktı: paylas/ klasörü (gönderi 1080×1350 portre ve açıklama metni; hikâyede aynı görsel paylaşılır) ve paylas/index.html
 //
 // Görseller sitenin kendisiyle çizilir: depo yerel bir sunucuda açılır, istenen tema (Sabah / Gün /
-// Gün batımı / Gece) seçilir, etkinlikler sitedeki card() ile gerçek dikey bilet kartı olarak üretilir.
-// Böylece logo, mercek renkleri, kart tasarımı ve kartlardaki etkinlik saatindeki hava sitedekiyle aynı olur.
-// Görsellerde ve açıklamalarda fiyat yoktur.
+// Gün batımı / Gece) seçilir, etkinlikler sitedeki ticket() ile gerçek yatay bilet olarak üretilir
+// (fiyat kutusu ve açıklama gizlenir). Logo, mercek renkleri, bilet tasarımı ve biletin koçanındaki
+// etkinlik saatindeki hava sitedekiyle aynı olur. Görsellerde ve açıklamalarda fiyat yoktur.
 //
 // Günde iki set:
-//   1) "Bu akşam Ankara'da"  (Gün batımı teması)        → 12:00 paylaşımı
-//   2) Pazartesi "Bu hafta", Perşembe/Cuma "Hafta sonu", diğer günler "Yeni satışa çıktı",
-//      yeterli yeni yoksa "Yarın"  (Gece / Gün teması) → 19:00 paylaşımı
+//   1) "Bugün Ankara'da"     Gün teması          → 10:00 paylaşımı
+//   2) "Bu akşam Ankara'da"  Gün batımı teması   → 15:00 paylaşımı (birinci setteki etkinlikler tekrar edilmez)
 import { join, extname, normalize } from "node:path";
 import { rm, mkdir, readFile } from "node:fs/promises";
 import { createServer } from "node:http";
@@ -29,28 +28,20 @@ const AYB = ["OCAK", "ŞUBAT", "MART", "NİSAN", "MAYIS", "HAZİRAN", "TEMMUZ", 
 const upTR = (s) => s.toLocaleUpperCase("tr");
 
 /* ---------- Bugün ne paylaşılacak? ---------- */
+const kickToday = `ANKARA · ${upTR(fmtDate(today))} ${upTR(dayName(today))}`;
+const todayList = all.filter((e) => e.d === today && e.status !== "tukendi");
 const sets = [];
-{ // 1) Bu akşam
-  let list = all.filter((e) => e.d === today && e.t && e.t >= "17:30" && e.status !== "tukendi");
-  if (list.length >= 3) sets.push({ id: "aksam", slot: "12:00", theme: "gunbatimi", h1: "Bu akşam", hl: "Ankara'da", kicker: `ANKARA · ${upTR(fmtDate(today))} ${upTR(dayName(today))}`, sub: `${fmtDate(today)} ${dayName(today)}`, list });
+{
+  const list = todayList.filter((e) => !(e.t && e.t < "10:00"));
+  if (list.length) sets.push({ id: "gun", slot: "10:00", theme: "gun", h1: "Bugün", hl: "Ankara'da", kicker: kickToday, sub: `${fmtDate(today)} ${dayName(today)}`, list });
 }
-{ // 2) Günün ikinci paylaşımı
-  const wk = weekendRange(today);
-  const fresh = all.filter((e) => e.firstSeen && e.firstSeen !== data.baseline && (Date.now() - Date.parse(e.firstSeen)) / 864e5 <= 2 && e.status !== "tukendi");
+{
+  const list = todayList.filter((e) => e.t && e.t >= "17:30");
+  if (list.length >= 2) sets.push({ id: "aksam", slot: "15:00", theme: "gunbatimi", h1: "Bu akşam", hl: "Ankara'da", kicker: kickToday, sub: `${fmtDate(today)} ${dayName(today)}`, list });
+}
+if (!sets.length) { // Bugün etkinlik yoksa yarını paylaş
   const tom = addDaysISO(today, 1);
-  if (dow === 1) {
-    const end = addDaysISO(today, 6);
-    sets.push({ id: "hafta", slot: "19:00", theme: "gece", h1: "Bu hafta", hl: "Ankara'da", kicker: `ANKARA · ${upTR(fmtDate(today))} – ${upTR(fmtDate(end))}`, sub: `${fmtDate(today)} – ${fmtDate(end)}`, list: all.filter((e) => e.d <= end) });
-  } else if (dow === 4 || dow === 5) {
-    sets.push({ id: "hafta-sonu", slot: "19:00", theme: "gece", h1: "Hafta sonu", hl: "Ankara'da", kicker: `ANKARA · ${upTR(fmtDate(wk.from))} – ${upTR(fmtDate(wk.to))}`, sub: `${fmtDate(wk.from)} – ${fmtDate(wk.to)}`, list: all.filter((e) => e.d >= wk.from && e.d <= wk.to) });
-  } else if (fresh.length >= 4) {
-    sets.push({ id: "yeni", slot: "19:00", theme: "gece", h1: "Yeni satışa", hl: "çıktı.", kicker: "ANKARA · SON İKİ GÜNDE EKLENENLER", sub: "Son iki günde eklenenler", list: fresh });
-  } else {
-    sets.push({ id: "yarin", slot: "19:00", theme: "gun", h1: "Yarın", hl: "Ankara'da", kicker: `ANKARA · ${upTR(fmtDate(tom))} ${upTR(dayName(tom))}`, sub: `${fmtDate(tom)} ${dayName(tom)}`, list: all.filter((e) => e.d === tom) });
-  }
-}
-if (!sets.length) { // Bu akşam az etkinlik varsa yine de günde bir sabit paylaşım olsun
-  sets.unshift({ id: "gun", slot: "12:00", theme: "gun", h1: "Bugün", hl: "Ankara'da", kicker: `ANKARA · ${upTR(fmtDate(today))} ${upTR(dayName(today))}`, sub: `${fmtDate(today)} ${dayName(today)}`, list: all.filter((e) => e.d === today) });
+  sets.push({ id: "yarin", slot: "10:00", theme: "gun", h1: "Yarın", hl: "Ankara'da", kicker: `ANKARA · ${upTR(fmtDate(tom))} ${upTR(dayName(tom))}`, sub: `${fmtDate(tom)} ${dayName(tom)}`, list: all.filter((e) => e.d === tom) });
 }
 
 /* ---------- Açıklama metni (fiyatsız) ---------- */
@@ -103,29 +94,33 @@ function compose({ keys, w, h, kicker, h1, hl, story }) {
   const D = document.documentElement;
   D.style.overflow = "hidden"; document.body.style.overflow = "hidden"; scrollTo(0, 0);
   const evs = keys.map((k) => E.find((e) => e.d + "|" + e.title === k)).filter(Boolean);
-  const S = story ? 1 : 0, light = D.dataset.theme === "light";
+  const S = story ? 1 : 0;
   const st = document.createElement("style");
   st.textContent = `
   html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
   #ig{position:fixed;left:0;top:0;z-index:2147483000;width:${w}px;height:${h}px;overflow:hidden;color:#fff;
-    background:radial-gradient(60% 40% at 12% 22%,color-mix(in srgb,var(--g2) 38%,transparent),transparent 70%),
-               radial-gradient(55% 38% at 92% 30%,color-mix(in srgb,var(--g1) 30%,transparent),transparent 70%),
-               linear-gradient(180deg,var(--sky1),var(--sky2) 55%,var(--sky3));font-family:var(--f-body)}
+    background:radial-gradient(60% 34% at 10% 18%,color-mix(in srgb,var(--g2) 40%,transparent),transparent 70%),
+               radial-gradient(55% 30% at 95% 12%,color-mix(in srgb,var(--g1) 34%,transparent),transparent 70%),
+               linear-gradient(180deg,var(--sky1),var(--sky2) 50%,var(--sky3));font-family:var(--f-body)}
   #ig *{animation:none!important;transition:none!important}
-  #ig .top{position:absolute;left:0;right:0;top:${S ? 150 : 62}px;display:flex;flex-direction:column;align-items:center;text-align:center}
-  #ig .logo{font-size:${S ? 150 : 118}px;filter:drop-shadow(0 10px 30px rgba(8,6,30,.25))}
-  #ig .kick{margin-top:${S ? 40 : 28}px;font:700 ${S ? 22 : 18}px var(--f-mono);letter-spacing:.42em;padding-left:.42em;opacity:.95}
-  #ig .kick i{font-style:normal;color:var(--nar)}
-  #ig h2{margin:${S ? 22 : 14}px 0 0;font:800 ${S ? 100 : 76}px/.92 var(--f-disp);font-stretch:75%;letter-spacing:-.03em;text-shadow:0 6px 30px rgba(8,6,30,.25)}
-  #ig .hl{display:inline-block;margin-top:${S ? 12 : 8}px;padding:.02em .2em .1em;border-radius:.14em;background:var(--nar);font:800 ${S ? 100 : 76}px/.92 var(--f-disp);font-stretch:75%;letter-spacing:-.03em;box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 45%,transparent)}
-  #ig .lens{position:absolute;left:50%;top:${S ? 790 : 590}px;width:${S ? 920 : 820}px;height:${S ? 920 : 820}px;transform:translateX(-50%);overflow:visible}
-  #ig .fan{position:absolute;left:0;right:0;top:${S ? 880 : 648}px;height:${S ? 640 : 480}px}
-  #ig .fan .vc{position:absolute;left:50%;top:0;width:236px;zoom:${S ? 1.12 : 1};margin-left:-118px;box-shadow:0 26px 60px rgba(8,6,30,.35)}
-  #ig .vc-pr,#ig .vc-nb.dr{display:none!important}
-  #ig .fan .vc{background:${light ? "#fffefb" : "linear-gradient(180deg,#2b2452,#1b1736)"}}
-  #ig .vc-buy{pointer-events:none}
-  #ig .url{position:absolute;left:50%;bottom:${S ? 130 : 44}px;transform:translateX(-50%);padding:${S ? "18px 40px" : "15px 34px"};border-radius:999px;background:var(--nar);font:800 ${S ? 40 : 34}px var(--f-disp);font-stretch:88%;letter-spacing:-.01em;box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 50%,transparent);white-space:nowrap}
-  #ig .more{color:#fff!important;background:rgba(10,8,34,.42)!important;box-shadow:none!important;border:1px solid rgba(255,255,255,.22)!important;border-radius:999px;padding:9px 18px 9px 22px;position:absolute;left:50%;bottom:${S ? 236 : 124}px;transform:translateX(-50%);font:700 ${S ? 21 : 18}px var(--f-mono);letter-spacing:.24em;white-space:nowrap;z-index:20}
+  #ig .top{position:absolute;left:0;right:0;top:${S ? 150 : 52}px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  #ig .logo{font-size:${S ? 128 : 88}px;filter:drop-shadow(0 10px 30px rgba(8,6,30,.22))}
+  #ig .kick{margin-top:${S ? 34 : 24}px;font:700 ${S ? 21 : 17}px var(--f-mono);letter-spacing:.42em;padding-left:.42em}
+  #ig .kick i{font-style:normal}
+  #ig .ttl{margin-top:${S ? 22 : 14}px;display:flex;align-items:center;gap:.24em;font:800 ${S ? 92 : 70}px/.95 var(--f-disp);font-stretch:75%;letter-spacing:-.03em}
+  #ig .ttl b{font-weight:800;text-shadow:0 6px 30px rgba(8,6,30,.25)}
+  #ig .ttl span{padding:.02em .2em .1em;border-radius:.14em;background:var(--nar);box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 45%,transparent)}
+  #ig .list{position:absolute;left:${S ? 36 : 40}px;right:${S ? 36 : 40}px;top:${S ? 560 : 360}px;display:flex;flex-direction:column;gap:${S ? 22 : 14}px}
+  #ig .tkw{content-visibility:visible!important;contain-intrinsic-size:none!important;filter:drop-shadow(0 18px 30px rgba(8,6,30,.30))!important;transform:none!important}
+  #ig .tk{min-height:0!important;--photo:${S ? 236 : 222}px;--stub:${S ? 200 : 188}px}
+  #ig .tk .desc,#ig .tk .info,#ig .tk .tixes,#ig .tk .foot,#ig .tk .vlink small,#ig .ph .nb.dr,#ig .tk .goldbar,#ig .stub .src{display:none!important}
+  #ig .tk .content{padding-top:${S ? 18 : 14}px!important;padding-bottom:${S ? 18 : 14}px!important;gap:${S ? 8 : 6}px!important}
+  #ig .tk h3{font-size:${S ? 36 : 32}px!important;line-height:1.02!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  #ig .ph{min-height:${S ? 214 : 186}px}
+  #ig .ph .art{top:22px!important;width:${S ? 120 : 108}px!important}
+  #ig .stamp .dn{font-size:${S ? 64 : 58}px!important}
+  #ig .url{position:absolute;left:50%;bottom:${S ? 120 : 34}px;transform:translateX(-50%);padding:${S ? "18px 40px" : "14px 32px"};border-radius:999px;background:var(--nar);color:#fff;font:800 ${S ? 40 : 32}px var(--f-disp);font-stretch:88%;letter-spacing:-.01em;box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 50%,transparent);white-space:nowrap}
+  #ig .more{position:absolute;left:50%;bottom:${S ? 214 : 104}px;transform:translateX(-50%);color:#fff!important;background:rgba(10,8,34,.40)!important;box-shadow:none!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:999px;padding:8px 16px 8px 20px;font:700 ${S ? 20 : 16}px var(--f-mono);letter-spacing:.22em;white-space:nowrap}
   #ig .more:empty{display:none}`;
   document.head.append(st);
   const box = document.createElement("div"); box.id = "ig";
@@ -134,27 +129,17 @@ function compose({ keys, w, h, kicker, h1, hl, story }) {
   logo.querySelectorAll("[fill^='url(#']").forEach((n) => n.setAttribute("fill", n.getAttribute("fill").replace(")", "IG)")));
   const top = document.createElement("div"); top.className = "top";
   top.append(logo);
-  top.insertAdjacentHTML("beforeend", `<div class="kick"><i>📍</i>&nbsp; ${kicker}</div><h2></h2><div class="hl"></div>`);
-  top.querySelector("h2").textContent = h1; top.querySelector(".hl").textContent = hl;
-  // Cam mercek: beyaz halka, temaya göre renkli cam, nar renkli sap
-  const lens = `<svg class="lens" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="igG" cx="38%" cy="30%" r="80%"><stop offset="0" style="stop-color:var(--g1);stop-opacity:.75"/><stop offset=".55" style="stop-color:var(--g2);stop-opacity:.55"/><stop offset="1" style="stop-color:var(--g3);stop-opacity:.35"/></radialGradient></defs>
-    <path d="M82 18L112 -12" stroke="var(--nar)" stroke-width="9" stroke-linecap="round"/>
-    <circle cx="50" cy="50" r="44" fill="url(#igG)" stroke="#fff" stroke-width="4"/>
-    <path d="M21 36 A33 33 0 0 1 40 16" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/></svg>`;
-  box.innerHTML = lens;
-  box.prepend(top);
-  const fan = document.createElement("div"); fan.className = "fan"; box.append(fan);
-  const n = evs.length, mid = (n - 1) / 2;
-  const spread = S ? 172 : 194;
-  evs.forEach((e, i) => {
-    const c = card(e), k = i - mid;
-    c.style.transform = `translate(${k * spread}px,${k * k * 12 + Math.abs(k) * 8}px) rotate(${k * 6}deg)`;
-    c.style.zIndex = String(10 - Math.round(Math.abs(k) * 2));
-    fan.append(c);
-  });
-  box.insertAdjacentHTML("beforeend", `<div class="more"></div><div class="url">${location.hostname.includes("127.0.0.1") ? "" : ""}nevarneyok.net.tr</div>`);
+  top.insertAdjacentHTML("beforeend", `<div class="kick"><i>📍</i>&nbsp; ${kicker}</div><div class="ttl"><b></b><span></span></div>`);
+  top.querySelector(".ttl b").textContent = h1; top.querySelector(".ttl span").textContent = hl;
+  box.append(top);
+  const list = document.createElement("div"); list.className = "list"; box.append(list);
+  for (const e of evs) list.append(ticket(e));
+  box.insertAdjacentHTML("beforeend", `<div class="more"></div><div class="url">nevarneyok.net.tr</div>`);
   document.body.append(box);
-  return evs.length;
+  // Sığmayan bileti çıkar (uzun adlar iki satıra taşabilir)
+  const limit = h - (S ? 250 : 156);
+  while (list.children.length > 2 && list.getBoundingClientRect().bottom > limit) list.lastElementChild.remove();
+  return list.children.length;
 }
 
 /* ---------- Üret ---------- */
@@ -169,11 +154,14 @@ try {
   const opt = { args: ["--no-sandbox"] };
   if (process.env.CHROME_PATH) opt.executablePath = process.env.CHROME_PATH;
   browser = await chromium.launch(opt);
+  const used = new Set();
   for (const set of sets) {
     if (!set.list.length) continue;
-    const top = pickTop(set.list, 5, all);
+    const fresh = set.list.filter((e) => !used.has(e.d + "|" + e.title));
+    const pool = fresh.length >= 4 ? fresh : set.list;
+    const top = pickTop(pool, 5, all);
     const files = [];
-    for (const [kind, w, h] of [["gonderi", 1080, 1350], ["hikaye", 1080, 1920]]) {
+    for (const [kind, w, h] of [["gonderi", 1080, 1350]]) { // hikâyede aynı gönderi görseli paylaşılır
       const page = await browser.newPage({ viewport: { width: w, height: h }, reducedMotion: "reduce" });
       page.on("pageerror", (e) => log("sayfa hatası:", e.message));
       await page.addInitScript((t) => { try { localStorage.setItem("nvny-tema", t); } catch {} }, set.theme);
@@ -182,6 +170,7 @@ try {
       await page.waitForTimeout(1800);
       await page.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
       const placed = await page.evaluate(compose, { keys: top.map((e) => e.d + "|" + e.title), w, h, kicker: set.kicker, h1: set.h1, hl: set.hl, story: kind === "hikaye" });
+      if (kind === "gonderi") top.slice(0, placed).forEach((e) => used.add(e.d + "|" + e.title));
       await page.evaluate((txt) => { const m = document.querySelector("#ig .more"); if (m) m.textContent = txt; }, set.list.length > placed ? `+${set.list.length - placed} ETKİNLİK DAHA` : "");
       await page.waitForTimeout(600);
       const f = `${set.id}-${kind}.png`;
