@@ -45,7 +45,7 @@ jobs:
           OUT_DIR: /tmp/paylas
         run: node social.mjs
 
-      - name: "sosyal" dalına koy
+      - name: Görselleri sosyal dalına koy
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
