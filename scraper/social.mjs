@@ -125,7 +125,8 @@ function compose({ keys, w, h, kicker, h1, hl, story }) {
   #ig .fan .vc{background:${light ? "#fffefb" : "linear-gradient(180deg,#2b2452,#1b1736)"}}
   #ig .vc-buy{pointer-events:none}
   #ig .url{position:absolute;left:50%;bottom:${S ? 130 : 44}px;transform:translateX(-50%);padding:${S ? "18px 40px" : "15px 34px"};border-radius:999px;background:var(--nar);font:800 ${S ? 40 : 34}px var(--f-disp);font-stretch:88%;letter-spacing:-.01em;box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 50%,transparent);white-space:nowrap}
-  #ig .more{color:#fff!important;background:none!important;box-shadow:none!important;border:0!important;position:absolute;left:50%;bottom:${S ? 236 : 128}px;transform:translateX(-50%);font:700 ${S ? 22 : 19}px var(--f-mono);letter-spacing:.24em;opacity:.9;white-space:nowrap}`;
+  #ig .more{color:#fff!important;background:rgba(10,8,34,.42)!important;box-shadow:none!important;border:1px solid rgba(255,255,255,.22)!important;border-radius:999px;padding:9px 18px 9px 22px;position:absolute;left:50%;bottom:${S ? 236 : 124}px;transform:translateX(-50%);font:700 ${S ? 21 : 18}px var(--f-mono);letter-spacing:.24em;white-space:nowrap;z-index:20}
+  #ig .more:empty{display:none}`;
   document.head.append(st);
   const box = document.createElement("div"); box.id = "ig";
   const logo = document.getElementById("heroLogo").cloneNode(true);
