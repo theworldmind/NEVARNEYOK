@@ -11,10 +11,22 @@
    "files": [
     {
      "kind": "gonderi",
-     "file": "gun-gonderi.png"
+     "file": "gun-1.png"
+    },
+    {
+     "kind": "gonderi",
+     "file": "gun-2.png"
+    },
+    {
+     "kind": "gonderi",
+     "file": "gun-3.png"
+    },
+    {
+     "kind": "gonderi",
+     "file": "gun-4.png"
     }
    ],
-   "caption": "Bugün Ankara'da neler var? 👇\n\nBugün Ankara'da! 11 Kasım Çarşamba\n\n🎭 17:00 · Bir İshak'sın Bir Cemil — AKM Sahne Kızılay\n🎭 20:00 · Nizamülmülk — CSO Ada · Ziraat Bankası Ana Salon\n🎤 20:30 · İlişkisel Geyik Talk show — Coffee Up Bahçelievler\n🎶 21:00 · Candan Erçetin - Doğu Batı Senfonisi - Rengahenk Konser — Congresium Ankara\n🎶 21:00 · Haydar Yılmaz — IF Performance Hall Tepe Prime\n\nBugün Ankara'da 33 etkinlik var. Hepsini saat, mekân ve bilet bağlantılarıyla görmek için: nevarneyok.net.tr (profildeki bağlantıda)\n\n📌 Kaydet, plan yaparken lazım olur.\n👥 Birlikte gitmek istediğin kişiyi etiketle!\n🔔 Her gün güncel Ankara etkinlikleri için takipte kal.\n\n#ankara #ankaraetkinlik #ankarakonser #ankaratiyatro #başkent #neyapsam #ankaradabugün #tiyatro #standup #konser",
+   "caption": "Bugün Ankara'da neler var? 👇\n\nBugün Ankara'da! 11 Kasım Çarşamba\n\n🎭 17:00 · Bir İshak'sın Bir Cemil — AKM Sahne Kızılay\n🎭 18:00 · Bir İdam Mahkumunun Son Günü - Süleyman Ceylan — Çukurambar Kültür Sanat Merkezi AKM Sahnesi\n🎨 19:00 · Resim - Starry Autumn — Masterpiece Ankara\n🎭 20:00 · Nizamülmülk — CSO Ada · Ziraat Bankası Ana Salon\n🎭 20:00 · Aşkın Kullanım Kılavuzu — Çukurambar Kültür Sanat Merkezi AKM Sahnesi\n🎭 20:00 · Bir Delinin Hatıra Defteri - Oğuzhan Karadavut — Era Tiyatro Gösteri Merkezi\n🎭 20:00 · Bu da Geçer ya Hu — Şinasi Sahnesi\n🎭 20:00 · Edmond — Cüneyt Gökçer Sahnesi\n🎭 20:00 · Gece — AKM Sahne Kızılay\n🎭 20:00 · Kadınlar , Filler ve Saireler — Küçük Tiyatro\n🎭 20:00 · Kılıçarslan — Etimesgut CKM Sahnesi\n🎭 20:00 · Öteki Ankara Müzikali — Akün Sahnesi\n🎭 20:00 · 7 Kocalı Hürmüz — Kulis Sanat Tiyatrosu Panora\n🎶 20:00 · CSO Sanatçılarıyla Bankkart Mavi Salon Konserleri - Nefesin Yolculuğu \"Kırım’dan Japonya’ya\" — CSO Ada · Bankkart Mavi Salon\n🎭 20:00 · Göğe Yazılmış Bir Alp — Çankaya Belediyesi ASM Mavi Salon\n\nBugün Ankara'da 33 etkinlik var. Hepsini saat, mekân ve bilet bağlantılarıyla görmek için: nevarneyok.net.tr (profildeki bağlantıda)\n\n📌 Kaydet, plan yaparken lazım olur.\n👥 Birlikte gitmek istediğin kişiyi etiketle!\n🔔 Her gün güncel Ankara etkinlikleri için takipte kal.\n\n#ankara #ankaraetkinlik #ankarakonser #ankaratiyatro #başkent #neyapsam #ankaradabugün #tiyatro #atölye #konser #çocuketkinliği #standup",
    "events": [
     {
      "d": "2026-11-11",
@@ -24,55 +36,6 @@
      "cat": "tiyatro",
      "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-bir-ishaksin-bir-cemil/"
     },
-    {
-     "d": "2026-11-11",
-     "t": "20:00",
-     "title": "Nizamülmülk",
-     "venue": "CSO Ada · Ziraat Bankası Ana Salon",
-     "cat": "tiyatro",
-     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-nizamulmulk/"
-    },
-    {
-     "d": "2026-11-11",
-     "t": "20:30",
-     "title": "İlişkisel Geyik Talk show",
-     "venue": "Coffee Up Bahçelievler",
-     "cat": "standup",
-     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-iliskisel-geyik-talk-show/"
-    },
-    {
-     "d": "2026-11-11",
-     "t": "21:00",
-     "title": "Candan Erçetin - Doğu Batı Senfonisi - Rengahenk Konser",
-     "venue": "Congresium Ankara",
-     "cat": "konser",
-     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-candan-ercetin-dogu-bati-senfonisi-rengahenk-kon/"
-    },
-    {
-     "d": "2026-11-11",
-     "t": "21:00",
-     "title": "Haydar Yılmaz",
-     "venue": "IF Performance Hall Tepe Prime",
-     "cat": "konser",
-     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-haydar-yilmaz/"
-    }
-   ]
-  },
-  {
-   "id": "aksam",
-   "slot": "15:00",
-   "theme": "gunbatimi",
-   "title": "Bu akşam Ankara'da",
-   "sub": "11 Kasım Çarşamba",
-   "count": 32,
-   "files": [
-    {
-     "kind": "gonderi",
-     "file": "aksam-gonderi.png"
-    }
-   ],
-   "caption": "Bu akşam Ankara'da sahne ışıkları yanıyor ✨\n\nBu akşam Ankara'da! 11 Kasım Çarşamba\n\n🎭 18:00 · Bir İdam Mahkumunun Son Günü - Süleyman Ceylan — Çukurambar Kültür Sanat Merkezi AKM Sahnesi\n🎨 19:00 · Resim - Starry Autumn — Masterpiece Ankara\n🎭 20:00 · Aşkın Kullanım Kılavuzu — Çukurambar Kültür Sanat Merkezi AKM Sahnesi\n🎶 21:00 · Haydar Yılmaz — IF Performance Hall Tepe Prime\n🎶 21:00 · Bengü — Jolly Joker Ankara\n\nBu akşam Ankara'da 32 etkinlik var. Hepsini saat, mekân ve bilet bağlantılarıyla görmek için: nevarneyok.net.tr (profildeki bağlantıda)\n\n📌 Kaydet, akşam lazım olur.\n👥 Bu akşam birlikte çıkacağın kişiyi etiketle!\n🔔 Her gün güncel Ankara etkinlikleri için takipte kal.\n\n#ankara #ankaraetkinlik #ankarakonser #ankaratiyatro #başkent #neyapsam #ankaradabugün #tiyatro #atölye #konser",
-   "events": [
     {
      "d": "2026-11-11",
      "t": "18:00",
@@ -92,10 +55,207 @@
     {
      "d": "2026-11-11",
      "t": "20:00",
+     "title": "Nizamülmülk",
+     "venue": "CSO Ada · Ziraat Bankası Ana Salon",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-nizamulmulk/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
      "title": "Aşkın Kullanım Kılavuzu",
      "venue": "Çukurambar Kültür Sanat Merkezi AKM Sahnesi",
      "cat": "tiyatro",
      "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-askin-kullanim-kilavuzu/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Bir Delinin Hatıra Defteri - Oğuzhan Karadavut",
+     "venue": "Era Tiyatro Gösteri Merkezi",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-bir-delinin-hatira-defteri-oguzhan-karadavut/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Bu da Geçer ya Hu",
+     "venue": "Şinasi Sahnesi",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-bu-da-gecer-ya-hu/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Edmond",
+     "venue": "Cüneyt Gökçer Sahnesi",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-edmond/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Gece",
+     "venue": "AKM Sahne Kızılay",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-gece/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Kadınlar , Filler ve Saireler",
+     "venue": "Küçük Tiyatro",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-kadinlar-filler-ve-saireler/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Kılıçarslan",
+     "venue": "Etimesgut CKM Sahnesi",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-kilicarslan/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Öteki Ankara Müzikali",
+     "venue": "Akün Sahnesi",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-oteki-ankara-muzikali/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "7 Kocalı Hürmüz",
+     "venue": "Kulis Sanat Tiyatrosu Panora",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-7-kocali-hurmuz/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "CSO Sanatçılarıyla Bankkart Mavi Salon Konserleri - Nefesin Yolculuğu \"Kırım’dan Japonya’ya\"",
+     "venue": "CSO Ada · Bankkart Mavi Salon",
+     "cat": "konser",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-cso-sanatcilariyla-bankkart-mavi-salon-konserler/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Göğe Yazılmış Bir Alp",
+     "venue": "Çankaya Belediyesi ASM Mavi Salon",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-goge-yazilmis-bir-alp/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Komşum III. VLAD",
+     "venue": "Fade Stage and Coffe",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-komsum-iii-vlad/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Küçük Bir Aşk Masalı",
+     "venue": "Tiyatro Kafe",
+     "cat": "cocuk",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-kucuk-bir-ask-masali/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Marilyn Monroe",
+     "venue": "Çankaya Belediyesi Yaşar Kemal KM",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-marilyn-monroe/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Taner Ayyıldız Ne Haliniz Varsa Gülün Stand Up",
+     "venue": "Route Ankara",
+     "cat": "standup",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-taner-ayyildiz-ne-haliniz-varsa-gulun-stand-up/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:00",
+     "title": "Vera veya Nihilistler",
+     "venue": "Mesafe Sahne",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-vera-veya-nihilistler/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:30",
+     "title": "İlişkisel Geyik Talk show",
+     "venue": "Coffee Up Bahçelievler",
+     "cat": "standup",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-iliskisel-geyik-talk-show/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:30",
+     "title": "Einstein'ın İhaneti",
+     "venue": "AST Bilkent Sahne",
+     "cat": "tiyatro",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-einsteinin-ihaneti/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "20:30",
+     "title": "Mem Ararat I Ankara",
+     "venue": "Yenimahalle Nazım Hikmet KM · Genco Erkal Sahnesi",
+     "cat": "konser",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-mem-ararat-i-ankara/"
+    }
+   ]
+  },
+  {
+   "id": "aksam",
+   "slot": "15:00",
+   "theme": "gunbatimi",
+   "title": "Bu akşam Ankara'da",
+   "sub": "11 Kasım Çarşamba",
+   "count": 32,
+   "files": [
+    {
+     "kind": "gonderi",
+     "file": "aksam-1.png"
+    },
+    {
+     "kind": "gonderi",
+     "file": "aksam-2.png"
+    }
+   ],
+   "caption": "Bu akşam Ankara'da sahne ışıkları yanıyor ✨\n\nBu akşam Ankara'da! 11 Kasım Çarşamba\n\n🎨 19:00 · Yaprak Dökümü Quiz Night — Coffee Up Bahçelievler\n🎨 19:30 · Prens Quiz Night — Greyshake Coffee · Grey Sahne Comedy Club\n🎶 21:00 · Candan Erçetin - Doğu Batı Senfonisi - Rengahenk Konser — Congresium Ankara\n🎶 21:00 · Haydar Yılmaz — IF Performance Hall Tepe Prime\n🎶 21:00 · Bengü — Jolly Joker Ankara\n🎶 21:00 · Venüs — IF Performance Hall Ankara\n🎶 21:00 · Ozan Çoban — Kulüp Müjgan Ankara\n🎶 21:30 · Mert Üçkardeş'le Dünya Yalnızlar Günü — Kült Salon\n🎶 22:00 · Yaşlı Amca — SoldOut Ankara\n\nBu akşam Ankara'da 32 etkinlik var. Hepsini saat, mekân ve bilet bağlantılarıyla görmek için: nevarneyok.net.tr (profildeki bağlantıda)\n\n📌 Kaydet, akşam lazım olur.\n👥 Bu akşam birlikte çıkacağın kişiyi etiketle!\n🔔 Her gün güncel Ankara etkinlikleri için takipte kal.\n\n#ankara #ankaraetkinlik #ankarakonser #ankaratiyatro #başkent #neyapsam #ankaradabugün #atölye #konser",
+   "events": [
+    {
+     "d": "2026-11-11",
+     "t": "19:00",
+     "title": "Yaprak Dökümü Quiz Night",
+     "venue": "Coffee Up Bahçelievler",
+     "cat": "atolye",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-yaprak-dokumu-quiz-night/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "19:30",
+     "title": "Prens Quiz Night",
+     "venue": "Greyshake Coffee · Grey Sahne Comedy Club",
+     "cat": "atolye",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-prens-quiz-night/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "21:00",
+     "title": "Candan Erçetin - Doğu Batı Senfonisi - Rengahenk Konser",
+     "venue": "Congresium Ankara",
+     "cat": "konser",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-candan-ercetin-dogu-bati-senfonisi-rengahenk-kon/"
     },
     {
      "d": "2026-11-11",
@@ -112,6 +272,38 @@
      "venue": "Jolly Joker Ankara",
      "cat": "konser",
      "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-bengu/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "21:00",
+     "title": "Venüs",
+     "venue": "IF Performance Hall Ankara",
+     "cat": "konser",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-venus/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "21:00",
+     "title": "Ozan Çoban",
+     "venue": "Kulüp Müjgan Ankara",
+     "cat": "konser",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-ozan-coban/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "21:30",
+     "title": "Mert Üçkardeş'le Dünya Yalnızlar Günü",
+     "venue": "Kült Salon",
+     "cat": "konser",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-mert-uckardesle-dunya-yalnizlar-gunu/"
+    },
+    {
+     "d": "2026-11-11",
+     "t": "22:00",
+     "title": "Yaşlı Amca",
+     "venue": "SoldOut Ankara",
+     "cat": "konser",
+     "link": "https://nevarneyok.net.tr/etkinlik/2026-11-11-yasli-amca/"
     }
    ]
   }
