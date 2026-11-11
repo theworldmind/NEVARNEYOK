@@ -71,6 +71,20 @@ jobs:
         continue-on-error: true
         run: node social.mjs
 
+      - name: Instagram görsellerini "sosyal" dalına koy (Metricool buradan alır)
+        if: env.MODE_FLAG == '' && hashFiles('paylas/paylas.json') != ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D="$(date +%F)"
+          URL="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          rm -rf /tmp/sosyal
+          git clone -q --depth 1 --branch sosyal "$URL" /tmp/sosyal || { mkdir -p /tmp/sosyal && cd /tmp/sosyal && git init -q -b sosyal && git remote add origin "$URL"; cd -; }
+          rm -rf "/tmp/sosyal/$D" && mkdir -p "/tmp/sosyal/$D" && cp paylas/* "/tmp/sosyal/$D/"
+          cd /tmp/sosyal && git add -A
+          git -c user.name="nevarneyok-bot" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "Instagram görselleri: $D" && git push -q origin sosyal || true
+
       - name: Hata ayıklama dosyalarını sakla (7 gün)
         if: always()
         uses: actions/upload-artifact@v4

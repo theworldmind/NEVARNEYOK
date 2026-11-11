@@ -1,0 +1,61 @@
+# Instagram görsellerini istendiğinde yeniden üretir (tarama yapmaz, siteyi yeniden yayınlamaz).
+# Çıktı "sosyal" dalına tarih klasörüyle konur; Metricool görselleri oradan alır:
+#   https://raw.githubusercontent.com/<sahip>/<depo>/sosyal/<YYYY-AA-GG>/<set>-gonderi.png
+# Her sabahki "Etkinlikleri güncelle" iş akışı da aynı görselleri üretip bu dala ekler.
+name: Instagram görselleri
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Tarih (YYYY-AA-GG, boş = bugün)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sosyal
+  cancel-in-progress: false
+
+jobs:
+  social:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Europe/Istanbul
+      SITE_URL: ${{ vars.SITE_URL || 'https://nevarneyok.net.tr' }}
+      SOCIAL_DATE: ${{ github.event.inputs.date }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Bağımlılıkları kur
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Görselleri üret
+        working-directory: scraper
+        env:
+          OUT_DIR: /tmp/paylas
+        run: node social.mjs
+
+      - name: "sosyal" dalına koy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D="${SOCIAL_DATE:-$(date +%F)}"
+          git config --global user.name "nevarneyok-bot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          URL="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          rm -rf /tmp/sosyal
+          git clone -q --depth 1 --branch sosyal "$URL" /tmp/sosyal || { mkdir -p /tmp/sosyal && cd /tmp/sosyal && git init -q -b sosyal && git remote add origin "$URL"; }
+          cd /tmp/sosyal
+          rm -rf "$D" && mkdir -p "$D" && cp /tmp/paylas/* "$D/"
+          git add -A && git commit -qm "Instagram görselleri: $D" || exit 0
+          git push -q origin sosyal
