@@ -122,11 +122,11 @@ function compose({ keys, w, h, kicker, h1, hl, cover }) {
   #ig .tk{min-height:0!important;--photo:232px;--stub:196px}
   #ig .tk .desc,#ig .tk .info,#ig .tk .tixes,#ig .tk .foot,#ig .tk .vlink small,#ig .ph .nb.dr,#ig .tk .goldbar,#ig .stub .src{display:none!important}
   #ig .tk .content{padding-top:14px!important;padding-bottom:14px!important;gap:6px!important}
-  #ig .tk h3{font-size:36px!important;line-height:1.02!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  #ig .tk .meta{font-size:17px!important}
-  #ig .ph{min-height:186px}
-  #ig .ph .art{top:22px!important;width:108px!important}
-  #ig .stamp .dn{font-size:58px!important}
+  #ig .tk h3{font-size:44px!important;line-height:1.02!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  #ig .tk .meta{font-size:20px!important}
+  #ig .ph{min-height:150px}
+  #ig .ph .art{top:10px!important;width:92px!important}
+  #ig .stamp .dn{font-size:52px!important}
   #ig .url{position:absolute;left:50%;bottom:32px;transform:translateX(-50%);padding:13px 30px;border-radius:999px;background:var(--nar);color:#fff;font:800 30px var(--f-disp);font-stretch:88%;letter-spacing:-.01em;box-shadow:0 14px 40px color-mix(in srgb,var(--nar) 50%,transparent);white-space:nowrap}
   #ig .more{position:absolute;left:50%;bottom:98px;transform:translateX(-50%);color:#fff!important;background:rgba(10,8,34,.40)!important;box-shadow:none!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:999px;padding:8px 16px 8px 20px;font:700 16px var(--f-mono);letter-spacing:.22em;white-space:nowrap}
   #ig .more:empty{display:none}`;
@@ -149,7 +149,7 @@ function compose({ keys, w, h, kicker, h1, hl, cover }) {
   for (const e of evs) list.append(ticket(e));
   box.insertAdjacentHTML("beforeend", `<div class="more"></div><div class="url">nevarneyok.net.tr</div>`);
   document.body.append(box);
-  const limit = h - 150; // "+N" etiketi ve adres için yer
+  const limit = h - 142; // "+N" etiketi ve adres için yer
   while (list.children.length > 1 && list.getBoundingClientRect().bottom > limit) list.lastElementChild.remove();
   return list.children.length;
 }
