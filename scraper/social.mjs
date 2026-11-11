@@ -1,5 +1,5 @@
 // Instagram paylaşım seti: her sabah günün görsellerini ve açıklama metnini hazırlar.
-// Çıktı: paylas/ klasörü (kaydırmalı gönderi: en fazla 4 sayfa 1080×1350 portre, açıklama metni; hikâyede ilk sayfa paylaşılır) ve paylas/index.html
+// Çıktı: paylas/ klasörü (tek 1080×1350 portre gönderi, açıklama metni; hikâyede ilk sayfa paylaşılır) ve paylas/index.html
 //
 // Görseller sitenin kendisiyle çizilir: depo yerel bir sunucuda açılır, istenen tema (Sabah / Gün /
 // Gün batımı / Gece) seçilir, etkinlikler sitedeki ticket() ile gerçek yatay bilet olarak üretilir
@@ -96,7 +96,7 @@ function compose({ keys, w, h, kicker, h1, hl, cover }) {
   D.style.overflow = "hidden"; document.body.style.overflow = "hidden"; scrollTo(0, 0);
   document.getElementById("ig")?.remove();
   const evs = keys.map((k) => E.find((e) => e.d + "|" + e.title === k)).filter(Boolean);
-  const Z = 0.8, PAD = 36, listTop = cover ? 352 : 150;
+  const Z = 0.62, PAD = 36, listTop = cover ? 352 : 150;
   if (!document.getElementById("igcss")) {
     const st = document.createElement("style"); st.id = "igcss";
     st.textContent = `
@@ -116,8 +116,8 @@ function compose({ keys, w, h, kicker, h1, hl, cover }) {
   #ig .hbar{position:absolute;left:${PAD}px;right:${PAD}px;top:44px;display:flex;align-items:center;justify-content:space-between}
   #ig .hbar .logo{font-size:44px}
   #ig .hbar .ttl{margin:0;font-size:46px}
-  #ig .wrap{position:absolute;left:${PAD - 16}px;right:${PAD}px}
-  #ig .list{zoom:${Z};width:${(w - 2 * PAD) / Z}px;display:flex;flex-direction:column;gap:16px}
+  #ig .wrap{position:absolute;left:${PAD - 12}px;right:${PAD}px}
+  #ig .list{zoom:${Z};width:${(w - 2 * PAD) / Z}px;display:flex;flex-direction:column;gap:14px}
   #ig .tkw{content-visibility:visible!important;contain-intrinsic-size:none!important;filter:drop-shadow(0 14px 24px rgba(8,6,30,.30))!important;transform:none!important}
   #ig .tk{min-height:0!important;--photo:232px;--stub:196px}
   #ig .tk .desc,#ig .tk .info,#ig .tk .tixes,#ig .tk .foot,#ig .tk .vlink small,#ig .ph .nb.dr,#ig .tk .goldbar,#ig .stub .src{display:none!important}
@@ -155,7 +155,7 @@ function compose({ keys, w, h, kicker, h1, hl, cover }) {
 }
 
 /* ---------- Üret ---------- */
-const PAGES = 4; // kaydırmalı gönderide en fazla sayfa
+const PAGES = 1; // kaydırmalı gönderide en fazla sayfa
 await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });
 const made = [];
