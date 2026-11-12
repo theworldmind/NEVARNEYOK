@@ -218,6 +218,8 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     assert.equal(r.cinemas[1119].name, "Optimum Avşar");
     const up = F.parseList(`<div class="card metadata-card"><img loading="lazy" alt="Babamın Damadı (2026) afişi" src="x.jpg"> <a href="https://www.sinemalar.com/film/301179/babamin-damadi" class="poster-link"></a> <div class="card-info"><b>Vizyon Tarihi:</b> 13 Kasım 2026</div></div>`);
     assert.deepEqual([up[0].title, up[0].release], ["Babamın Damadı", "2026-11-13"]);
+    const up2 = F.parseList(`<h2 class="section-subtitle">20 Kasım 2026</h2><div class="card metadata-card"><img alt="Aşk Tesadüfleri Sever 3 (2026) afişi"><a href="https://www.sinemalar.com/film/287221/ask-tesadufleri-sever-3" class="poster-link"></a></div>`);
+    assert.deepEqual([up2[0].title, up2[0].release], ["Aşk Tesadüfleri Sever 3", "2026-11-20"]);
     assert.deepEqual(r.days["2026-11-12"][1119], [[["11:00", "21:30"], "2D Türkçe"]]);
     assert.deepEqual(r.days["2026-11-13"][1119], [[["09:15"], "3D Altyazılı"]]);
   });

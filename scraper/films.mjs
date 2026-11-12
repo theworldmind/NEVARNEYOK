@@ -31,7 +31,13 @@ function trDate(s) { const m = txt(s).toLocaleLowerCase("tr").match(/(\d{1,2})\s
 /* Liste sayfası (vizyondaki / yakında): her filmin kartı → {id, slug, title, release, dur, country, genre} */
 export function parseList(html) {
   const out = [], seen = new Set();
-  for (const chunk of html.split(/class="card metadata-card"/).slice(1)) {
+  // "Yakında" sayfası kartları tarih başlıklarının altında gruplar: <h2>13 Kasım 2026</h2>
+  const marks = [...html.matchAll(/<(h[1-4]|div|span|p)\b[^>]*>\s*(?:<b>)?\s*(\d{1,2}\s+[A-Za-zÇĞİÖŞÜçğıöşü]+\s+\d{4})\s*(?:<\/b>)?\s*<\/\1>/g)].map((m) => [m.index, trDate(m[2])]).filter((m) => m[1]);
+  const parts = html.split(/class="card metadata-card"/);
+  let pos = parts[0].length;
+  for (const chunk of parts.slice(1)) {
+    const at = pos; pos += chunk.length + 'class="card metadata-card"'.length;
+    const head = marks.filter((m) => m[0] < at).pop();
     const a = chunk.match(/href="https?:\/\/www\.sinemalar\.com\/film\/(\d+)\/([a-z0-9-]+)"/i);
     if (!a || seen.has(a[1])) continue;
     const h = chunk.match(/\/film\/\d+\/[a-z0-9-]+"[^>]*>\s*<h[23]>([\s\S]*?)<\/h[23]>/i);
@@ -43,6 +49,7 @@ export function parseList(html) {
     const vt = (chunk.match(/Vizyon Tarihi:<\/b>\s*([^<]+)</) || [])[1] || "";
     const o = { id: +a[1], slug: a[2], title, ...parseInfo(info) };
     if (!o.release && vt) o.release = trDate(vt);
+    if (!o.release && head) o.release = head[1];
     out.push(o);
   }
   return out;
