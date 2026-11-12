@@ -637,6 +637,47 @@ main,footer,.actf,.hero-bottom{color:var(--onbg)}
 .tkw.cine .tk .desc,.tkw.cine .tk .meta,.tkw.cine .tk dt,.tkw.cine .tk .pnote,.tkw.cine .tk .crumb{color:#c9bfd8}
 .tkw.cine .tk .stub{background:linear-gradient(170deg,#b3122f,#6e0a20);color:#ffe6b0}
 .tkw.cine .tk .stub *{color:inherit}
+
+/* ===================== AFİŞLER (kaynağından gömülü) ===================== */
+.pst{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity .45s ease;pointer-events:none;-webkit-user-drag:none}
+.has-pst .pst{opacity:1}
+.has-pst>.art{opacity:0}
+.pbg,.pshade{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .45s ease}
+.pst-fit .pst{object-fit:contain}
+.pst-fit .pbg{opacity:.55;inset:-12%;background:center/cover no-repeat;transform:scale(1.2)}
+.pst-fit .pbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,16,.55),rgba(8,6,16,.35) 50%,rgba(8,6,16,.6))}
+.has-pst .pshade{opacity:1;background:linear-gradient(180deg,rgba(0,0,0,.34),transparent 24%,transparent 58%,rgba(0,0,0,.62))}
+.pby{position:absolute;right:8px;bottom:6px;z-index:2;font:600 8.5px/1 var(--f-body);letter-spacing:.02em;color:rgba(255,255,255,.72);text-shadow:0 1px 3px rgba(0,0,0,.7);opacity:0;transition:opacity .45s;pointer-events:none;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.has-pst .pby{opacity:1}
+.vc-ph>:not(.pst):not(.pbg):not(.pshade):not(.art),.ph>:not(.pst):not(.pbg):not(.pshade):not(.art):not(.grain),.fc-ph>:not(.pst):not(.pbg):not(.pshade):not(.art){z-index:2}
+/* dikey kart: afiş okunabilir büyüklükte */
+.vc-ph{aspect-ratio:4/5}
+.vc-ph.has-pst .pby{bottom:auto;top:auto;right:10px;bottom:8px}
+.has-pst .vc-date{background:rgba(12,10,24,.5);border-color:rgba(255,255,255,.28)}
+.vc-ph.has-pst .vc-nb{bottom:68px}
+@media (hover:hover){.vc:hover .has-pst .pst{transform:scale(1.03)}.pst{transition:opacity .45s ease,transform .6s cubic-bezier(.2,.8,.2,1)}}
+/* yatay bilet: afiş sol sütunda, tam görünür */
+.tk{--photo:240px}
+.ph.has-pst .grain{display:none}
+.ph .pby{bottom:8px;right:10px}
+/* film kartı: afiş oranı */
+.fc-ph{aspect-ratio:2/3}
+.fc-ph .perf{z-index:3}
+.fc-ph.has-pst .fc-g{display:none}
+.fc-ph .pby{right:18px}
+/* vizyon şeridi: afişli kutular */
+.fm{min-height:250px;width:168px;justify-content:flex-end;overflow:hidden}
+.fm>*:not(.pst):not(.pbg):not(.pshade){position:relative;z-index:2}
+.fm>.perf{position:absolute;z-index:3}
+.fm.has-pst .pshade{background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 30%,rgba(0,0,0,.25) 52%,rgba(0,0,0,.88))}
+.fm .fc-nb{position:absolute;left:16px;top:10px;margin:0}
+/* sinema bileti: afiş başlığın yanında */
+.ftk-hd{display:flex;gap:18px;align-items:flex-end;margin-top:14px}
+.ftk-pst{position:relative;flex:none;width:118px;aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:linear-gradient(155deg,var(--d1),var(--d2));box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.ftk-pst .pby{font-size:7.5px;right:5px;bottom:4px}
+.ftk-hd .ftk-cat{margin-top:0}
+@media (max-width:560px){.vc-ph.has-pst .vc-nb{bottom:58px}.fm{width:138px;min-height:210px}.ftk-pst{width:84px}}
+@media (max-width:700px){.ph{height:300px}}
 </style>
 <script>(function(){try{var D=document.documentElement,p="oto";try{p=localStorage.getItem("nvny-tema")||"oto"}catch(e){}var q=p;
 if(p==="oto"){var r=Math.PI/180,LA=39.93*r,d=Date.now()/864e5+2440587.5-2451545,g=(357.529+.98560028*d)*r,Q=280.459+.98564736*d,L=(Q+1.915*Math.sin(g)+.02*Math.sin(2*g))*r,e=(23.439-3.6e-7*d)*r,ra=Math.atan2(Math.cos(e)*Math.sin(L),Math.cos(L)),dc=Math.asin(Math.sin(e)*Math.sin(L)),H=((18.697374558+24.06570982441908*d)%24*15+32.86)*r-ra,

@@ -31,7 +31,8 @@ Bozulmaması gereken kurallar:
 
 ## 2b. Hukuki kurallar (risk en aza indirildi; bozma)
 - **Yalnızca olgular.** Kaynaklardan ad, tarih, saat, mekân, fiyat, satış durumu, süre, yaş, tür ve düzenleyen alınır.
-  - **Tanıtım metni (`desc`), afiş ve görsel yayımlanmaz ve saklanmaz.** `run.mjs` içindeki `strip()` bunları siler. Metinden yalnızca süre ve yaş ayıklanır (`factsFrom`).
+  - **Tanıtım metni (`desc`) yayımlanmaz ve saklanmaz.** `run.mjs` içindeki `strip()` siler. Metinden yalnızca süre ve yaş ayıklanır (`factsFrom`).
+  - **Afişler gömülür, kopyalanmaz (kullanıcı kararı, 12.11.2026).** Toplayıcı yalnızca afişin kaynaktaki adresini tutar (`img`, `imgBy`); dosya indirilmez, sunucumuzda saklanmaz, değiştirilmez. Sitede `<img referrerpolicy="no-referrer">` ile kaynağından gösterilir (`pstHTML` / `pstWire`), üzerinde "Görsel: <kaynak>" yazar; yüklenemezse kendi çizimimiz kalır. Öncelik: kurum ve mekânın kendi afişi, sonra bilet sitesi. Aynı görsel 4'ten fazla farklı etkinlikte geçiyorsa site logosu sayılır, gösterilmez. Instagram görsellerine (`social.mjs`) afiş konmaz. Afiş kaldırma talebi 24 saat içinde `blocklist.txt` ile yerine getirilir. Sanatçı fotoğrafı ayrıca aranmaz; yalnızca etkinliğin kendi sayfasındaki görsel kullanılır.
   - Etkinlik tanımını olgulardan kendimiz kurarız: `app.js` ve `build-pages.mjs` içindeki `descOf()`.
   - Organizatörün kendi gönderdiği metin (elle eklenen, `manual`) gösterilebilir.
 - **Başkasının metnini başka kelimelerle yeniden yazma.** Bu da "işleme" sayılır. Olgulardan bağımsız cümle kur.

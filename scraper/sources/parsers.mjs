@@ -88,7 +88,7 @@ export async function dobCollect({ fetchText }) {
         out.push({ title: x.eserAdi, d: day(x.oyunTarihi), t, venue: x.sahneAdi || "", city: "Ankara",
           url: x.seoUrl ? `https://www.operabale.gov.tr/eser/${x.seoUrl}` : "https://www.operabale.gov.tr/program",
           buyUrl: /^https?:\/\//.test(x.seoFullUrl || "") ? x.seoFullUrl : "", via: "site", pc: 0,
-          org: "Ankara Devlet Opera ve Balesi", genre: x.eserGrupAdi || "", catHint: "sahne" });
+          org: "Ankara Devlet Opera ve Balesi", genre: x.eserGrupAdi || "", catHint: "sahne", image: (x.afisler || [])[0] || "" });
       }
     }
   }
@@ -138,13 +138,13 @@ export function erimtanList(html, url) {
 const CER_CAT = { tiyatro: "tiyatro", konser: "konser", film: "sinema", söyleşi: "atolye", atölye: "atolye", "stand-up": "standup" };
 export function cermodernList(html, url) {
   const out = [];
-  for (const m of html.matchAll(/class="event-box"[^>]*>\s*<a[^>]+href="([^"]+)"[\s\S]*?class="category"[^>]*>([\s\S]*?)<\/span>\s*<h3[^>]*>([\s\S]*?)<\/h3>\s*<span class="date"[^>]*>([\s\S]*?)<\/span>\s*<\/div>/gi)) {
-    const [a, b] = txt(m[4]).split(/\s+-\s+/);
+  for (const m of html.matchAll(/class="event-box"[^>]*>\s*<a[^>]+href="([^"]+)"[^>]*>\s*(?:<img[^>]+src="([^"]+)"[^>]*>)?[\s\S]*?class="category"[^>]*>([\s\S]*?)<\/span>\s*<h3[^>]*>([\s\S]*?)<\/h3>\s*<span class="date"[^>]*>([\s\S]*?)<\/span>\s*<\/div>/gi)) {
+    const [a, b] = txt(m[5]).split(/\s+-\s+/);
     const s = parseTrDate(a), e = parseTrDate(b || a);
     if (!s?.d || (e?.d && e.d !== s.d)) continue;
-    const kind = txt(m[2]).toLocaleLowerCase("tr");
-    out.push({ title: txt(m[3]), d: s.d, t: s.t || "", venue: "CerModern", city: "Ankara", url: abs(m[1], url), via: "site", pc: 0,
-      genre: txt(m[2]), catHint: Object.entries(CER_CAT).find(([w]) => kind.includes(w))?.[1] || "" });
+    const kind = txt(m[3]).toLocaleLowerCase("tr");
+    out.push({ title: txt(m[4]), d: s.d, image: m[2] ? abs(m[2], url) : "", t: s.t || "", venue: "CerModern", city: "Ankara", url: abs(m[1], url), via: "site", pc: 0,
+      genre: txt(m[3]), catHint: Object.entries(CER_CAT).find(([w]) => kind.includes(w))?.[1] || "" });
   }
   return out;
 }
@@ -159,10 +159,11 @@ export function abbList(html, url) {
     const when = parseTrDate(txt((blk.match(/fa-calendar[\s\S]*?<span[^>]*>([\s\S]*?)<\/span>/i) || [])[1]));
     if (!title || !when?.d) continue;
     const place = txt((blk.match(/fa-location-dot[\s\S]*?<span[^>]*>([\s\S]*?)<\/span>/i) || [])[1]);
+    const image = (blk.match(/<img[^>]+src="([^"]+)"/i) || [])[1] || "";
     // mekân adı: adresin mahalle/numara kısmından önceki bölüm
     const venue = place.replace(/\s+\S+\s+Mah(\.|allesi)\s[\s\S]*$/i, "").split(",")[0].trim();
     const kind = txt((blk.match(/class="category"[^>]*>([\s\S]*?)<\/span>/i) || [])[1]);
-    out.push({ title, d: when.d, t: when.t || "", venue, city: "Ankara", url: abs(m[1], url), via: "site", pc: 0,
+    out.push({ title, d: when.d, t: when.t || "", venue, city: "Ankara", url: abs(m[1], url), via: "site", pc: 0, image: image ? abs(image, url) : "",
       org: "Ankara Büyükşehir Belediyesi", genre: kind, catHint: kind.toLocaleLowerCase("tr").includes("konser") ? "konser" : "" });
   }
   return out;
@@ -195,7 +196,8 @@ export async function biletinialCollect({ fetchText, today }) {
       const multi = (x.saloonCount || 0) > 1 || x.showOnAllCities;
       if (org !== "sinema" && (multi || !seances.length)) { detail.add(url); continue; }
       if (!seances.length) { if (org === "sinema") noSeance.push(`${title}[${x.dateText || "-"}|${x.saloonName || "-"}|${x.saloonCount}]`); continue; }
-      const base = { title, venue: org === "sinema" && multi ? "Ankara sinemaları" : clean(x.saloonName || ""), city: "Ankara", url, via: "site",
+      const image = x.imageUrl ? (/^https?:/.test(x.imageUrl) ? x.imageUrl : "https://b6s54eznn8xq.merlincdn.net" + x.imageUrl) : "";
+      const base = { title, venue: org === "sinema" && multi ? "Ankara sinemaları" : clean(x.saloonName || ""), city: "Ankara", url, via: "site", image,
         ...(x.isFree ? { free: true } : x.minTicketAmount > 0 ? { price: Math.round(x.minTicketAmount), pc: 1 } : {}),
         catHint: cat, ...(fest ? { genre: "Film festivali" } : x.categoryName ? { genre: clean(x.categoryName) } : {}) };
       let list = seances.map((s) => ({ d: day(s), t: hhmm(s) }));

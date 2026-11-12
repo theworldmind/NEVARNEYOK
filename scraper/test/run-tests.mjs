@@ -186,7 +186,7 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
   const fake = async (u) => { const org = u.match(/organizerUrl=([^&]+)/)[1]; return { status: 200, text: JSON.stringify({ hasMore: false, items: pages[org] || [] }) }; };
   const r = await P.biletinialCollect({ fetchText: fake, today: "2027-01-10" });
   t("Biletinial liste verisi: seanslar, festival, vizyon, çok salonlu kayıt detaya", () => {
-    const k = r.raws.filter((x) => x.title === "Kontrabas"); assert.equal(k.length, 2); assert.equal(k[0].price, 450); assert.equal(k[0].venue, "Oda Tiyatrosu"); assert.ok(!k[0].image);
+    const k = r.raws.filter((x) => x.title === "Kontrabas"); assert.equal(k.length, 2); assert.equal(k[0].price, 450); assert.equal(k[0].venue, "Oda Tiyatrosu"); assert.equal(k[0].image, "https://b6s54eznn8xq.merlincdn.net/x.jpg", "afişin yalnızca adresi");
     assert.ok(r.detail.includes("https://biletinial.com/tr-tr/tiyatro/turne"));
     const f = r.raws.filter((x) => x.title === "Uyuyan Kadın"); assert.equal(f.length, 2, "festivalin her seansı"); assert.equal(f[0].genre, "Film festivali");
     const v = r.raws.filter((x) => x.title === "Vizyon Filmi"); assert.deepEqual(v.map((x) => x.d + " " + x.t), ["2027-01-10 11:00", "2027-01-11 12:00"]); assert.equal(v[0].venue, "Ankara sinemaları");
@@ -289,7 +289,7 @@ t("sezgisel sayfa okundu", () => { const e = find("Akustik Gece"); assert.ok(e);
 t("bozulan kaynağın eski etkinlikleri korundu", () => { assert.ok(find("Bozuk Siteden Etkinlik")); assert.ok(find("B Etkinliği 3")); });
 t("geçmiş tarihli etkinlik silindi", () => assert.ok(!find("Geçmiş Etkinlik")));
 t("elle eklenen etkinlik listede", () => { const e = find("Kapıda Ödemeli Caz Gecesi"); assert.ok(e); assert.equal(e.cat, "konser"); });
-t("bilet sitelerinin tanıtım metni ve görseli yayımlanmaz", () => assert.ok(out.events.every((e) => e.manual || (!e.desc && !e.image))));
+t("tanıtım metni yayımlanmaz; afiş yalnızca kaynaktaki adresiyle tutulur", () => assert.ok(out.events.every((e) => (e.manual || !e.desc) && !e.image && (!e.img || /^https?:\/\//.test(e.img)))));
 t("engel listesindeki etkinlik çıkarıldı, diğerleri duruyor", () => { assert.ok(!find("B Etkinliği 5")); assert.ok(find("B Etkinliği 4")); });
 t("sağlık raporu: SahteA çalışıyor, SahteB düştü", () => { const s = Object.fromEntries(out.sources.map((x) => [x.id, x])); assert.equal(s["sahte-a"].ok, true); assert.equal(s["sahte-b"].ok, false); });
 

@@ -420,7 +420,7 @@ function ticket(e){
   const info=[["Adres",addr],["Süre",e.dur],["Yaş sınırı",e.age],["Kapı açılış",e.door],["Organizasyon",e.org],["Diğer tarihler",od.map(x=>{const q=pd(x);return`${q.getDate()} ${SHORTM[q.getMonth()]}`}).join(" · ")],["Bilet satışı",e.tickets.map(x=>x.site).join(", ")]].filter(r=>r[1]);
   const w=document.createElement("div");w.className="tkw"+(st?" off":"")+(e.gold?" gold":"")+(e.cat==="sinema"?" cine":"");w.dataset.k=key(e);
   w.innerHTML=`<article class="tk" style="--c:var(--c-${e.cat})">
-   <div class="ph" style="--d1:${dp[0]};--d2:${dp[1]}">${`<div class="grain"></div><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg>`}
+   <div class="ph" style="--d1:${dp[0]};--d2:${dp[1]}">${`<div class="grain"></div><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg>${pstHTML(e.img,e.imgBy)}`}
      <span class="tag">${CATS[e.cat]}</span>${e.gold?'<span class="sash">★ Yoğun ilgi</span>':""}${st?`<span class="st">${st}</span>`:""}${!st&&(isNew(e)||dropOf(e))?`<span class="nb${dropOf(e)?" dr":""}">${dropOf(e)?`Fiyatı %${dropOf(e)} düştü`:"Yeni eklendi"}</span>`:""}
      <div class="stamp"><span class="dn">${d.getDate()}</span><span class="mw"><span class="mo">${AY[d.getMonth()]} ${d.getFullYear()}</span><span class="wd">${GUN[d.getDay()]}</span>${e.t?`<span class="tm">${e.t}</span>`:""}</span></div></div>
    <div class="body"><div class="strip"><span class="brand">Ne Var Ne Yok? · Ankara</span><span class="gn"></span></div>${e.gold?`<div class="goldbar"><b>★ Yoğun ilgi</b><span>${e.goldWhy.join(" · ")}</span></div>`:""}
@@ -440,13 +440,22 @@ function ticket(e){
   w.querySelectorAll(".info>div").forEach((r,i)=>{r.querySelector("dt").textContent=info[i][0];r.querySelector("dd").textContent=info[i][1]});
   w.querySelector(".pnote").textContent=(e.note?e.note+". ":"")+priceLine(e,st);
   w.querySelector(".fav").onclick=ev=>{const k=key(e);favs.has(k)?favs.delete(k):favs.add(k);saveFavs();const b=ev.currentTarget,on=favs.has(k);b.setAttribute("aria-pressed",on);b.textContent=on?"♥ Kaydedildi":"♡ Kaydet";if(state.range==="fav")render()};
-  return w;
+  pstWire(w);return w;
 }
+/* AFİŞ: kaynağındaki adresinden gösterilir (gömme); sunucumuzda indirilmez, saklanmaz. Yüklenemezse kendi çizimimiz görünür.
+   Afiş kutuya oranı uyuyorsa doldurur; uymuyorsa (yatay afiş) tamamı okunacak şekilde ortalanır, arkası afişin kendisiyle dolar. */
+const escA=x=>String(x).replace(/[&"<>]/g,c=>({"&":"&amp;",'"':"&quot;","<":"&lt;",">":"&gt;"}[c]));
+function pstHTML(src,by){return src?`<i class="pbg"></i><img class="pst" src="${escA(src)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" draggable="false"><i class="pshade"></i>${by?`<span class="pby">Görsel: ${escA(by)}</span>`:""}`:""}
+function pstWire(root){root.querySelectorAll("img.pst:not([data-w])").forEach(im=>{im.dataset.w=1;const box=im.parentElement;
+  const ok=()=>{if(!im.naturalWidth)return bad();const r=im.naturalWidth/im.naturalHeight,b=(box.clientWidth/box.clientHeight)||.8;
+    if(Math.abs(Math.log(r/b))>.3){box.classList.add("pst-fit");const g=box.querySelector(".pbg");if(g)g.style.backgroundImage=`url("${im.currentSrc||im.src}")`}box.classList.add("has-pst")};
+  const bad=()=>{box.querySelectorAll(".pbg,.pshade,.pby").forEach(x=>x.remove());im.remove()};
+  if(im.complete)ok();else{im.addEventListener("load",ok,{once:true});im.addEventListener("error",bad,{once:true})}})}
 function card(e){
   const d=pd(e.d),dp=DEEP[e.cat],st=e.status==="tukendi"?"Tükendi":e.status==="ertelendi"?"Ertelendi":"",f=forecast(e),t0=e.tickets[0]||{site:e.site,url:e.url};
   const w=document.createElement("article");w.className="vc"+(st?" off":"")+(e.gold?" gold":"")+(e.cat==="sinema"?" cine":"");w.style.setProperty("--c",`var(--c-${e.cat})`);w.dataset.k=key(e);
   const ps=e.tickets.slice(0,3);
-  w.innerHTML=`<div class="vc-ph" style="--d1:${dp[0]};--d2:${dp[1]}"><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg>
+  w.innerHTML=`<div class="vc-ph" style="--d1:${dp[0]};--d2:${dp[1]}"><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg>${pstHTML(e.img,e.imgBy)}
     ${e.gold?'<span class="vc-gold">★ Yoğun ilgi</span>':""}${st?`<span class="vc-st">${st}</span>`:""}${!st&&(isNew(e)||dropOf(e))?`<span class="vc-nb${dropOf(e)?" dr":""}">${dropOf(e)?`Fiyatı %${dropOf(e)} düştü`:"Yeni"}</span>`:""}<span class="vc-wx" title="Etkinlik saatinde hava"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#${ICON[f.k]}"/></svg>${f.t}°</span>
     <div class="vc-date"><b>${d.getDate()}</b><span>${SHORTM[d.getMonth()]} · ${GUN[d.getDay()]}${e.t?`<br>${e.t}`:""}</span></div></div>
    <div class="vc-in"><div class="vc-cat">${CATS[e.cat]}</div><h3></h3><div class="vc-v"></div>
@@ -455,7 +464,7 @@ function card(e){
   const h=w.querySelector("h3");h.textContent=e.title;hl(h,state.q);w.querySelector(".vc-v").textContent=e.venue;
   w.querySelectorAll(".vc-pr i").forEach((x,i)=>x.textContent=ps[i].site);
   const open=()=>openTicket(e,w);w.querySelector(".vc-look").onclick=open;h.onclick=open;w.querySelector(".vc-ph").onclick=open;
-  return w}
+  pstWire(w);return w}
 /* İncele: kart yerinden kalkar, büyüyüp yatay bilete dönüşür; "Geri dön" ile aynı yoldan yerine iner */
 let TV=null;
 function ghostOf(card,e){const dp=DEEP[e.cat],g=document.createElement("div");g.className="tkv-ghost";
@@ -555,7 +564,7 @@ const fMatch=(f,q)=>{const h=fold(f.title+" "+(f.genre||"")+" "+(f.country||""))
 const dayLbl=d=>d===todayIso?"Bugün":d===tomIso?"Yarın":(q=>`${GUN[q.getDay()].slice(0,3)} ${q.getDate()}`)(pd(d));
 function fcard(f,day){const[d1,d2]=fCol(f),sh=fShows(f,day,fstate.cin),from=day===todayIso?hmNow():"00:00",nx=sh.filter((x,i,a)=>x.t>=from&&(!i||a[i-1].t!==x.t)),sal=new Set(sh.map(x=>x.cid)).size,b=fBadge(f);
   const w=document.createElement("article");w.className="fc";
-  w.innerHTML=`<div class="fc-ph" style="--d1:${d1};--d2:${d2}"><i class="perf l"></i><i class="perf r"></i><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-klaket"/></svg>
+  w.innerHTML=`<div class="fc-ph" style="--d1:${d1};--d2:${d2}"><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-klaket"/></svg>${pstHTML(f.img,"sinemalar.com")}<i class="perf l"></i><i class="perf r"></i>
     ${b?`<span class="fc-nb${/vizyonda/.test(b)?" up":""}">${b}</span>`:""}${f.dur?`<span class="fc-du">${durTxt(f.dur)}</span>`:""}<span class="fc-g"></span></div>
    <div class="fc-in"><div class="fc-cat"></div><h3></h3>
     <div class="fc-v">${sh.length?`${sal} salonda · ${sh.length} seans`:"Bu gün seansı yok"}</div>
@@ -564,7 +573,7 @@ function fcard(f,day){const[d1,d2]=fCol(f),sh=fShows(f,day,fstate.cin),from=day=
   w.querySelector("h3").textContent=f.title;hl(w.querySelector("h3"),state.q);w.querySelector(".fc-g").textContent=(f.genre||"").split(",").slice(0,2).join(" · ");
   w.querySelector(".fc-cat").textContent=["Vizyonda",f.country].filter(Boolean).join(" · ");
   w.querySelectorAll(".fc-t span:not(.mo)").forEach((x,i)=>x.title=nx[i].name+(nx[i].fmt?" · "+nx[i].fmt:""));
-  const o=()=>openFilm(f,day);w.querySelector(".fc-go").onclick=o;w.querySelector("h3").onclick=o;w.querySelector(".fc-ph").onclick=o;return w}
+  const o=()=>openFilm(f,day);w.querySelector(".fc-go").onclick=o;w.querySelector("h3").onclick=o;w.querySelector(".fc-ph").onclick=o;pstWire(w);return w}
 /* Sinema bileti: "Seanslar" ile açılır; günler, salonlar ve saatler; bilet sinemanın sitesinde */
 let FV=null;
 function openFilm(f,day){if(FV)return;const days=Object.keys(f.s||{}).filter(d=>d>=todayIso).sort();let cur=days.includes(day)?day:(days[0]||todayIso);
@@ -573,7 +582,7 @@ function openFilm(f,day){if(FV)return;const days=Object.keys(f.s||{}).filter(d=>
   ov.innerHTML=`<div class="tkv-bg"></div><div class="tkv-box"><div class="tkv-bar"><button type="button" class="tkv-x">← Geri dön</button></div>
    <article class="ftk" style="--d1:${d1};--d2:${d2}"><div class="ftk-main"><i class="perf l"></i>
      <div class="ftk-top"><span>Ne Var Ne Yok · Sinema</span><span>Tek kişilik</span></div>
-     <div class="ftk-cat"></div><h3></h3><div class="ftk-meta"></div>
+     <div class="ftk-hd">${f.img?`<div class="ftk-pst">${pstHTML(f.img,"sinemalar.com")}</div>`:""}<div><div class="ftk-cat"></div><h3></h3><div class="ftk-meta"></div></div></div>
      <div class="ftk-days" role="tablist" aria-label="Gün"></div><div class="ftk-list"></div></div>
     <div class="ftk-stub"><svg class="pop" viewBox="0 0 120 150" aria-hidden="true"><use href="#pop-box"/></svg><div class="adm">Seans<br>seç</div>
      <a class="vc-buy" href="${f.url}" target="_blank" rel="noopener">Bilet al ↗</a><small>Salon ve koltuk seçimi sinemanın kendi sitesinde yapılır.</small></div></article></div>`;
@@ -586,7 +595,7 @@ function openFilm(f,day){if(FV)return;const days=Object.keys(f.s||{}).filter(d=>
     if(!ids.length){ls.innerHTML=`<p class="ftk-none">${days.length?"Bu gün için seans yok.":"Ankara seansları henüz açıklanmadı."}</p>`;return}
     for(const id of ids){const r=document.createElement("div");r.className="fcr";r.innerHTML=`<div class="fcr-h"><b></b><small></small></div>`+Object.entries(by[id]).map(([fmt,ts])=>`<div class="fcr-g">${fmt?`<span class="fmt">${fmt}</span>`:""}${ts.map(t=>`<span class="tm${t<from?" past":""}">${t}</span>`).join("")}</div>`).join("");
       r.querySelector("b").textContent=(CIN[id]||{}).name||"Sinema";r.querySelector("small").textContent=(CIN[id]||{}).addr||"";ls.append(r)}};
-  draw();document.body.append(ov);lockScroll(1);
+  draw();document.body.append(ov);pstWire(ov);lockScroll(1);
   const dur=reduce?1:420;ov.querySelector(".tkv-bg").animate([{opacity:0},{opacity:1}],{duration:dur,fill:"both"});
   ov.querySelector(".tkv-box").animate([{opacity:0,transform:"translateY(28px) scale(.96)"},{opacity:1,transform:"none"}],{duration:dur,easing:"cubic-bezier(.22,.8,.2,1)",fill:"both"});
   const close=()=>{if(!FV)return;const v=FV;FV=null;removeEventListener("keydown",v.key);const a=ov.querySelector(".tkv-box").animate([{opacity:1,transform:"none"},{opacity:0,transform:"translateY(20px) scale(.97)"}],{duration:reduce?1:260,fill:"forwards"});ov.querySelector(".tkv-bg").animate([{opacity:1},{opacity:0}],{duration:reduce?1:260,fill:"forwards"});a.onfinish=()=>{ov.remove();lockScroll(-1)}};
@@ -612,8 +621,8 @@ function cineBlock(){const box=document.createElement("section");box.className="
 function fRail(list,title){const r=document.createElement("section");r.className="frail";r.innerHTML=`<div class="frail-h"><h2><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-film"/></svg><span></span></h2><button type="button" class="chip cinec">Bütün filmler ve seanslar →</button></div><div class="frail-s"></div>`;
   r.querySelector("h2 span").textContent=title;r.querySelector("button").onclick=()=>{state.cat="sinema";state.limit=60;render();scrollTo({top:document.getElementById("main").offsetTop-90,behavior:"smooth"})};
   const s=r.querySelector(".frail-s");list.slice(0,14).forEach(f=>{const sh=fShows(f,todayIso),nx=sh.filter(x=>x.t>=hmNow()),[d1,d2]=fCol(f),b=fBadge(f),m=document.createElement("button");m.type="button";m.className="fm";m.style.cssText=`--d1:${d1};--d2:${d2}`;
-    m.innerHTML=`<i class="perf l"></i><i class="perf r"></i>${b?`<span class="fc-nb${/vizyonda/.test(b)?" up":""}">${b}</span>`:""}<b></b><small></small><span class="fm-t">${nx.length?`Sıradaki ${nx[0].t}`:sh.length?"Bugünkü seanslar bitti":"Yakında"}</span>`;
-    m.querySelector("b").textContent=f.title;m.querySelector("small").textContent=[durTxt(f.dur),(f.genre||"").split(",")[0]].filter(Boolean).join(" · ");m.onclick=()=>openFilm(f,todayIso);s.append(m)});return r}
+    m.innerHTML=`${pstHTML(f.img)}<i class="perf l"></i><i class="perf r"></i>${b?`<span class="fc-nb${/vizyonda/.test(b)?" up":""}">${b}</span>`:""}<b></b><small></small><span class="fm-t">${nx.length?`Sıradaki ${nx[0].t}`:sh.length?"Bugünkü seanslar bitti":"Yakında"}</span>`;
+    m.querySelector("b").textContent=f.title;m.querySelector("small").textContent=[durTxt(f.dur),(f.genre||"").split(",")[0]].filter(Boolean).join(" · ");m.onclick=()=>openFilm(f,todayIso);s.append(m)});pstWire(r);return r}
 function render(sync){
   drawChips();
   let list=filterList();
@@ -711,7 +720,7 @@ function descOf(e){if(e.manual&&e.desc)return e.desc;const org=e.org&&!SALES.tes
 const PAGES={hakkinda:["Hakkında",`<p><b>Ne Var Ne Yok? Ankara</b>, Ankara'da yapılacak konser, tiyatro, stand-up, opera, bale, çocuk etkinliği, festival, parti ve atölyeleri tek sayfada toplayan bağımsız bir etkinlik rehberidir.</p><p>Bilet satmıyoruz. Her etkinlikte, bileti satan sitelerin hepsi fiyatlarıyla yan yana gösterilir; “Bilet al” düğmesi seni doğrudan o sitenin satış sayfasına götürür. Satın alma, iade ve değişiklik işlemleri ilgili bilet sitesinin kurallarına tabidir.</p><p>Reklam almıyoruz, komisyon almıyoruz, kimseden ücret almıyoruz. Bir etkinliğin listede yer alması ya da öne çıkması için ödeme yapılmaz.</p><p><b>Yoğun ilgi</b> işareti, bilet sitelerindeki verilere dayanır: tükenen seans, çok sayıda seans, büyük salon ve birden fazla sitede satış gibi işaretlerden en az ikisi bulunan etkinliklere verilir. Kimse bu işaret için ödeme yapmaz.</p>`],
  kaynaklar:["Veri kaynakları ve güncelleme",`<p>Etkinlikler bilet sitelerinin, kurumların, mekânların ve belediyelerin herkese açık sayfalarından toplanır. Şu an taranan kaynaklar: <span class="srcl"></span></p><p>Toplama her sabah yeniden yapılır; öğleden sonra da bilinen etkinliklerin fiyat ve satış durumu bir kez daha kontrol edilir. Bir site o gün okunamazsa son doğrulanmış bilgisi korunur. Tarihi geçen etkinlikler kendiliğinden kaldırılır. Elle eklenen etkinlikler de aynı listeye katılır.</p><p>Gösterilen fiyat, o sitede listelenen en uygun kategoridir. Fiyat, seans ve satış durumu satış sitesinde değişebilir; satın almadan önce bilet sayfasını kontrol et.</p><p><b>Hava durumu</b> Open-Meteo'dan anlık alınır; 16 günden ileri tarihlerde mevsim normali gösterilir ve öyle etiketlenir. Mekân konumları Google Haritalar'a bağlanır.</p><p class="upd2"></p>`],
  gizlilik:["Gizlilik",`<p>Bu site hesap açtırmaz, form doldurtmaz ve kişisel veri toplamaz. Çerez ya da reklam takibi kullanmaz.</p><p>Kaydettiğin etkinlikler, tema tercihin ve girişi bir kez izlediğin bilgisi yalnızca kendi tarayıcında (yerel depolama) saklanır; sunucuya gönderilmez. Tarayıcı verilerini silerek bunları kaldırabilirsin.</p><p>Hava durumu için tarayıcın Open-Meteo'ya Ankara'nın sabit koordinatlarıyla istek gönderir; senin konumun gönderilmez. Bilet sitelerine ve Google Haritalar'a gittiğinde o sitelerin kendi gizlilik kuralları geçerlidir.</p>`],
- kosullar:["Kullanım koşulları",`<p>Bu site bilgilendirme amaçlıdır. Etkinlik bilgileri (ad, tarih, saat, mekân, fiyat, satış durumu) herkese açık sayfalardan otomatik toplanır; afiş, fotoğraf ve tanıtım metinleri kopyalanmaz. Etkinlik tanımları bu bilgilerden site tarafından yazılır. Toplayıcı kendini <i>NeVarNeYokBot</i> olarak tanıtır ve sitelerin robots.txt kurallarına uyar.</p><p>Hak sahipleri bir içeriğin kaldırılmasını <a href="mailto:${SITE.contact}?subject=Kald%C4%B1rma%20talebi">${SITE.contact}</a> adresinden isteyebilir; talep en geç 48 saat içinde yerine getirilir.</p><p>Etkinlik bilgileri; doğruluğu için özen gösterilir ama tarih, saat, fiyat ve satış durumunda değişiklik olabilir. Kesin bilgi her zaman etkinliğin satıldığı sitededir.</p><p>Bilet satın alma işlemleri bu sitede değil, bağlantı verilen bilet sitelerinde yapılır; o işlemlerden ilgili site sorumludur. Etkinlik adları ve markalar sahiplerine aittir; etkinlik görselleri site tarafından çizilmiş temsili çizimlerdir.</p>`],
+ kosullar:["Kullanım koşulları",`<p>Bu site bilgilendirme amaçlıdır. Etkinlik bilgileri (ad, tarih, saat, mekân, fiyat, satış durumu) herkese açık sayfalardan otomatik toplanır; tanıtım metinleri kopyalanmaz. Afişler kopyalanmaz ve sunucumuzda saklanmaz: yalnızca yayımlandıkları kaynak adresten, değiştirilmeden gösterilir (gömülür) ve her afişin üzerinde kaynağı yazar. Kaynak afişi kaldırdığında bizde de görünmez. Etkinlik tanımları bu bilgilerden site tarafından yazılır. Toplayıcı kendini <i>NeVarNeYokBot</i> olarak tanıtır ve sitelerin robots.txt kurallarına uyar.</p><p>Hak sahipleri bir içeriğin kaldırılmasını <a href="mailto:${SITE.contact}?subject=Kald%C4%B1rma%20talebi">${SITE.contact}</a> adresinden isteyebilir; talep en geç 48 saat içinde, afişlerde 24 saat içinde yerine getirilir.</p><p>Etkinlik bilgileri; doğruluğu için özen gösterilir ama tarih, saat, fiyat ve satış durumunda değişiklik olabilir. Kesin bilgi her zaman etkinliğin satıldığı sitededir.</p><p>Bilet satın alma işlemleri bu sitede değil, bağlantı verilen bilet sitelerinde yapılır; o işlemlerden ilgili site sorumludur. Etkinlik adları, afişler ve markalar sahiplerine aittir. Afişi olmayan etkinliklerde görülen görseller site tarafından çizilmiş temsili çizimlerdir.</p>`],
  iletisim:["İletişim",""]};
 function openPage(k){const[ttl,html]=PAGES[k];const w=document.createElement("div");w.className="pg";w.innerHTML=`<h2 id="sheetT"></h2>${html}`;w.querySelector("h2").textContent=ttl;
   if(k==="iletisim"){const L=[];if(SITE.contact)L.push(`E-posta: <a href="mailto:${SITE.contact}">${SITE.contact}</a>`);if(SITE.instagram)L.push(`Instagram: <a href="https://instagram.com/${SITE.instagram}" target="_blank" rel="noopener">@${SITE.instagram}</a>`);

@@ -47,7 +47,9 @@ export function parseList(html) {
     seen.add(a[1]);
     const info = (chunk.match(/<div class="card-info">\s*([^<]*•[^<]*)<\/div>/) || [])[1] || "";
     const vt = (chunk.match(/Vizyon Tarihi:<\/b>\s*([^<]+)</) || [])[1] || "";
-    const o = { id: +a[1], slug: a[2], title, ...parseInfo(info) };
+    // Afiş: yalnızca sinemalar.com'daki adresi (gömülerek gösterilir, indirilmez)
+    const poster = (chunk.match(/<img[^>]+alt="[^"]*afişi"[^>]*src="(https:\/\/cdn\.sinemalar\.com\/[^"]+)"/) || [])[1] || "";
+    const o = { id: +a[1], slug: a[2], title, ...parseInfo(info), ...(poster ? { img: poster } : {}) };
     if (!o.release && vt) o.release = trDate(vt);
     if (!o.release && head) o.release = head[1];
     out.push(o);
@@ -102,7 +104,7 @@ export async function main() {
     }
     const nS = Object.values(s).flat().reduce((n, [, g]) => n + g.split(/[;,]/).length, 0);
     if (!nS && !(f.release >= today)) continue; // Ankara'da seansı olmayan eski filmler alınmaz
-    films.push({ id: f.id, title: f.title, release: f.release || "", dur: f.dur || 0, country: f.country || "", genre: f.genre || "", url: BASE + page, s });
+    films.push({ id: f.id, title: f.title, release: f.release || "", dur: f.dur || 0, country: f.country || "", genre: f.genre || "", url: BASE + page, ...(f.img ? { img: f.img } : {}), s });
   }
   // Kaynak boş döndüyse dünkü veriyi silme (site boş kalmasın)
   if (!films.length && prev.films?.length) { log(`Filmler: kaynak boş döndü (${notes.join(" · ")}), dünkü veri korunuyor`); return; }

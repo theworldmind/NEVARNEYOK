@@ -99,11 +99,17 @@ if (BL.length) {
   const before = events.length;
   events = events.map((e) => ({ ...e, tickets: e.tickets.filter((t) => !blocked(BL, { site: t.url })) }))
     .filter((e) => e.tickets.length && !blocked(BL, e));
-  log(`Engel listesi: ${BL.length} kural · ${before - events.length} etkinlik çıkarıldı`);
+  // afis: yalnızca afişi kaldırır (etkinlik kalır); etkinlik adı, afiş adresi ya da afişin kaynağıyla eşleşir
+  const AF = BL.filter((b) => b.k === "afis"); let na = 0;
+  for (const e of events) if (e.img && AF.some(({ v }) => [e.title, e.img, e.imgBy].some((x) => (x || "").toLocaleLowerCase("tr").includes(v)))) { delete e.img; delete e.imgBy; na++; }
+  log(`Engel listesi: ${BL.length} kural · ${before - events.length} etkinlik çıkarıldı · ${na} afiş kaldırıldı`);
 }
 
 /* ---------- 5) Yaz ---------- */
 const sourcesMeta = SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, ok: health[s.id].ok, count: health[s.id].count }));
+// Aynı görsel birçok farklı etkinlikte kullanılıyorsa bu bir site/kurum görselidir, afiş değil: gösterilmez
+{ const use = {}; for (const e of events) if (e.img) (use[e.img] ||= new Set()).add(e.title.toLocaleLowerCase("tr"));
+  for (const e of events) if (e.img && use[e.img].size > 4) { delete e.img; delete e.imgBy; } }
 const out = { updated: now, mode: MODE, baseline: prev.baseline || null, sources: sourcesMeta, events: events.map(strip) };
 // Güvenlik ağı: sonuç dünküne göre yarıdan fazla küçüldüyse yazma (bir şey ters gitmiştir)
 const shrink = (prev.events?.length || 0) > 40 && out.events.length < prev.events.length * 0.5;
@@ -121,8 +127,8 @@ log(`Bitti: ${out.events.length} etkinlik · bugün yeni ${newOnes} · çalışa
 async function loadBlocklist() {
   const txt = await readFile(process.env.BLOCKLIST_FILE || join(ROOT, "data/blocklist.txt"), "utf8").catch(() => "");
   return txt.split(/\r?\n/).map((l) => l.replace(/#.*/, "").trim()).filter(Boolean).map((l) => {
-    const m = l.match(/^(site|mekan|mekân|etkinlik|duzenleyen|düzenleyen)\s*:\s*(.+)$/i);
-    return m ? { k: m[1].toLocaleLowerCase("tr").replace("â", "a").replace("ü", "u"), v: m[2].trim().toLocaleLowerCase("tr") } : null;
+    const m = l.match(/^(site|mekan|mekân|etkinlik|duzenleyen|düzenleyen|afis|afiş)\s*:\s*(.+)$/i);
+    return m ? { k: m[1].toLocaleLowerCase("tr").replace("â", "a").replace("ü", "u").replace("ş", "s"), v: m[2].trim().toLocaleLowerCase("tr") } : null;
   }).filter(Boolean);
 }
 function blocked(BL, e) {

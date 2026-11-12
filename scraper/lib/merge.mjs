@@ -5,10 +5,17 @@
 import { cleanTitle, canonVenue, guessCat, sameEvent, siteNameOf, factsFrom } from "./normalize.mjs";
 import { todayIST } from "./util.mjs";
 
-const KEEP_FIELDS = ["age", "dur", "genre", "org", "door", "note"];
+const KEEP_FIELDS = ["age", "dur", "genre", "org", "door", "note", "img", "imgBy"];
 const STALE_TICKET_DAYS = 10; // bir bilet bağlantısı bu kadar gün görülmezse düşer
 const DROP_SHOW_DAYS = 7;     // "fiyatı düştü" rozeti kaç gün kalsın
 
+// Afiş adresi: http(s), makul uzunlukta, logo/paylaşım görseli değil
+export function posterUrl(u) {
+  u = String(u || "").trim();
+  if (!/^https?:\/\//i.test(u) || u.length > 600 || /\.svg(\?|$)/i.test(u)) return "";
+  if (/(^|[\/_-])(logo|favicon|placeholder|default|no-?image|og-?image|share|social|icon)([._-]|\/|$)/i.test(u)) return "";
+  return u;
+}
 export function rawToEvent(r, src) {
   const title = cleanTitle(r.title);
   const venue = canonVenue(r.venue) || src.defaultVenue || "Çeşitli mekânlar";
@@ -27,6 +34,9 @@ export function rawToEvent(r, src) {
   if (r.org) ev.org = r.org;
   if (r.free && !r.price) ev.note = "Ücretsiz";
   for (const k of ["age", "dur", "genre", "door"]) if (r[k]) ev[k] = r[k];
+  // Afiş: yalnızca kaynaktaki adresi tutulur, dosya indirilmez ya da saklanmaz; sitede kaynağından gösterilir (gömme)
+  const img = posterUrl(r.image);
+  if (img) { ev.img = img; ev.imgBy = src.name; }
   return ev;
 }
 

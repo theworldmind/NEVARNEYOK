@@ -101,6 +101,8 @@ function compose({ keys, w, h, kicker, h1, hl, cover }) {
     const st = document.createElement("style"); st.id = "igcss";
     st.textContent = `
   html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+  /* Instagram görsellerine başkasının afişi konmaz (sitede yalnızca kaynağından gömülü gösterilir) */
+  #ig .pst,#ig .pbg,#ig .pshade,#ig .pby{display:none!important}#ig .has-pst .art{opacity:1!important}
   #ig{position:fixed;left:0;top:0;z-index:2147483000;width:${w}px;height:${h}px;overflow:hidden;color:#fff;
     background:radial-gradient(60% 34% at 10% 18%,color-mix(in srgb,var(--g2) 40%,transparent),transparent 70%),
                radial-gradient(55% 30% at 95% 12%,color-mix(in srgb,var(--g1) 34%,transparent),transparent 70%),
