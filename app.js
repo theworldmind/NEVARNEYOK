@@ -26,7 +26,7 @@ document.getElementById("splash").addEventListener("click",leaveSplash);
   try{if(localStorage.getItem("nvny-seen")){document.getElementById("splash").classList.add("quick")}localStorage.setItem("nvny-seen","1")}catch(e){}}
 document.getElementById("splash").addEventListener("pointermove",ev=>{const g=document.querySelector(".sp-glow");if(g)g.style.translate=`${(ev.clientX/innerWidth-.5)*8}vw ${(ev.clientY/innerHeight-.5)*8}vh`});
 
-const CATS={konser:"Konser",tiyatro:"Tiyatro",standup:"Stand-up · Komedi",sahne:"Opera · Bale · Dans",cocuk:"Çocuk · Aile",festival:"Festival",parti:"Parti · Gece",atolye:"Atölye · Quiz · Söyleşi",sinema:"Film Gösterimi"};
+const CATS={konser:"Konser",tiyatro:"Tiyatro",standup:"Stand-up · Komedi",sahne:"Opera · Bale · Dans",cocuk:"Çocuk · Aile",festival:"Festival",parti:"Parti · Gece",atolye:"Atölye · Quiz · Söyleşi",sinema:"Sinema"};
 /* ---------- Etkinlik verisi: data/events.json (index.html yükler; GitHub Actions her gün yeniler) ---------- */
 const NVD=window.NVNY_DATA||{updated:null,events:[]};
 const SITE=Object.assign({contact:"",instagram:"",repo:""},window.NVNY_SITE||{});
@@ -346,8 +346,9 @@ function chip(label,pressed,on,color,count){const b=document.createElement("butt
 function drawChips(){
   const c=document.getElementById("cats");c.innerHTML="";
   c.append(chip("Tüm kategoriler",state.cat==="hepsi",()=>{state.cat="hepsi";render()},null,upcoming.length));
+  {const ns=upcoming.filter(e=>e.cat==="sinema").length,nf=filmCount();if(ns||nf){const b=chip("Sinema",state.cat==="sinema",()=>{state.cat=state.cat==="sinema"?"hepsi":"sinema";state.limit=60;render()},null,nf?`${nf} film`:ns);b.classList.add("cinec");b.insertAdjacentHTML("afterbegin",'<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-film"/></svg>');c.append(b)}}
   {const ng=upcoming.filter(e=>e.gold).length,b=chip("★ Yoğun ilgi",state.cat==="altin",()=>{state.cat=state.cat==="altin"?"hepsi":"altin";state.limit=60;render()},null,ng);b.classList.add("goldc");c.append(b)}
-  for(const k in CATS){const n=upcoming.filter(e=>e.cat===k).length;if(n)c.append(chip(CATS[k],state.cat===k,()=>{state.cat=state.cat===k?"hepsi":k;state.limit=60;render()},`var(--c-${k})`,n))}
+  for(const k in CATS){if(k==="sinema")continue;const n=upcoming.filter(e=>e.cat===k).length;if(n)c.append(chip(CATS[k],state.cat===k,()=>{state.cat=state.cat===k?"hepsi":k;state.limit=60;render()},`var(--c-${k})`,n))}
   const r=document.getElementById("ranges");r.innerHTML="";
   for(const k in RANGES){if(k==="yeni"&&!newCount)continue;r.append(chip(RANGES[k][0],state.range===k,()=>{state.range=k;state.limit=60;render()},null,k==="yeni"?newCount:null))}
   {const b=document.createElement("button");b.type="button";b.className="chip allv";b.innerHTML='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 3h16v14H2zM2 8h16M2 12.5h16M7.3 3v14M12.7 3v14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Hepsini bir arada gör';b.onclick=openBoard;r.append(b)}
@@ -417,7 +418,7 @@ function ticket(e){
   const st=e.status==="tukendi"?"Tükendi":e.status==="ertelendi"?"Ertelendi":e.status==="iptal"?"İptal edildi":"";
   const od=otherDates(e),addr=addrOf(e.venue),mu=mapURL(e.venue);
   const info=[["Adres",addr],["Süre",e.dur],["Yaş sınırı",e.age],["Kapı açılış",e.door],["Organizasyon",e.org],["Diğer tarihler",od.map(x=>{const q=pd(x);return`${q.getDate()} ${SHORTM[q.getMonth()]}`}).join(" · ")],["Bilet satışı",e.tickets.map(x=>x.site).join(", ")]].filter(r=>r[1]);
-  const w=document.createElement("div");w.className="tkw"+(st?" off":"")+(e.gold?" gold":"");w.dataset.k=key(e);
+  const w=document.createElement("div");w.className="tkw"+(st?" off":"")+(e.gold?" gold":"")+(e.cat==="sinema"?" cine":"");w.dataset.k=key(e);
   w.innerHTML=`<article class="tk" style="--c:var(--c-${e.cat})">
    <div class="ph" style="--d1:${dp[0]};--d2:${dp[1]}">${`<div class="grain"></div><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg>`}
      <span class="tag">${CATS[e.cat]}</span>${e.gold?'<span class="sash">★ Yoğun ilgi</span>':""}${st?`<span class="st">${st}</span>`:""}${!st&&(isNew(e)||dropOf(e))?`<span class="nb${dropOf(e)?" dr":""}">${dropOf(e)?`Fiyatı %${dropOf(e)} düştü`:"Yeni eklendi"}</span>`:""}
@@ -443,7 +444,7 @@ function ticket(e){
 }
 function card(e){
   const d=pd(e.d),dp=DEEP[e.cat],st=e.status==="tukendi"?"Tükendi":e.status==="ertelendi"?"Ertelendi":"",f=forecast(e),t0=e.tickets[0]||{site:e.site,url:e.url};
-  const w=document.createElement("article");w.className="vc"+(st?" off":"")+(e.gold?" gold":"");w.style.setProperty("--c",`var(--c-${e.cat})`);w.dataset.k=key(e);
+  const w=document.createElement("article");w.className="vc"+(st?" off":"")+(e.gold?" gold":"")+(e.cat==="sinema"?" cine":"");w.style.setProperty("--c",`var(--c-${e.cat})`);w.dataset.k=key(e);
   const ps=e.tickets.slice(0,3);
   w.innerHTML=`<div class="vc-ph" style="--d1:${dp[0]};--d2:${dp[1]}"><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg>
     ${e.gold?'<span class="vc-gold">★ Yoğun ilgi</span>':""}${st?`<span class="vc-st">${st}</span>`:""}${!st&&(isNew(e)||dropOf(e))?`<span class="vc-nb${dropOf(e)?" dr":""}">${dropOf(e)?`Fiyatı %${dropOf(e)} düştü`:"Yeni"}</span>`:""}<span class="vc-wx" title="Etkinlik saatinde hava"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#${ICON[f.k]}"/></svg>${f.t}°</span>
@@ -534,6 +535,85 @@ function jumpTo(e){closeBoard();const L=filterList(),i=L.findIndex(x=>key(x)===k
   go();requestAnimationFrame(()=>{go();requestAnimationFrame(go)});setTimeout(go,120);
   document.querySelectorAll(".vc.flash").forEach(x=>x.classList.remove("flash"));el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),3200)}
 addEventListener("keydown",ev=>{if(ev.key==="Escape"&&document.getElementById("board").classList.contains("on"))closeBoard()});
+/* ---------- SİNEMA: vizyondaki filmler (data/films.json, Ankara salonları, 7 günlük seans) ----------
+   Yalnızca olgular: ad, vizyon tarihi, süre, ülke, tür, salon, saat. Afiş ve konu metni yok; bilet sinemanın sitesinde. */
+const FD=window.NVNY_FILMS||{films:[],cinemas:{}},CIN=FD.cinemas||{};
+const FILMS=(FD.films||[]).filter(f=>f&&f.title);
+const todayIso=iso(today),tomIso=iso(addDays(today,1));
+const FGC={animasyon:["#073b2b","#18b37e"],komedi:["#3b2702","#f0a500"],korku:["#16030a","#9b1028"],gerilim:["#120a26","#5b2bb5"],aksiyon:["#2a0c02","#e2561b"],dram:["#0a1a36","#2f6fd6"],belgesel:["#0d2b2b","#2a9d8f"],"bilim kurgu":["#03142c","#1c8ad8"],fantastik:["#1d0a33","#9b4dde"],macera:["#0b2a14","#3fa34d"],romantik:["#33061f","#e0457b"],suç:["#151515","#707070"],müzikal:["#2a0833","#b03cc0"],aile:["#062a17","#1f9d55"],biyografi:["#2b1a07","#c07a2a"]};
+const fCol=f=>{const g=(f.genre||"").toLocaleLowerCase("tr");for(const k in FGC)if(g.includes(k))return FGC[k];return DEEP.sinema};
+const durTxt=m=>m?(m>=60?`${Math.floor(m/60)} sa ${m%60?m%60+" dk":""}`:`${m} dk`).trim():"";
+const hmNow=()=>{const n=new Date();return`${String(n.getHours()).padStart(2,"0")}:${String(n.getMinutes()).padStart(2,"0")}`};
+const fstate={day:todayIso,cin:"all"};
+/* bir günün seansları: [{cid,name,t,fmt}] saat sırasıyla */
+function fShows(f,d,cin){const out=[];for(const[cid,g]of(f.s&&f.s[d])||[]){if(cin&&cin!=="all"&&String(cid)!==String(cin))continue;for(const grp of g.split(";")){const[ts,fmt]=grp.split("|");for(const t of ts.split(","))out.push({cid,name:(CIN[cid]||{}).name||"",t,fmt:fmt||""})}}return out.sort((a,b)=>a.t.localeCompare(b.t))}
+const fDays=()=>{const set=new Set();FILMS.forEach(f=>Object.keys(f.s||{}).forEach(d=>{if(d>=todayIso)set.add(d)}));return[...set].sort().slice(0,7)};
+const fWeek=f=>Object.keys(f.s||{}).some(d=>d>=todayIso&&d<=iso(addDays(today,6)));
+const filmCount=()=>FILMS.filter(fWeek).length;
+function fBadge(f){const r=f.release||"";if(!r)return"";if(r===todayIso)return"Bugün vizyonda";if(r===tomIso)return"Yarın vizyonda";if(r>todayIso){const q=pd(r);return`${q.getDate()} ${SHORTM[q.getMonth()]} vizyonda`}return(today-pd(r))/864e5<7?"Yeni":""}
+const fMatch=(f,q)=>{const h=fold(f.title+" "+(f.genre||"")+" "+(f.country||""));return fold(q).split(" ").filter(Boolean).every(t=>h.includes(t))};
+const dayLbl=d=>d===todayIso?"Bugün":d===tomIso?"Yarın":(q=>`${GUN[q.getDay()].slice(0,3)} ${q.getDate()}`)(pd(d));
+function fcard(f,day){const[d1,d2]=fCol(f),sh=fShows(f,day,fstate.cin),from=day===todayIso?hmNow():"00:00",nx=sh.filter(x=>x.t>=from),sal=new Set(sh.map(x=>x.cid)).size,b=fBadge(f);
+  const w=document.createElement("article");w.className="fc";
+  w.innerHTML=`<div class="fc-ph" style="--d1:${d1};--d2:${d2}"><i class="perf l"></i><i class="perf r"></i><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-klaket"/></svg>
+    ${b?`<span class="fc-nb${/vizyonda/.test(b)?" up":""}">${b}</span>`:""}${f.dur?`<span class="fc-du">${durTxt(f.dur)}</span>`:""}<span class="fc-g"></span></div>
+   <div class="fc-in"><div class="fc-cat"></div><h3></h3>
+    <div class="fc-v">${sh.length?`${sal} salonda · ${sh.length} seans`:"Bu gün seansı yok"}</div>
+    <div class="fc-t">${nx.slice(0,4).map(x=>`<span>${x.t}</span>`).join("")}${nx.length>4?`<span class="mo">+${nx.length-4}</span>`:""}${day===todayIso&&sh.length&&!nx.length?'<span class="mo">Bugünkü seanslar bitti</span>':""}</div>
+    <div class="vc-bt"><button type="button" class="vc-buy fc-go">🎟 Seanslar</button></div></div>`;
+  w.querySelector("h3").textContent=f.title;hl(w.querySelector("h3"),state.q);w.querySelector(".fc-g").textContent=(f.genre||"").split(",").slice(0,2).join(" · ");
+  w.querySelector(".fc-cat").textContent=["Vizyonda",f.country].filter(Boolean).join(" · ");
+  w.querySelectorAll(".fc-t span:not(.mo)").forEach((x,i)=>x.title=nx[i].name+(nx[i].fmt?" · "+nx[i].fmt:""));
+  const o=()=>openFilm(f,day);w.querySelector(".fc-go").onclick=o;w.querySelector("h3").onclick=o;w.querySelector(".fc-ph").onclick=o;return w}
+/* Sinema bileti: "Seanslar" ile açılır; günler, salonlar ve saatler; bilet sinemanın sitesinde */
+let FV=null;
+function openFilm(f,day){if(FV)return;const days=Object.keys(f.s||{}).filter(d=>d>=todayIso).sort();let cur=days.includes(day)?day:(days[0]||todayIso);
+  const[d1,d2]=fCol(f),ov=document.createElement("div");ov.className="tkv ftv";ov.setAttribute("role","dialog");ov.setAttribute("aria-modal","true");ov.setAttribute("aria-label",f.title);
+  const rel=f.release?(q=>`${q.getDate()} ${AY[q.getMonth()]} ${q.getFullYear()}`)(pd(f.release)):"";
+  ov.innerHTML=`<div class="tkv-bg"></div><div class="tkv-box"><div class="tkv-bar"><button type="button" class="tkv-x">← Geri dön</button></div>
+   <article class="ftk" style="--d1:${d1};--d2:${d2}"><div class="ftk-main"><i class="perf l"></i>
+     <div class="ftk-top"><span>Ne Var Ne Yok · Sinema</span><span>Tek kişilik</span></div>
+     <div class="ftk-cat"></div><h3></h3><div class="ftk-meta"></div>
+     <div class="ftk-days" role="tablist" aria-label="Gün"></div><div class="ftk-list"></div></div>
+    <div class="ftk-stub"><svg class="pop" viewBox="0 0 120 150" aria-hidden="true"><use href="#pop-box"/></svg><div class="adm">Seans<br>seç</div>
+     <a class="vc-buy" href="${f.url}" target="_blank" rel="noopener">Bilet al ↗</a><small>Salon ve koltuk seçimi sinemanın kendi sitesinde yapılır.</small></div></article></div>`;
+  ov.querySelector("h3").textContent=f.title;ov.querySelector(".ftk-cat").textContent=["Vizyonda",f.genre].filter(Boolean).join(" · ");
+  ov.querySelector(".ftk-meta").textContent=[durTxt(f.dur),f.country,rel&&`Vizyon: ${rel}`].filter(Boolean).join(" · ");
+  const dz=ov.querySelector(".ftk-days"),ls=ov.querySelector(".ftk-list");
+  const draw=()=>{dz.innerHTML="";for(const d of days){const b=document.createElement("button");b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",d===cur);b.textContent=dayLbl(d);b.onclick=()=>{cur=d;draw()};dz.append(b)}
+    ls.innerHTML="";const from=cur===todayIso?hmNow():"00:00",by={};for(const x of fShows(f,cur,fstate.cin))((by[x.cid]||(by[x.cid]={}))[x.fmt]||(by[x.cid][x.fmt]=[])).push(x.t);
+    const ids=Object.keys(by).sort((a,b)=>((CIN[a]||{}).name||"").localeCompare((CIN[b]||{}).name||"","tr"));
+    if(!ids.length){ls.innerHTML=`<p class="ftk-none">${days.length?"Bu gün için seans yok.":"Ankara seansları henüz açıklanmadı."}</p>`;return}
+    for(const id of ids){const r=document.createElement("div");r.className="fcr";r.innerHTML=`<div class="fcr-h"><b></b><small></small></div>`+Object.entries(by[id]).map(([fmt,ts])=>`<div class="fcr-g">${fmt?`<span class="fmt">${fmt}</span>`:""}${ts.map(t=>`<span class="tm${t<from?" past":""}">${t}</span>`).join("")}</div>`).join("");
+      r.querySelector("b").textContent=(CIN[id]||{}).name||"Sinema";r.querySelector("small").textContent=(CIN[id]||{}).addr||"";ls.append(r)}};
+  draw();document.body.append(ov);lockScroll(1);
+  const dur=reduce?1:420;ov.querySelector(".tkv-bg").animate([{opacity:0},{opacity:1}],{duration:dur,fill:"both"});
+  ov.querySelector(".tkv-box").animate([{opacity:0,transform:"translateY(28px) scale(.96)"},{opacity:1,transform:"none"}],{duration:dur,easing:"cubic-bezier(.22,.8,.2,1)",fill:"both"});
+  const close=()=>{if(!FV)return;const v=FV;FV=null;removeEventListener("keydown",v.key);const a=ov.querySelector(".tkv-box").animate([{opacity:1,transform:"none"},{opacity:0,transform:"translateY(20px) scale(.97)"}],{duration:reduce?1:260,fill:"forwards"});ov.querySelector(".tkv-bg").animate([{opacity:1},{opacity:0}],{duration:reduce?1:260,fill:"forwards"});a.onfinish=()=>{ov.remove();lockScroll(-1)}};
+  FV={key:ev=>{if(ev.key==="Escape")close()}};addEventListener("keydown",FV.key);ov.querySelector(".tkv-x").onclick=close;ov.querySelector(".tkv-bg").onclick=close;setTimeout(()=>ov.querySelector(".tkv-x").focus({preventScroll:true}),dur)}
+/* Sinema sahnesi: perde, ışıklı tabela, perde üstünde "Vizyonda", logolu patlamış mısır kutuları */
+function cineBlock(){const box=document.createElement("section");box.className="cine";const days=fDays();if(!days.includes(fstate.day))fstate.day=days[0]||todayIso;
+  const q=state.q.trim(),films=FILMS.filter(f=>(!q||fMatch(f,q)));const on=films.filter(f=>fShows(f,fstate.day,fstate.cin).length),soon=films.filter(f=>f.release>fstate.day&&!fShows(f,fstate.day,fstate.cin).length);
+  const tf=FILMS.filter(f=>fShows(f,todayIso).length),tSal=new Set(tf.flatMap(f=>fShows(f,todayIso).map(x=>x.cid))).size,tSe=tf.reduce((n,f)=>n+fShows(f,todayIso).length,0);
+  const enter=!cineBlock.was;cineBlock.was=true;
+  box.innerHTML=`<div class="cine-stage${enter&&!reduce?" open":""}"><i class="val"></i><i class="cur l"></i><i class="cur r"></i>
+    <div class="scr"><i class="bulbs"></i><i class="bulbs b2"></i><div class="scr-in"><span class="k">Ankara sinemaları</span><b>Vizyonda</b><span class="s">${tf.length} film · ${tSal} salon · bugün ${tSe} seans</span></div></div>
+    <svg class="pop p1" viewBox="0 0 120 150" aria-hidden="true"><use href="#pop-box"/></svg><svg class="pop p2" viewBox="0 0 120 150" aria-hidden="true"><use href="#pop-box"/></svg></div>
+   <div class="cine-ctl"><div class="fdays" role="tablist" aria-label="Gün"></div><label class="sel fsal"><span>Salon</span><select></select></label></div>
+   <div class="films"></div>${soon.length?`<div class="fsoon"><b>Yakında</b></div>`:""}
+   <p class="cine-src">Seanslar her gün güncellenir · kaynak: sinemalar.com · bilet ve koltuk seçimi sinemanın sitesinde</p>`;
+  const dz=box.querySelector(".fdays");for(const d of days){const b=document.createElement("button");b.type="button";b.className="chip";b.setAttribute("aria-pressed",d===fstate.day);b.textContent=dayLbl(d);b.onclick=()=>{fstate.day=d;render()};dz.append(b)}
+  const sel=box.querySelector("select");sel.innerHTML='<option value="all">Bütün salonlar</option>'+Object.entries(CIN).sort((a,b)=>a[1].name.localeCompare(b[1].name,"tr")).map(([id,c])=>`<option value="${id}">${c.name.replace(/[<>&]/g,"")}</option>`).join("");sel.value=fstate.cin;sel.onchange=()=>{fstate.cin=sel.value;render()};
+  const g=box.querySelector(".films");if(!on.length)g.innerHTML=`<p class="empty">${q?"Aramana uyan film yok.":"Bu gün için seans bulunamadı."}</p>`;else{/* kartlar parça parça eklenir: ilk 6 hemen, kalanı boşta */let i=0;const tok=cineBlock.tok=(cineBlock.tok||0)+1,later=window.requestIdleCallback?f=>requestIdleCallback(f,{timeout:200}):f=>setTimeout(f,16);
+    const step=n=>{const st=Math.min(on.length,i+n);for(;i<st;i++)g.append(fcard(on[i],fstate.day));if(i<on.length)later(()=>{if(cineBlock.tok===tok)step(4)})};step(4)}
+  const so=box.querySelector(".fsoon");if(so)soon.slice(0,12).forEach(f=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=`${f.title} · ${fBadge(f)||dayLbl(f.release)}`;b.onclick=()=>openFilm(f,f.release);so.append(b)});
+  return box}
+/* Ana listede "Bugün vizyonda" şeridi: sinemaya kısa yol */
+function fRail(list,title){const r=document.createElement("section");r.className="frail";r.innerHTML=`<div class="frail-h"><h2><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-film"/></svg><span></span></h2><button type="button" class="chip cinec">Bütün filmler ve seanslar →</button></div><div class="frail-s"></div>`;
+  r.querySelector("h2 span").textContent=title;r.querySelector("button").onclick=()=>{state.cat="sinema";state.limit=60;render();scrollTo({top:document.getElementById("main").offsetTop-90,behavior:"smooth"})};
+  const s=r.querySelector(".frail-s");list.slice(0,14).forEach(f=>{const sh=fShows(f,todayIso),nx=sh.filter(x=>x.t>=hmNow()),[d1,d2]=fCol(f),b=fBadge(f),m=document.createElement("button");m.type="button";m.className="fm";m.style.cssText=`--d1:${d1};--d2:${d2}`;
+    m.innerHTML=`<i class="perf l"></i><i class="perf r"></i>${b?`<span class="fc-nb${/vizyonda/.test(b)?" up":""}">${b}</span>`:""}<b></b><small></small><span class="fm-t">${nx.length?`Sıradaki ${nx[0].t}`:sh.length?"Bugünkü seanslar bitti":"Yakında"}</span>`;
+    m.querySelector("b").textContent=f.title;m.querySelector("small").textContent=[durTxt(f.dur),(f.genre||"").split(",")[0]].filter(Boolean).join(" · ");m.onclick=()=>openFilm(f,todayIso);s.append(m)});return r}
 function render(sync){
   drawChips();
   let list=filterList();
@@ -541,7 +621,12 @@ function render(sync){
   if(state.sort==="date")list.sort(byDate);else{const s=state.sort==="pa"?1:-1;list.sort((a,b)=>(a.price==null)-(b.price==null)||s*((a.price||0)-(b.price||0))||byDate(a,b))}
   shown=list.length;const main=document.getElementById("main");main.innerHTML="";
   const full=list;list=list.slice(0,state.limit);
-  if(!list.length)main.innerHTML=`<p class="empty">${NVD.failed?"Etkinlik listesi şu an yüklenemedi. İnternet bağlantını kontrol edip sayfayı yenile.":state.range==="fav"&&!favs.size?"Henüz kaydettiğiniz bilet yok. Bir biletteki ♡ Kaydet düğmesine dokunduğunuzda burada görünür.":"Bu filtrelere uyan etkinlik yok. Aramayı silin ya da başka bir zaman aralığı seçin."}</p>`;if(!list.length&&state.q)suggest(main);
+  const cineOn=state.cat==="sinema"&&FILMS.length;document.documentElement.classList.toggle("cine-on",!!cineOn);
+  if(!cineOn)cineBlock.was=false;
+  if(cineOn){main.append(cineBlock());if(list.length){const h=document.createElement("div");h.className="cine-ev";h.innerHTML="<h2>Film gösterimleri ve festivaller</h2><span>Özel gösterimler, festival seansları ve sinema etkinlikleri</span>";main.append(h)}}
+  else if(FILMS.length&&state.cat==="hepsi"&&state.range!=="fav"){const q=state.q.trim(),fl=q?FILMS.filter(f=>fMatch(f,q)):FILMS.filter(f=>fShows(f,todayIso).length||(f.release>todayIso&&f.release<=iso(addDays(today,7))));
+    if(fl.length&&(q||["hepsi","bugun","yarin","hafta","sonu"].includes(state.range)))main.append(fRail(q?fl:fl.sort((a,b)=>(fBadge(b)?1:0)-(fBadge(a)?1:0)),q?`Filmlerde: ${fl.length} sonuç`:`Bugün vizyonda · ${fl.length} film`))}
+  if(!list.length&&cineOn){}else if(!list.length)main.insertAdjacentHTML("beforeend",`<p class="empty">${NVD.failed?"Etkinlik listesi şu an yüklenemedi. İnternet bağlantını kontrol edip sayfayı yenile.":state.range==="fav"&&!favs.size?"Henüz kaydettiğiniz bilet yok. Bir biletteki ♡ Kaydet düğmesine dokunduğunuzda burada görünür.":"Bu filtrelere uyan etkinlik yok. Aramayı silin ya da başka bir zaman aralığı seçin."}</p>`);if(!list.length&&state.q&&!cineOn)suggest(main);
   let curP=null,curD=null,box=null,sec=null,cnt=0,cntEl=null;
   const flat=state.sort!=="date";
   const tok=render.tok=(render.tok||0)+1;let i=0;const later=window.requestIdleCallback?f=>requestIdleCallback(f,{timeout:250}):f=>setTimeout(f,16);
@@ -553,7 +638,7 @@ function render(sync){
       box=document.createElement("div");box.className="tickets";sec.append(box)}
     box.append(card(e));cnt++;cntEl.textContent=`${cnt} etkinlik`}
     if(i<list.length)later(()=>{if(render.tok===tok)step(10)});else done()};
-  step(sync?1e9:8);drawActive();
+  step(sync?1e9:cineOn?0:8);drawActive();
 }
 {let qt;document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value;state.limit=60;clearTimeout(qt);qt=setTimeout(render,140)})}
 (()=>{const ss=document.getElementById("fSite");if(ss){ss.innerHTML='<option value="all">Hepsi</option>';const n={};upcoming.forEach(e=>e.tickets.forEach(x=>n[x.site]=(n[x.site]||0)+1));Object.keys(n).sort((a,b)=>n[b]-n[a]).forEach(k=>{const o=document.createElement("option");o.value=k;o.textContent=`${k} (${n[k]})`;ss.append(o)})}})();

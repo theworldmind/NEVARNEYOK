@@ -28,15 +28,20 @@ export function parseInfo(line) {
 }
 function trDate(s) { const m = txt(s).toLocaleLowerCase("tr").match(/(\d{1,2})\s+([a-zçğıöşü]+)\s+(\d{4})/); return m && AY[m[2]] ? `${m[3]}-${String(AY[m[2]]).padStart(2, "0")}-${m[1].padStart(2, "0")}` : ""; }
 
-/* Liste sayfası: her filmin kartı → {id, slug, title, release, dur, country, genre} */
+/* Liste sayfası (vizyondaki / yakında): her filmin kartı → {id, slug, title, release, dur, country, genre} */
 export function parseList(html) {
-  const out = [];
-  for (const chunk of html.split(/class="card-title flex-1"/).slice(1)) {
-    const a = chunk.match(/href="https?:\/\/www\.sinemalar\.com\/film\/(\d+)\/([a-z0-9-]+)"[^>]*>\s*<h2>([\s\S]*?)<\/h2>/i);
-    if (!a) continue;
+  const out = [], seen = new Set();
+  for (const chunk of html.split(/class="card metadata-card"/).slice(1)) {
+    const a = chunk.match(/href="https?:\/\/www\.sinemalar\.com\/film\/(\d+)\/([a-z0-9-]+)"/i);
+    if (!a || seen.has(a[1])) continue;
+    const h = chunk.match(/\/film\/\d+\/[a-z0-9-]+"[^>]*>\s*<h[23]>([\s\S]*?)<\/h[23]>/i);
+    const alt = (chunk.match(/alt="([^"]+?)\s*(?:\(\d{4}\))?\s*afişi"/) || [])[1];
+    const title = txt(h ? h[1] : alt || "");
+    if (!title) continue;
+    seen.add(a[1]);
     const info = (chunk.match(/<div class="card-info">\s*([^<]*•[^<]*)<\/div>/) || [])[1] || "";
     const vt = (chunk.match(/Vizyon Tarihi:<\/b>\s*([^<]+)</) || [])[1] || "";
-    const o = { id: +a[1], slug: a[2], title: txt(a[3]), ...parseInfo(info) };
+    const o = { id: +a[1], slug: a[2], title, ...parseInfo(info) };
     if (!o.release && vt) o.release = trDate(vt);
     out.push(o);
   }
@@ -53,7 +58,7 @@ export function parseSeances(html) {
       const nm = card.match(/href="https?:\/\/www\.sinemalar\.com\/sinemasalonu\/(\d+)\/[^"]*"[^>]*>\s*<h3>([\s\S]*?)<\/h3>/);
       if (!nm) continue;
       const cid = +nm[1];
-      if (!cinemas[cid]) cinemas[cid] = { name: txt(nm[2]).replace(/^Ankara\s+/i, ""), addr: txt((card.match(/<div class="card-info dark">([^<]*)<\/div>/) || [])[1] || "") };
+      if (!cinemas[cid]) cinemas[cid] = { name: txt(nm[2]).replace(/^Ankara\s+/i, ""), addr: txt((card.match(/<div class="card-info dark">([^<]*)<\/div>/) || [])[1] || "").replace(/\s*\d+([.,]\d+)?\s*km$/i, "") };
       for (const sg of card.split(/<div class="seance"/).slice(1)) {
         const fmt = [((sg.match(/data-dimension="([^"]*)"/) || [])[1] || ""), ((sg.match(/data-language="([^"]*)"/) || [])[1] || "")].filter(Boolean).join(" ");
         const times = [...sg.matchAll(/<a class="btn secondary vertical[^"]*"[^>]*>\s*<span>(\d{1,2}:\d{2})<\/span>/g)].map((m) => m[1].padStart(5, "0"));
