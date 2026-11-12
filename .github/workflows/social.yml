@@ -21,7 +21,7 @@ concurrency:
 jobs:
   social:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     env:
       TZ: Europe/Istanbul
       SITE_URL: ${{ vars.SITE_URL || 'https://nevarneyok.net.tr' }}
