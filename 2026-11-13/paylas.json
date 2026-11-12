@@ -1,72 +1,204 @@
 {
  "date": "2026-11-13",
+ "tomorrow": "2026-11-14",
  "posts": [
   {
-   "id": "gun",
+   "id": "site-hero",
+   "slot": "09:00",
+   "type": "STORY",
+   "file": "site-hero.png",
+   "title": "GÜNAYDIN ANKARA · BUGÜN NELER VAR?"
+  },
+  {
+   "id": "bugun",
    "slot": "10:00",
    "type": "POST",
-   "file": "gun-gonderi.png",
-   "caption": "Güne plan yaparak başla, işte bugün Ankara'da 👇\n\nBugün Ankara'da! 13 Kasım Cuma\n\n🎭 19:30 · Bir Delinin Hatıra Defteri - Oğuzhan Karadavut — Era Tiyatro Gösteri Merkezi\n🎭 20:00 · Öteki Ankara Müzikali — Akün Sahnesi\n🎭 20:00 · Hijyenik Aşklar Tiyatro Oyunu — Bergüzar Sahne\n🎨 20:30 · Trivia Night — Coffee Up Bahçelievler\n🎶 21:00 · 90lar Türkçe Pop Partisi — IF Performance Hall Tepe Prime\n🎶 21:00 · Yaşar — Jolly Joker Ankara\n…ve 31 etkinlik daha.\n\nSaatler, mekânlar ve bilet bağlantıları: nevarneyok.net.tr\n🔗 Bağlantı profilde\n\n📌 Kaydet, plan yaparken lazım olur.\n🔔 Ankara'da her gün neler var, takipte kal.\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankaraetkinlik #ankaradabugün #ankaratiyatro #atölye #ankarakonser #neyapsam #başkent",
-   "title": "Bugün Ankara'da"
+   "files": [
+    "bugun-0.png",
+    "bugun-1.png",
+    "bugun-2.png",
+    "bugun-3.png",
+    "bugun-4.png",
+    "bugun-5.png",
+    "bugun-6.png",
+    "bugun-7.png",
+    "bugun-8.png"
+   ],
+   "caption": "Bugün Ankara'da neler var? 👇 13 Kasım Cuma\n\n🎨 19:00 · Quiz Night (Tiyatro & Sanat) — Çan Tiyatrosu Eftal Kayış Prova Sahnesi\n🎨 19:30 · 90's 00's Quiz Night — Greyshake Coffee · Grey Sahne Comedy Club\n🩰 20:00 · Kuzey Kıbrıs Türk Cumhuriyeti'nin 43. Yılı Özel Konseri — CSO Ada Ankara · Mavi Salon\n🧸 20:00 · The Illusionist - Enver Ertaş — Ve Sahne Panora\n🎨 20:30 · Trivia Night — Coffee Up Bahçelievler\n🎤 20:30 · Bahçelievler Standup Gecesi - Sincap Standup — Kaffehause Bahçelievler\n🎤 20:30 · Lafazans Stand Up — Berlin Cafe Pub\n🎤 21:00 · Altı Üstü Stand up Gecesi — Altı Üstü Bar\n…ve sitede daha fazlası.\n\n➡️ Kaydır, her etkinliğin biletine bak.\n\nSaatler, mekânlar ve bilet bağlantıları: nevarneyok.net.tr\n🔗 Bağlantı profilde\n\n📌 Kaydet, plan yaparken lazım olur.\n🔔 Ankara'da her gün neler var, takipte kal.\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankaraetkinlik #ankaradabugün #standup #çocuketkinliği #neyapsam #başkent",
+   "title": "BUGÜN ANKARA'DA"
   },
   {
-   "id": "gun",
+   "id": "bugun-hikaye",
    "slot": "10:01",
    "type": "STORY",
-   "file": "gun-hikaye.png",
-   "title": "Bugün Ankara'da (hikâye)"
+   "file": "bugun-hikaye-0.png",
+   "title": "BUGÜN ANKARA'DA (hikâye kapak)"
   },
   {
-   "id": "one-cikan-1",
+   "id": "bugun-hikaye",
+   "slot": "10:02",
+   "type": "STORY",
+   "file": "bugun-hikaye-1.png",
+   "title": "BUGÜN ANKARA'DA (hikâye 1)"
+  },
+  {
+   "id": "bugun-hikaye",
+   "slot": "10:03",
+   "type": "STORY",
+   "file": "bugun-hikaye-2.png",
+   "title": "BUGÜN ANKARA'DA (hikâye 2)"
+  },
+  {
+   "id": "site-wall",
+   "slot": "11:30",
+   "type": "STORY",
+   "file": "site-wall.png",
+   "title": "AFİŞ DUVARI · BUGÜN"
+  },
+  {
+   "id": "sinema",
    "slot": "12:30",
    "type": "POST",
-   "file": "one-cikan-1-gonderi.png",
-   "caption": "📉 Fiyatı %23 düştü: Yusuf Bilal Altıntaş - Entel Maganda - Stand Up\n\n📅 20 Kasım Cuma · 20:30\n📍 Greyshake Coffee · Etimesgut\n🎟️ Biletler 500 ₺'den başlıyor (13 Kasım 01:28 itibarıyla; fiyatlar değişebilir)\nFiyatı düştü: 650 ₺ → 500 ₺\n\nSaatler, mekânlar ve bilet bağlantıları: nevarneyok.net.tr\n🔗 Bağlantı profilde\n\n👥 Birlikte gitmek istediğin kişiyi etiketle!\n🔔 Ankara'da her gün neler var, takipte kal.\n\nAfiş etkinliğin kendi sayfasından alınmıştır; görsel sahibine aittir.\n\n#ankara #ankaraetkinlik #ankaradabugün #standup #neyapsam #başkent",
-   "title": "Fiyatı %23 düştü: Yusuf Bilal Altıntaş - Entel Maganda - Stand Up"
+   "files": [
+    "sinema-0.png",
+    "sinema-1.png",
+    "sinema-2.png",
+    "sinema-3.png",
+    "sinema-4.png",
+    "sinema-5.png",
+    "sinema-6.png",
+    "sinema-7.png",
+    "sinema-8.png"
+   ],
+   "caption": "🍿 Bugün Ankara sinemalarında neler var? 13 Kasım Cuma\n\n🎬 Çakallarla Dans 8: Şututgart Çıkarması (Komedi) — 11 salonda, 48 seans\n🎬 Gupi ve Gülmeyen Kral (Animasyon) — 10 salonda, 56 seans\n🎬 Çatlı 2 (Suç) — 6 salonda, 15 seans\n🎬 Şapkalı Kedi (Animasyon) — 10 salonda, 35 seans\n🎬 Her Şey Ortada (Belgesel) — 3 salonda, 7 seans\n🎬 Clayface (Korku) — 1 salonda, 1 seans\n🎬 Vahşi At Dokuz (Komedi) — 4 salonda, 8 seans\n🎬 Cinlerin Düğünü (Dram) — 1 salonda, 1 seans\n\nBugün 12 salonda 20 film, 380 seans. Salon salon bütün saatler: nevarneyok.net.tr\n🔗 Bağlantı profilde\n\n🎟️ Kiminle gideceksin? Etiketle!\n🔔 Ankara'da her gün neler var, takipte kal.\n\nAfişler: sinemalar.com\n\n#ankara #ankarasinema #sinema #vizyondakiler #bugünsinemada #neyapsam #başkent",
+   "title": "BUGÜN SİNEMADA"
   },
   {
-   "id": "one-cikan-1",
+   "id": "sinema-hikaye",
    "slot": "12:31",
    "type": "STORY",
-   "file": "one-cikan-1-hikaye.png",
-   "title": "Fiyatı %23 düştü (hikâye)"
+   "file": "sinema-hikaye-0.png",
+   "title": "BUGÜN SİNEMADA (hikâye kapak)"
   },
   {
-   "id": "aksam",
+   "id": "sinema-hikaye",
+   "slot": "12:32",
+   "type": "STORY",
+   "file": "sinema-hikaye-1.png",
+   "title": "BUGÜN SİNEMADA (hikâye 1)"
+  },
+  {
+   "id": "sinema-hikaye",
+   "slot": "12:33",
+   "type": "STORY",
+   "file": "sinema-hikaye-2.png",
+   "title": "BUGÜN SİNEMADA (hikâye 2)"
+  },
+  {
+   "id": "site-bilet",
+   "slot": "14:00",
+   "type": "STORY",
+   "file": "site-bilet.png",
+   "title": "BİLETİ AÇ, İNCELE"
+  },
+  {
+   "id": "konser",
    "slot": "15:00",
    "type": "POST",
-   "file": "aksam-gonderi.png",
-   "caption": "Akşam planın hâlâ yoksa tam zamanı 👇\n\nBu akşam Ankara'da! 13 Kasım Cuma\n\n🎭 18:30 · Kontrabas — Oda Tiyatrosu\n🎭 20:00 · Bu da Geçer ya Hu — Şinasi Sahnesi\n🎶 20:00 · Cumhurbaşkanlığı Senfoni Orkestrası DenizBank Konserleri - Ata’ya Saygı Konseri — CSO Ada · Ziraat Bankası Ana Salon\n🎭 20:00 · Edmond — Cüneyt Gökçer Sahnesi\n🎭 20:00 · Kadınlar , Filler ve Saireler — Küçük Tiyatro\n🎭 20:00 · Nizamülmülk — Pursaklar DT Sahnesi\n…ve 24 etkinlik daha.\n\nSaatler, mekânlar ve bilet bağlantıları: nevarneyok.net.tr\n🔗 Bağlantı profilde\n\n👥 Bu akşam birlikte çıkacağın kişiyi etiketle!\n🔔 Ankara'da her gün neler var, takipte kal.\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankaraetkinlik #ankaradabugün #ankaradabuakşam #ankaratiyatro #ankarakonser #neyapsam #başkent",
-   "title": "Bu akşam Ankara'da"
+   "files": [
+    "konser-0.png",
+    "konser-1.png",
+    "konser-2.png",
+    "konser-3.png",
+    "konser-4.png",
+    "konser-5.png",
+    "konser-6.png",
+    "konser-7.png",
+    "konser-8.png"
+   ],
+   "caption": "🎶 Bu akşam Ankara'da konser var! 13 Kasım Cuma\n\n🎤 20:00 · Cumhurbaşkanlığı Senfoni Orkestrası DenizBank Konserleri - Ata’ya Saygı Konseri — CSO Ada · Ziraat Bankası Ana Salon\n🎤 20:00 · Eliott Tordo - Erhu ile Bir Rüya — Ve Sahne Panora\n🎤 20:00 · Leman Sam — Yenimahalle Nazım Hikmet KM · Genco Erkal Sahnesi\n🎤 20:00 · Sazın Sesi, Gönül Sözü — CSO Ada · Tarihi Salon\n🎤 21:00 · 90lar Türkçe Pop Partisi — IF Performance Hall Tepe Prime\n🎤 21:00 · Yaşar — Jolly Joker Ankara\n🎤 21:00 · Kwoon — Kulüp Müjgan Ankara\n🎤 23:00 · Xl Keno, Arya — Kite Ankara\n\n➡️ Kaydır, her konserin biletine bak.\n\nSaatler, mekânlar ve bilet bağlantıları: nevarneyok.net.tr\n🔗 Bağlantı profilde\n\n👥 Bu akşam birlikte gideceğin kişiyi etiketle!\n🔔 Ankara'da her gün neler var, takipte kal.\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankarakonser #konser #canlımüzik #ankaradabuakşam #neyapsam #başkent",
+   "title": "BU AKŞAM KONSER"
   },
   {
-   "id": "aksam",
+   "id": "konser-hikaye",
    "slot": "15:01",
    "type": "STORY",
-   "file": "aksam-hikaye.png",
-   "title": "Bu akşam Ankara'da (hikâye)"
+   "file": "konser-hikaye-0.png",
+   "title": "BU AKŞAM KONSER (hikâye kapak)"
   },
   {
-   "id": "aksam-hatirlatma",
-   "slot": "18:30",
+   "id": "konser-hikaye",
+   "slot": "15:02",
    "type": "STORY",
-   "file": "aksam-hikaye.png",
-   "title": "Bu akşam hatırlatması (hikâye)"
+   "file": "konser-hikaye-1.png",
+   "title": "BU AKŞAM KONSER (hikâye 1)"
   },
   {
-   "id": "one-cikan-2",
-   "slot": "19:00",
+   "id": "konser-hikaye",
+   "slot": "15:03",
+   "type": "STORY",
+   "file": "konser-hikaye-2.png",
+   "title": "BU AKŞAM KONSER (hikâye 2)"
+  },
+  {
+   "id": "site-sinema",
+   "slot": "16:30",
+   "type": "STORY",
+   "file": "site-sinema.png",
+   "title": "PERDE AÇILDI · VİZYONDA"
+  },
+  {
+   "id": "tiyatro",
+   "slot": "17:00",
    "type": "POST",
-   "file": "one-cikan-2-gonderi.png",
-   "caption": "🔥 Yoğun ilgi görüyor: Batı Doğu Divanı Goethe ve Mevlana\n\n📅 14 Kasım Cumartesi · 20:00\n📍 CSO Ada · Tarihi Salon\n🎟️ Biletler 130 ₺'den başlıyor (12 Kasım 19:12 itibarıyla; fiyatlar değişebilir)\nNeden öne çıkıyor: Haberlerde: Hürriyet, Habertürk\n\nSaatler, mekânlar ve bilet bağlantıları: nevarneyok.net.tr\n🔗 Bağlantı profilde\n\n👥 Birlikte gitmek istediğin kişiyi etiketle!\n🔔 Ankara'da her gün neler var, takipte kal.\n\nAfiş etkinliğin kendi sayfasından alınmıştır; görsel sahibine aittir.\n\n#ankara #ankaraetkinlik #ankaradabugün #ankarakonser #neyapsam #başkent",
-   "title": "Yoğun ilgi görüyor: Batı Doğu Divanı Goethe ve Mevlana"
+   "files": [
+    "tiyatro-0.png",
+    "tiyatro-1.png",
+    "tiyatro-2.png",
+    "tiyatro-3.png",
+    "tiyatro-4.png",
+    "tiyatro-5.png",
+    "tiyatro-6.png",
+    "tiyatro-7.png",
+    "tiyatro-8.png"
+   ],
+   "caption": "🎭 Bu akşam Ankara'da perde açılıyor! 13 Kasım Cuma\n\n🎭 18:30 · Kontrabas — Oda Tiyatrosu\n🎭 19:30 · Bir Delinin Hatıra Defteri - Oğuzhan Karadavut — Era Tiyatro Gösteri Merkezi\n🎭 20:00 · Hijyenik Aşklar Tiyatro Oyunu — Bergüzar Sahne\n🎭 20:00 · Öteki Ankara Müzikali — Akün Sahnesi\n🎭 20:00 · Ayaktakımı Arasında Müzikali — Mesafe Sahne\n🎭 20:00 · Bu da Geçer ya Hu — Şinasi Sahnesi\n🎭 20:00 · Clown Jam — Kült Teras Black Box\n🎭 20:00 · Edmond — Cüneyt Gökçer Sahnesi\n…ve sitede daha fazlası.\n\n➡️ Kaydır, her oyunun biletine bak.\n\nSaatler, mekânlar ve bilet bağlantıları: nevarneyok.net.tr\n🔗 Bağlantı profilde\n\n👥 Tiyatroya birlikte gideceğin kişiyi etiketle!\n🔔 Ankara'da her gün neler var, takipte kal.\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankaratiyatro #tiyatro #devlettiyatroları #ankaradabuakşam #neyapsam #başkent",
+   "title": "BU AKŞAM TİYATRO"
   },
   {
-   "id": "one-cikan-2",
-   "slot": "19:01",
+   "id": "tiyatro-hikaye",
+   "slot": "17:01",
    "type": "STORY",
-   "file": "one-cikan-2-hikaye.png",
-   "title": "Yoğun ilgi görüyor (hikâye)"
+   "file": "tiyatro-hikaye-0.png",
+   "title": "BU AKŞAM TİYATRO (hikâye kapak)"
+  },
+  {
+   "id": "tiyatro-hikaye",
+   "slot": "17:02",
+   "type": "STORY",
+   "file": "tiyatro-hikaye-1.png",
+   "title": "BU AKŞAM TİYATRO (hikâye 1)"
+  },
+  {
+   "id": "tiyatro-hikaye",
+   "slot": "17:03",
+   "type": "STORY",
+   "file": "tiyatro-hikaye-2.png",
+   "title": "BU AKŞAM TİYATRO (hikâye 2)"
+  },
+  {
+   "id": "site-konser",
+   "slot": "19:30",
+   "type": "STORY",
+   "file": "site-konser.png",
+   "title": "BU AKŞAM SAHNEDE"
+  },
+  {
+   "id": "site-yarin",
+   "slot": "21:30",
+   "type": "STORY",
+   "file": "site-yarin.png",
+   "title": "YARIN ANKARA'DA NELER VAR?"
   }
  ]
 }
