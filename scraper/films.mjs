@@ -1,7 +1,7 @@
 // VİZYONDAKİ FİLMLER: Ankara sinemalarındaki filmler ve 7 günlük seansları → data/films.json
 // Kaynak: sinemalar.com (vizyondaki ve yakında listeleri, filmin Ankara seans sayfası). robots.txt izin veriyor.
 // Yalnızca olgular alınır: film adı, vizyon tarihi, süre, ülke, tür, salon, seans saati, dil/biçim.
-// Konu metni, afiş ve görsel alınmaz. Bilet için filmin Ankara seans sayfasına bağlanılır.
+// Konu metni alınmaz. Afişin yalnızca sinemalar.com adresi tutulur (gömülerek gösterilir, indirilmez). Bilet için filmin Ankara seans sayfasına bağlanılır.
 //   node films.mjs
 import { join } from "node:path";
 import { ROOT, log, readJSON, writeJSON, clean, decodeEntities, todayIST } from "./lib/util.mjs";

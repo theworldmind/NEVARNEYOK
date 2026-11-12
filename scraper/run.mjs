@@ -4,7 +4,7 @@
 //   node run.mjs --only=biletinial,bubilet   yalnızca bu kaynaklar (deneme için)
 import { join } from "node:path";
 import { readFile } from "node:fs/promises";
-import { ROOT, log, readJSON, writeJSON, writeText, pool, withTimeout, todayIST } from "./lib/util.mjs";
+import { ROOT, log, readJSON, writeJSON, writeText, pool, withTimeout, todayIST, fold } from "./lib/util.mjs";
 import { loadVenues, cleanTitle } from "./lib/normalize.mjs";
 import { runSource, isJunk } from "./lib/runner.mjs";
 import { rawToEvent, dedupe, mergeWithPrevious, applyManual } from "./lib/merge.mjs";
@@ -110,6 +110,15 @@ const sourcesMeta = SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, 
 // Aynı görsel birçok farklı etkinlikte kullanılıyorsa bu bir site/kurum görselidir, afiş değil: gösterilmez
 { const use = {}; for (const e of events) if (e.img) (use[e.img] ||= new Set()).add(e.title.toLocaleLowerCase("tr"));
   for (const e of events) if (e.img && use[e.img].size > 4) { delete e.img; delete e.imgBy; } }
+// Afişi olmayan etkinlik, aynı etkinliğin başka tarihteki ya da başka kaynaktaki afişini kullanır (aynı ad, aynı mekân ya da aynı ad tek mekânda)
+{ const nt = (t) => fold(t).replace(/\s+/g, " ").trim(), byT = {}, byTV = {};
+  for (const e of events) if (e.img) { byTV[nt(e.title) + "|" + fold(e.venue || "")] ||= e; (byT[nt(e.title)] ||= new Set()).add(e.img); }
+  let n = 0;
+  for (const e of events) if (!e.img) {
+    const m = byTV[nt(e.title) + "|" + fold(e.venue || "")] || (byT[nt(e.title)]?.size === 1 ? events.find((x) => x.img && nt(x.title) === nt(e.title)) : null);
+    if (m && nt(e.title).length >= 4) { e.img = m.img; e.imgBy = m.imgBy; n++; }
+  }
+  log(`Afiş: ${events.filter((e) => e.img).length}/${events.length} etkinlikte (${n} tanesi aynı etkinliğin başka kaydından)`); }
 const out = { updated: now, mode: MODE, baseline: prev.baseline || null, sources: sourcesMeta, events: events.map(strip) };
 // Güvenlik ağı: sonuç dünküne göre yarıdan fazla küçüldüyse yazma (bir şey ters gitmiştir)
 const shrink = (prev.events?.length || 0) > 40 && out.events.length < prev.events.length * 0.5;

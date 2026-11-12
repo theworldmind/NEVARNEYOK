@@ -420,7 +420,7 @@ function ticket(e){
   const info=[["Adres",addr],["Süre",e.dur],["Yaş sınırı",e.age],["Kapı açılış",e.door],["Organizasyon",e.org],["Diğer tarihler",od.map(x=>{const q=pd(x);return`${q.getDate()} ${SHORTM[q.getMonth()]}`}).join(" · ")],["Bilet satışı",e.tickets.map(x=>x.site).join(", ")]].filter(r=>r[1]);
   const w=document.createElement("div");w.className="tkw"+(st?" off":"")+(e.gold?" gold":"")+(e.cat==="sinema"?" cine":"");w.dataset.k=key(e);
   w.innerHTML=`<article class="tk" style="--c:var(--c-${e.cat})">
-   <div class="ph" style="--d1:${dp[0]};--d2:${dp[1]}">${`<div class="grain"></div><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg>${pstHTML(e.img,e.imgBy)}`}
+   <div class="ph" style="--d1:${dp[0]};--d2:${dp[1]}">${tposHTML(e)}${pstHTML(e.img,e.imgBy)}
      <span class="tag">${CATS[e.cat]}</span>${e.gold?'<span class="sash">★ Yoğun ilgi</span>':""}${st?`<span class="st">${st}</span>`:""}${!st&&(isNew(e)||dropOf(e))?`<span class="nb${dropOf(e)?" dr":""}">${dropOf(e)?`Fiyatı %${dropOf(e)} düştü`:"Yeni eklendi"}</span>`:""}
      <div class="stamp"><span class="dn">${d.getDate()}</span><span class="mw"><span class="mo">${AY[d.getMonth()]} ${d.getFullYear()}</span><span class="wd">${GUN[d.getDay()]}</span>${e.t?`<span class="tm">${e.t}</span>`:""}</span></div></div>
    <div class="body"><div class="strip"><span class="brand">Ne Var Ne Yok? · Ankara</span><span class="gn"></span></div>${e.gold?`<div class="goldbar"><b>★ Yoğun ilgi</b><span>${e.goldWhy.join(" · ")}</span></div>`:""}
@@ -446,20 +446,24 @@ function ticket(e){
    Afiş kutuya oranı uyuyorsa doldurur; uymuyorsa (yatay afiş) tamamı okunacak şekilde ortalanır, arkası afişin kendisiyle dolar. */
 const escA=x=>String(x).replace(/[&"<>]/g,c=>({"&":"&amp;",'"':"&quot;","<":"&lt;",">":"&gt;"}[c]));
 function pstHTML(src,by){return src?`<i class="pbg"></i><img class="pst" src="${escA(src)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" draggable="false"><i class="pshade"></i>${by?`<span class="pby">Görsel: ${escA(by)}</span>`:""}`:""}
+/* Afişi olmayan (ya da yüklenemeyen) etkinlik için olgulardan çizilen tipografik afiş: kategori renkleri, ad, mekân, tarih. Simge yok. */
+function tposHTML(e){return`<div class="tpos tp-${e.cat}" lang="tr"><i class="tp-pat"></i><span class="tp-k">${escA(CATS[e.cat]||"")}</span><b class="tp-t">${escA(e.title)}</b><span class="tp-v">${escA(e.venue||"")}</span></div>`}
 function pstWire(root){root.querySelectorAll("img.pst:not([data-w])").forEach(im=>{im.dataset.w=1;const box=im.parentElement;
   /* kutunun oranı sınıfından bilinir: kaydırma sırasında yerleşim okunmaz */
-  const ok=()=>{if(!im.naturalWidth)return bad();const r=im.naturalWidth/im.naturalHeight,c=box.classList,b=c.contains("fc-ph")||c.contains("ftk-pst")||c.contains("fm")?.667:c.contains("ph")?.85:.8;
-    if(Math.abs(Math.log(r/b))>.3)c.add("pst-fit","has-pst");else c.add("has-pst")};
+  const ok=()=>{if(!im.naturalWidth)return bad();const r=im.naturalWidth/im.naturalHeight,c=box.classList,b=c.contains("fc-ph")||c.contains("ftk-pst")||c.contains("fm")||c.contains("det-pst")?.667:c.contains("ph")?0:.6917;
+    /* afiş kırpılmaz: kutu oranına çok yakınsa doldurur, değilse tamamı görünür */
+    if(!b||Math.abs(Math.log(r/b))>.09)c.add("pst-fit","has-pst");else c.add("has-pst")};
   const bad=()=>{box.querySelectorAll(".pbg,.pshade,.pby").forEach(x=>x.remove());im.remove()};
   if(im.complete)ok();else{im.addEventListener("load",ok,{once:true});im.addEventListener("error",bad,{once:true})}})}
 function card(e){
   const d=pd(e.d),dp=DEEP[e.cat],st=e.status==="tukendi"?"Tükendi":e.status==="ertelendi"?"Ertelendi":"",f=forecast(e),t0=e.tickets[0]||{site:e.site,url:e.url};
   const w=document.createElement("article");w.className="vc"+(st?" off":"")+(e.gold?" gold":"")+(e.cat==="sinema"?" cine":"");w.style.setProperty("--c",`var(--c-${e.cat})`);w.dataset.k=key(e);
   const ps=e.tickets.slice(0,3);
-  w.innerHTML=`<div class="vc-ph" style="--d1:${dp[0]};--d2:${dp[1]}"><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg>${pstHTML(e.img,e.imgBy)}
-    ${e.gold?'<span class="vc-gold">★ Yoğun ilgi</span>':""}${st?`<span class="vc-st">${st}</span>`:""}${!st&&(isNew(e)||dropOf(e))?`<span class="vc-nb${dropOf(e)?" dr":""}">${dropOf(e)?`Fiyatı %${dropOf(e)} düştü`:"Yeni"}</span>`:""}<span class="vc-wx" title="Etkinlik saatinde hava"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#${ICON[f.k]}"/></svg>${f.t}°</span>
-    <div class="vc-date"><b>${d.getDate()}</b><span>${SHORTM[d.getMonth()]} · ${GUN[d.getDay()]}${e.t?`<br>${e.t}`:""}</span></div></div>
-   <div class="vc-in"><div class="vc-cat">${CATS[e.cat]}</div><h3></h3><div class="vc-v"></div>
+  w.innerHTML=`<div class="vc-ph" style="--d1:${dp[0]};--d2:${dp[1]}">${tposHTML(e)}${pstHTML(e.img,e.imgBy)}
+</div>
+   <div class="vc-in">${e.gold||st||isNew(e)||dropOf(e)?`<div class="vc-bd">${e.gold?'<span class="vc-gold">★ Yoğun ilgi</span>':""}${st?`<span class="vc-st">${st}</span>`:""}${!st&&(isNew(e)||dropOf(e))?`<span class="vc-nb${dropOf(e)?" dr":""}">${dropOf(e)?`Fiyatı %${dropOf(e)} düştü`:"Yeni"}</span>`:""}</div>`:""}
+    <div class="vc-when"><b>${d.getDate()}</b><span>${SHORTM[d.getMonth()]} · ${GUN[d.getDay()].slice(0,3)}${e.t?`<i>${e.t}</i>`:""}</span><span class="vc-wx" title="Etkinlik saatinde hava"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#${ICON[f.k]}"/></svg>${f.t}°</span></div>
+    <div class="vc-cat">${CATS[e.cat]}</div><h3></h3><div class="vc-v"></div>
     <div class="vc-pr">${ps.map(x=>`<span><i></i><b class="${!(st&&x===t0)&&!x.price?"np":""}">${st&&x===t0?st:x.price?fmtTL(x.price):"fiyat sitede"}</b></span>`).join("")}${e.tickets.length>3?`<span class="mo">+${e.tickets.length-3} site</span>`:""}</div>
     <div class="vc-bt"><a class="vc-buy" href="${goto(t0,0)}" target="_blank" rel="noopener">${st?"Seanslar":"Bilet al"} ↗</a><button type="button" class="vc-look" aria-haspopup="dialog">İncele</button></div></div>`;
   const h=w.querySelector("h3");h.textContent=e.title;hl(h,state.q);w.querySelector(".vc-v").textContent=e.venue;
@@ -565,7 +569,7 @@ const fMatch=(f,q)=>{const h=fold(f.title+" "+(f.genre||"")+" "+(f.country||""))
 const dayLbl=d=>d===todayIso?"Bugün":d===tomIso?"Yarın":(q=>`${GUN[q.getDay()].slice(0,3)} ${q.getDate()}`)(pd(d));
 function fcard(f,day){const[d1,d2]=fCol(f),sh=fShows(f,day,fstate.cin),from=day===todayIso?hmNow():"00:00",nx=sh.filter((x,i,a)=>x.t>=from&&(!i||a[i-1].t!==x.t)),sal=new Set(sh.map(x=>x.cid)).size,b=fBadge(f);
   const w=document.createElement("article");w.className="fc";
-  w.innerHTML=`<div class="fc-ph" style="--d1:${d1};--d2:${d2}"><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-klaket"/></svg>${pstHTML(f.img,"sinemalar.com")}<i class="perf l"></i><i class="perf r"></i>
+  w.innerHTML=`<div class="fc-ph" style="--d1:${d1};--d2:${d2}"><div class="tpos tp-sinema" lang="tr"><i class="tp-pat"></i><span class="tp-k">Vizyonda</span><b class="tp-t">${escA(f.title)}</b><span class="tp-v">${escA((f.genre||"").split(",")[0])}</span></div>${pstHTML(f.img,"sinemalar.com")}<i class="perf l"></i><i class="perf r"></i>
     ${b?`<span class="fc-nb${/vizyonda/.test(b)?" up":""}">${b}</span>`:""}${f.dur?`<span class="fc-du">${durTxt(f.dur)}</span>`:""}<span class="fc-g"></span></div>
    <div class="fc-in"><div class="fc-cat"></div><h3></h3>
     <div class="fc-v">${sh.length?`${sal} salonda · ${sh.length} seans`:"Bu gün seansı yok"}</div>
@@ -624,6 +628,14 @@ function fRail(list,title){const r=document.createElement("section");r.className
   const s=r.querySelector(".frail-s");list.slice(0,14).forEach(f=>{const sh=fShows(f,todayIso),nx=sh.filter(x=>x.t>=hmNow()),[d1,d2]=fCol(f),b=fBadge(f),m=document.createElement("button");m.type="button";m.className="fm";m.style.cssText=`--d1:${d1};--d2:${d2}`;
     m.innerHTML=`${pstHTML(f.img)}<i class="perf l"></i><i class="perf r"></i>${b?`<span class="fc-nb${/vizyonda/.test(b)?" up":""}">${b}</span>`:""}<b></b><small></small><span class="fm-t">${nx.length?`Sıradaki ${nx[0].t}`:sh.length?"Bugünkü seanslar bitti":"Yakında"}</span>`;
     m.querySelector("b").textContent=f.title;m.querySelector("small").textContent=[durTxt(f.dur),(f.genre||"").split(",")[0]].filter(Boolean).join(" · ");m.onclick=()=>openFilm(f,todayIso);s.append(m)});pstWire(r);return r}
+/* KATEGORİ SAHNELERİ: her alanın kendine özgü başlığı (sinemadaki perde gibi). Yalnızca CSS çizimi; tek, yavaş, transform animasyonu. */
+const STAGE={konser:{k:"Sahnede canlı",t:"Konser"},tiyatro:{k:"Perde açılıyor",t:"Tiyatro"},standup:{k:"Mikrofon sende",t:"Stand-up"},sahne:{k:"Loca ve sahne",t:"Opera · Bale · Dans"},
+  cocuk:{k:"Minikler için",t:"Çocuk · Aile"},festival:{k:"Şehir şenlikte",t:"Festival"},parti:{k:"Gece uzun",t:"Parti · Gece"},atolye:{k:"Öğren, katıl, yarış",t:"Atölye · Quiz · Söyleşi"}};
+function catStage(c){const L=upcoming.filter(e=>e.cat===c),w7=iso(addDays(today,6)),td=L.filter(e=>e.d===todayIso).length,wk=L.filter(e=>e.d<=w7).length,vn=new Set(L.map(e=>e.venue)).size,x=STAGE[c];
+  const b=document.createElement("section");const enter=catStage.last!==c;catStage.last=c;
+  b.className=`cstage cs-${c}${enter&&animOn()?" in":""}${animOn()?" live":""}`;b.style.setProperty("--c",`var(--c-${c})`);
+  b.innerHTML=`<div class="cs-art" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i><i class="a4"></i></div>
+   <div class="cs-tx"><span class="cs-k">${x.k}</span><h2>${x.t}</h2><div class="cs-n"><span><b>${td}</b> bugün</span><span><b>${wk}</b> bu hafta</span><span><b>${vn}</b> mekân</span></div></div>`;return b}
 function render(sync){
   drawChips();
   let list=filterList();
@@ -633,6 +645,7 @@ function render(sync){
   const full=list;list=list.slice(0,state.limit);
   const cineOn=state.cat==="sinema"&&FILMS.length;document.documentElement.classList.toggle("cine-on",!!cineOn);
   if(!cineOn)cineBlock.was=false;
+  if(STAGE[state.cat])main.append(catStage(state.cat));else catStage.last=null;
   if(cineOn){main.append(cineBlock());if(list.length){const h=document.createElement("div");h.className="cine-ev";h.innerHTML="<h2>Film gösterimleri ve festivaller</h2><span>Özel gösterimler, festival seansları ve sinema etkinlikleri</span>";main.append(h)}}
   else if(FILMS.length&&state.cat==="hepsi"&&state.range!=="fav"){const q=state.q.trim(),fl=q?FILMS.filter(f=>fMatch(f,q)):FILMS.filter(f=>fShows(f,todayIso).length||f.release===tomIso);
     if(fl.length&&(q||["hepsi","bugun","yarin","hafta","sonu"].includes(state.range)))main.append(fRail(q?fl:fl.sort((a,b)=>fShows(b,todayIso).length-fShows(a,todayIso).length),q?`Filmlerde: ${fl.length} sonuç`:`Bugün vizyonda · ${fl.filter(f=>fShows(f,todayIso).length).length} film`))}
@@ -696,14 +709,14 @@ addEventListener("popstate",()=>{if(!isSheetHash(location.hash)&&sheet.open){she
 function openDetail(e){const d=pd(e.d),w=document.createElement("div");w.className="det";
   const same=upcoming.filter(x=>x!==e&&normT(x.title)===normT(e.title)).slice(0,12);
   const rows=[["Tarih",`${d.getDate()} ${AY[d.getMonth()]} ${d.getFullYear()}, ${GUN[d.getDay()]}`],["Saat",e.t||"Saati bilet sitesinde"],["Mekân",e.venue],["Adres",addrOf(e.venue)],["İlçe",ilceOf(e.venue)],["Tür",[CATS[e.cat],e.genre].filter(Boolean).join(" · ")],["Süre",e.dur],["Yaş sınırı",e.age],["Kapı açılış",e.door],["Organizasyon",e.org],["Bilgi",e.note]].filter(r=>r[1]);
-  w.innerHTML=`<div class="det-hd" style="--c:var(--c-${e.cat})"><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-${artOf(e)}"/></svg><div><span class="tag">${CATS[e.cat]}</span>${e.gold?'<span class="tag g">★ Yoğun ilgi</span>':""}<h2 id="sheetT"></h2><p class="dd"></p></div></div>
+  w.innerHTML=`<div class="det-hd" style="--c:var(--c-${e.cat})"><div class="det-pst" style="--d1:${DEEP[e.cat][0]};--d2:${DEEP[e.cat][1]}">${tposHTML(e)}${pstHTML(e.img)}</div><div><span class="tag">${CATS[e.cat]}</span>${e.gold?'<span class="tag g">★ Yoğun ilgi</span>':""}<h2 id="sheetT"></h2><p class="dd"></p></div></div>
    <dl class="det-dl">${rows.map(()=>"<div><dt></dt><dd></dd></div>").join("")}</dl>
    <h3>Biletler</h3><div class="det-t"></div><p class="det-n"></p>
    <h3>Hava</h3><div class="det-w stub">${wxHTML(e)}</div>
    ${same.length?`<h3>Diğer tarihler</h3><div class="det-o"></div>`:""}
    <div class="det-f"><button type="button" class="shr">Bağlantıyı paylaş</button><button type="button" class="fv"></button>${mapURL(e.venue)?`<a class="mp" target="_blank" rel="noopener" href="${mapURL(e.venue)}">Haritada aç ↗</a>`:""}</div>
    <p class="det-c">Son kontrol: ${e.checked?new Date(e.checked).toLocaleString("tr-TR",{day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"}):(NVD.updated?new Date(NVD.updated).toLocaleString("tr-TR",{day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"}):"—")} · Fiyat ve seanslar satış sitesinde değişebilir.</p>`;
-  w.querySelector("h2").textContent=e.title;w.querySelector(".dd").textContent=descOf(e);
+  w.querySelector("h2").textContent=e.title;w.querySelector(".dd").textContent=descOf(e);pstWire(w);
   w.querySelectorAll(".det-dl>div").forEach((r,i)=>{r.querySelector("dt").textContent=rows[i][0];r.querySelector("dd").textContent=rows[i][1]});
   const tb=w.querySelector(".det-t");e.tickets.forEach(x=>{const r=document.createElement("div");r.className="dt-row";r.innerHTML=`<span class="s"></span><span class="p">${x.price?fmtTL(x.price)+`<small> 'den · ${agoTxt(x.checked)} kontrol edildi</small>`:`<small>Güncel fiyat sitede</small>`}</span><a class="b-buy" target="_blank" rel="noopener" href="${goto(x,0)}">Bilet al ↗</a>`;r.querySelector(".s").textContent=x.site;tb.append(r)});
   w.querySelector(".det-n").textContent=priceLine(e,e.status==="tukendi"?"Tükendi":e.status==="ertelendi"?"Ertelendi":e.status==="iptal"?"İptal edildi":"");
