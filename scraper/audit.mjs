@@ -21,7 +21,7 @@ const NEWS = (process.env.AUDIT_FEEDS || [
 const median = (a) => { const s = a.filter((x) => Number.isFinite(x)).sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : null; };
 const addDays = (d, n) => new Date(Date.parse(d + "T12:00:00Z") + n * 864e5).toISOString().slice(0, 10);
 
-export function snapshot(events, health, today) {
+export function snapshot(events, health, today, filmsData) {
   const end14 = addDays(today, 14), end30 = addDays(today, 30);
   const up = events.filter((e) => e.d >= today && e.d <= end30);
   const byCat = {}, byDay = {}, venues = {};
@@ -32,8 +32,10 @@ export function snapshot(events, health, today) {
     if (e.venue) venues[e.venue] = (venues[e.venue] || 0) + 1;
   }
   const bySource = Object.fromEntries(Object.values(health.sources || {}).map((s) => [s.id, s.count]));
-  const filmNow = up.filter((e) => e.cat === "sinema" && e.d <= addDays(today, 6) && !/festival/i.test(e.genre || "")).length;
-  return { at: today, total: events.length, bySource, byCat, byDay, venues, filmNow };
+  // vizyondaki filmler: önümüzdeki 7 günde Ankara'da seansı olan film sayısı (data/films.json)
+  const end7 = addDays(today, 6);
+  const films = (filmsData?.films || []).filter((f) => Object.keys(f.s || {}).some((d) => d >= today && d <= end7)).length;
+  return { at: today, total: events.length, bySource, byCat, byDay, venues, films };
 }
 
 export function findGaps(cur, hist, health) {
@@ -67,8 +69,9 @@ export function findGaps(cur, hist, health) {
     for (const n of s.notes || []) if (/sınıra ulaştı/.test(n)) out.push({ w: 3, k: "kesik", t: `**${s.name}** listesi sonuna kadar açılamadı: ${n.split(":")[0]}` });
     if (!s.ok && (s.failStreak || 0) >= 3) out.push({ w: 1, k: "bozuk", t: `**${s.name}** ${s.failStreak} taramadır boş/hatalı (${s.status}).`, probe: s.id });
   }
-  // f) sinema: vizyondaki filmler
-  if (cur.filmNow < 10) out.push({ w: 2, k: "sinema", t: `Önümüzdeki 7 günde festival dışında yalnızca ${cur.filmNow} film seansı var; vizyondaki filmler büyük ölçüde eksik.` });
+  // f) sinema: vizyondaki filmler (films.mjs)
+  const mf = median(H.map((h) => h.films).filter((x) => x != null));
+  if (cur.films != null && (cur.films < 8 || (mf >= 10 && cur.films < mf * 0.6))) out.push({ w: 3, k: "sinema", t: `Ankara sinemalarında önümüzdeki 7 gün için yalnızca ${cur.films} filmin seansı var${mf ? ` (olağanı ${mf})` : ""}; film toplayıcısına bakılmalı.` });
   return out.sort((a, b) => b.w - a.w);
 }
 
@@ -115,7 +118,7 @@ export async function main() {
   const data = await readJSON(join(ROOT, "data/events.json"), { events: [] });
   const health = await readJSON(join(ROOT, "data/health.json"), { sources: {} });
   const hist = await readJSON(HIST, []);
-  const cur = snapshot(data.events, health, today);
+  const cur = snapshot(data.events, health, today, await readJSON(join(ROOT, "data/films.json"), null));
   const gaps = findGaps(cur, hist.filter((h) => h.at !== today), health);
   const news = process.env.AUDIT_NO_NEWS ? { miss: [], notes: ["haber taraması kapalı"] } : await newsScan(data.events);
   await writeJSON(HIST, [...hist.filter((h) => h.at !== today), cur].slice(-30), false);

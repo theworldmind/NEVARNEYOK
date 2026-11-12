@@ -201,10 +201,23 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     assert.ok(A.known("37. Ankara Film Festivali", ev)); assert.ok(!A.known("Ankara Caz Festivali", ev));
   });
   t("kapsam denetimi: geçmişe göre düşüş, boş gün ve sessiz mekân", () => {
-    const mk = (at, n, v) => ({ at, total: n, bySource: { a: n }, byCat: { tiyatro: n }, byDay: { 1: n, 2: n }, venues: v ? { "Oda Tiyatrosu": 4 } : {}, filmNow: 20 });
+    const mk = (at, n, v) => ({ at, total: n, bySource: { a: n }, byCat: { tiyatro: n }, byDay: { 1: n, 2: n }, venues: v ? { "Oda Tiyatrosu": 4 } : {}, films: 30 });
     const hist = [mk("2027-01-01", 100, 1), mk("2027-01-02", 100, 1), mk("2027-01-03", 100, 1)];
     const g = A.findGaps(mk("2027-01-04", 40, 0), hist, { sources: { a: { id: "a", name: "A", ok: true, notes: ["x: 151 bağlantı, durum 200, daha fazla düğmesi sınıra ulaştı (liste kesilmiş olabilir)"] } } });
     const k = new Set(g.map((x) => x.k)); for (const want of ["kaynak", "kategori", "gun", "mekan", "kesik"]) assert.ok(k.has(want), want);
+  });
+}
+{
+  const F = await import("../films.mjs");
+  t("filmler: liste kartı ve Ankara seans sayfası okunur, konu metni alınmaz", () => {
+    const list = F.parseList(`<div class="column gap-4 flex-1"><div class="card-title flex-1"> <a class="link" href="https://www.sinemalar.com/film/292173/shaun-the-sheep-the-beast-of-mossy-bottom"><h2>Kuzular Firarda: Gizemli Canavar</h2></a> </div> <div class="card-info"> 06.11.2026 • 1 saat 31 dakika • İngiltere, ABD • Animasyon, Komedi, Macera </div> <div class="card-info"><b>Vizyon Tarihi:</b> 06 Kasım 2026</div> <div class="card-info card-excerpt"><p>Uzun konu metni</p></div>`);
+    assert.equal(list.length, 1); assert.deepEqual({ ...list[0] }, { id: 292173, slug: "shaun-the-sheep-the-beast-of-mossy-bottom", title: "Kuzular Firarda: Gizemli Canavar", release: "2026-11-06", dur: 91, country: "İngiltere, ABD", genre: "Animasyon, Komedi, Macera" });
+    const html = `<div class="seance-day" data-day="2026-11-12"> <h2>Bugün</h2> <div class="content-list"> <div class="card metadata-card"> <div class="row"> <div class="column gap-4"> <div class="card-title"> <a class="link" href="https://www.sinemalar.com/sinemasalonu/1119/ankara-optimum-avsar"><h3>Ankara Optimum Avşar</h3></a> </div> <div class="card-info dark">Optimum AVM Eryaman – ANKARA</div> </div> </div> <div class="row"> <div class="column gap-16"> <div class="seance" data-dimension="2D" data-screen-type="" data-language="Türkçe"> <div class="mb-8">2D - Türkçe</div> <div class="chip-container"> <a class="btn secondary vertical disabled" href="x"> <span>11:00</span> <span>Bilet al</span> </a> <a class="btn secondary vertical" href="y" target="_blank"> <span>21:30</span> <span>Bilet al</span> </a> </div> </div> </div> </div> </div> </div> </div>
+      <div class="seance-day day-inactive" data-day="2026-11-13"> <div class="card metadata-card"> <a class="link" href="https://www.sinemalar.com/sinemasalonu/1119/ankara-optimum-avsar"><h3>Ankara Optimum Avşar</h3></a> <div class="seance" data-dimension="3D" data-language="Altyazılı"> <a class="btn secondary vertical" href="z"> <span>9:15</span> </a> </div> </div> </div>`;
+    const r = F.parseSeances(html);
+    assert.equal(r.cinemas[1119].name, "Optimum Avşar");
+    assert.deepEqual(r.days["2026-11-12"][1119], [[["11:00", "21:30"], "2D Türkçe"]]);
+    assert.deepEqual(r.days["2026-11-13"][1119], [[["09:15"], "3D Altyazılı"]]);
   });
 }
 t("robots.txt: yasaklanan sayfaya girilmez, en uzun kural kazanır", () => {

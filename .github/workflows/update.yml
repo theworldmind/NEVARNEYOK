@@ -61,6 +61,11 @@ jobs:
         continue-on-error: true   # tarama çökse bile dünkü veriyle site yayında kalır
         run: node run.mjs $MODE_FLAG $ONLY_FLAG
 
+      - name: Vizyondaki filmler (Ankara sinemaları, 7 günlük seans)
+        working-directory: scraper
+        continue-on-error: true
+        run: node films.mjs
+
       - name: Kapsam denetimi (neyi kaçırıyoruz?)
         if: env.MODE_FLAG == '' && env.ONLY_FLAG == ''
         working-directory: scraper
