@@ -1,24 +1,24 @@
 {
- "runAt": "2026-11-12T11:28:03.147Z",
+ "runAt": "2026-11-12T11:58:00.065Z",
  "mode": "refresh",
  "total": 1845,
  "written": true,
  "sources": {
-  "biletinial": {
-   "id": "biletinial",
-   "name": "Biletinial",
-   "kind": "bilet",
+  "mamak": {
+   "id": "mamak",
+   "name": "Mamak Belediyesi",
+   "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 1457,
-   "prevCount": 1694,
+   "count": 3,
+   "prevCount": 3,
    "error": "",
    "notes": [
-    "açık veri: 1003 seans, 102 detay sayfası, okunamayan: stand-up:500, cocuk-aktiviteleri:500"
+    "açık veri: 6 seans"
    ],
-   "seconds": 78,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-12T11:28:03.147Z"
+   "lastOk": "2026-11-12T11:58:00.065Z"
   }
  }
 }
