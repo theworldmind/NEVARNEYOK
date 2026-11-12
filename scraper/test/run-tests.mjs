@@ -178,6 +178,20 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     assert.ok(!dob[0].desc, "konu metni alınmaz");
   });
 }
+{
+  const pages = { tiyatro: [{ id: 1, name: "Kontrabas", seoUrl: "kontrabas", saloonName: "Oda Tiyatrosu", saloonCount: 1, minTicketAmount: 450, seances: ["2027-01-10T18:30:00", "2027-01-11T18:30:00"], organizerUrl: "tiyatro", imageUrl: "/x.jpg" },
+                           { id: 2, name: "Turne Oyunu", seoUrl: "turne", saloonName: "A", saloonCount: 3, seances: ["2027-01-12T20:00:00"], organizerUrl: "tiyatro" }],
+                  sinema: [{ id: 3, name: "Festival - Uyuyan Kadın", seoUrl: "festival-uyuyan-kadin", saloonName: "Büyülü Fener Kızılay Sineması", saloonCount: 0, minTicketAmount: 300, seances: ["2027-01-10T21:15:00", "2027-01-10T23:00:00"], organizerUrl: "sinema" },
+                           { id: 4, name: "Vizyon Filmi", seoUrl: "vizyon", saloonName: "X", saloonCount: 5, seances: ["2027-01-10T11:00:00", "2027-01-10T14:00:00", "2027-01-11T12:00:00", "2027-02-20T12:00:00"], organizerUrl: "sinema" }] };
+  const fake = async (u) => { const org = u.match(/organizerUrl=([^&]+)/)[1]; return { status: 200, text: JSON.stringify({ hasMore: false, items: pages[org] || [] }) }; };
+  const r = await P.biletinialCollect({ fetchText: fake, today: "2027-01-10" });
+  t("Biletinial liste verisi: seanslar, festival, vizyon, çok salonlu kayıt detaya", () => {
+    const k = r.raws.filter((x) => x.title === "Kontrabas"); assert.equal(k.length, 2); assert.equal(k[0].price, 450); assert.equal(k[0].venue, "Oda Tiyatrosu"); assert.ok(!k[0].image);
+    assert.ok(r.detail.includes("https://biletinial.com/tr-tr/tiyatro/turne"));
+    const f = r.raws.filter((x) => x.title === "Uyuyan Kadın"); assert.equal(f.length, 2, "festivalin her seansı"); assert.equal(f[0].genre, "Film festivali");
+    const v = r.raws.filter((x) => x.title === "Vizyon Filmi"); assert.deepEqual(v.map((x) => x.d + " " + x.t), ["2027-01-10 11:00", "2027-01-11 12:00"]); assert.equal(v[0].venue, "Ankara sinemaları");
+  });
+}
 t("robots.txt: yasaklanan sayfaya girilmez, en uzun kural kazanır", () => {
   const R = parseRobots("User-agent: *\nDisallow: /hesap\nAllow: /hesap/acik\nDisallow: /*?sort=\nCrawl-delay: 2\n\nUser-agent: NeVarNeYokBot\nDisallow: /ozel");
   const ok = (p) => { let b = null; for (const r of R.rules) if (ruleMatch(p, r) && (!b || r.path.length > b.path.length || (r.path.length === b.path.length && r.allow))) b = r; return !b || b.allow; };

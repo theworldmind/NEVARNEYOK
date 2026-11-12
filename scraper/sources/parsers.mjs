@@ -167,3 +167,43 @@ export function abbList(html, url) {
   }
   return out;
 }
+
+/* ---------- Biletinial: liste sayfasının kendi "daha fazla" isteği ----------
+ * biletinial.com/tr-tr/<kategori>/ankara sayfası etkinlikleri /List/GetMoreItems ile sayfa sayfa yükler;
+ * her kayıtta ad, salon, salon sayısı, bütün seans tarihleri ve en düşük bilet tutarı var. Görsel alınmaz.
+ * Tek salonlu kayıtlar doğrudan seanslara açılır; birden çok salonlu tiyatro ve konserler detay sayfasından okunur.
+ * Sinema: festival gösterimlerinin her seansı; vizyondaki filmlerin önümüzdeki 5 günde günde bir seansı (en erken). */
+const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["stand-up", "standup"], ["cocuk-aktiviteleri", "cocuk"], ["etkinlik", ""], ["sinema", "sinema"]];
+export async function biletinialCollect({ fetchText, today }) {
+  const out = [], detail = new Set(), miss = [];
+  const end5 = new Date(Date.parse(today + "T00:00:00+03:00") + 5 * 864e5).toISOString().slice(0, 10);
+  for (const [org, cat] of BI_CATS) {
+    const items = [];
+    for (let page = 1; page <= 40; page++) {
+      const r = await fetchText(`https://biletinial.com/List/GetMoreItems?region=tr-tr&cityId=3&cityUrl=ankara&order=0&isKids=false&isCampaign=false&isForeign=false&organizerUrl=${org}&page=${page}`, { retries: 1 });
+      let j; try { j = JSON.parse(r.text); } catch { if (page === 1) miss.push(`${org}:${r.status || r.error}`); break; }
+      items.push(...(j.items || []));
+      if (!j.hasMore || !(j.items || []).length) break;
+    }
+    for (const x of items) {
+      if (!x.name || !x.seoUrl) continue;
+      const url = `https://biletinial.com/tr-tr/${x.organizerUrl || org}/${x.seoUrl}`;
+      const seances = (x.seances || []).filter(Boolean).sort();
+      const fest = /^festival\s*[-–:]\s*/i.test(x.name);
+      const title = x.name.replace(/^festival\s*[-–:]\s*/i, "");
+      const multi = (x.saloonCount || 0) > 1 || x.showOnAllCities;
+      if (org !== "sinema" && (multi || !seances.length)) { detail.add(url); continue; }
+      if (!seances.length) continue;
+      const base = { title, venue: org === "sinema" && multi ? "Ankara sinemaları" : clean(x.saloonName || ""), city: "Ankara", url, via: "site",
+        ...(x.isFree ? { free: true } : x.minTicketAmount > 0 ? { price: Math.round(x.minTicketAmount), pc: 1 } : {}),
+        catHint: cat, ...(fest ? { genre: "Film festivali" } : x.categoryName ? { genre: clean(x.categoryName) } : {}) };
+      let list = seances.map((s) => ({ d: day(s), t: hhmm(s) }));
+      if (org === "sinema" && !fest) {
+        const seen = new Set();
+        list = list.filter((s) => s.d <= end5 && !seen.has(s.d) && seen.add(s.d));
+      }
+      for (const s of list) out.push({ ...base, ...s });
+    }
+  }
+  return { raws: out, detail: [...detail], note: miss.length ? `okunamayan: ${miss.join(", ")}` : "" };
+}

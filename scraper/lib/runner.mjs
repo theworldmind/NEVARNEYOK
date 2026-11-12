@@ -48,9 +48,12 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
   // Ucuzdur ve satış durumunu da taşır; bu yüzden tazeleme turunda da çalışır.
   if (src.collect) {
     try {
-      const got = (await src.collect({ fetchText, getPage, today, log })) || [];
+      // Dizi ya da { raws, detail } döner: detail, liste verisi yetmeyen (birden çok mekânlı) kayıtların detay sayfalarıdır
+      const res = (await src.collect({ fetchText, getPage, today, log })) || [];
+      const got = Array.isArray(res) ? res : res.raws || [];
       raws.push(...got);
-      notes.push(`açık veri: ${got.length} seans`);
+      for (const u of res.detail || []) if (!src.link || src.link.test(u)) detail.add(u);
+      notes.push(`açık veri: ${got.length} seans${res.detail?.length ? `, ${res.detail.length} detay sayfası` : ""}${res.note ? `, ${res.note}` : ""}`);
     } catch (e) { notes.push(`açık veri okunamadı: ${e.message}`); }
   }
 

@@ -27,7 +27,9 @@ export default [
   { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com",
     listings: ["https://www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Ankara"],
     link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, loadMore: ["Daha fazla", "Daha Fazla Göster"], city: "tr", maxDetail: 220, budgetMin: 24, concurrency: 4 },
-  { id: "biletinial", name: "Biletinial", kind: "bilet", home: "https://biletinial.com",
+  // Liste sayfalarının kendi "daha fazla" isteği bütün kayıtları ve seansları verir (sinema ve festival dahil);
+  // birden çok salonlu kayıtlar detay sayfasından okunur
+  { id: "biletinial", name: "Biletinial", kind: "bilet", home: "https://biletinial.com", collect: P.biletinialCollect,
     listings: ["https://biletinial.com/tr-tr/sehrineozel/ankara", "https://biletinial.com/tr-tr/tiyatro/ankara", "https://biletinial.com/tr-tr/muzik/ankara", "https://biletinial.com/tr-tr/opera-bale/ankara"],
     link: /biletinial\.com\/tr-tr\/(tiyatro|muzik|opera-bale|etkinlik|stand-up|festival|cocuk-aktiviteleri|egitim)\/[a-z0-9-]+/i, render: true, loadMore: ["Daha fazlasını göster", "Daha Fazla"], city: "tr", maxDetail: 320 },
   { id: "sanatcepte", name: "Sanatçepte", kind: "bilet", home: "https://www.sanatcepte.gov.tr",
@@ -103,7 +105,7 @@ export default [
   { id: "ankara-caz", enabled: false, /* alan adı artık çözülmüyor (06.11.2026) */ name: "Ankara Caz Festivali", kind: "mekan", home: "https://www.ankarajazzfestival.com",
     listings: ["https://www.ankarajazzfestival.com/program"],
     link: /ankarajazzfestival\.com\/(program|konser|etkinlik)[^?#]*/i, render: true, city: "ankara", defaultCat: "konser" },
-  { id: "film-ankara", name: "Ankara Film Festivali", kind: "mekan", home: "https://www.filmfestankara.org.tr",
+  { id: "film-ankara", enabled: false, /* sitede program sayfası yok (404); festival seansları Biletinial listesinden geliyor (12.11.2026) */ name: "Ankara Film Festivali", kind: "mekan", home: "https://www.filmfestankara.org.tr",
     listings: ["https://www.filmfestankara.org.tr/program"],
     // Program yayınlanınca seans sayfaları JSON-LD ile okunur; haber/başvuru sayfaları etkinlik sayılmaz
     link: /filmfestankara\.org\.tr\/(program|gosterim|seans)\/[^?#]+/i, render: true, city: "ankara", forceCat: "sinema", heuristics: false },
