@@ -104,6 +104,11 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
     let evs = extractDetail(page.html, page.url || u, src);
     if (!evs.length && page.jsons?.length) evs = page.jsons.flatMap((j) => eventsFromJson(j.data, j.url));
     if (evs.length) { okDetail++; readUrls.push(u); }
+    // Yapısal veride afiş yoksa sayfadaki afiş görselinin adresi (yalnızca adres; dosya indirilmez)
+    if (evs.some((e) => !e.image)) {
+      const m = page.html.match(/<img[^>]+src=["']([^"']*(?:\/Uploads\/|afis|afiş|poster)[^"']*\.(?:jpe?g|png|webp)[^"']*)["']/i);
+      if (m) { const im = new URL(m[1].replace(/&amp;/g, "&"), page.url || u).href; for (const e of evs) if (!e.image) e.image = im; }
+    }
     for (const e of evs) { if (!e.url || e.url === page.url) e.url = u; raws.push(e); }
   });
 
