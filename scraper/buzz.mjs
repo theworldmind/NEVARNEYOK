@@ -147,7 +147,7 @@ export async function main() {
   if (wk) {
     const r = await fetchText(`${BO}/hafta-sonu/detay/${wk}`, { retries: 1 });
     const rows = r.status === 200 ? parseWeekend(r.text) : [];
-    if (rows.length) { bo = { week: wk, url: `${BO}/hafta-sonu/detay/${wk}`, films: {} }; for (const x of rows.slice(0, 20)) bo.films[nk(x.title)] = [x.rank, x.aud]; src.bohs = { name: "Box Office Türkiye hafta sonu", ok: true, n: rows.length }; }
+    if (rows.length) { bo = { week: wk, url: `${BO}/hafta-sonu/detay/${wk}`, films: {} }; for (const x of rows.slice(0, 20)) { bo.films[nk(x.title)] = [x.rank, x.aud]; const k2 = nk(x.title.split(/:\s/)[0]); if (k2.length >= 4) bo.films[k2] ||= [x.rank, x.aud]; } /* iki site adı farklı yazabilir: iki noktadan önceki adla da eşleşir */ src.bohs = { name: "Box Office Türkiye hafta sonu", ok: true, n: rows.length }; }
     else src.bohs = { name: "Box Office Türkiye hafta sonu", ok: false, note: String(r.status || r.error) };
   }
   const out = { v: VER, updated: new Date().toISOString(), names: Object.fromEntries(FEEDS.map((f) => [f.id, f.name])), sources: src, ev: merge(prev.ev, ev), fm: merge(prev.fm, fm), bo };
