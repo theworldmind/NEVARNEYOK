@@ -233,6 +233,7 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     const r = B.matchAll(it, [{ title: "Teoman", venue: "CerModern", cat: "konser" }, { title: "Hamlet", venue: "DOB", cat: "tiyatro" }], [{ title: "Ganimet" }, { title: "Çakallarla Dans 8: Stuttgart Çıkarması" }]);
     assert.deepEqual(Object.keys(r.ev), ["teoman"]); assert.deepEqual(Object.keys(r.fm).sort(), ["cakallarladans8stuttgartcikarmasi", "ganimet"]);
     assert.ok(!JSON.stringify(r).includes("geri sayım"), "haber metni saklanmaz");
+    assert.deepEqual(B.parseWeekend(`<table id="WeeklyMovieData"><thead><tr><th>#</th><th>Film Adı</th><th>Hafta Sonu Seyirci</th></tr></thead><tbody><tr role="row"><td>1</td><td><div><a href="/film/cakallarla-dans-8--2018332" title="Çakallarla Dans 8"><img src="x.jpg" alt=""></a></div><div><a class="movie-link" href="/film/cakallarla-dans-8--2018332" title="Çakallarla Dans 8">Çakallarla Dans 8</a></div></td><td>212.004</td></tr></tbody></table>`).map((x) => [x.title, x.rank, x.aud]), [["Çakallarla Dans 8", 1, 212004]]);
     assert.deepEqual(B.parseWeekend(`<table id="WeeklyMovieData"><thead><tr><th>#</th><th>Film Adı</th><th>Hafta Sonu Seyirci</th></tr></thead><tbody><tr><td>1</td><td><a href="/film/catli-2--2018418">Çatlı 2</a></td><td>120.345</td></tr></tbody></table>`), [{ title: "Çatlı 2", slug: "catli-2--2018418", rank: 1, aud: 120345 }]);
   });
 }

@@ -53,9 +53,13 @@ export function parseWeekend(html) {
   const ai = heads.findIndex((h) => /seyirci/.test(h));
   const rows = [];
   for (const tr of (tb.match(/<tbody[\s\S]*?<\/tbody>/i) || [tb])[0].split(/<tr\b/i).slice(1)) {
-    const a = tr.match(/href="(?:https?:\/\/boxofficeturkiye\.com)?\/film\/([a-z0-9-]+)"[^>]*>([\s\S]*?)<\/a>/i);
+    // satırda önce afiş bağlantısı (yalnızca resim), sonra adın yazdığı bağlantı gelir: adı olan ilk bağlantı ya da title niteliği alınır
+    let a = null, title = "";
+    for (const m of tr.matchAll(/<a\b([^>]*)href="(?:https?:\/\/boxofficeturkiye\.com)?\/film\/([a-z0-9-]+)"([^>]*)>([\s\S]*?)<\/a>/gi)) {
+      const t = strip(m[4]) || strip(((m[1] + m[3]).match(/title="([^"]+)"/) || [])[1]);
+      if (t) { a = [null, m[2]]; title = t; break; }
+    }
     if (!a) continue;
-    const title = strip(a[2]); if (!title) continue;
     const tds = [...tr.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map((m) => strip(m[1]));
     const num = (s) => +String(s || "").replace(/[^\d]/g, "") || 0;
     const aud = ai >= 0 && tds[ai] ? num(tds[ai]) : 0;
