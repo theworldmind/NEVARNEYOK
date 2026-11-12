@@ -74,6 +74,7 @@ Bozulmaması gereken kurallar:
 - **Sinema (öncelikli bölüm):** Kategori çiplerinde "Sinema" en başta, film şeridi görünümlü (`.chip.cinec`). Seçilince sahne açılır: kırmızı kadife perde (yalnızca `transform` ile açılır), ışıklı tabela, perdede "Vizyonda", iki yanda üstünde NE VAR NE YOK logosu olan patlamış mısır kutuları (`#pop-box`). Altında gün sekmeleri, salon seçimi ve film kartları (`fcard`, film şeridi kenarlı koyu kart). "Seanslar" sinema biletini açar (`openFilm`): günler, salonlar, biçim ve saatler; geçmiş saatler soluk; koçanda mısır kutusu ve "Bilet al". Sinema kategorisindeki etkinliklerin kartı ve bileti de sinema temalıdır (`.vc.cine`, `.tkw.cine`). Ana listede "Bugün vizyonda" şeridi (`fRail`) ve aramada "Filmlerde" sonuçları vardır.
 - **Üst çubuk ve kategoriler:** Arama çubuğunun yanında **Filtreler** ve **Ayarlar** düğmeleri durur. Kategoriler kendi renklerindedir. "★ Yoğun ilgi" altın renktedir.
 - **Giriş ekranı:** "hoş geldinizzzz" yazısında ilk z beyaz, diğer z'ler nar rengi; yazı Bricolage, altı çizgisiz. "İlerle" düğmesi yok, dokun/tıkla ipucu var.
+- **Üst marka imzası (kullanıcı kararı, 13.11.2026):** Sitenin ve üretilen bütün sayfaların en altında "by oneside" imzası: lacivert (#060e33) kartta oneside işareti (dört köşeli, iki köşesi kavisli yıldız, SVG) ve Poppins ile "one" ince + "side" kalın yazı (`.byos`). Logonun biçimi değiştirilmez.
 - **Marka kapsamı:** Marka yalnız Ankara'ya özgü değil, ileride başka şehirlere yayılacak.
 
 ## 4. Akıcılık kuralları (takılma, donma olmasın)

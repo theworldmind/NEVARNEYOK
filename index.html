@@ -17,6 +17,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="description" content="Ankara'daki konser, tiyatro, stand-up, opera, bale, çocuk etkinlikleri ve festivaller tek yerde; bilet sitelerinin fiyatları yan yana, etkinlik saatindeki hava tahminiyle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&text=onesidby&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
 /* Layout: canlı Ankara gökyüzü (saate ve havaya göre) + kavisli ufukta şehir silüeti ve ANKARA yazısı → yapışkan filtre → haftalık bölümler → bilet kartları */
@@ -766,6 +767,12 @@ main,footer,.actf,.hero-bottom{color:var(--onbg)}
 .fc-hot{display:inline-block;align-self:flex-start;margin-bottom:6px;padding:3px 8px;border-radius:999px;background:linear-gradient(90deg,#8a6400,#e0b23a 40%,#fff0b8 55%,#e0b23a 70%,#8a6400);color:#2b1d00;font:800 10px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
 .ftk-hot{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:8px;font:600 12px/1.4 var(--f-body);color:#f3d27a}
 .ftk-hot a{color:#ffe7a3;text-decoration:underline;text-underline-offset:2px}
+/* ===================== İMZA: by oneside (üst marka) ===================== */
+.byos{display:flex;align-items:center;justify-content:center;gap:12px;margin:26px auto 6px;padding-bottom:env(safe-area-inset-bottom,0px)}
+.byos-by{font:300 15px/1 Poppins,var(--f-body,system-ui),sans-serif;letter-spacing:.04em;opacity:.7}
+.byos-card{display:inline-flex;align-items:center;gap:14px;padding:12px 22px 12px 18px;border-radius:14px;background:#060e33;color:#fff;box-shadow:0 8px 24px rgba(6,14,51,.25)}
+.byos-card svg{width:30px;height:30px;fill:#fff;flex:none}
+.byos-w{font:300 26px/1 Poppins,system-ui,sans-serif;letter-spacing:-.01em}.byos-w b{font-weight:800}
 /* ===================== FİYAT KARŞILAŞTIRMASI ===================== */
 .pcmp{margin:2px 0 10px;padding:10px 12px 8px;border-radius:12px;border:1px solid color-mix(in srgb,currentColor 16%,transparent);background:color-mix(in srgb,currentColor 4%,transparent)}
 .pc-h{display:flex;justify-content:space-between;align-items:baseline;gap:4px 10px;flex-wrap:wrap;margin-bottom:6px}
@@ -1014,6 +1021,7 @@ D.dataset.period=q;D.dataset.theme=(q==="sabah"||q==="gun")?"light":"dark";for(v
   <p class="upd" id="upd"></p>
   <p><b>Ne Var Ne Yok? Ankara</b> bağımsız bir etkinlik rehberidir; etkinlik bilgilerini herkese açık kaynaklardan derler. Bilet satmaz, reklam ve komisyon almaz; her “Bilet al” düğmesi etkinliğin satıldığı sitenin kendi sayfasına gider ve satın alma, iade ve değişiklik o sitenin kurallarına tabidir. Etkinlik adları ve markalar sahiplerine aittir. Kaldırma talepleri: <a href="mailto:contact.openmind.vision@gmail.com">contact.openmind.vision@gmail.com</a></p>
   <nav class="flinks" aria-label="Site bilgileri"><button type="button" data-p="hakkinda">Hakkında</button><button type="button" data-p="kaynaklar">Veri kaynakları ve güncelleme</button><button type="button" data-p="gizlilik">Gizlilik</button><button type="button" data-p="kosullar">Kullanım koşulları</button><button type="button" data-p="iletisim">İletişim</button></nav>
+  <div class="byos" aria-label="by oneside"><span class="byos-by">by</span><span class="byos-card"><svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg><span class="byos-w">one<b>side</b></span></span></div>
 </footer>
 <dialog class="sheet" id="sheet" aria-labelledby="sheetT"><div class="sh-in"><div class="sh-top"><div class="sh-brand">Ne Var Ne Yok? <span>Ankara</span></div><button class="sh-x" type="button" aria-label="Kapat">✕</button></div><div class="sh-body" id="sheetB"></div></div></dialog>
 
