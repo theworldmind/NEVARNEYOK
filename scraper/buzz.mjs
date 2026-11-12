@@ -8,7 +8,7 @@ import { ROOT, log, readJSON, writeJSON, decodeEntities, todayIST } from "./lib/
 import { fetchText } from "./lib/net.mjs";
 
 const OUT = process.env.BUZZ_FILE || join(ROOT, "data/buzz.json");
-const KEEP_DAYS = 21;
+const KEEP_DAYS = 21, VER = 2;
 const BO = "https://boxofficeturkiye.com";
 
 /* kind: haber (genel kültür-sanat) | sinema (yalnızca sinema yazan siteler) */
@@ -94,10 +94,20 @@ export function matchAll(items, events, films) {
     if (e.cat === "sinema") continue;
     const p = phraseOf(e.title); if (!p) continue;
     const v = fold(e.venue || "").split(" ").filter((w) => w.length >= 5 && !/^(salonu|sahnesi|kultur|merkezi|ankara|tiyatro|sanat|belediyesi)$/.test(w))[0];
-    const o = byP.get(p) || { key: nk(e.title.split(/ · | \| /)[0]), ctx: new Set(["ankara", "baskent"]) };
-    if (v) o.ctx.add(v); byP.set(p, o);
+    const o = byP.get(p) || { key: nk(e.title.split(/ · | \| /)[0]), vs: new Set() };
+    if (v) o.vs.add(v); byP.set(p, o);
   }
-  for (const it of items) for (const [p, o] of byP) if (mentions(it.text, p, { ctx: [...o.ctx] })) add(ev, o.key, it);
+  // etkinlik haberi Ankara'yla ilgili olmalı: haberde Ankara/Başkent ya da mekânın adı geçmeli (başka şehirdeki konser, dizi haberi sayılmaz);
+  // tek kelimelik adda mekânın adı geçmeli ya da ad tırnak içinde ve Ankara'yla birlikte yazılmış olmalı
+  for (const it of items) {
+    const T = " " + fold(it.text) + " ", city = / (ankara|baskent|ankarali|ankarada)/.test(T);
+    for (const [p, o] of byP) {
+      if (!T.includes(" " + p + " ")) continue;
+      const venue = [...o.vs].some((v) => T.includes(" " + v + " "));
+      const ok = p.includes(" ") ? city || venue : venue || (city && quoted(it.text, p));
+      if (ok) add(ev, o.key, it);
+    }
+  }
   // filmler: sinema sitelerinde ad yeter; genel haberlerde tek kelimelik ad tırnak içinde geçmeli
   for (const f of films) {
     const ps = [...new Set([phraseOf(f.title), phraseOf(f.title.split(/:\s/)[0])].filter(Boolean))];
@@ -115,6 +125,7 @@ export function matchAll(items, events, films) {
 export async function main() {
   const today = todayIST(), cut = new Date(Date.parse(today) - KEEP_DAYS * 864e5).toISOString().slice(0, 10);
   const prev = await readJSON(OUT, { ev: {}, fm: {}, bo: {} });
+  if (prev.v !== VER) { prev.ev = {}; prev.fm = {}; } // eşleştirme kuralı değişince eski eşleşmeler taşınmaz
   const evData = await readJSON(join(ROOT, "data/events.json"), { events: [] });
   const fData = await readJSON(join(ROOT, "data/films.json"), { films: [] });
   const events = (evData.events || []).filter((e) => e.d >= today), films = fData.films || [];
@@ -139,7 +150,7 @@ export async function main() {
     if (rows.length) { bo = { week: wk, url: `${BO}/hafta-sonu/detay/${wk}`, films: {} }; for (const x of rows.slice(0, 20)) bo.films[nk(x.title)] = [x.rank, x.aud]; src.bohs = { name: "Box Office Türkiye hafta sonu", ok: true, n: rows.length }; }
     else src.bohs = { name: "Box Office Türkiye hafta sonu", ok: false, note: String(r.status || r.error) };
   }
-  const out = { updated: new Date().toISOString(), names: Object.fromEntries(FEEDS.map((f) => [f.id, f.name])), sources: src, ev: merge(prev.ev, ev), fm: merge(prev.fm, fm), bo };
+  const out = { v: VER, updated: new Date().toISOString(), names: Object.fromEntries(FEEDS.map((f) => [f.id, f.name])), sources: src, ev: merge(prev.ev, ev), fm: merge(prev.fm, fm), bo };
   await writeJSON(OUT, out, false);
   log(`İlgi: ${items.length} haber okundu · ${Object.keys(out.ev).length} etkinlik ve ${Object.keys(out.fm).length} film haberlerde · gişe ${bo.week || "yok"} (${Object.keys(bo.films || {}).length} film) · ${Object.entries(src).filter(([, s]) => !s.ok).map(([k, s]) => `${k}: ${s.note}`).join(", ") || "bütün kaynaklar okundu"}`);
 }
