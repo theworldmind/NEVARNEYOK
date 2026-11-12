@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-12T11:22:47.267Z",
- "mode": "full",
- "total": 1844,
+ "runAt": "2026-11-12T11:28:03.147Z",
+ "mode": "refresh",
+ "total": 1845,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,19 +10,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1589,
-   "prevCount": 930,
+   "count": 1457,
+   "prevCount": 1694,
    "error": "",
    "notes": [
-    "açık veri: 1003 seans, 102 detay sayfası, okunamayan: stand-up:500, cocuk-aktiviteleri:500",
-    "biletinial.com/tr-tr/sehrineozel/ankara: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/tiyatro/ankara: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/ankara: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/opera-bale/ankara: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "açık veri: 1003 seans, 102 detay sayfası, okunamayan: stand-up:500, cocuk-aktiviteleri:500"
    ],
-   "seconds": 169,
+   "seconds": 78,
    "failStreak": 0,
-   "lastOk": "2026-11-12T11:22:47.267Z"
+   "lastOk": "2026-11-12T11:28:03.147Z"
   }
  }
 }
