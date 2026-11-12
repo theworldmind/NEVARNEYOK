@@ -44,19 +44,27 @@ function serve() {
 }
 
 /* ---------- Sayfanın içinde: günün seçimi ---------- */
-function selectInPage() {
+// afiş gerçekten yükleniyor mu? (kayıtlı adres bozuk olabilir) — yüklenmeyen etkinlik gönderiye girmez
+async function postersOk(urls) {
+  const one = (u) => new Promise((r) => { const im = new Image(); im.referrerPolicy = "no-referrer"; const t = setTimeout(() => r(false), 9000); im.onload = () => { clearTimeout(t); r(im.naturalWidth > 80 && im.naturalHeight > 80); }; im.onerror = () => { clearTimeout(t); r(false); }; im.src = u; });
+  const res = await Promise.all(urls.map(one)); return Object.fromEntries(urls.map((u, i) => [u, res[i]]));
+}
+async function selectInPage() {
   const AWAY = /kocaeli|istanbul|izmir|bursa|eski[şs]ehir|konya|antalya|adana|mersin|kayseri|samsun/i;
   const ok = (e) => e.d === todayIso && !["tukendi", "iptal", "ertelendi"].includes(e.status) && !AWAY.test(e.venue || "") && !(e.t && e.t < "09:00");
+  const cand = E.filter((e) => ok(e) && e.img), fc = FILMS.filter((f) => f.img && fShows(f, todayIso).length);
+  const okImg = await postersOk([...new Set([...cand.map((e) => e.img), ...fc.map((f) => f.img)])]);
   const pickE = (f, n) => { const seen = new Set(), out = [];
-    for (const e of E.filter((e) => ok(e) && f(e)).sort((a, b) => (b.img ? 1 : 0) - (a.img ? 1 : 0) || (b.gold ? 1 : 0) - (a.gold ? 1 : 0) || (a.t || "99").localeCompare(b.t || "99"))) { const k = e.title.toLocaleLowerCase("tr"); if (seen.has(k)) continue; seen.add(k); out.push(e); }
-    return { keys: out.slice(0, n).sort((a, b) => (a.t || "99").localeCompare(b.t || "99")).map(key), total: out.length }; };
-  const films = FILMS.filter((f) => fShows(f, todayIso).length).sort((a, b) => (b.img ? 1 : 0) - (a.img ? 1 : 0) || fScore(b) - fScore(a) || fShows(b, todayIso).length - fShows(a, todayIso).length);
-  const sh = films.flatMap((f) => fShows(f, todayIso));
+    for (const e of cand.filter((e) => okImg[e.img] && f(e)).sort((a, b) => (b.img ? 1 : 0) - (a.img ? 1 : 0) || (b.gold ? 1 : 0) - (a.gold ? 1 : 0) || (a.t || "99").localeCompare(b.t || "99"))) { const k = e.title.toLocaleLowerCase("tr"); if (seen.has(k)) continue; seen.add(k); out.push(e); }
+    const total = new Set(E.filter((e) => ok(e) && f(e)).map((e) => e.title.toLocaleLowerCase("tr"))).size; // sayı: afişsizler dahil
+    return { keys: out.slice(0, n).sort((a, b) => (a.t || "99").localeCompare(b.t || "99")).map(key), total }; };
+  const films = fc.filter((f) => okImg[f.img]).sort((a, b) => (b.img ? 1 : 0) - (a.img ? 1 : 0) || fScore(b) - fScore(a) || fShows(b, todayIso).length - fShows(a, todayIso).length);
+  const all = FILMS.filter((f) => fShows(f, todayIso).length), sh = all.flatMap((f) => fShows(f, todayIso));
   return {
     genel: pickE((e) => !["konser", "tiyatro", "sinema"].includes(e.cat), 8),
     konser: pickE((e) => e.cat === "konser", 8),
     tiyatro: pickE((e) => e.cat === "tiyatro", 8),
-    sinema: { ids: films.slice(0, 8).map((f) => f.id), total: films.length, salon: new Set(sh.map((x) => x.cid)).size, seans: sh.length },
+    sinema: { ids: films.slice(0, 8).map((f) => f.id), total: all.length, salon: new Set(sh.map((x) => x.cid)).size, seans: sh.length },
   };
 }
 function listInPage({ keys, ids }) {
@@ -258,6 +266,9 @@ async function slide(theme, w, h, spec, file) {
   const ok = await page.evaluate(slideInPage, { ...spec, w, h });
   if (!ok) return null;
   await imgsDone(page); await page.waitForTimeout(300);
+  // afişi yüklenmeyen bilet sayfası paylaşılmaz; kapakta da en az bir afiş görünmeli
+  const shown = await page.evaluate(() => document.querySelectorAll("#ig .has-pst").length);
+  if (!shown || (spec.kind === "item" && !(await page.evaluate(() => !!document.querySelector("#ig .ph2.has-pst"))))) { log("afiş yüklenmedi, atlandı:", file); return null; }
   await page.screenshot({ path: join(OUT, file) }); return file;
 }
 async function siteShot(theme, what, label, file) {
@@ -274,7 +285,7 @@ try {
   if (process.env.CHROME_PATH) opt.executablePath = process.env.CHROME_PATH;
   browser = await chromium.launch(opt);
   const probe = await open("gun", 1080, 1350);
-  const S = await probe.evaluate(selectInPage);
+  const S = await probe.evaluate(selectInPage);  // yalnızca afişi yüklenen etkinlikler
   const lists = { genel: await probe.evaluate(listInPage, { keys: S.genel.keys }), konser: await probe.evaluate(listInPage, { keys: S.konser.keys }), tiyatro: await probe.evaluate(listInPage, { keys: S.tiyatro.keys }), sinema: await probe.evaluate(listInPage, { ids: S.sinema.ids }) };
   await probe.close();
   const kicker = `ANKARA · ${fmtDate(today).toLocaleUpperCase("tr")} ${dayName(today).toLocaleUpperCase("tr")}`;
@@ -290,7 +301,8 @@ try {
     const base = { theme: st.theme, kicker, count: st.count }, all = st.sel.ids ? { ids: st.sel.ids } : { keys: st.sel.keys };
     const files = [await slide(st.site, 1080, 1350, { ...base, kind: "cover", ...all }, `${st.id}-0.png`)];
     for (let i = 0; i < ks.length; i++) files.push(await slide(st.site, 1080, 1350, { ...base, kind: "item", ...ks[i], label: `${st.label} · ${i + 1}/${ks.length}` }, `${st.id}-${i + 1}.png`));
-    posts.push({ id: st.id, slot: st.slot, type: "POST", files: files.filter(Boolean), caption: st.cap(), title: st.label });
+    const ff = files.filter(Boolean); if (ff.length < 2) { log(`Instagram: ${st.id} atlandı (afişli sayfa yok)`); continue; }
+    posts.push({ id: st.id, slot: st.slot, type: "POST", files: ff, caption: st.cap(), title: st.label });
     const sc = await slide(st.site, 1080, 1920, { ...base, kind: "cover", ...all }, `${st.id}-hikaye-0.png`);
     if (sc) posts.push({ id: st.id + "-hikaye", slot: plus(st.slot, 1), type: "STORY", file: sc, title: `${st.label} (hikâye kapak)` });
     for (let i = 0; i < Math.min(2, ks.length); i++) { const f = await slide(st.site, 1080, 1920, { ...base, kind: "item", ...ks[i], label: st.label }, `${st.id}-hikaye-${i + 1}.png`); if (f) posts.push({ id: st.id + "-hikaye", slot: plus(st.slot, 2 + i), type: "STORY", file: f, title: `${st.label} (hikâye ${i + 1})` }); }
