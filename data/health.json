@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-12T21:30:22.917Z",
+ "runAt": "2026-11-12T21:40:53.112Z",
  "mode": "refresh",
- "total": 1838,
+ "total": 1836,
  "written": true,
  "sources": {
   "biletix": {
@@ -11,12 +11,12 @@
    "ok": true,
    "status": "calisiyor",
    "count": 97,
-   "prevCount": 103,
+   "prevCount": 98,
    "error": "",
    "notes": [],
-   "seconds": 206,
+   "seconds": 196,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "biletinial": {
    "id": "biletinial",
@@ -24,15 +24,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1412,
-   "prevCount": 1667,
+   "count": 1403,
+   "prevCount": 1665,
    "error": "",
    "notes": [
     "açık veri: 970 seans, 103 detay sayfası"
    ],
    "seconds": 71,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "sanatcepte": {
    "id": "sanatcepte",
@@ -44,9 +44,9 @@
    "prevCount": 264,
    "error": "",
    "notes": [],
-   "seconds": 33,
+   "seconds": 37,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "bubilet": {
    "id": "bubilet",
@@ -58,8 +58,8 @@
    "prevCount": 6,
    "error": "",
    "notes": [],
-   "seconds": 16,
-   "failStreak": 2,
+   "seconds": 14,
+   "failStreak": 3,
    "lastOk": null
   },
   "passo": {
@@ -69,12 +69,12 @@
    "ok": true,
    "status": "calisiyor",
    "count": 4,
-   "prevCount": 36,
+   "prevCount": 35,
    "error": "",
    "notes": [],
-   "seconds": 47,
+   "seconds": 48,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "mobilet": {
    "id": "mobilet",
@@ -87,7 +87,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "iticket": {
@@ -97,12 +97,12 @@
    "ok": true,
    "status": "calisiyor",
    "count": 13,
-   "prevCount": 14,
+   "prevCount": 13,
    "error": "",
    "notes": [],
-   "seconds": 7,
+   "seconds": 4,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "bugece": {
    "id": "bugece",
@@ -115,7 +115,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "tiyatrolar": {
@@ -130,7 +130,7 @@
    "notes": [],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "bilkent": {
    "id": "bilkent",
@@ -142,9 +142,9 @@
    "prevCount": 7,
    "error": "",
    "notes": [],
-   "seconds": 4,
+   "seconds": 5,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "biletino": {
    "id": "biletino",
@@ -157,7 +157,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "dob": {
@@ -172,9 +172,9 @@
    "notes": [
     "açık veri: 40 seans"
    ],
-   "seconds": 25,
+   "seconds": 28,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "cso": {
    "id": "cso",
@@ -187,7 +187,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "abb-tiyatro": {
@@ -201,7 +201,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "abb-kultur": {
@@ -215,7 +215,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "cankaya": {
@@ -229,7 +229,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "yenimahalle": {
@@ -243,7 +243,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "kecioren": {
@@ -257,7 +257,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "etimesgut": {
@@ -270,9 +270,9 @@
    "prevCount": 4,
    "error": "",
    "notes": [],
-   "seconds": 3,
+   "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "mamak": {
    "id": "mamak",
@@ -281,14 +281,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 2,
-   "prevCount": 3,
+   "prevCount": 2,
    "error": "",
    "notes": [
     "açık veri: 6 seans"
    ],
    "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-12T21:30:22.917Z"
+   "lastOk": "2026-11-12T21:40:53.112Z"
   },
   "odtu-kkm": {
    "id": "odtu-kkm",
@@ -301,7 +301,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "cermodern": {
@@ -315,7 +315,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "erimtan": {
@@ -329,7 +329,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": "2026-11-12T16:12:05.123Z"
   },
   "radar": {
@@ -343,7 +343,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "ra": {
@@ -357,7 +357,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   }
  }
