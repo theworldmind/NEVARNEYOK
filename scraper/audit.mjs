@@ -9,12 +9,13 @@ import { ROOT, log, readJSON, writeJSON, writeText, fold, todayIST } from "./lib
 import { fetchText } from "./lib/net.mjs";
 
 const HIST = join(ROOT, "data/coverage.json");
+// Google Haberler robots.txt ile otomatik okumaya kapalı; kullanılmaz. Okunamayan akış raporda not edilir.
 const NEWS = (process.env.AUDIT_FEEDS || [
-  "https://news.google.com/rss/search?q=Ankara+(festival+OR+gala+OR+pr%C3%B6miyer+OR+konser+OR+festivali)+when:4d&hl=tr&gl=TR&ceid=TR:tr",
-  "https://news.google.com/rss/search?q=Ankara+(tiyatro+OR+sergi+OR+g%C3%B6steri+OR+%22sahne+alacak%22)+when:4d&hl=tr&gl=TR&ceid=TR:tr",
-  "https://news.google.com/rss/search?q=vizyona+girecek+filmler+when:7d&hl=tr&gl=TR&ceid=TR:tr",
-  "https://www.aa.com.tr/tr/rss/default?cat=kultur-sanat",
   "https://www.trthaber.com/kultur_sanat_articles.rss",
+  "https://www.aa.com.tr/tr/rss/default?cat=kultur",
+  "https://www.yeniankara.com.tr/rss",
+  "https://www.evrensel.net/rss/kultur-sanat.xml",
+  "https://www.hurriyet.com.tr/rss/kelebek",
 ].join(" ")).split(/\s+/).filter(Boolean);
 
 const median = (a) => { const s = a.filter((x) => Number.isFinite(x)).sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : null; };
@@ -94,9 +95,10 @@ async function newsScan(events) {
     let n = 0;
     for (const it of r.text.split(/<item[\s>]/i).slice(1)) {
       const g = (tag) => ((it.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, "i")) || [])[1] || "").replace(/<!\[CDATA\[|\]\]>/g, "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
-      const title = g("title"), link = g("link"), desc = g("description");
+      const title = g("title"), link = g("link"), when = Date.parse(g("pubDate"));
       if (!title || !EVENT_WORDS.test(title)) continue;
-      if (!/ankara|vizyon|başkent/i.test(title + " " + desc)) continue;
+      if (when && Date.now() - when > 10 * 864e5) continue; // yalnızca son 10 günün haberleri
+      if (!/ankara|başkent|vizyon/i.test(title)) continue;   // başlıkta Ankara geçmeli (vizyon haberleri hariç)
       n++;
       for (const c of candidatesFrom(title)) {
         const key = fold(c); if (seen.has(key)) continue; seen.add(key);
