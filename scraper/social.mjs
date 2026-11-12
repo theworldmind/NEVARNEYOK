@@ -45,11 +45,11 @@ function serve() {
 
 /* ---------- Sayfanın içinde: günün seçimi ---------- */
 // afiş gerçekten yükleniyor mu? (kayıtlı adres bozuk olabilir) — yüklenmeyen etkinlik gönderiye girmez
-async function postersOk(urls) {
+async function selectInPage() {
+  const postersOk = async (urls) => {
   const one = (u) => new Promise((r) => { const im = new Image(); im.referrerPolicy = "no-referrer"; const t = setTimeout(() => r(false), 9000); im.onload = () => { clearTimeout(t); r(im.naturalWidth > 80 && im.naturalHeight > 80); }; im.onerror = () => { clearTimeout(t); r(false); }; im.src = u; });
   const res = await Promise.all(urls.map(one)); return Object.fromEntries(urls.map((u, i) => [u, res[i]]));
-}
-async function selectInPage() {
+};
   const AWAY = /kocaeli|istanbul|izmir|bursa|eski[şs]ehir|konya|antalya|adana|mersin|kayseri|samsun/i;
   const ok = (e) => e.d === todayIso && !["tukendi", "iptal", "ertelendi"].includes(e.status) && !AWAY.test(e.venue || "") && !(e.t && e.t < "09:00");
   const cand = E.filter((e) => ok(e) && e.img), fc = FILMS.filter((f) => f.img && fShows(f, todayIso).length);
