@@ -553,7 +553,7 @@ const filmCount=()=>FILMS.filter(fWeek).length;
 function fBadge(f){const r=f.release||"";if(!r)return"";if(r===todayIso)return"Bugün vizyonda";if(r===tomIso)return"Yarın vizyonda";if(r>todayIso){const q=pd(r);return`${q.getDate()} ${SHORTM[q.getMonth()]} vizyonda`}return(today-pd(r))/864e5<7?"Yeni":""}
 const fMatch=(f,q)=>{const h=fold(f.title+" "+(f.genre||"")+" "+(f.country||""));return fold(q).split(" ").filter(Boolean).every(t=>h.includes(t))};
 const dayLbl=d=>d===todayIso?"Bugün":d===tomIso?"Yarın":(q=>`${GUN[q.getDay()].slice(0,3)} ${q.getDate()}`)(pd(d));
-function fcard(f,day){const[d1,d2]=fCol(f),sh=fShows(f,day,fstate.cin),from=day===todayIso?hmNow():"00:00",nx=sh.filter(x=>x.t>=from),sal=new Set(sh.map(x=>x.cid)).size,b=fBadge(f);
+function fcard(f,day){const[d1,d2]=fCol(f),sh=fShows(f,day,fstate.cin),from=day===todayIso?hmNow():"00:00",nx=sh.filter((x,i,a)=>x.t>=from&&(!i||a[i-1].t!==x.t)),sal=new Set(sh.map(x=>x.cid)).size,b=fBadge(f);
   const w=document.createElement("article");w.className="fc";
   w.innerHTML=`<div class="fc-ph" style="--d1:${d1};--d2:${d2}"><i class="perf l"></i><i class="perf r"></i><svg class="art" viewBox="0 0 120 120" aria-hidden="true"><use href="#a-klaket"/></svg>
     ${b?`<span class="fc-nb${/vizyonda/.test(b)?" up":""}">${b}</span>`:""}${f.dur?`<span class="fc-du">${durTxt(f.dur)}</span>`:""}<span class="fc-g"></span></div>
@@ -624,8 +624,8 @@ function render(sync){
   const cineOn=state.cat==="sinema"&&FILMS.length;document.documentElement.classList.toggle("cine-on",!!cineOn);
   if(!cineOn)cineBlock.was=false;
   if(cineOn){main.append(cineBlock());if(list.length){const h=document.createElement("div");h.className="cine-ev";h.innerHTML="<h2>Film gösterimleri ve festivaller</h2><span>Özel gösterimler, festival seansları ve sinema etkinlikleri</span>";main.append(h)}}
-  else if(FILMS.length&&state.cat==="hepsi"&&state.range!=="fav"){const q=state.q.trim(),fl=q?FILMS.filter(f=>fMatch(f,q)):FILMS.filter(f=>fShows(f,todayIso).length||(f.release>todayIso&&f.release<=iso(addDays(today,7))));
-    if(fl.length&&(q||["hepsi","bugun","yarin","hafta","sonu"].includes(state.range)))main.append(fRail(q?fl:fl.sort((a,b)=>(fBadge(b)?1:0)-(fBadge(a)?1:0)),q?`Filmlerde: ${fl.length} sonuç`:`Bugün vizyonda · ${fl.length} film`))}
+  else if(FILMS.length&&state.cat==="hepsi"&&state.range!=="fav"){const q=state.q.trim(),fl=q?FILMS.filter(f=>fMatch(f,q)):FILMS.filter(f=>fShows(f,todayIso).length||f.release===tomIso);
+    if(fl.length&&(q||["hepsi","bugun","yarin","hafta","sonu"].includes(state.range)))main.append(fRail(q?fl:fl.sort((a,b)=>fShows(b,todayIso).length-fShows(a,todayIso).length),q?`Filmlerde: ${fl.length} sonuç`:`Bugün vizyonda · ${fl.filter(f=>fShows(f,todayIso).length).length} film`))}
   if(!list.length&&cineOn){}else if(!list.length)main.insertAdjacentHTML("beforeend",`<p class="empty">${NVD.failed?"Etkinlik listesi şu an yüklenemedi. İnternet bağlantını kontrol edip sayfayı yenile.":state.range==="fav"&&!favs.size?"Henüz kaydettiğiniz bilet yok. Bir biletteki ♡ Kaydet düğmesine dokunduğunuzda burada görünür.":"Bu filtrelere uyan etkinlik yok. Aramayı silin ya da başka bir zaman aralığı seçin."}</p>`);if(!list.length&&state.q&&!cineOn)suggest(main);
   let curP=null,curD=null,box=null,sec=null,cnt=0,cntEl=null;
   const flat=state.sort!=="date";
