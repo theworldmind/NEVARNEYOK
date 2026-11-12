@@ -156,14 +156,14 @@ function composeInPage(o) {
     hd.insertAdjacentHTML("beforeend", `<div style="display:flex;flex-direction:column;align-items:${story ? "center" : "flex-end"};gap:10px"><div class="kick">${o.kicker}</div><div class="ttl" style="font-size:${story ? 66 : 58}px"><b></b><span></span></div></div>`);
     hd.querySelector(".ttl b").textContent = o.h1; hd.querySelector(".ttl span").textContent = o.hl; box.append(hd);
     const g = document.createElement("div"); g.className = "grid";
-    const cw = story ? 280 : 292, gap = story ? 26 : 28, gw = cw * 3 + gap * 2;
+    const cw = story ? 280 : 284, gap = story ? 26 : 30, gw = cw * 3 + gap * 2;
     Object.assign(g.style, { left: (W - gw) / 2 + "px", width: gw + "px", top: (story ? 520 : 168) + "px", gap: `${story ? 24 : 18}px ${gap}px`, gridTemplateColumns: `repeat(3,${cw}px)` });
     for (const e of evs) { const c = document.createElement("div"); c.className = "gc"; c.style.setProperty("--c", `var(--c-${e.cat})`); const dp = DEEP[e.cat];
       c.innerHTML = `<div class="gph" style="--d1:${dp[0]};--d2:${dp[1]}">${tposHTML(e)}${pstHTML(e.img, e.imgBy)}</div><div class="gt"><i>${e.t || "Gün boyu"}</i><em>${escA(CATS[e.cat] || "")}</em></div><div class="gn"></div><div class="gv"></div>`;
       c.querySelector(".gn").textContent = e.title; c.querySelector(".gv").textContent = e.venue; g.append(c); }
     box.append(g);
     const left = o.total - evs.length;
-    foot(story ? 1592 : 1268, left > 0 ? `+${left} ETKİNLİK DAHA` : "", story);
+    foot(story ? 1600 : 1276, left > 0 ? `+${left} ETKİNLİK DAHA` : "", story);
   } else {
     const x = o.spot, f = x.kind === "film" ? FILMS.find((y) => y.id === x.film) : null, e = f ? null : ev(x.key);
     const cat = f ? "sinema" : e.cat, dp = f ? fCol(f) : DEEP[cat];
@@ -222,8 +222,10 @@ async function open(theme, w, h) {
   page.on("pageerror", (e) => log("sayfa hatası:", e.message));
   await page.addInitScript((t) => { try { localStorage.setItem("nvny-tema", t); localStorage.setItem("nvny-seen", "1"); } catch {} }, theme);
   await page.goto(url, { waitUntil: "networkidle", timeout: 45000 }).catch(() => {});
-  await page.mouse.click(w / 2, h / 2).catch(() => {});
+  // giriş ekranı tıklamadan geçilir (tıklama sayfadaki bir menüyü açabiliyor)
+  await page.evaluate(() => { try { leaveSplash(); } catch {} }).catch(() => {});
   await page.waitForTimeout(2600);
+  await page.evaluate(() => { document.activeElement?.blur?.(); document.querySelectorAll("select").forEach((s) => s.blur()); }).catch(() => {});
   await page.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
   return page;
 }
