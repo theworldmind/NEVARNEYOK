@@ -76,7 +76,9 @@ export async function main() {
   const notes = [];
   const get = async (path) => { const r = await fetchText(BASE + path, { retries: 1 }); if (r.status !== 200) notes.push(`${path}: ${r.robots ? "robots.txt izin vermiyor" : r.status || r.error}`); return r.status === 200 ? r.text : ""; };
   const now = parseList(await get("/filmler/vizyondaki"));
-  const coming = parseList(await get("/filmler/pekyakinda")).filter((f) => f.release && f.release <= soon);
+  const comingAll = parseList(await get("/filmler/pekyakinda"));
+  const coming = comingAll.filter((f) => f.release && f.release <= soon);
+  log(`Filmler: vizyonda ${now.length}, yakında ${comingAll.length} (7 gün içinde ${coming.length}; tarihsiz ${comingAll.filter((f) => !f.release).length})`);
   const seen = new Set(), list = [];
   for (const f of [...now, ...coming]) if (!seen.has(f.id)) { seen.add(f.id); list.push(f); }
   const cinemas = {}, films = [];
