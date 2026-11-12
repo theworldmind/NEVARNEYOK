@@ -71,7 +71,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
       links.forEach((u) => detail.add(u));
       // JSON'dan gelen bağlantılar da detay adayıdır
       js.forEach((e) => e.url && src.link?.test(e.url) && detail.add(e.url));
-      notes.push(`${listing.replace(/^https?:\/\//, "")}: ${links.length} bağlantı, ${ld.length} yapısal, ${js.length} JSON kaydı${src.parseList ? `, ${listed.length} takvim satırı` : ""}, durum ${page.status}`);
+      notes.push(`${listing.replace(/^https?:\/\//, "")}: ${links.length} bağlantı, ${ld.length} yapısal, ${js.length} JSON kaydı${src.parseList ? `, ${listed.length} takvim satırı` : ""}, durum ${page.status}${(src.loadMore || []).length && page.clicks >= 8 ? ", daha fazla düğmesi sınıra ulaştı (liste kesilmiş olabilir)" : ""}`);
       if (debug) {
         const slug = listing.replace(/^https?:\/\//, "").replace(/[^a-z0-9]+/gi, "_").slice(0, 80);
         await writeText(join(DEBUG, src.id, slug + ".html"), page.html.slice(0, 6e5));

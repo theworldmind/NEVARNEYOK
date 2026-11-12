@@ -5,8 +5,12 @@ on:
   workflow_dispatch:
     inputs:
       urls:
-        description: "Boşlukla ayrılmış adresler"
-        required: true
+        description: "Boşlukla ayrılmış adresler (boş bırakılabilir)"
+        required: false
+      denetim:
+        description: "Kapsam denetimini de çalıştır (yalnızca günlüğe yazar, depoya kaydetmez)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -31,4 +35,8 @@ jobs:
         working-directory: scraper
         env:
           URLS: ${{ github.event.inputs.urls }}
-        run: node probe.mjs $URLS
+        run: '[ -z "$URLS" ] || node probe.mjs $URLS'
+      - name: Kapsam denetimi (deneme)
+        if: github.event.inputs.denetim == 'true'
+        working-directory: scraper
+        run: node audit.mjs && cat out/coverage.md

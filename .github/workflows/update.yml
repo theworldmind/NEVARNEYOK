@@ -61,6 +61,22 @@ jobs:
         continue-on-error: true   # tarama çökse bile dünkü veriyle site yayında kalır
         run: node run.mjs $MODE_FLAG $ONLY_FLAG
 
+      - name: Kapsam denetimi (neyi kaçırıyoruz?)
+        if: env.MODE_FLAG == '' && env.ONLY_FLAG == ''
+        working-directory: scraper
+        continue-on-error: true
+        run: node audit.mjs
+
+      - name: Uzun süredir çalışmayan kaynaklara otomatik keşif
+        if: env.MODE_FLAG == '' && env.ONLY_FLAG == '' && hashFiles('scraper/out/probe-urls.txt') != ''
+        working-directory: scraper
+        continue-on-error: true
+        run: |
+          URLS="$(cat out/probe-urls.txt)"
+          [ -z "$URLS" ] && exit 0
+          timeout 600 node probe.mjs $URLS > out/probe.txt 2>&1 || true
+          { echo; echo "<details><summary>Keşif çıktısı</summary>"; echo; echo '```'; head -c 40000 out/probe.txt; echo '```'; echo "</details>"; } >> out/coverage.md
+
       - name: Google sayfalarını üret
         working-directory: scraper
         run: node build-pages.mjs
@@ -132,10 +148,25 @@ jobs:
             gh issue close "$NUM" --comment "Bütün kaynaklar yeniden çalışıyor. ✅"
           fi
 
+      - name: Kapsam raporu (şüpheli boşluk varsa GitHub'da konu açar/günceller)
+        if: always() && env.MODE_FLAG == '' && env.ONLY_FLAG == '' && hashFiles('scraper/out/coverage.md') != ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          N=$(cat scraper/out/coverage-count.txt 2>/dev/null || echo 0)
+          NUM=$(gh issue list --state open --search "Kapsam raporu in:title" --json number --jq '.[0].number' || true)
+          if [ "$N" -gt 0 ]; then
+            if [ -n "$NUM" ]; then gh issue edit "$NUM" --body-file scraper/out/coverage.md && gh issue comment "$NUM" --body "$(date '+%d.%m.%Y') taraması: $N bulgu. Rapor güncellendi."
+            else gh issue create --title "Kapsam raporu" --body-file scraper/out/coverage.md; fi
+          elif [ -n "$NUM" ]; then
+            gh issue close "$NUM" --comment "Şüpheli boşluk kalmadı. ✅"
+          fi
+
       - name: Yayın klasörünü hazırla
         run: |
           mkdir -p _site
-          rsync -a --exclude '.git' --exclude '.github' --exclude 'scraper' --exclude '_site' --exclude 'README.md' --exclude 'CLAUDE.md' ./ _site/
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'scraper' --exclude '_site' --exclude 'README.md' --exclude 'CLAUDE.md' --exclude 'data/coverage.json' ./ _site/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

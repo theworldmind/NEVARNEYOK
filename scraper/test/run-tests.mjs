@@ -192,6 +192,21 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     const v = r.raws.filter((x) => x.title === "Vizyon Filmi"); assert.deepEqual(v.map((x) => x.d + " " + x.t), ["2027-01-10 11:00", "2027-01-11 12:00"]); assert.equal(v[0].venue, "Ankara sinemaları");
   });
 }
+{
+  const A = await import("../audit.mjs");
+  t("kapsam denetimi: haber başlığından ad çıkarır, bizde olanı tanır", () => {
+    assert.deepEqual(A.candidatesFrom("37. Ankara Film Festivali başladı - Evrensel"), ["37. Ankara Film Festivali"]);
+    assert.ok(A.candidatesFrom("Zuhal Olcay “Senaryo Dışı” panelinde - AA").includes("Senaryo Dışı"));
+    const ev = [{ title: "Uyuyan Kadın", genre: "Film festivali", venue: "Büyülü Fener Kızılay Sineması" }];
+    assert.ok(A.known("37. Ankara Film Festivali", ev)); assert.ok(!A.known("Ankara Caz Festivali", ev));
+  });
+  t("kapsam denetimi: geçmişe göre düşüş, boş gün ve sessiz mekân", () => {
+    const mk = (at, n, v) => ({ at, total: n, bySource: { a: n }, byCat: { tiyatro: n }, byDay: { 1: n, 2: n }, venues: v ? { "Oda Tiyatrosu": 4 } : {}, filmNow: 20 });
+    const hist = [mk("2027-01-01", 100, 1), mk("2027-01-02", 100, 1), mk("2027-01-03", 100, 1)];
+    const g = A.findGaps(mk("2027-01-04", 40, 0), hist, { sources: { a: { id: "a", name: "A", ok: true, notes: ["x: 151 bağlantı, durum 200, daha fazla düğmesi sınıra ulaştı (liste kesilmiş olabilir)"] } } });
+    const k = new Set(g.map((x) => x.k)); for (const want of ["kaynak", "kategori", "gun", "mekan", "kesik"]) assert.ok(k.has(want), want);
+  });
+}
 t("robots.txt: yasaklanan sayfaya girilmez, en uzun kural kazanır", () => {
   const R = parseRobots("User-agent: *\nDisallow: /hesap\nAllow: /hesap/acik\nDisallow: /*?sort=\nCrawl-delay: 2\n\nUser-agent: NeVarNeYokBot\nDisallow: /ozel");
   const ok = (p) => { let b = null; for (const r of R.rules) if (ruleMatch(p, r) && (!b || r.path.length > b.path.length || (r.path.length === b.path.length && r.allow))) b = r; return !b || b.allow; };
