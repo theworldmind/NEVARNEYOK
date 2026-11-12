@@ -47,8 +47,10 @@ export function bilkent(html, url) {
     const prices = groups.filter((g) => !seats.length || open.has(String(g.id))).map((g) => parseFloat(String(g.price).replace(",", "."))).filter((p) => p > 0);
     if (prices.length) price = Math.min(...prices);
     else if (seats.length && groups.length) soldOut = true;
+    const free = {}; for (const st of seats) if (st.unavailable === "N" && st.hidden !== "Y" && st.closed !== "Y") free[st.price_group_id] = (free[st.price_group_id] || 0) + 1;
+    var cats = groups.map((g) => [String(g.name || "").replace(/^Category\s*/i, "Kategori ").trim(), parseFloat(String(g.price).replace(",", ".")), seats.length ? (free[g.id] ? 1 : 0) : 1, seats.length ? free[g.id] || 0 : undefined]).filter((c) => c[0] && c[1] > 0).sort((a, b) => a[1] - b[1]);
   } catch { /* fiyat okunamadı → fiyat gösterilmez */ }
-  return [{ title, d: when.d, t: when.t || "", venue, city: "Ankara", url, price, pc: price ? 3 : 0, via: "site",
+  return [{ title, d: when.d, t: when.t || "", venue, city: "Ankara", url, price, pc: price ? 3 : 0, via: "site", ...(typeof cats !== "undefined" && cats.length > 1 ? { cats } : {}),
     status: soldOut ? "tukendi" : "", catHint: "konser" }];
 }
 

@@ -27,7 +27,7 @@ export function rawToEvent(r, src) {
     // Aynı etkinliğin başka kaynakta düzgün yazılmış adı varsa birleştirirken o kullanılır.
     ...(isCaps(r.title) ? { _caps: true } : {}),
     cat: src.forceCat || guessCat({ title, desc: r.desc, url: r.url, catHint: r.catHint || src.defaultCat || "", genre: r.genre }),
-    tickets: [{ site, url: tUrl, ...(r.price ? { price: r.price, pc: r.pc || 1 } : {}), src: src.id }],
+    tickets: [{ site, url: tUrl, ...(r.price ? { price: r.price, pc: r.pc || 1 } : {}), ...(r.price && r.cats?.length > 1 ? { cats: r.cats.slice(0, 8) } : {}), src: src.id }],
   };
   if (r.desc) { const f = factsFrom(r.desc); if (f.dur && !r.dur) ev.dur = f.dur; if (f.age && !r.age) ev.age = f.age; } // metnin kendisi saklanmaz
   if (r.status) ev.status = r.status;
@@ -45,13 +45,13 @@ function addTicket(ev, tk) {
   if (!same) { ev.tickets.push(tk); return; }
   // eski kayıtla yeni kayıt çakışırsa: en son görülen bilgi kazanır (eski fiyat asla yeniyi ezmez)
   if (tk.seen && same.seen && tk.seen !== same.seen) {
-    if (tk.seen > same.seen) Object.assign(same, { url: tk.url, price: tk.price, pc: tk.pc, seen: tk.seen, src: tk.src });
-    if (!same.price) delete same.price; if (!same.pc) delete same.pc;
+    if (tk.seen > same.seen) Object.assign(same, { url: tk.url, price: tk.price, pc: tk.pc, cats: tk.cats, seen: tk.seen, src: tk.src });
+    if (!same.price) delete same.price; if (!same.pc) delete same.pc; if (!same.cats || !same.price) delete same.cats;
     return;
   }
   // aynı siteden iki fiyat: önce güvenilirlik (yapısal veri > arka plan JSON > metin), eşitse küçük olan
   const a = tk.pc || 0, b = same.pc || 0;
-  if (tk.price && (!same.price || a > b || (a === b && tk.price < same.price))) { same.price = tk.price; same.pc = tk.pc; same.url = tk.url; }
+  if (tk.price && (!same.price || a > b || (a === b && tk.price < same.price))) { same.price = tk.price; same.pc = tk.pc; same.url = tk.url; if (tk.cats) same.cats = tk.cats; else delete same.cats; }
 }
 const isCaps = (t) => { const l = String(t || "").replace(/[^A-Za-zÇĞİÖŞÜçğıöşü]/g, ""); return l.length > 3 && l === l.toLocaleUpperCase("tr"); };
 function absorb(into, ev) {

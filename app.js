@@ -425,6 +425,8 @@ const goto=(x,i)=>{const f=FRAG[x.site];return f?x.url+"#:~:text="+encodeURIComp
 const SHORTM=["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
 function otherDates(e){const n=normT(e.title.split(" · ")[0]);return E.filter(o=>o!==e&&o.venue===e.venue&&normT(o.title.split(" · ")[0])===n&&pd(o.d)>=today).map(o=>o.d).filter((v,i,a)=>a.indexOf(v)===i).sort().slice(0,8)}
 /* Fiyat karşılaştırması: yalnızca toplayıcının son 36 saatte doğruladığı fiyatlar (fiyat kuralı); her site için en uygun kategori */
+/* Fiyat seçenekleri: sitenin kendi sayfasında adı ve fiyatı açıkça yazan kategoriler (fiyatla aynı tarama, aynı tazelik kuralı) */
+function catsHTML(x){if(!x.price||!Array.isArray(x.cats)||x.cats.length<2)return"";return`<span class="tcats" aria-label="Fiyat seçenekleri">${x.cats.map(([n,p,ok,fr])=>`<span class="tc${ok?"":" so"}"><i>${escA(n)}</i><b>${fmtTL(p)}</b>${!ok?"<small>tükendi</small>":fr?`<small>${fr} boş koltuk</small>`:""}</span>`).join("")}</span>`}
 function pcmpHTML(e){const P=e.tickets.filter(x=>x.price).sort((a,b)=>a.price-b.price);if(P.length<2)return"";const lo=P[0].price,hi=P[P.length-1].price;
   return`<div class="pcmp"><div class="pc-h"><b>Fiyat karşılaştırması</b><span>${P.length} sitede doğrulanmış fiyat${hi>lo?` · fark ${fmtTL(hi-lo)}`:" · hepsi aynı"}</span></div>${P.map(x=>`<div class="pc-r${x.price===lo?" best":""}"><span class="pc-s">${escA(x.site)}</span><i class="pc-b"><i style="width:${Math.max(8,Math.round(x.price/hi*100))}%"></i></i><b>${fmtTL(x.price)}</b><small>${x.price===lo?"en düşük":"+"+fmtTL(x.price-lo)}</small></div>`).join("")}<p class="pc-n">Her sitedeki en uygun kategori · kontrol: ${agoTxt(P[0].checked)}</p></div>`}
 function priceLine(e,st){
@@ -495,7 +497,7 @@ function ticket(e){
        <p class="desc"></p>
        ${info.length?`<dl class="info">${info.map(()=>`<div><dt></dt><dd></dd></div>`).join("")}</dl>`:""}
        ${st?"":pcmpHTML(e)}<div class="tixes">${e.tickets.map((x,i)=>`<div class="tix${i?" alt":""}"><div class="tl"><span class="ts">${x.site}${i===0&&e.tickets.filter(y=>y.price).length>1&&x.price?" · en uygun":""}</span>${st&&!i?`<span class="tp">${st}</span>`:x.price?`<span class="tp">${fmtTL(x.price)}<small class="den">'den</small></span><span class="te">${agoTxt(x.checked)} kontrol edildi</span>`:`<span class="tp nop">Fiyat sitede</span>`}</div>
-          <div class="tb"><a class="b-buy" href="${goto(x,0)}" target="_blank" rel="noopener">${st&&!i?"Seanslara bak":"Bilet al"} ↗</a><a class="b-view" href="${goto(x,1)}" target="_blank" rel="noopener">Etkinliği görüntüle</a></div></div>`).join("")}</div>
+          <div class="tb"><a class="b-buy" href="${goto(x,0)}" target="_blank" rel="noopener">${st&&!i?"Seanslara bak":"Bilet al"} ↗</a><a class="b-view" href="${goto(x,1)}" target="_blank" rel="noopener">Etkinliği görüntüle</a></div>${st&&!i?"":catsHTML(x)}</div>`).join("")}</div>
        <div class="foot"><span class="pnote"></span><button class="fav" type="button" aria-pressed="${fav}">${fav?"♥ Kaydedildi":"♡ Kaydet"}</button></div></div></div>
    <div class="stub">${wxHTML(e)}</div></article>`;
   {const h=w.querySelector("h3");h.textContent=e.title;h.tabIndex=0;h.setAttribute("role","button");h.title="Ayrıntılar";h.onclick=()=>openDetail(e);h.onkeydown=ev=>{if(ev.key==="Enter")openDetail(e)};hl(h,state.q)}w.querySelectorAll(".v").forEach(v=>v.textContent=e.venue);

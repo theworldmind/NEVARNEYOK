@@ -30,7 +30,10 @@ export function snapshot(events, health, today, filmsData) {
   // vizyondaki filmler: önümüzdeki 7 günde Ankara'da seansı olan film sayısı (data/films.json)
   const end7 = addDays(today, 6);
   const films = (filmsData?.films || []).filter((f) => Object.keys(f.s || {}).some((d) => d >= today && d <= end7)).length;
-  return { at: today, total: events.length, bySource, byCat, byDay, venues, films };
+  // afişi olmayan yaklaşan etkinlikler (14 gün), kaynağa göre — kullanıcı uyarısı 13.11.2026: "önemli etkinliklerde afiş olsun"
+  const noImg = {}, noImgEx = {};
+  for (const e of events) if (e.d >= today && e.d <= end14 && !e.img) { const s = (e.tickets || [])[0]?.site || "?"; noImg[s] = (noImg[s] || 0) + 1; (noImgEx[s] ||= []).length < 3 && noImgEx[s].push(e.title); }
+  return { at: today, total: events.length, bySource, byCat, byDay, venues, films, noImg, noImgEx };
 }
 
 export function findGaps(cur, hist, health) {
@@ -67,6 +70,8 @@ export function findGaps(cur, hist, health) {
   // f) sinema: vizyondaki filmler (films.mjs)
   const mf = median(H.map((h) => h.films).filter((x) => x != null));
   if (cur.films != null && (cur.films < 8 || (mf >= 10 && cur.films < mf * 0.6))) out.push({ w: 3, k: "sinema", t: `Ankara sinemalarında önümüzdeki 7 gün için yalnızca ${cur.films} filmin seansı var${mf ? ` (olağanı ${mf})` : ""}; film toplayıcısına bakılmalı.` });
+  // g) afişsiz etkinlikler: her kaynak için 3'ten fazlaysa raporlanır (çözüm: kaynağın etkinlik sayfasındaki og:image, aynı adlı kayıt)
+  for (const [site, n] of Object.entries(cur.noImg || {})) if (n > 3) out.push({ w: 2, k: "afis", t: `**${site}**: önümüzdeki 14 günde ${n} etkinliğin afişi yok (ör. ${(cur.noImgEx?.[site] || []).join(", ")}).` });
   return out.sort((a, b) => b.w - a.w);
 }
 

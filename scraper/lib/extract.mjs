@@ -81,7 +81,9 @@ function offersOf(o) {
     if (!url && x.url) url = x.url;
   }
   const pick = onSale.length ? onSale : soldOut ? all : [];
-  return { price: pick.length ? Math.min(...pick) : null, soldOut: list.length > 0 && soldOut, url, free };
+  // fiyat seçenekleri: sitenin kendi yapısal verisinde adı ve fiyatı olan kategoriler [ad, fiyat, satışta 1/0]
+  const cats = list.filter((x) => x["@type"] !== "AggregateOffer").map((x) => [clean(str(x.name) || str(x.category)), parsePrice(x.price), /SoldOut|OutOfStock|Discontinued/i.test(String(x.availability || "")) ? 0 : 1]).filter((c) => c[0] && c[1]);
+  return { price: pick.length ? Math.min(...pick) : null, soldOut: list.length > 0 && soldOut, url, free, cats: cats.length > 1 ? cats.sort((a, b) => a[1] - b[1]) : null };
 }
 export function eventsFromLd(html, pageUrl, cfg = {}) {
   const nodes = flatten(jsonLdBlocks(html)).filter(isEventNode);
@@ -98,7 +100,7 @@ export function eventsFromLd(html, pageUrl, cfg = {}) {
       title: clean(str(n.name)),
       d: when.d, t: when.t,
       venue: pl.venue, address: pl.address, geo: pl.geo,
-      price: of.price, free: of.free,
+      price: of.price, free: of.free, ...(of.cats ? { cats: of.cats } : {}),
       status: /Cancel/i.test(st) ? "iptal" : /Postpon|Reschedul/i.test(st) ? "ertelendi" : of.soldOut ? "tukendi" : "",
       desc: clean(stripTags(str(n.description))).slice(0, 400),
       image: img ? absUrl(img, pageUrl) : "",

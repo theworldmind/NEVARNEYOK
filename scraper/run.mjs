@@ -121,12 +121,13 @@ const sourcesMeta = SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, 
   log(`Afiş: ${events.filter((e) => e.img).length}/${events.length} etkinlikte (${n} tanesi aynı etkinliğin başka kaydından)`); }
 // Hâlâ afişi olmayan yaklaşan etkinlik: etkinliğin KENDİ sayfasındaki paylaşım görseli (og:image) okunur; yalnızca adresi tutulur.
 // Bot korumalı sitelere girilmez, robots.txt'e uyulur (fetchText). Görseli olmayan sayfa 7 gün yeniden denenmez (imgTried).
-if (MODE === "full") {
+// Tam taramada 220, tazelemede 80 sayfa (yeni eklenen afişsiz etkinlikler gün içinde de tamamlansın).
+{
   const BOT = /bubilet|passo|biletino|mobilet/i, today = todayIST(), week = Date.now() - 7 * 864e5;
   const need = events.filter((e) => !e.img && e.d >= today && !(e.imgTried && Date.parse(e.imgTried) > week));
   const byUrl = new Map();
   for (const e of need) { const t = (e.tickets || []).find((x) => x.url && !BOT.test(x.url) && !BOT.test(x.site || "")); if (t) (byUrl.get(t.url) || byUrl.set(t.url, { site: t.site, evs: [] }).get(t.url)).evs.push(e); }
-  const urls = [...byUrl.keys()].slice(0, 220); let got = 0;
+  const urls = [...byUrl.keys()].slice(0, MODE === "full" ? 220 : 80); let got = 0;
   const OG = (h) => h && (h.match(/<meta[^>]+(?:property|name)=["'](?:og:image|twitter:image)["'][^>]+content=["']([^"']+)["']/i) || h.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["'](?:og:image|twitter:image)["']/i));
   await pool(urls, 4, async (u) => {
     const r = await withTimeout(fetchText(u, { retries: 0 }), 20000).catch(() => null), m = OG(r?.text), it = byUrl.get(u);

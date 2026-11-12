@@ -205,6 +205,8 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     const hist = [mk("2027-01-01", 100, 1), mk("2027-01-02", 100, 1), mk("2027-01-03", 100, 1)];
     const g = A.findGaps(mk("2027-01-04", 40, 0), hist, { sources: { a: { id: "a", name: "A", ok: true, notes: ["x: 151 bağlantı, durum 200, daha fazla düğmesi sınıra ulaştı (liste kesilmiş olabilir)"] } } });
     const k = new Set(g.map((x) => x.k)); for (const want of ["kaynak", "kategori", "gun", "mekan", "kesik"]) assert.ok(k.has(want), want);
+    const s2 = A.snapshot([...Array(5)].map((_, i) => ({ d: "2027-01-05", title: "Kısa film " + i, cat: "sinema", tickets: [{ site: "Biletinial" }] })), { sources: {} }, "2027-01-04", null);
+    assert.ok(A.findGaps(s2, [], { sources: {} }).some((x) => x.k === "afis" && /Biletinial/.test(x.t)), "afişsiz etkinlikler raporlanır");
   });
 }
 {
@@ -239,6 +241,16 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     assert.deepEqual(B.parseWeekend(`<table id="WeeklyMovieData"><thead><tr><th>#</th><th>Film Adı</th><th>Hafta Sonu Seyirci</th></tr></thead><tbody><tr><td>1</td><td><a href="/film/catli-2--2018418">Çatlı 2</a></td><td>120.345</td></tr></tbody></table>`), [{ title: "Çatlı 2", slug: "catli-2--2018418", rank: 1, aud: 120345 }]);
   });
 }
+t("fiyat seçenekleri: yapısal verideki adlı kategoriler ve Bilkent fiyat grupları", async () => {
+  const X = await import("../lib/extract.mjs");
+  const ld = X.eventsFromLd(`<script type="application/ld+json">{"@type":"MusicEvent","name":"Konser","startDate":"2027-01-10T21:00:00+03:00","location":{"name":"Salon"},"offers":[{"@type":"Offer","name":"Tam","price":"500","availability":"InStock"},{"@type":"Offer","name":"Öğrenci","price":"300","availability":"InStock"},{"@type":"Offer","name":"Erken","price":"250","availability":"SoldOut"}]}</script>`, "https://x.com/e", {});
+  assert.equal(ld[0].price, 300); assert.deepEqual(ld[0].cats, [["Erken", 250, 0], ["Öğrenci", 300, 1], ["Tam", 500, 1]]);
+  const P = await import("../sources/parsers.mjs");
+  const b = P.bilkent(`<h1>Mahler</h1><div class="time">14 Kasım 2027 20:00</div><script>priceGroups: [{"id":1,"price":"840","name":"Category 1"},{"id":2,"price":"450","name":"Category 2"}],
+seats: [{"price_group_id":"1","unavailable":"N"},{"price_group_id":"1","unavailable":"N"},{"price_group_id":"2","unavailable":"Y"}],
+</script>`, "https://ticket.bilkent.edu.tr/bilet/1");
+  assert.equal(b[0].price, 840); assert.deepEqual(b[0].cats, [["Kategori 2", 450, 0, 0], ["Kategori 1", 840, 1, 2]]);
+});
 t("robots.txt: yasaklanan sayfaya girilmez, en uzun kural kazanır", () => {
   const R = parseRobots("User-agent: *\nDisallow: /hesap\nAllow: /hesap/acik\nDisallow: /*?sort=\nCrawl-delay: 2\n\nUser-agent: NeVarNeYokBot\nDisallow: /ozel");
   const ok = (p) => { let b = null; for (const r of R.rules) if (ruleMatch(p, r) && (!b || r.path.length > b.path.length || (r.path.length === b.path.length && r.allow))) b = r; return !b || b.allow; };
