@@ -46,6 +46,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
 
   // Kurumun kendi sitesinin kullandığı açık veri uç noktası (anahtar gerekmez): kaynak kendi toplayıcısını verir.
   // Ucuzdur ve satış durumunu da taşır; bu yüzden tazeleme turunda da çalışır.
+  const listImages = {}; // liste verisinden gelen afiş adresleri: detay sayfasında afiş yoksa kullanılır
   if (src.collect) {
     try {
       // Dizi ya da { raws, detail } döner: detail, liste verisi yetmeyen (birden çok mekânlı) kayıtların detay sayfalarıdır
@@ -53,6 +54,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
       const got = Array.isArray(res) ? res : res.raws || [];
       raws.push(...got);
       for (const u of res.detail || []) if (!src.link || src.link.test(u)) detail.add(u);
+      Object.assign(listImages, res.images || {});
       notes.push(`açık veri: ${got.length} seans${res.detail?.length ? `, ${res.detail.length} detay sayfası` : ""}${res.note ? `, ${res.note}` : ""}`);
     } catch (e) { notes.push(`açık veri okunamadı: ${e.message}`); }
   }
@@ -105,6 +107,18 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
     for (const e of evs) { if (!e.url || e.url === page.url) e.url = u; raws.push(e); }
   });
 
+  for (const r of raws) if (!r.image && r.url && listImages[r.url]) r.image = listImages[r.url];
+  // Takvim sayfasından okunan kaynaklarda afiş, etkinliğin kendi sayfasındaki paylaşım görselidir (og:image); yalnızca adres alınır
+  if (src.posterFromPage && mode === "full") {
+    const urls = [...new Set(raws.filter((r) => !r.image && r.url && r.d >= today).map((r) => r.url))].slice(0, 40), got = {};
+    for (const u of urls) {
+      const r = await fetchText(u, { retries: 0 });
+      const m = r.text && (r.text.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) || r.text.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i));
+      if (m) got[u] = new URL(m[1].replace(/&amp;/g, "&"), u).href;
+    }
+    for (const r of raws) if (!r.image && got[r.url]) r.image = got[r.url];
+    notes.push(`afiş: ${Object.keys(got).length}/${urls.length} etkinlik sayfasından`);
+  }
   // filtre: Ankara + gelecek tarih + tekrarsız
   const seen = new Set();
   const out = raws.filter((r) => {

@@ -100,7 +100,7 @@ export default [
     listings: ["https://www.cermodern.org/etkinlikler"], parseList: P.cermodernList, link: null,
     render: true, city: "ankara", defaultVenue: "CerModern", defaultCat: "atolye" },
   { id: "erimtan", name: "Erimtan Müzesi", kind: "mekan", home: "https://erimtanmuseum.org",
-    listings: [monthUrl("https://erimtanmuseum.org/tr/takvim", 0), monthUrl("https://erimtanmuseum.org/tr/takvim", 1)], parseList: P.erimtanList, link: null,
+    listings: [monthUrl("https://erimtanmuseum.org/tr/takvim", 0), monthUrl("https://erimtanmuseum.org/tr/takvim", 1)], parseList: P.erimtanList, link: null, posterFromPage: true,
     render: true, city: "ankara", defaultVenue: "Erimtan Arkeoloji ve Sanat Müzesi", defaultCat: "atolye" },
   { id: "ankara-caz", enabled: false, /* alan adı artık çözülmüyor (06.11.2026) */ name: "Ankara Caz Festivali", kind: "mekan", home: "https://www.ankarajazzfestival.com",
     listings: ["https://www.ankarajazzfestival.com/program"],
