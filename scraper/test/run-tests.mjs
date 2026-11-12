@@ -224,6 +224,18 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     assert.deepEqual(r.days["2026-11-13"][1119], [[["09:15"], "3D Altyazılı"]]);
   });
 }
+{
+  const B = await import("../buzz.mjs");
+  t("ilgi takibi: RSS ve Atom okunur, adı geçen etkinlik ve film bulunur, genel ad Ankara'sız eşleşmez", () => {
+    const it = [...B.parseFeed(`<rss><item><title>Teoman Ankara konseri için geri sayım</title><link>https://x.com/a</link><pubDate>Thu, 12 Nov 2026 10:00:00 +0300</pubDate><description><![CDATA[Teoman CerModern'de]]></description></item><item><title>Hamlet İstanbul'da sahnelendi</title><link>https://x.com/c</link></item><item><title>“Ganimet” 15 Ocak'ta vizyonda</title><link>https://x.com/b</link></item></rss>`).map((x) => ({ ...x, src: "trt", kind: "haber" })),
+      ...B.parseFeed(`<feed><entry><title type="text">Çakallarla Dans 8 gişede zirvede</title><link rel="alternate" href="https://bo.com/h/1"/><updated>2026-11-12T10:00:00+03:00</updated></entry></feed>`).map((x) => ({ ...x, src: "boxoffice", kind: "sinema" }))];
+    assert.equal(it[3].link, "https://bo.com/h/1"); assert.equal(it[0].date, "2026-11-12");
+    const r = B.matchAll(it, [{ title: "Teoman", venue: "CerModern", cat: "konser" }, { title: "Hamlet", venue: "DOB", cat: "tiyatro" }], [{ title: "Ganimet" }, { title: "Çakallarla Dans 8: Stuttgart Çıkarması" }]);
+    assert.deepEqual(Object.keys(r.ev), ["teoman"]); assert.deepEqual(Object.keys(r.fm).sort(), ["cakallarladans8stuttgartcikarmasi", "ganimet"]);
+    assert.ok(!JSON.stringify(r).includes("geri sayım"), "haber metni saklanmaz");
+    assert.deepEqual(B.parseWeekend(`<table id="WeeklyMovieData"><thead><tr><th>#</th><th>Film Adı</th><th>Hafta Sonu Seyirci</th></tr></thead><tbody><tr><td>1</td><td><a href="/film/catli-2--2018418">Çatlı 2</a></td><td>120.345</td></tr></tbody></table>`), [{ title: "Çatlı 2", slug: "catli-2--2018418", rank: 1, aud: 120345 }]);
+  });
+}
 t("robots.txt: yasaklanan sayfaya girilmez, en uzun kural kazanır", () => {
   const R = parseRobots("User-agent: *\nDisallow: /hesap\nAllow: /hesap/acik\nDisallow: /*?sort=\nCrawl-delay: 2\n\nUser-agent: NeVarNeYokBot\nDisallow: /ozel");
   const ok = (p) => { let b = null; for (const r of R.rules) if (ruleMatch(p, r) && (!b || r.path.length > b.path.length || (r.path.length === b.path.length && r.allow))) b = r; return !b || b.allow; };

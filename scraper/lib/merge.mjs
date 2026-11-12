@@ -5,7 +5,7 @@
 import { cleanTitle, canonVenue, guessCat, sameEvent, siteNameOf, factsFrom } from "./normalize.mjs";
 import { todayIST } from "./util.mjs";
 
-const KEEP_FIELDS = ["age", "dur", "genre", "org", "door", "note", "img", "imgBy"];
+const KEEP_FIELDS = ["age", "dur", "genre", "org", "door", "note", "img", "imgBy", "imgTried"];
 const STALE_TICKET_DAYS = 10; // bir bilet bağlantısı bu kadar gün görülmezse düşer
 const DROP_SHOW_DAYS = 7;     // "fiyatı düştü" rozeti kaç gün kalsın
 

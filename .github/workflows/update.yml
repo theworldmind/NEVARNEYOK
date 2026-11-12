@@ -66,6 +66,11 @@ jobs:
         continue-on-error: true
         run: node films.mjs
 
+      - name: İlgi takibi (haberler ve gişe)
+        working-directory: scraper
+        continue-on-error: true
+        run: node buzz.mjs
+
       - name: Kapsam denetimi (neyi kaçırıyoruz?)
         if: env.MODE_FLAG == '' && env.ONLY_FLAG == ''
         working-directory: scraper

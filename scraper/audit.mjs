@@ -7,16 +7,11 @@
 import { join } from "node:path";
 import { ROOT, log, readJSON, writeJSON, writeText, fold, todayIST } from "./lib/util.mjs";
 import { fetchText } from "./lib/net.mjs";
+import { FEEDS, parseFeed } from "./buzz.mjs";
 
 const HIST = join(ROOT, "data/coverage.json");
 // Google Haberler robots.txt ile otomatik okumaya kapalı; kullanılmaz. Okunamayan akış raporda not edilir.
-const NEWS = (process.env.AUDIT_FEEDS || [
-  "https://www.trthaber.com/kultur_sanat_articles.rss",
-  "https://www.aa.com.tr/tr/rss/default?cat=kultur",
-  "https://www.yeniankara.com.tr/rss",
-  "https://www.evrensel.net/rss/kultur-sanat.xml",
-  "https://www.hurriyet.com.tr/rss/kelebek",
-].join(" ")).split(/\s+/).filter(Boolean);
+const NEWS = (process.env.AUDIT_FEEDS || FEEDS.map((f) => f.url).join(" ")).split(/\s+/).filter(Boolean);
 
 const median = (a) => { const s = a.filter((x) => Number.isFinite(x)).sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : null; };
 const addDays = (d, n) => new Date(Date.parse(d + "T12:00:00Z") + n * 864e5).toISOString().slice(0, 10);
@@ -96,9 +91,8 @@ async function newsScan(events) {
     const r = await fetchText(url, { retries: 1 });
     if (!r.text || r.status !== 200) { notes.push(`${new URL(url).host}: ${r.robots ? "robots.txt izin vermiyor" : r.status || r.error}`); continue; }
     let n = 0;
-    for (const it of r.text.split(/<item[\s>]/i).slice(1)) {
-      const g = (tag) => ((it.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, "i")) || [])[1] || "").replace(/<!\[CDATA\[|\]\]>/g, "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
-      const title = g("title"), link = g("link"), when = Date.parse(g("pubDate"));
+    for (const it of parseFeed(r.text)) {
+      const title = it.title, link = it.link, when = it.date ? Date.parse(it.date) : NaN;
       if (!title || !EVENT_WORDS.test(title)) continue;
       if (when && Date.now() - when > 10 * 864e5) continue; // yalnızca son 10 günün haberleri
       if (!/ankara|başkent|vizyon/i.test(title)) continue;   // başlıkta Ankara geçmeli (vizyon haberleri hariç)
