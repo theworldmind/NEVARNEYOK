@@ -639,15 +639,14 @@ main,footer,.actf,.hero-bottom{color:var(--onbg)}
 .tkw.cine .tk .stub *{color:inherit}
 
 /* ===================== AFİŞLER (kaynağından gömülü) ===================== */
-.pst{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity .45s ease;pointer-events:none;-webkit-user-drag:none}
+.pst{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;pointer-events:none;-webkit-user-drag:none}
 .has-pst .pst{opacity:1}
 .has-pst>.art{opacity:0}
-.pbg,.pshade{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .45s ease}
+.pbg,.pshade{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0}
 .pst-fit .pst{object-fit:contain}
-.pst-fit .pbg{opacity:.55;inset:-12%;background:center/cover no-repeat;transform:scale(1.2)}
-.pst-fit .pbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,16,.55),rgba(8,6,16,.35) 50%,rgba(8,6,16,.6))}
+.pst-fit .pbg{opacity:1;background:radial-gradient(120% 80% at 50% 50%,color-mix(in srgb,var(--d2,#333) 70%,#000),#07060d)}
 .has-pst .pshade{opacity:1;background:linear-gradient(180deg,rgba(0,0,0,.34),transparent 24%,transparent 58%,rgba(0,0,0,.62))}
-.pby{position:absolute;right:8px;bottom:6px;z-index:2;font:600 8.5px/1 var(--f-body);letter-spacing:.02em;color:rgba(255,255,255,.72);text-shadow:0 1px 3px rgba(0,0,0,.7);opacity:0;transition:opacity .45s;pointer-events:none;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pby{position:absolute;right:8px;bottom:6px;z-index:2;font:600 8.5px/1 var(--f-body);letter-spacing:.02em;color:rgba(255,255,255,.72);text-shadow:0 1px 3px rgba(0,0,0,.7);opacity:0;pointer-events:none;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .has-pst .pby{opacity:1}
 .vc-ph>:not(.pst):not(.pbg):not(.pshade):not(.art),.ph>:not(.pst):not(.pbg):not(.pshade):not(.art):not(.grain),.fc-ph>:not(.pst):not(.pbg):not(.pshade):not(.art){z-index:2}
 /* dikey kart: afiş okunabilir büyüklükte */
@@ -655,7 +654,7 @@ main,footer,.actf,.hero-bottom{color:var(--onbg)}
 .vc-ph.has-pst .pby{bottom:auto;top:auto;right:10px;bottom:8px}
 .has-pst .vc-date{background:rgba(12,10,24,.5);border-color:rgba(255,255,255,.28)}
 .vc-ph.has-pst .vc-nb{bottom:68px}
-@media (hover:hover){.vc:hover .has-pst .pst{transform:scale(1.03)}.pst{transition:opacity .45s ease,transform .6s cubic-bezier(.2,.8,.2,1)}}
+@media (hover:hover) and (min-width:900px){.vc:hover .has-pst .pst{transform:scale(1.03)}.pst{transition:transform .6s cubic-bezier(.2,.8,.2,1)}}
 /* yatay bilet: afiş sol sütunda, tam görünür */
 .tk{--photo:240px}
 .ph.has-pst .grain{display:none}

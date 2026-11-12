@@ -447,8 +447,9 @@ function ticket(e){
 const escA=x=>String(x).replace(/[&"<>]/g,c=>({"&":"&amp;",'"':"&quot;","<":"&lt;",">":"&gt;"}[c]));
 function pstHTML(src,by){return src?`<i class="pbg"></i><img class="pst" src="${escA(src)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" draggable="false"><i class="pshade"></i>${by?`<span class="pby">Görsel: ${escA(by)}</span>`:""}`:""}
 function pstWire(root){root.querySelectorAll("img.pst:not([data-w])").forEach(im=>{im.dataset.w=1;const box=im.parentElement;
-  const ok=()=>{if(!im.naturalWidth)return bad();const r=im.naturalWidth/im.naturalHeight,b=(box.clientWidth/box.clientHeight)||.8;
-    if(Math.abs(Math.log(r/b))>.3){box.classList.add("pst-fit");const g=box.querySelector(".pbg");if(g)g.style.backgroundImage=`url("${im.currentSrc||im.src}")`}box.classList.add("has-pst")};
+  /* kutunun oranı sınıfından bilinir: kaydırma sırasında yerleşim okunmaz */
+  const ok=()=>{if(!im.naturalWidth)return bad();const r=im.naturalWidth/im.naturalHeight,c=box.classList,b=c.contains("fc-ph")||c.contains("ftk-pst")||c.contains("fm")?.667:c.contains("ph")?.85:.8;
+    if(Math.abs(Math.log(r/b))>.3)c.add("pst-fit","has-pst");else c.add("has-pst")};
   const bad=()=>{box.querySelectorAll(".pbg,.pshade,.pby").forEach(x=>x.remove());im.remove()};
   if(im.complete)ok();else{im.addEventListener("load",ok,{once:true});im.addEventListener("error",bad,{once:true})}})}
 function card(e){
