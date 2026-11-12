@@ -175,7 +175,7 @@ export function abbList(html, url) {
  * Sinema: festival gösterimlerinin her seansı; vizyondaki filmlerin önümüzdeki 5 günde günde bir seansı (en erken). */
 const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["stand-up", "standup"], ["cocuk-aktiviteleri", "cocuk"], ["etkinlik", ""], ["sinema", "sinema"]];
 export async function biletinialCollect({ fetchText, today }) {
-  const out = [], detail = new Set(), miss = [];
+  const out = [], detail = new Set(), miss = [], noSeance = [];
   const end5 = new Date(Date.parse(today + "T00:00:00+03:00") + 5 * 864e5).toISOString().slice(0, 10);
   for (const [org, cat] of BI_CATS) {
     const items = [];
@@ -193,7 +193,7 @@ export async function biletinialCollect({ fetchText, today }) {
       const title = x.name.replace(/^festival\s*[-–:]\s*/i, "");
       const multi = (x.saloonCount || 0) > 1 || x.showOnAllCities;
       if (org !== "sinema" && (multi || !seances.length)) { detail.add(url); continue; }
-      if (!seances.length) continue;
+      if (!seances.length) { if (org === "sinema") noSeance.push(`${title}[${x.dateText || "-"}|${x.saloonName || "-"}|${x.saloonCount}]`); continue; }
       const base = { title, venue: org === "sinema" && multi ? "Ankara sinemaları" : clean(x.saloonName || ""), city: "Ankara", url, via: "site",
         ...(x.isFree ? { free: true } : x.minTicketAmount > 0 ? { price: Math.round(x.minTicketAmount), pc: 1 } : {}),
         catHint: cat, ...(fest ? { genre: "Film festivali" } : x.categoryName ? { genre: clean(x.categoryName) } : {}) };
@@ -205,5 +205,6 @@ export async function biletinialCollect({ fetchText, today }) {
       for (const s of list) out.push({ ...base, ...s });
     }
   }
-  return { raws: out, detail: [...detail], note: miss.length ? `okunamayan: ${miss.join(", ")}` : "" };
+  const note = [miss.length && `okunamayan: ${miss.join(", ")}`, noSeance.length && `seansı listede olmayan ${noSeance.length} film: ${noSeance.slice(0, 12).join("; ")}`].filter(Boolean).join(" · ");
+  return { raws: out, detail: [...detail], note };
 }
