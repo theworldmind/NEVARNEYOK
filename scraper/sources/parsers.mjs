@@ -172,8 +172,9 @@ export function abbList(html, url) {
  * biletinial.com/tr-tr/<kategori>/ankara sayfası etkinlikleri /List/GetMoreItems ile sayfa sayfa yükler;
  * her kayıtta ad, salon, salon sayısı, bütün seans tarihleri ve en düşük bilet tutarı var. Görsel alınmaz.
  * Tek salonlu kayıtlar doğrudan seanslara açılır; birden çok salonlu tiyatro ve konserler detay sayfasından okunur.
+ * Stand-up ve çocuk oyunları tiyatro listesinin içinde (ayrı kategori adresleri 404/500).
  * Sinema: festival gösterimlerinin her seansı; vizyondaki filmlerin önümüzdeki 5 günde günde bir seansı (en erken). */
-const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["stand-up", "standup"], ["cocuk-aktiviteleri", "cocuk"], ["etkinlik", ""], ["sinema", "sinema"]];
+const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["etkinlik", ""], ["sinema", "sinema"]];
 export async function biletinialCollect({ fetchText, today }) {
   const out = [], detail = new Set(), miss = [], noSeance = [];
   const end5 = new Date(Date.parse(today + "T00:00:00+03:00") + 5 * 864e5).toISOString().slice(0, 10);
