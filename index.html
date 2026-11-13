@@ -16,6 +16,10 @@
 <meta name="theme-color" content="#0a0b19">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ne Var Ne Yok">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="Ankara'daki konser, tiyatro, stand-up, opera, bale, çocuk etkinlikleri ve festivaller tek yerde; bilet sitelerinin fiyatları yan yana, etkinlik saatindeki hava tahminiyle.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&text=onesidby&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
@@ -905,6 +909,29 @@ main,footer,.actf,.hero-bottom{color:var(--onbg)}
 .cs-atolye .a3{right:4%;bottom:0;width:min(46%,420px);height:14px;background:#8a5a2b;box-shadow:0 -3px 0 #b07a40}
 @media (max-width:640px){.cstage{border-radius:20px;height:200px}.cs-tiyatro .a4{width:6%}.cs-n span{font-size:11.5px;padding:5px 10px}}
 @media (prefers-reduced-motion:reduce){.cstage *{animation:none!important}}
+
+/* ===== UYGULAMA İNDİR ===== */
+.apppill[hidden],.appsh[hidden]{display:none}
+.apppill{white-space:nowrap;position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;display:flex;align-items:center;gap:4px;padding:6px 6px 6px 8px;border-radius:20px;background:#14163a;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 30px rgba(0,0,0,.45);transform:translate(-50%,0);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s;color:#fff}
+.apppill.out{transform:translate(-50%,140%);opacity:0}
+.apppill .ap-go{display:flex;align-items:center;gap:10px;background:none;border:0;color:inherit;padding:0 6px 0 0;cursor:pointer;text-align:left}
+.apppill img{border-radius:9px}
+.apppill b{display:block;font:800 14px var(--f-body)}
+.apppill small{display:block;font:500 11px var(--f-body);opacity:.7}
+.apppill .ap-x{width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;font-size:13px;cursor:pointer}
+.sp-app,.flinks [data-app]{font-weight:800}
+.sp-app{display:block;width:100%;margin-top:12px;padding:11px 14px;border-radius:12px;border:0;background:var(--nar);color:#fff;font:800 14px var(--f-body);cursor:pointer}
+.appsh{position:fixed;inset:0;z-index:90;display:flex;align-items:flex-end;justify-content:center;background:rgba(5,6,18,.6);opacity:1;transition:opacity .3s}
+.appsh.out{opacity:0}
+.appsh .as-c{position:relative;width:min(440px,100%);margin:0 12px calc(12px + env(safe-area-inset-bottom));padding:26px 22px 22px;border-radius:24px;background:#14163a;color:#fff;text-align:center;transform:translateY(0);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.appsh.out .as-c{transform:translateY(40px)}
+.appsh img{border-radius:16px}
+.appsh h3{margin:10px 0 6px;font:800 20px var(--f-disp)}
+.appsh .as-b{font:500 14px/1.5 var(--f-body);color:rgba(255,255,255,.85)}
+.appsh ol{text-align:left;margin:12px 0 4px;padding-left:22px}.appsh li{margin:6px 0}
+.appsh .as-btn{display:inline-block;margin-top:14px;padding:12px 18px;border-radius:14px;background:var(--nar);color:#fff;font:800 14px var(--f-body);text-decoration:none;border:0;cursor:pointer}
+.appsh .as-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
+.appsh kbd{display:inline-block;padding:0 6px;border-radius:6px;background:rgba(255,255,255,.14);font:700 13px var(--f-body)}
 </style>
 <script>(function(){try{var D=document.documentElement,p="oto";try{p=localStorage.getItem("nvny-tema")||"oto"}catch(e){}var q=p;
 if(p==="oto"){var r=Math.PI/180,LA=39.93*r,d=Date.now()/864e5+2440587.5-2451545,g=(357.529+.98560028*d)*r,Q=280.459+.98564736*d,L=(Q+1.915*Math.sin(g)+.02*Math.sin(2*g))*r,e=(23.439-3.6e-7*d)*r,ra=Math.atan2(Math.cos(e)*Math.sin(L),Math.cos(L)),dc=Math.asin(Math.sin(e)*Math.sin(L)),H=((18.697374558+24.06570982441908*d)%24*15+32.86)*r-ra,
@@ -991,7 +1018,7 @@ D.dataset.period=q;D.dataset.theme=(q==="sabah"||q==="gun")?"light":"dark";for(v
 <div class="bar">
   <div class="wrap">
     <div class="srow"><input class="search" id="q" type="search" placeholder="Sanatçı, oyun ya da mekân ara" aria-label="Etkinlik ara"><button class="themebtn" id="filtBtn" type="button" aria-expanded="false" aria-controls="selRow"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M3 5h18M6.5 12h11M10 19h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="tl">Filtreler</span><b class="fcount" id="filtN" hidden></b></button><button class="themebtn" id="setBtn" type="button" aria-expanded="false" aria-controls="setP"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 8.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zm8.1 4.6.1-1.2-.1-1.2 2-1.6-2-3.4-2.4.9a8 8 0 0 0-2-1.2L15.3 2h-4l-.4 2.5a8 8 0 0 0-2 1.2l-2.4-1-2 3.5 2 1.6-.1 1.2.1 1.2-2 1.6 2 3.4 2.4-.9a8 8 0 0 0 2 1.2l.4 2.5h4l.4-2.5a8 8 0 0 0 2-1.2l2.4.9 2-3.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tl">Ayarlar</span></button></div>
-    <div class="setp" id="setP" role="dialog" aria-label="Ayarlar" hidden><div class="sp-h"><b>Ayarlar</b><button type="button" class="sp-x" aria-label="Kapat">✕</button></div><div class="sp-l">Tema</div><div class="sp-o" id="themeOpts" role="radiogroup" aria-label="Tema"><button type="button" data-v="oto" role="radio"><i class="sw sw-oto"></i>Otomatik</button><button type="button" data-v="sabah" role="radio"><i class="sw sw-sabah"></i>Sabah</button><button type="button" data-v="gun" role="radio"><i class="sw sw-gun"></i>Gün</button><button type="button" data-v="gunbatimi" role="radio"><i class="sw sw-gb"></i>Gün batımı</button><button type="button" data-v="gece" role="radio"><i class="sw sw-gece"></i>Gece</button></div><p class="sp-n" id="themeNote"></p><label class="sp-t"><span>Hareketli gökyüzü<small>Dalgalanan bayrak, yağmur ve kar</small></span><input type="checkbox" id="animT"><i></i></label></div>
+    <div class="setp" id="setP" role="dialog" aria-label="Ayarlar" hidden><div class="sp-h"><b>Ayarlar</b><button type="button" class="sp-x" aria-label="Kapat">✕</button></div><div class="sp-l">Tema</div><div class="sp-o" id="themeOpts" role="radiogroup" aria-label="Tema"><button type="button" data-v="oto" role="radio"><i class="sw sw-oto"></i>Otomatik</button><button type="button" data-v="sabah" role="radio"><i class="sw sw-sabah"></i>Sabah</button><button type="button" data-v="gun" role="radio"><i class="sw sw-gun"></i>Gün</button><button type="button" data-v="gunbatimi" role="radio"><i class="sw sw-gb"></i>Gün batımı</button><button type="button" data-v="gece" role="radio"><i class="sw sw-gece"></i>Gece</button></div><p class="sp-n" id="themeNote"></p><label class="sp-t"><span>Hareketli gökyüzü<small>Dalgalanan bayrak, yağmur ve kar</small></span><input type="checkbox" id="animT"><i></i></label><button type="button" class="sp-app" data-app>📲 Uygulamayı indir</button></div>
     <div class="row" id="cats" role="group" aria-label="Kategori"></div>
     <div class="row" id="ranges" role="group" aria-label="Zaman"></div>
     <div class="row selects" id="selRow"><label class="sel"><span>Fiyat</span><select id="fPrice"><option value="all">Tümü</option><option value="0-500">500 ₺ altı</option><option value="500-1000">500–1.000 ₺</option><option value="1000-2000">1.000–2.000 ₺</option><option value="2000-99999">2.000 ₺ üstü</option><option value="known">Fiyatı belli olanlar</option></select></label><label class="sel"><span>Mekân</span><select id="fVenue"><option value="all">Tüm mekânlar</option></select></label><label class="sel"><span>Yaş</span><select id="fAge"><option value="all">Hepsi</option><option value="kid">Çocuklara uygun</option><option value="adult">18+</option></select></label><label class="sel"><span>İlçe</span><select id="fIlce"><option value="all">Tümü</option></select></label><label class="sel"><span>Bilet sitesi</span><select id="fSite"><option value="all">Hepsi</option><option>Biletix</option><option>Biletinial</option><option>Sanatçepte</option><option>Bubilet</option><option>tiyatrolar.com.tr</option><option>Bilkent Bilet</option><option>iticket</option></select></label><label class="sel"><span>Sırala</span><select id="fSort"><option value="date">Tarihe göre</option><option value="pa">Fiyat: artan</option><option value="pd">Fiyat: azalan</option></select></label></div>
@@ -1022,10 +1049,12 @@ D.dataset.period=q;D.dataset.theme=(q==="sabah"||q==="gun")?"light":"dark";for(v
   <p class="bd-foot">Bir afişe dokun, bileti açılsın. Günler arasında sağa-sola kaydırarak geçebilirsin.</p>
 </div>
 
+<div class="apppill" id="appPill" hidden><button type="button" class="ap-go" data-app><img src="icons/icon-192.png" alt="" width="34" height="34"><span><b>Uygulamayı indir</b><small>Ne Var Ne Yok telefonunda</small></span></button><button type="button" class="ap-x" aria-label="Kapat">✕</button></div>
+<div class="appsh" id="appSheet" role="dialog" aria-label="Uygulamayı indir" hidden><div class="as-c"><button type="button" class="as-x" aria-label="Kapat">✕</button><img src="icons/icon-192.png" alt="" width="64" height="64"><h3>Ne Var Ne Yok uygulaması</h3><div class="as-b"></div></div></div>
 <footer class="wrap">
   <p class="upd" id="upd"></p>
   <p><b>Ne Var Ne Yok? Ankara</b> bağımsız bir etkinlik rehberidir; etkinlik bilgilerini herkese açık kaynaklardan derler. Bilet satmaz, reklam ve komisyon almaz; her “Bilet al” düğmesi etkinliğin satıldığı sitenin kendi sayfasına gider ve satın alma, iade ve değişiklik o sitenin kurallarına tabidir. Etkinlik adları ve markalar sahiplerine aittir. Kaldırma talepleri: <a href="mailto:contact.openmind.vision@gmail.com">contact.openmind.vision@gmail.com</a></p>
-  <nav class="flinks" aria-label="Site bilgileri"><button type="button" data-p="hakkinda">Hakkında</button><button type="button" data-p="kaynaklar">Veri kaynakları ve güncelleme</button><button type="button" data-p="gizlilik">Gizlilik</button><button type="button" data-p="kosullar">Kullanım koşulları</button><button type="button" data-p="iletisim">İletişim</button></nav>
+  <nav class="flinks" aria-label="Site bilgileri"><button type="button" data-p="hakkinda">Hakkında</button><button type="button" data-p="kaynaklar">Veri kaynakları ve güncelleme</button><button type="button" data-p="gizlilik">Gizlilik</button><button type="button" data-p="kosullar">Kullanım koşulları</button><button type="button" data-p="iletisim">İletişim</button><button type="button" data-app>📲 Uygulamayı indir</button></nav>
   <div class="byos" aria-label="by oneside"><span class="byos-by">by</span><span class="byos-card"><svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg><span class="byos-w">one<b>side</b></span></span></div>
 </footer>
 <dialog class="sheet" id="sheet" aria-labelledby="sheetT"><div class="sh-in"><div class="sh-top"><div class="sh-brand">Ne Var Ne Yok? <span>Ankara</span></div><button class="sh-x" type="button" aria-label="Kapat">✕</button></div><div class="sh-body" id="sheetB"></div></div></dialog>

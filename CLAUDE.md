@@ -31,6 +31,7 @@ Bozulmaması gereken kurallar:
 - **Rozetler ve filtreler:** `isNew` ve `dropOf` rozetleri (Yeni / Fiyatı %… düştü) ve "Yeni eklenenler" filtresi kalır.
 - **Site ayarları:** `window.NVNY_SITE` (iletişim, Instagram, repo) `index.html` içinde durur.
 - **Service worker yok:** `app.js` eskilerini kaldırır. `sw.js` ekleme.
+- **Uygulama olarak indirme (13.11.2026):** `manifest.webmanifest` + sitede "📲 Uygulamayı indir" (altta açılan düğme, Ayarlar, alt bilgi; `data-app`). Android Chrome'da tarayıcının kendi yükleme penceresi açılır, uygulama gerçek uygulama olarak kurulur (service worker gerekmez). iPhone'da "Ana Ekrana Ekle" adımları; Instagram gibi uygulama içi tarayıcılarda "Chrome'da aç / Tarayıcıda aç". Uygulama olarak açılınca düğmeler gizlenir. Simge sitedeki cam mercektir (`icons/`, soru işareti yok). Mağaza dışı APK kullanıcı uyarı gördüğü için tercih edilmedi.
 - **Giriş ekranı sırası:** `afterIntro()` / `introDone()` ile giriş ekranı bitene kadar ağır işler bekletilir.
 - Bot korumalı sitelerin (Bubilet, Passo, Biletino, Mobilet) korumasını aşmaya çalışma. API anahtarı gerektiren hiçbir şey ekleme. Yasal ortaklık önerme.
 

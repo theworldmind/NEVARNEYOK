@@ -904,3 +904,35 @@ document.getElementById("heroLogo")?.classList.add("rest");
   const cnt=()=>{let k=0;row.querySelectorAll("select").forEach(s=>{if(s.id!=="fSort"&&s.value!=="all")k++});fn.hidden=!k;fn.textContent=k};
   row.addEventListener("change",cnt);document.addEventListener("click",()=>setTimeout(cnt,0));cnt();})();
 
+
+/* UYGULAMAYI İNDİR: Android'de Chrome'un kendi yükleme penceresi (gerçek uygulama olarak kurulur, uyarı yok; service worker gerekmez),
+   iPhone'da "Ana Ekrana Ekle" adımları, Instagram gibi uygulama içi tarayıcılarda "tarayıcıda aç" yönlendirmesi.
+   Telefonda giriş bittikten birkaç saniye sonra altta küçük bir düğme çıkar; kapatılırsa 7 gün görünmez. Uygulama olarak açıldıysa hiçbiri görünmez. */
+(()=>{const ua=navigator.userAgent,isApp=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+  if(isApp){document.querySelectorAll("[data-app]").forEach(b=>b.hidden=true);return}
+  const ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua),
+    inApp=/Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|TikTok|musical_ly|Twitter|Snapchat|LinkedInApp/i.test(ua),samsung=/SamsungBrowser/i.test(ua),
+    P=document.getElementById("appPill"),S=document.getElementById("appSheet"),B=S.querySelector(".as-b");
+  let dp=null,done=false;
+  addEventListener("beforeinstallprompt",e=>{e.preventDefault();dp=e});
+  addEventListener("appinstalled",()=>{done=true;hidePill();sheet("ok")});
+  const url=location.href.split("#")[0];
+  const body=k=>k==="ok"?`<p>Kuruldu! Ne Var Ne Yok artık uygulamalarının arasında.</p>`
+    :k==="inapp"?(and?`<p>Bu sayfa Instagram'ın içinde açıldı; uygulama buradan kurulamıyor.</p><a class="as-btn" href="intent://${location.host}${location.pathname}#Intent;scheme=https;package=com.android.chrome;end">Chrome'da aç</a><p style="margin-top:12px;font-size:12px;opacity:.75">Açılınca "Uygulamayı indir"e yeniden dokun.</p>`
+      :`<p>Bu sayfa Instagram'ın içinde açıldı. Uygulamayı kurmak için:</p><ol><li>Sağ üstteki <kbd>⋯</kbd> menüsüne dokun</li><li><b>"Tarayıcıda aç"</b>ı seç (Safari)</li><li>Açılınca "Uygulamayı indir"e yeniden dokun</li></ol>`)
+    :k==="ios"?`<p>iPhone'da üç adımda kurulur:</p><ol><li>Alttaki <kbd>Paylaş</kbd> simgesine (kare ve yukarı ok) dokun</li><li><b>"Ana Ekrana Ekle"</b>yi seç</li><li>Sağ üstte <b>"Ekle"</b>ye dokun</li></ol><p style="font-size:12px;opacity:.75">Ne Var Ne Yok simgesiyle ana ekranına gelir, tam ekran açılır.</p>`
+    :k==="samsung"?`<p>Samsung İnternet'te:</p><ol><li>Alttaki <kbd>☰</kbd> menüye dokun</li><li><b>"Sayfayı ekle"</b> → <b>"Ana ekran"</b>ı seç</li></ol><p style="font-size:12px;opacity:.75">Chrome'da açarsan tek dokunuşla kurulur.</p>`
+    :and?`<p>Chrome'da:</p><ol><li>Sağ üstteki <kbd>⋮</kbd> menüye dokun</li><li><b>"Uygulamayı yükle"</b> ya da <b>"Ana ekrana ekle"</b>yi seç</li></ol>`
+    :`<p>Bilgisayarda adres çubuğunun sağındaki <kbd>⊕ Yükle</kbd> simgesine tıkla. Telefonda açarsan tek dokunuşla kurulur:</p><p><b>${location.host}</b></p>`;
+  function sheet(k){B.innerHTML=body(k);S.hidden=false;S.classList.add("out");requestAnimationFrame(()=>requestAnimationFrame(()=>S.classList.remove("out")))}
+  function closeSheet(){S.classList.add("out");setTimeout(()=>{S.hidden=true},300)}
+  S.addEventListener("click",e=>{if(e.target===S||e.target.closest(".as-x"))closeSheet()});
+  async function go(){hidePill();
+    if(dp){const d=dp;dp=null;try{await d.prompt();const r=await d.userChoice;if(r.outcome==="accepted")return}catch{}}
+    sheet(inApp?"inapp":ios?"ios":samsung?"samsung":"and")}
+  document.addEventListener("click",e=>{const b=e.target.closest("[data-app]");if(b){e.preventDefault();go()}});
+  function hidePill(){if(P.hidden)return;P.classList.add("out");setTimeout(()=>{P.hidden=true},450)}
+  P.querySelector(".ap-x").onclick=()=>{hidePill();try{localStorage.setItem("nvny-app-x",String(Date.now()))}catch{}};
+  let x=0;try{x=+localStorage.getItem("nvny-app-x")||0}catch{}
+  if((ios||and)&&Date.now()-x>7*864e5)afterIntro(()=>setTimeout(()=>{if(done)return;P.hidden=false;P.classList.add("out");requestAnimationFrame(()=>requestAnimationFrame(()=>P.classList.remove("out")))},4000));
+})();

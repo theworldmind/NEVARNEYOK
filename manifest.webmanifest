@@ -1,14 +1,39 @@
 {
-  "name": "Ne Var Ne Yok? Ankara",
+  "id": "./",
+  "name": "Ne Var Ne Yok",
   "short_name": "Ne Var Ne Yok",
-  "description": "Ankara'daki bütün etkinlikler ve bilet fiyatları tek yerde",
+  "description": "Ankara'nın etkinliklerine göz at: konser, tiyatro, sinema ve daha fazlası; bilet siteleri yan yana.",
   "lang": "tr",
+  "dir": "ltr",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#0b1030",
-  "theme_color": "#0b1030",
+  "orientation": "portrait",
+  "background_color": "#0a0b19",
+  "theme_color": "#0a0b19",
+  "categories": [
+    "entertainment",
+    "events",
+    "lifestyle"
+  ],
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
