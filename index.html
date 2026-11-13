@@ -953,11 +953,14 @@ html.dl-go .dlbtn .dl-glow{animation:dlGlow 3.6s ease-in-out 1.2s infinite}
 @keyframes dlGlow{0%,100%{opacity:.16}35%{opacity:.55}}
 @keyframes dlBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 .hero-os{display:none;align-items:center;gap:8px;color:#fff}
-.hero-os .byos-by{font-size:12px}.hero-os .byos-card{padding:7px 13px 7px 10px;border-radius:10px;gap:8px;box-shadow:none}.hero-os .byos-card svg{width:17px;height:17px}.hero-os .byos-w{font-size:15px}
+/* oneside işareti kutusuz: beyaz işaret + "one" ince "side" kalın (Poppins) */
+.hero-os .byos-card,.sp-os .byos-card{background:none;padding:0;border-radius:0;box-shadow:none;gap:10px}
+.hero-os .byos-card svg,.sp-os .byos-card svg{fill:#fff;filter:drop-shadow(0 0 10px rgba(255,255,255,.18))}
+.hero-os{gap:11px}.hero-os .byos-by{font-size:15px;opacity:.6}.hero-os .byos-card svg{width:30px;height:30px}.hero-os .byos-w{font-size:22px}
+.sp-os .byos-by{font-size:16px;opacity:.6}.sp-os .byos-card svg{width:36px;height:36px}.sp-os .byos-w{font-size:26px}
 html.app .dlbtn,html.app [data-app]{display:none!important}
 html.app .hero-os{display:flex}
 .sp-os{display:none;position:absolute;left:0;right:0;bottom:calc(34px + env(safe-area-inset-bottom,0px));align-items:center;justify-content:center;gap:10px;color:#fff;opacity:0;animation:fadeup .9s ease .9s forwards;pointer-events:none}
-.sp-os .byos-card{box-shadow:none}
 html.app .sp-os{display:flex}
 html.app .sp-tap{bottom:calc(112px + env(safe-area-inset-bottom,0px))}
 @media (max-width:420px){.dlbtn b{font-size:14.5px}.dlbtn .dl-ic{width:30px;height:30px}.dlbtn .dl-in{gap:9px;padding:8px 13px 8px 8px}}
