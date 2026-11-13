@@ -24,8 +24,6 @@ export const FEEDS = [
   { id: "sozcu", name: "Sözcü", kind: "haber", url: "https://www.sozcu.com.tr/feeds-rss-category-kultur-sanat" },
   { id: "beyazperde", name: "Beyazperde", kind: "sinema", url: "https://www.beyazperde.com/rss/haberler.xml" },
   { id: "boxoffice", name: "Box Office Türkiye", kind: "sinema", url: BO + "/feed/news.atom" },
-  /* yalnızca iptal / erteleme haberleri için (ilgi puanına sayılmaz) */
-  { id: "gn-iptal", name: "Google Haberler", kind: "iptal", url: "https://news.google.com/rss/search?q=Ankara+(iptal+OR+ertelendi)+(konser+OR+tiyatro+OR+festival+OR+etkinlik+OR+g%C3%B6steri)+when:7d&hl=tr&gl=TR&ceid=TR:tr" },
 ];
 
 /* Karşılaştırma anahtarı: Türkçe harfler sadeleşir, harf ve rakam dışı her şey boşluk olur */
