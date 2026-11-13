@@ -909,7 +909,8 @@ document.getElementById("heroLogo")?.classList.add("rest");
    iPhone'da "Ana Ekrana Ekle" adımları, Instagram gibi uygulama içi tarayıcılarda "tarayıcıda aç" yönlendirmesi.
    Telefonda giriş bittikten birkaç saniye sonra altta küçük bir düğme çıkar; kapatılırsa 7 gün görünmez. Uygulama olarak açıldıysa hiçbiri görünmez. */
 (()=>{const ua=navigator.userAgent,isApp=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
-  if(isApp){document.querySelectorAll("[data-app]").forEach(b=>b.hidden=true);return}
+  if(isApp){document.documentElement.classList.add("app");return}
+  afterIntro(()=>requestAnimationFrame(()=>document.documentElement.classList.add("dl-go")));
   const ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua),
     inApp=/Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|TikTok|musical_ly|Twitter|Snapchat|LinkedInApp/i.test(ua),samsung=/SamsungBrowser/i.test(ua),
     P=document.getElementById("appPill"),S=document.getElementById("appSheet"),B=S.querySelector(".as-b");
@@ -931,8 +932,8 @@ document.getElementById("heroLogo")?.classList.add("rest");
     if(dp){const d=dp;dp=null;try{await d.prompt();const r=await d.userChoice;if(r.outcome==="accepted")return}catch{}}
     sheet(inApp?"inapp":ios?"ios":samsung?"samsung":"and")}
   document.addEventListener("click",e=>{const b=e.target.closest("[data-app]");if(b){e.preventDefault();go()}});
-  function hidePill(){if(P.hidden)return;P.classList.add("out");setTimeout(()=>{P.hidden=true},450)}
-  P.querySelector(".ap-x").onclick=()=>{hidePill();try{localStorage.setItem("nvny-app-x",String(Date.now()))}catch{}};
+  function hidePill(){if(!P||P.hidden)return;P.classList.add("out");setTimeout(()=>{P.hidden=true},450)}
+  if(P)P.querySelector(".ap-x").onclick=()=>{hidePill();try{localStorage.setItem("nvny-app-x",String(Date.now()))}catch{}};
   let x=0;try{x=+localStorage.getItem("nvny-app-x")||0}catch{}
-  if((ios||and)&&Date.now()-x>7*864e5)afterIntro(()=>setTimeout(()=>{if(done)return;P.hidden=false;P.classList.add("out");requestAnimationFrame(()=>requestAnimationFrame(()=>P.classList.remove("out")))},4000));
+  if(P&&(ios||and)&&Date.now()-x>7*864e5)afterIntro(()=>setTimeout(()=>{if(done)return;P.hidden=false;P.classList.add("out");requestAnimationFrame(()=>requestAnimationFrame(()=>P.classList.remove("out")))},4000));
 })();

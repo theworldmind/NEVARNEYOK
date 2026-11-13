@@ -98,7 +98,7 @@ html.entering .hero .now,html.entering .hero-bottom,html.entering .bar{animation
 html.entering .hero .now{animation-delay:.45s}html.entering .hero-bottom{animation-delay:.6s}html.entering .bar{animation-delay:.72s}
 @keyframes enterUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){html.entering *{animation:none!important}}
-.splash.leaving .sp-bg,.splash.leaving .sp-blob,.splash.leaving .sp-glow,.splash.leaving .sp-stars,.splash.leaving .sp-tap,.splash.leaving .hint{transition:opacity .95s cubic-bezier(.4,0,.2,1) .05s;opacity:0!important}
+.splash.leaving .sp-bg,.splash.leaving .sp-blob,.splash.leaving .sp-glow,.splash.leaving .sp-stars,.splash.leaving .sp-tap,.splash.leaving .sp-os,.splash.leaving .hint{transition:opacity .95s cubic-bezier(.4,0,.2,1) .05s;opacity:0!important}
 .logo .O{will-change:transform}
 .nw-ic{will-change:transform}
 .tix .tp.nop{font:700 15px var(--f-body);opacity:.85}
@@ -932,7 +932,38 @@ main,footer,.actf,.hero-bottom{color:var(--onbg)}
 .appsh .as-btn{display:inline-block;margin-top:14px;padding:12px 18px;border-radius:14px;background:var(--nar);color:#fff;font:800 14px var(--f-body);text-decoration:none;border:0;cursor:pointer}
 .appsh .as-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
 .appsh kbd{display:inline-block;padding:0 6px;border-radius:6px;background:rgba(255,255,255,.14);font:700 13px var(--f-body)}
+
+/* ===== ÜSTTEKİ "UYGULAMAMIZI İNDİRİN" DÜĞMESİ (yalnızca transform/opacity ile canlanır) ===== */
+.hero-dl{position:relative;display:flex;justify-content:flex-start;width:100%;margin-top:14px}
+.dlbtn{position:relative;display:inline-flex;padding:1.5px;border:0;border-radius:18px;cursor:pointer;color:#fff;background:linear-gradient(115deg,var(--g1),var(--g2) 45%,var(--nar) 75%,var(--g3));box-shadow:0 10px 28px rgba(8,8,30,.38);isolation:isolate;opacity:0;transform:translateY(10px);transition:opacity .8s cubic-bezier(.2,.8,.2,1) .25s,transform .8s cubic-bezier(.2,.8,.2,1) .25s;-webkit-tap-highlight-color:transparent}
+html.dl-go .dlbtn{opacity:1;transform:none}
+html.dl-go .dlbtn:active{transform:scale(.97);transition-delay:0s;transition-duration:.15s}
+.dlbtn .dl-in{position:relative;z-index:1;display:flex;align-items:center;gap:11px;padding:9px 16px 9px 10px;border-radius:16.5px;background:linear-gradient(160deg,rgba(18,20,52,.94),rgba(10,11,25,.94));overflow:hidden}
+.dlbtn .dl-ic{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(140deg,var(--nar),#ff7a59);box-shadow:0 4px 14px rgba(255,59,107,.45);flex:none}
+.dlbtn .dl-ic svg{width:21px;height:21px;color:#fff;overflow:visible}
+html.dl-go .dlbtn .dl-ic{animation:dlBob 2.4s ease-in-out infinite}
+.dlbtn .dl-t{display:flex;flex-direction:column;text-align:left;line-height:1.05}
+.dlbtn b{font:800 16px/1.1 var(--f-disp);font-variation-settings:"wdth" 88;letter-spacing:-.01em;white-space:nowrap}
+.dlbtn small{margin-top:3px;font:600 9.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;opacity:.72;white-space:nowrap}
+.dlbtn .dl-sh{position:absolute;z-index:2;top:0;bottom:0;left:0;width:46%;border-radius:18px;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.07) 30%,rgba(255,255,255,.42) 50%,rgba(255,255,255,.07) 70%,transparent);transform:translateX(-130%) skewX(-18deg)}
+html.dl-go .dlbtn .dl-sh{animation:dlSweep 3.6s cubic-bezier(.45,.05,.25,1) 1.2s infinite}
+.dlbtn .dl-glow{position:absolute;z-index:-1;inset:-10px;border-radius:26px;background:radial-gradient(60% 70% at 30% 50%,var(--nar),transparent 70%),radial-gradient(60% 70% at 75% 50%,var(--g2),transparent 70%);opacity:.18}
+html.dl-go .dlbtn .dl-glow{animation:dlGlow 3.6s ease-in-out 1.2s infinite}
+@keyframes dlSweep{0%{transform:translateX(-130%) skewX(-18deg)}55%,100%{transform:translateX(260%) skewX(-18deg)}}
+@keyframes dlGlow{0%,100%{opacity:.16}35%{opacity:.55}}
+@keyframes dlBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.hero-os{display:none;align-items:center;gap:8px;color:#fff}
+.hero-os .byos-by{font-size:12px}.hero-os .byos-card{padding:7px 13px 7px 10px;border-radius:10px;gap:8px;box-shadow:none}.hero-os .byos-card svg{width:17px;height:17px}.hero-os .byos-w{font-size:15px}
+html.app .dlbtn,html.app [data-app]{display:none!important}
+html.app .hero-os{display:flex}
+.sp-os{display:none;position:absolute;left:0;right:0;bottom:calc(34px + env(safe-area-inset-bottom,0px));align-items:center;justify-content:center;gap:10px;color:#fff;opacity:0;animation:fadeup .9s ease .9s forwards;pointer-events:none}
+.sp-os .byos-card{box-shadow:none}
+html.app .sp-os{display:flex}
+html.app .sp-tap{bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+@media (max-width:420px){.dlbtn b{font-size:14.5px}.dlbtn .dl-ic{width:30px;height:30px}.dlbtn .dl-in{gap:9px;padding:8px 13px 8px 8px}}
+@media (prefers-reduced-motion:reduce){.dlbtn,.dlbtn *{animation:none!important}}
 </style>
+<script>try{if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true)document.documentElement.classList.add("app")}catch(e){}</script>
 <script>(function(){try{var D=document.documentElement,p="oto";try{p=localStorage.getItem("nvny-tema")||"oto"}catch(e){}var q=p;
 if(p==="oto"){var r=Math.PI/180,LA=39.93*r,d=Date.now()/864e5+2440587.5-2451545,g=(357.529+.98560028*d)*r,Q=280.459+.98564736*d,L=(Q+1.915*Math.sin(g)+.02*Math.sin(2*g))*r,e=(23.439-3.6e-7*d)*r,ra=Math.atan2(Math.cos(e)*Math.sin(L),Math.cos(L)),dc=Math.asin(Math.sin(e)*Math.sin(L)),H=((18.697374558+24.06570982441908*d)%24*15+32.86)*r-ra,
 alt=Math.asin(Math.sin(LA)*Math.sin(dc)+Math.cos(LA)*Math.cos(dc)*Math.cos(H))/r,az=((Math.atan2(-Math.sin(H),Math.tan(dc)*Math.cos(LA)-Math.sin(LA)*Math.cos(H))/r)+360)%360;
@@ -999,6 +1030,7 @@ D.dataset.period=q;D.dataset.theme=(q==="sabah"||q==="gun")?"light":"dark";for(v
   <div class="sp-bg" id="spBg" aria-hidden="true"></div><div class="sp-blob b1" aria-hidden="true"></div><div class="sp-blob b2" aria-hidden="true"></div><div class="sp-blob b3" aria-hidden="true"></div><div class="sp-glow" aria-hidden="true"></div><canvas class="sp-stars" id="spStars" aria-hidden="true"></canvas>
   <div class="sp-hi" aria-label="Hoş geldiniz"><span class="sp-w"><span style="--i:0">h</span><span style="--i:1">o</span><span style="--i:2">ş</span><span style="--i:3">&nbsp;</span><span style="--i:4">g</span><span style="--i:5">e</span><span style="--i:6">l</span><span style="--i:7">d</span><span style="--i:8">i</span><span style="--i:9">n</span><span style="--i:10">i</span><span class="z z0" style="--i:11;--z:0">z</span><span class="z" style="--i:12;--z:1">z</span><span class="z" style="--i:13;--z:2">z</span><span class="z" style="--i:14;--z:3">z</span></span></div>
   <div class="sp-logo"><div class="logo" aria-label="Ne Var Ne Yok?"><span class="wm"><span>NE VAR</span><span>NE Y<span class="O" aria-hidden="true"><svg class="sr-ring" viewBox="0 0 100 100"><path d="M66 66L89 89" stroke="var(--nar)" stroke-width="15" stroke-linecap="round"/><circle cx="44" cy="44" r="31" fill="none" stroke="currentColor" stroke-width="13"/></svg><svg class="sr-glass" viewBox="0 0 100 100"><defs><radialGradient id="lgS" cx="34%" cy="28%" r="82%"><stop offset="0" style="stop-color:var(--g1)"/><stop offset=".55" style="stop-color:var(--g2)"/><stop offset="1" style="stop-color:var(--g3)"/></radialGradient></defs><circle cx="44" cy="44" r="25" fill="url(#lgS)"/><path d="M26 34 A20 20 0 0 1 40 22" fill="none" stroke="rgba(255,255,255,.82)" stroke-width="4.5" stroke-linecap="round"/></svg></span>K</span></span></div></div>
+  <div class="sp-os" aria-hidden="true"><span class="byos-by">by</span><span class="byos-card"><svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg><span class="byos-w">one<b>side</b></span></span></div>
   <div class="sp-tap" id="spTap" aria-hidden="true"><span class="ring"></span><span class="tx">İlerlemek için dokun</span></div>
 </div>
 
@@ -1010,6 +1042,7 @@ D.dataset.period=q;D.dataset.theme=(q==="sabah"||q==="gun")?"light":"dark";for(v
     <div class="logo" id="heroLogo" aria-hidden="true"><span class="wm"><span>NE VAR</span><span>NE Y<span class="O" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><radialGradient id="lgH" cx="34%" cy="28%" r="82%"><stop offset="0" style="stop-color:var(--g1)"/><stop offset=".55" style="stop-color:var(--g2)"/><stop offset="1" style="stop-color:var(--g3)"/></radialGradient></defs><path d="M66 66L89 89" stroke="var(--nar)" stroke-width="15" stroke-linecap="round"/><circle cx="44" cy="44" r="31" fill="none" stroke="currentColor" stroke-width="13"/><g class="lq"><circle cx="44" cy="44" r="25" fill="url(#lgH)"/><path d="M26 34 A20 20 0 0 1 40 22" fill="none" stroke="rgba(255,255,255,.82)" stroke-width="4.5" stroke-linecap="round"/></g></svg></span>K</span></span></div>
     <div class="now" id="now" aria-live="polite"></div>
   </div>
+  <div class="wrap hero-dl"><button type="button" class="dlbtn" data-app aria-label="Uygulamamızı indirin"><span class="dl-glow" aria-hidden="true"></span><span class="dl-in"><span class="dl-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path class="dl-ar" d="M12 7.5v7m-3-3 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="dl-t"><b>Uygulamamızı indirin</b><small>Android · iPhone · ücretsiz</small></span><span class="dl-sh" aria-hidden="true"></span></span></button><div class="hero-os" aria-label="by oneside"><span class="byos-by">by</span><span class="byos-card"><svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg><span class="byos-w">one<b>side</b></span></span></div></div>
   <div class="wrap hero-bottom">
     <p class="lede">Başkentte bu hafta ve önümüzdeki haftalarda neler var: konser, tiyatro, sinema, stand-up, opera ve bale, çocuk oyunları, festival, parti ve atölyeler. Her bilet etkinliğin kendi bilet sayfasına gider, koçanında da etkinlik saatindeki hava yazar.</p>
   </div>
@@ -1049,7 +1082,6 @@ D.dataset.period=q;D.dataset.theme=(q==="sabah"||q==="gun")?"light":"dark";for(v
   <p class="bd-foot">Bir afişe dokun, bileti açılsın. Günler arasında sağa-sola kaydırarak geçebilirsin.</p>
 </div>
 
-<div class="apppill" id="appPill" hidden><button type="button" class="ap-go" data-app><img src="icons/icon-192.png" alt="" width="34" height="34"><span><b>Uygulamayı indir</b><small>Ne Var Ne Yok telefonunda</small></span></button><button type="button" class="ap-x" aria-label="Kapat">✕</button></div>
 <div class="appsh" id="appSheet" role="dialog" aria-label="Uygulamayı indir" hidden><div class="as-c"><button type="button" class="as-x" aria-label="Kapat">✕</button><img src="icons/icon-192.png" alt="" width="64" height="64"><h3>Ne Var Ne Yok uygulaması</h3><div class="as-b"></div></div></div>
 <footer class="wrap">
   <p class="upd" id="upd"></p>
