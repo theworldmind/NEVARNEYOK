@@ -3,11 +3,11 @@
  "tomorrow": "2026-11-14",
  "posts": [
   {
-   "id": "site-hero",
+   "id": "site-wall",
    "slot": "09:00",
    "type": "STORY",
-   "file": "site-hero.png",
-   "title": "GÜNAYDIN ANKARA · BUGÜN NELER VAR?"
+   "file": "site-wall.png",
+   "title": "GÜNAYDIN ANKARA · BUGÜNÜN AFİŞLERİ"
   },
   {
    "id": "bugun",
@@ -47,13 +47,6 @@
    "type": "STORY",
    "file": "bugun-hikaye-2.png",
    "title": "BUGÜN ANKARA'DA (hikâye 2)"
-  },
-  {
-   "id": "site-wall",
-   "slot": "11:30",
-   "type": "STORY",
-   "file": "site-wall.png",
-   "title": "AFİŞ DUVARI · BUGÜN"
   },
   {
    "id": "sinema",
@@ -191,6 +184,13 @@
    "type": "STORY",
    "file": "site-konser.png",
    "title": "BU AKŞAM SAHNEDE"
+  },
+  {
+   "id": "site-wall-yarin",
+   "slot": "20:45",
+   "type": "STORY",
+   "file": "site-wall-yarin.png",
+   "title": "AFİŞ DUVARI · YARIN"
   },
   {
    "id": "site-yarin",
