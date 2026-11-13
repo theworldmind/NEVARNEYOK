@@ -1,0 +1,26 @@
+# Instagram erişim anahtarı 60 günde biter. Bu iş akışı haftada bir yeniler ve IG_TOKEN gizli değerini günceller.
+# Gizli değeri yazabilmek için GH_PAT gerekir (yalnızca bu depo, "Secrets: Read and write" izinli ince ayarlı anahtar).
+name: Instagram anahtarını yenile
+
+on:
+  schedule:
+    - cron: "17 2 * * 1"   # Pazartesi 05:17 İstanbul
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Yenile
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          [ -n "$IG_TOKEN" ] || { echo "IG_TOKEN yok"; exit 0; }
+          R=$(curl -fsS "https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${IG_TOKEN}") || { echo "Yenileme başarısız"; exit 1; }
+          T=$(echo "$R" | jq -r .access_token); D=$(echo "$R" | jq -r .expires_in)
+          [ -n "$T" ] && [ "$T" != null ] || { echo "Yanıtta anahtar yok"; exit 1; }
+          echo "::add-mask::$T"
+          echo "Yeni anahtar $((D/86400)) gün geçerli."
+          if [ -n "$GH_TOKEN" ]; then gh secret set IG_TOKEN --repo "$GITHUB_REPOSITORY" --body "$T" && echo "IG_TOKEN güncellendi."
+          else echo "::warning::GH_PAT yok; IG_TOKEN güncellenemedi. Anahtar 60 günde biter."; fi

@@ -1,0 +1,52 @@
+# Instagram'a doğrudan, ücretsiz paylaşım (Instagram API, Metricool'suz).
+# Gün içinde 15 dakikada bir çalışır; "sosyal" dalındaki o günün paylas.json'unda saati gelen kayıtları paylaşır.
+# Gerekli gizli değer: IG_TOKEN (Instagram erişim anahtarı). Yoksa iş akışı hiçbir şey yapmadan biter.
+name: Instagram'a paylaş
+
+on:
+  schedule:
+    - cron: "*/15 5-19 * * *"   # UTC; İstanbul 08:00–22:59
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Yalnızca bu kaydı şimdi paylaş (ör. bugun, site-wall). Boş = saati gelenler"
+        required: false
+      dry:
+        description: "Deneme (paylaşma, yalnızca anahtarı ve planı kontrol et)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sosyal
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Europe/Istanbul
+      IG_TOKEN: ${{ secrets.IG_TOKEN }}
+    steps:
+      - name: Anahtar var mı?
+        id: k
+        run: if [ -n "$IG_TOKEN" ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; else echo "IG_TOKEN tanımlı değil; atlandı."; fi
+      - uses: actions/checkout@v4
+        if: steps.k.outputs.ok
+      - uses: actions/setup-node@v4
+        if: steps.k.outputs.ok
+        with:
+          node-version: 22
+      - name: Paylaş
+        if: steps.k.outputs.ok
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ONLY: ${{ github.event.inputs.only }}
+          DRY: ${{ github.event.inputs.dry == 'true' && '1' || '' }}
+        run: |
+          command -v convert >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick >/dev/null; }
+          git clone -q --depth 1 --branch sosyal "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" /tmp/sosyal
+          SOSYAL_DIR=/tmp/sosyal node scraper/publish.mjs

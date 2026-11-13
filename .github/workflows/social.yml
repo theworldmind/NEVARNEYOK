@@ -58,4 +58,4 @@ jobs:
           cd /tmp/sosyal
           rm -rf "$D" && mkdir -p "$D" && cp /tmp/paylas/* "$D/"
           git add -A && git commit -qm "Instagram görselleri: $D" || exit 0
-          git push -q origin sosyal
+          { git push -q origin sosyal || { git pull -q --rebase origin sosyal && git push -q origin sosyal; }; }

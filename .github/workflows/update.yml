@@ -109,7 +109,7 @@ jobs:
           git clone -q --depth 1 --branch sosyal "$URL" /tmp/sosyal || { mkdir -p /tmp/sosyal && cd /tmp/sosyal && git init -q -b sosyal && git remote add origin "$URL"; cd -; }
           rm -rf "/tmp/sosyal/$D" && mkdir -p "/tmp/sosyal/$D" && cp paylas/* "/tmp/sosyal/$D/"
           cd /tmp/sosyal && git add -A
-          git -c user.name="nevarneyok-bot" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "Instagram görselleri: $D" && git push -q origin sosyal || true
+          git -c user.name="nevarneyok-bot" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "Instagram görselleri: $D" && { git push -q origin sosyal || { git pull -q --rebase origin sosyal && git push -q origin sosyal; }; } || true
 
       - name: Hata ayıklama dosyalarını sakla (7 gün)
         if: always()
