@@ -156,6 +156,8 @@ function slideInPage(o) {
     const a = sky.ank; sky.ank = null; paintBg(performance.now());
     const cv = document.getElementById("sky"), d = sky.dpr, top = Math.max(0, sky.base - 470), hh = sky.base - top + 30;
     const c = document.createElement("canvas"); c.width = cv.width; c.height = Math.round(hh * d); c.getContext("2d").drawImage(cv, 0, top * d, cv.width, hh * d, 0, 0, c.width, c.height);
+    // Ankara Kalesi'ndeki bayrak sitede ayrı (dalgalanan) bir tuvalde çizilir: kopyaya o da eklenir
+    try { fxFrame(performance.now(), true); const f = sky.flag, fc = sky.fc; if (f && fc) c.getContext("2d").drawImage(fc, f.ox * d, (f.oy - top) * d, fc.width, fc.height); } catch {}
     sky.ank = a; paintBg(performance.now());
     const sc = W / sky.W, im = add(`<img alt="" style="position:absolute;left:0;z-index:1;width:${W}px;height:${hh * sc}px;object-fit:cover;opacity:.9;-webkit-mask:linear-gradient(180deg,transparent,#000 30%,#000 85%,transparent)">`);
     im.src = c.toDataURL("image/jpeg", .88); im.style.top = (o.kind === "cover" ? H - hh * sc - (story ? 240 : -20) : (story ? 120 : -120)) + "px";
