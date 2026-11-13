@@ -64,7 +64,8 @@ p.s{margin:0;font:600 11px var(--f-mono);letter-spacing:.18em;text-transform:upp
       inApp=/Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|TikTok|musical_ly|Twitter|Snapchat|LinkedInApp/i.test(ua),samsung=/SamsungBrowser/i.test(ua);
   if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true){location.replace("../");return}
   addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e});
-  addEventListener("appinstalled",function(){B.hidden=true;show("<p><b>Kuruldu!</b> Ne Var Ne Yok artık uygulamalarının arasında.</p>")});
+  addEventListener("appinstalled",function(){ev("uygulama-kuruldu","Uygulama kuruldu");B.hidden=true;show("<p><b>Kuruldu!</b> Ne Var Ne Yok artık uygulamalarının arasında.</p>")});
+  function ev(p,t){try{window.goatcounter&&goatcounter.count&&goatcounter.count({path:p,title:t,event:true})}catch(e){}}
   function show(h){H.innerHTML=h;H.hidden=false}
   function steps(){
     if(inApp)return and?'<p>Bu sayfa Instagram\'ın içinde açıldı; uygulama buradan kurulamıyor.</p><a class="alt" href="intent://'+location.host+location.pathname+'#Intent;scheme=https;package=com.android.chrome;end">Chrome\'da aç</a>'
@@ -75,11 +76,12 @@ p.s{margin:0;font:600 11px var(--f-mono);letter-spacing:.18em;text-transform:upp
     return '<p>Bilgisayarda adres çubuğunun sağındaki <kbd>⊕ Yükle</kbd> simgesine tıkla ya da bu sayfayı telefonunda aç.</p>';
   }
   if(inApp||ios)show(steps());
-  B.addEventListener("click",function(){
+  B.addEventListener("click",function(){ev("indir-sayfasi-dugme","İndirme sayfasında düğmeye basıldı");
     if(dp){var d=dp;dp=null;d.prompt();d.userChoice.then(function(r){if(r.outcome!=="accepted")show(steps())});return}
     show(steps());H.scrollIntoView({behavior:"smooth",block:"center"});
   });
 })();
 </script>
+<script data-goatcounter="https://nevarneyok.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
