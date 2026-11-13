@@ -207,6 +207,8 @@ function slideInPage(o) {
 async function siteInPage({ what, label }) {
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
   document.getElementById("igov")?.remove();
+  // afişi olmayan etkinlik paylaşılmaz (kullanıcı isteği): sitenin görüntüsünde de yalnızca afişli etkinlikler kalır
+  for (let i = upcoming.length - 1; i >= 0; i--) if (!upcoming[i].img) upcoming.splice(i, 1);
   state.cat = "hepsi"; state.range = "hepsi"; state.limit = 60;
   if (what === "hero") { render(true); scrollTo(0, 0); }
   if (what === "wall") { render(true); openWall(todayIso); }
