@@ -935,23 +935,22 @@ main,footer,.actf,.hero-bottom{color:var(--onbg)}
 
 /* ===== ÜSTTEKİ "UYGULAMAMIZI İNDİRİN" DÜĞMESİ (yalnızca transform/opacity ile canlanır) ===== */
 .hero-dl{position:relative;display:flex;justify-content:flex-start;width:100%;margin-top:14px}
-.dlbtn{position:relative;display:inline-flex;padding:1.5px;border:0;border-radius:22px;cursor:pointer;color:#fff;background:linear-gradient(115deg,var(--g1),var(--g2) 45%,var(--nar) 75%,var(--g3));box-shadow:0 10px 28px rgba(8,8,30,.38);isolation:isolate;opacity:0;transform:translateY(10px);transition:opacity .8s cubic-bezier(.2,.8,.2,1) .25s,transform .8s cubic-bezier(.2,.8,.2,1) .25s;-webkit-tap-highlight-color:transparent}
-html.dl-go .dlbtn{opacity:1;transform:none}
-html.dl-go .dlbtn:active{transform:scale(.97);transition-delay:0s;transition-duration:.15s}
+.dlbtn{position:relative;display:inline-flex;padding:1.5px;border:0;border-radius:22px;cursor:pointer;color:#fff;background:linear-gradient(115deg,var(--g1),var(--g2) 45%,var(--nar) 75%,var(--g3));box-shadow:0 10px 28px rgba(8,8,30,.38);isolation:isolate;transition:transform .15s;-webkit-tap-highlight-color:transparent}
+.dlbtn:active{transform:scale(.97)}
 .dlbtn .dl-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:9px;padding:14px 20px 12px;border-radius:20.5px;background:linear-gradient(160deg,rgba(18,20,52,.94),rgba(10,11,25,.94));overflow:hidden}
 .dlbtn .dl-ic{position:relative;display:block;width:84px;height:84px;flex:none}
 .dlbtn .dl-tile{display:grid;place-items:center;width:84px;height:84px;border-radius:20px;background:radial-gradient(120% 90% at 20% 10%,#3a1f5c,#14163a 55%,#0a0b19);box-shadow:0 10px 24px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.12);overflow:hidden}
 .dlbtn .dl-logo{font-size:15.5px;color:#fff;pointer-events:none}
 .dlbtn .dl-badge{position:absolute;right:-8px;bottom:-7px;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--nar);color:#fff;box-shadow:0 0 0 2.5px #121434,0 4px 10px rgba(255,59,107,.5)}
 .dlbtn .dl-badge svg{width:14px;height:14px}
-html.dl-go .dlbtn .dl-ic{animation:dlBob 2.4s ease-in-out infinite}
+.dlbtn .dl-ic{animation:dlBob 2.4s ease-in-out infinite}
 .dlbtn .dl-t{display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.05}
 .dlbtn b{font:800 16px/1.1 var(--f-disp);font-variation-settings:"wdth" 88;letter-spacing:-.01em;white-space:nowrap}
 .dlbtn small{margin-top:3px;font:600 9.5px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;opacity:.72;white-space:nowrap}
 .dlbtn .dl-sh{position:absolute;z-index:2;top:0;bottom:0;left:0;width:60%;border-radius:20px;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.07) 30%,rgba(255,255,255,.42) 50%,rgba(255,255,255,.07) 70%,transparent);transform:translateX(-130%) skewX(-18deg)}
-html.dl-go .dlbtn .dl-sh{animation:dlSweep 3.6s cubic-bezier(.45,.05,.25,1) 1.2s infinite}
+.dlbtn .dl-sh{animation:dlSweep 3.6s cubic-bezier(.45,.05,.25,1) .6s infinite}
 .dlbtn .dl-glow{position:absolute;z-index:-1;inset:-12px;border-radius:32px;background:radial-gradient(60% 70% at 30% 50%,var(--nar),transparent 70%),radial-gradient(60% 70% at 75% 50%,var(--g2),transparent 70%);opacity:.18}
-html.dl-go .dlbtn .dl-glow{animation:dlGlow 3.6s ease-in-out 1.2s infinite}
+.dlbtn .dl-glow{animation:dlGlow 3.6s ease-in-out .6s infinite}
 @keyframes dlSweep{0%{transform:translateX(-130%) skewX(-18deg)}55%,100%{transform:translateX(260%) skewX(-18deg)}}
 @keyframes dlGlow{0%,100%{opacity:.16}35%{opacity:.55}}
 @keyframes dlBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}

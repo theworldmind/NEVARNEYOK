@@ -910,7 +910,6 @@ document.getElementById("heroLogo")?.classList.add("rest");
    Telefonda giriş bittikten birkaç saniye sonra altta küçük bir düğme çıkar; kapatılırsa 7 gün görünmez. Uygulama olarak açıldıysa hiçbiri görünmez. */
 (()=>{const ua=navigator.userAgent,isApp=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
   if(isApp){document.documentElement.classList.add("app");return}
-  afterIntro(()=>requestAnimationFrame(()=>document.documentElement.classList.add("dl-go")));
   const ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua),
     inApp=/Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|TikTok|musical_ly|Twitter|Snapchat|LinkedInApp/i.test(ua),samsung=/SamsungBrowser/i.test(ua),
     P=document.getElementById("appPill"),S=document.getElementById("appSheet"),B=S.querySelector(".as-b");
