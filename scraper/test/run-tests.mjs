@@ -241,6 +241,17 @@ t("takvim sayfaları: Erimtan, CerModern, ABB liste kartından okunur", () => {
     assert.deepEqual(B.parseWeekend(`<table id="WeeklyMovieData"><thead><tr><th>#</th><th>Film Adı</th><th>Hafta Sonu Seyirci</th></tr></thead><tbody><tr><td>1</td><td><a href="/film/catli-2--2018418">Çatlı 2</a></td><td>120.345</td></tr></tbody></table>`), [{ title: "Çatlı 2", slug: "catli-2--2018418", rank: 1, aud: 120345 }]);
   });
 }
+t("iptal haberi: Ankara'daki etkinliğin iptali yakalanır, ilgi puanına sayılmaz; 'iptal edilmedi' ve başka şehir sayılmaz", async () => {
+  const B = await import("../buzz.mjs");
+  const feed = (x) => B.parseFeed(`<rss>${x.map(([t, l, d]) => `<item><title>${t}</title><link>${l}</link><description>${d || ""}</description></item>`).join("")}</rss>`).map((y) => ({ ...y, src: "gn-iptal", kind: "iptal" }));
+  const evs = [{ title: "Yaşar Konseri", venue: "Jolly Joker Ankara", cat: "konser" }, { title: "Teoman", venue: "CerModern", cat: "konser" }, { title: "Ebru Yaşar", venue: "Kongresium", cat: "konser" }];
+  const r = B.matchAll(feed([["Yaşar'ın Jolly Joker Ankara konseri iptal edildi", "u1"], ["Teoman CerModern konseri ertelendi, yeni tarih açıklanacak", "u2"], ["Ebru Yaşar konseri iptal edildi", "u3", "Adana Merkez Park'ta yapılacaktı"], ["Teoman Ankara konseri iptal edilmedi", "u4"]]), evs, []);
+  assert.deepEqual(r.cx.yasarkonseri?.[0]?.[3], "iptal");
+  assert.deepEqual(r.cx.teoman.map((x) => x[3]), ["ertelendi"]);
+  assert.ok(!r.cx.ebruyasar, "başka şehir sayılmaz");
+  assert.deepEqual(Object.keys(r.ev), [], "iptal akışı ilgi puanı vermez");
+  assert.equal(B.cancelKind("Hamlet bu akşam sahnede", "Hamlet bu akşam sahnede, biletler tükendi", "hamlet"), "");
+});
 t("fiyat seçenekleri: yapısal verideki adlı kategoriler ve Bilkent fiyat grupları", async () => {
   const X = await import("../lib/extract.mjs");
   const ld = X.eventsFromLd(`<script type="application/ld+json">{"@type":"MusicEvent","name":"Konser","startDate":"2027-01-10T21:00:00+03:00","location":{"name":"Salon"},"offers":[{"@type":"Offer","name":"Tam","price":"500","availability":"InStock"},{"@type":"Offer","name":"Öğrenci","price":"300","availability":"InStock"},{"@type":"Offer","name":"Erken","price":"250","availability":"SoldOut"}]}</script>`, "https://x.com/e", {});

@@ -99,7 +99,7 @@ function period(d){
   return{k:"m"+d.getMonth(),title:AY[d.getMonth()],rng:d.getFullYear()+" · ileri tarihli"};
 }
 const M0=today.getMonth(),M1=(M0+1)%12,Y1=M1===0?today.getFullYear()+1:today.getFullYear();
-const RANGES={hepsi:["Tümü",()=>true],yeni:["✦ Yeni eklenenler",null],bugun:["Bugün",d=>+d===+today],yarin:["Yarın",d=>+d===+addDays(today,1)],hafta:["Bu hafta",d=>d<=thisSun],gelecek:["Gelecek hafta",d=>d>thisSun&&d<=nextSun],sonu:["Hafta sonu (Cum–Paz)",d=>[0,5,6].includes(d.getDay())],
+const RANGES={hepsi:["Tümü",()=>true],yeni:["✦ Yeni eklenenler",null],iptal:["İptal / ertelenen",null],bugun:["Bugün",d=>+d===+today],yarin:["Yarın",d=>+d===+addDays(today,1)],hafta:["Bu hafta",d=>d<=thisSun],gelecek:["Gelecek hafta",d=>d>thisSun&&d<=nextSun],sonu:["Hafta sonu (Cum–Paz)",d=>[0,5,6].includes(d.getDay())],
   ay0:[AY[M0],d=>d.getMonth()===M0&&d.getFullYear()===today.getFullYear()],ay1:[AY[M1],d=>d.getMonth()===M1&&d.getFullYear()===Y1],fav:["♥ Kaydettiklerim",null]};
 /* Yeni eklenen / fiyatı düşen: tarayıcı veriden hesaplar (firstSeen, prevPrice) */
 const isNew=e=>e.firstSeen&&(Date.now()-Date.parse(e.firstSeen))/864e5<=NEWDAYS&&NVD.baseline!==e.firstSeen;
@@ -116,6 +116,12 @@ const newCount=upcoming.filter(isNew).length;
    sonradan seans eklenmesi, seans sayısı, büyük salon, birden çok sitede satış */
 const BZ=window.NVNY_BUZZ||{},bzKey=s=>(s||"").toLocaleLowerCase("tr").replace(/[ıi̇]/g,"i").replace(/ğ/g,"g").replace(/ü/g,"u").replace(/ş/g,"s").replace(/ö/g,"o").replace(/ç/g,"c").replace(/[âä]/g,"a").replace(/[éè]/g,"e").replace(/[^a-z0-9]+/g,"");
 const bzNews=(m,days=14)=>{if(!m)return[];const cut=new Date(Date.now()-days*864e5).toISOString().slice(0,10),seen=new Set(),o=[];for(const[s,u,d]of m){if(d&&d<cut)continue;if(seen.has(s))continue;seen.add(s);o.push([(BZ.names||{})[s]||s,u])}return o};
+/* İPTAL / ERTELEME HABERİ: kaynak sitede durum yazmasa da Ankara'yla ilgili bir haberde etkinliğin iptal ya da ertelendiği geçiyorsa
+   (data/buzz.json "cx": site, bağlantı, tarih, tür) etkinlik öyle işaretlenir ve bilette haber bağlantısı gösterilir. Haber etkinlikten en çok 30 gün önce olmalı. */
+upcoming.forEach(e=>{if(e.status)return;const m=(BZ.cx||{})[bzKey(e.title.split(/ · | \| /)[0])];if(!m)return;
+  const lo=new Date(pd(e.d)-30*864e5).toISOString().slice(0,10),L=m.filter(x=>!x[2]||(x[2]>=lo&&x[2]<=e.d));if(!L.length)return;
+  e.status=L.some(x=>x[3]!=="ertelendi")?"iptal":"ertelendi";const seen=new Set();e.stNews=L.filter(x=>!seen.has(x[0])&&seen.add(x[0])).map(x=>[(BZ.names||{})[x[0]]||x[0],x[1]])});
+const chgCount=upcoming.filter(e=>e.status==="iptal"||e.status==="ertelendi").length;
 {const BIG=/Congresium|MEB Şura|Ziraat Bankası Ana Salon|Jolly Joker Ankara|Spor Salonu|Arena|Tepe Prime|Milyon/;const byT={},D7=7*864e5,now=Date.now();
   upcoming.forEach(e=>{const k=normT(e.title.split(" · ")[0]);(byT[k]||(byT[k]=[])).push(e)});
   const extra={};for(const k in byT){const g=byT[k],fs=g.filter(x=>x.firstSeen&&x.firstSeen!==NVD.baseline).map(x=>now-Date.parse(x.firstSeen));if(fs.some(a=>a<=D7)&&fs.some(a=>a>D7))extra[k]=1}
@@ -127,7 +133,7 @@ const bzNews=(m,days=14)=>{if(!m)return[];const cut=new Date(Date.now()-days*864
     if(g.length>=4){s+=g.length>=8?2:1;r.push(`${g.length} seans`)}
     if(BIG.test(e.venue)&&e.cat!=="cocuk"&&e.cat!=="atolye"){s+=2;r.push("Büyük salon")}
     if(e.tickets.filter(x=>x.price).length>=2){s+=1;r.push("Birden çok sitede satışta")}
-    if(s>=3&&e.status!=="ertelendi"){e.gold=true;e.goldWhy=r;e.goldNews=nw}})}
+    if(s>=3&&(!e.status||e.status==="tukendi")){e.gold=true;e.goldWhy=r;e.goldNews=nw}})}
 const tr=s=>s.toLocaleLowerCase("tr");
 function hash(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
 function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
@@ -410,7 +416,7 @@ function drawChips(){
   {const ng=upcoming.filter(e=>e.gold).length,b=chip("★ Yoğun ilgi",state.cat==="altin",()=>{state.cat=state.cat==="altin"?"hepsi":"altin";state.limit=60;render()},null,ng);b.classList.add("goldc");c.append(b)}
   for(const k in CATS){if(k==="sinema")continue;const n=upcoming.filter(e=>e.cat===k).length;if(n)c.append(chip(CATS[k],state.cat===k,()=>{state.cat=state.cat===k?"hepsi":k;state.limit=60;render()},`var(--c-${k})`,n))}
   const r=document.getElementById("ranges");r.innerHTML="";
-  for(const k in RANGES){if(k==="yeni"&&!newCount)continue;r.append(chip(RANGES[k][0],state.range===k,()=>{state.range=k;state.limit=60;render()},null,k==="yeni"?newCount:null))}
+  for(const k in RANGES){if(k==="yeni"&&!newCount||k==="iptal"&&!chgCount)continue;const b=chip(RANGES[k][0],state.range===k,()=>{state.range=k;state.limit=60;render()},null,k==="yeni"?newCount:k==="iptal"?chgCount:null);if(k==="iptal")b.classList.add("cxc");r.append(b)}
   {const b=document.createElement("button");b.type="button";b.className="chip allv";b.innerHTML='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 3h16v14H2zM2 8h16M2 12.5h16M7.3 3v14M12.7 3v14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Hepsini bir arada gör';b.onclick=openBoard;r.append(b)}
   {const b=document.createElement("button");b.type="button";b.className="chip allv wallc";b.innerHTML='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 2.5h6.5v8.5H2.5zM11 2.5h6.5v6H11zM2.5 13h6.5v4.5H2.5zM11 10.5h6.5v7H11z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Afiş duvarı';b.onclick=()=>openWall();r.append(b)}
 }
@@ -489,7 +495,7 @@ function ticket(e){
    <div class="ph" style="--d1:${dp[0]};--d2:${dp[1]}">${tposHTML(e)}${pstHTML(e.img,e.imgBy)}
      <span class="tag">${CATS[e.cat]}</span>${e.gold?'<span class="sash">★ Yoğun ilgi</span>':""}${st?`<span class="st">${st}</span>`:""}${!st&&(isNew(e)||dropOf(e))?`<span class="nb${dropOf(e)?" dr":""}">${dropOf(e)?`Fiyatı %${dropOf(e)} düştü`:"Yeni eklendi"}</span>`:""}
      <div class="stamp"><span class="dn">${d.getDate()}</span><span class="mw"><span class="mo">${AY[d.getMonth()]} ${d.getFullYear()}</span><span class="wd">${GUN[d.getDay()]}</span>${e.t?`<span class="tm">${e.t}</span>`:""}</span></div></div>
-   <div class="body"><div class="strip"><span class="brand">Ne Var Ne Yok? · Ankara</span><span class="gn"></span></div>${e.gold?`<div class="goldbar"><b>★ Yoğun ilgi</b><span>${e.goldWhy.join(" · ")}</span>${(e.goldNews||[]).map(([n,u])=>`<a href="${escA(u)}" target="_blank" rel="noopener">${escA(n)} haberi ↗</a>`).join("")}</div>`:""}
+   <div class="body"><div class="strip"><span class="brand">Ne Var Ne Yok? · Ankara</span><span class="gn"></span></div>${e.stNews?`<div class="stbar"><b>${st}</b><span>Haberlere göre · bilet sitesinden de kontrol edin</span>${e.stNews.map(([n,u])=>`<a href="${escA(u)}" target="_blank" rel="noopener">${escA(n)} haberi ↗</a>`).join("")}</div>`:""}${e.gold?`<div class="goldbar"><b>★ Yoğun ilgi</b><span>${e.goldWhy.join(" · ")}</span>${(e.goldNews||[]).map(([n,u])=>`<a href="${escA(u)}" target="_blank" rel="noopener">${escA(n)} haberi ↗</a>`).join("")}</div>`:""}
      <div class="content">
        <div class="crumb"><span>${CATS[e.cat]}</span>${e.genre?`<i>›</i><span class="cg"></span>`:""}</div>
        <h3></h3>
@@ -522,7 +528,7 @@ function pstWire(root){root.querySelectorAll("img.pst:not([data-w])").forEach(im
   const bad=()=>{box.querySelectorAll(".pbg,.pshade,.pby").forEach(x=>x.remove());im.remove()};
   if(im.complete)ok();else{im.addEventListener("load",ok,{once:true});im.addEventListener("error",bad,{once:true})}})}
 function card(e){
-  const d=pd(e.d),dp=DEEP[e.cat],st=e.status==="tukendi"?"Tükendi":e.status==="ertelendi"?"Ertelendi":"",f=forecast(e),t0=e.tickets[0]||{site:e.site,url:e.url};
+  const d=pd(e.d),dp=DEEP[e.cat],st=e.status==="tukendi"?"Tükendi":e.status==="ertelendi"?"Ertelendi":e.status==="iptal"?"İptal edildi":"",f=forecast(e),t0=e.tickets[0]||{site:e.site,url:e.url};
   const w=document.createElement("article");w.className="vc"+(st?" off":"")+(e.gold?" gold":"")+(e.cat==="sinema"?" cine":THEMED.has(e.cat)?" th th-"+e.cat:"");w.style.setProperty("--c",`var(--c-${e.cat})`);w.dataset.k=key(e);w._e=e;
   const ps=e.tickets.slice(0,3),pp=ps.filter(y=>y.price),lo=pp.length>1?Math.min(...pp.map(y=>y.price)):0;
   w.innerHTML=`<div class="vc-ph" style="--d1:${dp[0]};--d2:${dp[1]}">${tposHTML(e)}${pstHTML(e.img,e.imgBy)}
@@ -571,7 +577,7 @@ let shown=0;
 function filterList(){const q=state.q.trim();
   return upcoming.filter(e=>{const d=pd(e.d);
     if(state.cat==="altin"?!e.gold:(state.cat!=="hepsi"&&e.cat!==state.cat))return false;
-    if(state.range==="fav"){if(!favs.has(key(e)))return false}else if(state.range==="yeni"){if(!isNew(e))return false}else if(!RANGES[state.range][1](d))return false;
+    if(state.range==="fav"){if(!favs.has(key(e)))return false}else if(state.range==="yeni"){if(!isNew(e))return false}else if(state.range==="iptal"){if(e.status!=="iptal"&&e.status!=="ertelendi")return false}else if(!RANGES[state.range][1](d))return false;
     if(state.venue!=="all"&&e.venue!==state.venue)return false;
     if(state.ilce!=="all"&&ilceOf(e.venue)!==state.ilce)return false;
     if(state.site!=="all"&&!e.tickets.some(x=>x.site===state.site))return false;

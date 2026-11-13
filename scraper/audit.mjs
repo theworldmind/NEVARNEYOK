@@ -7,7 +7,7 @@
 import { join } from "node:path";
 import { ROOT, log, readJSON, writeJSON, writeText, fold, todayIST } from "./lib/util.mjs";
 import { fetchText } from "./lib/net.mjs";
-import { FEEDS, parseFeed } from "./buzz.mjs";
+import { FEEDS, parseFeed, nk } from "./buzz.mjs";
 
 const HIST = join(ROOT, "data/coverage.json");
 // Google Haberler robots.txt ile otomatik okumaya kapalı; kullanılmaz. Okunamayan akış raporda not edilir.
@@ -16,7 +16,7 @@ const NEWS = (process.env.AUDIT_FEEDS || FEEDS.map((f) => f.url).join(" ")).spli
 const median = (a) => { const s = a.filter((x) => Number.isFinite(x)).sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : null; };
 const addDays = (d, n) => new Date(Date.parse(d + "T12:00:00Z") + n * 864e5).toISOString().slice(0, 10);
 
-export function snapshot(events, health, today, filmsData) {
+export function snapshot(events, health, today, filmsData, buzzData) {
   const end14 = addDays(today, 14), end30 = addDays(today, 30);
   const up = events.filter((e) => e.d >= today && e.d <= end30);
   const byCat = {}, byDay = {}, venues = {};
@@ -33,7 +33,10 @@ export function snapshot(events, health, today, filmsData) {
   // afişi olmayan yaklaşan etkinlikler (14 gün), kaynağa göre — kullanıcı uyarısı 13.11.2026: "önemli etkinliklerde afiş olsun"
   const noImg = {}, noImgEx = {};
   for (const e of events) if (e.d >= today && e.d <= end14 && !e.img) { const s = (e.tickets || [])[0]?.site || "?"; noImg[s] = (noImg[s] || 0) + 1; (noImgEx[s] ||= []).length < 3 && noImgEx[s].push(e.title); }
-  return { at: today, total: events.length, bySource, byCat, byDay, venues, films, noImg, noImgEx };
+  // iptal / erteleme haberi olup kaynakta hâlâ satışta görünen etkinlikler — kullanıcı uyarısı 13.11.2026: "iptalleri de verelim"
+  const cx = [];
+  for (const e of events) { if (e.d < today || e.status) continue; const m = (buzzData?.cx || {})[nk(String(e.title).split(/ · | \| /)[0])]; if (m && m.length && !cx.some((x) => x.t === e.title)) cx.push({ t: e.title, d: e.d, v: e.venue, k: m[0][3], u: m[0][1] }); }
+  return { at: today, total: events.length, bySource, byCat, byDay, venues, films, noImg, noImgEx, cx };
 }
 
 export function findGaps(cur, hist, health) {
@@ -72,6 +75,8 @@ export function findGaps(cur, hist, health) {
   if (cur.films != null && (cur.films < 8 || (mf >= 10 && cur.films < mf * 0.6))) out.push({ w: 3, k: "sinema", t: `Ankara sinemalarında önümüzdeki 7 gün için yalnızca ${cur.films} filmin seansı var${mf ? ` (olağanı ${mf})` : ""}; film toplayıcısına bakılmalı.` });
   // g) afişsiz etkinlikler: her kaynak için 3'ten fazlaysa raporlanır (çözüm: kaynağın etkinlik sayfasındaki og:image, aynı adlı kayıt)
   for (const [site, n] of Object.entries(cur.noImg || {})) if (n > 3) out.push({ w: 2, k: "afis", t: `**${site}**: önümüzdeki 14 günde ${n} etkinliğin afişi yok (ör. ${(cur.noImgEx?.[site] || []).join(", ")}).` });
+  // h) iptal / erteleme: haberlerde iptal ya da ertelendiği geçen, kaynakta durumu yazmayan etkinlikler (sitede haber bağlantısıyla işaretlenir)
+  for (const x of cur.cx || []) out.push({ w: 2, k: "iptal", t: `**${x.t}** (${x.d}, ${x.v}): haberde ${x.k === "ertelendi" ? "ertelendiği" : "iptal edildiği"} geçiyor, kaynak sitede durum yazmıyor. Sitede haberle işaretlendi; doğrulayın: ${x.u}` });
   return out.sort((a, b) => b.w - a.w);
 }
 
@@ -117,7 +122,7 @@ export async function main() {
   const data = await readJSON(join(ROOT, "data/events.json"), { events: [] });
   const health = await readJSON(join(ROOT, "data/health.json"), { sources: {} });
   const hist = await readJSON(HIST, []);
-  const cur = snapshot(data.events, health, today, await readJSON(join(ROOT, "data/films.json"), null));
+  const cur = snapshot(data.events, health, today, await readJSON(join(ROOT, "data/films.json"), null), await readJSON(join(ROOT, "data/buzz.json"), null));
   const gaps = findGaps(cur, hist.filter((h) => h.at !== today), health);
   const news = process.env.AUDIT_NO_NEWS ? { miss: [], notes: ["haber taraması kapalı"] } : await newsScan(data.events);
   await writeJSON(HIST, [...hist.filter((h) => h.at !== today), cur].slice(-30), false);

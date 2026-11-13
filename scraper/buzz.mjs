@@ -24,6 +24,8 @@ export const FEEDS = [
   { id: "sozcu", name: "Sözcü", kind: "haber", url: "https://www.sozcu.com.tr/feeds-rss-category-kultur-sanat" },
   { id: "beyazperde", name: "Beyazperde", kind: "sinema", url: "https://www.beyazperde.com/rss/haberler.xml" },
   { id: "boxoffice", name: "Box Office Türkiye", kind: "sinema", url: BO + "/feed/news.atom" },
+  /* yalnızca iptal / erteleme haberleri için (ilgi puanına sayılmaz) */
+  { id: "gn-iptal", name: "Google Haberler", kind: "iptal", url: "https://news.google.com/rss/search?q=Ankara+(iptal+OR+ertelendi)+(konser+OR+tiyatro+OR+festival+OR+etkinlik+OR+g%C3%B6steri)+when:7d&hl=tr&gl=TR&ceid=TR:tr" },
 ];
 
 /* Karşılaştırma anahtarı: Türkçe harfler sadeleşir, harf ve rakam dışı her şey boşluk olur */
@@ -85,9 +87,19 @@ export function mentions(text, phrase, { strong, ctx = [] } = {}) {
 }
 const quoted = (raw, p) => { const t = p; return [...String(raw).matchAll(/[“"‘'«]([^”"’'»]{2,80})[”"’'»]/g)].some((m) => fold(m[1]) === t); };
 
+/* İptal / erteleme haberi mi? Başlıkta ya da adın geçtiği yerin yakınında (±160 harf) iptal/erteleme sözü aranır; "iptal edilmedi" sayılmaz */
+const CX = /\b(iptal|ertele\w*|yapilmayacak|gerceklestirilmeyecek|gerceklestirilemeyecek|sahnelenmeyecek)\b/;
+const CXNOT = /\b(iptal edilmedi|iptal edilmeyecek|iptal yok|ertelenmedi|ertelenmeyecek)\b/;
+export function cancelKind(title, text, phrase) {
+  const kind = (s) => (CXNOT.test(s) || !CX.test(s) ? "" : /\b(iptal|yapilmayacak|gerceklestiril\w*|sahnelenmeyecek)\b/.test(s) ? "iptal" : "ertelendi");
+  const t = fold(title); if (t.includes(phrase)) { const k = kind(t); if (k) return k; }
+  const T = " " + fold(text) + " ", i = T.indexOf(" " + phrase + " ");
+  return i < 0 ? "" : kind(T.slice(Math.max(0, i - 160), i + phrase.length + 160));
+}
+
 export function matchAll(items, events, films) {
-  const ev = {}, fm = {};
-  const add = (map, key, it) => { const a = (map[key] ||= []); if (!a.some((x) => x[1] === it.link)) a.push([it.src, it.link, it.date]); };
+  const ev = {}, fm = {}, cx = {};
+  const add = (map, key, it, k) => { const a = (map[key] ||= []); if (!a.some((x) => x[1] === it.link)) a.push(k ? [it.src, it.link, it.date, k] : [it.src, it.link, it.date]); };
   // etkinlikler: aynı ad bir kez denenir; kısa adlarda "ankara" ya da mekânın adı da geçmeli
   const byP = new Map();
   for (const e of events) {
@@ -105,7 +117,9 @@ export function matchAll(items, events, films) {
       if (!T.includes(" " + p + " ")) continue;
       const venue = [...o.vs].some((v) => T.includes(" " + v + " "));
       const ok = p.includes(" ") ? city || venue : venue || (city && quoted(it.text, p));
-      if (ok) add(ev, o.key, it);
+      if (!ok) continue;
+      const k = cancelKind(it.title, it.text, p);
+      if (k) add(cx, o.key, it, k); else if (it.kind !== "iptal") add(ev, o.key, it); // iptal haberi ilgi puanına sayılmaz
     }
   }
   // filmler: sinema sitelerinde ad yeter; genel haberlerde tek kelimelik ad tırnak içinde geçmeli
@@ -114,18 +128,18 @@ export function matchAll(items, events, films) {
     for (const p of ps) {
       const long = p.split(" ").length >= 2 && p.length >= 8;
       for (const it of items) {
-        if (!fold(it.text).includes(p)) continue;
+        if (it.kind === "iptal" || !fold(it.text).includes(p)) continue;
         if (mentions(it.text, p, { strong: long || it.kind === "sinema" || quoted(it.text, p) })) add(fm, nk(f.title), it);
       }
     }
   }
-  return { ev, fm };
+  return { ev, fm, cx };
 }
 
 export async function main() {
   const today = todayIST(), cut = new Date(Date.parse(today) - KEEP_DAYS * 864e5).toISOString().slice(0, 10);
   const prev = await readJSON(OUT, { ev: {}, fm: {}, bo: {} });
-  if (prev.v !== VER) { prev.ev = {}; prev.fm = {}; } // eşleştirme kuralı değişince eski eşleşmeler taşınmaz
+  if (prev.v !== VER) { prev.ev = {}; prev.fm = {}; prev.cx = {}; } // eşleştirme kuralı değişince eski eşleşmeler taşınmaz
   const evData = await readJSON(join(ROOT, "data/events.json"), { events: [] });
   const fData = await readJSON(join(ROOT, "data/films.json"), { films: [] });
   const events = (evData.events || []).filter((e) => e.d >= today), films = fData.films || [];
@@ -137,7 +151,7 @@ export async function main() {
     its.forEach((x) => { x.src = f.id; x.kind = f.kind; });
     items.push(...its); src[f.id] = { name: f.name, ok: true, n: its.length };
   }
-  const { ev, fm } = matchAll(items, events, films);
+  const { ev, fm, cx } = matchAll(items, events, films);
   // önceki günlerin eşleşmeleriyle birleştir (akışlar yalnızca son haberleri verir); 21 günden eskiler düşer
   const merge = (a = {}, b = {}) => { const o = {}; for (const k of new Set([...Object.keys(a), ...Object.keys(b)])) { const m = new Map(); for (const x of [...(a[k] || []), ...(b[k] || [])]) if (!x[2] || x[2] >= cut) m.set(x[1], x); if (m.size) o[k] = [...m.values()].sort((x, y) => (y[2] || "").localeCompare(x[2] || "")).slice(0, 8); } return o; };
   // gişe: en son hafta sonu tablosu
@@ -150,8 +164,8 @@ export async function main() {
     if (rows.length) { bo = { week: wk, url: `${BO}/hafta-sonu/detay/${wk}`, films: {} }; for (const x of rows.slice(0, 20)) { bo.films[nk(x.title)] = [x.rank, x.aud]; const k2 = nk(x.title.split(/:\s/)[0]); if (k2.length >= 4) bo.films[k2] ||= [x.rank, x.aud]; } /* iki site adı farklı yazabilir: iki noktadan önceki adla da eşleşir */ src.bohs = { name: "Box Office Türkiye hafta sonu", ok: true, n: rows.length }; }
     else src.bohs = { name: "Box Office Türkiye hafta sonu", ok: false, note: String(r.status || r.error) };
   }
-  const out = { v: VER, updated: new Date().toISOString(), names: Object.fromEntries(FEEDS.map((f) => [f.id, f.name])), sources: src, ev: merge(prev.ev, ev), fm: merge(prev.fm, fm), bo };
+  const out = { v: VER, updated: new Date().toISOString(), names: Object.fromEntries(FEEDS.map((f) => [f.id, f.name])), sources: src, ev: merge(prev.ev, ev), fm: merge(prev.fm, fm), cx: merge(prev.cx, cx), bo };
   await writeJSON(OUT, out, false);
-  log(`İlgi: ${items.length} haber okundu · ${Object.keys(out.ev).length} etkinlik ve ${Object.keys(out.fm).length} film haberlerde · gişe ${bo.week || "yok"} (${Object.keys(bo.films || {}).length} film) · ${Object.entries(src).filter(([, s]) => !s.ok).map(([k, s]) => `${k}: ${s.note}`).join(", ") || "bütün kaynaklar okundu"}`);
+  log(`İlgi: ${items.length} haber okundu · ${Object.keys(out.ev).length} etkinlik ve ${Object.keys(out.fm).length} film haberlerde · ${Object.keys(out.cx).length} etkinlikte iptal/erteleme haberi · gişe ${bo.week || "yok"} (${Object.keys(bo.films || {}).length} film) · ${Object.entries(src).filter(([, s]) => !s.ok).map(([k, s]) => `${k}: ${s.note}`).join(", ") || "bütün kaynaklar okundu"}`);
 }
 if (import.meta.url === `file://${process.argv[1]}`) await main();
