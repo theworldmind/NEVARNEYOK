@@ -212,8 +212,8 @@ async function siteInPage({ what, label }) {
   // afişi olmayan etkinlik paylaşılmaz (kullanıcı isteği): sitenin görüntüsünde de yalnızca afişli etkinlikler kalır
   for (let i = upcoming.length - 1; i >= 0; i--) if (!upcoming[i].img) upcoming.splice(i, 1);
   state.cat = "hepsi"; state.range = "hepsi"; state.limit = 60;
-  if (what === "hero") { render(true); scrollTo(0, 0); }
   if (what === "wall") { render(true); openWall(todayIso); }
+  if (what === "wall-yarin") { render(true); openWall(tomIso); }
   if (what === "sinema") { state.cat = "sinema"; render(true); const c = document.querySelector(".cine"); scrollTo(0, (c?.getBoundingClientRect().top || 0) + scrollY - (document.querySelector(".bar")?.offsetHeight || 60) - 12); }
   const barH = () => (document.querySelector(".bar")?.offsetHeight || 60) + 12;
   if (what === "konser") { state.cat = "konser"; render(true); const c = document.querySelector(".cstage"); scrollTo(0, (c?.getBoundingClientRect().top || 0) + scrollY - barH()); }
@@ -280,6 +280,14 @@ async function siteShot(theme, what, label, file) {
   const ok = await page.evaluate(siteInPage, { what, label }).catch((e) => { log("site görüntüsü:", what, e.message); return false; });
   if (!ok) { await page.close(); return null; }
   await imgsDone(page); await page.waitForTimeout(500);
+  // afişi yüklenmeyen kart görüntüden çıkarılır (yazı afişi paylaşılmaz); ekranda afiş kalmazsa hikâye üretilmez
+  const n = await page.evaluate((w) => {
+    document.querySelectorAll(".vc, .wt, .fc").forEach((c) => { if (!c.querySelector(".has-pst")) c.remove(); });
+    if (w === "bilet" && !document.querySelector(".tkw .has-pst")) return 0;
+    return [...document.querySelectorAll(".has-pst")].filter((x) => { const r = x.getBoundingClientRect(); return r.width > 40 && r.bottom > 0 && r.top < innerHeight; }).length;
+  }, what).catch(() => 0);
+  if (!n) { log("site görüntüsünde afiş yok, atlandı:", file); await page.close(); return null; }
+  await imgsDone(page); await page.waitForTimeout(400);
   await page.screenshot({ path: join(OUT, file) }); await page.close(); return file;
 }
 const plus = (slot, m) => { const [h, mm] = slot.split(":").map(Number), t = h * 60 + mm + m; return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`; };
@@ -314,11 +322,11 @@ try {
   for (const k in PAGES) await PAGES[k].close().catch(() => {});
   // gün içine dağılmış, doğrudan siteden hikâyeler (telefon görünümü)
   const SITE = [
-    ["09:00", "sabah", "hero", "GÜNAYDIN ANKARA · BUGÜN NELER VAR?"],
-    ["11:30", "gun", "wall", "AFİŞ DUVARI · BUGÜN"],
+    ["09:00", "sabah", "wall", "GÜNAYDIN ANKARA · BUGÜNÜN AFİŞLERİ"],
     ["14:00", "gun", "bilet", "BİLETİ AÇ, İNCELE"],
     ["16:30", "gece", "sinema", "PERDE AÇILDI · VİZYONDA"],
     ["19:30", "gece", "konser", "BU AKŞAM SAHNEDE"],
+    ["20:45", "gece", "wall-yarin", "AFİŞ DUVARI · YARIN"],
     ["21:30", "gece", "yarin", "YARIN ANKARA'DA NELER VAR?"],
   ];
   for (const [slot, theme, what, label] of SITE) { const f = await siteShot(theme, what, label, `site-${what}.png`); if (f) posts.push({ id: "site-" + what, slot, type: "STORY", file: f, title: label }); }
