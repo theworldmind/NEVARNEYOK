@@ -1,0 +1,18 @@
+[
+ {
+  "url": "https://iticket.com.tr/api/pending-order?locale=en",
+  "sample": "{\"order\":null}"
+ },
+ {
+  "url": "https://api.iticket.com.tr/en/v6/categories?client=web",
+  "sample": "{\"status\":200,\"result\":\"success\",\"response\":[{\"id\":84,\"slug\":\"education-other\",\"ordering\":120,\"legacy_slug\":\"education-other\",\"slugs\":{\"tr\":\"egitim-diger\",\"en\":\"education-other\"},\"paths\":{\"tr\":\"/etkinlikler/egitim-diger\",\"en\":\"/en/events/education-other\"},\"name\":\"Education & Other\"},{\"id\":19,\"slug\":\"sports\",\"ordering\":170,\"legacy_slug\":\"sport\",\"slugs\":{\"tr\":\"spor\",\"en\":\"sports\"},\"paths\":{\"tr\":\"/etkinlikler/spor\",\"en\":\"/en/events/sports\"},\"name\":\"Sport\"},{\"id\":7,\"slug\":\"family\",\"ordering\":180,\"legacy_slug\":\"family-events\",\"slugs\":{\"tr\":\"aile\",\"en\":\"family\"},\"paths\":{\"tr\":\"/etkinlikler/aile\",\"en\":\"/en/events/family\"},\"name\":\"Family Events\"},{\"id\":4,\"slug\":\"theatre\",\"ordering\":190,\"legacy_slug\":\"arts-theatre\",\"slugs\":{\"tr\":\"tiyatro\",\"en\":\"theatre\"},\"paths\":{\"tr\":\"/etkinlikler/tiyatro\",\"en\":\"/en/events/theatre\"},\"name\":\"Arts & Theatre\"},{\"id\":3,\"slug\":\"concerts\",\"ordering\":200,\"legacy_slug\":\"music\",\"slugs\":{\"tr\":\"konser\",\"en\":\"concerts\"},\"paths\":{\"tr\":\"/etkinlikler/konser\",\"en\":\"/en/events/concerts\"},\"name\":\"Concert\"}]}"
+ },
+ {
+  "url": "https://iticket.com.tr/_nuxt/builds/meta/0a62ea2f-fa2e-409c-ad4e-479e5566ff35.json",
+  "sample": "{\"id\":\"0a62ea2f-fa2e-409c-ad4e-479e5566ff35\",\"timestamp\":1794586634504,\"prerendered\":[]}"
+ },
+ {
+  "url": "https://api.iticket.com.tr/v6/tracking/events",
+  "sample": "{\"status\":202,\"result\":\"success\",\"response\":{\"accepted\":1,\"dropped\":0}}"
+ }
+]

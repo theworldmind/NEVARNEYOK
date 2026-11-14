@@ -1,0 +1,832 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="csrf-token" content="B7viXoSz33MKkV4DEiUNC3ZFj4oUh7ibmTgqlc80"/>
+  <title>BSO Ticket Sales</title>
+
+  <script src="https://cdn.bilkent.edu.tr/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bilkent.edu.tr/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bilkent.edu.tr/libs/jquery.panzoom/3.2.3/jquery.panzoom.min.js"></script>
+  <script src="https://cdn.bilkent.edu.tr/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+  <script src="https://cdn.bilkent.edu.tr/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css?id=d12654929feae8411f7171295803b9cc">
+    <style>
+    .filter-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .filter-list a {
+      padding: 8px 10px 8px 18px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 32px;
+      text-decoration: none;
+      color: #666;
+      margin: 0 10px 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-list a.selected {
+      background-color: #e3e3e3;
+      color: #666;
+      border: 1px solid #bcbcbc;
+    }
+
+    .filter-list .ctg-concert-count {
+      font-size: .9em;
+      line-height: 1;
+      background-color: #e3e3e3;
+      border-radius: 4px;
+      text-align: center;
+      padding: 2px 4px;
+      color: #999;
+    }
+    .filter-list a.selected .ctg-concert-count {
+      background-color: #f9f9f9;
+    }
+  </style>
+      
+    <!-- Google Tag Manager -->
+<script>
+  dataLayer = [];
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NND5SDW');
+</script>
+<!-- End Google Tag Manager -->      
+</head>
+<body class="concert-page">
+
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NND5SDW"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header>
+  <div id="mobile-nav">
+    <nav>
+  <ul class="nav navbar-nav">
+
+              <li>
+        <a href="http://bso.bilkent.edu.tr/en/">
+          <i class="fa fa-chevron-left"></i> Return to BSO Homepage        </a>
+      </li>
+        <!-- Authentication Links -->
+          <li><a href="https://ticket.bilkent.edu.tr/login">Login</a></li>
+      <li><a href="https://ticket.bilkent.edu.tr/register">Register</a></li>
+        <li class="dropdown lang-selector">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+         aria-expanded="false">
+        EN <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+                  <li class="">
+            <a href="https://ticket.bilkent.edu.tr/lang/tr">Türkçe</a>
+          </li>
+                  <li class="active">
+            <a href="https://ticket.bilkent.edu.tr/lang/en">English</a>
+          </li>
+              </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+  <div class="container">
+              <img src="https://ticket.bilkent.edu.tr/img/logo-en-negatif.svg" alt="BSO Logo" class="bso-logo">
+      <h1><a href="https://ticket.bilkent.edu.tr">Ticket Sales</a></h1>
+    
+    <nav>
+  <ul class="nav navbar-nav">
+
+              <li>
+        <a href="http://bso.bilkent.edu.tr/en/">
+          <i class="fa fa-chevron-left"></i> Return to BSO Homepage        </a>
+      </li>
+        <!-- Authentication Links -->
+          <li><a href="https://ticket.bilkent.edu.tr/login">Login</a></li>
+      <li><a href="https://ticket.bilkent.edu.tr/register">Register</a></li>
+        <li class="dropdown lang-selector">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+         aria-expanded="false">
+        EN <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+                  <li class="">
+            <a href="https://ticket.bilkent.edu.tr/lang/tr">Türkçe</a>
+          </li>
+                  <li class="active">
+            <a href="https://ticket.bilkent.edu.tr/lang/en">English</a>
+          </li>
+              </ul>
+    </li>
+  </ul>
+</nav>
+
+    <button type="button" class="hmbrgr-btn btn">
+      <span class="sr-only">Toggle navigation</span>
+      <i class="fa fa-bars"></i>
+    </button>
+  </div>
+
+  
+</header>
+
+
+<div class="container">
+      
+  <div style="margin-top: 40px;"></div>
+
+  
+  
+      <div class="concert-list">
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/1b79bc544590d5960789b5ccac0c82dd-1080-1080px.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Mahler &amp; Márquez &amp; Dvořák
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 14 November 2026 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Daniel Raiskin, conductor<br />
+Pacho Flores, trumpet<br />
+<br />
+G. Mahler | “Blumine”<br />
+A. Márquez | Concierto de Otoño<br />
+A. Dvořák | Symphony No.7, Op.70
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3370" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/3e6f421f8eb5ded376f49515995591de-1080x1080.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Copeland &amp; Glazunov
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 21 November 2026 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Daniel Raiskin, conductor<br />
+Ilia Rayskin, percussion<br />
+<br />
+S. Copeland | “Tyrant’s Crush”<br />
+A. Glazunov | Symphony No.5, Op.55
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3371" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/107d139420c1c7a4b42f9ba21de100dc-bso-28-kasim-1080x1080.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    BSO &amp; Sato
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 28 November 2026 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Shunske Sato, conductor &amp; violin<br />
+<br />
+J. Haydn| Symphony No.73, “La Chasse”<br />
+M. A. Guénin | Symphony in D minor, No.3, Op.4<br />
+Chevalier de Saint-Georges | Violin Concerto, C Major, No.2, Op.3<br />
+J. Haydn | Symphony No.60 &quot;Il Distratto&quot; (Presto, Adagio, Finale)<br />
+F. J. Gossec | Symphony in F Major, No.2, Op.8<br />
+J. Haydn | Symphony No.82, “L’Ours”, C Major
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3372" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/31da0347dd47652b62c3bd6c5ba2dc54-5web-1-1.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Smetana &amp; Dvořák &amp; Rachmaninoff
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 05 December 2026 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Clemens Schuldt, conductor<br />
+Merve Birbir, violin<br />
+<br />
+B. Smetana | The Moldau<br />
+A. Dvořák | Violin Concerto, Op.53<br />
+S. Rachmaninoff | Symphony No.2, Op.27
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3373" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/3d5d804504e997f6fb7177411a46c421-19web.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Rachmaninoff &amp; Schumann
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 19 December 2026 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    James Feddeck, conductor<br />
+Arsenii Moon, piano<br />
+<br />
+S. Rachmaninoff| Piano Concerto No.2, Op.18<br />
+R. Schumann | Symphony No.3, Op.97
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3374" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/913da0c8686d80f38207b1ba6dbb332b-28-29web.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    New Year&#039;s Concerts- December 28
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 28 December 2026 - Monday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    James Feddeck, conductor<br />
+Camille Chopin, soprano<br />
+<br />
+J. Strauss | “Die Fledermaus” Overture<br />
+J. Strauss | Pizzicato Polka<br />
+G. Donizetti | “Quel guardo il cavaliere”, Don Pasquale<br />
+G. Rossini | “En proie à la tristesse”, Le Comte Ory<br />
+F. von Suppe | “Dichter und Bauer” (Poet and Peasant) Overture<br />
+G. Rossini | “La Gazza Ladra” Overture<br />
+W. A. Mozart | “Ach, ich fühl’s, es ist entschwunden”, Die Zauberflöte<br />
+C. Gounod | &quot;Je veux vivre&quot;, Roméo et Juliette<br />
+G. F. Handel | Music for the Royal Fireworks<br />
+G. F. Handel | “Da tempeste il legno infranto”, Giulio Cesare in Egitto<br />
+J. Offenbach | “On va courir on va sortir “, La Vie parisienne<br />
+J .Strauss II | Unter Donner und Blitz
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3375" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/ddbf5ecff927910bb9df948e1dea6160-28-29web.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    New Year&#039;s Concerts- December 29
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 29 December 2026 - Tuesday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    James Feddeck, conductor<br />
+Camille Chopin, soprano<br />
+<br />
+J. Strauss | “Die Fledermaus” Overture<br />
+J. Strauss | Pizzicato Polka<br />
+G. Donizetti | “Quel guardo il cavaliere”, Don Pasquale<br />
+G. Rossini | “En proie à la tristesse”, Le Comte Ory<br />
+F. von Suppe | “Dichter und Bauer” (Poet and Peasant) Overture<br />
+G. Rossini | “La Gazza Ladra” Overture<br />
+W. A. Mozart | “Ach, ich fühl’s, es ist entschwunden”, Die Zauberflöte<br />
+C. Gounod | &quot;Je veux vivre&quot;, Roméo et Juliette<br />
+G. F. Handel | Music for the Royal Fireworks<br />
+G. F. Handel | “Da tempeste il legno infranto”, Giulio Cesare in Egitto<br />
+J. Offenbach | “On va courir on va sortir “, La Vie parisienne<br />
+J .Strauss II | Unter Donner und Blitz
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3376" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/21aaa1b3c871dc7651723b0026a01368-web6feb.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Master of Cello: Steven Isserlis
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 06 February 2027 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Olli Mustonen, conductor<br />
+Steven Isserlis, violoncello<br />
+<br />
+J. Tavener | The Protecting Veil for cello and orchestra<br />
+L. van Beethoven | Symphony No.7
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3526" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/d979ec8e89da0fd6ed036d2b831d80ec-valentineweb.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Valentine&#039;s Day Concert
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 13 February 2027 - Saturday, 18:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Murat Cem Orhan, conductor<br />
+<br />
+J. Offenbach | La Fille du Tambour Major - Ouverture<br />
+G. Fauré | Pelléas et Mélisande Suite, Op.80<br />
+S. Prokofiev | Selections from Romeo and Juliet
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3527" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/7fb0c250d78b51e91252011244cb0271-web20march.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Beethoven &amp; Tchaikovsky
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 20 March 2027 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Kirill Karabits, conductor<br />
+Jonathan Biss, piano<br />
+<br />
+L. van Beethoven | Piano Concerto No.5, Op.73<br />
+P. I. Tchaikovsky | Symphony No.2, Op.17
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3529" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/f27a9fc79be4e78e36086b2e7d914042-27web-1.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Saint-Saëns &amp; Weber &amp; de Falla
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 27 March 2027 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Gürer Aykal, conductor<br />
+Eren Düzenli, piano<br />
+<br />
+C. Saint-Saëns | Piano Concerto No.2, Op.22<br />
+C. M. von Weber | Oberon Overture<br />
+M. de Falla | The Three-Cornered Hat
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3530" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/1dc52dde4042f14060fbed7a5c6028b2-10aprilweb.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    Mayer &amp; Chopin &amp; Franck
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 10 April 2027 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Jiri Rozen, conductor<br />
+Gülsin Onay, piano<br />
+<br />
+E. Mayer | Faust Overture<br />
+F. Chopin | Piano Concerto No.2, Op.21<br />
+C. Franck | Symphony in D minor
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3546" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/1fc7db743fc17fc598cf9bfc284300ef-17aprilwebyeni.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    BSO &amp; Trio Pantoum
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 17 April 2027 - Saturday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Jiri Rozen, conductor<br />
+Trio Pantoum<br />
+<br />
+L. van Beethoven | Triple Concerto, Op.56<br />
+J. Brahms | Symphony No.1, Op.68
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3532" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+              <div class="concert">
+          <div class="concert-image "
+               style="background-image: url('/concert_images/a62ef9e4553a8086d5215543f51814f9-30aprilweb.jpeg');
+                   background-size: contain">
+          </div>
+          <div class="concert-info">
+
+            <div style="display: flex; flex-direction: column; height: 100%;">
+
+              <div>
+
+                <div class="concert-type">
+                                  </div>
+
+                                  <div class="concert-name">
+                    BSO &amp; Avi Avital
+                  </div>
+                  <div class="concert-place">
+                    <i class="fa fa-map-marker"></i> Bilkent Concert Hall
+                  </div>
+                  <div class="concert-date">
+                    <i class="fa fa-clock-o"></i> 30 April 2027 - Friday, 20:00
+                  </div>
+                  <div class="concert-extra-info">
+                    Avi Avital, conductor &amp; mandolin<br />
+<br />
+A. Vivaldi | Mandolin Concerto in D Major, RV93<br />
+J. S. Bach | Mandolin Concerto in G Minor, BWV 1056R<br />
+J. S. Bach | Mandolin Concerto in A Minor, BWV 1041<br />
+B. Bartók | Romanian Folk Dances<br />
+S. Tsintsadze | Six Miniatures on Georgian Folk Themes <br />
+O. Avital | Lonely Girl Mandolin and Strings<br />
+M. de Falla | &quot;Danse Espagnole&quot; from La Vida Breve
+                  </div>
+                
+              </div>
+
+              <div class="buy-buttons" style="flex: 0 1 auto; display: flex; justify-content: space-evenly;">
+                                  <div>
+                    <a href="https://ticket.bilkent.edu.tr/bilet/3533" class="btn btn-primary btn-sm">
+                      Buy Ticket                    </a>
+                  </div>
+                
+                              </div>
+            </div>
+
+          </div>
+        </div>
+          </div>
+  
+  
+  
+  
+
+  </div>
+
+
+<footer>
+  <div class="container">
+    <a href="https://ticket.bilkent.edu.tr/privacy" target="_blank">Privacy Policy</a>
+    •
+    <a href="https://ticket.bilkent.edu.tr/terms" target="_blank">Terms &amp; Conditions</a>
+    •
+    <a href="https://ticket.bilkent.edu.tr/refund-policy" target="_blank">Refund Policy</a>
+    •
+    <a href="https://ticket.bilkent.edu.tr/contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  window['appDefaults'] = {
+    locale: 'en',
+    phoneUtilsUrl: 'https://ticket.bilkent.edu.tr/js/intl-tel-input-utils.js?id=71259c97cc7d33f9a920e366db02f23c'
+  };
+</script>
+<script src="https://ticket.bilkent.edu.tr/js/manifest.js?id=6e8d5726bd9319de09bbe5ce96dfa199"></script>
+<script src="https://ticket.bilkent.edu.tr/js/vendor.js?id=bfde4b4aec63df439a581ecd0c867bd9"></script>
+<script src="https://ticket.bilkent.edu.tr/js/common.js?id=215d3d48c10748297fa4c1f1fcc25023"></script>
+</body>
+</html>

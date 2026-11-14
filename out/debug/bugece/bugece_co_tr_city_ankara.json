@@ -1,0 +1,6 @@
+[
+ {
+  "url": "https://sdk.iad-07.braze.com/api/v3/data/",
+  "sample": "{\"config\":{\"attributes_blacklist\":[],\"content_cards\":{\"enabled\":true,\"rate_limit\":{\"capacity\":5,\"enabled\":true,\"refill_rate\":180}},\"events_blacklist\":[],\"global_request_rate_limit\":{\"capacity\":30,\"enabled\":true,\"endpoint_overrides\":{\"banners/sync\":{\"capacity\":5,\"refill_rate\":180},\"content_cards/sync\":{\"capacity\":5,\"refill_rate\":180},\"push/redeliver\":{\"capacity\":1,\"refill_rate\":180}},\"refill_rate\":30},\"messaging_session_timeout\":21600,\"purchases_blacklist\":[],\"request_backoff\":{\"max_sleep_duration_ms\":300000,\"min_sleep_duration_ms\":10000,\"scale_factor\":3},\"time\":1794253760,\"vapid_public_key\":\"BOZDZ4uUXqscn_kuMETDXwxXrNcjcgPj09EiSg_7oLkGSqdzZCSjki6nhW2Zu-AFZZZGCJM7AZOGyrSwHwMuNxM=\"},\"triggers\":[]}"
+ }
+]
