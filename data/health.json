@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-14T13:43:18.887Z",
+ "runAt": "2026-11-14T21:08:14.916Z",
  "mode": "refresh",
- "total": 1857,
+ "total": 1782,
  "written": true,
  "sources": {
   "biletix": {
@@ -10,13 +10,13 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 99,
+   "count": 86,
    "prevCount": 100,
    "error": "",
    "notes": [],
-   "seconds": 175,
+   "seconds": 167,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "biletinial": {
    "id": "biletinial",
@@ -24,15 +24,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1369,
-   "prevCount": 1688,
+   "count": 1336,
+   "prevCount": 1664,
    "error": "",
    "notes": [
-    "açık veri: 933 seans, 106 detay sayfası"
+    "açık veri: 907 seans, 103 detay sayfası"
    ],
    "seconds": 68,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "sanatcepte": {
    "id": "sanatcepte",
@@ -40,13 +40,13 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 276,
-   "prevCount": 290,
+   "count": 268,
+   "prevCount": 288,
    "error": "",
    "notes": [],
-   "seconds": 34,
+   "seconds": 38,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "bubilet": {
    "id": "bubilet",
@@ -58,8 +58,8 @@
    "prevCount": 6,
    "error": "",
    "notes": [],
-   "seconds": 16,
-   "failStreak": 12,
+   "seconds": 17,
+   "failStreak": 13,
    "lastOk": null
   },
   "passo": {
@@ -72,9 +72,9 @@
    "prevCount": 45,
    "error": "",
    "notes": [],
-   "seconds": 50,
+   "seconds": 46,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "mobilet": {
    "id": "mobilet",
@@ -87,7 +87,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "iticket": {
@@ -96,13 +96,13 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 12,
+   "count": 10,
    "prevCount": 12,
    "error": "",
    "notes": [],
-   "seconds": 6,
+   "seconds": 4,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "bugece": {
    "id": "bugece",
@@ -115,7 +115,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "tiyatrolar": {
@@ -128,9 +128,9 @@
    "prevCount": 1,
    "error": "",
    "notes": [],
-   "seconds": 3,
+   "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "bilkent": {
    "id": "bilkent",
@@ -138,13 +138,13 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 14,
+   "count": 13,
    "prevCount": 14,
    "error": "",
    "notes": [],
-   "seconds": 7,
+   "seconds": 6,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "biletino": {
    "id": "biletino",
@@ -157,7 +157,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "dob": {
@@ -166,15 +166,15 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 38,
+   "count": 37,
    "prevCount": 40,
    "error": "",
    "notes": [
-    "açık veri: 38 seans"
+    "açık veri: 37 seans"
    ],
-   "seconds": 21,
+   "seconds": 24,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "cso": {
    "id": "cso",
@@ -187,7 +187,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "abb-tiyatro": {
@@ -201,7 +201,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "abb-kultur": {
@@ -215,7 +215,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "cankaya": {
@@ -229,7 +229,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "yenimahalle": {
@@ -243,7 +243,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "kecioren": {
@@ -257,7 +257,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "etimesgut": {
@@ -270,24 +270,24 @@
    "prevCount": 3,
    "error": "",
    "notes": [],
-   "seconds": 3,
+   "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-14T13:43:18.887Z"
+   "lastOk": "2026-11-14T21:08:14.916Z"
   },
   "mamak": {
    "id": "mamak",
    "name": "Mamak Belediyesi",
    "kind": "kurum",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
    "prevCount": 1,
    "error": "",
    "notes": [
-    "açık veri: 6 seans"
+    "açık veri: 0 seans"
    ],
-   "seconds": 8,
-   "failStreak": 0,
+   "seconds": 21,
+   "failStreak": 1,
    "lastOk": "2026-11-14T13:43:18.887Z"
   },
   "odtu-kkm": {
@@ -301,7 +301,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "cermodern": {
@@ -315,7 +315,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": "2026-11-14T04:18:20.692Z"
   },
   "erimtan": {
@@ -329,7 +329,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": "2026-11-14T04:18:20.692Z"
   },
   "radar": {
@@ -343,7 +343,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "ra": {
@@ -357,7 +357,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   }
  }
