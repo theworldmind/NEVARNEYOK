@@ -44,6 +44,8 @@ const I = {
   dir: `<svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 2l9 9-9 9-9-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 13v-2h5V9l3 3-3 3v-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>`,
   flt: `<svg class="ic" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="6" r="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="2" fill="none" stroke="currentColor" stroke-width="2"/></svg>`,
   spark: `<svg class="ic" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" fill="currentColor"/></svg>`,
+  bell: `<svg class="ic" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+  bellOn: `<svg class="ic" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
   srch: `<svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`,
 };
 
@@ -113,6 +115,7 @@ function setTop(city) {
   $("#home").innerHTML = WM(); $("#home").href = `#/${city}`;
   $("#cityBtn span").textContent = CITIES.find((c) => c.id === city)?.name || city;
   $("#srchBtn").href = `#/${city}/kesfet`;
+  const n = Object.keys(follows()).length, fb = $("#flwBtn"); fb.href = `#/${city}/takip`; fb.querySelector("b").textContent = n || ""; fb.classList.toggle("has", !!n);
 }
 
 function viewCities() {
@@ -155,6 +158,7 @@ function viewCity(city) {
   ${featured.length ? `<section class="hero"><div class="hs" id="hs">${featured.map((e, i) => `<a class="sl" href="#/${city}/e/${encodeURIComponent(e.slug)}"><img class="bg" src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" ${i ? 'loading="lazy"' : ""}><div class="in"><div class="po">${poster(e, { badge: false, lazy: i > 0 })}</div><div class="tx"><span class="tg">${esc(CATS[e.cat] || "Etkinlik")}</span><h2>${esc(e.title)}</h2><div class="m">${dLong(e.d)}${e.t ? " · " + esc(e.t) : ""}<br>${esc(e.venue || "")}</div><span class="go">Detayları gör →</span></div></div></a>`).join("")}</div><div class="dots" id="dots">${featured.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div></section>` : ""}
   <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
   <div class="qk"><a href="${k("t=bugun")}">Bugün</a><a href="${k("t=yarin")}">Yarın</a><a href="${k("t=haftasonu")}">Hafta sonu</a><a href="#/${city}/sinema">Sinema</a>${Object.keys(CATS).filter((c) => c !== "sinema" && weekL.some((e) => e.cat === c)).map((c) => `<a href="${k("k=" + c)}">${esc(CATS[c])}</a>`).join("")}</div>
+  ${notifAsk(city)}
   ${prefs() ? rail("Senin için", "İlgi alanlarına göre bu hafta", uniq([...weekL.filter((e) => e.img)].sort((a, b) => pscore(b) - pscore(a)), 16), city, k("sira=sen&t=hafta")) : ""}
   ${rail("Bu akşam", `${dLong(today)} · ${tonight.length} etkinlik`, uniq(tonight.filter((e) => e.img).sort((a, b) => (a.t || "").localeCompare(b.t || "")), 16), city, k("t=bugun"))}
   ${filmRail(city)}
@@ -167,6 +171,7 @@ function viewCity(city) {
   const lt = $("#later"); (window.requestIdleCallback || ((f) => setTimeout(f, 200)))(() => { if (document.body.contains(lt)) lt.outerHTML = later(); }, { timeout: 1200 });
   $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); location.hash = `#/${city}/kesfet?q=${encodeURIComponent($("#q").value.trim())}`; });
   $("#pz").addEventListener("click", () => openPrefs(city, () => viewCity(city)));
+  bindNotifAsk(city);
   heroInit();
 }
 function filmRail(city) {
@@ -316,13 +321,15 @@ function openPrefs(city, after) {
     <h4>Ne zaman çıkarsın?</h4><div class="ch">${Object.entries(WHEN).map(([k, l]) => chip("when", k, l)).join("")}</div>
     <h4>Bütçe</h4><div class="ch">${[[0, "Fark etmez"], [300, "₺300'e kadar"], [600, "₺600'e kadar"], [1000, "₺1.000'e kadar"]].map(([v, l]) => `<button type="button" data-b="${v}" class="${(P.budget || 0) === v ? "on" : ""}">${l}</button>`).join("")}</div>
     <label class="tg2" style="margin-top:14px"><span>Çocuklarla da gidiyorum<small>Çocuk ve aile etkinlikleri öne çıksın</small></span><input type="checkbox" id="kids"${P.kids ? " checked" : ""}></label>
+    <h4>Bildirimler</h4>${notifBox(city, true)}
   </div><div class="ft"><button type="button" class="ok" data-save>Kaydet</button></div></div>`, "fsheet");
   sh.addEventListener("click", (ev) => {
     const c = ev.target.closest("[data-p]"); if (c) { const k = c.dataset.p, v = c.dataset.v; P[k] = (P[k] || []).includes(v) ? P[k].filter((x) => x !== v) : [...(P[k] || []), v]; c.classList.toggle("on"); return; }
     const bb = ev.target.closest("[data-b]"); if (bb) { P.budget = +bb.dataset.b; $$("[data-b]", sh).forEach((x) => x.classList.toggle("on", x === bb)); return; }
     if (ev.target.closest("[data-clear]")) { store.set("nvny-prefs", ""); sh.close(); after?.(); return; }
-    if (ev.target.closest("[data-save]")) { P.kids = $("#kids", sh).checked; store.set("nvny-prefs", JSON.stringify(P)); sh.close(); after?.(); }
+    if (ev.target.closest("[data-save]")) { P.kids = $("#kids", sh).checked; store.set("nvny-prefs", JSON.stringify(P)); NV.set("prefs", P); sh.close(); after?.(); }
   });
+  bindNotifBox(sh, city);
 }
 
 /* ---------- Etkinlik sayfası ---------- */
@@ -350,7 +357,8 @@ function viewEvent(city, slug) {
     ${st ? `<div class="stb">${st}.${e.stNews ? " Haberlere göre: " + e.stNews.slice(0, 2).map((x) => `<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc((DATA.buzz.names || {})[x[0]] || x[0])} haberi ↗</a>`).join(" ") + " · Bilet sitesinden de kontrol edin." : ""}</div>` : ""}
     ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">Bilet al · ${esc((best || T[0]).site)}</a>` : ""}
     ${T.length ? `<div class="tix">${tix}</div><p class="chk">${checked ? `Fiyatlar ${ago(checked)} kontrol edildi. ` : ""}Satın alma ve iade, bileti satan sitenin kurallarına tabidir.</p>` : ""}
-    <div class="shr"><button type="button" id="shr">${I.share}Paylaş</button></div>
+    <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="shr">${I.share}Paylaş</button></div>
+    ${live(e) ? `<p class="flh">Takip edersen iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
     <section class="sec"><h3>Bu etkinlik hakkında</h3><p>${esc(descOf(e))}</p></section>
     <section class="sec"><h3>Konum</h3><div class="mapc">${v?.lat ? `<div class="map" id="map"></div>` : ""}<div class="ad">${I.pin}<span><b>${esc(e.venue || "")}</b><small>${esc(v?.addr || (v?.ilce ? v.ilce + ", Ankara" : "Ankara"))}</small></span></div><div class="bt"><a class="p" href="${dirU}" target="_blank" rel="noopener">${I.dir}Yol tarifi</a><a href="${mapU}" target="_blank" rel="noopener">${I.ext}Haritada aç</a></div></div></section>
   </div></div></div></article>
@@ -358,6 +366,7 @@ function viewEvent(city, slug) {
   ${sim.length ? rail("Bunlar da ilgini çekebilir", CATS[e.cat] || "", sim, city, `#/${city}/kesfet?k=${e.cat}`) : ""}
   ${footer()}`;
   $("#shr").addEventListener("click", async () => { const u = location.href; try { if (navigator.share) await navigator.share({ title: e.title, text: `${e.title} · ${dLong(e.d)} · ${e.venue}`, url: u }); else { await navigator.clipboard.writeText(u); $("#shr").lastChild.textContent = "Bağlantı kopyalandı"; } } catch {} });
+  $("#flw").addEventListener("click", () => toggleFollow(e, city));
   if (v?.lat) mapInit(v.lat, v.lng);
 }
 let leafletP = null;
@@ -402,6 +411,101 @@ function viewFilm(city, id, day) {
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/film/${id}?gun=${b.dataset.d}`; }));
 }
 
+
+/* ---------- Takip ve bildirimler (takip.js + sw.js) ----------
+   Takip listesi yalnızca bu cihazda (localStorage + service worker'ın okuduğu IndexedDB). Sunucu yok.
+   Bildirim: Android'de kurulu uygulamada telefon arada bir sw.js'i uyandırır (periodic sync); uygulama açılınca da
+   aynı karşılaştırma yapılır ve değişiklik sayfanın üstünde gösterilir (iPhone dahil her yerde). */
+const FKEY = "nvny-takip";
+const follows = () => { try { return JSON.parse(store.get(FKEY) || "{}") || {}; } catch { return {}; } };
+const fid = (e) => NV.key(e.title) + "|" + e.d + "|" + (e.t || "");
+const isF = (e) => !!follows()[fid(e)];
+const saveF = (F) => { store.set(FKEY, JSON.stringify(F)); NV.set("follows", F); };
+const NOTIF = "Notification" in window && "serviceWorker" in navigator;
+const notifOn = () => NOTIF && Notification.permission === "granted";
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent), standalone = document.documentElement.classList.contains("app");
+async function swUp() {
+  if (!("serviceWorker" in navigator)) return null;
+  try { await navigator.serviceWorker.register("sw.js", { scope: "./" }); const r = await navigator.serviceWorker.ready;
+    if (r.periodicSync) { try { const st = await navigator.permissions.query({ name: "periodic-background-sync" }); if (st.state === "granted") await r.periodicSync.register("nvny-takip", { minInterval: 12 * 36e5 }); } catch {} }
+    return r; } catch { return null; }
+}
+async function notify(title, body, url, tag) {
+  if (!notifOn()) return false;
+  try { const r = await swUp(); await r.showNotification(title, { body, tag, icon: "../icons/icon-192.png", badge: "../icons/icon-192.png", data: { url } }); return true; }
+  catch { try { new Notification(title, { body, icon: "../icons/icon-192.png" }); return true; } catch { return false; } }
+}
+function toast(html, ms = 5200) {
+  let w = $("#tst"); if (!w) { w = document.createElement("div"); w.id = "tst"; w.className = "tst"; document.body.append(w); }
+  const t = document.createElement("div"); t.className = "tt"; t.innerHTML = html; w.append(t);
+  requestAnimationFrame(() => t.classList.add("on"));
+  const kill = () => { t.classList.remove("on"); setTimeout(() => t.remove(), 300); };
+  t.addEventListener("click", (ev) => { if (!ev.target.closest("a")) kill(); }); setTimeout(kill, ms);
+}
+async function askNotif(city) {
+  if (!NOTIF) { toast(isIOS && !standalone ? "iPhone'da bildirim için önce uygulamayı ana ekrana ekle: <a href=\"../indir/\">nasıl?</a>" : "Bu tarayıcı bildirim göstermiyor. Uygulamayı indirip oradan açabilirsin: <a href=\"../indir/\">indir</a>", 8000); return false; }
+  if (Notification.permission === "denied") { toast("Bildirimler bu tarayıcıda kapalı. Tarayıcı ayarlarından bu site için izin verebilirsin.", 7000); return false; }
+  let p = Notification.permission; if (p !== "granted") { try { p = await Notification.requestPermission(); } catch { p = "denied"; } }
+  if (p !== "granted") return false;
+  NV.set("prefs", prefs()); NV.set("city", city); NV.set("follows", follows());
+  await swUp(); gcEv("bildirim-acildi", "Bildirimler açıldı");
+  if (!store.get("nvny-hosgeldin")) { store.set("nvny-hosgeldin", "1"); notify("HOŞ GELDİN! 👋", "Bildirimler açık. Takip ettiğin etkinlik iptal olursa, saati ya da yeri değişirse ilk sen öğren; bir gün önce de hatırlatalım. Arada bir güzel etkinlikleri de haber vereceğiz.", `/yeni/#/${city}`, "hosgeldin"); }
+  else toast("Bildirimler açık 🔔");
+  $$(".nask").forEach((x) => x.remove()); $$(".nbox").forEach((x) => { x.outerHTML = notifBox(city); });
+  return true;
+}
+function notifBox(city, inSheet) {
+  if (notifOn()) return `<div class="nbox ok">${I.bellOn}<span><b>Bildirimler açık</b><small>Takip ettiğin etkinliklerdeki değişiklikleri ve hatırlatmaları gönderiyoruz; arada bir de güzel etkinlikleri.</small></span></div>`;
+  return `<div class="nbox">${I.bell}<span><b>Bildirimleri aç, etkinliklerden haberdar ol</b><small>Takip ettiğin etkinlik iptal olursa, saati ya da yeri değişirse haber verelim; bir gün önce de hatırlatalım.</small></span><button type="button" class="nb-go" data-notif>Bildirimleri aç</button></div>`;
+}
+function notifAsk(city) {
+  if (notifOn() || store.get("nvny-nask-x") || (NOTIF && Notification.permission === "denied")) return "";
+  return `<div class="nask wrap"><div class="nbox">${I.bell}<span><b>Bildirimleri aç, etkinliklerden haberdar ol</b><small>Takip ettiğin etkinliklerde değişiklik olursa ilk sen öğren.</small></span><button type="button" class="nb-go" data-notif>Aç</button><button type="button" class="nb-x" data-nx aria-label="Kapat">✕</button></div></div>`;
+}
+function bindNotifBox(root, city) { root.addEventListener("click", (ev) => { if (ev.target.closest("[data-notif]")) askNotif(city); }); }
+function bindNotifAsk(city) {
+  const a = $(".nask"); if (!a) return; bindNotifBox(a, city);
+  a.querySelector("[data-nx]").addEventListener("click", () => { store.set("nvny-nask-x", "1"); a.remove(); });
+}
+function toggleFollow(e, city) {
+  const F = follows(), id = fid(e), b = $("#flw");
+  if (F[id]) { delete F[id]; saveF(F); b.classList.remove("on"); b.innerHTML = I.bell + "Takip et"; toast("Takipten çıkarıldı"); }
+  else {
+    F[id] = NV.snap(e, e.slug); saveF(F); b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; gcEv("takip-et", "Takip et");
+    if (notifOn()) toast(`Takip ediyorsun. Bir değişiklik olursa haber vereceğiz. <a href="#/${city}/takip">Takip ettiklerim →</a>`);
+    else if (!store.get("nvny-nask-f") && !(NOTIF && Notification.permission === "denied")) {
+      store.set("nvny-nask-f", "1");
+      const sh = sheet(`<div class="pn" role="dialog" aria-label="Bildirimler"><div class="bd2 nsh">${I.bellOn}<h3>Haberdar olmak ister misin?</h3><p>Bu etkinlik iptal olursa, ertelenirse, saati ya da yeri değişirse sana bildirim gönderelim; etkinlikten bir gün önce de hatırlatalım.</p></div><div class="ft"><button type="button" class="rs2" data-close>Şimdi değil</button><button type="button" class="ok" data-ok>Bildirimleri aç</button></div></div>`);
+      sh.querySelector("[data-ok]").addEventListener("click", () => { sh.close(); askNotif(city); });
+    } else toast(`Takip ediyorsun. <a href="#/${city}/takip">Takip ettiklerim →</a>`);
+  }
+  setTop(city);
+}
+function viewTakip(city) {
+  setTop(city); document.title = "Takip ettiklerim · Ne Var Ne Yok";
+  const F = follows(), today = nowIST().d;
+  const rows = Object.entries(F).map(([id, f]) => ({ id, f, e: DATA.bySlug.get(f.slug) || DATA.events.find((x) => NV.key(x.title) === f.tk && x.d === f.d) || null }))
+    .filter((r) => r.e || r.f.d >= today).sort((a, b) => a.f.d.localeCompare(b.f.d) || (a.f.t || "").localeCompare(b.f.t || ""));
+  V.innerHTML = `<div class="kh"><h1>Takip ettiklerim</h1><p>${rows.length ? rows.length + " etkinlik" : "Henüz takip ettiğin etkinlik yok"}</p></div>
+  <div class="wrap" style="margin-top:18px">${notifBox(city)}</div>
+  ${rows.length ? `<div class="grid">${rows.map((r) => r.e ? card(r.e, city) : `<div class="cd off"><div class="ph gone"><span>Listede yok</span></div><div class="t">${esc(r.f.title)}</div><div class="m">${dShort(r.f.d)}${r.f.t ? " · " + esc(r.f.t) : ""}</div><div class="m2">${esc(r.f.venue)}</div><button type="button" class="unf" data-unf="${esc(r.id)}">Takipten çıkar</button></div>`).join("")}</div>`
+    : `<div class="empty">Bir etkinliğin sayfasında <b>Takip et</b>'e dokun; iptal, erteleme, saat ya da yer değişikliğinde ve bir gün önce haber verelim.<p style="margin-top:18px"><a class="more" style="display:inline-flex;align-items:center" href="#/${city}/kesfet">Etkinliklere göz at</a></p></div>`}
+  ${footer()}`;
+  bindNotifBox(V, city);
+  $$("[data-unf]").forEach((b) => b.addEventListener("click", () => { const F2 = follows(); delete F2[b.dataset.unf]; saveF(F2); viewTakip(city); }));
+}
+/* Uygulama açılınca: takip edilenleri güncel veriyle karşılaştır, değişikliği göster */
+function followBoot() {
+  const city = store.get("nvny-city") || "ankara";
+  NV.set("city", city); if (prefs()) NV.set("prefs", prefs());
+  if (notifOn()) swUp();
+  const F = follows(); if (!Object.keys(F).length) return;
+  const res = NV.check(F, DATA.events, city);
+  saveF(res.follows);
+  res.msgs.slice(0, 3).forEach((m, i) => setTimeout(() => toast(`${I.bellOn}<span><b>${esc(m.title)}</b><small>${esc(m.body)}</small><a href="${esc(m.url.replace("/yeni/", ""))}">Göster →</a></span>`, 9000), 900 + i * 400));
+  const fb = $("#flwBtn b"); if (fb) { const n = Object.keys(res.follows).length; fb.textContent = n || ""; fb.parentElement.classList.toggle("has", !!n); }
+}
+
 /* ---------- Yönlendirme ---------- */
 const scrollMem = new Map();
 let lastHash = "";
@@ -420,6 +524,7 @@ function route() {
     else if (P[1] === "e") viewEvent(city, decodeURIComponent(P.slice(2).join("/")));
     else if (P[1] === "sinema") viewSinema(city, Q.gun);
     else if (P[1] === "film") viewFilm(city, P[2], Q.gun);
+    else if (P[1] === "takip") viewTakip(city);
     else viewCity(city);
   }
   V.style.animation = "none"; void V.offsetWidth; V.style.animation = "";
@@ -429,4 +534,4 @@ function route() {
 addEventListener("hashchange", route);
 addEventListener("scroll", () => TOP.classList.toggle("sc", scrollY > 8), { passive: true });
 document.addEventListener("click", (ev) => { const b = ev.target.closest("[data-buy]"); if (b) { let h = ""; try { h = new URL(b.href).hostname.replace(/^www\./, ""); } catch {} gcEv("bilet-al/" + (h || "?"), "Bilet al: " + (h || "?")); } }, true);
-load().then(route).catch((err) => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });
+load().then(() => { route(); followBoot(); }).catch((err) => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });

@@ -330,6 +330,23 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .sk{background:linear-gradient(90deg,var(--s1),var(--s2),var(--s1));background-size:200% 100%;animation:sk 1.2s linear infinite}
 @keyframes sk{to{background-position:-200% 0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- Takip ve bildirimler ---- */
+.fbell{position:relative}.fbell b{position:absolute;top:-3px;right:-3px;display:none;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--pur);color:#fff;font:800 11px/18px var(--f);text-align:center}.fbell.has b{display:block}
+.shr .flw{background:var(--s2)}.shr .flw.on{background:var(--pur);color:#fff}.shr .flw svg{width:18px;height:18px}
+.flh{margin-top:8px;color:var(--t3);font-size:13px;max-width:520px}
+.nbox{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:linear-gradient(120deg,rgba(139,99,255,.22),rgba(90,45,240,.08));border:1px solid rgba(139,99,255,.35);max-width:620px}
+.nbox>svg{width:24px;height:24px;flex:none;color:#c4b0ff}.nbox span{flex:1;min-width:0}.nbox b{display:block;font-weight:800}.nbox small{display:block;margin-top:2px;color:var(--t2);font-size:13px;line-height:1.35}
+.nbox .nb-go{flex:none;height:38px;padding:0 16px;border-radius:999px;background:#fff;color:var(--on-acc);font-weight:800;font-size:14px}
+.nbox .nb-x{flex:none;width:30px;height:30px;border-radius:50%;color:var(--t3)}
+.nbox.ok{background:var(--s1);border-color:var(--line)}
+.nask{margin-top:18px}
+.nsh{text-align:center;padding-top:8px}.nsh>svg{width:42px;height:42px;color:#c4b0ff}.nsh h3{margin-top:10px;font:900 26px/1 var(--fd);font-stretch:80%;text-transform:uppercase}.nsh p{margin-top:10px;color:var(--t2)}
+.tst{position:fixed;left:50%;top:calc(70px + env(safe-area-inset-top));z-index:90;display:flex;flex-direction:column;gap:8px;width:min(440px,calc(100% - 24px));transform:translateX(-50%);pointer-events:none}
+.tt{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:#1c1633;border:1px solid rgba(139,99,255,.4);box-shadow:0 12px 30px rgba(0,0,0,.45);font-size:14px;pointer-events:auto;opacity:0;transform:translateY(-10px);transition:opacity .25s,transform .25s}
+.tt.on{opacity:1;transform:none}.tt>svg{width:20px;height:20px;flex:none;color:#c4b0ff;margin-top:1px}.tt b{display:block}.tt small{display:block;color:var(--t2);margin-top:2px}.tt a{color:#c4b0ff;font-weight:800;text-decoration:underline;text-underline-offset:3px}.tt span a{display:inline-block;margin-top:6px}
+.ph.gone{display:grid;place-items:center;aspect-ratio:830/1200;border-radius:12px;background:var(--s1);color:var(--t3);font-weight:700}
+.unf{margin-top:8px;font-size:13px;color:var(--t2);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -338,6 +355,7 @@ html.app .dl-top,html.app [data-app]{display:none!important}
   <span class="sp"></span>
   <a class="dl-top" href="../indir/" data-app>Uygulamayı indir</a>
   <a class="cbtn" id="cityBtn" href="#/?sec=1"><span>Ankara</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></a>
+  <a class="ibtn fbell" id="flwBtn" href="#/ankara/takip" aria-label="Takip ettiklerim"><svg class="ic" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b></b></a>
   <a class="ibtn" id="srchBtn" href="#/ankara/kesfet" aria-label="Ara"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
 </header>
 <main id="view"><div class="ld">Yükleniyor…</div></main>
@@ -346,8 +364,9 @@ try{if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===
 window.NVNY_SITE={contact:"contact.openmind.vision@gmail.com",instagram:"https://www.instagram.com/nevarneyok.etkinlik/"};
 </script>
 <script src="../brand/logo.js?v=1"></script>
+<script src="takip.js?v=1"></script>
 <script>document.head.insertAdjacentHTML("beforeend","<style>"+NVLOGO.css+"</style>")</script>
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 <script data-goatcounter="https://nevarneyok.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
