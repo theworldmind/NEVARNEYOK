@@ -59,7 +59,7 @@ body::before{content:"";position:absolute;inset:0;background-image:radial-gradie
 .wm.sm{font-size:21px}
 .top{display:flex;justify-content:space-between;align-items:center}
 .pill{padding:10px 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);font:700 17px "JetBrains Mono",monospace;letter-spacing:.2em}
-h1{margin-top:34px;font:800 92px/.92 "Bricolage Grotesque",system-ui;font-variation-settings:"wdth" 84;letter-spacing:-.03em}
+h1{margin-top:34px;font:800 88px/.95 "Bricolage Grotesque",system-ui;font-variation-settings:"wdth" 96;letter-spacing:-.01em}
 h1 em{font-style:normal;color:#ff3b6b}
 .sub{margin-top:16px;font:700 21px "JetBrains Mono",monospace;letter-spacing:.18em;color:rgba(255,255,255,.75)}
 .grid{flex:1;display:grid;gap:20px 18px;margin:28px 0 24px;align-content:start;min-height:0}
