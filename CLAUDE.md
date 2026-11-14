@@ -92,7 +92,7 @@ Bozulmaması gereken kurallar:
 - **İl seçimi yazarak** (81 il, yazdıkça eşleşenler; açık olmayan il için "yakında" notu); kutu kutu şehir kartı yok.
 - **Filtreler dağınık değil:** keşfet sayfasında yalnızca arama, "Filtrele" ve "Sırala"; seçilenler küçük etiket. "Filtrele" tam ekran, bölüm bölüm açılan (akordeon) bir ekran: Tarih (hazır seçimler + 14 gün), Kategori (çoklu, sayılı), Saat (çoklu), Fiyat (doğrulanmış), Konum (ilçe çoklu + mekân arama), Kimler için (çocuk / 18+), Diğer (yeni, fiyat karşılaştırmalı, tükenen gizle, iptal/ertelenen); altta canlı "X etkinliği göster".
 - **Kişiselleştir** (kullanıcı isteği): ilgi alanları (kategori, semt, ne zaman, bütçe, çocuklu) yalnızca cihazda (`nvny-prefs`) saklanır; ana sayfada "Senin için" rafı, kategori rafları ilgiye göre sıralanır, keşfette "Senin için" sıralaması.
-- **Etkinlik sayfası:** büyük afiş, bilgiler, "Bilet al" + satış siteleri ve fiyatlar, **Konum: harita (Leaflet + CARTO koyu, anahtarsız), adres, Yol tarifi / Haritada aç (Google Maps bağlantısı)**, aynı mekânda ve benzer raflar.
+- **Etkinlik sayfası:** büyük afiş, bilgiler, "Bilet al" + satış siteleri ve fiyatlar, **Konum: harita (Leaflet + OpenStreetMap karoları, CSS ile koyulaştırılmış; anahtarsız — CARTO artık anahtar istiyor, kullanma), adres, Yol tarifi / Haritada aç (Google Maps bağlantısı)**, aynı mekânda ve benzer raflar.
 - Sinema: gün sekmeleri, film sayfasında salon salon seanslar. Ayrı sayfalar (adres: `#/ankara/...`); asıl siteye geçişte gerçek adresler (`/ankara/...`) ve şehir başına veri dosyası planlanıyor.
 
 ## 4. Akıcılık kuralları (takılma, donma olmasın)
