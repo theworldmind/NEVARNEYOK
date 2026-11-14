@@ -30,22 +30,8 @@ const rel = (s) => { const t = nowIST().d; return s === t ? "Bugün" : s === add
 const ago = (iso) => { if (!iso) return ""; const m = Math.max(1, Math.round((Date.now() - Date.parse(iso)) / 6e4)); return m < 60 ? `${m} dk önce` : m < 1440 ? `${Math.round(m / 60)} saat önce` : `${Math.round(m / 1440)} gün önce`; };
 const TL = (n) => "₺" + Math.round(n).toLocaleString("tr-TR");
 
-/* ---------- Logo: mercek o anki güneş konumuna göre renk alır (yalnızca logoda) ---------- */
-const LAT = 39.93 * Math.PI / 180, LON = 32.86, rad = Math.PI / 180;
-function sunAlt(t) {
-  const d = t.getTime() / 864e5 + 2440587.5 - 2451545, g = (357.529 + .98560028 * d) * rad, q = 280.459 + .98564736 * d;
-  const L = (q + 1.915 * Math.sin(g) + .02 * Math.sin(2 * g)) * rad, e = (23.439 - 3.6e-7 * d) * rad;
-  const ra = Math.atan2(Math.cos(e) * Math.sin(L), Math.cos(L)), dec = Math.asin(Math.sin(e) * Math.sin(L));
-  const H = ((18.697374558 + 24.06570982441908 * d) % 24 * 15 + LON) * rad - ra;
-  const alt = Math.asin(Math.sin(LAT) * Math.sin(dec) + Math.cos(LAT) * Math.cos(dec) * Math.cos(H));
-  const az = Math.atan2(-Math.sin(H), Math.tan(dec) * Math.cos(LAT) - Math.sin(LAT) * Math.cos(H));
-  return { alt: alt / rad, az: ((az / rad) + 360) % 360 };
-}
-function period() { const s = sunAlt(new Date()); const p = s.alt < -6 ? "gece" : s.az < 180 ? (s.alt < 15 ? "sabah" : "gun") : (s.alt < 10 ? "gunbatimi" : "gun"); if (document.documentElement.dataset.period !== p) document.documentElement.dataset.period = p; }
-period(); setInterval(period, 60000);
-let lensN = 0;
-const LENS = () => { const id = "lg" + ++lensN; return `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="${id}" cx="34%" cy="28%" r="82%"><stop offset="0" stop-color="var(--g1)"/><stop offset=".55" stop-color="var(--g2)"/><stop offset="1" stop-color="var(--g3)"/></radialGradient></defs><path d="M66 66L89 89" stroke="#FF3B6B" stroke-width="15" stroke-linecap="round"/><circle cx="44" cy="44" r="31" fill="none" stroke="#fff" stroke-width="13"/><circle cx="44" cy="44" r="25" fill="url(#${id})"/><path d="M26 34 A20 20 0 0 1 40 22" fill="none" stroke="rgba(255,255,255,.82)" stroke-width="4.5" stroke-linecap="round"/></svg>`; };
-const WM = () => `<span class="wm" aria-label="Ne Var Ne Yok"><span>NE VAR</span><span>NE Y<span class="O">${LENS()}</span>K</span></span>`;
+/* ---------- Logo: brand/logo.js (NVLOGO); renkler sabit (mor cam) ---------- */
+const WM = () => `<span class="wm" role="img" aria-label="Ne Var Ne Yok">${NVLOGO()}</span>`;
 const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg>`;
 const I = {
   cal: `<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,

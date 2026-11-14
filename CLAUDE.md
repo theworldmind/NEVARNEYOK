@@ -60,7 +60,8 @@ Bozulmaması gereken kurallar:
 
 
 ## 3. Marka ve tasarım kararları (kullanıcının onayladıkları)
-- **Logo:** "NE VAR NE YOK" beyaz. YOK'taki O, **canlı cam mercek** (C tasarımı). Sapı nar rengi `#FF3B6B`. Camın rengi zaman dilimine göre değişir (`--g1..3`, `data-period`). **Soru işareti yok.** Sap yanında nokta yok.
+- **Logo (yeni, kullanıcının tasarımı, 15.11.2026; aslı `brand/nevarneyok-logo.png`):** iki satır "NE VAR / NE YOK", çok kalın düz yazı (Inter Display Black, %107 genişlik, sıkı aralık), beyaz. YOK'taki O **büyüteç**: kalın beyaz halka, beyaz yuvarlak uçlu sap (sağ alta, satırın biraz dışına taşar), içinde parlak **mor cam küre** (#d9ccff → #8b63ff → #5a2df0 → #2c0fa6, sol üstte iki parıltı). Soru işareti, nokta, pembe sap yok. Camın rengi sabit mor (zamana göre değişmez). Logo `brand/make-logo.py` ile üretilir: `brand/logo.svg` (tek parça) ve `brand/logo.js` (`NVLOGO(id)`: parça parça HTML; giriş ekranındaki halka/cam animasyonu için `.sr-ring` / `.sr-glass`). Logoyu elle çizme, bunları kullan. Uygulama simgeleri ve `og.png` bu logodan, logodaki mor gece zeminiyle üretilir.
+- **Tema rengi (15.11.2026):** koyu gece moru (#0c0820 / #0b0817), sol üstte mor ışıma (logonun zemini gibi). Vurgu mor (#8b63ff, #5a2df0); pembe vurgu kullanılmaz.
 - **Dört tema:** Sabah, Gün, Gün batımı, Gece.
   - Otomatik mod güneşin Ankara'daki konumuna göre seçer (`themeSun`). Sabah ve Gün açık sayfa, Gün batımı ve Gece koyu sayfa.
   - Ayarlar panelinden elle seçilebilir (`nvny-tema`). Giriş ekranı, mercek ve sayfa her zaman aynı temada olmalı.
@@ -84,11 +85,11 @@ Bozulmaması gereken kurallar:
 
 ## 3b. Yeni tasarım (kullanıcı kararı, 14.11.2026; önizleme: nevarneyok.net.tr/yeni/)
 - Kullanıcı köklü değişiklik istedi: **Scene (scene.global) yapısı ve havası**, Neyapsak'ın iyi fikirleri (harita/konum, filtreler). Önizleme `yeni/index.html` + `yeni/app.js`; beğenilince asıl siteye geçilecek.
-- **Tek koyu tema** (siyah, beyaz, gri; tek vurgu nar). Dört tema, gökyüzü, şehir silüeti ve bayrak yeni tasarımda yok. **Zamana göre değişen tek şey logodaki mercek** (`data-period`, `--g1..3`).
+- **Tek koyu mor tema** (gece moru zemin, beyaz/gri yazı, vurgu mor `--pur`; logonun zemini gibi sol üstte mor ışıma). Dört tema, gökyüzü, şehir silüeti ve bayrak yeni tasarımda yok. Logodaki cam sabit mor.
 - **Açılış: şehir seçimi** (Ankara açık; İstanbul, İzmir… "Yakında"). Seçilen şehir hatırlanır, sonraki girişte doğrudan şehir sayfası.
 - **Şehir sayfası:** şehrin adı dev yazıyla, altında büyük afişli vitrin (kaydırmalı), arama + tek "Filtreler" düğmesi, hızlı seçimler, **büyük afişli yatay raflar** (Bu akşam, Vizyonda, Hafta sonu, kategoriler, Yeni eklenenler).
 - **Bütün seçenekler tek filtre panelinde** (tarih, gün, kategori, saat, doğrulanmış fiyat, mekân, yeni, tükenenleri gizle, iptal/ertelenen); seçilenler küçük etiket olarak görünür. Renkli çip şeritleri yok.
-- **Güçlü yazı:** başlıklar Archivo 900, dar (font-stretch ~72–85%), BÜYÜK HARF; gövde Inter Tight; logo Bricolage. Düğmeler beyaz zemin siyah yazı (pembe yok, kullanıcı isteği). Logo yeniden tasarlanabilir (kullanıcı bildirecek).
+- **Güçlü yazı:** başlıklar Archivo 900, dar (font-stretch ~72–85%), BÜYÜK HARF; gövde Inter Tight; logo Bricolage. Düğmeler beyaz zemin siyah yazı (pembe yok, kullanıcı isteği). Logo: `brand/logo.js` (yukarıdaki yeni logo).
 - **İl seçimi yazarak** (81 il, yazdıkça eşleşenler; açık olmayan il için "yakında" notu); kutu kutu şehir kartı yok.
 - **Filtreler dağınık değil:** keşfet sayfasında yalnızca arama, "Filtrele" ve "Sırala"; seçilenler küçük etiket. "Filtrele" tam ekran, bölüm bölüm açılan (akordeon) bir ekran: Tarih (hazır seçimler + 14 gün), Kategori (çoklu, sayılı), Saat (çoklu), Fiyat (doğrulanmış), Konum (ilçe çoklu + mekân arama), Kimler için (çocuk / 18+), Diğer (yeni, fiyat karşılaştırmalı, tükenen gizle, iptal/ertelenen); altta canlı "X etkinliği göster".
 - **Kişiselleştir** (kullanıcı isteği): ilgi alanları (kategori, semt, ne zaman, bütçe, çocuklu) yalnızca cihazda (`nvny-prefs`) saklanır; ana sayfada "Senin için" rafı, kategori rafları ilgiye göre sıralanır, keşfette "Senin için" sıralaması.

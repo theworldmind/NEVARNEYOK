@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="tr" data-period="gece">
+<html lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Ne Var Ne Yok · Şehrinin etkinliklerine göz at</title>
 <meta name="description" content="Konser, tiyatro, sinema, stand-up ve çocuk etkinlikleri; bilet siteleri yan yana. Şehrini seç, ne var ne yok gör.">
-<meta name="theme-color" content="#07080b">
+<meta name="theme-color" content="#0b0817">
 <meta name="robots" content="noindex">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png">
@@ -16,28 +16,26 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&text=onesidby&display=swap">
 <style>
 /* ============ NE VAR NE YOK · YENİ TASARIM ============
-   Tek koyu tema; renk afişlerden gelir. Tek vurgu rengi nar. Zamana göre değişen tek şey logodaki mercek (--g1..3). */
-:root{--bg:#07080b;--s1:#0f1116;--s2:#161920;--s3:#1e222b;--line:rgba(255,255,255,.08);--tx:#f4f5f7;--t2:#a2a7b2;--t3:#6c727e;--acc:#ffffff;--on-acc:#07080b;
-  --f:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;--fd:"Archivo","Inter Tight",system-ui,sans-serif;--fl:"Bricolage Grotesque","Inter Tight",system-ui,sans-serif;--pad:20px;--r:14px;
-  --g1:#FF6B8F;--g2:#7C5CFF;--g3:#1D1F4A}
-:root[data-period="sabah"]{--g1:#FFF3D6;--g2:#FFB4C8;--g3:#8FB3FF}
-:root[data-period="gun"]{--g1:#E0F3FF;--g2:#6FB8FF;--g3:#3F6FE0}
-:root[data-period="gunbatimi"]{--g1:#FFE08A;--g2:#FF7A59;--g3:#A8306E}
+   Tek koyu mor tema (yeni logo, 15.11.2026): gece moru zemin, sol üstte mor ışıma; renk afişlerden gelir. Düğmeler beyaz, vurgu mor (--pur). */
+:root{--bg:#0b0817;--s1:#140f26;--s2:#1c1633;--s3:#271f44;--line:rgba(255,255,255,.09);--tx:#f6f4fb;--t2:#b0a9c8;--t3:#7a7294;--acc:#ffffff;--on-acc:#0b0817;--pur:#8b63ff;--pur2:#5a2df0;
+  --f:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;--fd:"Archivo","Inter Tight",system-ui,sans-serif;--fl:"Bricolage Grotesque","Inter Tight",system-ui,sans-serif;--pad:20px;--r:14px}
 @media (min-width:900px){:root{--pad:48px}}
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--bg);color:var(--tx);-webkit-text-size-adjust:100%;scroll-behavior:auto}
-body{font:500 15px/1.45 var(--f);min-height:100svh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font:500 15px/1.45 var(--f);min-height:100svh;background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 img{display:block;max-width:100%}
 .wrap{padding:0 var(--pad);max-width:1440px;margin:0 auto}
 .ic{width:20px;height:20px;flex:none}
 
-/* ---- Logo: yalnızca mercek zamana göre renk değiştirir ---- */
-.wm{display:inline-flex;flex-direction:column;font:800 20px/.9 var(--fl);font-variation-settings:"wdth" 85;letter-spacing:-.02em;color:#fff}
-.wm .O{display:inline-block;width:.86em;height:.86em;vertical-align:-.08em;margin:0 .015em}.wm .O svg{width:100%;height:100%;overflow:visible}
+
+/* Logodaki gibi mor ışıma: sabit, ayrı katmanda (kaydırmada yeniden çizilmez) */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(70% 45% at 12% 0%,rgba(78,40,170,.7),transparent 72%),radial-gradient(60% 40% at 95% 100%,rgba(48,26,120,.35),transparent 72%);transform:translateZ(0)}
+/* ---- Logo (brand/logo.js): beyaz yazı, beyaz büyüteç, mor cam ---- */
+.wm{display:inline-flex;font-size:20px;--u:.0073em;color:#fff}
 
 /* ---- Üst çubuk ---- */
-.top{position:sticky;top:0;z-index:50;height:62px;display:flex;align-items:center;gap:12px;padding:0 var(--pad);background:rgba(7,8,11,.82);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+.top{position:sticky;top:0;z-index:50;height:62px;display:flex;align-items:center;gap:12px;padding:0 var(--pad);background:rgba(11,8,23,.82);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
 .top.sc{border-bottom-color:var(--line)}
 .top[hidden]{display:none}
 .top .sp{flex:1}
@@ -97,12 +95,12 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .dstrip small{font:700 11px var(--f);letter-spacing:.04em}
 .dstrip b{font:800 19px/1.1 var(--f);color:var(--tx)}
 .dstrip .wk b{font-size:13px;line-height:1.5}
-.dstrip button.on{background:#fff;border-color:#fff;color:#07080b}.dstrip button.on b{color:#07080b}
+.dstrip button.on{background:#fff;border-color:#fff;color:#0b0817}.dstrip button.on b{color:#0b0817}
 .pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px var(--pad) 0;max-width:1440px;margin:0 auto}
 .pills::-webkit-scrollbar{display:none}
 .pl{flex:none;display:flex;align-items:center;gap:6px;height:38px;padding:0 12px 0 15px;border-radius:999px;border:1px solid rgba(255,255,255,.16);font-weight:700;font-size:14px;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pl svg{width:14px;height:14px;flex:none;opacity:.6}
-.pl.on{background:#fff;color:#07080b;border-color:#fff}
+.pl.on{background:#fff;color:#0b0817;border-color:#fff}
 .pl.clr{padding:0 15px;color:var(--t2);border-style:dashed}
 .mn .pn{max-height:72svh}
 .ml{padding:6px 12px 14px}
@@ -127,13 +125,13 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .sl{position:relative;flex:0 0 100%;scroll-snap-align:center;border-radius:24px;overflow:hidden;background:var(--s1);display:grid;isolation:isolate;min-height:520px}
 @media (min-width:900px){.sl{flex-basis:calc(100% - 0px);min-height:460px}}
 .sl .bg{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(36px) saturate(1.2) brightness(.55);transform:scale(1.05);z-index:-2}
-.sl::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,8,11,0) 30%,rgba(7,8,11,.85))}
+.sl::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,8,23,0) 30%,rgba(11,8,23,.85))}
 .sl .in{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:18px;padding:28px 22px 26px;text-align:center}
 .sl .po{width:min(62vw,300px);aspect-ratio:830/1200;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.55)}
 .sl .tx .tg{display:inline-block;margin-bottom:10px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.12);font:700 11px var(--f);letter-spacing:.16em;text-transform:uppercase}
 .sl h2{font:900 clamp(30px,7.4vw,64px)/.92 var(--fd);font-stretch:80%;letter-spacing:-.02em;text-transform:uppercase}
 .sl .m{margin-top:10px;color:rgba(255,255,255,.78);font-weight:600}
-.sl .go{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 20px;border-radius:999px;background:#fff;color:#07080b;font:800 14px var(--f)}
+.sl .go{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 20px;border-radius:999px;background:#fff;color:#0b0817;font:800 14px var(--f)}
 @media (min-width:900px){.sl .in{flex-direction:row;justify-content:flex-start;align-items:center;gap:48px;padding:48px 64px;text-align:left}.sl .po{width:280px}}
 .dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
 .dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.25);transition:width .3s,background .3s}
@@ -174,8 +172,8 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .ph.no .tp{display:flex}
 .ph .tp b{font:900 24px/.95 var(--fd);font-stretch:80%;text-transform:uppercase;letter-spacing:-.02em;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
 .ph .tp small{font:700 11px var(--f);letter-spacing:.16em;text-transform:uppercase;color:var(--t3)}
-.ph .bd{position:absolute;left:8px;top:8px;z-index:2;padding:4px 8px;border-radius:7px;background:rgba(7,8,11,.78);font:700 11px var(--f);letter-spacing:.04em}
-.ph .bd.x{background:#fff;color:#07080b}
+.ph .bd{position:absolute;left:8px;top:8px;z-index:2;padding:4px 8px;border-radius:7px;background:rgba(11,8,23,.78);font:700 11px var(--f);letter-spacing:.04em}
+.ph .bd.x{background:#fff;color:#0b0817}
 .cd .t{margin-top:10px;font:800 15px/1.2 var(--f);letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .cd .m{margin-top:4px;color:var(--t2);font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cd .m2{color:var(--t3);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -214,14 +212,14 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .tg2{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-weight:600}
 .tg2 input{appearance:none;width:44px;height:26px;border-radius:13px;background:var(--s3);position:relative;transition:background .2s;flex:none}
 .tg2 input::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
-.tg2 input:checked{background:#fff}.tg2 input:checked::after{background:#07080b}.tg2 input:checked::after{transform:translateX(18px)}
+.tg2 input:checked{background:var(--pur)}.tg2 input:checked::after{background:#fff}.tg2 input:checked::after{transform:translateX(18px)}
 .pn .ft{display:flex;gap:10px;padding:14px 20px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
 .pn .ft button{height:50px;border-radius:14px;font-weight:800}
 .pn .ft .rs2{padding:0 18px;border:1px solid var(--line)}
 .pn .ft .ok{flex:1;background:var(--acc);color:var(--on-acc)}
 
 /* ---- Keşfet üst bölüm + düzenli filtre ekranı ---- */
-.fbtn.on{background:#fff;color:#07080b;border-color:#fff}.fbtn.on .n{background:#07080b;color:#fff}
+.fbtn.on{background:#fff;color:#0b0817;border-color:#fff}.fbtn.on .n{background:#0b0817;color:#fff}
 .frow{display:flex;align-items:center;gap:10px;padding:10px var(--pad) 0;max-width:1440px;margin:0 auto}
 .frow .act{flex:1;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:0;margin:0}
 .frow .act::-webkit-scrollbar{display:none}.frow .act button{flex:none}
@@ -255,7 +253,7 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .dt{position:relative}
 .dt .bk{position:absolute;inset:0 0 auto;height:min(78vh,760px);overflow:hidden;z-index:-1}
 .dt .bk img{width:100%;height:100%;object-fit:cover;filter:blur(40px) saturate(1.2) brightness(.42);transform:scale(1.2)}
-.dt .bk::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,11,.2),var(--bg) 96%)}
+.dt .bk::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,8,23,.2),var(--bg) 96%)}
 .dt .in{max-width:1180px;margin:0 auto;padding:18px var(--pad) 0}
 .back{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px 0 10px;border-radius:999px;background:rgba(255,255,255,.1);font-weight:700}
 .dg{display:grid;gap:28px;margin-top:20px}
@@ -288,14 +286,14 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .mapc{border-radius:18px;overflow:hidden;background:var(--s1);border:1px solid var(--line)}
 .map{height:240px;background:#0d0f13}
 .map .dk{filter:invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.35)}
-.map .leaflet-control-attribution{background:rgba(7,8,11,.7)!important;color:#888!important;font-size:9px}
+.map .leaflet-control-attribution{background:rgba(11,8,23,.7)!important;color:#888!important;font-size:9px}
 .map .leaflet-control-attribution a{color:#aaa!important}
 .mapc .ad{display:flex;align-items:center;gap:12px;padding:14px 16px}
 .mapc .ad svg{width:22px;height:22px;color:#fff;flex:none}
 .mapc .ad b{display:block}.mapc .ad small{color:var(--t2)}
 .mapc .bt{display:flex;gap:8px;padding:0 16px 16px}
 .mapc .bt a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:12px;background:var(--s2);font-weight:700;font-size:14px}
-.mapc .bt a.p{background:#fff;color:#07080b}
+.mapc .bt a.p{background:#fff;color:#0b0817}
 .pin{width:30px;height:30px;border-radius:50% 50% 50% 0;background:#fff;transform:rotate(-45deg);box-shadow:0 6px 16px rgba(0,0,0,.6),0 0 0 5px rgba(255,255,255,.18)}
 .shr{display:flex;gap:8px;margin-top:12px}
 .shr button{display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:999px;background:var(--s2);font-weight:700;font-size:14px}
@@ -347,7 +345,9 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 try{if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true)document.documentElement.classList.add("app")}catch(e){}
 window.NVNY_SITE={contact:"contact.openmind.vision@gmail.com",instagram:"https://www.instagram.com/nevarneyok.etkinlik/"};
 </script>
-<script src="app.js?v=1"></script>
+<script src="../brand/logo.js?v=1"></script>
+<script>document.head.insertAdjacentHTML("beforeend","<style>"+NVLOGO.css+"</style>")</script>
+<script src="app.js?v=2"></script>
 <script data-goatcounter="https://nevarneyok.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
