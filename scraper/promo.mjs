@@ -52,13 +52,14 @@ const CTA = `<div class="cta"><div class="tile">${WORD("sm")}</div><div class="c
 const CSS = `@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=Onest:wght@500;600;700&family=JetBrains+Mono:wght@600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&text=onesidby&display=swap");
 *{box-sizing:border-box;margin:0}html,body{width:100%;height:100%}
-body{position:relative;overflow:hidden;color:#fff;font-family:Onest,system-ui,sans-serif;background:radial-gradient(60% 40% at 18% 8%,rgba(66,34,140,1),transparent 75%),radial-gradient(60% 40% at 55% 50%,rgba(48,26,112,.8),transparent 78%),radial-gradient(55% 35% at 88% 96%,rgba(40,24,100,.7),transparent 72%),#0c0820}
+body{position:relative;overflow:hidden;color:#fff;font-family:Onest,system-ui,sans-serif;background:radial-gradient(70% 34% at 30% 10%,rgba(70,34,160,.8),rgba(38,18,92,.35) 50%,transparent 80%),radial-gradient(60% 30% at 70% 85%,rgba(50,24,125,.45),transparent 75%),#050409}
 body::before{content:"";position:absolute;inset:0;background-image:radial-gradient(1.6px 1.6px at 12% 18%,#fff8,transparent),radial-gradient(1.4px 1.4px at 82% 9%,#fff7,transparent),radial-gradient(1.2px 1.2px at 64% 30%,#fff6,transparent),radial-gradient(1.6px 1.6px at 30% 6%,#fff7,transparent),radial-gradient(1.2px 1.2px at 92% 44%,#fff5,transparent),radial-gradient(1.4px 1.4px at 6% 52%,#fff5,transparent)}
 .pg{position:absolute;left:64px;right:64px;top:var(--top);bottom:var(--bot);display:flex;flex-direction:column}
 .wm{display:inline-flex;flex-direction:column;font:800 44px/.9 "Bricolage Grotesque",system-ui;font-variation-settings:"wdth" 85;letter-spacing:-.02em}
 .wm .O{display:inline-block;width:.86em;height:.86em;vertical-align:-.08em;margin:0 .015em}.wm .O svg{width:100%;height:100%;overflow:visible}
 .wm.sm{font-size:21px}
 .wm>.nvl{color:#fff}
+.wm{filter:drop-shadow(0 0 .3em rgba(105,60,240,.6))}
 ${NVLOGO.css}
 .top{display:flex;justify-content:space-between;align-items:center}
 .pill{padding:10px 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);font:700 17px "JetBrains Mono",monospace;letter-spacing:.2em}
@@ -75,7 +76,7 @@ h1 em{font-style:normal;color:#8b63ff}
 .c small{margin-top:3px;font:600 14px Onest;color:rgba(255,255,255,.66);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .c u{margin-top:2px;text-decoration:none;font:600 11px "JetBrains Mono",monospace;color:rgba(255,255,255,.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cta{display:flex;align-items:center;gap:22px;padding:20px 22px;border-radius:28px;background:linear-gradient(160deg,rgba(30,32,78,.96),rgba(14,15,38,.96));box-shadow:0 0 0 2px rgba(139,99,255,.65),0 20px 44px rgba(0,0,0,.5)}
-.tile{display:grid;place-items:center;flex:none;width:104px;height:104px;border-radius:24px;background:radial-gradient(60% 50% at 24% 18%,#42228c,transparent 78%),radial-gradient(55% 45% at 50% 52%,rgba(48,26,112,.85),transparent 80%),#0c0820;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16),0 10px 22px rgba(0,0,0,.45)}
+.tile{display:grid;place-items:center;flex:none;width:104px;height:104px;border-radius:24px;background:radial-gradient(52% 36% at 50% 50%,rgba(70,34,160,.95),rgba(38,18,92,.6) 50%,rgba(16,8,40,.3) 75%,transparent 95%),#050409;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16),0 10px 22px rgba(0,0,0,.45)}
 .ct{flex:1;display:flex;flex-direction:column;min-width:0}
 .ct b{font:800 40px/1 "Bricolage Grotesque";font-variation-settings:"wdth" 86;letter-spacing:-.02em}
 .ct span{margin-top:8px;font:700 21px "JetBrains Mono",monospace;color:#c4b0ff}
@@ -88,7 +89,7 @@ h1 em{font-style:normal;color:#8b63ff}
 .hero{flex:1;position:relative;display:grid;place-items:center;margin:10px 0}
 .fan{position:absolute;width:300px;aspect-ratio:830/1200;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 20px 40px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.12)}
 .fan img{width:100%;height:100%;object-fit:cover}
-.big{position:relative;z-index:3;display:grid;place-items:center;width:330px;height:330px;border-radius:76px;background:radial-gradient(60% 50% at 24% 18%,#42228c,transparent 78%),radial-gradient(55% 45% at 50% 52%,rgba(48,26,112,.85),transparent 80%),#0c0820;box-shadow:inset 0 0 0 3px rgba(255,255,255,.16),0 30px 70px rgba(0,0,0,.6),0 0 90px rgba(124,92,255,.45)}
+.big{position:relative;z-index:3;display:grid;place-items:center;width:330px;height:330px;border-radius:76px;background:radial-gradient(52% 36% at 50% 50%,rgba(70,34,160,.95),rgba(38,18,92,.6) 50%,rgba(16,8,40,.3) 75%,transparent 95%),#050409;box-shadow:inset 0 0 0 3px rgba(255,255,255,.16),0 30px 70px rgba(0,0,0,.6),0 0 90px rgba(124,92,255,.45)}
 .big .wm{font-size:74px}
 .feat{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:26px}
 .feat span{padding:12px 18px;border-radius:999px;background:rgba(255,255,255,.09);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);font:700 20px Onest}

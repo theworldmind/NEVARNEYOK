@@ -7,11 +7,18 @@ Kullanıcıyla her zaman Türkçe konuş.
 - Dışarıda hazırlanmış bir paketi (zip, tek dosya HTML, eski Python toplayıcı) bu deponun üzerine **asla** yazma. Başka bir yerde yapılmış bir tasarım veya kod değişikliği, bu depodaki `index.html` / `app.js` içine elle ya da üç yönlü birleştirmeyle taşınır.
 - Değişikliği `main`e gönderince **Siteyi yayınla** iş akışı siteyi kendiliğinden yayınlar (nevarneyok.net.tr). Gönderdikten sonra işin başarıyla bittiğini kontrol et (`gh run list` / `gh run watch`).
 
+## 0. Büyük geçiş (kullanıcı kararı, 15.11.2026)
+- **Asıl site artık yeni tasarım** (eski `yeni/` önizlemesi köke taşındı: `index.html`, `app.js`, `takip.js`, `sw.js`). **Eski site tamamen silindi** ("eski falan yok, kökten yeniye geçiyoruz"). **Giriş ekranı (splash) yok**; site doğrudan il seçimiyle ("Hoş geldinnn 👋 / Hangi şehirdesin?") açılır. `/yeni/` köke yönlendirir.
+- Aşağıda eski siteye ait kurallar (dört tema, gökyüzü/silüet/bayrak, dikey cam bilet kartları, afiş duvarı, kategori sahneleri, özel günler, giriş ekranı, `.dlbtn` hero düğmesi, `wxRefresh`/`paintBg` gibi akıcılık maddeleri) **artık geçmiş kayıttır**; geri getirme. Geçerli tasarım: bölüm 3b ve logo/tema maddeleri.
+- **Instagram görselleri:** `social.mjs` eski sitenin çizimlerini kullanıyordu; şimdilik iş akışlarında kapalı (`# node social.mjs`). Yeni tasarımla yeniden kurulacak (otomatik gönderiler Aralık'ta başlıyor). `promo.mjs` (reklam görselleri) kendi şablonuyla çalışmaya devam eder.
+- Bilgi sayfaları: `#/bilgi/hakkinda|kaynaklar|gizlilik|kosullar|iletisim`. Eski bağlantılar (`#e/<slug>`, `#gizlilik` …) yeni adreslere yönlenir (Google sayfaları `../../#e/<slug>` kullanır).
+- Tema: **siyah zemin (#050409) + mor ışıma** (yeni logonun zemini, `brand/nevarneyok-logo.png`); logoda mor hale (`drop-shadow`). Simgeler `brand/make-icons.cjs` ile üretilir.
+
 ## 2. Sistem nasıl çalışır (korunacak)
 | Parça | Görev |
 |---|---|
-| `index.html` | Görünüm (CSS + işaretleme). En altta veri yükleyici: `data/events.json` ve `data/venues.json` dosyalarını `no-store` ile çeker, sonra `app.js?v=…` dosyasını ekler. |
-| `app.js` | Bütün çalışan kod. |
+| `index.html` | Görünüm (CSS + işaretleme); `brand/logo.js`, `takip.js`, `app.js?v=…` (sürümü `build-pages.mjs` günceller). |
+| `app.js` | Bütün çalışan kod (hash yönlendirme `#/<şehir>/...`; veriyi `data/*.json` dosyalarından `no-store` ile çeker). `takip.js` + `sw.js`: takip ve bildirimler. |
 | `scraper/run.mjs` | 32 kaynak (`scraper/sources/index.mjs`). Her sabah 06:30 tam tarama, 16:00'da yalnızca fiyat ve durum tazeleme (`update.yml`). |
 | `scraper/sources/` | Kaynak türleri: detay sayfası (`link`), takvim sayfası (`parseList`: ad, tarih, saat, yer liste sayfasında), kurumun kendi sitesinin kullandığı açık veri (`collect`: DOB, Mamak). Kapanan kaynaklar `enabled: false` ve gerekçesiyle durur. |
 | `probe.yml` / `scraper/probe.mjs` | **Kaynak keşfi.** Bir sayfanın bağlantı kalıplarını, JSON isteklerini ve tarih satırlarını yalnızca iş akışı günlüğüne yazar. Yeni kaynak eklemeden ya da bozulanı onarmadan önce bununla bak (bu çalışma alanı sitelere doğrudan bağlanamaz). |

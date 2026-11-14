@@ -44,7 +44,8 @@ jobs:
         env:
           OUT_DIR: /tmp/paylas
         run: |
-          node social.mjs
+          # social.mjs eski sitenin çizimlerini kullanıyordu; site yeni tasarıma geçti (15.11.2026), Instagram görselleri yeni tasarımla yeniden kurulacak
+          # node social.mjs
           node promo.mjs || echo "reklam görselleri üretilemedi"
 
       - name: Görselleri sosyal dalına koy

@@ -30,7 +30,7 @@ var NV = (function () {
         if (dist < best) { best = dist; e = x; }
       }
       if (e && best > 45) e = null;
-      var url = "/yeni/#/" + (city || "ankara") + "/e/" + encodeURIComponent(e ? e.slug || f.slug : f.slug), n = Object.assign({}, f);
+      var url = "/#/" + (city || "ankara") + "/e/" + encodeURIComponent(e ? e.slug || f.slug : f.slug), n = Object.assign({}, f);
       if (!e) {
         if (f.d < t0) return; // geçmiş: listeden çıkar
         if (!f.gone) { msgs.push({ tag: "x-" + id, title: f.title, body: "Bu etkinlik artık listemizde görünmüyor; iptal edilmiş ya da satıştan kalkmış olabilir. Bilet sitesinden kontrol et.", url: url }); n.gone = 1; }
@@ -64,7 +64,7 @@ var NV = (function () {
     var L = events.filter(function (e) { return e.d >= fri && e.d <= sun && e.status !== "iptal" && e.status !== "ertelendi"; });
     if (!L.length) return null;
     var mine = prefs && prefs.cats && prefs.cats.length ? L.filter(function (e) { return prefs.cats.indexOf(e.cat) >= 0; }).length : 0;
-    return { tag: "digest", title: "Hafta sonu Ankara'da ne var ne yok?", body: L.length.toLocaleString("tr-TR") + " etkinlik seni bekliyor" + (mine ? "; " + mine + " tanesi tam senlik." : ". Göz atmak için dokun."), url: "/yeni/#/" + (city || "ankara") + "/kesfet?t=haftasonu" + (mine ? "&sira=sen" : "") };
+    return { tag: "digest", title: "Hafta sonu Ankara'da ne var ne yok?", body: L.length.toLocaleString("tr-TR") + " etkinlik seni bekliyor" + (mine ? "; " + mine + " tanesi tam senlik." : ". Göz atmak için dokun."), url: "/#/" + (city || "ankara") + "/kesfet?t=haftasonu" + (mine ? "&sira=sen" : "") };
   }
   return { fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today };
 })();

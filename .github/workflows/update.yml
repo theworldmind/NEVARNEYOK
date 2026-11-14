@@ -102,11 +102,12 @@ jobs:
         working-directory: scraper
         continue-on-error: true
         run: |
-          node social.mjs
+          # social.mjs eski sitenin çizimlerini kullanıyordu; site yeni tasarıma geçti (15.11.2026), Instagram görselleri yeni tasarımla yeniden kurulacak
+          # node social.mjs
           node promo.mjs || echo "reklam görselleri üretilemedi"
 
       - name: Instagram görsellerini "sosyal" dalına koy (Metricool buradan alır)
-        if: env.MODE_FLAG == '' && hashFiles('paylas/paylas.json') != ''
+        if: env.MODE_FLAG == '' && hashFiles('paylas/paylas.json', 'paylas/reklam.json') != ''
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
