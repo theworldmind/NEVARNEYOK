@@ -1,0 +1,51 @@
+# Reklam görsellerini (Bugün / Bu hafta / Uygulama; "Uygulamamızı indirin" çağrılı) hemen üretir ve
+# "sosyal" dalındaki o günün klasörüne ekler (diğer dosyalara dokunmaz). Her sabahki taramada da üretilir.
+name: Reklam görselleri
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Tarih (YYYY-AA-GG, boş = bugün)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sosyal
+  cancel-in-progress: false
+
+jobs:
+  promo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Europe/Istanbul
+      SOCIAL_DATE: ${{ github.event.inputs.date }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Bağımlılıkları kur
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Görselleri üret
+        working-directory: scraper
+        env:
+          OUT_DIR: /tmp/reklam
+        run: node promo.mjs
+      - name: sosyal dalına ekle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D="${SOCIAL_DATE:-$(date +%F)}"
+          git config --global user.name "nevarneyok-bot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git clone -q --depth 1 --branch sosyal "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" /tmp/sosyal
+          cd /tmp/sosyal && mkdir -p "$D" && cp /tmp/reklam/* "$D/"
+          git add -A && git commit -qm "Reklam görselleri: $D" || exit 0
+          git push -q origin sosyal || { git pull -q --rebase origin sosyal && git push -q origin sosyal; }

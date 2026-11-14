@@ -43,7 +43,9 @@ jobs:
         working-directory: scraper
         env:
           OUT_DIR: /tmp/paylas
-        run: node social.mjs
+        run: |
+          node social.mjs
+          node promo.mjs || echo "reklam görselleri üretilemedi"
 
       - name: Görselleri sosyal dalına koy
         env:
