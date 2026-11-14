@@ -8,11 +8,11 @@ const fold = (s) => (s || "").normalize("NFC").toLocaleLowerCase("tr").replace(/
 const slugOf = (e) => e.d + "-" + fold(e.title).trim().replace(/\s+/g, "-").slice(0, 48);
 const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
 
-const CITIES = [
-  { id: "ankara", name: "Ankara", live: true },
-  { id: "istanbul", name: "İstanbul" }, { id: "izmir", name: "İzmir" }, { id: "antalya", name: "Antalya" },
-  { id: "bursa", name: "Bursa" }, { id: "eskisehir", name: "Eskişehir" }, { id: "adana", name: "Adana" }, { id: "konya", name: "Konya" },
-];
+const IL = "Adana Adıyaman Afyonkarahisar Ağrı Aksaray Amasya Ankara Antalya Ardahan Artvin Aydın Balıkesir Bartın Batman Bayburt Bilecik Bingöl Bitlis Bolu Burdur Bursa Çanakkale Çankırı Çorum Denizli Diyarbakır Düzce Edirne Elazığ Erzincan Erzurum Eskişehir Gaziantep Giresun Gümüşhane Hakkari Hatay Iğdır Isparta İstanbul İzmir Kahramanmaraş Karabük Karaman Kars Kastamonu Kayseri Kilis Kırıkkale Kırklareli Kırşehir Kocaeli Konya Kütahya Malatya Manisa Mardin Mersin Muğla Muş Nevşehir Niğde Ordu Osmaniye Rize Sakarya Samsun Şanlıurfa Siirt Sinop Şırnak Sivas Tekirdağ Tokat Trabzon Tunceli Uşak Van Yalova Yozgat Zonguldak".split(" ");
+const LIVE = new Set(["ankara"]);
+const POP = ["istanbul", "ankara", "izmir", "antalya", "bursa", "eskisehir", "adana", "konya", "gaziantep", "mersin", "kocaeli", "kayseri", "samsun", "trabzon", "denizli"];
+const rank = (c) => (c.live ? -100 : 0) + (POP.includes(c.id) ? POP.indexOf(c.id) : 50);
+const CITIES = IL.map((n) => ({ id: fold(n).replace(/\s+/g, ""), name: n, live: LIVE.has(fold(n).replace(/\s+/g, "")) }));
 const CATS = { konser: "Konser", tiyatro: "Tiyatro", standup: "Stand-up", sahne: "Opera · Bale · Dans", cocuk: "Çocuk & Aile", festival: "Festival", parti: "Parti", atolye: "Atölye & Söyleşi", sinema: "Sinema" };
 const GUN = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"], GUNK = ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"];
 const AY = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"], AYK = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -129,12 +129,27 @@ function setTop(city) {
 }
 
 function viewCities() {
-  setTop(null); document.title = "Ne Var Ne Yok · Şehrini seç";
-  const n = DATA.events.filter((e) => e.d <= addD(nowIST().d, 6) && live(e)).length;
-  V.innerHTML = `<div class="cs">${WM()}<h1>Şehrini seç,<br><em>ne var ne yok gör.</em></h1><p class="lead">Konser, tiyatro, sinema, stand-up ve çocuk etkinlikleri; bilet siteleri yan yana, her gün güncel.</p>
-  <div class="cg">${CITIES.map((c) => c.live ? `<a class="cc live" href="#/${c.id}" data-city="${c.id}"><b>${c.name}</b><small>Bu hafta ${n.toLocaleString("tr-TR")} etkinlik</small></a>` : `<div class="cc soon" aria-disabled="true"><b>${c.name}</b><small>Yakında</small></div>`).join("")}</div>
-  <div class="foot" style="border:0;padding:48px 0 0;margin:auto 0 0"><a class="dlb" href="../indir/" data-app><span class="tl">${WM()}</span><span><b>Uygulamamızı indirin</b><small>Android · iPhone · ücretsiz</small></span><span class="go2">İndir</span></a><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
-  $$("[data-city]").forEach((a) => a.addEventListener("click", () => store.set("nvny-city", a.dataset.city)));
+  setTop(null); document.title = "Ne Var Ne Yok · Hangi şehirdesin?";
+  const n = DATA.events.filter((e) => e.d <= addD(nowIST().d, 6) && live(e)).length, liveC = CITIES.filter((c) => c.live);
+  V.innerHTML = `<div class="cs">${WM()}<h1>Hangi şehirdesin?</h1><p class="lead">Şehrini yaz, o şehirde bugün ve bu hafta ne var ne yok gör.</p>
+  <div class="cpick"><label class="cin">${I.pin}<input id="cq" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Şehrini yaz…" aria-label="Şehir ara" role="combobox" aria-expanded="false" aria-controls="cl"></label><ul class="cl" id="cl" role="listbox" hidden></ul><p class="cmsg" id="cmsg" hidden></p></div>
+  <p class="cnow">Şu an açık: ${liveC.map((c) => `<a href="#/${c.id}" data-city="${c.id}">${c.name}</a>`).join(", ")} <span>· diğer şehirler yakında</span></p>
+  <div class="cs-ft"><a class="dlb" href="../indir/" data-app><span class="tl">${WM()}</span><span><b>Uygulamamızı indirin</b><small>Android · iPhone · ücretsiz</small></span><span class="go2">İndir</span></a><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
+  const q = $("#cq"), ul = $("#cl"), msg = $("#cmsg"); let sel = 0, L = [];
+  const choose = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; } q.value = c.name; ul.hidden = true; q.setAttribute("aria-expanded", "false"); msg.hidden = false; msg.innerHTML = `<b>${esc(c.name)}</b> yakında geliyor. Şimdilik ${liveC.map((x) => `<a href="#/${x.id}" data-city="${x.id}">${x.name}</a>`).join(", ")} etkinliklerine göz atabilirsin.`; };
+  const draw = () => {
+    const v = fold(q.value).trim(); msg.hidden = true;
+    L = v ? CITIES.filter((c) => fold(c.name).startsWith(v)).sort((a, b) => rank(a) - rank(b)).concat(CITIES.filter((c) => !fold(c.name).startsWith(v) && fold(c.name).includes(v))).slice(0, 7) : liveC;
+    sel = 0; ul.hidden = !L.length; q.setAttribute("aria-expanded", String(!!L.length));
+    ul.innerHTML = L.length ? L.map((c, i) => `<li role="option" data-i="${i}" class="${i === sel ? "on" : ""}${c.live ? "" : " soon"}"><b>${esc(c.name)}</b><small>${c.live ? `Bu hafta ${n.toLocaleString("tr-TR")} etkinlik` : "Yakında"}</small></li>`).join("") : "";
+    if (v && !L.length) { msg.hidden = false; msg.textContent = "Bu adla bir il bulamadık."; }
+  };
+  q.addEventListener("input", draw); q.addEventListener("focus", draw);
+  q.addEventListener("keydown", (ev) => { if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { ev.preventDefault(); sel = (sel + (ev.key === "ArrowDown" ? 1 : L.length - 1)) % (L.length || 1); $$("li", ul).forEach((li, i) => li.classList.toggle("on", i === sel)); } else if (ev.key === "Enter") { ev.preventDefault(); choose(L[sel]); } });
+  ul.addEventListener("pointerdown", (ev) => { const li = ev.target.closest("li"); if (li) { ev.preventDefault(); choose(L[+li.dataset.i]); } });
+  document.addEventListener("pointerdown", function off(ev) { if (!document.body.contains(q)) return document.removeEventListener("pointerdown", off); if (!ev.target.closest(".cpick")) ul.hidden = true; });
+  $$("[data-city]").forEach((x) => x.addEventListener("click", () => store.set("nvny-city", x.dataset.city)));
+  if (!matchMedia("(pointer:coarse)").matches) q.focus();
 }
 
 let heroTimer = 0;
@@ -150,7 +165,7 @@ function viewCity(city) {
   const k = (q) => `#/${city}/kesfet?${q}`;
   V.innerHTML = `<section class="city"><div class="k">Şehrin gündemi</div><h1>${esc(cname)}</h1><div class="st"><span><b>${todayL.length}</b> etkinlik bugün</span><span><b>${weekL.length.toLocaleString("tr-TR")}</b> bu hafta</span>${DATA.films?.films?.length ? `<span><b>${DATA.films.films.filter((f) => f.s && Object.keys(f.s).length).length}</b> film vizyonda</span>` : ""}</div></section>
   ${featured.length ? `<section class="hero"><div class="hs" id="hs">${featured.map((e, i) => `<a class="sl" href="#/${city}/e/${encodeURIComponent(e.slug)}"><img class="bg" src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" ${i ? 'loading="lazy"' : ""}><div class="in"><div class="po">${poster(e, { badge: false, lazy: i > 0 })}</div><div class="tx"><span class="tg">${esc(CATS[e.cat] || "Etkinlik")}</span><h2>${esc(e.title)}</h2><div class="m">${dLong(e.d)}${e.t ? " · " + esc(e.t) : ""}<br>${esc(e.venue || "")}</div><span class="go">Detayları gör →</span></div></div></a>`).join("")}</div><div class="dots" id="dots">${featured.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div></section>` : ""}
-  <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}Filtreler</a></form>
+  <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("")}">${I.flt}<span class="fl">Filtrele</span></a></form>
   <div class="qk"><a href="${k("t=bugun")}">Bugün</a><a href="${k("t=yarin")}">Yarın</a><a href="${k("t=haftasonu")}">Hafta sonu</a><a href="#/${city}/sinema">Sinema</a>${Object.keys(CATS).filter((c) => c !== "sinema" && weekL.some((e) => e.cat === c)).map((c) => `<a href="${k("k=" + c)}">${esc(CATS[c])}</a>`).join("")}</div>
   ${rail("Bu akşam", `${dLong(today)} · ${tonight.length} etkinlik`, uniq(tonight.filter((e) => e.img).sort((a, b) => (a.t || "").localeCompare(b.t || "")), 16), city, k("t=bugun"))}
   ${filmRail(city)}
@@ -204,61 +219,56 @@ function chipsOf(f) {
 }
 const toQ = (f) => Object.entries(f).filter(([k, v]) => v && k !== "f").map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join("&");
 let shown = 60;
+const SIRA = { "": "Tarihe göre", populer: "Öne çıkanlar", fiyat: "Fiyat (doğrulanmış)" };
 function viewKesfet(city, f) {
   setTop(city);
-  const L = applyF(f), title = f.k ? CATS[f.k] : f.t ? TIMES[f.t] : f.yeni ? "Yeni eklenenler" : f.iptal ? "İptal ve ertelenenler" : f.q ? "Arama" : "Keşfet";
+  const L = applyF(f), title = f.k ? CATS[f.k] : f.t ? TIMES[f.t] : f.gun ? dLong(f.gun) : f.yeni ? "Yeni eklenenler" : f.iptal ? "İptal ve ertelenenler" : f.q ? "Arama" : "Keşfet";
   document.title = `${title} · ${CITIES.find((c) => c.id === city)?.name} · Ne Var Ne Yok`;
-  const chips = chipsOf(f);
+  const { d: today } = nowIST(), days = [...Array(14)].map((_, i) => addD(today, i));
+  const go = (nf) => { location.hash = `#/${city}/kesfet?${toQ(nf)}`; };
+  const dayOn = (t, g) => (t ? f.t === t : g ? f.gun === g && !f.t : !f.t && !f.gun);
+  const more = [f.yeni && "Yeni", f.tk && "Tükenen yok", f.iptal && "İptal/ertelenen"].filter(Boolean);
+  const pill = (key, label, val) => `<button type="button" class="pl${val ? " on" : ""}" data-m="${key}">${esc(val || label)}<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>`;
   V.innerHTML = `<div class="kh"><h1>${esc(title)}</h1><p>${L.length.toLocaleString("tr-TR")} etkinlik · ${esc(CITIES.find((c) => c.id === city)?.name || "")}</p></div>
-  <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" value="${esc(f.q || "")}" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label><button type="button" class="fbtn" id="fo">${I.flt}Filtreler${chips.length ? `<span class="n">${chips.length}</span>` : ""}</button></form>
-  ${chips.length ? `<div class="act">${chips.map(([k, l]) => `<button data-x="${k}">${esc(l)}</button>`).join("")}</div>` : ""}
-  <div class="srt"><span>${f.k || f.t || f.q ? "" : "Yaklaşanlar"}</span><select id="sira" aria-label="Sırala"><option value="">Tarihe göre</option><option value="populer"${f.sira === "populer" ? " selected" : ""}>Öne çıkanlar</option><option value="fiyat"${f.sira === "fiyat" ? " selected" : ""}>Fiyat (doğrulanmış)</option></select></div>
-  <div class="grid" id="gr"></div><div id="mr"></div>${L.length ? "" : `<div class="empty">Bu seçimle etkinlik bulunamadı.<br>Filtreleri gevşetmeyi dene.</div>`}${footer()}`;
+  <div class="fz"><form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" value="${esc(f.q || "")}" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label></form>
+  <div class="dstrip">${`<button type="button" data-day="" class="wk${dayOn() ? " on" : ""}"><small>Tüm</small><b>tarihler</b></button>`}${[["bugun", "Bugün", today], ["yarin", "Yarın", addD(today, 1)]].map(([t, l, d]) => `<button type="button" data-t="${t}" class="${dayOn(t) ? "on" : ""}"><small>${l}</small><b>${pd(d).getDate()}</b></button>`).join("")}<button type="button" data-t="haftasonu" class="wk${dayOn("haftasonu") ? " on" : ""}"><small>Hafta</small><b>sonu</b></button>${days.slice(2).map((d) => `<button type="button" data-day="${d}" class="${dayOn(null, d) ? "on" : ""}"><small>${GUNK[pd(d).getDay()]}</small><b>${pd(d).getDate()}</b></button>`).join("")}</div>
+  <div class="pills">${pill("k", "Kategori", f.k && CATS[f.k])}${pill("s", "Saat", f.s && SAAT[f.s].split(" (")[0])}${pill("p", "Fiyat", f.p && FIYAT[f.p])}${pill("m", "Mekân", f.m)}${pill("x", "Daha fazla", more.join(", "))}${pill("sira", "Sırala", f.sira && SIRA[f.sira])}${chipsOf(f).length ? `<button type="button" class="pl clr" data-clear>Temizle</button>` : ""}</div></div>
+  <div class="grid" id="gr"></div><div id="mr"></div>${L.length ? "" : `<div class="empty">Bu seçimle etkinlik bulunamadı.<br>Seçimleri gevşetmeyi dene.</div>`}${footer()}`;
   shown = 60; const gr = $("#gr"), mr = $("#mr");
   const paint = () => { gr.innerHTML = L.slice(0, shown).map((e) => card(e, city)).join(""); mr.innerHTML = L.length > shown ? `<button class="more" id="more">Daha fazla göster (${(L.length - shown).toLocaleString("tr-TR")})</button>` : ""; $("#more")?.addEventListener("click", () => { shown += 60; paint(); }); };
   paint();
-  const go = (nf) => { location.hash = `#/${city}/kesfet?${toQ(nf)}`; };
-  $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); go({ ...f, q: $("#q").value.trim() }); });
-  $("#sira").addEventListener("change", (ev) => go({ ...f, sira: ev.target.value }));
-  $$("[data-x]").forEach((b) => b.addEventListener("click", () => { const nf = { ...f }; delete nf[b.dataset.x]; go(nf); }));
-  $("#fo").addEventListener("click", () => openFilters(city, f));
-  if (f.f) { delete f.f; history.replaceState(null, "", `#/${city}/kesfet?${toQ(f)}`); openFilters(city, f); }
+  $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); $("#q").blur(); go({ ...f, q: $("#q").value.trim() }); });
+  $$(".dstrip [data-t]").forEach((b) => b.addEventListener("click", () => { const nf = { ...f, t: b.dataset.t }; delete nf.gun; go(nf); }));
+  $$(".dstrip [data-day]").forEach((b) => b.addEventListener("click", () => { const nf = { ...f }; delete nf.t; if (b.dataset.day) nf.gun = b.dataset.day; else delete nf.gun; go(nf); }));
+  $(".dstrip .on")?.scrollIntoView({ inline: "center", block: "nearest" });
+  $("[data-clear]")?.addEventListener("click", () => go(f.q ? { q: f.q } : {}));
+  $$(".pills [data-m]").forEach((b) => b.addEventListener("click", () => menu(b.dataset.m, city, f, go)));
+  if (f.f) { delete f.f; history.replaceState(null, "", `#/${city}/kesfet?${toQ(f)}`); setTimeout(() => $("#q").focus(), 50); }
 }
-function openFilters(city, f0) {
-  const f = { ...f0 }; delete f.f;
-  const venues = [...new Set(DATA.events.filter(live).map((e) => e.venue).filter(Boolean))].sort((a, b) => a.localeCompare(b, "tr"));
-  const sh = document.createElement("div"); sh.className = "sh";
-  const chip = (key, val, label) => `<button type="button" data-k="${key}" data-v="${esc(val)}" class="${(f[key] || "") === String(val) ? "on" : ""}">${esc(label)}</button>`;
-  const body = () => `<div class="pn" role="dialog" aria-label="Filtreler"><div class="hd"><b>Filtreler</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2">
-    <h4>Tarih</h4><div class="ch">${chip("t", "", "Tümü")}${Object.entries(TIMES).map(([k, l]) => chip("t", k, l)).join("")}</div>
-    <div style="margin-top:10px"><input type="date" id="gun" value="${esc(f.gun || "")}" min="${nowIST().d}" aria-label="Belirli bir gün"></div>
-    <h4>Kategori</h4><div class="ch">${chip("k", "", "Tümü")}${Object.entries(CATS).filter(([k]) => k !== "sinema").map(([k, l]) => chip("k", k, l)).join("")}</div>
-    <h4>Saat</h4><div class="ch">${chip("s", "", "Tümü")}${Object.entries(SAAT).map(([k, l]) => chip("s", k, l)).join("")}</div>
-    <h4>Fiyat</h4><div class="ch">${chip("p", "", "Tümü")}${Object.entries(FIYAT).map(([k, l]) => chip("p", k, l)).join("")}</div>
-    <p class="chk" style="margin-top:8px">Yalnızca satış sitesinde son 36 saatte doğrulanmış fiyatlar.</p>
-    <h4>Mekân</h4><select id="mk"><option value="">Bütün mekânlar</option>${venues.map((v) => `<option${f.m === v ? " selected" : ""}>${esc(v)}</option>`).join("")}</select>
-    <h4>Diğer</h4>
-    <label class="tg2">Yeni eklenenler<input type="checkbox" data-t="yeni"${f.yeni ? " checked" : ""}></label>
-    <label class="tg2">Tükenenleri gizle<input type="checkbox" data-t="tk"${f.tk ? " checked" : ""}></label>
-    <label class="tg2">Yalnızca iptal ve ertelenenler<input type="checkbox" data-t="iptal"${f.iptal ? " checked" : ""}></label>
-    </div><div class="ft"><button type="button" class="rs2" data-reset>Sıfırla</button><button type="button" class="ok" data-ok></button></div></div>`;
-  const count = () => { const n = applyF(f).length; $("[data-ok]", sh).textContent = `${n.toLocaleString("tr-TR")} etkinliği göster`; };
-  const paint = () => { sh.innerHTML = body(); count(); };
-  paint(); document.body.append(sh); document.body.style.overflow = "hidden"; requestAnimationFrame(() => sh.classList.add("on"));
+/* Tek konulu küçük seçim menüsü (Kategori / Saat / Fiyat / Mekân / Daha fazla / Sırala): seçince hemen uygulanır */
+function menu(kind, city, f, go) {
+  const venues = kind === "m" ? [...new Set(DATA.events.filter(live).map((e) => e.venue).filter(Boolean))].sort((a, b) => a.localeCompare(b, "tr")) : [];
+  const cnt = (nf) => applyF(nf).length;
+  const opts = kind === "k" ? [["", "Bütün kategoriler"], ...Object.entries(CATS).filter(([k]) => k !== "sinema")]
+    : kind === "s" ? [["", "Bütün saatler"], ...Object.entries(SAAT)] : kind === "p" ? [["", "Bütün fiyatlar"], ...Object.entries(FIYAT)]
+    : kind === "sira" ? Object.entries(SIRA) : kind === "m" ? [["", "Bütün mekânlar"], ...venues.map((v) => [v, v])] : [];
+  const ttl = { k: "Kategori", s: "Saat", p: "Fiyat", m: "Mekân", x: "Daha fazla", sira: "Sırala" }[kind];
+  const sh = document.createElement("div"); sh.className = "sh mn";
+  const row = ([v, l]) => { const nf = { ...f }; if (v) nf[kind] = v; else delete nf[kind]; const n = kind === "sira" ? "" : cnt(nf); return `<button type="button" class="mi${(f[kind] || "") === v ? " on" : ""}" data-v="${esc(v)}"><span>${esc(l)}</span>${n !== "" ? `<small>${n.toLocaleString("tr-TR")}</small>` : ""}</button>`; };
+  const tog = (k, l, d) => `<label class="tg2"><span>${l}<small>${d}</small></span><input type="checkbox" data-tg="${k}"${f[k] ? " checked" : ""}></label>`;
+  sh.innerHTML = `<div class="pn" role="dialog" aria-label="${ttl}"><div class="hd"><b>${ttl}</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+  ${kind === "m" ? `<div style="padding:12px 20px 0"><label class="sin" style="height:44px">${I.srch}<input id="mq" type="search" placeholder="Mekân ara…"></label></div>` : ""}
+  <div class="bd2 ml">${kind === "x" ? tog("yeni", "Yeni eklenenler", "Son 3 günde listeye girenler") + tog("tk", "Tükenenleri gizle", "Bileti kalmayanları gösterme") + tog("iptal", "İptal ve ertelenenler", "Yalnızca iptal ya da ertelenenleri göster") : opts.map(row).join("")}
+  ${kind === "p" ? `<p class="chk" style="margin:12px 0 0">Yalnızca satış sitesinde son 36 saatte doğrulanmış fiyatlar.</p>` : ""}</div>
+  ${kind === "x" ? `<div class="ft"><button type="button" class="ok" data-apply>Uygula</button></div>` : ""}</div>`;
+  document.body.append(sh); document.body.style.overflow = "hidden"; requestAnimationFrame(() => sh.classList.add("on"));
   const close = () => { sh.classList.remove("on"); document.body.style.overflow = ""; setTimeout(() => sh.remove(), 260); };
   sh.addEventListener("click", (ev) => {
-    const t = ev.target;
-    if (t === sh || t.closest("[data-close]")) return close();
-    const c = t.closest("[data-k]"); if (c) { const k = c.dataset.k; if (c.dataset.v) f[k] = c.dataset.v; else delete f[k]; if (k === "t") delete f.gun; paint(); return; }
-    if (t.closest("[data-reset]")) { for (const k of Object.keys(f)) if (k !== "q") delete f[k]; paint(); return; }
-    if (t.closest("[data-ok]")) { close(); location.hash = `#/${city}/kesfet?${toQ(f)}`; }
+    const t = ev.target; if (t === sh || t.closest("[data-close]")) return close();
+    const mi = t.closest(".mi"); if (mi) { const nf = { ...f }; if (mi.dataset.v) nf[kind] = mi.dataset.v; else delete nf[kind]; close(); go(nf); return; }
+    if (t.closest("[data-apply]")) { const nf = { ...f }; $$("[data-tg]", sh).forEach((c) => { if (c.checked) nf[c.dataset.tg] = "1"; else delete nf[c.dataset.tg]; }); close(); go(nf); }
   });
-  sh.addEventListener("change", (ev) => {
-    const t = ev.target;
-    if (t.id === "gun") { if (t.value) { f.gun = t.value; delete f.t; } else delete f.gun; paint(); }
-    else if (t.id === "mk") { if (t.value) f.m = t.value; else delete f.m; count(); }
-    else if (t.dataset.t) { if (t.checked) f[t.dataset.t] = "1"; else delete f[t.dataset.t]; count(); }
-  });
+  $("#mq", sh)?.addEventListener("input", (ev) => { const v = fold(ev.target.value); $$(".mi", sh).forEach((b, i) => { b.hidden = i > 0 && v && !fold(b.textContent).includes(v); }); });
 }
 
 /* ---------- Etkinlik sayfası ---------- */

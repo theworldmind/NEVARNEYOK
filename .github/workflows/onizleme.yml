@@ -9,6 +9,13 @@ on:
         required: false
         default: "yeni/#/?sec=1 yeni/#/ankara yeni/#/ankara/kesfet?k=konser yeni/#/ankara/sinema"
 
+permissions:
+  contents: write
+
+concurrency:
+  group: sosyal
+  cancel-in-progress: false
+
 jobs:
   shot:
     runs-on: ubuntu-latest
@@ -39,7 +46,11 @@ jobs:
           await b.close();
           JS
           node s.mjs
-      - uses: actions/upload-artifact@v4
-        with:
-          name: onizleme
-          path: shot-*.png
+      - name: sosyal dalına koy (onizleme/)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config --global user.name "nevarneyok-bot"; git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git clone -q --depth 1 --branch sosyal "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" sos
+          rm -rf sos/onizleme && mkdir -p sos/onizleme && cp shot-*.png sos/onizleme/
+          cd sos && git add -A && git commit -qm "Önizleme görüntüleri" && { git push -q origin sosyal || { git pull -q --rebase origin sosyal && git push -q origin sosyal; }; } || true
