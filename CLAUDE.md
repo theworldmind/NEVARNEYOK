@@ -81,6 +81,15 @@ Bozulmaması gereken kurallar:
 - **Üst marka imzası (kullanıcı kararı, 13.11.2026):** Sitenin ve üretilen bütün sayfaların en altında "by oneside" imzası: lacivert (#060e33) kartta oneside işareti (dört köşeli, iki köşesi kavisli yıldız, SVG) ve Poppins ile "one" ince + "side" kalın yazı (`.byos`). Logonun biçimi değiştirilmez.
 - **Marka kapsamı:** Marka yalnız Ankara'ya özgü değil, ileride başka şehirlere yayılacak.
 
+## 3b. Yeni tasarım (kullanıcı kararı, 14.11.2026; önizleme: nevarneyok.net.tr/yeni/)
+- Kullanıcı köklü değişiklik istedi: **Scene (scene.global) yapısı ve havası**, Neyapsak'ın iyi fikirleri (harita/konum, filtreler). Önizleme `yeni/index.html` + `yeni/app.js`; beğenilince asıl siteye geçilecek.
+- **Tek koyu tema** (siyah, beyaz, gri; tek vurgu nar). Dört tema, gökyüzü, şehir silüeti ve bayrak yeni tasarımda yok. **Zamana göre değişen tek şey logodaki mercek** (`data-period`, `--g1..3`).
+- **Açılış: şehir seçimi** (Ankara açık; İstanbul, İzmir… "Yakında"). Seçilen şehir hatırlanır, sonraki girişte doğrudan şehir sayfası.
+- **Şehir sayfası:** şehrin adı dev yazıyla, altında büyük afişli vitrin (kaydırmalı), arama + tek "Filtreler" düğmesi, hızlı seçimler, **büyük afişli yatay raflar** (Bu akşam, Vizyonda, Hafta sonu, kategoriler, Yeni eklenenler).
+- **Bütün seçenekler tek filtre panelinde** (tarih, gün, kategori, saat, doğrulanmış fiyat, mekân, yeni, tükenenleri gizle, iptal/ertelenen); seçilenler küçük etiket olarak görünür. Renkli çip şeritleri yok.
+- **Etkinlik sayfası:** büyük afiş, bilgiler, "Bilet al" + satış siteleri ve fiyatlar, **Konum: harita (Leaflet + CARTO koyu, anahtarsız), adres, Yol tarifi / Haritada aç (Google Maps bağlantısı)**, aynı mekânda ve benzer raflar.
+- Sinema: gün sekmeleri, film sayfasında salon salon seanslar. Ayrı sayfalar (adres: `#/ankara/...`); asıl siteye geçişte gerçek adresler (`/ankara/...`) ve şehir başına veri dosyası planlanıyor.
+
 ## 4. Akıcılık kuralları (takılma, donma olmasın)
 - Gökyüzü dakikada bir çizilir (`paintBg`). Her karede yalnızca küçük bayrak tuvali ve yağış varsa yağmur tuvali çizilir (`fxFrame`).
 - Tuvalde `filter: blur` yok. Bulutlar düşük çözünürlüklü hazır görseldir.
