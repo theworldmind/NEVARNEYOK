@@ -1,0 +1,45 @@
+# Yayındaki sayfaların gerçek afişlerle ekran görüntüsünü alır (bu çalışma alanı dış sitelere bağlanamadığı için).
+name: Önizleme görüntüleri
+
+on:
+  workflow_dispatch:
+    inputs:
+      paths:
+        description: "Boşlukla ayrılmış adresler (site köküne göre)"
+        required: false
+        default: "yeni/#/?sec=1 yeni/#/ankara yeni/#/ankara/kesfet?k=konser yeni/#/ankara/sinema"
+
+jobs:
+  shot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm i playwright@1 && npx playwright install --with-deps chromium
+      - name: Görüntüler
+        env:
+          PATHS: ${{ github.event.inputs.paths }}
+        run: |
+          cat > s.mjs <<'JS'
+          import { chromium, devices } from "playwright";
+          const b = await chromium.launch(); const c = await b.newContext({ ...devices["Pixel 7"] }); const p = await c.newPage();
+          const list = (process.env.PATHS || "").split(/\s+/).filter(Boolean); let i = 0;
+          for (const u of list) {
+            await p.goto("https://nevarneyok.net.tr/" + u, { waitUntil: "networkidle" }).catch(() => {});
+            await p.waitForTimeout(2500);
+            await p.screenshot({ path: `shot-${++i}.png`, fullPage: false });
+            if (u.endsWith("#/ankara")) {
+              const ev = await p.evaluate(() => { const a = document.querySelector(".rail .cd"); return a && a.getAttribute("href"); });
+              await p.evaluate(() => scrollTo(0, 1300)); await p.waitForTimeout(2000); await p.screenshot({ path: `shot-${++i}.png` });
+              if (ev) { await p.goto("https://nevarneyok.net.tr/yeni/" + ev, { waitUntil: "networkidle" }); await p.waitForTimeout(2500); await p.screenshot({ path: `shot-${++i}.png` }); await p.evaluate(() => scrollTo(0, 1100)); await p.waitForTimeout(3000); await p.screenshot({ path: `shot-${++i}.png` }); }
+            }
+          }
+          await b.close();
+          JS
+          node s.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: onizleme
+          path: shot-*.png
