@@ -21,7 +21,7 @@ var NV = (function () {
   // En düşük doğrulanmış fiyat (fiyat kuralı: satış sitesinde son 36 saatte görülmüş) ve satan site
   function low(e) { var b = null; (e.tickets || []).forEach(function (x) { if (x.price && !x.est && x.seen && (Date.now() - Date.parse(x.seen)) / 36e5 <= 36 && (!b || x.price < b.price)) b = x; }); return b; }
   var TL = function (n) { return "₺" + Math.round(n).toLocaleString("tr-TR"); };
-  function snap(e, slug) { var l = low(e); return { slug: slug, title: e.title, tk: key(e.title), vk: key(e.venue), venue: e.venue || "", d: e.d, t: e.t || "", status: e.status || "", cat: e.cat || "", p: l ? l.price : 0, at: Date.now() }; }
+  function snap(e, slug) { var l = low(e); return { slug: slug, title: e.title, tk: key(e.title), vk: key(e.venue), venue: e.venue || "", d: e.d, t: e.t || "", status: e.status || "", cat: e.cat || "", img: e.img || "", p: l ? l.price : 0, at: Date.now() }; }
 
   /* Takip listesini güncel veriyle karşılaştır → { msgs, follows } */
   function check(follows, events, city) {

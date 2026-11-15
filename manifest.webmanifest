@@ -35,5 +35,55 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bu akşam ne yapsak?",
+      "short_name": "Bu akşam",
+      "url": "/?k=aksam",
+      "icons": [
+        {
+          "src": "icons/icon-192.png?v=2",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Planım",
+      "short_name": "Planım",
+      "url": "/?k=plan",
+      "icons": [
+        {
+          "src": "icons/icon-192.png?v=2",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Sinema",
+      "short_name": "Sinema",
+      "url": "/?k=sinema",
+      "icons": [
+        {
+          "src": "icons/icon-192.png?v=2",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Yakınımda",
+      "short_name": "Yakınımda",
+      "url": "/?k=yakin",
+      "icons": [
+        {
+          "src": "icons/icon-192.png?v=2",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }

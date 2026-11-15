@@ -32,6 +32,9 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
         run: node scraper/build-pages.mjs
+      - name: Paylaşım sayfaları (81 il, her etkinlik; WhatsApp/Instagram önizlemesi)
+        continue-on-error: true
+        run: node scraper/share-pages.mjs
       - name: Yayın klasörünü hazırla
         run: |
           mkdir -p _site

@@ -156,13 +156,21 @@ jobs:
       - name: Birleştir
         working-directory: scraper
         run: node sehirler-birlestir.mjs
+      - name: Mekân konumları (80 il, "Yakınımda" için; OpenStreetMap)
+        working-directory: scraper
+        continue-on-error: true
+        timeout-minutes: 14
+        env:
+          GEO_SCOPE: tr
+          GEO_MAX: "150"
+        run: node geo.mjs
       - name: Kaydet ve yayınla
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "nevarneyok-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/c data/cities.json
+          git add -A data/c data/cities.json data/venues-tr.json data/geo-miss-tr.json
           if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
           git commit -qm "Şehirler güncellendi: $(date '+%d.%m.%Y %H:%M')"
           for i in 1 2 3 4; do git pull -q --rebase --autostash -X theirs && git push -q && break; sleep 8; done
