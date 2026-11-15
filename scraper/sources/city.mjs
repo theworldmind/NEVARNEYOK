@@ -22,7 +22,8 @@ const ONE = [
   { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com",
     listings: [`https://www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=${encodeURIComponent(C.name)}`],
     link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, loadMore: ["Daha fazla", "Daha Fazla Göster"],
-    city: C.id, maxDetail: 260, budgetMin: 30, concurrency: 4 },
+    // Biletix şehir seçimini dikkate almıyor (İstanbul ve İzmir'de aynı 66 kayıt, 15.11.2026): kayıt mekân/adresinden iline göre ayrılır
+    city: "tr", maxDetail: 260, budgetMin: 30, concurrency: 4 },
   { id: "biletinial", name: "Biletinial", kind: "bilet", home: "https://biletinial.com", collect: P.biletinialCollect,
     cityUrl: C.id, cityName: C.name,
     listings: [`https://biletinial.com/tr-tr/tiyatro/${C.id}`, `https://biletinial.com/tr-tr/muzik/${C.id}`],
