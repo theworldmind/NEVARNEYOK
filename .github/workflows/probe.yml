@@ -35,6 +35,7 @@ jobs:
         working-directory: scraper
         env:
           URLS: ${{ github.event.inputs.urls }}
+          PROBE_FULL: "1"
         run: '[ -z "$URLS" ] || node probe.mjs $URLS'
       - name: Kapsam denetimi (deneme)
         if: github.event.inputs.denetim == 'true'

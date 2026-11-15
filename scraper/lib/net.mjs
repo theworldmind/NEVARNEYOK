@@ -115,7 +115,7 @@ export async function renderPage(url, { scrolls = 6, loadMore = [], loadMoreClic
         const len = +(res.headers()["content-length"] || 0);
         if (len > 6e6) return;
         const data = await res.json();
-        jsons.push({ url: res.url(), data });
+        jsons.push({ url: res.url(), data, post: res.request().postData() || "" });
       } catch { /* yanıt okunamadı */ }
     });
   }

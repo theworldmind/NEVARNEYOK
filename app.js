@@ -107,8 +107,26 @@ function poster(e, { badge = true, lazy = true } = {}) {
   const img = e.img ? `<img class="p" src="${esc(e.img)}" alt="${esc(e.title)} afişi" referrerpolicy="no-referrer" ${lazy ? 'loading="lazy"' : ""} decoding="async" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: ${esc(e.imgBy || "kaynak site")}</span>` : "";
   return `<div class="ph${e.img ? "" : " no"}" data-c="${esc(e.cat || "")}">${img}<div class="tp" lang="tr"><small>${esc(CATS[e.cat] || "Etkinlik")}</small><b>${esc(e.title)}</b><span class="tw"><small>${esc(dShort(e.d))}${e.t ? " · " + esc(e.t) : ""}</small><small>${esc(e.venue || "")}</small><i class="tl2">nevarneyok</i></span></div>${badge && st ? `<span class="bd${e.status === "tukendi" ? "" : " x"}">${st}</span>` : ""}</div>`;
 }
+/* FİYAT KARŞILAŞTIRMASI (kullanıcı isteği, 15.11.2026: "olabildiğince iyi fiyat karşılaştırması"): aynı etkinliği satan siteler alt alta;
+   en düşük yeşil "En düşük" etiketiyle, diğerlerinde fark (₺ ve %), fiyat çubuğu, sitenin kendi fiyat kategorileri; yalnızca doğrulanmış (≤36 sa) fiyatlar. */
+const SITEC = { Biletinial: "#e8424f", Biletix: "#0071ce", Passo: "#e30613", Bubilet: "#7b2ff7", "iTicket": "#00b26a", "Sanatçepte": "#c8102e", "Bilkent Bilet": "#003a70", "tiyatrolar.com.tr": "#f59e0b", Mobilet: "#ff6a00", Biletino: "#ff3d00" };
+function pcmpHTML(e) {
+  const T = e.tickets, P = T.filter((x) => x.price), lo = P.length ? Math.min(...P.map((x) => x.price)) : 0, hi = P.length ? Math.max(...P.map((x) => x.price)) : 0, multi = P.length > 1;
+  const row = (x) => { const d = x.price && multi ? x.price - lo : 0, best = multi && x.price === lo;
+    const sub = !x.price ? "Fiyat sitede" : best ? "En düşük fiyat" : multi ? `+${TL(d)} · %${Math.round((d / lo) * 100)} daha yüksek` : "Satış sitesinde doğrulandı";
+    return `<a class="pr2${best ? " lo" : ""}${x.price ? "" : " na"}" href="${esc(x.url)}" target="_blank" rel="noopener" data-buy="${esc(x.site)}">
+      <span class="lg" style="--c:${SITEC[x.site] || "#8b5cf6"}">${esc((x.site || "?").replace(/^(the )/i, "").charAt(0).toLocaleUpperCase("tr"))}</span>
+      <span class="nm"><b>${esc(x.site)}</b><small>${sub}</small>${x.price && multi ? `<span class="bar"><i style="width:${Math.max(8, Math.round((x.price / hi) * 100))}%"></i></span>` : ""}</span>
+      <span class="pz">${x.price ? TL(x.price) : "—"}</span><span class="go">${best ? "Al" : "Git"}${I.ext}</span></a>
+      ${x.cats?.length && x.price ? `<div class="cats">${x.cats.slice(0, 10).map((c) => `<span${c[2] === false ? ' class="x"' : ""}>${esc(c[0])} <b>${TL(c[1])}</b>${c[3] != null ? ` · ${c[3]} boş` : ""}${c[2] === false ? " · tükendi" : ""}</span>`).join("")}</div>` : ""}`; };
+  const head = multi ? `<div class="pch"><div><b>Fiyat karşılaştırması</b><small>${P.length} sitede doğrulanmış fiyat</small></div>${hi > lo ? `<span class="sv">Fark ${TL(hi - lo)}</span>` : `<span class="sv eq">Hepsinde aynı</span>`}</div>`
+    : `<div class="pch"><div><b>${T.length > 1 ? "Satış siteleri" : "Satış sitesi"}</b><small>${P.length ? "Fiyat satış sitesinde doğrulandı" : "Güncel fiyat satış sitesinde"}</small></div></div>`;
+  return `<section class="pcx">${head}${T.map(row).join("")}</section>`;
+}
+
 function card(e, city) {
-  const pr = e.price ? `<div class="pr">${TL(e.price)}'den</div>` : "";
+  const np = e.tickets.filter((x) => x.price).length;
+  const pr = e.price ? `<div class="pr">${TL(e.price)}'den${np > 1 ? `<i>${np} sitede</i>` : ""}</div>` : "";
   return `<a class="cd${live(e) ? "" : " off"}" href="#/${city}/e/${encodeURIComponent(e.slug)}">${poster(e)}<div class="t">${esc(e.title)}</div><div class="m">${rel(e.d)}${e.t ? " · " + esc(e.t) : ""}</div><div class="m2">${esc(e.venue || "")}</div>${pr}</a>`;
 }
 function rail(title, sub, list, city, more) {
@@ -260,6 +278,8 @@ function viewCity(city) {
   ${rail("Bu akşam", `${dLong(today)} · ${tonight.length} etkinlik`, uniq(tonight.filter((e) => e.img).sort((a, b) => (a.t || "").localeCompare(b.t || "")), 16), city, k("t=bugun"))}
   ${filmRail(city)}
   ${rail("Hafta sonu", wkend.length + " etkinlik", pick(wkend.filter((e) => e.img), 16), city, k("t=haftasonu"))}
+  ${(() => { const L = E.filter((e) => e.img && live(e) && e.tickets.filter((x) => x.price).length > 1).map((e) => { const p = e.tickets.filter((x) => x.price).map((x) => x.price); return [e, Math.max(...p) - Math.min(...p)]; }).filter(([, d]) => d > 0).sort((a, b) => b[1] - a[1]).map(([e]) => e);
+     return L.length >= 3 ? rail("Fiyatları karşılaştır", "Siteler arasında fiyatı farklı olanlar", uniq(L, 16), city, k("cok=1&sira=fiyat")) : ""; })()}
   <div id="later"></div>${footer()}`;
   const fav = prefs()?.cats || [], order = ["konser", "tiyatro", "standup", "cocuk", "sahne", "atolye"].sort((a, b) => fav.includes(b) - fav.includes(a));
   const later = () => `${order.map((c) => rail(CATS[c], "Bu hafta", byCat(c), city, k("k=" + c))).join("")}
@@ -446,7 +466,7 @@ function viewEvent(city, slug) {
   document.title = `${e.title} · ${dShort(e.d)} · Ne Var Ne Yok`;
   const v = vOf(e.venue), st = e.status === "tukendi" ? "Biletler tükendi" : e.status === "iptal" ? "Bu etkinlik iptal edildi" : e.status === "ertelendi" ? "Bu etkinlik ertelendi" : "";
   const T = e.tickets, best = T.find((x) => x.price);
-  const tix = T.map((x) => `<a href="${esc(x.url)}" target="_blank" rel="noopener" data-buy="${esc(x.site)}"><span class="s">${esc(x.site)}</span>${x.price ? `<span class="p${best && x === best && T.filter((y) => y.price).length > 1 ? " best" : ""}">${TL(x.price)}</span>` : `<span class="p na">Fiyat sitede</span>`}<span class="ar">${I.ext}</span></a>${x.cats?.length && x.price ? `<div class="cats">${x.cats.slice(0, 8).map((c) => `<span>${esc(c[0])} · ${TL(c[1])}${c[3] != null ? ` · ${c[3]} boş` : ""}${c[2] === false ? " · tükendi" : ""}</span>`).join("")}</div>` : ""}`).join("");
+  const tix = pcmpHTML(e);
   const checked = T.map((x) => x.checked).filter(Boolean).sort().pop();
   const same = uniq(DATA.events.filter((x) => x.venue === e.venue && x !== e && live(x)), 12);
   const sim = pick(DATA.events.filter((x) => x.cat === e.cat && x !== e && x.venue !== e.venue && live(x) && x.d <= addD(e.d, 7) && x.d >= addD(e.d, -3)), 12);
@@ -462,8 +482,8 @@ function viewEvent(city, slug) {
     <div>${I.pin}<span>${esc(e.venue || "")}${v?.addr ? `<small>${esc(v.addr)}</small>` : ""}</span></div>
     ${e.price ? `<div>${I.tag}<span>${TL(e.price)}'den başlayan fiyatlarla<small>${T.filter((x) => x.price).length > 1 ? T.filter((x) => x.price).length + " sitede satışta" : "Satış sitesinde doğrulandı"}</small></span></div>` : ""}</div>
     ${st ? `<div class="stb">${st}.${e.stNews ? " Haberlere göre: " + e.stNews.slice(0, 2).map((x) => `<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc((DATA.buzz.names || {})[x[0]] || x[0])} haberi ↗</a>`).join(" ") + " · Bilet sitesinden de kontrol edin." : ""}</div>` : ""}
-    ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">Bilet al · ${esc((best || T[0]).site)}</a>` : ""}
-    ${T.length ? `<div class="tix">${tix}</div><p class="chk">${checked ? `Fiyatlar ${ago(checked)} kontrol edildi. ` : ""}Satın alma ve iade, bileti satan sitenin kurallarına tabidir.</p>` : ""}
+    ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">Bilet al · ${esc((best || T[0]).site)}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
+    ${T.length ? `${tix}<p class="chk">${checked ? `Fiyatlar satış sitelerinde ${ago(checked)} kontrol edildi. ` : ""}Hizmet bedeli ve son fiyat siteye göre değişebilir; satın alma ve iade bileti satan sitenin kurallarına tabidir.</p>` : ""}
     <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="shr">${I.share}Paylaş</button></div>
     ${live(e) ? `<p class="flh">Takip edersen iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
     <section class="sec"><h3>Bu etkinlik hakkında</h3><p>${esc(descOf(e))}</p></section>

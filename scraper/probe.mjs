@@ -34,8 +34,9 @@ for (const arg of process.argv.slice(2)) {
   const ld = [...html.matchAll(/<script[^>]+ld\+json[^>]*>([\s\S]*?)<\/script>/gi)].map(m => { try { const j = JSON.parse(m[1]); return [].concat(j["@graph"] || j).map(x => x["@type"]).join(","); } catch { return "?"; } });
   console.log("JSON-LD türleri:", ld.join(" | ") || "yok");
   console.log("JSON yanıtları:", r.jsons.length);
-  for (const j of r.jsons.slice(0, 12)) {
+  for (const j of r.jsons.slice(0, process.env.PROBE_FULL ? 30 : 12)) {
     if (/twitter|youtube|google|eskimi|facebook/.test(j.url)) continue;
+    if (process.env.PROBE_FULL && (j.post || j.url.includes("?"))) console.log("   TAM İSTEK:", j.url.slice(0, 1500), j.post ? "\n   GÖVDE: " + j.post.slice(0, 1500) : "");
     console.log("  ", j.url.slice(0, 200), Array.isArray(j.data) ? `[dizi ${j.data.length}]` : Object.keys(j.data || {}).slice(0, 8).join(","));
     const first = (o, d = 0) => Array.isArray(o) ? o[0] : (o && typeof o === "object" && d < 3) ? first(Object.values(o).find(v => Array.isArray(v) && v.length) ?? Object.values(o).find(v => v && typeof v === "object"), d + 1) : o;
     const f = first(j.data);
