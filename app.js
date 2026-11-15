@@ -196,22 +196,42 @@ function storyInit() {
 
 
 /* Tekerlek tık sesi (iPhone saat tekerleği gibi): 7 ms'lik zarif bir "çıt"; Android'de 4 ms titreşim. Ses ilk dokunuşta açılır (tarayıcı kuralı). */
-let ACX = null, lastTick = 0;
-function tick() {
-  const t = performance.now(); if (t - lastTick < 34) return; lastTick = t;
-  try { navigator.vibrate?.(4); } catch {}
+/* APPLE GİBİ DOKUNMA SESLERİ (kullanıcı isteği, 15.11.2026: "Apple'daki saat çarkı sesi gibi zarif"; "başka yerlerde de kullanabilirsin").
+   Hepsi Web Audio ile anlık üretilir (dosya yok, ağ yok), çok kısa ve kısık; ilk dokunuştan önce çalmaz.
+   - tick():   saat/alarm çarkının yumuşak tahta "tık"ı: 2,2 kHz'lik çok kısa çıt + 1,1 kHz'lik gövde, 14 ms'de söner
+   - snd.on/off: iOS anahtarının açılış/kapanış "tık"ı (açılış biraz tiz, kapanış pes)
+   - snd.sel:  kutucuk, segment ve seçim düğmelerinde daha da hafif bir dokunuş
+   - snd.ok:   "Takip et" gibi bir işlem tamamlanınca iki notalı tatlı onay
+   Kişiselleştir > "Dokunma sesleri" ile kapatılabilir (nvny-ses = "0"). Android'de eşlik eden kısa titreşim. */
+let ACX = null, lastTick = 0, NOISE = null;
+const sesOn = () => store.get("nvny-ses") !== "0";
+const ac = () => { ACX ||= new (window.AudioContext || window.webkitAudioContext)(); if (ACX.state === "suspended") ACX.resume?.()?.catch?.(() => {}); return ACX; };
+function blip({ f = 2200, f2 = 0, body = 0, vol = .1, dur = .014, noise = .5, hp = 2500 } = {}) {
+  if (!sesOn()) return;
   try {
-    ACX ||= new (window.AudioContext || window.webkitAudioContext)(); if (ACX.state === "suspended") ACX.resume();
-    // iPhone tekerleği gibi zarif "çıt": 7 ms süzülmüş hışırtı, yumuşak başlangıç, kısık ses
-    if (!tick.buf) { const n = Math.round(ACX.sampleRate * .007), b = ACX.createBuffer(1, n, ACX.sampleRate), d = b.getChannelData(0);
-      for (let k = 0; k < n; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / n, 3); tick.buf = b; }
-    const now = ACX.currentTime, src = ACX.createBufferSource(), bp = ACX.createBiquadFilter(), g = ACX.createGain();
-    src.buffer = tick.buf; bp.type = "bandpass"; bp.frequency.value = 3200; bp.Q.value = 1.2;
-    g.gain.setValueAtTime(.0001, now); g.gain.linearRampToValueAtTime(.22, now + .0012); g.gain.exponentialRampToValueAtTime(.0001, now + .012);
-    src.connect(bp).connect(g).connect(ACX.destination); src.start(now);
+    const A = ac(), t = A.currentTime, out = A.createGain(); out.gain.value = vol; out.connect(A.destination);
+    // 1) metalik çıt: süzülmüş çok kısa hışırtı (ilk 3 ms)
+    if (noise) { if (!NOISE) { const n = Math.round(A.sampleRate * .004); NOISE = A.createBuffer(1, n, A.sampleRate); const d = NOISE.getChannelData(0); for (let k = 0; k < n; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / n, 4); }
+      const s = A.createBufferSource(), h = A.createBiquadFilter(), g = A.createGain(); s.buffer = NOISE; h.type = "highpass"; h.frequency.value = hp; g.gain.value = noise; s.connect(h).connect(g).connect(out); s.start(t); }
+    // 2) ton: yüksekten hafifçe aşağı kayan, hızla sönen sinüs (çarkın dişi)
+    const o = A.createOscillator(), g = A.createGain(); o.type = "sine"; o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(f2 || f * .82, t + dur);
+    g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(1, t + .0008); g.gain.exponentialRampToValueAtTime(.0001, t + dur); o.connect(g).connect(out); o.start(t); o.stop(t + dur + .01);
+    // 3) gövde: daha pes, daha kısa (tahta hissi)
+    if (body) { const b = A.createOscillator(), bg = A.createGain(); b.type = "triangle"; b.frequency.setValueAtTime(body, t); bg.gain.setValueAtTime(.0001, t); bg.gain.linearRampToValueAtTime(.55, t + .0006); bg.gain.exponentialRampToValueAtTime(.0001, t + dur * .7); b.connect(bg).connect(out); b.start(t); b.stop(t + dur); }
   } catch {}
 }
-addEventListener("touchstart", () => { try { ACX ||= new (window.AudioContext || window.webkitAudioContext)(); ACX.resume(); } catch {} }, { once: true, passive: true });
+const buzz = (ms) => { if (!sesOn()) return; try { navigator.vibrate?.(ms); } catch {} };
+function tick() { const t = performance.now(); if (t - lastTick < 32) return; lastTick = t; blip({ f: 2200, f2: 1750, body: 1100, vol: .085, dur: .014, noise: .55, hp: 3000 }); buzz(3); }
+const snd = {
+  on() { blip({ f: 1650, f2: 1500, body: 820, vol: .09, dur: .022, noise: .35, hp: 2200 }); buzz(5); },
+  off() { blip({ f: 1150, f2: 1000, body: 600, vol: .08, dur: .022, noise: .3, hp: 1800 }); buzz(5); },
+  sel() { blip({ f: 2500, f2: 2100, body: 0, vol: .05, dur: .01, noise: .4, hp: 3500 }); buzz(2); },
+  ok() { blip({ f: 1320, f2: 1300, vol: .07, dur: .07, noise: 0 }); setTimeout(() => blip({ f: 1980, f2: 1960, vol: .06, dur: .11, noise: 0 }), 85); buzz(8); },
+};
+addEventListener("touchstart", () => { try { ac(); } catch {} }, { once: true, passive: true });
+// Kontrollerin sesleri tek yerden: iOS anahtarları, kutucuklar, segmentler, seçim düğmeleri, sekme çubuğu
+document.addEventListener("change", (ev) => { const i = ev.target; if (i.matches?.('.tg2 input[type="checkbox"], .sw input[type="checkbox"], input[type="checkbox"][role="switch"]')) (i.checked ? snd.on : snd.off)(); }, true);
+document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".tile, .seg button, .pills button, [data-one], [data-many], [data-p], [data-b], .tabs a, .dpk button, [data-d]"); if (b) snd.sel(); }, true);
 /* Türkçe yönelme eki: Ankara'ya, İstanbul'a, İzmir'e, Çorum'a, Muş'a */
 function dat(n) { const w = n.toLocaleLowerCase("tr"), v = [...w].reverse().find((c) => "aeıioöuü".includes(c)) || "a", back = "aıou".includes(v); return ("aeıioöuü".includes(w.slice(-1)) ? "y" : "") + (back ? "a" : "e"); }
 function viewCities() {
@@ -458,6 +478,7 @@ function openPrefs(city, after) {
     <h4>Bütçe</h4><div class="seg" style="--n:${B.length};--i:${bi}"><span class="thumb" aria-hidden="true"></span>${B.map(([v, l], k) => `<button type="button" data-b="${v}" data-k="${k}" class="${k === bi ? "on" : ""}">${l}</button>`).join("")}</div>
     <div class="grp" style="margin-top:22px"><label class="tg2"><span>👨‍👩‍👧 Aileyle gidiyorum<small>Ailece gidilecek etkinlikler öne çıksın</small></span><input type="checkbox" id="kids"${P.kids ? " checked" : ""}></label></div>
     <h4>Bildirimler</h4>${notifBox(city, true)}
+    <h4>Sesler</h4><div class="grp"><label class="tg2"><span>🔈 Dokunma sesleri<small>İl çarkında tık, anahtarlarda ve seçimlerde iPhone gibi hafif sesler</small></span><input type="checkbox" id="ses"${sesOn() ? " checked" : ""}></label></div>
   </div><div class="ft"><button type="button" class="ok" data-save>Kaydet</button></div></div>`, "fsheet");
   sh.addEventListener("click", (ev) => {
     const c = ev.target.closest("[data-p]"); if (c) { const k = c.dataset.p, v = c.dataset.v; P[k] = (P[k] || []).includes(v) ? P[k].filter((x) => x !== v) : [...(P[k] || []), v]; c.classList.toggle("on"); c.setAttribute("aria-pressed", c.classList.contains("on")); return; }
@@ -466,6 +487,7 @@ function openPrefs(city, after) {
     if (ev.target.closest("[data-save]")) { P.kids = $("#kids", sh).checked; store.set("nvny-prefs", JSON.stringify(P)); NV.set("prefs", P); sh.close(); after?.(); }
   });
   bindNotifBox(sh, city);
+  $("#ses", sh).addEventListener("change", (ev) => { store.set("nvny-ses", ev.target.checked ? "1" : "0"); if (ev.target.checked) snd.on(); });
 }
 
 /* ---------- Etkinlik sayfası ---------- */
@@ -607,7 +629,7 @@ function toggleFollow(e, city) {
   const F = follows(), id = fid(e), b = $("#flw");
   if (F[id]) { delete F[id]; saveF(F); b.classList.remove("on"); b.innerHTML = I.bell + "Takip et"; toast("Takipten çıkarıldı"); }
   else {
-    F[id] = { ...NV.snap(e, e.slug), city }; saveF(F); b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; gcEv("takip-et", "Takip et");
+    F[id] = { ...NV.snap(e, e.slug), city }; saveF(F); b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; gcEv("takip-et", "Takip et"); snd.ok();
     if (notifOn()) toast(`Takip ediyorsun. Bir değişiklik olursa haber vereceğiz. <a href="#/${city}/takip">Takip ettiklerim →</a>`);
     else if (!store.get("nvny-nask-f") && !(NOTIF && Notification.permission === "denied")) {
       store.set("nvny-nask-f", "1");
