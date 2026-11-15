@@ -153,15 +153,19 @@ function storyInit() {
   play();
 }
 
+/* Türkçe yönelme eki: Ankara'ya, İstanbul'a, İzmir'e, Çorum'a, Muş'a */
+function dat(n) { const w = n.toLocaleLowerCase("tr"), v = [...w].reverse().find((c) => "aeıioöuü".includes(c)) || "a", back = "aıou".includes(v); return ("aeıioöuü".includes(w.slice(-1)) ? "y" : "") + (back ? "a" : "e"); }
 function viewCities() {
   setTop(null); document.title = "Ne Var Ne Yok · Şehrinin etkinliklerine göz at";
   const liveC = CITIES.filter((c) => c.live).sort((a, b) => b.n - a.n), top = liveC.slice(0, 8);
   const T = (DATA.top || []).filter((e) => e.img && CITIES.find((c) => c.id === e.city && c.live)).slice(0, 10);
+  const saved = CITIES.find((c) => c.id === store.get("nvny-city") && c.live);
   V.innerHTML = `<div class="cs"><div class="cs-h">${WM()}</div>
-  ${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}
   <h1>Hangi şehirdesin?</h1><p class="lead">Şehrini yaz; konser, tiyatro, sinema, festival… o şehirde bugün ve bu hafta ne var ne yok gör.</p>
   <div class="cpick"><label class="cin">${I.pin}<input id="cq" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Şehrini yaz…" aria-label="Şehir ara" role="combobox" aria-expanded="false" aria-controls="cl"></label><ul class="cl" id="cl" role="listbox" hidden></ul><p class="cmsg" id="cmsg" hidden></p></div>
+  ${saved ? `<a class="cgo" href="#/${saved.id}" data-city="${saved.id}">${esc(saved.name)}'${dat(saved.name)} devam et <span>→</span></a>` : ""}
   <p class="cnow">${liveC.length > 1 ? `<b>${liveC.length}</b> ilde etkinlikler açık: ` : "Şu an açık: "}${top.map((c) => `<a href="#/${c.id}" data-city="${c.id}">${c.name}</a>`).join(", ")}${liveC.length > top.length ? ` <span>ve ${liveC.length - top.length} il daha</span>` : ""}</p>
+  ${T.length ? `<h2 class="cs-t">Türkiye'de bu hafta öne çıkanlar</h2>${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}` : ""}
   <div class="cs-ft"><a class="dlb" href="indir/" data-app><span class="tl">${WM()}</span><span><b>Uygulamamızı indirin</b><small>Android · iPhone · ücretsiz</small></span><span class="go2">İndir</span></a><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
   const q = $("#cq"), ul = $("#cl"), msg = $("#cmsg"); let sel = 0, L = [];
   const choose = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; } q.value = c.name; ul.hidden = true; q.setAttribute("aria-expanded", "false"); msg.hidden = false; msg.innerHTML = `<b>${esc(c.name)}</b> için şu an listede etkinlik yok; her gece yeniden bakıyoruz. Yakındaki illere göz atabilirsin: ${top.slice(0, 4).map((x) => `<a href="#/${x.id}" data-city="${x.id}">${x.name}</a>`).join(", ")}`; };
@@ -581,7 +585,7 @@ function route() {
   if (old) { location.replace(old[1].startsWith("e/") ? `#/ankara/${old[1]}` : `#/bilgi/${old[1]}`); return; }
   const saved = store.get("nvny-city");
   if (P[0] === "bilgi") viewBilgi(P[1]);
-  else if (!P.length) { if (saved && !Q.sec && CITIES.find((c) => c.id === saved && c.live)) { location.replace(`#/${saved}`); return; } viewCities(); }
+  else if (!P.length) viewCities(); // her açılış il seçimiyle başlar; kayıtlı il "… devam et" düğmesinde
   else {
     const city = P[0]; if (!CITIES.find((c) => c.id === city && c.live)) { location.replace("#/"); return; }
     store.set("nvny-city", city);
