@@ -604,6 +604,17 @@ function viewBilgi(k) {
   V.innerHTML = `<div class="kh"><h1>${esc(P[0])}</h1></div><div class="wrap info">${P[1]}</div>${footer()}`;
 }
 
+
+/* Alt sekme çubuğu (iPhone uygulaması gibi): Bugün · Keşfet · Sinema · Takip */
+function tabsUpdate(P) {
+  const T = $("#tabs"), city = P[0] && P[0] !== "bilgi" ? P[0] : (P[0] === "bilgi" ? store.get("nvny-city") : null);
+  T.hidden = !city; if (!city) return;
+  const cur = !P[1] ? "home" : P[1] === "kesfet" ? "kesfet" : P[1] === "sinema" || P[1] === "film" ? "sinema" : P[1] === "takip" ? "takip" : "";
+  const href = { home: `#/${city}`, kesfet: `#/${city}/kesfet`, sinema: `#/${city}/sinema`, takip: `#/${city}/takip` };
+  $$("a", T).forEach((a) => { a.href = href[a.dataset.t]; a.classList.toggle("on", a.dataset.t === cur); });
+  const n = Object.keys(follows()).length, b = $('[data-t="takip"] b', T); b.textContent = n || ""; b.classList.toggle("has", !!n);
+}
+
 /* ---------- Yönlendirme ---------- */
 const scrollMem = new Map();
 let lastHash = "";
@@ -632,6 +643,7 @@ function route() {
     else viewCity(city);
   }
   V.style.animation = "none"; void V.offsetWidth; V.style.animation = "";
+  tabsUpdate(P);
   const y = scrollMem.get(location.hash); scrollTo(0, y && history.state !== "new" ? y : 0); lastHash = location.hash;
   try { window.goatcounter?.count?.({ path: "/" + h.split("?")[0].replace(/^\//, "") }); } catch {}
 }
