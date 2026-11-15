@@ -10,7 +10,7 @@ var NV = (function () {
   var today = function () { var p = {}; new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day; };
   var addD = function (s, n) { var d = new Date(s + "T12:00:00"); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
   var ST = { iptal: "iptal edildi", ertelendi: "ertelendi", tukendi: "biletleri tükendi" };
-  var STB = { iptal: "Üzgünüz 😔 Bu etkinlik iptal edildi. Ayrıntılar ve bilet iadesi için dokun.", ertelendi: "Bu etkinlik ertelendi 🗓️ Yeni tarihi belli olunca sana haber vereceğiz.", tukendi: "Biletler tükendi 🎟️ Yeniden satışa çıkarsa ilk sen öğreneceksin." };
+  var STB = { iptal: "Kötü haber 😔 Bu etkinlik iptal edildi. Bilet iadesi için dokun, detaylar orada.", ertelendi: "Bu etkinlik ertelendi 🗓️ Yeni tarih çıkınca hemen yazarız.", tukendi: "Biletler tükendi 😮 Yeniden satışa çıkarsa ilk sana haber veririz." };
 
   /* --- küçük anahtar-değer deposu (IndexedDB) --- */
   function db() { return new Promise(function (res, rej) { var r = indexedDB.open("nvny", 1); r.onupgradeneeded = function () { r.result.createObjectStore("kv"); }; r.onsuccess = function () { res(r.result); }; r.onerror = function () { rej(r.error); }; }); }
@@ -38,7 +38,7 @@ var NV = (function () {
       var url = "/#/" + (f.city || city || "ankara") + "/e/" + encodeURIComponent(e ? e.slug || f.slug : f.slug), n = Object.assign({}, f);
       if (!e) {
         if (f.d < t0) return; // geçmiş: listeden çıkar
-        if (!f.gone) { msgs.push({ tag: "x-" + id, title: f.title, body: "Bu etkinliği artık listemizde göremiyoruz 🤔 İptal edilmiş ya da satıştan kalkmış olabilir; bilet sitesine bir göz atmanı öneririz.", url: url }); n.gone = 1; }
+        if (!f.gone) { msgs.push({ tag: "x-" + id, title: f.title, body: "Bu etkinliği artık listede bulamıyoruz 🤔 İptal olmuş ya da satıştan kalkmış olabilir, bilet sitesine bir bakıver.", url: url }); n.gone = 1; }
         out[id] = n; return;
       }
       n.gone = 0; if (e.slug) n.slug = e.slug;
@@ -48,7 +48,7 @@ var NV = (function () {
         else if (f.status === "tukendi") msgs.push({ tag: "s-" + id, title: "Müjde! 🎉 " + f.title, body: "Biletler yeniden satışta. Bu sefer kaçırma, dokun ve yerini ayır!", url: url });
       }
       if (st !== "iptal" && st !== "ertelendi") {
-        if (e.d !== f.d) msgs.push({ tag: "d-" + id, title: f.title, body: "Tarih değişti 🗓️ Yeni tarih " + dLong(e.d) + (e.t ? ", saat " + e.t : "") + " (önceden " + dLong(f.d) + " idi). Planını güncellemeyi unutma.", url: url });
+        if (e.d !== f.d) msgs.push({ tag: "d-" + id, title: f.title, body: "Tarih değişti 🗓️ Yeni tarih " + dLong(e.d) + (e.t ? ", saat " + e.t : "") + " (önceden " + dLong(f.d) + " idi). Takvimini güncellemeyi unutma!", url: url });
         else if ((e.t || "") !== f.t && e.t && f.t) msgs.push({ tag: "t-" + id, title: f.title, body: "Saat değişti ⏰ Yeni saat " + e.t + " (önceden " + f.t + " idi).", url: url });
         if (key(e.venue) !== f.vk && e.venue && f.venue) msgs.push({ tag: "v-" + id, title: f.title, body: "Mekân değişti 📍 Yeni yeri: " + e.venue + ". Yol tarifi için dokun.", url: url });
         if (e.d === t1 && !f.r1) { msgs.push({ tag: "r-" + id, title: "Yarın büyük gün ✨ " + e.title, body: [e.venue, e.t && "saat " + e.t].filter(Boolean).join(", ") + ". Biletin hazır mı?", url: url }); n.r1 = 1; }

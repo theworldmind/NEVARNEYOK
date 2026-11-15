@@ -1,7 +1,7 @@
 /* NE VAR NE YOK · bildirim service worker'ı (yalnızca bildirim için; sayfaları önbelleğe almaz, çevrimdışı çalışma yok).
    Android'de kurulan uygulamada telefon arada bir (günde aşağı yukarı bir kez) "nvny-takip" ile uyandırır:
    güncel etkinlik listesini indirir, takip edilenlerdeki değişiklikleri ve hatırlatmaları bildirir. */
-importScripts("takip.js?v=4");
+importScripts("takip.js?v=5");
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 

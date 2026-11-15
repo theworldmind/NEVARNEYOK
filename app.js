@@ -607,7 +607,7 @@ async function askNotif(city) {
   if (p !== "granted") return false;
   NV.set("prefs", prefs()); NV.set("city", city); NV.set("follows", follows());
   await swUp(); gcEv("bildirim-acildi", "Bildirimler açıldı");
-  if (standalone && !store.get("nvny-hosgeldin")) { store.set("nvny-hosgeldin", "1"); notify("HOŞ GELDİNİZZZ 🎉", "Ne Var Ne Yok artık cebinde ✨ Takip ettiğin etkinlikte bir şey değişirse ilk sen bileceksin, günü gelince de nazikçe hatırlatacağız. Hafta sonları sana göre küçük öneriler de gelecek.", `/#/${city}`, "hosgeldin"); }
+  if (standalone && !store.get("nvny-hosgeldin")) { store.set("nvny-hosgeldin", "1"); notify("HOŞ GELDİNİZZZ 🎉", "Artık şehrinde ne var ne yok hep cebinde 😍 Takip ettiğin etkinlikte bir şey değişirse ilk sen duyarsın, günü gelince de “Hadi, bugün o gün!” diye haber veririz 🎉", `/#/${city}`, "hosgeldin"); }
   else toast("Bildirimler açık 🔔");
   $$(".nask").forEach((x) => x.remove()); $$(".nbox").forEach((x) => { x.outerHTML = notifBox(city); });
   return true;
@@ -657,7 +657,7 @@ function viewTakip(city) {
 function welcomeApp() {
   if (!standalone || store.get("nvny-hosgeldin")) return;
   const city = store.get("nvny-city") || "ankara";
-  if (notifOn()) { store.set("nvny-hosgeldin", "1"); swUp().then(() => notify("HOŞ GELDİNİZZZ 🎉", "Ne Var Ne Yok artık cebinde ✨ Takip ettiğin etkinlikte bir şey değişirse ilk sen bileceksin, günü gelince de nazikçe hatırlatacağız.", `/#/${city}`, "hosgeldin")); return; }
+  if (notifOn()) { store.set("nvny-hosgeldin", "1"); swUp().then(() => notify("HOŞ GELDİNİZZZ 🎉", "Artık şehrinde ne var ne yok hep cebinde 😍 Takip ettiğin etkinlikte bir şey değişirse ilk sen duyarsın, günü gelince de “Hadi, bugün o gün!” diye haber veririz 🎉", `/#/${city}`, "hosgeldin")); return; }
   if (!NOTIF || Notification.permission === "denied" || store.get("nvny-hosgeldin-sor")) return;
   store.set("nvny-hosgeldin-sor", "1");
   setTimeout(() => {
