@@ -81,6 +81,14 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
 .site u{text-underline-offset:3px}
 .os{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:22px;color:#fff}
 .os .by{font:300 13px Poppins,var(--f);opacity:.55}.os svg{width:20px;height:20px;fill:#fff}.os .w{font:300 17px/1 Poppins,var(--f)}.os .w b{font-weight:800}
+#kurx{position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:rgba(10,10,16,.55);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);animation:kxi .25s ease-out}
+#kurx .kx{display:flex;flex-direction:column;align-items:center;gap:10px;padding:34px 30px 26px;width:min(86vw,360px);border-radius:30px;background:linear-gradient(180deg,rgba(139,92,246,.22),rgba(255,255,255,.05));box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 30px 80px rgba(0,0,0,.6),0 0 80px rgba(139,92,246,.35);text-align:center}
+#kurx img{width:92px;height:92px;border-radius:22px;box-shadow:0 0 40px rgba(139,92,246,.6)}
+#kurx b{font:900 28px/1 Archivo,system-ui,sans-serif;font-stretch:80%;text-transform:uppercase;margin-top:6px}
+#kurx span{color:rgba(255,255,255,.7);font-size:15px}
+#kurx button{margin-top:12px;width:100%;padding:17px;border:0;border-radius:99px;background:#fff;color:#0a0a10;font:800 19px/1 "Inter Tight",system-ui,sans-serif;box-shadow:0 0 40px rgba(139,92,246,.7);animation:kxp 1.6s ease-in-out infinite}
+#kurx small{color:rgba(255,255,255,.5);font-size:13px}
+@keyframes kxi{from{opacity:0}}@keyframes kxp{50%{transform:scale(1.04)}}
 </style>
 </head>
 <body>
@@ -121,7 +129,7 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
   function ev(p,t){try{window.goatcounter&&goatcounter.count&&goatcounter.count({path:p,title:t,event:true})}catch(e){}}
   function show(h){H.innerHTML=h;H.hidden=false}
   function steps(){
-    if(inApp)return and?'<p>Bu sayfa Instagram\'ın içinde açıldı; uygulama buradan kurulamıyor.</p><a class="alt" href="intent://'+location.host+location.pathname+'#Intent;scheme=https;package=com.android.chrome;end">Chrome\'da aç</a>'
+    if(inApp)return and?'<p>Bu sayfa Instagram\'ın içinde açıldı; uygulama buradan kurulamıyor.</p><a class="alt" href="intent://'+location.host+location.pathname+'?kur=1#Intent;scheme=https;package=com.android.chrome;end">Chrome\'da aç</a>'
       :'<p>Bu sayfa Instagram\'ın içinde açıldı. Kurmak için:</p><ol><li>Sağ üstteki <kbd>⋯</kbd> menüsüne dokun</li><li><b>"Tarayıcıda aç"</b>ı seç</li><li>Açılınca "Ana Ekrana Ekle"ye dokun</li></ol>';
     if(ios)return '<p>iPhone\'da üç adımda kurulur:</p><ol><li>Alttaki <kbd>Paylaş</kbd> simgesine (kare ve yukarı ok) dokun</li><li><b>"Ana Ekrana Ekle"</b>yi seç</li><li>Sağ üstte <b>"Ekle"</b>ye dokun</li></ol>';
     if(samsung)return '<p>Samsung İnternet\'te:</p><ol><li>Alttaki <kbd>☰</kbd> menüye dokun</li><li><b>"Sayfayı ekle"</b> → <b>"Ana ekran"</b>ı seç</li></ol>';
@@ -129,6 +137,23 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
     return '<p>Bilgisayarda adres çubuğunun sağındaki <kbd>⊕ Yükle</kbd> simgesine tıkla ya da bu sayfayı telefonunda aç.</p>';
   }
   if(inApp||ios)show(steps());
+  // Instagram vb. uygulama içi tarayıcıdan gelen: kurulum orada olmaz, kendiliğinden gerçek tarayıcıya geç (kullanıcı isteği, 15.11.2026: "direkt indirme yerine gitsin")
+  var kur=/[?&]kur=1/.test(location.search),self=location.host+location.pathname;
+  if(inApp&&!sessionStorage.getItem("nvny-yonlendi")){
+    try{sessionStorage.setItem("nvny-yonlendi","1")}catch(e){}
+    if(and){ev("indir-chromea-yonlendi","Instagram'dan Chrome'a yönlendi");show('<p><b>Chrome\'da açılıyor…</b> Açılmazsa aşağıdaki düğmeye dokun.</p><a class="alt" href="intent://'+self+'?kur=1#Intent;scheme=https;package=com.android.chrome;end">Chrome\'da aç</a>');
+      location.href="intent://"+self+"?kur=1#Intent;scheme=https;package=com.android.chrome;end"}
+    else if(ios){ev("indir-safariye-yonlendi","Instagram'dan Safari'ye yönlendi");location.href="x-safari-https://"+self+"?kur=1"}
+  }
+  // tarayıcıya geçince: kurulum penceresi hazır olur olmaz ekranın tamamı "Yükle" düğmesi (tarayıcı kurulumu bir dokunuşla açar)
+  if(kur&&!inApp){
+    if(ios){H.scrollIntoView({block:"center"})}
+    addEventListener("beforeinstallprompt",function(){if(document.getElementById("kurx"))return;
+      var o=document.createElement("div");o.id="kurx";o.innerHTML='<div class="kx"><img src="../icons/icon-192.png" alt=""><b>Ne Var Ne Yok</b><span>81 ilin etkinlikleri · ücretsiz</span><button type="button">Yükle</button><small>Ekranın herhangi bir yerine dokun</small></div>';
+      document.body.appendChild(o);
+      o.addEventListener("click",function(){o.remove();B.click()},{once:true});
+    });
+  }
   // arka plandaki kordonlar: Türkiye'de öne çıkan etkinliklerin afişleri (yalnızca adres; kaynağından gösterilir)
   fetch("../data/one-cikan.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(j){
     var I=(j.events||[]).map(function(e){return e.img}).filter(Boolean);if(I.length<3)return;
