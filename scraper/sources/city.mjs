@@ -16,14 +16,20 @@ const TR = [
     parse: P.sanatcepte, heuristics: false, budgetMin: 150 },
   { id: "dob", name: "DOB", kind: "kurum", home: "https://www.operabale.gov.tr",
     collect: P.dobCollect, listings: [], link: null, city: "tr", defaultCat: "sahne" },
+  // Bütün Türkiye'yi listeleyen bilet siteleri (15.11.2026, kullanıcı: "daha çok siteden veri al"): kayıt mekân/adresinden iline dağıtılır
+  { id: "tiyatrolar", name: "tiyatrolar.com.tr", kind: "bilet", home: "https://tiyatrolar.com.tr",
+    listings: ["https://tiyatrolar.com.tr/tiyatro-oyunlari"],
+    link: /tiyatrolar\.com\.tr\/tiyatro(-bilet)?\/[a-z0-9-]+/i, sitemap: true, render: true, city: "tr", defaultCat: "tiyatro", maxDetail: 1500, concurrency: 5, budgetMin: 150 },
+  { id: "iticket", name: "iTicket", kind: "bilet", home: "https://iticket.com.tr",
+    listings: ["https://iticket.com.tr/tr/events", "https://iticket.com.tr/en/events/music"],
+    link: /iticket\.com\.tr\/(en|tr)\/events\/[a-z-]+\/[a-z0-9-]+/i, render: true, city: "tr", maxDetail: 400, budgetMin: 60 },
+  { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com",
+    listings: ["https://www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1"],
+    link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, loadMore: ["Daha fazla", "Daha Fazla Göster"],
+    city: "tr", maxDetail: 900, budgetMin: 150, concurrency: 4 },
 ];
 
 const ONE = [
-  { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com",
-    listings: [`https://www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=${encodeURIComponent(C.name)}`],
-    link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, loadMore: ["Daha fazla", "Daha Fazla Göster"],
-    // Biletix şehir seçimini dikkate almıyor (İstanbul ve İzmir'de aynı 66 kayıt, 15.11.2026): kayıt mekân/adresinden iline göre ayrılır
-    city: "tr", maxDetail: 260, budgetMin: 30, concurrency: 4 },
   { id: "biletinial", name: "Biletinial", kind: "bilet", home: "https://biletinial.com", collect: P.biletinialCollect,
     cityUrl: C.id, cityName: C.name,
     listings: [`https://biletinial.com/tr-tr/tiyatro/${C.id}`, `https://biletinial.com/tr-tr/muzik/${C.id}`],

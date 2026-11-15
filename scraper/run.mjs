@@ -32,6 +32,12 @@ const prevHealth = await readJSON(HEALTH, { sources: {} });
 const vagueBot = (e) => !e.manual && !e.t && /^(çeşitli mekânlar|)$/i.test(e.venue || "") && (e.tickets || []).every((t) => t.src !== "elle" && t.seen && t.seen !== prev.baseline);
 if (prev.events) prev.events = prev.events.filter((e) => e.manual || (!isJunk(e) && !vagueBot(e))).map((e) => (e.manual ? e : { ...e, title: cleanTitle(e.title) }));
 
+// İl taramasında: artık bu ilin kaynak listesinde olmayan kaynakların eski kayıtları bırakılır
+// (15.11.2026: Biletix şehir seçimini dikkate almadığı için her ile aynı 66 kayıt yazılmıştı; Biletix artık Türkiye listesinden gelir)
+if (process.env.CITY && process.env.CITY !== "ankara" && prev.events) {
+  const ids = new Set(SOURCES.map((s) => s.id));
+  prev.events = prev.events.map((e) => (e.manual ? e : { ...e, tickets: (e.tickets || []).filter((t) => !t.src || ids.has(t.src)) })).filter((e) => e.manual || e.tickets.length);
+}
 log(`Mod: ${MODE} · ${SOURCES.length} kaynak · önceki veri: ${prev.events?.length || 0} etkinlik`);
 
 /* ---------- 1) Kaynakları tara ---------- */

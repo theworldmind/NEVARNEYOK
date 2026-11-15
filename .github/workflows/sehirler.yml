@@ -10,6 +10,10 @@ on:
       iller:
         description: "Yalnızca bu iller (boşlukla, boş = hepsi). Örnek: istanbul izmir"
         required: false
+      film:
+        description: "Yalnızca sinema seanslarını yenile (hızlı)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -39,8 +43,8 @@ jobs:
   turkiye:
     # Bütün Türkiye'yi tek listede veren kamu kaynakları: bir kez taranır, her etkinlik iline dağıtılır
     runs-on: ubuntu-latest
-    timeout-minutes: 200
-    if: github.event.inputs.iller == ''
+    timeout-minutes: 300
+    if: github.event.inputs.iller == '' && github.event.inputs.film != 'true'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -60,6 +64,7 @@ jobs:
           HEALTH_FILE: ${{ github.workspace }}/data/c/_tr-health.json
           HEALTH_MD: scraper/out/health-tr.md
           SOURCE_TIMEOUT_MIN: 170
+          PARALLEL: 5
         run: mkdir -p ../data/c && node run.mjs
       - uses: actions/upload-artifact@v4
         with:
@@ -87,6 +92,7 @@ jobs:
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
       - name: Tara (${{ matrix.il.name }})
+        if: github.event.inputs.film != 'true'
         working-directory: scraper
         continue-on-error: true
         env:

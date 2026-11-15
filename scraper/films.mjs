@@ -73,8 +73,10 @@ export function parseSeances(html) {
       if (!cinemas[cid]) cinemas[cid] = { name: txt(nm[2]).replace(new RegExp("^" + CITY_NAME + "\\s+", "i"), ""), addr: txt((card.match(/<div class="card-info dark">([^<]*)<\/div>/) || [])[1] || "").replace(/\s*\d+([.,]\d+)?\s*km$/i, "") };
       for (const sg of card.split(/<div class="seance"/).slice(1)) {
         const fmt = [((sg.match(/data-dimension="([^"]*)"/) || [])[1] || ""), ((sg.match(/data-language="([^"]*)"/) || [])[1] || "")].filter(Boolean).join(" ");
-        const times = [...sg.matchAll(/<a class="btn secondary vertical[^"]*"[^>]*>\s*<span>(\d{1,2}:\d{2})<\/span>/g)].map((m) => m[1].padStart(5, "0"));
-        if (!times.length) continue;
+        // saat iki biçimde yazılır: online bilet satan salonda düğme (<a class="btn …"><span>19:30</span>), satmayanda düz etiket (<div class="chip">19:00</div>)
+        // (15.11.2026: yalnızca düğme okunuyordu; Samsun Piazza gibi bilet satmayan salonlar bütün illerde kayboluyordu)
+        const times = [...sg.matchAll(/(?:<a class="btn secondary vertical[^"]*"[^>]*>\s*<span>|<div class="chip[^"]*">\s*)(\d{1,2}:\d{2})\s*</g)].map((m) => m[1].padStart(5, "0"));
+        if (!times.length) { if (/\d{1,2}:\d{2}/.test(sg)) parseSeances.miss = (parseSeances.miss || 0) + 1; continue; }
         ((days[d] ||= {})[cid] ||= []).push([times, fmt]);
       }
     }
@@ -116,6 +118,7 @@ export async function main() {
   }
   // Kaynak boş döndüyse dünkü veriyi silme (site boş kalmasın)
   if (!films.length && prev.films?.length) { log(`Filmler: kaynak boş döndü (${notes.join(" · ")}), dünkü veri korunuyor`); return; }
+  if (parseSeances.miss) notes.push(`DİKKAT: saati okunamayan ${parseSeances.miss} seans kartı (sayfa yapısı değişmiş olabilir)`);
   films.sort((a, b) => (b.release || "").localeCompare(a.release || "") || a.title.localeCompare(b.title, "tr"));
   await writeJSON(OUT, { updated: new Date().toISOString(), source: "sinemalar.com", city: CITY_NAME, cinemas, films, notes }, false);
   const ns = films.reduce((n, f) => n + Object.values(f.s).flat().reduce((k, [, g]) => k + g.split(/[;,]/).length, 0), 0);
