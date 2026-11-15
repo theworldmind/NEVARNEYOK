@@ -31,6 +31,7 @@ export function rawToEvent(r, src) {
   };
   if (r.desc) { const f = factsFrom(r.desc); if (f.dur && !r.dur) ev.dur = f.dur; if (f.age && !r.age) ev.age = f.age; } // metnin kendisi saklanmaz
   if (r.status) ev.status = r.status;
+  if (r.cid) ev.city = r.cid; // il (bütün Türkiye taramasında)
   if (r.org) ev.org = r.org;
   if (r.free && !r.price) ev.note = "Ücretsiz";
   for (const k of ["age", "dur", "genre", "door"]) if (r[k]) ev[k] = r[k];
@@ -167,7 +168,7 @@ export function applyManual(events, rows, now) {
       if (r.cat) { x.cat = r.cat; x.catLocked = true; }
       for (const tk of ev.tickets) { const j = x.tickets.findIndex((y) => y.site === tk.site); if (j >= 0) x.tickets[j] = tk; else x.tickets.push(tk); }
     } else {
-      if (!ev.tickets.length) ev.tickets = [{ site: "Web'de ara", url: "https://www.google.com/search?q=" + encodeURIComponent(`${ev.title} ${ev.venue} Ankara`), src: "elle", seen: now }];
+      if (!ev.tickets.length) ev.tickets = [{ site: "Web'de ara", url: "https://www.google.com/search?q=" + encodeURIComponent(`${ev.title} ${ev.venue} ${process.env.CITY_NAME || "Ankara"}`), src: "elle", seen: now }];
       out.push({ ...ev, firstSeen: now, lastSeen: now });
     }
   }

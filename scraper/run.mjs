@@ -17,7 +17,7 @@ const ONLY = (args.find((a) => a.startsWith("--only=")) || "").slice(7).split(",
 const SOURCE_TIMEOUT = +(process.env.SOURCE_TIMEOUT_MIN || 12) * 60e3;
 const PARALLEL = +(process.env.PARALLEL || 3);
 const OUT = process.env.OUT_FILE || join(ROOT, "data/events.json");
-const HEALTH = join(ROOT, "data/health.json");
+const HEALTH = process.env.HEALTH_FILE || join(ROOT, "data/health.json");
 
 const now = new Date().toISOString();
 const prev = await readJSON(OUT, { events: [] });
@@ -90,7 +90,7 @@ for (const csv of [process.env.SHEET_CSV_URL ? await fetchText(process.env.SHEET
   await readFile(join(ROOT, "data/manual.csv"), "utf8").catch(() => "")]) {
   if (csv) manualRows.push(...parseManualCsv(csv));
 }
-if (manualRows.length) { events = applyManual(events, manualRows, now); log(`Elle eklenen/düzenlenen satır: ${manualRows.length}`); }
+if (manualRows.length && (process.env.CITY || "ankara") === "ankara") { /* elle eklenenler şimdilik Ankara'nın */ events = applyManual(events, manualRows, now); log(`Elle eklenen/düzenlenen satır: ${manualRows.length}`); }
 events = events.filter((e) => e.d >= todayIST());
 
 /* ---------- 4b) Engel listesi: kaldırılmasını isteyen hak sahipleri (data/blocklist.txt) ---------- */
@@ -127,7 +127,7 @@ const sourcesMeta = SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, 
   const need = events.filter((e) => !e.img && e.d >= today && !(e.imgTried && Date.parse(e.imgTried) > week));
   const byUrl = new Map();
   for (const e of need) { const t = (e.tickets || []).find((x) => x.url && !BOT.test(x.url) && !BOT.test(x.site || "")); if (t) (byUrl.get(t.url) || byUrl.set(t.url, { site: t.site, evs: [] }).get(t.url)).evs.push(e); }
-  const urls = [...byUrl.keys()].slice(0, MODE === "full" ? 220 : 80); let got = 0;
+  const urls = [...byUrl.keys()].slice(0, MODE === "full" ? 400 : 120); let got = 0;
   const OG = (h) => h && (h.match(/<meta[^>]+(?:property|name)=["'](?:og:image|twitter:image)["'][^>]+content=["']([^"']+)["']/i) || h.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["'](?:og:image|twitter:image)["']/i));
   await pool(urls, 4, async (u) => {
     const r = await withTimeout(fetchText(u, { retries: 0 }), 20000).catch(() => null), m = OG(r?.text), it = byUrl.get(u);
@@ -149,7 +149,7 @@ if (shrink && !process.env.FORCE_WRITE) {
   await writeJSON(OUT, out);
 }
 await writeJSON(HEALTH, { runAt: now, mode: MODE, total: out.events.length, written: !shrink, sources: health }, true);
-await writeText(join(ROOT, "scraper/out/health.md"), healthMarkdown(health, out.events.length, shrink));
+await writeText(join(ROOT, process.env.HEALTH_MD || "scraper/out/health.md"), healthMarkdown(health, out.events.length, shrink));
 const newOnes = out.events.filter((e) => e.firstSeen === now).length;
 log(`Bitti: ${out.events.length} etkinlik · bugün yeni ${newOnes} · çalışan kaynak ${Object.values(health).filter((h) => h.ok).length}/${SOURCES.length}`);
 

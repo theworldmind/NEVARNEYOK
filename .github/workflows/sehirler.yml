@@ -1,0 +1,157 @@
+# BÜTÜN TÜRKİYE: her gece 81 il (Ankara hariç; Ankara "Etkinlikleri güncelle" ile taranır) yan yana taranır,
+# kamu kaynakları (Devlet Tiyatroları / Sanatçepte, DOB) bir kez taranıp illere dağıtılır, sonra birleştirilip site yayınlanır.
+name: Şehirleri güncelle
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # 03:00 Türkiye saati
+  workflow_dispatch:
+    inputs:
+      iller:
+        description: "Yalnızca bu iller (boşlukla, boş = hepsi). Örnek: istanbul izmir"
+        required: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: sehirler
+  cancel-in-progress: false
+
+env:
+  TZ: Europe/Istanbul
+
+jobs:
+  liste:
+    runs-on: ubuntu-latest
+    outputs:
+      iller: ${{ steps.l.outputs.iller }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: l
+        working-directory: scraper
+        env:
+          SECIM: ${{ github.event.inputs.iller }}
+        run: |
+          echo "iller=$(node -e "import('./lib/cities.mjs').then(m=>{const s=(process.env.SECIM||'').split(/\s+/).filter(Boolean);console.log(JSON.stringify(m.CITIES.filter(c=>c.id!=='ankara'&&(!s.length||s.includes(c.id))).map(c=>({id:c.id,name:c.name}))))})")" >> "$GITHUB_OUTPUT"
+
+  turkiye:
+    # Bütün Türkiye'yi tek listede veren kamu kaynakları: bir kez taranır, her etkinlik iline dağıtılır
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    if: github.event.inputs.iller == ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Bağımlılıkları kur
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Sanatçepte ve DOB (bütün Türkiye)
+        working-directory: scraper
+        continue-on-error: true
+        env:
+          CITY: tr
+          SOURCES_FILE: ./sources/city.mjs
+          OUT_FILE: ${{ github.workspace }}/data/c/_tr.json
+          HEALTH_FILE: ${{ github.workspace }}/data/c/_tr-health.json
+          HEALTH_MD: scraper/out/health-tr.md
+          SOURCE_TIMEOUT_MIN: 170
+        run: mkdir -p ../data/c && node run.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: il-tr
+          path: data/c/_tr*.json
+          if-no-files-found: ignore
+          retention-days: 2
+
+  il:
+    needs: liste
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        il: ${{ fromJSON(needs.liste.outputs.iller) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Bağımlılıkları kur
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Tara (${{ matrix.il.name }})
+        working-directory: scraper
+        continue-on-error: true
+        env:
+          CITY: ${{ matrix.il.id }}
+          CITY_NAME: ${{ matrix.il.name }}
+          SOURCES_FILE: ./sources/city.mjs
+          OUT_FILE: ${{ github.workspace }}/data/c/src/${{ matrix.il.id }}.json
+          HEALTH_FILE: ${{ github.workspace }}/data/c/src/${{ matrix.il.id }}-health.json
+          HEALTH_MD: scraper/out/health-${{ matrix.il.id }}.md
+          PARALLEL: 2
+        run: mkdir -p ../data/c/src && node run.mjs
+      - name: Sinema seansları (${{ matrix.il.name }})
+        working-directory: scraper
+        continue-on-error: true
+        env:
+          CITY: ${{ matrix.il.id }}
+          CITY_NAME: ${{ matrix.il.name }}
+          SINEMA_CITY: ${{ matrix.il.id == 'istanbul' && 'istanbul-avrupa,istanbul-anadolu' || matrix.il.id }}
+          FILMS_FILE: ${{ github.workspace }}/data/c/${{ matrix.il.id }}-films.json
+        run: node films.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: il-${{ matrix.il.id }}
+          path: |
+            data/c/src/${{ matrix.il.id }}*.json
+            data/c/${{ matrix.il.id }}-films.json
+          if-no-files-found: ignore
+          retention-days: 2
+
+  birlestir:
+    needs: [il, turkiye]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: il-*
+          path: /tmp/il
+      - name: Taramaları yerine koy
+        run: |
+          mkdir -p data/c/src
+          shopt -s nullglob globstar
+          for f in /tmp/il/**/*.json; do
+            b=$(basename "$f")
+            case "$b" in
+              _tr*) cp "$f" "data/c/$b" ;;
+              *-films.json) cp "$f" "data/c/$b" ;;
+              *) cp "$f" "data/c/src/$b" ;;
+            esac
+          done
+          ls data/c | head -50
+      - name: Birleştir
+        working-directory: scraper
+        run: node sehirler-birlestir.mjs
+      - name: Kaydet ve yayınla
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "nevarneyok-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/c data/cities.json
+          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
+          git commit -qm "Şehirler güncellendi: $(date '+%d.%m.%Y %H:%M')"
+          for i in 1 2 3 4; do git pull -q --rebase --autostash -X ours && git push -q && break; sleep 8; done
+          gh workflow run pages.yml --ref main || true

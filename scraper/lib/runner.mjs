@@ -2,6 +2,9 @@
 import { getPage, fetchText } from "./net.mjs";
 import { extractDetail, eventsFromLd, eventsFromJson, linksIn } from "./extract.mjs";
 import { looksAnkara } from "./normalize.mjs";
+import { cityById, cityOfText, fold as cfold } from "./cities.mjs";
+// Hangi il taranıyor: CITY=ankara (varsayılan) | <il kimliği> | tr (bütün Türkiye: etkinliğin ili adresinden bulunur)
+const CITY = process.env.CITY || "ankara";
 import { log, pool, todayIST, writeText, writeJSON, ROOT } from "./util.mjs";
 import { join } from "node:path";
 
@@ -50,7 +53,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
   if (src.collect) {
     try {
       // Dizi ya da { raws, detail } döner: detail, liste verisi yetmeyen (birden çok mekânlı) kayıtların detay sayfalarıdır
-      const res = (await src.collect({ fetchText, getPage, today, log })) || [];
+      const res = (await src.collect({ fetchText, getPage, today, log, src, city: CITY })) || [];
       const got = Array.isArray(res) ? res : res.raws || [];
       raws.push(...got);
       for (const u of res.detail || []) if (!src.link || src.link.test(u)) detail.add(u);
@@ -129,8 +132,20 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
   const out = raws.filter((r) => {
     if (!r.d || r.d < today || !r.title) return false;
     if (isJunk(r)) return false;
-    if (src.city !== "ankara" && !looksAnkara(r)) return false;
-    if (src.city === "ankara" && r.city && !/ankara/i.test(r.city) && !looksAnkara(r)) return false;
+    if (CITY === "ankara") {
+      if (src.city !== "ankara" && !looksAnkara(r)) return false;
+      if (src.city === "ankara" && r.city && !/ankara/i.test(r.city) && !looksAnkara(r)) return false;
+    } else if (CITY === "tr") {
+      // bütün Türkiye listesi: ili adresten bul; bulunamayan alınmaz
+      const id = cityOfText(r.city || "") || cityOfText([r.venue, r.address].join(" "));
+      if (!id) return false; r.cid = id;
+    } else {
+      // tek il: kaynak o ilin listesini veriyor; başka il yazan kayıt alınmaz
+      const C = cityById(CITY), other = r.city && cityOfText(r.city);
+      if (other && other !== C.id) return false;
+      if (src.city === "tr" && !C.re.test(cfold([r.venue, r.address, r.city, r.url].join(" ")))) return false;
+      r.cid = C.id;
+    }
     const k = r.d + r.t + r.title + (r.url || "");
     if (seen.has(k)) return false;
     seen.add(k);

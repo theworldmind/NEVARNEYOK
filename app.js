@@ -9,10 +9,11 @@ const slugOf = (e) => e.d + "-" + fold(e.title).trim().replace(/\s+/g, "-").slic
 const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
 
 const IL = "Adana Adıyaman Afyonkarahisar Ağrı Aksaray Amasya Ankara Antalya Ardahan Artvin Aydın Balıkesir Bartın Batman Bayburt Bilecik Bingöl Bitlis Bolu Burdur Bursa Çanakkale Çankırı Çorum Denizli Diyarbakır Düzce Edirne Elazığ Erzincan Erzurum Eskişehir Gaziantep Giresun Gümüşhane Hakkari Hatay Iğdır Isparta İstanbul İzmir Kahramanmaraş Karabük Karaman Kars Kastamonu Kayseri Kilis Kırıkkale Kırklareli Kırşehir Kocaeli Konya Kütahya Malatya Manisa Mardin Mersin Muğla Muş Nevşehir Niğde Ordu Osmaniye Rize Sakarya Samsun Şanlıurfa Siirt Sinop Şırnak Sivas Tekirdağ Tokat Trabzon Tunceli Uşak Van Yalova Yozgat Zonguldak".split(" ");
-const LIVE = new Set(["ankara"]);
+/* Açık iller data/cities.json'dan gelir (her gece "Şehirleri güncelle"): etkinliği ya da filmi olan her il açılır */
+let CIX = { ankara: { n: 1 } };
 const POP = ["istanbul", "ankara", "izmir", "antalya", "bursa", "eskisehir", "adana", "konya", "gaziantep", "mersin", "kocaeli", "kayseri", "samsun", "trabzon", "denizli"];
 const rank = (c) => (c.live ? -100 : 0) + (POP.includes(c.id) ? POP.indexOf(c.id) : 50);
-const CITIES = IL.map((n) => ({ id: fold(n).replace(/\s+/g, ""), name: n, live: LIVE.has(fold(n).replace(/\s+/g, "")) }));
+const CITIES = IL.map((n) => ({ id: fold(n).replace(/\s+/g, ""), name: n, get live() { const c = CIX[this.id]; return !!(c && (c.n || c.films)); }, get n() { return CIX[this.id]?.n || 0; } }));
 const CATS = { konser: "Konser", tiyatro: "Tiyatro", standup: "Stand-up", sahne: "Opera · Bale · Dans", cocuk: "Çocuk & Aile", festival: "Festival", parti: "Parti", atolye: "Atölye & Söyleşi", sinema: "Sinema" };
 const GUN = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"], GUNK = ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"];
 const AY = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"], AYK = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -52,10 +53,18 @@ const I = {
 /* ---------- Veri ---------- */
 const DATA = { events: [], venues: {}, films: null, buzz: {}, base: null, ready: false };
 const gcEv = (p, t) => { const f = () => { try { window.goatcounter?.count?.({ path: p, title: t || p, event: true }); } catch {} }; window.goatcounter?.count ? f() : setTimeout(f, 3000); };
-async function load() {
-  const j = (u) => fetch(u, { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-  const [ev, vn, fl, bz] = await Promise.all([j("data/events.json"), j("data/venues.json"), j("data/films.json"), j("data/buzz.json")]);
-  DATA.base = ev?.baseline; DATA.updated = ev?.updated; DATA.venues = vn?.venues || vn || {}; DATA.films = fl; DATA.buzz = bz || {};
+const jget = (u) => fetch(u, { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+async function boot() {
+  const [vn, cx, top] = await Promise.all([jget("data/venues.json"), jget("data/cities.json"), jget("data/one-cikan.json")]);
+  DATA.venues = vn?.venues || vn || {}; if (cx?.cities) CIX = cx.cities; DATA.top = top?.events || []; DATA.boot = true;
+}
+/* Ankara: data/events.json + films.json + buzz.json · diğer iller: data/c/<il>.json + data/c/<il>-films.json */
+const cityLoads = {};
+function loadCity(city) { return (cityLoads[city] ||= load(city).catch((e) => { delete cityLoads[city]; throw e; })); }
+async function load(city) {
+  const ank = city === "ankara";
+  const [ev, fl, bz] = await Promise.all([jget(ank ? "data/events.json" : `data/c/${city}.json`), jget(ank ? "data/films.json" : `data/c/${city}-films.json`), ank ? jget("data/buzz.json") : null]);
+  DATA.base = ev?.baseline; DATA.updated = ev?.updated; DATA.films = fl; DATA.buzz = bz || {};
   const fresh = (x) => !!(x.price && !x.est && x.seen && x.seen !== DATA.base && (Date.now() - Date.parse(x.seen)) / 36e5 <= PRICE_MAX_H);
   const { d: today, hm } = nowIST();
   const cx = DATA.buzz.cx || {}, bzKey = (t) => fold(t).replace(/\s+/g, "");
@@ -73,7 +82,7 @@ async function load() {
     return o;
   }).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "99").localeCompare(b.t || "99"));
   DATA.bySlug = new Map(DATA.events.map((e) => [e.slug, e]));
-  DATA.ready = true;
+  DATA.city = city; DATA.ready = true;
 }
 function timeDiff(a, b) { const m = (s) => +s.slice(0, 2) * 60 + +s.slice(3, 5); return m(b) - m(a); }
 const live = (e) => e.status !== "iptal" && e.status !== "ertelendi";
@@ -89,7 +98,7 @@ function descOf(e) {
 function poster(e, { badge = true, lazy = true } = {}) {
   const st = e.status === "tukendi" ? "Tükendi" : e.status === "iptal" ? "İptal edildi" : e.status === "ertelendi" ? "Ertelendi" : "";
   const img = e.img ? `<img class="p" src="${esc(e.img)}" alt="${esc(e.title)} afişi" referrerpolicy="no-referrer" ${lazy ? 'loading="lazy"' : ""} decoding="async" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: ${esc(e.imgBy || "kaynak site")}</span>` : "";
-  return `<div class="ph${e.img ? "" : " no"}">${img}<div class="tp"><small>${esc(CATS[e.cat] || "Etkinlik")}</small><b>${esc(e.title)}</b><small>${esc(e.venue || "")}</small></div>${badge && st ? `<span class="bd${e.status === "tukendi" ? "" : " x"}">${st}</span>` : ""}</div>`;
+  return `<div class="ph${e.img ? "" : " no"}" data-c="${esc(e.cat || "")}">${img}<div class="tp" lang="tr"><small>${esc(CATS[e.cat] || "Etkinlik")}</small><b>${esc(e.title)}</b><span class="tw"><small>${esc(dShort(e.d))}${e.t ? " · " + esc(e.t) : ""}</small><small>${esc(e.venue || "")}</small><i class="tl2">nevarneyok</i></span></div>${badge && st ? `<span class="bd${e.status === "tukendi" ? "" : " x"}">${st}</span>` : ""}</div>`;
 }
 function card(e, city) {
   const pr = e.price ? `<div class="pr">${TL(e.price)}'den</div>` : "";
@@ -118,31 +127,60 @@ function setTop(city) {
   const n = Object.keys(follows()).length, fb = $("#flwBtn"); fb.href = `#/${city}/takip`; fb.querySelector("b").textContent = n || ""; fb.classList.toggle("has", !!n);
 }
 
+/* ---------- Hikâye gibi kayan sayfalar (üstte çizgiler; kaydır ya da kenarlara dokun; kendiliğinden ilerler) ---------- */
+function stories(items, hrefOf, { cityTag = false } = {}) {
+  if (!items.length) return "";
+  return `<section class="stp" aria-roledescription="carousel" aria-label="Öne çıkanlar"><div class="sg">${items.map(() => "<i><b></b></i>").join("")}</div>
+  <div class="sv">${items.map((e, i) => `<a class="sps" href="${hrefOf(e)}" aria-label="${esc(e.title)}"><img class="bg" src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" ${i > 1 ? 'loading="lazy"' : ""} decoding="async">
+    <div class="po">${poster(e, { badge: false, lazy: i > 1 })}</div>
+    <div class="tx"><span class="tg">${esc(CATS[e.cat] || "Etkinlik")}${cityTag && e.cityName ? " · " + esc(e.cityName) : ""}</span><h2>${esc(e.title)}</h2><div class="m">${rel(e.d)}${e.t ? " · " + esc(e.t) : ""}${e.venue ? " · " + esc(e.venue) : ""}</div><span class="go">İncele ${I.arr || "→"}</span></div></a>`).join("")}</div>
+  <button type="button" class="nv pv" aria-label="Önceki"></button><button type="button" class="nv nx" aria-label="Sonraki"></button></section>`;
+}
+let stpStop = null;
+function storyInit() {
+  stpStop?.(); const root = $(".stp"); if (!root) return;
+  const sv = $(".sv", root), segs = $$(".sg i", root), N = segs.length; let i = 0, alive = true, lock = 0;
+  const paint = () => segs.forEach((g, k) => { g.className = k < i ? "done" : ""; });
+  const play = () => { paint(); const b = segs[i]; void b.offsetWidth; b.className = "on"; };
+  const go = (n, smooth = true) => { i = (n + N) % N; lock = Date.now(); sv.scrollTo({ left: i * sv.clientWidth, behavior: smooth ? "smooth" : "auto" }); play(); };
+  segs.forEach((g) => g.querySelector("b").addEventListener("animationend", () => { if (alive && document.body.contains(root)) go(i + 1); }));
+  $(".nx", root).addEventListener("click", () => go(i + 1)); $(".pv", root).addEventListener("click", () => go(i - 1));
+  let st = 0; sv.addEventListener("scroll", () => { clearTimeout(st); st = setTimeout(() => { if (Date.now() - lock < 600) return; const n = Math.round(sv.scrollLeft / sv.clientWidth); if (n !== i) { i = n; play(); } }, 90); }, { passive: true });
+  const hold = (on) => root.classList.toggle("hold", on);
+  sv.addEventListener("pointerdown", () => hold(true), { passive: true }); addEventListener("pointerup", () => hold(false), { passive: true }); sv.addEventListener("pointercancel", () => hold(false));
+  const vis = () => root.classList.toggle("hold", document.hidden); document.addEventListener("visibilitychange", vis);
+  stpStop = () => { alive = false; document.removeEventListener("visibilitychange", vis); };
+  play();
+}
+
 function viewCities() {
-  setTop(null); document.title = "Ne Var Ne Yok · Hangi şehirdesin?";
-  const n = DATA.events.filter((e) => e.d <= addD(nowIST().d, 6) && live(e)).length, liveC = CITIES.filter((c) => c.live);
-  V.innerHTML = `<div class="cs">${WM()}<div class="hi">Hoş geldinnn 👋</div><h1>Hangi şehirdesin?</h1><p class="lead">Şehrini yaz, o şehirde bugün ve bu hafta ne var ne yok gör.</p>
+  setTop(null); document.title = "Ne Var Ne Yok · Şehrinin etkinliklerine göz at";
+  const liveC = CITIES.filter((c) => c.live).sort((a, b) => b.n - a.n), top = liveC.slice(0, 8);
+  const T = (DATA.top || []).filter((e) => e.img && CITIES.find((c) => c.id === e.city && c.live)).slice(0, 10);
+  V.innerHTML = `<div class="cs"><div class="cs-h">${WM()}</div>
+  ${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}
+  <h1>Hangi şehirdesin?</h1><p class="lead">Şehrini yaz; konser, tiyatro, sinema, festival… o şehirde bugün ve bu hafta ne var ne yok gör.</p>
   <div class="cpick"><label class="cin">${I.pin}<input id="cq" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Şehrini yaz…" aria-label="Şehir ara" role="combobox" aria-expanded="false" aria-controls="cl"></label><ul class="cl" id="cl" role="listbox" hidden></ul><p class="cmsg" id="cmsg" hidden></p></div>
-  <p class="cnow">Şu an açık: ${liveC.map((c) => `<a href="#/${c.id}" data-city="${c.id}">${c.name}</a>`).join(", ")} <span>· diğer şehirler yakında</span></p>
+  <p class="cnow">${liveC.length > 1 ? `<b>${liveC.length}</b> ilde etkinlikler açık: ` : "Şu an açık: "}${top.map((c) => `<a href="#/${c.id}" data-city="${c.id}">${c.name}</a>`).join(", ")}${liveC.length > top.length ? ` <span>ve ${liveC.length - top.length} il daha</span>` : ""}</p>
   <div class="cs-ft"><a class="dlb" href="indir/" data-app><span class="tl">${WM()}</span><span><b>Uygulamamızı indirin</b><small>Android · iPhone · ücretsiz</small></span><span class="go2">İndir</span></a><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
   const q = $("#cq"), ul = $("#cl"), msg = $("#cmsg"); let sel = 0, L = [];
-  const choose = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; } q.value = c.name; ul.hidden = true; q.setAttribute("aria-expanded", "false"); msg.hidden = false; msg.innerHTML = `<b>${esc(c.name)}</b> yakında geliyor. Şimdilik ${liveC.map((x) => `<a href="#/${x.id}" data-city="${x.id}">${x.name}</a>`).join(", ")} etkinliklerine göz atabilirsin.`; };
+  const choose = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; } q.value = c.name; ul.hidden = true; q.setAttribute("aria-expanded", "false"); msg.hidden = false; msg.innerHTML = `<b>${esc(c.name)}</b> için şu an listede etkinlik yok; her gece yeniden bakıyoruz. Yakındaki illere göz atabilirsin: ${top.slice(0, 4).map((x) => `<a href="#/${x.id}" data-city="${x.id}">${x.name}</a>`).join(", ")}`; };
+  const sub = (c) => c.live ? (c.n ? `${c.n.toLocaleString("tr-TR")} etkinlik` : "Sinema seansları") : "Şu an etkinlik yok";
   const draw = () => {
     const v = fold(q.value).trim(); msg.hidden = true;
-    L = v ? CITIES.filter((c) => fold(c.name).startsWith(v)).sort((a, b) => rank(a) - rank(b)).concat(CITIES.filter((c) => !fold(c.name).startsWith(v) && fold(c.name).includes(v))).slice(0, 7) : liveC;
+    L = v ? CITIES.filter((c) => fold(c.name).startsWith(v)).sort((a, b) => rank(a) - rank(b)).concat(CITIES.filter((c) => !fold(c.name).startsWith(v) && fold(c.name).includes(v))).slice(0, 7) : top.slice(0, 6);
     sel = 0; ul.hidden = !L.length; q.setAttribute("aria-expanded", String(!!L.length));
-    ul.innerHTML = L.length ? L.map((c, i) => `<li role="option" data-i="${i}" class="${i === sel ? "on" : ""}${c.live ? "" : " soon"}"><b>${esc(c.name)}</b><small>${c.live ? `Bu hafta ${n.toLocaleString("tr-TR")} etkinlik` : "Yakında"}</small></li>`).join("") : "";
+    ul.innerHTML = L.length ? L.map((c, i) => `<li role="option" data-i="${i}" class="${i === sel ? "on" : ""}${c.live ? "" : " soon"}"><b>${esc(c.name)}</b><small>${sub(c)}</small></li>`).join("") : "";
     if (v && !L.length) { msg.hidden = false; msg.textContent = "Bu adla bir il bulamadık."; }
   };
   q.addEventListener("input", draw); q.addEventListener("focus", draw);
   q.addEventListener("keydown", (ev) => { if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { ev.preventDefault(); sel = (sel + (ev.key === "ArrowDown" ? 1 : L.length - 1)) % (L.length || 1); $$("li", ul).forEach((li, i) => li.classList.toggle("on", i === sel)); } else if (ev.key === "Enter") { ev.preventDefault(); choose(L[sel]); } });
   ul.addEventListener("pointerdown", (ev) => { const li = ev.target.closest("li"); if (li) { ev.preventDefault(); choose(L[+li.dataset.i]); } });
   document.addEventListener("pointerdown", function off(ev) { if (!document.body.contains(q)) return document.removeEventListener("pointerdown", off); if (!ev.target.closest(".cpick")) ul.hidden = true; });
-  $$("[data-city]").forEach((x) => x.addEventListener("click", () => store.set("nvny-city", x.dataset.city)));
-  if (!matchMedia("(pointer:coarse)").matches) q.focus();
+  V.addEventListener("click", (ev) => { const a = ev.target.closest("[data-city]"); if (a) store.set("nvny-city", a.dataset.city); });
+  storyInit();
 }
 
-let heroTimer = 0;
 function viewCity(city) {
   setTop(city); const cname = CITIES.find((c) => c.id === city)?.name || city; document.title = `${cname} · Ne Var Ne Yok`;
   const { d: today, hm } = nowIST(), E = DATA.events.filter(live), wk = addD(today, 6);
@@ -150,12 +188,12 @@ function viewCity(city) {
   const tonight = todayL.filter((e) => !e.t || e.t >= "17:00");
   const dow = pd(today).getDay(), fri = addD(today, (5 - dow + 7) % 7), sun = addD(fri, 2);
   const wkend = E.filter((e) => e.d >= (dow === 6 || dow === 0 ? today : fri) && e.d <= (dow === 0 ? today : sun));
-  const featured = pick(E.filter((e) => e.img && e.d <= addD(today, 10)), 6);
+  const featured = pick(E.filter((e) => e.img && e.d <= addD(today, 10)), 8);
   const byCat = (c) => pick(weekL.filter((e) => e.cat === c && e.img), 14).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "").localeCompare(b.t || ""));
   const k = (q) => `#/${city}/kesfet?${q}`;
   V.innerHTML = `<section class="city"><div class="k">Şehrin gündemi</div><h1>${esc(cname)}</h1><div class="st"><span><b>${todayL.length}</b> etkinlik bugün</span><span><b>${weekL.length.toLocaleString("tr-TR")}</b> bu hafta</span>${DATA.films?.films?.length ? `<span><b>${DATA.films.films.filter((f) => f.s && Object.keys(f.s).length).length}</b> film vizyonda</span>` : ""}</div>
   <button type="button" class="pz" id="pz">${prefs() ? `<span class="dot"></span>Senin için kişiselleştirildi<em>Düzenle</em>` : `${I.spark}Kişiselleştir<em>İlgi alanlarını seç, sana uygun etkinlikler öne çıksın</em>`}</button></section>
-  ${featured.length ? `<section class="hero"><div class="hs" id="hs">${featured.map((e, i) => `<a class="sl" href="#/${city}/e/${encodeURIComponent(e.slug)}"><img class="bg" src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" ${i ? 'loading="lazy"' : ""}><div class="in"><div class="po">${poster(e, { badge: false, lazy: i > 0 })}</div><div class="tx"><span class="tg">${esc(CATS[e.cat] || "Etkinlik")}</span><h2>${esc(e.title)}</h2><div class="m">${dLong(e.d)}${e.t ? " · " + esc(e.t) : ""}<br>${esc(e.venue || "")}</div><span class="go">Detayları gör →</span></div></div></a>`).join("")}</div><div class="dots" id="dots">${featured.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div></section>` : ""}
+  ${stories(featured, (e) => `#/${city}/e/${encodeURIComponent(e.slug)}`)}
   <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
   <div class="qk"><a href="${k("t=bugun")}">Bugün</a><a href="${k("t=yarin")}">Yarın</a><a href="${k("t=haftasonu")}">Hafta sonu</a><a href="#/${city}/sinema">Sinema</a>${Object.keys(CATS).filter((c) => c !== "sinema" && weekL.some((e) => e.cat === c)).map((c) => `<a href="${k("k=" + c)}">${esc(CATS[c])}</a>`).join("")}</div>
   ${notifAsk(city)}
@@ -172,20 +210,13 @@ function viewCity(city) {
   $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); location.hash = `#/${city}/kesfet?q=${encodeURIComponent($("#q").value.trim())}`; });
   $("#pz").addEventListener("click", () => openPrefs(city, () => viewCity(city)));
   bindNotifAsk(city);
-  heroInit();
+  storyInit();
 }
 function filmRail(city) {
   const F = DATA.films?.films || [], today = nowIST().d;
   const L = F.filter((f) => f.img && f.s && f.s[today]?.length).sort((a, b) => (b.s[today]?.length || 0) - (a.s[today]?.length || 0)).slice(0, 14);
   if (!L.length) return "";
   return `<section class="rail"><div class="rh"><div><h3>Vizyonda</h3><small>Bugün ${L.length}+ film · salon salon seanslar</small></div><a href="#/${city}/sinema">Tümü →</a></div><div class="rs">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([f.genre, f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[today].length} salonda bugün</div></a>`).join("")}</div></section>`;
-}
-function heroInit() {
-  clearInterval(heroTimer); const hs = $("#hs"); if (!hs) return; const dots = $$("#dots i"); let i = 0, hold = 0;
-  const go = (n) => { i = (n + dots.length) % dots.length; hs.scrollTo({ left: hs.children[i].offsetLeft - hs.offsetLeft - (parseInt(getComputedStyle(hs).paddingLeft) || 0), behavior: "smooth" }); };
-  hs.addEventListener("scroll", () => { const w = hs.children[0].getBoundingClientRect().width + 12; const n = Math.round(hs.scrollLeft / w); if (n !== i && dots[n]) { dots[i]?.classList.remove("on"); i = n; dots[i].classList.add("on"); } }, { passive: true });
-  ["pointerdown", "touchstart"].forEach((t) => hs.addEventListener(t, () => (hold = Date.now()), { passive: true }));
-  heroTimer = setInterval(() => { if (document.hidden || Date.now() - hold < 8000 || !document.body.contains(hs)) return; dots[i]?.classList.remove("on"); go(i + 1); dots[i]?.classList.add("on"); }, 6000);
 }
 
 /* ---------- Keşfet + filtre ekranı ----------
@@ -449,7 +480,7 @@ async function askNotif(city) {
   if (p !== "granted") return false;
   NV.set("prefs", prefs()); NV.set("city", city); NV.set("follows", follows());
   await swUp(); gcEv("bildirim-acildi", "Bildirimler açıldı");
-  if (!store.get("nvny-hosgeldin")) { store.set("nvny-hosgeldin", "1"); notify("HOŞ GELDİNNN 🎉", "Artık hiçbir şeyi kaçırmazsın! Takip ettiğin etkinlikte bir şey değişirse ilk senin haberin olacak, bir gün önceden de dürteceğiz 😉 Arada bir \"bu hafta sonu şunlar var\" diye de yazarız.", `/#/${city}`, "hosgeldin"); }
+  if (standalone && !store.get("nvny-hosgeldin")) { store.set("nvny-hosgeldin", "1"); notify("HOŞ GELDİNİZZZ 🎉", "Artık hiçbir şeyi kaçırmazsın! Takip ettiğin etkinlikte bir şey değişirse ilk senin haberin olacak, bir gün önceden de dürteceğiz 😉 Arada bir \"bu hafta sonu şunlar var\" diye de yazarız.", `/#/${city}`, "hosgeldin"); }
   else toast("Bildirimler açık 🔔");
   $$(".nask").forEach((x) => x.remove()); $$(".nbox").forEach((x) => { x.outerHTML = notifBox(city); });
   return true;
@@ -471,7 +502,7 @@ function toggleFollow(e, city) {
   const F = follows(), id = fid(e), b = $("#flw");
   if (F[id]) { delete F[id]; saveF(F); b.classList.remove("on"); b.innerHTML = I.bell + "Takip et"; toast("Takipten çıkarıldı"); }
   else {
-    F[id] = NV.snap(e, e.slug); saveF(F); b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; gcEv("takip-et", "Takip et");
+    F[id] = { ...NV.snap(e, e.slug), city }; saveF(F); b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; gcEv("takip-et", "Takip et");
     if (notifOn()) toast(`Takip ediyorsun. Bir değişiklik olursa haber vereceğiz. <a href="#/${city}/takip">Takip ettiklerim →</a>`);
     else if (!store.get("nvny-nask-f") && !(NOTIF && Notification.permission === "denied")) {
       store.set("nvny-nask-f", "1");
@@ -494,13 +525,27 @@ function viewTakip(city) {
   bindNotifBox(V, city);
   $$("[data-unf]").forEach((b) => b.addEventListener("click", () => { const F2 = follows(); delete F2[b.dataset.unf]; saveF(F2); viewTakip(city); }));
 }
+
+/* Uygulamayı indirip ilk kez açana: "HOŞ GELDİNİZZZ" bildirimi (izin varsa hemen; yoksa önce kısa bir soru) */
+function welcomeApp() {
+  if (!standalone || store.get("nvny-hosgeldin")) return;
+  const city = store.get("nvny-city") || "ankara";
+  if (notifOn()) { store.set("nvny-hosgeldin", "1"); swUp().then(() => notify("HOŞ GELDİNİZZZ 🎉", "Ne Var Ne Yok artık telefonunda! Takip ettiğin etkinlikte bir şey değişirse ilk senin haberin olacak, bir gün önceden de dürteceğiz 😉", `/#/${city}`, "hosgeldin")); return; }
+  if (!NOTIF || Notification.permission === "denied" || store.get("nvny-hosgeldin-sor")) return;
+  store.set("nvny-hosgeldin-sor", "1");
+  setTimeout(() => {
+    const sh = sheet(`<div class="pn" role="dialog" aria-label="Hoş geldiniz"><div class="bd2 nsh">${I.bellOn}<h3>Hoş geldiniz!</h3><p>Uygulama hazır. Bildirimleri açarsan takip ettiğin etkinlik iptal olursa, saati ya da yeri değişirse haber verelim; bir gün önce de hatırlatalım.</p></div><div class="ft"><button type="button" class="rs2" data-close>Şimdi değil</button><button type="button" class="ok" data-ok>Bildirimleri aç</button></div></div>`);
+    sh.querySelector("[data-ok]").addEventListener("click", () => { sh.close(); askNotif(city); });
+  }, 1200);
+}
+addEventListener("appinstalled", () => { try { localStorage.removeItem("nvny-hosgeldin-sor"); } catch {} });
 /* Uygulama açılınca: takip edilenleri güncel veriyle karşılaştır, değişikliği göster */
 function followBoot() {
-  const city = store.get("nvny-city") || "ankara";
-  NV.set("city", city); if (prefs()) NV.set("prefs", prefs());
+  const city = DATA.city || store.get("nvny-city") || "ankara";
+  NV.set("city", city); NV.set("cityName", CITIES.find((c) => c.id === city)?.name || ""); if (prefs()) NV.set("prefs", prefs());
   if (notifOn()) swUp();
   const F = follows(); if (!Object.keys(F).length) return;
-  const res = NV.check(F, DATA.events, city);
+  const res = NV.check(F, DATA.events, DATA.city || city);
   saveF(res.follows);
   res.msgs.slice(0, 3).forEach((m, i) => setTimeout(() => toast(`${I.bellOn}<span><b>${esc(m.title)}</b><small>${esc(m.body)}</small><a href="${esc(m.url.replace(/^\/(yeni\/)?/, ""))}">Göster →</a></span>`, 9000), 900 + i * 400));
   const fb = $("#flwBtn b"); if (fb) { const n = Object.keys(res.follows).length; fb.textContent = n || ""; fb.parentElement.classList.toggle("has", !!n); }
@@ -525,7 +570,10 @@ function viewBilgi(k) {
 const scrollMem = new Map();
 let lastHash = "";
 function route() {
-  if (!DATA.ready) return;
+  if (!DATA.boot) return;
+  { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
+    const need = P0 && P0 !== "bilgi" && CITIES.find((c) => c.id === P0 && c.live) && DATA.city !== P0;
+    if (need) { V.innerHTML = `<div class="ld"><span></span></div>`; loadCity(P0).then(() => { cityLoads[P0] = null; route(); followBoot(); }).catch(() => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; }); return; } }
   scrollMem.set(lastHash, scrollY);
   $$(".sh").forEach((x) => x.remove()); document.body.style.overflow = "";
   const h = location.hash.replace(/^#/, "") || "/", [path, qs] = h.split("?"), P = path.split("/").filter(Boolean), Q = Object.fromEntries(new URLSearchParams(qs || ""));
@@ -552,4 +600,4 @@ function route() {
 addEventListener("hashchange", route);
 addEventListener("scroll", () => TOP.classList.toggle("sc", scrollY > 8), { passive: true });
 document.addEventListener("click", (ev) => { const b = ev.target.closest("[data-buy]"); if (b) { let h = ""; try { h = new URL(b.href).hostname.replace(/^www\./, ""); } catch {} gcEv("bilet-al/" + (h || "?"), "Bilet al: " + (h || "?")); } }, true);
-load().then(() => { route(); followBoot(); }).catch((err) => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });
+boot().then(() => { route(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });

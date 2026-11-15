@@ -9,6 +9,9 @@ import { fetchText } from "./lib/net.mjs";
 
 const BASE = "https://www.sinemalar.com";
 const OUT = process.env.FILMS_FILE || join(ROOT, "data/films.json");
+// İl: CITY=<il kimliği> (varsayılan ankara). sinemalar.com bazı illeri bölgelere ayırır (İstanbul: avrupa + anadolu): SINEMA_CITY=istanbul-avrupa,istanbul-anadolu
+const CITY = process.env.CITY || "ankara", CITY_NAME = process.env.CITY_NAME || "Ankara";
+const SLUGS = (process.env.SINEMA_CITY || CITY).split(",").filter(Boolean);
 const AY = { ocak: 1, şubat: 2, mart: 3, nisan: 4, mayıs: 5, haziran: 6, temmuz: 7, ağustos: 8, eylül: 9, ekim: 10, kasım: 11, aralık: 12 };
 const txt = (s) => clean(decodeEntities(String(s || "").replace(/<[^>]+>/g, " ")));
 const addDays = (d, n) => new Date(Date.parse(d + "T12:00:00Z") + n * 864e5).toISOString().slice(0, 10);
@@ -67,7 +70,7 @@ export function parseSeances(html) {
       const nm = card.match(/href="https?:\/\/www\.sinemalar\.com\/sinemasalonu\/(\d+)\/[^"]*"[^>]*>\s*<h3>([\s\S]*?)<\/h3>/);
       if (!nm) continue;
       const cid = +nm[1];
-      if (!cinemas[cid]) cinemas[cid] = { name: txt(nm[2]).replace(/^Ankara\s+/i, ""), addr: txt((card.match(/<div class="card-info dark">([^<]*)<\/div>/) || [])[1] || "").replace(/\s*\d+([.,]\d+)?\s*km$/i, "") };
+      if (!cinemas[cid]) cinemas[cid] = { name: txt(nm[2]).replace(new RegExp("^" + CITY_NAME + "\\s+", "i"), ""), addr: txt((card.match(/<div class="card-info dark">([^<]*)<\/div>/) || [])[1] || "").replace(/\s*\d+([.,]\d+)?\s*km$/i, "") };
       for (const sg of card.split(/<div class="seance"/).slice(1)) {
         const fmt = [((sg.match(/data-dimension="([^"]*)"/) || [])[1] || ""), ((sg.match(/data-language="([^"]*)"/) || [])[1] || "")].filter(Boolean).join(" ");
         const times = [...sg.matchAll(/<a class="btn secondary vertical[^"]*"[^>]*>\s*<span>(\d{1,2}:\d{2})<\/span>/g)].map((m) => m[1].padStart(5, "0"));
@@ -92,11 +95,16 @@ export async function main() {
   for (const f of [...now, ...coming]) if (!seen.has(f.id)) { seen.add(f.id); list.push(f); }
   const cinemas = {}, films = [];
   for (const f of list) {
-    const page = `/seans/${f.id}/${f.slug}/ankara`;
-    const html = await get(page);
-    if (!html) continue;
-    const { days, cinemas: cs } = parseSeances(html);
-    Object.assign(cinemas, cs);
+    const page = `/seans/${f.id}/${f.slug}/${SLUGS[0]}`, days = {};
+    let any = false;
+    for (const sl of SLUGS) {
+      const html = await get(`/seans/${f.id}/${f.slug}/${sl}`);
+      if (!html) continue; any = true;
+      const { days: dd, cinemas: cs } = parseSeances(html);
+      Object.assign(cinemas, cs);
+      for (const [d, byC] of Object.entries(dd)) Object.assign((days[d] ||= {}), byC);
+    }
+    if (!any) continue;
     const s = {};
     for (const [d, byC] of Object.entries(days)) {
       if (d < today) continue;
@@ -109,7 +117,7 @@ export async function main() {
   // Kaynak boş döndüyse dünkü veriyi silme (site boş kalmasın)
   if (!films.length && prev.films?.length) { log(`Filmler: kaynak boş döndü (${notes.join(" · ")}), dünkü veri korunuyor`); return; }
   films.sort((a, b) => (b.release || "").localeCompare(a.release || "") || a.title.localeCompare(b.title, "tr"));
-  await writeJSON(OUT, { updated: new Date().toISOString(), source: "sinemalar.com", city: "Ankara", cinemas, films, notes }, false);
+  await writeJSON(OUT, { updated: new Date().toISOString(), source: "sinemalar.com", city: CITY_NAME, cinemas, films, notes }, false);
   const ns = films.reduce((n, f) => n + Object.values(f.s).flat().reduce((k, [, g]) => k + g.split(/[;,]/).length, 0), 0);
   log(`Filmler: ${films.length} film, ${Object.keys(cinemas).length} salon, ${ns} seans${notes.length ? " · " + notes.join(" · ") : ""}`);
 }

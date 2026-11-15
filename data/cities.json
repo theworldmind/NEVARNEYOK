@@ -1,0 +1,491 @@
+{
+ "updated": "2026-11-15T08:33:52.048Z",
+ "cities": {
+  "adana": {
+   "name": "Adana",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "adiyaman": {
+   "name": "Adıyaman",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "afyonkarahisar": {
+   "name": "Afyonkarahisar",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "agri": {
+   "name": "Ağrı",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "aksaray": {
+   "name": "Aksaray",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "amasya": {
+   "name": "Amasya",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "ankara": {
+   "name": "Ankara",
+   "n": 1793,
+   "posters": 1751,
+   "films": 41
+  },
+  "antalya": {
+   "name": "Antalya",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "ardahan": {
+   "name": "Ardahan",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "artvin": {
+   "name": "Artvin",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "aydin": {
+   "name": "Aydın",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "balikesir": {
+   "name": "Balıkesir",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "bartin": {
+   "name": "Bartın",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "batman": {
+   "name": "Batman",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "bayburt": {
+   "name": "Bayburt",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "bilecik": {
+   "name": "Bilecik",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "bingol": {
+   "name": "Bingöl",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "bitlis": {
+   "name": "Bitlis",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "bolu": {
+   "name": "Bolu",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "burdur": {
+   "name": "Burdur",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "bursa": {
+   "name": "Bursa",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "canakkale": {
+   "name": "Çanakkale",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "cankiri": {
+   "name": "Çankırı",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "corum": {
+   "name": "Çorum",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "denizli": {
+   "name": "Denizli",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "diyarbakir": {
+   "name": "Diyarbakır",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "duzce": {
+   "name": "Düzce",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "edirne": {
+   "name": "Edirne",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "elazig": {
+   "name": "Elazığ",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "erzincan": {
+   "name": "Erzincan",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "erzurum": {
+   "name": "Erzurum",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "eskisehir": {
+   "name": "Eskişehir",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "gaziantep": {
+   "name": "Gaziantep",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "giresun": {
+   "name": "Giresun",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "gumushane": {
+   "name": "Gümüşhane",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "hakkari": {
+   "name": "Hakkari",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "hatay": {
+   "name": "Hatay",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "igdir": {
+   "name": "Iğdır",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "isparta": {
+   "name": "Isparta",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "istanbul": {
+   "name": "İstanbul",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "izmir": {
+   "name": "İzmir",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kahramanmaras": {
+   "name": "Kahramanmaraş",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "karabuk": {
+   "name": "Karabük",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "karaman": {
+   "name": "Karaman",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kars": {
+   "name": "Kars",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kastamonu": {
+   "name": "Kastamonu",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kayseri": {
+   "name": "Kayseri",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kirikkale": {
+   "name": "Kırıkkale",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kirklareli": {
+   "name": "Kırklareli",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kirsehir": {
+   "name": "Kırşehir",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kilis": {
+   "name": "Kilis",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kocaeli": {
+   "name": "Kocaeli",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "konya": {
+   "name": "Konya",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "kutahya": {
+   "name": "Kütahya",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "malatya": {
+   "name": "Malatya",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "manisa": {
+   "name": "Manisa",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "mardin": {
+   "name": "Mardin",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "mersin": {
+   "name": "Mersin",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "mugla": {
+   "name": "Muğla",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "mus": {
+   "name": "Muş",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "nevsehir": {
+   "name": "Nevşehir",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "nigde": {
+   "name": "Niğde",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "ordu": {
+   "name": "Ordu",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "osmaniye": {
+   "name": "Osmaniye",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "rize": {
+   "name": "Rize",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "sakarya": {
+   "name": "Sakarya",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "samsun": {
+   "name": "Samsun",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "siirt": {
+   "name": "Siirt",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "sinop": {
+   "name": "Sinop",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "sivas": {
+   "name": "Sivas",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "sanliurfa": {
+   "name": "Şanlıurfa",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "sirnak": {
+   "name": "Şırnak",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "tekirdag": {
+   "name": "Tekirdağ",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "tokat": {
+   "name": "Tokat",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "trabzon": {
+   "name": "Trabzon",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "tunceli": {
+   "name": "Tunceli",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "usak": {
+   "name": "Uşak",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "van": {
+   "name": "Van",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "yalova": {
+   "name": "Yalova",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "yozgat": {
+   "name": "Yozgat",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  },
+  "zonguldak": {
+   "name": "Zonguldak",
+   "n": 0,
+   "posters": 0,
+   "films": 0
+  }
+ }
+}

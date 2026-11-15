@@ -78,19 +78,22 @@ const getJSON = async (fetchText, url) => {
 // Devlet Opera ve Balesi: operabale.gov.tr/program sayfasının kendi kullandığı program listesi.
 // Yalnızca olgular alınır: eser adı, tarih, saat, sahne. Konu metni ve afiş alınmaz.
 // Satış bağlantısı (seoFullUrl) "Bilet al" olarak kullanılır.
-export async function dobCollect({ fetchText }) {
+export async function dobCollect({ fetchText, city }) {
+  // Ankara taramasında yalnızca Ankara Müdürlüğü; bütün Türkiye taramasında (CITY=tr) hepsi, il müdürlüğün adından
+  const all = city === "tr";
   const out = [];
   for (let page = 1, last = 1; page <= last && page <= 40; page++) {
     const j = await getJSON(fetchText, `https://apimain.operabale.gov.tr/v1/web/temsil/program/listele?sehir=&sahne=&grup=&tur=&page=${page}&limit=20`);
     last = +j.toplamSayfaSayisi || +j.sonSayfaNo || 1;
     for (const x of j.data || []) {
-      if (!/ankara/i.test(x.mudurlukAdi || "") || !x.eserAdi || !x.oyunTarihi) continue;
+      if ((!all && !/ankara/i.test(x.mudurlukAdi || "")) || !x.eserAdi || !x.oyunTarihi) continue;
+      const il = all ? (x.mudurlukAdi || "").replace(/devlet opera ve balesi|müdürlüğü|mudurlugu/gi, "").trim() : "Ankara";
       const times = (x.oyunSaatleri || []).filter(Boolean);
       for (const t of times.length ? times : [hhmm(x.oyunTarihi)]) {
-        out.push({ title: x.eserAdi, d: day(x.oyunTarihi), t, venue: x.sahneAdi || "", city: "Ankara",
+        out.push({ title: x.eserAdi, d: day(x.oyunTarihi), t, venue: x.sahneAdi || "", city: il,
           url: x.seoUrl ? `https://www.operabale.gov.tr/eser/${x.seoUrl}` : "https://www.operabale.gov.tr/program",
           buyUrl: /^https?:\/\//.test(x.seoFullUrl || "") ? x.seoFullUrl : "", via: "site", pc: 0,
-          org: "Ankara Devlet Opera ve Balesi", genre: x.eserGrupAdi || "", catHint: "sahne", image: (x.afisler || [])[0] || "" });
+          org: `${il} Devlet Opera ve Balesi`, genre: x.eserGrupAdi || "", catHint: "sahne", image: (x.afisler || [])[0] || "" });
       }
     }
   }
@@ -178,13 +181,21 @@ export function abbList(html, url) {
  * Stand-up ve çocuk oyunları tiyatro listesinin içinde (ayrı kategori adresleri 404/500).
  * Sinema: festival gösterimlerinin her seansı; vizyondaki filmlerin önümüzdeki 5 günde günde bir seansı (en erken). */
 const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["etkinlik", ""], ["sinema", "sinema"]];
-export async function biletinialCollect({ fetchText, today }) {
+export async function biletinialCollect({ fetchText, getPage, today, src, city }) {
   const out = [], detail = new Set(), miss = [], noSeance = [], images = {};
+  // Şehir: Ankara'nın numarası 3; başka il için numarayı sitenin kendi liste isteğinden öğren (sayfayı açınca kendisi çağırır)
+  const cu = src?.cityUrl || "ankara", cn = src?.cityName || "Ankara"; let cityId = src?.cityId || (cu === "ankara" ? 3 : 0);
+  if (!cityId) {
+    try { const pg = await getPage(`https://biletinial.com/tr-tr/tiyatro/${cu}`, { render: true });
+      for (const j of pg.jsons || []) { const m = String(j.url).match(/GetMoreItems\?[^#]*cityId=(\d+)&cityUrl=([a-z0-9-]+)/); if (m && m[2] === cu) { cityId = +m[1]; break; } }
+    } catch {}
+    if (!cityId) return { raws: [], detail: [], images: {}, note: `şehir numarası bulunamadı: ${cu}` };
+  }
   const end5 = new Date(Date.parse(today + "T00:00:00+03:00") + 5 * 864e5).toISOString().slice(0, 10);
   for (const [org, cat] of BI_CATS) {
     const items = [];
     for (let page = 1; page <= 40; page++) {
-      const r = await fetchText(`https://biletinial.com/List/GetMoreItems?region=tr-tr&cityId=3&cityUrl=ankara&order=0&isKids=false&isCampaign=false&isForeign=false&organizerUrl=${org}&page=${page}`, { retries: 1 });
+      const r = await fetchText(`https://biletinial.com/List/GetMoreItems?region=tr-tr&cityId=${cityId}&cityUrl=${cu}&order=0&isKids=false&isCampaign=false&isForeign=false&organizerUrl=${org}&page=${page}`, { retries: 1 });
       let j; try { j = JSON.parse(r.text); } catch { if (page === 1) miss.push(`${org}:${r.status || r.error}`); break; }
       items.push(...(j.items || []));
       if (!j.hasMore || !(j.items || []).length) break;
@@ -200,7 +211,7 @@ export async function biletinialCollect({ fetchText, today }) {
       if (image) images[url] = image;
       if (org !== "sinema" && (multi || !seances.length)) { detail.add(url); continue; }
       if (!seances.length) { if (org === "sinema") noSeance.push(`${title}[${x.dateText || "-"}|${x.saloonName || "-"}|${x.saloonCount}]`); continue; }
-      const base = { title, venue: org === "sinema" && multi ? "Ankara sinemaları" : clean(x.saloonName || ""), city: "Ankara", url, via: "site", image,
+      const base = { title, venue: org === "sinema" && multi ? `${cn} sinemaları` : clean(x.saloonName || ""), city: x.cityName || cn, url, via: "site", image,
         ...(x.isFree ? { free: true } : x.minTicketAmount > 0 ? { price: Math.round(x.minTicketAmount), pc: 1 } : {}),
         catHint: cat, ...(fest ? { genre: "Film festivali" } : x.categoryName ? { genre: clean(x.categoryName) } : {}) };
       let list = seances.map((s) => ({ d: day(s), t: hhmm(s) }));
