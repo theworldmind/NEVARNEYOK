@@ -405,7 +405,7 @@ const toQ = (f) => Object.entries(f).filter(([k, v]) => v && k !== "f").map(([k,
 let shown = 60;
 function viewKesfet(city, f) {
   setTop(city);
-  if (f.sira === "yakin" && !DATA.me) { whereAmI().then(() => venueTr()).then(() => { if (location.hash.includes("sira=yakin")) viewKesfet(city, f); }).catch(() => toast("Konum izni olmadan uzaklığa göre sıralayamıyoruz 📍 Telefon ya da tarayıcı ayarlarından bu siteye konum izni verebilirsin.", 8000)); }
+  if (f.sira === "yakin" && !DATA.me) { venueTr().then(() => whereAmI()).then(() => { if (location.hash.includes("sira=yakin")) viewKesfet(city, f); }).catch((err) => geoHelp(city, err?.code)); }
   else if (f.sira === "yakin" && !DATA.vtr && city !== "ankara") { venueTr().then(() => viewKesfet(city, f)); }
   const L = applyF(f), K = list(f.k), title = K.length === 1 ? CATS[K[0]] : f.t ? TIMES[f.t] : f.gun ? dLong(f.gun) : f.yeni ? "Yeni eklenenler" : f.iptal ? "İptal ve ertelenenler" : f.q ? "Arama" : f.sira === "sen" ? "Senin için" : "Keşfet";
   document.title = `${title} · ${CITIES.find((c) => c.id === city)?.name} · Ne Var Ne Yok`;
@@ -981,17 +981,39 @@ if (!reduced && "DeviceOrientationEvent" in window && !DeviceOrientationEvent.re
 /* ---------- Konum ve uzaklık ("Yakınımda") ---------- */
 const km = (a, b) => { const R = 6371, r = Math.PI / 180, dLa = (b[0] - a[0]) * r, dLo = (b[1] - a[1]) * r, x = Math.sin(dLa / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(x)); };
 const kmTxt = (k) => k < 1 ? Math.round(k * 1000 / 50) * 50 + " m" : k < 10 ? k.toFixed(1).replace(".", ",") + " km" : Math.round(k) + " km";
-function whereAmI() {
+function whereAmI(hi = false) {
   return new Promise((ok, no) => {
-    if (DATA.me && Date.now() - DATA.me.t < 10 * 60e3) return ok(DATA.me.p);
-    if (!navigator.geolocation) return no(new Error("yok"));
-    navigator.geolocation.getCurrentPosition((p) => { DATA.me = { p: [p.coords.latitude, p.coords.longitude], t: Date.now() }; ok(DATA.me.p); }, no, { enableHighAccuracy: false, timeout: 12000, maximumAge: 5 * 60e3 });
+    if (DATA.me && !DATA.me.c && Date.now() - DATA.me.t < 10 * 60e3) return ok(DATA.me.p);
+    if (!navigator.geolocation) return no({ code: 0 });
+    navigator.geolocation.getCurrentPosition((p) => { DATA.me = { p: [p.coords.latitude, p.coords.longitude], t: Date.now() }; ok(DATA.me.p); }, no, { enableHighAccuracy: hi, timeout: hi ? 20000 : 12000, maximumAge: 5 * 60e3 });
   });
 }
+/* Yakınımda (kullanıcı isteği, 22:57: "izin ver'e tıklasın, bir yere gitmesine gerek kalmasın"):
+   dokununca doğrudan sistemin kendi konum izni penceresi açılır (izin sorulmamışsa). İzin önceden kapatılmışsa tarayıcı yeniden sormaya izin vermez;
+   o zaman cihaza göre tek satırlık yol + "Tekrar dene" + "Şehir merkezine göre sırala" seçeneği alttan açılan panelde. */
+const goNear = (city) => { const h = `#/${city}/kesfet?sira=yakin&t=hafta`; if (location.hash === h) viewKesfet(city, { sira: "yakin", t: "hafta" }); else location.hash = h; };
+function cityCenter(city) {
+  const P = DATA.events.map((e) => vOf(e.venue)).filter((v) => v?.lat); if (!P.length) return null;
+  const a = P.map((v) => v.lat).sort((x, y) => x - y), b = P.map((v) => v.lng).sort((x, y) => x - y); return [a[a.length >> 1], b[b.length >> 1]];
+}
 async function nearMe(city) {
-  haptic(6);
-  try { await whereAmI(); location.hash = `#/${city}/kesfet?sira=yakin&t=hafta`; }
-  catch { toast("Konumuna ulaşamadık 📍 Tarayıcı ya da telefon ayarlarından bu siteye konum izni verirsen en yakın etkinlikleri sıralarız.", 8000); }
+  haptic(6); // izin penceresi dokunuşun hemen ardından açılsın diye konum önce istenir, mekân dosyası sonra
+  try { await whereAmI(); await venueTr(); goNear(city); return; }
+  catch (err) { geoHelp(city, err?.code); }
+}
+function geoHelp(city, code) {
+  const and = /android/i.test(navigator.userAgent), how = code === 1
+    ? (isIOS ? "iPhone'da <b>Ayarlar › Gizlilik ve Güvenlik › Konum Servisleri</b>'ni aç; sonra <b>Ayarlar › Safari › Konum</b>'u <b>Sor</b> ya da <b>İzin Ver</b> yap."
+      : and ? (standalone ? "<b>Ayarlar › Uygulamalar › Ne Var Ne Yok › İzinler › Konum</b>'dan <b>Uygulamayı kullanırken izin ver</b>'i seç." : "Adres çubuğunun solundaki <b>kilit</b> simgesine dokun › <b>İzinler</b> › <b>Konum</b>'u aç.")
+      : "Adres çubuğunun solundaki <b>ayar</b> simgesine tıkla › <b>Konum</b>'u <b>İzin ver</b> yap.")
+    : "Cihazının konum servisi kapalı ya da konum şu an bulunamıyor. Konumu açıp tekrar dene.";
+  const sh = sheet(`<div class="pn" role="dialog" aria-label="Konum"><div class="hd"><b>📍 Yakınındaki etkinlikler</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+    <div class="bd2"><p class="pl1">${code === 1 ? "Konum izni daha önce kapatılmış; bu yüzden tarayıcı bir daha soramıyor." : "Konumuna şu an ulaşamadık."}</p><p class="pl1">${how}</p><p class="pl1" style="color:var(--t3)">Konumun yalnızca bu cihazda, uzaklığı hesaplamak için kullanılır; hiçbir yere gönderilmez.</p>
+    <div class="pl-b"><button type="button" class="ok" data-again>Tekrar dene</button><a href="#" data-center>Şehir merkezine göre sırala</a></div></div></div>`, "mn");
+  sh.querySelector("[data-again]").addEventListener("click", async () => { try { await whereAmI(true); sh.close(); goNear(city); } catch (e2) { sh.close(); setTimeout(() => geoHelp(city, e2?.code), 300); } });
+  sh.querySelector("[data-center]").addEventListener("click", (ev) => { ev.preventDefault(); const c = cityCenter(city); sh.close();
+    if (!c) { toast("Bu ilde mekân konumları henüz toplanıyor; birkaç gün içinde hazır olacak 📍", 7000); return; }
+    DATA.me = { p: c, t: Date.now(), c: 1 }; goNear(city); toast("Şehir merkezine göre sıralandı 📍", 4000); });
 }
 function venueTr() { if (DATA.vtrP) return DATA.vtrP; return (DATA.vtrP = jget("data/venues-tr.json").then((v) => { DATA.vtr = v || {}; })); }
 
