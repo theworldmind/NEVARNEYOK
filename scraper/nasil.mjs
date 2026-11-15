@@ -65,14 +65,14 @@ h1 em{font-style:normal;color:#a78bfa}
 .st b{display:block;font:800 30px/1.15 "Inter Tight",Arial,sans-serif}.st small{display:block;margin-top:6px;font:600 22px/1.3 "Inter Tight",Arial,sans-serif;color:#ffffffa8}
 .ico{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;background:#ffffff1c;vertical-align:-10px;margin:0 4px}.ico svg{width:26px;height:26px;color:#fff}
 .ico.bl svg{color:#4aa3ff}
-.url{display:inline-flex;align-items:center;gap:14px;padding:22px 30px;border-radius:99px;background:#fff;color:#0a0a10;font:900 46px/1 Archivo,Arial,sans-serif;font-stretch:84%;box-shadow:0 0 70px #8b5cf688}
+.url{display:inline-flex;align-items:center;gap:14px;padding:22px 30px;border-radius:99px;background:#fff;color:#0a0a10;font:900 36px/1 Archivo,Arial,sans-serif;font-stretch:80%;box-shadow:0 0 70px #8b5cf688}
 .url i{font-style:normal;color:#8b5cf6}
 .note{position:absolute;left:72px;right:72px;display:flex;gap:16px;align-items:center;padding:20px 24px;border-radius:24px;background:#8b5cf61f;box-shadow:0 0 0 1.5px #8b5cf655 inset;font:600 24px/1.35 "Inter Tight",Arial,sans-serif;color:#ffffffd0}
 .note b{color:#fff}
-.foot{position:absolute;left:72px;right:72px;bottom:48px;display:flex;justify-content:space-between;align-items:center;font:700 22px/1 "Inter Tight",Arial,sans-serif;color:#ffffff80}
+.foot{z-index:5;position:absolute;left:72px;right:72px;bottom:48px;display:flex;justify-content:space-between;align-items:center;font:700 22px/1 "Inter Tight",Arial,sans-serif;color:#ffffff80}
 .foot .os{display:flex;align-items:center;gap:8px;font:300 20px/1 Poppins}.foot .os svg{width:20px;height:20px;fill:currentColor}.foot .os b{font-weight:800}
 .swipe{display:flex;align-items:center;gap:10px;color:#fff}.swipe i{font-style:normal;font-size:28px}
-.pills{position:absolute;left:72px;display:flex;gap:12px;flex-wrap:wrap}.pills span{font:700 23px/1 "Inter Tight",Arial,sans-serif;padding:13px 20px;border-radius:99px;background:#ffffff12;box-shadow:0 0 0 1.5px #ffffff22 inset}
+.pills{position:absolute;left:72px;width:500px;display:flex;gap:12px;flex-wrap:wrap}.pills span{font:700 23px/1 "Inter Tight",Arial,sans-serif;padding:13px 20px;border-radius:99px;background:#ffffff12;box-shadow:0 0 0 1.5px #ffffff22 inset}
 .app{position:absolute;display:flex;flex-direction:column;align-items:center;gap:14px}.app img{width:150px;height:150px;border-radius:34px;box-shadow:0 0 0 2px #ffffff22,0 30px 60px -20px #000,0 0 80px #8b5cf688}.app span{font:700 22px/1 "Inter Tight",Arial,sans-serif}`;
 const FOOT = (n, last) => `<div class="foot"><span class="os"><span>by</span>${OS}<em style="font-style:normal">one<b>side</b></em></span>${last ? `<span>nevarneyok.net.tr/indir</span>` : `<span class="swipe">${n}/4 · Kaydır <i>→</i></span>`}</div>`;
 const page = (n, body) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><style>${CSS}</style></head><body><div class="glow"></div><div class="top"><img src="${LOGO}" alt="Ne Var Ne Yok"><span class="pg">Nasıl kurulur?</span></div>${body}${FOOT(n, n === 4)}</body></html>`;
@@ -88,8 +88,8 @@ const P = [
     <h1>SİTEYE<br><em>GİT.</em></h1>
     <p class="sub" style="top:430px;max-width:540px">Profilimizdeki bağlantıya dokun ya da tarayıcına şunu yaz:</p>
     <div style="position:absolute;left:72px;top:560px"><span class="url">${DL}<span>nevarneyok.net.tr<i>/indir</i></span></span></div>
-    <div class="note" style="top:720px;right:520px">📲 <span>Instagram içinde açılırsa endişelenme: seni <b>kendiliğinden</b> Chrome'a ya da Safari'ye geçiriyoruz.</span></div>
-    ${PHONE("indir", 400, 610, 300, 4, 2)}`),
+    <div class="note" style="top:690px;right:500px">📲 <span>Instagram içinde açılırsa endişelenme: seni <b>kendiliğinden</b> Chrome'a ya da Safari'ye geçiriyoruz.</span></div>
+    ${PHONE("indir", 380, 650, 320, 4, 2)}`),
   page(3, `<div class="kick">Adım 2 · Android</div>
     <h1>ANDROID'DE<br><em>KUR.</em></h1>
     <div class="steps" style="top:440px">
