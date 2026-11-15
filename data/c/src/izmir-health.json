@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-15T10:31:14.688Z",
+ "runAt": "2026-11-15T13:47:42.399Z",
  "mode": "full",
- "total": 1212,
+ "total": 1235,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,17 +10,33 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1225,
+   "count": 1220,
    "prevCount": 1212,
    "error": "",
    "notes": [
-    "açık veri: 254 seans, 19 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/izmir: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 249 seans, 18 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/izmir: 150 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/izmir: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 123,
    "failStreak": 0,
-   "lastOk": "2026-11-15T10:31:14.688Z"
+   "lastOk": "2026-11-15T13:47:42.399Z"
+  },
+  "izmirks": {
+   "id": "izmirks",
+   "name": "İzmir Kültürsanat",
+   "kind": "kurum",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 28,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 37 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate"
+   ],
+   "seconds": 21,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T13:47:42.399Z"
   }
  }
 }
