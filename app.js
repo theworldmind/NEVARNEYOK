@@ -1002,6 +1002,11 @@ async function nearMe(city) {
   try { await whereAmI(); await venueTr(); goNear(city); return; }
   catch (err) { geoHelp(city, err?.code); }
 }
+function dis(u) { /* Dışarıda (Chrome/Safari) aç: önce görünmez çerçeveyle; böylece Instagram'daki sayfa yerinde kalır, geri dönünce beyaz ekran olmaz.
+   Uygulama 1,5 sn içinde açılmazsa (çerçeveyi desteklemeyen tarayıcı) doğrudan geçilir. */
+  var gone=false,h=function(){if(document.hidden)gone=true};document.addEventListener("visibilitychange",h);addEventListener("blur",function(){gone=true},{once:true});addEventListener("pagehide",function(){gone=true},{once:true});
+  try{var f=document.createElement("iframe");f.style.cssText="display:none";f.src=u;document.body.appendChild(f);setTimeout(function(){f.remove()},4000)}catch(e){}
+  setTimeout(function(){document.removeEventListener("visibilitychange",h);if(!gone)location.href=u},1500)}
 const inApp = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|TikTok|musical_ly|Twitter|Snapchat|LinkedInApp/i.test(navigator.userAgent);
 function geoHelp(city, code) {
   const and = /android/i.test(navigator.userAgent);
@@ -1013,6 +1018,7 @@ function geoHelp(city, code) {
       <div class="pl-b"><a class="ok" href="${open}">${and ? "Chrome'da aç" : "Safari'de aç"}</a><a href="#" data-center>Şehir merkezine göre sırala</a></div>
       <p class="pl1" style="margin-top:14px;color:var(--t3);font-size:13px">Açılmazsa sağ üstteki <b>⋮</b> menüsünden <b>Tarayıcıda aç</b>'ı seç.</p></div></div>`, "mn");
     sh.querySelector("[data-center]").addEventListener("click", (ev) => { ev.preventDefault(); const c = cityCenter(city); sh.close(); if (!c) return; DATA.me = { p: c, t: Date.now(), c: 1 }; goNear(city); });
+    sh.querySelector(".ok").addEventListener("click", (ev) => { ev.preventDefault(); haptic(6); dis(open); });
     return;
   }
   const how = code === 1

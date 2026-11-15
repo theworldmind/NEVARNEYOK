@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr" data-ver="2026-11-15-2310">
+<html lang="tr" data-ver="2026-11-15-2315">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -304,7 +304,7 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
   addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e});
   addEventListener("appinstalled",function(){ev("uygulama-kuruldu","Uygulama kuruldu");B.classList.remove("busy");B.classList.add("done");L.textContent="Kuruldu ✓";snd.ok();show("<p><b>Kuruldu! 🎉</b> Ne Var Ne Yok artık uygulamalarının arasında. Açınca bir sürpriz var.</p>")});
   function ev(p,t){try{window.goatcounter&&goatcounter.count&&goatcounter.count({path:p,title:t,event:true})}catch(e){}}
-  function show(h){H.innerHTML=h;SH.classList.add("open")}
+  function show(h){H.innerHTML=h;SH.classList.add("open");[].forEach.call(H.querySelectorAll('a[href^="intent:"],a[href^="x-safari"]'),function(a){a.addEventListener("click",function(e){e.preventDefault();dis(a.getAttribute("href"))})})}
   function hide(){SH.classList.remove("open")}
   SH.addEventListener("click",function(e){if(e.target===SH)hide()});document.getElementById("shx").addEventListener("click",hide);
   function steps(){
@@ -316,11 +316,16 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
     return '<p>Bilgisayarda adres çubuğunun sağındaki <kbd>⊕ Yükle</kbd> simgesine tıkla ya da bu sayfayı telefonunda aç.</p>';
   }
   // Instagram vb. uygulama içi tarayıcıdan gelen: kendiliğinden gerçek tarayıcıya geç (oturumda bir kez)
+  function dis(u){ /* Dışarıda (Chrome/Safari) aç: önce görünmez çerçeveyle; böylece Instagram'daki sayfa yerinde kalır, geri dönünce beyaz ekran olmaz.
+   Uygulama 1,5 sn içinde açılmazsa (çerçeveyi desteklemeyen tarayıcı) doğrudan geçilir. */
+  var gone=false,h=function(){if(document.hidden)gone=true};document.addEventListener("visibilitychange",h);addEventListener("blur",function(){gone=true},{once:true});addEventListener("pagehide",function(){gone=true},{once:true});
+  try{var f=document.createElement("iframe");f.style.cssText="display:none";f.src=u;document.body.appendChild(f);setTimeout(function(){f.remove()},4000)}catch(e){}
+  setTimeout(function(){document.removeEventListener("visibilitychange",h);if(!gone)location.href=u},1500)}
   var kur=/[?&]kur=1/.test(location.search),self=location.host+location.pathname;
   if(inApp&&!sessionStorage.getItem("nvny-yonlendi")){
     try{sessionStorage.setItem("nvny-yonlendi","1")}catch(e){}
-    if(and){ev("indir-chromea-yonlendi","Instagram'dan Chrome'a yönlendi");location.href="intent://"+self+"?kur=1#Intent;scheme=https;package=com.android.chrome;end"}
-    else if(ios){ev("indir-safariye-yonlendi","Instagram'dan Safari'ye yönlendi");location.href="x-safari-https://"+self+"?kur=1"}
+    if(and){ev("indir-chromea-yonlendi","Instagram'dan Chrome'a yönlendi");dis("intent://"+self+"?kur=1#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url="+encodeURIComponent("https://"+self+"?kur=1")+";end")}
+    else if(ios){ev("indir-safariye-yonlendi","Instagram'dan Safari'ye yönlendi");dis("x-safari-https://"+self+"?kur=1")}
   }
   // kurulum hazır olan her tarayıcıda: sayfanın kendisi kurulum ekranı; ilk ekranda herhangi bir yere dokunmak kurar
   if(!inApp){
