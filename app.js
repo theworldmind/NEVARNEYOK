@@ -271,7 +271,7 @@ const TXT = 'input[type="text"],input[type="search"],input:not([type]),input[typ
 document.addEventListener("beforeinput", (ev) => { if (!ev.target.matches?.(TXT) || store.get("nvny-klavye") === "0") return; const k = ev.inputType || "";
   if (k.startsWith("delete")) snd.del(); else if (k === "insertLineBreak" || k === "insertParagraph" || ev.data === " ") snd.ret(); else if (k.startsWith("insert")) snd.key(); }, true);
 document.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && ev.target.matches?.(TXT)) snd.ret(); }, true);
-document.addEventListener("click", (ev) => { const t = ev.target; if (t.closest?.(".tile, .seg button, .pills button, [data-one], [data-many], [data-p], [data-b], .tabs a, .dpk button, [data-d], #wl li, .tg2, .sw, input, label")) return;
+document.addEventListener("click", (ev) => { const t = ev.target; if (t.closest?.("#tback, [data-close], .tile, .seg button, .pills button, [data-one], [data-many], [data-p], [data-b], .tabs a, .dpk button, [data-d], #wl li, .tg2, .sw, input, label")) return;
   if (t.closest?.("a, button, [role=button], summary")) snd.tap(); }, true);
 // Kontrollerin sesleri tek yerden: iOS anahtarları, kutucuklar, segmentler, seçim düğmeleri, sekme çubuğu
 document.addEventListener("change", (ev) => { const i = ev.target; if (i.matches?.('.tg2 input[type="checkbox"], .sw input[type="checkbox"], input[type="checkbox"][role="switch"]')) (i.checked ? snd.on : snd.off)(); }, true);
@@ -382,7 +382,7 @@ function filmRail(city) {
   const F = DATA.films?.films || [], today = nowIST().d;
   const L = F.filter((f) => f.img && f.s && f.s[today]?.length).sort((a, b) => (b.s[today]?.length || 0) - (a.s[today]?.length || 0)).slice(0, 14);
   if (!L.length) return "";
-  return `<section class="rail"><div class="rh"><div><h3>Vizyonda</h3><small>Bugün ${L.length}+ film · salon salon seanslar</small></div><a href="#/${city}/sinema">Tümü →</a></div><div class="rs">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([f.genre, f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[today].length} salonda bugün</div></a>`).join("")}</div></section>`;
+  return `<section class="rail"><div class="rh"><div><h3>Vizyonda</h3><small>Bugün ${L.length}+ film · salon salon seanslar</small></div><a href="#/${city}/sinema">Tümü →</a></div><div class="rs">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[today].length} salonda bugün</div></a>`).join("")}</div></section>`;
 }
 
 /* ---------- Keşfet + filtre ekranı ----------
@@ -449,8 +449,9 @@ function viewKesfet(city, f) {
 }
 function sheet(html, cls = "") {
   const sh = document.createElement("div"); sh.className = "sh " + cls; sh.innerHTML = html; document.body.append(sh); document.body.style.overflow = "hidden";
-  requestAnimationFrame(() => sh.classList.add("on"));
-  sh.close = () => { sh.classList.remove("on"); document.body.style.overflow = ""; setTimeout(() => sh.remove(), 260); };
+  requestAnimationFrame(() => sh.classList.add("on")); snd.sheet?.();
+  sh.close = () => { sh.classList.remove("on"); document.body.style.overflow = ""; snd.close?.(); setTimeout(() => sh.remove(), 260); };
+  sheetDrag(sh);
   sh.addEventListener("click", (ev) => { if (ev.target === sh || ev.target.closest("[data-close]")) sh.close(); });
   return sh;
 }
@@ -613,7 +614,7 @@ function viewSinema(city, day) {
   const L = F.filter((f) => f.s && f.s[d]?.length).sort((a, b) => (b.s[d]?.length || 0) - (a.s[d]?.length || 0));
   V.innerHTML = `<div class="kh"><h1>Vizyonda</h1><p>${L.length} film · ${dLong(d)}</p></div>
   <div class="days">${days.map((x) => { const dt = pd(x); return `<button type="button" data-d="${x}" class="${x === d ? "on" : ""}">${x === today ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
-  <div class="grid">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}?gun=${d}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([f.genre, f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[d].length} salon</div></a>`).join("")}</div>${L.length ? "" : `<div class="empty">Bu gün için seans bilgisi yok.</div>`}${footer()}`;
+  <div class="grid">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}?gun=${d}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[d].length} salon</div></a>`).join("")}</div>${L.length ? "" : `<div class="empty">Bu gün için seans bilgisi yok.</div>`}${footer()}`;
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/sinema?gun=${b.dataset.d}`; }));
 }
 function viewFilm(city, id, day) {
@@ -625,7 +626,7 @@ function viewFilm(city, id, day) {
   V.innerHTML = `<article class="dt"><div class="bk"><img src="${esc(f.img)}" alt="" referrerpolicy="no-referrer"></div><div class="in">
   <a class="back" href="#/${city}/sinema">${I.back}Sinema</a>
   <div class="dg"><div class="dp"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div></div><div>
-  <div class="tags"><span>Sinema</span>${f.genre ? `<span>${esc(f.genre)}</span>` : ""}${f.dur ? `<span>${f.dur} dk</span>` : ""}</div>
+  <div class="tags"><span>Sinema</span>${filmGenre(f) ? `<span>${esc(filmGenre(f))}</span>` : ""}${f.dur ? `<span>${f.dur} dk</span>` : ""}${filmCountry(f) ? `<span>${esc(filmCountry(f))}</span>` : ""}${f.year ? `<span>${f.year}</span>` : ""}</div>
   <h1>${esc(f.title)}</h1>
   <div class="meta">${f.release ? `<div>${I.cal}<span>Vizyon tarihi<small>${dLong(f.release)}</small></span></div>` : ""}<div>${I.pin}<span>${rows.length} salonda seans<small>${dLong(d)}</small></span></div></div>
   <div class="days" style="padding:18px 0 0">${days.map((x) => { const dt = pd(x); return `<button type="button" data-d="${x}" class="${x === d ? "on" : ""}">${x === today ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
@@ -768,6 +769,7 @@ function viewBilgi(k) {
 
 
 /* Alt sekme çubuğu (iPhone uygulaması gibi): Bugün · Keşfet · Sinema · Takip */
+document.addEventListener("click", (ev) => { if (ev.target.closest?.(".tabs a")) { snd.tab(); } }, true);
 function tabsUpdate(P) {
   const T = $("#tabs"), city = P[0] && P[0] !== "bilgi" ? P[0] : (P[0] === "bilgi" ? store.get("nvny-city") : null);
   T.hidden = !city; if (!city) return;
@@ -829,9 +831,11 @@ function route() {
     else viewCity(city);
   }
   V.dataset.h = location.hash;
-  // ayrıntı sayfası (etkinlik, film, ayar alt sayfası…) sağdan kayar; sekmeler ve geri dönüş anında, yalnızca çok kısa solarak
-  const back = history.state === "back" || scrollMem.has(location.hash);
-  if (routed) { V.classList.remove("go", "gt"); void V.offsetWidth; V.classList.add(isTabSwitch || back ? "gt" : "go"); } routed = true; // ilk sayfa canlandırmasız
+  // iPhone gibi: ileri sağdan, geri soldan (derinlikli), sekmeler arası anında; kenardan kaydırarak geri dönüldüyse canlandırma yok
+  const isRoot = !P.length || P[0] === "bilgi" || (P.length === 1) || (P.length === 2 && ["kesfet", "sinema", "takip"].includes(P[1]) && !qs);
+  navTrack(lastHash, location.hash, isRoot);
+  if (routed && V.dataset.sw !== "1") { V.classList.remove("go", "gt", "gb"); void V.offsetWidth; V.classList.add(navDir === "push" ? "go" : navDir === "back" ? "gb" : "gt"); }
+  V.dataset.sw = ""; routed = true; // ilk sayfa canlandırmasız
   tabsUpdate(P);
   const y = scrollMem.get(location.hash); scrollTo(0, y && history.state !== "new" ? y : 0); lastHash = location.hash;
   try { window.goatcounter?.count?.({ path: "/" + h.split("?")[0].replace(/^\//, "") }); } catch {}
@@ -983,20 +987,23 @@ function venueCheck() {
 /* ---------- Basılı tutunca önizleme (iPhone'daki gibi): kart büyür, bilgiler ve kısa yollar ---------- */
 let lpT = 0, lpX = 0, lpY = 0, lpFired = false;
 function lpEvent(a) {
-  const m = (a.getAttribute("href") || "").match(/^#\/([^/]+)\/e\/(.+)$/); if (!m || !DATA.bySlug) return null;
+  const m = (a.getAttribute("href") || a.dataset.href || "").match(/^#\/([^/]+)\/e\/([^?]+)/); if (!m || !DATA.bySlug || m[1] !== DATA.city) return null;
   const e = DATA.bySlug.get(decodeURIComponent(m[2])); return e ? [e, m[1]] : null;
 }
 document.addEventListener("pointerdown", (ev) => {
-  const a = ev.target.closest?.(".cd, .sps"); if (!a || ev.button > 0) return;
+  // her yerde basılı tutunca önizleme (kullanıcı, 16.11.2026: kartlar, listeler, Planım, harita listesi, arama, filmler)
+  const a = ev.target.closest?.('.cd, .sps, a[href*="/e/"], a[href*="/film/"], [data-href*="/e/"]'); if (!a || ev.button > 0 || a.closest(".pk, .tabs, .top")) return;
   lpFired = false; lpX = ev.clientX; lpY = ev.clientY; clearTimeout(lpT); lpEl = a;
-  lpT = setTimeout(() => { const r = lpEvent(a); if (!r) return; lpFired = true; haptic(12); peek(r[0], r[1], a); }, 480);
+  lpT = setTimeout(() => { const fm = (a.getAttribute("href") || "").match(/^#\/([^/]+)\/film\/(\d+)/);
+    if (fm) { const f = DATA.films?.films?.find((x) => String(x.id) === fm[2]); if (!f) return; lpFired = true; haptic(12); filmPeek(f, fm[1], a); return; }
+    const r = lpEvent(a); if (!r) return; lpFired = true; haptic(12); snd.pop(); peek(r[0], r[1], a); }, 460);
 }, { passive: true });
 let lpEl = null;
 ["pointerup", "pointercancel"].forEach((n) => document.addEventListener(n, () => clearTimeout(lpT), { passive: true, capture: true }));
 // parmakla kaydırma başlayınca tarayıcı pointercancel gönderir; ayrıca 9 px'ten fazla kayma iptal eder (kaydırma olaylarına bakılmaz: tıklamada raf hizalanınca yanlışlıkla iptal oluyordu)
 document.addEventListener("pointermove", (ev) => { if (Math.abs(ev.clientX - lpX) > 9 || Math.abs(ev.clientY - lpY) > 9) clearTimeout(lpT); }, { passive: true });
-document.addEventListener("click", (ev) => { if (lpFired && ev.target.closest?.(".cd, .sps")) { ev.preventDefault(); ev.stopPropagation(); lpFired = false; } }, true);
-document.addEventListener("contextmenu", (ev) => { if (ev.target.closest?.(".cd, .sps")) ev.preventDefault(); });
+document.addEventListener("click", (ev) => { if (lpFired && ev.target.closest?.('.cd, .sps, a[href*="/e/"], a[href*="/film/"]')) { ev.preventDefault(); ev.stopPropagation(); lpFired = false; } }, true);
+document.addEventListener("contextmenu", (ev) => { if (ev.target.closest?.('.cd, .sps, a[href*="/e/"], a[href*="/film/"]')) ev.preventDefault(); });
 function peek(e, city, from) {
   const href = `#/${city}/e/${encodeURIComponent(e.slug)}`, best = e.tickets.find((x) => x.price) || e.tickets[0];
   const st = e.status === "tukendi" ? "Tükendi" : e.status === "iptal" ? "İptal edildi" : e.status === "ertelendi" ? "Ertelendi" : "";
@@ -1011,7 +1018,7 @@ function peek(e, city, from) {
   const r = from.getBoundingClientRect(), c = $(".pk-c", o), cr = c.getBoundingClientRect();
   c.style.transformOrigin = `${r.left + r.width / 2 - cr.left}px ${r.top + r.height / 2 - cr.top}px`;
   requestAnimationFrame(() => o.classList.add("on"));
-  const close = () => { o.classList.remove("on"); document.body.style.overflow = ""; setTimeout(() => o.remove(), 280); };
+  const close = () => { o.classList.remove("on"); document.body.style.overflow = ""; snd.close(); setTimeout(() => o.remove(), 280); };
   o.addEventListener("click", (ev) => {
     const b = ev.target.closest("[data-pk]"); if (ev.target === o) return close();
     if (!b) { if (ev.target.closest("a")) close(); return; }
@@ -1686,5 +1693,81 @@ async function yilShare(y, G, cats, vens, cits) {
 
 /* ---------- Yumuşak açılış (uygulama olarak açılınca): telefonun açılış ekranıyla aynı ışıklı büyüteç, sayfa hazır olunca süzülerek kaybolur ---------- */
 function splashOut() { const s = $("#spl"); if (!s) return; requestAnimationFrame(() => requestAnimationFrame(() => { s.classList.add("out"); setTimeout(() => s.remove(), 700); })); }
+
+/* ---------- iPhone gibi gezinme (kullanıcı isteği, 16.11.2026 01:37: "iPhone gibi geri tuşu; sayfa geçişleri daha güzel, akıcı; her harekete Apple gibi ses ve titreşim") ----------
+   - Bir sayfanın içine girince üst çubukta logonun yerine "‹ Bugün / ‹ Keşfet / ‹ Planım…" (nereden geldiysen); ana sekmelerde logo.
+   - Telefonda ekranın sol kenarından sağa çekince sayfa parmağı izleyerek geri gider (iOS kenar kaydırması).
+   - İleri: yeni sayfa sağdan gelir; geri: önceki sayfa soldan hafifçe gelir (iOS'taki derinlik); sekmeler arası anında. */
+const NAVS = [];
+const TABN = { "": "Bugün", kesfet: "Keşfet", sinema: "Sinema", takip: "Planım", ayarlar: "Ayarlar", yilim: "Özetin" };
+function labelOf(hh) {
+  const P2 = (hh || "").replace(/^#\/?/, "").split("?")[0].split("/").filter(Boolean);
+  if (!P2.length) return "İller"; if (P2[0] === "bilgi") return "Bilgi";
+  if (P2[1] === "e") { const e = DATA.bySlug?.get(decodeURIComponent(P2.slice(2).join("/"))); return e ? e.title : "Etkinlik"; }
+  if (P2[1] === "film") { const f = DATA.films?.films?.find((x) => String(x.id) === P2[2]); return f ? f.title : "Film"; }
+  if (P2[1] === "ayarlar" && P2[2]) return SECT[P2[2]] || "Ayarlar";
+  if (P2[1] === "kesfet" && hh.includes("?")) return "Keşfet";
+  return TABN[P2[1] || ""] || "Geri";
+}
+let navDir = "";
+function navTrack(prev, next, isRoot) {
+  const top = NAVS[NAVS.length - 1];
+  if (top && top.h === next) { NAVS.pop(); navDir = "back"; if (isRoot) NAVS.length = 0; }
+  else if (isRoot) { NAVS.length = 0; navDir = "tab"; }
+  else if (prev && prev !== next) { NAVS.push({ h: prev, l: labelOf(prev) }); navDir = "push"; if (NAVS.length > 30) NAVS.shift(); }
+  else navDir = "";
+  const tb = $("#tback"), t = NAVS[NAVS.length - 1];
+  if (!tb) return;
+  TOP.classList.toggle("bk", !!t);
+  if (t) { const l = t.l.length > 16 ? t.l.slice(0, 15).trim() + "…" : t.l; tb.querySelector("span").textContent = l; tb.setAttribute("aria-label", "Geri: " + t.l); }
+}
+function goBack() { const t = NAVS[NAVS.length - 1]; snd.back?.(); haptic(5); if (t && history.length > 1) history.back(); else if (t) location.hash = t.h; }
+// sol kenardan kaydırarak geri (yalnızca dokunmatik, yalnızca iç sayfalarda)
+(() => {
+  let sx = 0, sy = 0, dx = 0, on = false, t0 = 0;
+  addEventListener("touchstart", (ev) => { const p = ev.touches[0]; if (ev.touches.length !== 1 || p.clientX > 22 || !NAVS.length || $(".sh, .pk, .yw")) return; on = true; sx = p.clientX; sy = p.clientY; dx = 0; t0 = performance.now(); }, { passive: true });
+  addEventListener("touchmove", (ev) => { if (!on) return; const p = ev.touches[0]; dx = Math.max(0, p.clientX - sx); if (dx < 8 && Math.abs(p.clientY - sy) > 12) { on = false; return; }
+    V.style.transition = "none"; V.style.transform = `translate3d(${dx}px,0,0)`; V.style.opacity = String(1 - Math.min(.35, dx / innerWidth * .5)); }, { passive: true });
+  addEventListener("touchend", () => { if (!on) return; on = false; const v = dx / Math.max(1, performance.now() - t0);
+    const done = dx > innerWidth * .33 || v > .5;
+    V.style.transition = "transform .28s cubic-bezier(.32,.72,0,1), opacity .28s"; V.style.transform = done ? `translate3d(${innerWidth}px,0,0)` : ""; V.style.opacity = done ? "0" : "";
+    setTimeout(() => { if (done) { V.dataset.sw = "1"; goBack(); } V.style.transition = ""; V.style.transform = ""; V.style.opacity = ""; }, done ? 220 : 300); }, { passive: true });
+})();
+/* Sesler: Apple'daki gibi çok kısık, kısa; her hareketin bir karşılığı var (ayarlardan kapanır) */
+Object.assign(snd, {
+  push() { blip({ f: 1800, f2: 1400, body: 640, vol: .032, dur: .012, noise: .5, hp: 2600 }); },
+  back() { blip({ f: 1400, f2: 1150, body: 520, vol: .03, dur: .012, noise: .5, hp: 2200 }); },
+  sheet() { blip({ f: 760, f2: 620, body: 300, vol: .045, dur: .03, noise: .25, hp: 900 }); buzz(4); },
+  close() { blip({ f: 620, f2: 520, body: 0, vol: .03, dur: .02, noise: .2, hp: 900 }); },
+  pop() { blip({ f: 980, f2: 1240, body: 420, vol: .06, dur: .035, noise: .15, hp: 1200 }); },
+  tab() { blip({ f: 2300, f2: 1900, body: 0, vol: .04, dur: .009, noise: .45, hp: 3200 }); buzz(3); },
+});
+
+/* Film için basılı tutunca önizleme */
+function filmPeek(f, city, from) {
+  const today = nowIST().d, n = (f.s?.[today] || []).length, href = `#/${city}/film/${f.id}`, on = !!ffol()[f.id];
+  const o = document.createElement("div"); o.className = "pk"; o.setAttribute("role", "dialog");
+  o.innerHTML = `<div class="pk-c"><a class="pk-p" href="${href}"><div class="ph ok"><img class="p" src="${esc(f.img || "")}" alt="" referrerpolicy="no-referrer"></div></a>
+    <div class="pk-i"><small>Sinema${filmGenre(f) ? " · " + esc(filmGenre(f)) : ""}</small><b>${esc(f.title)}</b><span>${n ? `Bugün ${n} salonda` : "Bugün seansı yok"}${f.dur ? " · " + f.dur + " dk" : ""}</span></div>
+    <div class="pk-m"><a href="${href}" data-pk="open">${I.info}<span>Seanslar</span></a><button type="button" data-pk="ffl">${on ? I.bellOn : I.bell}<span>${on ? "Film takipte" : "Filmi takip et"}</span></button></div></div>`;
+  document.body.append(o); document.body.style.overflow = "hidden"; snd.pop();
+  const r = from.getBoundingClientRect(), c = $(".pk-c", o), cr = c.getBoundingClientRect(); c.style.transformOrigin = `${r.left + r.width / 2 - cr.left}px ${r.top + r.height / 2 - cr.top}px`;
+  requestAnimationFrame(() => o.classList.add("on"));
+  const close = () => { o.classList.remove("on"); document.body.style.overflow = ""; snd.close(); setTimeout(() => o.remove(), 280); };
+  o.addEventListener("click", (ev) => { if (ev.target === o) return close(); const b = ev.target.closest("[data-pk]"); if (!b) return; if (b.dataset.pk === "ffl") { const F = ffol(); if (F[f.id]) delete F[f.id]; else { F[f.id] = { title: f.title, tk: NV.key(f.title), city, img: f.img, had: !!n, at: Date.now() }; snd.ok(); } fsave(F); } close(); });
+  addEventListener("hashchange", close, { once: true });
+}
+
+/* Filmin türü: sinemalar.com satırına yıl eklenince ülke ve tür bir kaymıştı (16.11.2026); eski kayıtlarda tür yok, ülke "genre"de */
+const filmGenre = (f) => (/^\d{4}$/.test(String(f.country || "")) ? "" : f.genre) || "";
+const filmCountry = (f) => (/^\d{4}$/.test(String(f.country || "")) ? f.genre : f.country) || "";
+/* Alttan açılan panel aşağı çekilince kapanır (iOS sayfası gibi): tutamaçtan ya da panelin üst kısmından, panel en üstteyken */
+function sheetDrag(sh) {
+  const pn = sh.querySelector(".pn"); if (!pn) return; let y0 = 0, dy = 0, on = false, t0 = 0;
+  pn.addEventListener("touchstart", (ev) => { const bd = pn.querySelector(".bd2"); if (bd && bd.scrollTop > 0 && !ev.target.closest(".hd")) return; on = true; y0 = ev.touches[0].clientY; dy = 0; t0 = performance.now(); }, { passive: true });
+  pn.addEventListener("touchmove", (ev) => { if (!on) return; dy = Math.max(0, ev.touches[0].clientY - y0); if (dy > 4) { pn.style.transition = "none"; pn.style.transform = `translate3d(0,${dy}px,0)`; } }, { passive: true });
+  pn.addEventListener("touchend", () => { if (!on) return; on = false; const v = dy / Math.max(1, performance.now() - t0); pn.style.transition = "transform .32s cubic-bezier(.32,.72,0,1)";
+    if (dy > 120 || v > .6) { pn.style.transform = "translate3d(0,100%,0)"; haptic(5); setTimeout(() => sh.close(), 120); } else pn.style.transform = ""; }, { passive: true });
+}
 
 boot().then(() => { offlineBoot(); shortcutBoot(); route(); splashOut(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { splashOut(); V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });

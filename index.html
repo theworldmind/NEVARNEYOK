@@ -66,7 +66,10 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 
 /* ---- Görünüm geçişi ---- */
 #view{min-height:70vh}
-#view.go{animation:vin .34s cubic-bezier(.22,.9,.3,1) both}
+#view.go{animation:vpush .44s cubic-bezier(.32,.72,0,1) both}
+#view.gb{animation:vback .4s cubic-bezier(.32,.72,0,1) both}
+@keyframes vpush{from{transform:translate3d(46px,0,0);opacity:0}to{transform:none;opacity:1}}
+@keyframes vback{from{transform:translate3d(-30px,0,0);opacity:.35}to{transform:none;opacity:1}}
 #view.gt{animation:vfade .16s ease-out both}
 @keyframes vfade{from{opacity:.55}to{opacity:1}}
 /* iOS gibi sayfa geçişi: yeni sayfa sağdan kayarak gelir */
@@ -874,12 +877,22 @@ html.app #spl img{width:min(52vw,240px);height:auto;transition:transform .55s cu
 /* Akıcılık (16.11.2026 01:10): ekran dışındaki raflar ve kartlar çizilmez (content-visibility); sekme dönüşü ve ilk açılış hafifler */
 #view .rail{content-visibility:auto;contain-intrinsic-size:auto 360px}
 #view .grid>.cd{content-visibility:auto;contain-intrinsic-size:auto 330px}
+
+/* iPhone gibi geri tuşu (16.11.2026): iç sayfalarda logonun yerine "‹ Bugün" */
+.tback{display:none;align-items:center;gap:1px;height:40px;margin-left:-8px;padding:0 10px 0 2px;color:#c4b5fd;font:600 17px -apple-system,"Inter Tight",sans-serif;letter-spacing:-.01em;border-radius:12px;max-width:52vw}
+.tback svg{width:26px;height:26px;flex:none}.tback span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tback:active{opacity:.45}
+.top.bk .tback{display:flex;animation:tbk .32s cubic-bezier(.32,.72,0,1) both}.top.bk #home{display:none}
+@keyframes tbk{from{opacity:0;transform:translate3d(14px,0,0)}to{opacity:1;transform:none}}
+.dt .back{display:none}
+.sh .pn{will-change:transform}
 </style>
 </head>
 <body>
 <script>try{if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true)document.documentElement.classList.add("app")}catch(e){}</script>
 <div id="spl" aria-hidden="true"><img src="icons/icon-maskable-512.png?v=3" alt="" width="512" height="512"></div>
 <header class="top" id="top" hidden>
+  <button type="button" id="tback" class="tback" aria-label="Geri" onclick="goBack()"><svg viewBox="0 0 24 24"><path d="M15.5 4.5 8 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Geri</span></button>
   <a href="#/" id="home" aria-label="Ana sayfa"></a>
   <span class="sp"></span>
   <a class="dl-top" href="indir/" data-app>Uygulamayı indir</a>

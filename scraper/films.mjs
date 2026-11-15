@@ -24,6 +24,7 @@ export function parseInfo(line) {
     let m;
     if ((m = p.match(/^(\d{2})\.(\d{2})\.(\d{4})$/))) o.release = `${m[3]}-${m[2]}-${m[1]}`;
     else if (/saat|dakika/.test(p)) { const h = +(p.match(/(\d+)\s*saat/) || [0, 0])[1], mi = +(p.match(/(\d+)\s*dakika/) || [0, 0])[1]; if (h || mi) o.dur = h * 60 + mi; }
+    else if (/^\d{4}$/.test(p)) o.year = +p; // yapım yılı (16.11.2026: site bu satıra yılı ekledi, ülke ve tür bir kaydı)
     else if (!o.country) o.country = p;
     else o.genre = p;
   }
@@ -114,7 +115,7 @@ export async function main() {
     }
     const nS = Object.values(s).flat().reduce((n, [, g]) => n + g.split(/[;,]/).length, 0);
     if (!nS && !(f.release >= today)) continue; // Ankara'da seansı olmayan eski filmler alınmaz
-    films.push({ id: f.id, title: f.title, release: f.release || "", dur: f.dur || 0, country: f.country || "", genre: f.genre || "", url: BASE + page, ...(f.img ? { img: f.img } : {}), s });
+    films.push({ id: f.id, title: f.title, release: f.release || "", dur: f.dur || 0, country: f.country || "", genre: f.genre || "", ...(f.year ? { year: f.year } : {}), url: BASE + page, ...(f.img ? { img: f.img } : {}), s });
   }
   // Kaynak boş döndüyse dünkü veriyi silme (site boş kalmasın)
   if (!films.length && prev.films?.length) { log(`Filmler: kaynak boş döndü (${notes.join(" · ")}), dünkü veri korunuyor`); return; }
