@@ -837,10 +837,38 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.01ms!important;
 .offb{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 66px);z-index:90;transform:translate(-50%,-140%);opacity:0;padding:9px 16px;border-radius:999px;background:rgba(30,30,40,.86);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 30px rgba(0,0,0,.4);font:600 13px var(--f);white-space:nowrap;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s;pointer-events:none}
 .offb.on{transform:translate(-50%,0);opacity:1}
 .wx0{display:block;margin-bottom:8px;font:800 11px var(--f);letter-spacing:.14em;color:rgba(235,235,245,.6)}
+
+/* Yumuşak açılış (yalnızca uygulama olarak açılınca): telefonun açılış ekranındaki büyüteç süzülerek kaybolur; yalnızca transform/opacity */
+#spl{display:none}
+html.app #spl{display:grid;place-items:center;position:fixed;inset:0;z-index:300;background:#0a0a10;transition:opacity .5s cubic-bezier(.4,0,.2,1) .05s;pointer-events:none}
+html.app #spl img{width:min(52vw,240px);height:auto;transition:transform .55s cubic-bezier(.4,0,.2,1),opacity .4s ease}
+#spl.out{opacity:0}#spl.out img{transform:scale(1.18);opacity:0}
+/* Gittin mi, yıl özeti (15.11.2026) */
+.gas{margin:4px 0 16px;padding:16px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 .5px rgba(255,255,255,.1)}
+.gas h3{font:900 22px var(--fd);font-stretch:85%;text-transform:uppercase}.gas>p{color:var(--t3);font-size:13px;margin:2px 0 10px}
+.ga{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:.5px solid rgba(255,255,255,.08)}
+.ga-p{flex:none;width:44px;height:62px;border-radius:8px;overflow:hidden;background:var(--s2)}.ga-p img{width:100%;height:100%;object-fit:cover}
+.ga-t{flex:1;min-width:0}.ga-t b{display:block;font-weight:800;font-size:14.5px;line-height:1.25}.ga-t small{color:var(--t3);font-size:12.5px}
+.ga-b{display:flex;flex-direction:column;gap:6px}.ga-b button{height:32px;padding:0 12px;border-radius:999px;font:700 13px var(--f);background:rgba(255,255,255,.1)}.ga-b button[data-go="1"]{background:#fff;color:#0a0a10}
+.yil{display:flex;align-items:center;gap:14px;margin:0 0 18px;padding:14px 16px;border-radius:20px;background:linear-gradient(120deg,rgba(219,39,119,.28),rgba(139,92,246,.22));box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 .5px rgba(255,255,255,.12)}
+.yil.dec{background:linear-gradient(120deg,#db2777,#7c3aed)}.yl-e{font-size:30px}.yil b{display:block;font:900 20px var(--fd);font-stretch:85%;text-transform:uppercase}.yil small{color:rgba(255,255,255,.75);font-size:13px}.yil>span:nth-child(2){flex:1}.yil svg{width:18px;height:18px;opacity:.6}
+.pl-n em.lv{background:rgba(134,239,172,.16);color:#86efac}
+.yw{position:fixed;inset:0;z-index:250;background:#0a0a10;overflow:hidden;user-select:none}
+.ybar{position:absolute;top:calc(env(safe-area-inset-top) + 12px);left:12px;right:12px;display:flex;gap:4px;z-index:3}.ybar i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden}.ybar i b{display:block;height:100%;width:100%;background:#fff;transform:scaleX(0);transform-origin:left}
+.ybar i.d b{transform:none}.ybar i.a b{animation:yb 5.2s linear forwards}@keyframes yb{to{transform:none}}
+.yx{position:absolute;top:calc(env(safe-area-inset-top) + 26px);right:14px;z-index:3;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:16px}
+.ysl{position:absolute;inset:0;opacity:0;transform:scale(1.04);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none}.ysl.on{opacity:1;transform:none;pointer-events:auto}
+.ys{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:80px 28px 60px;background:radial-gradient(120% 80% at 20% 10%,var(--g1),var(--g2) 70%)}
+.ys small{font:800 13px var(--f);letter-spacing:.2em;color:rgba(255,255,255,.75)}.ys h2{font:900 clamp(46px,13vw,96px)/.92 var(--fd);font-stretch:72%;text-transform:uppercase;margin:12px 0}.ys h2.big{font-size:clamp(110px,40vw,260px);line-height:.85;margin-bottom:0}.ys h2.mid{font-size:clamp(36px,10vw,72px)}
+.ys p{font-size:18px;color:rgba(255,255,255,.85);max-width:520px;line-height:1.45}.ye{font-size:72px;margin-top:14px}
+.ym{display:flex;align-items:flex-end;gap:5px;height:120px;margin:18px 0 14px}.ym i{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}.ym i b{width:100%;height:var(--h);min-height:3px;border-radius:5px;background:rgba(255,255,255,.85)}.ym i span{font:700 11px var(--f);color:rgba(255,255,255,.7)}
+.yp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 4px;max-width:420px}.yp img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.yshare{margin-top:18px;height:52px;padding:0 26px;border-radius:999px;background:#fff;color:#0a0a10;font:800 16px var(--f);align-self:flex-start}
 </style>
 </head>
 <body>
 <script>try{if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true)document.documentElement.classList.add("app")}catch(e){}</script>
+<div id="spl" aria-hidden="true"><img src="icons/icon-maskable-512.png?v=3" alt="" width="512" height="512"></div>
 <header class="top" id="top" hidden>
   <a href="#/" id="home" aria-label="Ana sayfa"></a>
   <span class="sp"></span>
