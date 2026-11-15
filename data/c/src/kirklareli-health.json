@@ -1,0 +1,42 @@
+{
+ "runAt": "2026-11-15T08:50:26.732Z",
+ "mode": "full",
+ "total": 153,
+ "written": true,
+ "sources": {
+  "biletix": {
+   "id": "biletix",
+   "name": "Biletix",
+   "kind": "bilet",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=K%C4%B1rklareli: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 115,
+   "failStreak": 1,
+   "lastOk": null
+  },
+  "biletinial": {
+   "id": "biletinial",
+   "name": "Biletinial",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 153,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 0 seans, şehir numarası bulunamadı: kirklareli",
+    "biletinial.com/tr-tr/tiyatro/kirklareli: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/kirklareli: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 32,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:50:26.732Z"
+  }
+ }
+}

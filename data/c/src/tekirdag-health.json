@@ -1,0 +1,42 @@
+{
+ "runAt": "2026-11-15T08:54:32.454Z",
+ "mode": "full",
+ "total": 510,
+ "written": true,
+ "sources": {
+  "biletix": {
+   "id": "biletix",
+   "name": "Biletix",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 1,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Tekirda%C4%9F: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 122,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:54:32.454Z"
+  },
+  "biletinial": {
+   "id": "biletinial",
+   "name": "Biletinial",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 510,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 15 seans",
+    "biletinial.com/tr-tr/tiyatro/tekirdag: 63 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/tekirdag: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 56,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:54:32.454Z"
+  }
+ }
+}

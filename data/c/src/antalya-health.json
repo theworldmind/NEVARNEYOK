@@ -1,0 +1,42 @@
+{
+ "runAt": "2026-11-15T08:42:52.690Z",
+ "mode": "full",
+ "total": 833,
+ "written": true,
+ "sources": {
+  "biletix": {
+   "id": "biletix",
+   "name": "Biletix",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 4,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Antalya: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 139,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:42:52.690Z"
+  },
+  "biletinial": {
+   "id": "biletinial",
+   "name": "Biletinial",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 830,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 191 seans, 9 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/antalya: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/antalya: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 92,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:42:52.690Z"
+  }
+ }
+}

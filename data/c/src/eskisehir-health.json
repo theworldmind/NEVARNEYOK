@@ -1,0 +1,42 @@
+{
+ "runAt": "2026-11-15T08:46:42.360Z",
+ "mode": "full",
+ "total": 557,
+ "written": true,
+ "sources": {
+  "biletix": {
+   "id": "biletix",
+   "name": "Biletix",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 2,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Eski%C5%9Fehir: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 133,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:46:42.360Z"
+  },
+  "biletinial": {
+   "id": "biletinial",
+   "name": "Biletinial",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 555,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 46 seans",
+    "biletinial.com/tr-tr/tiyatro/eskisehir: 87 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/eskisehir: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 70,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:46:42.360Z"
+  }
+ }
+}

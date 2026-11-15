@@ -1,0 +1,42 @@
+{
+ "runAt": "2026-11-15T08:42:55.163Z",
+ "mode": "full",
+ "total": 451,
+ "written": true,
+ "sources": {
+  "biletix": {
+   "id": "biletix",
+   "name": "Biletix",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 1,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Bal%C4%B1kesir: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 146,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:42:55.163Z"
+  },
+  "biletinial": {
+   "id": "biletinial",
+   "name": "Biletinial",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 451,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 29 seans",
+    "biletinial.com/tr-tr/tiyatro/balikesir: 65 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/balikesir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 58,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:42:55.163Z"
+  }
+ }
+}

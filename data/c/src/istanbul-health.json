@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-15T08:36:12.437Z",
+ "runAt": "2026-11-15T08:47:22.108Z",
  "mode": "full",
- "total": 3462,
+ "total": 3578,
  "written": true,
  "sources": {
   "biletix": {
@@ -10,15 +10,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 70,
-   "prevCount": 0,
+   "count": 39,
+   "prevCount": 67,
    "error": "",
    "notes": [
     "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=%C4%B0stanbul: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 135,
+   "seconds": 242,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:36:12.437Z"
+   "lastOk": "2026-11-15T08:47:22.108Z"
   },
   "biletinial": {
    "id": "biletinial",
@@ -26,17 +26,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 3414,
-   "prevCount": 0,
+   "count": 3337,
+   "prevCount": 3406,
    "error": "",
    "notes": [
-    "açık veri: 1507 seans, 249 detay sayfası",
+    "açık veri: 1505 seans, 249 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/istanbul: 154 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/istanbul: 153 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 159,
+   "seconds": 160,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:36:12.437Z"
+   "lastOk": "2026-11-15T08:47:22.108Z"
   }
  }
 }

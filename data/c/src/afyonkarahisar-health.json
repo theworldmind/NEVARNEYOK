@@ -1,0 +1,42 @@
+{
+ "runAt": "2026-11-15T08:42:53.201Z",
+ "mode": "full",
+ "total": 225,
+ "written": true,
+ "sources": {
+  "biletix": {
+   "id": "biletix",
+   "name": "Biletix",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 1,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Afyonkarahisar: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 137,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:42:53.201Z"
+  },
+  "biletinial": {
+   "id": "biletinial",
+   "name": "Biletinial",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 224,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 0 seans, şehir numarası bulunamadı: afyonkarahisar",
+    "biletinial.com/tr-tr/tiyatro/afyonkarahisar: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/afyonkarahisar: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 44,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:42:53.201Z"
+  }
+ }
+}

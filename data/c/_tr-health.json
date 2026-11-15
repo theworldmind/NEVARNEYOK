@@ -1,0 +1,40 @@
+{
+ "runAt": "2026-11-15T08:42:47.112Z",
+ "mode": "full",
+ "total": 922,
+ "written": true,
+ "sources": {
+  "sanatcepte": {
+   "id": "sanatcepte",
+   "name": "Sanatçepte",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 881,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 363 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 84,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:42:47.112Z"
+  },
+  "dob": {
+   "id": "dob",
+   "name": "DOB",
+   "kind": "kurum",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 204,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 204 seans"
+   ],
+   "seconds": 20,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T08:42:47.112Z"
+  }
+ }
+}
