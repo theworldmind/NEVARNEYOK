@@ -1,4 +1,5 @@
-# Yeni NE VAR NE YOK logosunu (kullanıcının tasarımı, 15.11.2026) vektöre çevirir.
+# NE VAR NE YOK logosunu (kullanıcının tasarımı, son hali 15.11.2026: düz mor cam, düz koyu zemin) vektöre çevirir.
+# Ayrıca brand/mark.svg: yalnızca büyüteç (uygulama simgesi).
 # Yazı: Inter Display Black, %107 genişlik, sıkı aralık; YOK'taki O: beyaz halka + beyaz sap + mor cam küre.
 # Çıktılar: brand/logo.svg (tek parça), brand/logo.js (sitelerde parça parça kullanılan HTML: NVLOGO(id)).
 # Çalıştırma: python3 brand/make-logo.py  (fontTools ve sistemdeki InterDisplay-Black.otf gerekir)
@@ -28,12 +29,8 @@ def rnd(d):  # yolları kısalt
 L1, w1 = word("NE VAR"); NY, wny = word("NE Y"); K, wk = word("K"); L1, NY, K = rnd(L1), rnd(NY), rnd(K)
 O = 104.6; c = O / 2; R = c; ball = R * 0.6; GYO, GOK, LG = GAP - 1.5, GAP, 15.7
 ring = f'<circle cx="{c}" cy="{c}" r="{(R+ball)/2:.2f}" fill="none" stroke="currentColor" stroke-width="{R-ball+.6:.2f}"/><path d="M{c+R*.62:.1f} {c+R*.62:.1f}L{c+R*1.13:.1f} {c+R*1.13:.1f}" stroke="currentColor" stroke-width="{R*.38:.1f}" stroke-linecap="round"/>'
-def glass(i):
-    return (f'<defs><radialGradient id="{i}" cx="38%" cy="30%" r="78%"><stop offset="0" stop-color="#d9ccff"/><stop offset=".28" stop-color="#8b63ff"/><stop offset=".72" stop-color="#5a2df0"/><stop offset="1" stop-color="#2c0fa6"/></radialGradient>'
-            f'<radialGradient id="{i}s"><stop offset=".78" stop-color="#1a0b55" stop-opacity="0"/><stop offset="1" stop-color="#1a0b55" stop-opacity=".45"/></radialGradient></defs>'
-            f'<circle cx="{c}" cy="{c}" r="{ball:.2f}" fill="url(#{i})"/><circle cx="{c}" cy="{c}" r="{ball:.2f}" fill="url(#{i}s)"/>'
-            f'<ellipse cx="{c-ball*.26:.1f}" cy="{c-ball*.72:.1f}" rx="{ball*.25:.1f}" ry="{ball*.16:.1f}" transform="rotate(-24 {c-ball*.26:.1f} {c-ball*.72:.1f})" fill="#fff" fill-opacity=".72"/>'
-            f'<circle cx="{c+ball*.15:.1f}" cy="{c-ball*.72:.1f}" r="{ball*.085:.1f}" fill="#fff" fill-opacity=".7"/>')
+def glass(i):  # düz mor cam (yeni logo, 15.11.2026: parıltı ve gölge yok)
+    return f'<circle cx="{c}" cy="{c}" r="{ball:.2f}" fill="#8b5cf6"/>'
 # Tek parça SVG (beyaz)
 W = max(w1, wny + GYO + O + GOK + wk); Ht = 100 + LG + O + 14
 ox = wny + GYO; oy = 100 + LG
@@ -41,6 +38,8 @@ svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 {W+8:.1f} {Ht+8:
        f'<path fill="currentColor" d="{L1}"/><g transform="translate(0 {oy})"><path fill="currentColor" d="{NY}"/>'
        f'<g transform="translate({ox:.2f} 0)">{ring}{glass("nvg")}</g><path fill="currentColor" transform="translate({ox+O+GOK:.2f} 0)" d="{K}"/></g></svg>')
 open(os.path.join(H, "logo.svg"), "w").write(svg)
+mark = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 {O*1.13+8:.1f} {O*1.13+8:.1f}" role="img" aria-label="Ne Var Ne Yok" color="#fff">{ring}{glass("m")}</svg>'
+open(os.path.join(H, "mark.svg"), "w").write(mark)
 P = dict(l1=L1, w1=w1, ny=NY, wny=wny, k=K, wk=wk, O=O, gyo=GYO, gok=GOK, lg=LG, ring=ring, glass=glass("__ID__"))
 js = """/* NE VAR NE YOK logosu (brand/make-logo.py üretir; elle değiştirme).
    NVLOGO(id) → .logo içine konacak <span class="wm">…</span>. Boyut: .logo{--u} (1 birim = büyük harf yüksekliğinin %1'i).

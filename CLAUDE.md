@@ -16,7 +16,7 @@ Kullanıcıyla her zaman Türkçe konuş.
 - Aşağıda eski siteye ait kurallar (dört tema, gökyüzü/silüet/bayrak, dikey cam bilet kartları, afiş duvarı, kategori sahneleri, özel günler, giriş ekranı, `.dlbtn` hero düğmesi, `wxRefresh`/`paintBg` gibi akıcılık maddeleri) **artık geçmiş kayıttır**; geri getirme. Geçerli tasarım: bölüm 3b ve logo/tema maddeleri.
 - **Instagram görselleri:** `social.mjs` eski sitenin çizimlerini kullanıyordu; şimdilik iş akışlarında kapalı (`# node social.mjs`). Yeni tasarımla yeniden kurulacak (otomatik gönderiler Aralık'ta başlıyor). `promo.mjs` (reklam görselleri) kendi şablonuyla çalışmaya devam eder.
 - Bilgi sayfaları: `#/bilgi/hakkinda|kaynaklar|gizlilik|kosullar|iletisim`. Eski bağlantılar (`#e/<slug>`, `#gizlilik` …) yeni adreslere yönlenir (Google sayfaları `../../#e/<slug>` kullanır).
-- Tema: **siyah zemin (#050409) + mor ışıma** (yeni logonun zemini, `brand/nevarneyok-logo.png`); logoda mor hale (`drop-shadow`). Simgeler `brand/make-icons.cjs` ile üretilir.
+- **Logo ve tema (son hali, kullanıcı 15.11.2026 11:49):** logo `brand/nevarneyok-logo.png`, uygulama simgesi **yalnızca büyüteç** `brand/nevarneyok-simge.png`. Düz tasarım: zemin düz koyu **#0a0a10**, büyüteçte **düz mor cam #8b5cf6** (parıltı, gölge, gradyan yok), harflerde hale/ışıma yok, sayfada mor ışıma yok. Vurgu rengi #8b5cf6. `brand/make-logo.py` → `logo.svg`, `mark.svg`, `logo.js`; `brand/make-icons.cjs` → `icons/` (simgeler büyüteç, `og.png` tam logo).
 
 ## 2. Sistem nasıl çalışır (korunacak)
 | Parça | Görev |
@@ -71,8 +71,8 @@ Bozulmaması gereken kurallar:
 
 
 ## 3. Marka ve tasarım kararları (kullanıcının onayladıkları)
-- **Logo (yeni, kullanıcının tasarımı, 15.11.2026; aslı `brand/nevarneyok-logo.png`):** iki satır "NE VAR / NE YOK", çok kalın düz yazı (Inter Display Black, %107 genişlik, sıkı aralık), beyaz. YOK'taki O **büyüteç**: kalın beyaz halka, beyaz yuvarlak uçlu sap (sağ alta, satırın biraz dışına taşar), içinde parlak **mor cam küre** (#d9ccff → #8b63ff → #5a2df0 → #2c0fa6, sol üstte iki parıltı). Soru işareti, nokta, pembe sap yok. Camın rengi sabit mor (zamana göre değişmez). Logo `brand/make-logo.py` ile üretilir: `brand/logo.svg` (tek parça) ve `brand/logo.js` (`NVLOGO(id)`: parça parça HTML; giriş ekranındaki halka/cam animasyonu için `.sr-ring` / `.sr-glass`). Logoyu elle çizme, bunları kullan. Uygulama simgeleri ve `og.png` bu logodan, logodaki mor gece zeminiyle üretilir.
-- **Tema rengi (15.11.2026):** koyu gece moru (#0c0820 / #0b0817), sol üstte mor ışıma (logonun zemini gibi). Vurgu mor (#8b63ff, #5a2df0); pembe vurgu kullanılmaz.
+- **Logo:** bölüm 0'daki son hali geçerlidir (düz mor cam, düz koyu zemin; uygulama simgesi yalnızca büyüteç). Yazı Inter Display Black %107, beyaz; YOK'taki O büyüteç (beyaz halka + beyaz sap). Logoyu elle çizme: `brand/logo.js` (`NVLOGO`), `brand/logo.svg`, `brand/mark.svg`.
+- **Tema rengi:** düz koyu #0a0a10, vurgu mor #8b5cf6; pembe ve ışıma yok.
 - **Dört tema:** Sabah, Gün, Gün batımı, Gece.
   - Otomatik mod güneşin Ankara'daki konumuna göre seçer (`themeSun`). Sabah ve Gün açık sayfa, Gün batımı ve Gece koyu sayfa.
   - Ayarlar panelinden elle seçilebilir (`nvny-tema`). Giriş ekranı, mercek ve sayfa her zaman aynı temada olmalı.
