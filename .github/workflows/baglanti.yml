@@ -1,0 +1,24 @@
+# Bilet bağlantısı denetimi: her satış sitesinden örnek bağlantıları açar, doğru etkinliğe gidiyor mu günlüğe yazar.
+name: Bilet bağlantısı denetimi
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        description: "Site başına örnek sayısı"
+        default: "3"
+jobs:
+  denetle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - working-directory: scraper
+        env:
+          N: ${{ github.event.inputs.n }}
+        run: node linkcheck.mjs
