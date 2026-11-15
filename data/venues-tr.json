@@ -1,1 +1,290 @@
-{}
+{
+ "balikesir|Balıkesir Sanat Merkezi": {
+  "lat": 39.6472386,
+  "lng": 27.8775344,
+  "addr": "Kız Orta Okul Sokak No:55, Karaoğlan Mahallesi, Karesi",
+  "ilce": "Karesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "office/educational_institution"
+ },
+ "istanbul|Taksim İstiklal Sahne": {
+  "lat": 41.0340668,
+  "lng": 28.9810855,
+  "addr": "Sadri Alışık Sokağı No:24, Kuloğlu, Kuloğlu Mahallesi",
+  "ilce": "Kuloğlu Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Corner Kadıköy": {
+  "lat": 40.9900325,
+  "lng": 29.0242072,
+  "addr": "Mühürdar Caddesi, Caferağa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "istanbul|Trump Sahne": {
+  "lat": 41.003336,
+  "lng": 28.9796555,
+  "addr": "Keresteci Hakkı Sokağı, Cankurtaran Mahallesi, Fatih",
+  "ilce": "Fatih",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/laundry"
+ },
+ "istanbul|Blind İstanbul": {
+  "lat": 41.0296279,
+  "lng": 28.9743287,
+  "addr": "Şehbender Sokağı No:3, Asmalı Mescit, Asmalı Mescit Mahallesi",
+  "ilce": "Asmalı Mescit Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/music_venue"
+ },
+ "istanbul|Sanat Performance": {
+  "lat": 41.0348641,
+  "lng": 28.9775766,
+  "addr": "Kameriye Sokağı, Hüseyinağa, Hüseyinağa Mahallesi",
+  "ilce": "Hüseyinağa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/events_venue"
+ },
+ "istanbul|Üsküdar Musahipzade Celal Sahnesi": {
+  "lat": 41.01967,
+  "lng": 29.0128152,
+  "addr": "Halk Caddesi No:74, Aziz Mahmut Hüdayi Mahallesi, Üsküdar",
+  "ilce": "Üsküdar",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Harbiye Muhsin Ertuğrul Sahnesi": {
+  "lat": 41.0464521,
+  "lng": 28.9886515,
+  "addr": "Darülbedai Caddesi, Harbiye Mahallesi, Şişli",
+  "ilce": "Şişli",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Arter": {
+  "lat": 41.0408994,
+  "lng": 28.9787641,
+  "addr": "Irmak Caddesi No:13, Yenişehir Mahallesi, Hacıahmet Mahallesi",
+  "ilce": "Hacıahmet Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
+ },
+ "istanbul|Kağıthane Sadabad Sahnesi": {
+  "lat": 41.0793774,
+  "lng": 28.9710052,
+  "addr": "Eyüp Sultan Caddesi, Merkez Mahallesi, Kâğıthane",
+  "ilce": "Kâğıthane",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
+ "istanbul|Ümraniye Sahnesi": {
+  "lat": 41.0255609,
+  "lng": 29.1048564,
+  "addr": "Haldun Alagaş Caddesi, Yamanevler Mahallesi, Ümraniye",
+  "ilce": "Ümraniye",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "istanbul|Babylon": {
+  "lat": 41.0582648,
+  "lng": 28.9800506,
+  "addr": "Silahşör Caddesi No:1, Cumhuriyet Mahallesi, Şişli",
+  "ilce": "Şişli",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/nightclub"
+ },
+ "istanbul|Müze Gazhane Prof. Dr. Sevda Şener Sahnesi": {
+  "lat": 40.9977503,
+  "lng": 29.0438295,
+  "addr": "Gazhane Deresi Sokağı, Hasanpaşa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Akatlar Kültür Merkezi": {
+  "lat": 41.0804147,
+  "lng": 29.0276006,
+  "addr": "Profesör Doktor Kaya Çilingiroğlu Caddesi, Akat Mahallesi, Beşiktaş",
+  "ilce": "Beşiktaş",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/attraction"
+ },
+ "istanbul|Highlights in Istanbul Workshops": {
+  "lat": 41.026587,
+  "lng": 28.9780013,
+  "addr": "Lüleci Hendek Caddesi No:20, Müeyyedzade, Hacımimi Mahallesi",
+  "ilce": "Hacımimi Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/craft"
+ },
+ "sakarya|Kale Sahne": {
+  "lat": 41.0771734,
+  "lng": 30.8505155,
+  "addr": "Yalı Mahallesi, Kocaali",
+  "ilce": "Kocaali",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "istanbul|Torium Sahne": {
+  "lat": 41.0042063,
+  "lng": 28.6900831,
+  "addr": "Tonguç Baba Caddesi, Turgut Özal Mahallesi, Esenyurt",
+  "ilce": "Esenyurt",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "istanbul|Caddebostan Kültür Merkezi": {
+  "lat": 40.9674826,
+  "lng": 29.0647033,
+  "addr": "Haldun Taner Sokağı No:11, Caddebostan Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "trabzon|Haluk Ongan Sahnesi": {
+  "lat": 41.0030284,
+  "lng": 39.7170608,
+  "addr": "Yavuz Selim Bulvarı, Gülbaharhatun Mahallesi, Ortahisar",
+  "ilce": "Ortahisar",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Atatürk Sanat Merkezi": {
+  "lat": 41.0018089,
+  "lng": 28.6418951,
+  "addr": "Cumhuriyet Caddesi, Cumhuriyet Mahallesi, Beylikdüzü",
+  "ilce": "Beylikdüzü",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "istanbul|Bostancı Gösteri Merkezi": {
+  "lat": 40.9567026,
+  "lng": 29.1023561,
+  "addr": "Bostanlararası Sokağı, Bostancı Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "mersin|Pera Sahne Sanatları": {
+  "lat": 36.6082187,
+  "lng": 34.3196754,
+  "addr": "Dr. Emin Şekerci Sokak No:18, Alata, Erdemli",
+  "ilce": "Erdemli",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/apartments"
+ },
+ "istanbul|Sait Halim Paşa Yalısı": {
+  "lat": 41.1204464,
+  "lng": 29.070002,
+  "addr": "Yeniköy Tarabya Caddesi, Yeniköy Mahallesi, Sarıyer",
+  "ilce": "Sarıyer",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/attraction"
+ },
+ "istanbul|İBB İdris Güllüce Kültür Merkezi": {
+  "lat": 40.8498276,
+  "lng": 29.3028055,
+  "addr": "Aydınlı Yolu Caddesi No:20, İçmeler Mahallesi, Tuzla",
+  "ilce": "Tuzla",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Cafe Theatre": {
+  "lat": 41.0116183,
+  "lng": 29.0357885,
+  "addr": "Bekir Sıtkı Sezgin Sokağı, Koşuyolu Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|All Saints Moda Kilisesi": {
+  "lat": 40.9820854,
+  "lng": 29.02524,
+  "addr": "Yusuf Kamil Paşa Sokağı No:8, Caferağa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/place_of_worship"
+ },
+ "istanbul|KüçükÇiftlik Park": {
+  "lat": 41.0431483,
+  "lng": 28.9934012,
+  "addr": "Kadırgalar Caddesi, Harbiye Mahallesi, Şişli",
+  "ilce": "Şişli",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/theme_park"
+ },
+ "istanbul|Volkswagen Arena": {
+  "lat": 41.1087294,
+  "lng": 29.0076777,
+  "addr": "Maslak Ayazağa Caddesi, Huzur Mahallesi, Sarıyer",
+  "ilce": "Sarıyer",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/sports_centre"
+ },
+ "kocaeli|Hayal Kahvesi Kocaeli": {
+  "lat": 40.7571967,
+  "lng": 29.9797846,
+  "addr": "Güney Toplayıcı Yol, Ovacık Mahallesi, Başiskele",
+  "ilce": "Başiskele",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "antalya|Highlights in Antalya Workshops": {
+  "lat": 36.8943733,
+  "lng": 30.7041048,
+  "addr": "471 Sokak No:3/31, Tahılpazarı Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/craft"
+ },
+ "antalya|Türkan Şoray Kültür Merkezi": {
+  "lat": 36.8696065,
+  "lng": 30.7248161,
+  "addr": "1455. Sokak, Yeşilbahçe Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Barış Manço Kültür Merkezi": {
+  "lat": 40.9884565,
+  "lng": 29.0257875,
+  "addr": "Nail Bey Sokağı No:29, Kadıköy",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/conference_centre"
+ }
+}
