@@ -9,7 +9,7 @@ import { createServer } from "node:http";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { join, extname } from "node:path";
 import { chromium } from "playwright";
-import { ROOT, log } from "./lib/util.mjs";
+import { ROOT, log, todayIST } from "./lib/util.mjs";
 
 const OUT = process.env.OUT_DIR || join(ROOT, "paylas/uygulama");
 const CITY = process.env.SHOT_CITY || "istanbul";
@@ -153,6 +153,7 @@ const CLOUD = (story) => { const mx = Math.max(...Object.values(IDX).map((c) => 
   return `<div class="cloud${story ? " st" : ""}">${ids.map((c) => { const v = IDX[c].n + IDX[c].films * 5, f = Math.round((story ? 26 : 21) + Math.sqrt(v / mx) * (story ? 92 : 74)); const top = ORDER.indexOf(c);
     return `<span class="${top < 3 ? "t1" : top < 10 ? "t2" : ""}" style="font-size:${f}px">${UP(c)}</span>`; }).join("")}</div>`; };
 
+let CSS_EXTRA = "";
 const ADS = [
   { id: "uygulama-turkiye", kick: "Tek uygulama · 81 il", h: "TÜM TÜRKİYE'NİN<br><em>ETKİNLİKLERİ.</em>", sub: `${DAN(A)} ${YA(B)}, ${DAN(Cc)} ${YA(D)}… Hangi ildeysen orada ne var ne yok, gör.`,
     stage: (s) => CLOUD(s) + RIBBON(s ? 130 : 70, -3),
@@ -179,7 +180,54 @@ const ADS = [
     cap: `Vizyonda ne var? 🍿\n\n${DAN(A)} ${YA(B)}, 81 ilde sinemaların seansları gün gün, salon salon. Filmi seç, saatini bul, bilete tek dokunuşla geç.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #sinema #vizyon #film #seans #ankara #istanbul` },
 ];
 
-const html = (ad, story) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><style>${CSS}</style></head><body>${WALL}<div class="bg"></div>
+/* --- afişli reklamlar (kullanıcı: "afişler, il seçme gözüksün, bir sürü tanıtım fotoğrafı") ---
+   Afişler değiştirilmeden, kırpılmadan sığdırılır; her birinin altında "Görsel: <kaynak>". Yüklenmeyen afiş çıkarılır. Fiyat yok. */
+const today = todayIST(), wk = new Date(Date.parse(today + "T12:00:00Z") + 7 * 864e5).toISOString().slice(0, 10);
+const BIGV = /arena|psm|akm|kongre|congresium|opera|cso|stadyum|jolly joker|bostanci|volkswagen|harbiye|zorlu|if performance|bilkent|devlet tiyatro|sahne/i;
+const fold = (t) => String(t || "").toLocaleLowerCase("tr").replace(/[^a-z0-9ğüşöçı]+/g, "");
+async function topOf(c, n = 8) {
+  const f = c === "ankara" ? "data/events.json" : `data/c/${c}.json`;
+  const L = (JSON.parse(await readFile(join(ROOT, f), "utf8").catch(() => "{}")).events || []).filter((e) => e.img && e.d >= today && e.d <= wk && !/iptal|ertelendi/.test(e.status || ""));
+  const sc = (e) => (e.tickets || []).length * 2 + (BIGV.test(e.venue || "") ? 3 : 0) + (["konser", "tiyatro", "standup", "festival"].includes(e.cat) ? 2 : 0);
+  const seen = new Set(), seenI = new Set(), out = [];
+  for (const e of L.sort((a, b) => sc(b) - sc(a))) { const k = fold(e.title).slice(0, 22); if (seen.has(k) || seenI.has(e.img)) continue; seen.add(k); seenI.add(e.img); out.push({ ...e, cityName: NM(c) }); if (out.length >= n) break; }
+  return out;
+}
+const GUN = ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"], AYK = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+const dd = (d) => { const x = new Date(d + "T12:00:00"); return d === today ? "Bugün" : `${x.getDate()} ${AYK[x.getMonth()]} ${GUN[x.getDay()]}`; };
+const escH = (t) => String(t || "").replace(/[&<>"]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[m]);
+const PCARD = (e, city = false) => `<figure class="pc"><div class="pi"><img class="pb" src="${escH(e.img)}" alt="" referrerpolicy="no-referrer"><img class="pf" src="${escH(e.img)}" alt="" referrerpolicy="no-referrer" onerror="this.closest('.pc').remove()"></div><figcaption>${city ? `<span class="cy">📍 ${escH(e.cityName)}</span>` : ""}<b>${escH(e.title)}</b><small>${dd(e.d)}${e.t ? " · " + escH(e.t) : ""}</small><i>Görsel: ${escH(e.imgBy || "kaynak site")}</i></figcaption></figure>`;
+const PGRID = (L, cols, city) => `<div class="pgr" style="--c:${cols}">${L.map((e) => PCARD(e, city)).join("")}</div>`;
+CSS_EXTRA = `.pgr{position:absolute;inset:0 56px 40px;display:grid;grid-template-columns:repeat(var(--c),1fr);gap:22px;align-content:start}
+.pc{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pi{position:relative;aspect-ratio:830/1200;border-radius:22px;overflow:hidden;background:#15121f;box-shadow:0 0 0 1.5px #ffffff1f inset,0 30px 60px -20px #000c}
+.pi .pb{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);object-fit:cover;filter:blur(24px) brightness(.55)}
+.pi .pf{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.pc figcaption{display:flex;flex-direction:column;gap:4px}
+.pc b{font:900 26px/1 Archivo,Arial,sans-serif;font-stretch:78%;text-transform:uppercase;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc small{font:700 20px/1.1 "Inter Tight",Arial,sans-serif;color:#c4b5fd}
+.pc i{font:500 14px/1 "Inter Tight",Arial,sans-serif;font-style:normal;color:#ffffff70}
+.pc .cy{align-self:flex-start;font:800 16px/1 "Inter Tight",Arial,sans-serif;padding:7px 11px;border-radius:99px;background:#8b5cf6;margin-bottom:2px}
+.pgr.c2 .pc b{font-size:34px}`;
+
+const FEAT = await (async () => { const all = []; for (const c of CITIES_) all.push(...(await topOf(c, 4)).map((e) => ({ ...e, c }))); // illere sırayla
+  const by = CITIES_.map((c) => all.filter((e) => e.c === c)), out = []; for (let r = 0; r < 4; r++) for (const L of by) if (L[r]) out.push(L[r]); return out; })();
+ADS.push({ id: "uygulama-afisler", kick: `${UP(A)} · ${UP(B)} · ${UP(Cc)} · ${UP(D)}`, h: "BU HAFTA<br><em>NE VAR NE YOK?</em>", sub: "Türkiye'nin dört bir yanından bu haftanın öne çıkanları. Daha fazlası uygulamada.",
+  stage: (s) => PGRID(FEAT.slice(0, s ? 9 : 6), 3, true),
+  cap: `Bu hafta ne var ne yok? 🎟️\n\n${NM(A)}, ${NM(B)}, ${NM(Cc)}, ${NM(D)}… 81 ilden bu haftanın öne çıkan konserleri, oyunları, gösterileri. Şehrini seç, hepsini afiş afiş gör.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\nGörseller etkinliklerin kendi afişleridir; son durumu bilet sitesinden kontrol et.\n\n#nevarneyok #etkinlik #konser #tiyatro #haftasonu #${CITIES_.join(" #")}` });
+for (const c of CITIES_) {
+  const L = await topOf(c, 6); if (L.length < 4) continue;
+  ADS.push({ id: `uygulama-${c}`, kick: `📍 ${UP(c)} · bu hafta`, h: `${UP(c)}'${back(NM(c)) ? "DA" : "DE"}<br><em>NE VAR NE YOK?</em>`.replace(/'(D)/, (m, d) => /[fsthçşkp]$/i.test(NM(c)) ? "'T" : "'D"), sub: `${NM(c)}'${/[fsthçşkp]$/i.test(NM(c)) ? "t" : "d"}${back(NM(c)) ? "a" : "e"} bu haftanın öne çıkanları. Hepsi, saatleri ve sinema seansları uygulamada.`,
+    stage: (s) => s ? PGRID(L.slice(0, 4), 2) .replace('class="pgr"', 'class="pgr c2" style="--c:2;right:470px"') + P(`raflar_${c}`, 380, 640, 60, 5, 3, NM(c))
+      : PGRID(L.slice(0, 3), 3).replace('class="pgr"', 'class="pgr" style="--c:3;right:420px;--x:0"') + P(`sehir_${c}`, 340, 700, 20, 5, 3, NM(c)),
+    cap: `${NM(c)}'${/[fsthçşkp]$/i.test(NM(c)) ? "t" : "d"}${back(NM(c)) ? "a" : "e"} bu hafta ne var ne yok? 📍\n\nKonserler, oyunlar, stand-up'lar ve sinema seansları; hepsi afiş afiş, saat saat Ne Var Ne Yok'ta. Sen de şehrini seç, hemen gör.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\nGörseller etkinliklerin kendi afişleridir; son durumu bilet sitesinden kontrol et.\n\n#nevarneyok #${c} #${c}etkinlik #konser #tiyatro #sinema #haftasonu` });
+}
+// il seçimi büyük: tekerlek tek başına, çevresinde il şeridi
+ADS.push({ id: "uygulama-hangi-sehir", kick: "81 il seni bekliyor", h: "HANGİ<br><em>ŞEHİRDESİN?</em>", sub: "Tekerleği çevir, şehrini seç: o ilin konserleri, oyunları, sinema seansları karşında.",
+  stage: (s) => RIBBON(s ? 620 : 360, 5) + P("tekerlek", s ? 520 : 430, s ? 280 : 325, s ? 20 : 10, -3, 2) + RIBBON(s ? 180 : 110, -5),
+  cap: `Hangi şehirdesin? 📍\n\n${NM(A)}, ${NM(B)}, ${NM(Cc)}, ${NM(D)}… 81 il tek tekerlekte. Çevir, şehrini seç; o ilin konserleri, oyunları ve sinema seansları karşında.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #etkinlik #türkiye #${CITIES_.join(" #")}` });
+
+const html = (ad, story) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><style>${CSS}${CSS_EXTRA}</style></head><body>${WALL}<div class="bg"></div>
 <div class="pg" style="--top:${story ? 230 : 70}px;--bot:${story ? 220 : 56}px;--hs:${story ? 128 : 112}px">${LOGOH}<div class="kick">${ad.kick}</div><h1>${ad.h}</h1>${story ? `<p class="sub">${ad.sub}</p>` : ""}
 <div class="stage">${ad.stage(story)}</div>${CTA}</div>
 <script>document.fonts.ready.then(()=>{const c=document.querySelector(".cloud");if(c){let k=1;const S=[...c.children].map(x=>parseFloat(x.style.fontSize));for(let t=0;t<40&&c.scrollHeight>c.clientHeight+2;t++){k*=.95;c.children.length&&[...c.children].forEach((x,i)=>x.style.fontSize=S[i]*k+"px")}}})</script></body></html>`;
