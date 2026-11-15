@@ -238,6 +238,22 @@ const snd = {
   ok() { blip({ f: 1320, f2: 1300, vol: .07, dur: .07, noise: 0 }); setTimeout(() => blip({ f: 1980, f2: 1960, vol: .06, dur: .11, noise: 0 }), 85); buzz(8); },
 };
 addEventListener("touchstart", () => { try { ac(); } catch {} }, { once: true, passive: true });
+/* APPLE KLAVYESİ VE DOKUNMA SESLERİ (kullanıcı isteği, 15.11.2026 21:35: "her basış ve klavyeyle yazarken saat sesi gibi zarif, profesyonel ses").
+   - snd.key: iPhone klavyesinin yumuşak "tık"ı (her harfte perde ±%4 değişir, makine gibi tekdüze olmasın)
+   - snd.del: silme tuşu, biraz daha pes ve kuru;  snd.ret: boşluk/onay, tok
+   - snd.tap: düğme ve bağlantılara basış; çok kısık. Seçim kutucukları, anahtarlar ve çarkın kendi sesi varsa onlar çalar. */
+Object.assign(snd, {
+  key() { const r = .96 + Math.random() * .08; blip({ f: 1250 * r, f2: 980 * r, body: 520 * r, vol: .05, dur: .012, noise: .65, hp: 2800 }); },
+  del() { blip({ f: 900, f2: 760, body: 420, vol: .05, dur: .013, noise: .55, hp: 2000 }); },
+  ret() { blip({ f: 700, f2: 600, body: 330, vol: .055, dur: .016, noise: .5, hp: 1600 }); },
+  tap() { blip({ f: 1900, f2: 1500, body: 760, vol: .04, dur: .011, noise: .45, hp: 2400 }); },
+});
+const TXT = 'input[type="text"],input[type="search"],input:not([type]),input[type="email"],input[type="tel"],input[type="url"],textarea,[contenteditable="true"]';
+document.addEventListener("beforeinput", (ev) => { if (!ev.target.matches?.(TXT)) return; const k = ev.inputType || "";
+  if (k.startsWith("delete")) snd.del(); else if (k === "insertLineBreak" || k === "insertParagraph" || ev.data === " ") snd.ret(); else if (k.startsWith("insert")) snd.key(); }, true);
+document.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && ev.target.matches?.(TXT)) snd.ret(); }, true);
+document.addEventListener("click", (ev) => { const t = ev.target; if (t.closest?.(".tile, .seg button, .pills button, [data-one], [data-many], [data-p], [data-b], .tabs a, .dpk button, [data-d], #wl li, .tg2, .sw, input, label")) return;
+  if (t.closest?.("a, button, [role=button], summary")) snd.tap(); }, true);
 // Kontrollerin sesleri tek yerden: iOS anahtarları, kutucuklar, segmentler, seçim düğmeleri, sekme çubuğu
 document.addEventListener("change", (ev) => { const i = ev.target; if (i.matches?.('.tg2 input[type="checkbox"], .sw input[type="checkbox"], input[type="checkbox"][role="switch"]')) (i.checked ? snd.on : snd.off)(); }, true);
 document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".tile, .seg button, .pills button, [data-one], [data-many], [data-p], [data-b], .tabs a, .dpk button, [data-d]"); if (b) snd.sel(); }, true);
