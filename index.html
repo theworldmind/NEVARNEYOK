@@ -9,7 +9,7 @@
 <meta property="og:url" content="https://nevarneyok.net.tr/">
 <meta name="description" content="Konser, tiyatro, sinema, stand-up ve çocuk etkinlikleri; bilet siteleri yan yana. Şehrini seç, ne var ne yok gör.">
 <meta name="theme-color" content="#0a0a10">
-<link rel="preload" as="image" href="brand/logo.png">
+<link rel="preload" as="image" href="brand/logo-cam.png">
 <link rel="preload" as="fetch" href="data/cities.json" crossorigin>
 <link rel="preload" as="fetch" href="data/one-cikan.json" crossorigin>
 <link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash/1290x2796.png">
@@ -768,6 +768,12 @@ html.gece body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-eve
 .cfm .cb{display:flex;gap:10px}.cfm .cb button{flex:1;height:48px;border-radius:14px;background:var(--s2);font:700 15px var(--f)}.cfm .cb .red{background:#ff453a;color:#fff}
 .top #setBtn{display:grid}
 html.rm *,html.rm *::before,html.rm *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+
+/* Logo ışık geçişi (15.11.2026 23:58): logonun biçimiyle maskelenmiş katmanda tek seferlik ışık; yalnızca transform */
+.wm{position:relative}
+.wm .shn{position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask:url(brand/logo-cam.png) center/100% 100% no-repeat;mask:url(brand/logo-cam.png) center/100% 100% no-repeat}
+.wm .shn::after{content:"";position:absolute;top:-30%;bottom:-30%;left:0;width:42%;background:linear-gradient(100deg,transparent 0,rgba(167,139,250,.5) 30%,rgba(255,255,255,.95) 50%,rgba(167,139,250,.5) 70%,transparent 100%);transform:translateX(-130%) skewX(-14deg);animation:shn 1.5s cubic-bezier(.45,0,.2,1) .6s 1 forwards;will-change:transform}
+@keyframes shn{to{transform:translateX(330%) skewX(-14deg)}}
 </style>
 </head>
 <body>

@@ -36,7 +36,11 @@ const ago = (iso) => { if (!iso) return ""; const m = Math.max(1, Math.round((Da
 const TL = (n) => "₺" + Math.round(n).toLocaleString("tr-TR");
 
 /* ---------- Logo: kullanıcının logosu birebir (brand/logo.png, yazı tipi değiştirilmez) ---------- */
-const WM = () => `<span class="wm"><img src="brand/logo.png" alt="Ne Var Ne Yok" width="1301" height="653" decoding="async"></span>`;
+// Mercek cam (kullanıcı, 15.11.2026 23:58): harfler birebir aynı, yalnızca mor mercekte cam ışığı (brand/logo-cam.png, make-assets.py → glass_lens).
+// Sayfa açılınca logonun üstünden bir kez ince ışık geçer (yalnızca transform); sonra durur, her sayfa değişiminde tekrar etmez.
+let wmShone = false;
+const WM = () => { const s = wmShone || store.get("nvny-az") === "1" || matchMedia("(prefers-reduced-motion: reduce)").matches ? "" : '<i class="shn" aria-hidden="true"></i>'; wmShone = true;
+  return `<span class="wm"><img src="brand/logo-cam.png" alt="Ne Var Ne Yok" width="1301" height="653" decoding="async">${s}</span>`; };
 const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg>`;
 const I = {
   cal: `<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
@@ -165,7 +169,7 @@ function footer() {
 const V = $("#view"), TOP = $("#top");
 function setTop(city) {
   TOP.hidden = !city; if (!city) return;
-  $("#home").innerHTML = WM(); $("#home").href = `#/${city}`;
+  if (!$("#home").firstChild) $("#home").innerHTML = WM(); $("#home").href = `#/${city}`;
   $("#cityBtn span").textContent = CITIES.find((c) => c.id === city)?.name || city;
   $("#srchBtn").href = `#/${city}/kesfet`; $("#setBtn").href = `#/${city}/ayarlar`;
   const n = Object.keys(follows()).length, fb = $("#flwBtn"); fb.href = `#/${city}/takip`; fb.querySelector("b").textContent = n || ""; fb.classList.toggle("has", !!n);

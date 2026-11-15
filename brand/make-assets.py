@@ -70,3 +70,25 @@ for f, w, im in [('icon-512.png', 512, Q), ('icon-192.png', 192, Q), ('apple-tou
 og = Image.new('RGB', (1200, 630), (11, 10, 16)); L = lg.resize((680, int(680 * lg.height / lg.width)), Image.LANCZOS)
 og.paste(L, ((1200 - L.width) // 2, (630 - L.height) // 2), L); og.save(f'{R}/icons/og.png', optimize=True)
 print('ok')
+
+# Ana sayfadaki logo: mercek cam (kullanıcı isteği, 15.11.2026 23:58: "logomuz dahi Apple kalitesinde camsı olacak").
+# Harfler ve büyütecin biçimi BİREBİR aynı (logo.png); yalnızca mor merceğe ışık eklenir: üstte lavanta parlama, sol üstte yay biçiminde
+# cam yansıması, altta derinlik, kenarda ince iç ışık. Çıktı brand/logo-cam.png (sitedeki WM() bunu kullanır).
+def glass_lens(src):
+    a = np.asarray(src).astype(np.float64); rgb = a[..., :3].copy(); al = a[..., 3] / 255
+    pur = al * np.clip(1 - np.linalg.norm(rgb - [139, 92, 246], axis=-1) / 70, 0, 1)
+    ys, xs = np.where(pur > .5); cx, cy, r = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2, (xs.max() - xs.min()) / 2
+    yy, xx = np.mgrid[0:a.shape[0], 0:a.shape[1]].astype(np.float64); u, v = (xx - cx) / r, (yy - cy) / r; d = np.sqrt(u ** 2 + v ** 2)
+    top = np.clip(-v * .5 + .5, 0, 1)                                                   # yukarı doğru aydınlık
+    base = np.array([139., 92, 246]); light = np.array([196., 170, 255]); deep = np.array([76., 40, 168])
+    col = deep[None, None] * (1 - top[..., None]) ** 1.4 + base[None, None] * 0 + light[None, None] * top[..., None] ** 1.6
+    col = col * .55 + base[None, None] * .45
+    arc = np.exp(-((d - .70) ** 2) / (2 * .07 ** 2)) * np.clip((-u - v) / 1.2, 0, 1) ** 1.5    # sol üstte yay yansıma
+    glint = np.exp(-(((u + .38) ** 2) + ((v + .42) ** 2)) / (2 * .10 ** 2))                 # küçük parıltı
+    rim = np.clip((d - .86) / .14, 0, 1) ** 2 * (.35 + .65 * np.clip(v, 0, 1))              # altta kenar ışığı (camın kırılması)
+    shade = np.clip((u + v) / 1.4, 0, 1) ** 1.5 * .28                                     # sağ altta derinlik
+    col = col * (1 - shade[..., None]) + (255 - col) * (arc * .55 + glint * .85 + rim * .25)[..., None]
+    out = rgb * (1 - pur[..., None]) + col * pur[..., None]
+    return Image.fromarray(np.dstack([np.clip(out, 0, 255), a[..., 3]]).astype(np.uint8), 'RGBA')
+glass_lens(Image.open(f'{H}/logo.png').convert('RGBA')).save(f'{H}/logo-cam.png', optimize=True)
+print('logo-cam ok')
