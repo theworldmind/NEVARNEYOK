@@ -184,8 +184,7 @@ function viewCities() {
     <div class="pact"><button type="button" class="cgo" id="cok">Seç</button>${saved ? `<a class="cbk" href="#/${saved.id}" data-city="${saved.id}">${esc(saved.name)}'${dat(saved.name)} devam et →</a>` : ""}</div>
   </div></section>
   <p class="cnow"><b>${liveC.length}</b> ilde etkinlikler açık${liveC.length ? ` · en kalabalık: ${liveC.slice(0, 5).map((c) => `<a href="#/${c.id}" data-city="${c.id}">${c.name}</a>`).join(", ")}` : ""}</p>
-  ${T.length ? `<h2 class="cs-t">Türkiye'de bu hafta öne çıkanlar</h2>${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}` : ""}
-  ${appPromo()}<div class="cs-ft"><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
+  <div id="csl"></div><div class="cs-ft"><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
   /* Saat tekerleği gibi il seçici: alfabetik, kaydırdıkça ortadaki büyür (yalnızca transform/opacity) */
   const q = $("#cq"), wl = $("#wl"), msg = $("#cmsg"), ok = $("#cok"), IH = 52; let L = ALL, cur = 0, raf = 0, pfT = 0;
   const go = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; }
@@ -213,10 +212,11 @@ function viewCities() {
   q.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); go(L[cur]); } else if (ev.key === "ArrowDown") { ev.preventDefault(); wl.focus(); to(Math.min(L.length - 1, cur + 1)); } });
   ok.addEventListener("click", () => go(L[cur]));
   V.addEventListener("click", (ev) => { const a = ev.target.closest("[data-city]"); if (a) store.set("nvny-city", a.dataset.city); });
+  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 120));
+  idle(() => { const el = $("#csl"); if (!el) return; el.outerHTML = `${T.length ? `<h2 class="cs-t">Türkiye'de bu hafta öne çıkanlar</h2>${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}` : ""}${appPromo()}`; storyInit(); }, { timeout: 900 });
   draw(ALL);
   // açılışta kayıtlı ile (yoksa en kalabalık ile) kendiliğinden gel
   const start = ALL.indexOf(saved || liveC[0]); if (start > 0) to(start, false); paint();
-  storyInit();
 }
 
 function viewCity(city) {
@@ -244,7 +244,12 @@ function viewCity(city) {
   const later = () => `${order.map((c) => rail(CATS[c], "Bu hafta", byCat(c), city, k("k=" + c))).join("")}
   ${rail("Festival", "Yaklaşan", pick(E.filter((e) => e.cat === "festival" && e.img), 12), city, k("k=festival"))}
   ${rail("Yeni eklenenler", "Son 3 günde", uniq(E.filter((e) => e.isNew && e.img).sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || "")), 16), city, k("yeni=1"))}`;
-  const lt = $("#later"); (window.requestIdleCallback || ((f) => setTimeout(f, 200)))(() => { if (document.body.contains(lt)) lt.outerHTML = later(); }, { timeout: 1200 });
+  { const lt = $("#later"), idle = window.requestIdleCallback || ((f) => setTimeout(f, 120));
+    const parts = [...order.map((c) => () => rail(CATS[c], "Bu hafta", byCat(c), city, k("k=" + c))),
+      () => rail("Festival", "Yaklaşan", pick(E.filter((e) => e.cat === "festival" && e.img), 12), city, k("k=festival")),
+      () => rail("Yeni eklenenler", "Son 3 günde", uniq(E.filter((e) => e.isNew && e.img).sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || "")), 16), city, k("yeni=1"))];
+    const step = () => { if (!document.body.contains(lt) || !parts.length) return; lt.insertAdjacentHTML("beforebegin", parts.shift()()); idle(step, { timeout: 600 }); };
+    idle(step, { timeout: 600 }); }
   $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); location.hash = `#/${city}/kesfet?q=${encodeURIComponent($("#q").value.trim())}`; });
   $("#pz").addEventListener("click", () => openPrefs(city, () => viewCity(city)));
   bindNotifAsk(city);
@@ -634,6 +639,7 @@ document.addEventListener("click", (ev) => {
 /* ---------- Yönlendirme ---------- */
 const scrollMem = new Map();
 let lastHash = "";
+let routed = false;
 function route() {
   if (!DATA.boot) return;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
@@ -658,7 +664,7 @@ function route() {
     else if (P[1] === "takip") viewTakip(city);
     else viewCity(city);
   }
-  V.style.animation = "none"; void V.offsetWidth; V.style.animation = "";
+  if (routed) { V.classList.remove("go"); void V.offsetWidth; V.classList.add("go"); } routed = true; // ilk sayfa canlandırmasız
   tabsUpdate(P);
   const y = scrollMem.get(location.hash); scrollTo(0, y && history.state !== "new" ? y : 0); lastHash = location.hash;
   try { window.goatcounter?.count?.({ path: "/" + h.split("?")[0].replace(/^\//, "") }); } catch {}
