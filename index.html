@@ -545,6 +545,28 @@ html.app .tabs:not([hidden]){display:flex}
 .seg button.on{color:#0a0a10}
 .prf .ft{background:rgba(16,14,26,.4)}
 .pn .ft .ok{position:relative;box-shadow:0 10px 30px rgba(139,92,246,.35)}
+
+/* ===== Filtre ekranı: Apple uygulaması tarzı ===== */
+.flt .fsx{padding:6px 18px 30px}
+.pn h4 em{font-style:normal;text-transform:none;letter-spacing:0;font-weight:600;color:rgba(235,235,245,.4);margin-left:6px}
+.pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:2px 18px 4px}
+.pills::-webkit-scrollbar{display:none}
+.pills button{flex:none;height:40px;padding:0 18px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:var(--hl);font:700 14.5px var(--f);color:var(--tx);transition:transform .18s cubic-bezier(.2,.8,.2,1),background .2s}
+.pills button:active{transform:scale(.95)}
+.pills button.on{background:#fff;color:#0a0a10;box-shadow:0 6px 20px rgba(139,92,246,.35)}
+.flt .dstrip{margin:12px -18px 0;padding:2px 18px 4px}
+.flt .dstrip button{min-width:58px;height:64px;border-radius:16px}
+.flt .dstrip button.on{background:linear-gradient(160deg,#a78bfa,#7c3aed);color:#fff;box-shadow:0 8px 24px rgba(139,92,246,.45)}.flt .dstrip button.on b,.flt .dstrip button.on small{color:#fff}
+.tile .ts{font:600 12px var(--f);color:rgba(235,235,245,.55);margin-top:-6px}
+.tile.on .ts{color:rgba(255,255,255,.8)}
+.grp .ch{gap:8px}
+.grp .sin{background:rgba(0,0,0,.2)}
+.grp .vl{margin-top:10px;max-height:240px}
+.grp.lst{padding:4px 16px}
+.grp.lst .tg2{padding:12px 0;border-bottom:.5px solid rgba(255,255,255,.08)}
+.grp.lst .tg2:last-child{border-bottom:0}
+.grp.lst .tg2>span{font-weight:700}
+.flt .ft{background:rgba(16,14,26,.45)}
 </style>
 </head>
 <body>
