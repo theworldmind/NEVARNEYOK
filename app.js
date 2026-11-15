@@ -165,18 +165,20 @@ function storyInit() {
 }
 
 
-/* Tekerlek tık sesi (iPhone saat tekerleği gibi): çok kısa, kısık bir tık; Android'de 6 ms titreşim. Ses ilk dokunuşta açılır (tarayıcı kuralı). */
+/* Tekerlek tık sesi (iPhone saat tekerleği gibi): 7 ms'lik zarif bir "çıt"; Android'de 4 ms titreşim. Ses ilk dokunuşta açılır (tarayıcı kuralı). */
 let ACX = null, lastTick = 0;
 function tick() {
-  const t = performance.now(); if (t - lastTick < 28) return; lastTick = t;
-  try { navigator.vibrate?.(6); } catch {}
+  const t = performance.now(); if (t - lastTick < 34) return; lastTick = t;
+  try { navigator.vibrate?.(4); } catch {}
   try {
     ACX ||= new (window.AudioContext || window.webkitAudioContext)(); if (ACX.state === "suspended") ACX.resume();
-    const n = ACX.currentTime, o = ACX.createOscillator(), g = ACX.createGain(), f = ACX.createBiquadFilter();
-    o.type = "square"; o.frequency.setValueAtTime(2400, n); o.frequency.exponentialRampToValueAtTime(900, n + .012);
-    f.type = "highpass"; f.frequency.value = 1200;
-    g.gain.setValueAtTime(.0001, n); g.gain.exponentialRampToValueAtTime(.06, n + .002); g.gain.exponentialRampToValueAtTime(.0001, n + .02);
-    o.connect(f).connect(g).connect(ACX.destination); o.start(n); o.stop(n + .025);
+    // iPhone tekerleği gibi zarif "çıt": 7 ms süzülmüş hışırtı, yumuşak başlangıç, kısık ses
+    if (!tick.buf) { const n = Math.round(ACX.sampleRate * .007), b = ACX.createBuffer(1, n, ACX.sampleRate), d = b.getChannelData(0);
+      for (let k = 0; k < n; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / n, 3); tick.buf = b; }
+    const now = ACX.currentTime, src = ACX.createBufferSource(), bp = ACX.createBiquadFilter(), g = ACX.createGain();
+    src.buffer = tick.buf; bp.type = "bandpass"; bp.frequency.value = 3200; bp.Q.value = 1.2;
+    g.gain.setValueAtTime(.0001, now); g.gain.linearRampToValueAtTime(.22, now + .0012); g.gain.exponentialRampToValueAtTime(.0001, now + .012);
+    src.connect(bp).connect(g).connect(ACX.destination); src.start(now);
   } catch {}
 }
 addEventListener("touchstart", () => { try { ACX ||= new (window.AudioContext || window.webkitAudioContext)(); ACX.resume(); } catch {} }, { once: true, passive: true });
