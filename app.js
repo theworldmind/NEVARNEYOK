@@ -800,6 +800,11 @@ function route() {
   scrollMem.set(lastHash, scrollY);
   $$(".sh").forEach((x) => x.remove()); document.body.style.overflow = "";
   const h = location.hash.replace(/^#/, "") || "/", [path, qs] = h.split("?"), P = path.split("/").filter(Boolean), Q = Object.fromEntries(new URLSearchParams(qs || ""));
+  // Sekme geçişi iPhone gibi (kullanıcı, 16.11.2026 01:10: "Bugün, Keşfet, Sinema, Planım arası geçişler takılıyor"): sekme kökleri (Bugün, Keşfet, Sinema)
+  // ayrılırken olduğu gibi saklanır, dönünce yeniden kurulmadan aynı kaydırma yeriyle gelir. Sekmeler arası kayma yok; yalnızca ayrıntı sayfası sağdan gelir.
+  const tabRoot = P.length === 1 || (P.length === 2 && (P[1] === "kesfet" || P[1] === "sinema"));
+  const fromTab = TABROOT(lastHash), isTabSwitch = tabRoot && (fromTab || /\/(takip|ayarlar)$/.test(lastHash.split("?")[0])) && P[0] === (lastHash.replace(/^#\/?/, "").split(/[/?]/)[0]);
+  if (fromTab && V.dataset.h === lastHash && lastHash !== location.hash) vcSave(lastHash);
   const old = location.hash.match(/^#(e\/.+|hakkinda|kaynaklar|gizlilik|kosullar|iletisim)$/); // eski sitenin ve Google sayfalarının bağlantıları
   if (old) { location.replace(old[1].startsWith("e/") ? `#/ankara/${old[1]}` : `#/bilgi/${old[1]}`); return; }
   const saved = store.get("nvny-city");
@@ -812,21 +817,31 @@ function route() {
   else {
     const city = P[0]; if (!CITIES.find((c) => c.id === city && c.live)) { location.replace("#/"); return; }
     store.set("nvny-city", city);
-    if (!P[1]) viewCity(city);
+    if (tabRoot && vcLoad(location.hash, city)) { /* sekme önceki haliyle geri geldi; yeniden kurulmaz */ }
+    else if (!P[1]) viewCity(city);
     else if (P[1] === "kesfet") viewKesfet(city, Q);
     else if (P[1] === "e") viewEvent(city, decodeURIComponent(P.slice(2).join("/")));
     else if (P[1] === "sinema") viewSinema(city, Q.gun);
     else if (P[1] === "film") viewFilm(city, P[2], Q.gun);
     else if (P[1] === "takip") viewPlan(city, !!Q.m);
-    else if (P[1] === "ayarlar") viewAyarlar(city);
+    else if (P[1] === "ayarlar") viewAyarlar(city, P[2]);
     else if (P[1] === "yilim") viewYil(city);
     else viewCity(city);
   }
-  if (routed) { V.classList.remove("go"); void V.offsetWidth; V.classList.add("go"); } routed = true; // ilk sayfa canlandırmasız
+  V.dataset.h = location.hash;
+  // ayrıntı sayfası (etkinlik, film, ayar alt sayfası…) sağdan kayar; sekmeler ve geri dönüş anında, yalnızca çok kısa solarak
+  const back = history.state === "back" || scrollMem.has(location.hash);
+  if (routed) { V.classList.remove("go", "gt"); void V.offsetWidth; V.classList.add(isTabSwitch || back ? "gt" : "go"); } routed = true; // ilk sayfa canlandırmasız
   tabsUpdate(P);
   const y = scrollMem.get(location.hash); scrollTo(0, y && history.state !== "new" ? y : 0); lastHash = location.hash;
   try { window.goatcounter?.count?.({ path: "/" + h.split("?")[0].replace(/^\//, "") }); } catch {}
 }
+/* Sekme önbelleği: en çok 6 görünüm, 10 dakika; veri yenilendiyse ya da il değiştiyse yeniden kurulur */
+const VC = new Map();
+{ const rs = history.replaceState.bind(history); history.replaceState = (...x) => { V.dataset.h = ""; return rs(...x); }; } // görünüm yerinde değiştiyse saklama
+const TABROOT = (hh) => { const P2 = (hh || "").replace(/^#\/?/, "").split("?")[0].split("/").filter(Boolean); return P2.length === 1 ? P2[0] !== "bilgi" : P2.length === 2 && (P2[1] === "kesfet" || P2[1] === "sinema"); };
+function vcSave(hh) { const f = document.createDocumentFragment(); while (V.firstChild) f.append(V.firstChild); VC.delete(hh); VC.set(hh, { f, t: Date.now(), u: DATA.updated, c: DATA.city, title: document.title }); while (VC.size > 6) VC.delete(VC.keys().next().value); }
+function vcLoad(hh, city) { const x = VC.get(hh); VC.delete(hh); if (!x || Date.now() - x.t > 10 * 60e3 || x.u !== DATA.updated || x.c !== city) return false; V.replaceChildren(x.f); document.title = x.title; setTop(city); $$(".stp .sg i.on", V).forEach((b) => { b.className = ""; void b.offsetWidth; b.className = "on"; }); return true; }
 addEventListener("hashchange", route);
 addEventListener("scroll", () => TOP.classList.toggle("sc", scrollY > 8), { passive: true });
 document.addEventListener("click", (ev) => { const b = ev.target.closest("[data-buy]"); if (b) { let h = ""; try { h = new URL(b.href).hostname.replace(/^www\./, ""); } catch {} gcEv("bilet-al/" + (h || "?"), "Bilet al: " + (h || "?")); } }, true);
@@ -1295,56 +1310,93 @@ function routeSheet(e, v, city, gUrl) {
 /* ---------- Ayarlar (kullanıcı isteği, 15.11.2026 23:46: "ayarlar kısmı olsun; sesi, bildirimleri açıp kapatabilsin") ----------
    iPhone Ayarlar gibi gruplu kartlar. Her şey yalnızca bu telefonda saklanır. Üst çubuktaki dişliden açılır: #/<il>/ayarlar */
 const ncfg = () => { try { return JSON.parse(store.get("nvny-ncfg") || "{}") || {}; } catch { return {}; } };
-const NTYPES = [["degisiklik", "🔔", "Takip ettiklerimdeki değişiklikler", "İptal, erteleme, saat, tarih ya da yer değişikliği"], ["hatirlatma", "🗓️", "Hatırlatmalar", "1 hafta, 3 gün, 1 gün önce ve o gün"], ["azkaldi", "⏳", "“Az kaldı”", "Başlamasına 3 saatten az kalınca"], ["yolacik", "🚶", "Yola çıkma vakti", "Mekâna olan uzaklığına göre, çıkman gereken saatte"],
-  ["fiyat", "💸", "Fiyat düşünce", "Takip ettiğin etkinliğin doğrulanmış fiyatı düşerse"], ["satis", "🎟️", "Yeniden satışta", "Tükenen etkinliğin biletleri yeniden açılınca"],
-  ["mekan", "📍", "Takip ettiğim mekânlar", "Mekâna yeni etkinlik eklenince"], ["sanatci", "🎤", "Takip ettiğim sanatçı ve oyunlar", "Herhangi bir ilde yeni tarih satışa çıkınca"], ["film", "🍿", "Filmler", "Takip ettiğin filmin seansları açılınca"],
-  ["nasildi", "🌟", "“Dün nasıldı?”", "Etkinlikten bir gün sonra"], ["oneri", "✨", "Günün önerisi", "Günde en çok bir tane, ilgi alanına göre"]];
+// Bildirim türleri sade beş grupta (kullanıcı, 16.11.2026 01:09: "ayarlarda çok fazla şey var, Apple profesyonelliğinde olsun"); her grup birden çok türü açar/kapatır
+const NTYPES = [["degisiklik", "Değişiklikler", ["degisiklik", "satis"]], ["hatirlatma", "Hatırlatmalar", ["hatirlatma", "azkaldi", "yolacik"]], ["fiyat", "Fiyat düşünce", ["fiyat"]], ["yeni", "Yeni tarihler", ["sanatci", "mekan", "film"]], ["oneri", "Öneriler", ["oneri", "nasildi"]]];
 const PERM_TXT = { granted: "Açık", denied: "Kapalı", prompt: "Sorulmadı" };
-async function viewAyarlar(city) {
-  setTop(city); document.title = "Ayarlar · Ne Var Ne Yok";
-  const C = ncfg(), cname = CITIES.find((c) => c.id === city)?.name || "", nperm = NOTIF ? Notification.permission : "denied";
+// iOS Ayarlar gibi renkli kare simgeler (beyaz çizim)
+const SIC = (bg, d) => `<span class="sic" style="background:${bg}"><svg viewBox="0 0 24 24">${d}</svg></span>`;
+const SI = {
+  bell: SIC("#ff3b30", '<path d="M6.5 16V11a5.5 5.5 0 0 1 11 0v5l1.5 2h-14z" fill="#fff"/><path d="M10 20a2 2 0 0 0 4 0" fill="#fff"/>'),
+  ses: SIC("#ff2d55", '<path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z" fill="#fff"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/>'),
+  konum: SIC("#0a84ff", '<path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/>'),
+  gorunum: SIC("#5e5ce6", '<text x="12" y="16.5" text-anchor="middle" font-family="-apple-system,Inter Tight,sans-serif" font-weight="700" font-size="12" fill="#fff">Aa</text>'),
+  ilgi: SIC("#8b5cf6", '<path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z" fill="#fff"/><path d="M18 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" fill="#fff"/>'),
+  ekran: SIC("#30b0c7", '<rect x="5" y="5" width="6" height="6" rx="1.6" fill="#fff"/><rect x="13" y="5" width="6" height="6" rx="1.6" fill="#fff"/><rect x="5" y="13" width="6" height="6" rx="1.6" fill="#fff"/><rect x="13" y="13" width="6" height="6" rx="1.6" fill="#fff" opacity=".55"/>'),
+  veri: SIC("#8e8e93", '<rect x="6" y="10.5" width="12" height="9" rx="2" fill="#fff"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="#fff" stroke-width="2"/>'),
+  yaz: SIC("#34c759", '<rect x="4" y="6" width="16" height="12" rx="2.5" fill="#fff"/><path d="M5 7.5l7 5 7-5" fill="none" stroke="#34c759" stroke-width="1.8" stroke-linejoin="round"/>'),
+  bilgi: SIC("#8e8e93", '<circle cx="12" cy="12" r="8" fill="#fff"/><path d="M12 11v5.5" stroke="#8e8e93" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="7.8" r="1.3" fill="#8e8e93"/>'),
+};
+const CHV = `<svg class="chv" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const SECT = { bildirimler: "Bildirimler", ses: "Ses ve Titreşim", konum: "Konum", gorunum: "Görünüm", "ana-ekran": "Ana Ekran", veriler: "Verilerim", hakkinda: "Hakkında" };
+async function viewAyarlar(city, sec) {
+  setTop(city); const C = ncfg(), cname = CITIES.find((c) => c.id === city)?.name || "", nperm = NOTIF ? Notification.permission : "denied", base = `#/${city}/ayarlar`;
   let gperm = "prompt"; try { gperm = (await navigator.permissions.query({ name: "geolocation" })).state; } catch {}
-  const tg = (id, on, ic, t, s, data = "") => `<label class="tg2 st2"><span class="sic">${ic}</span><span class="stx">${t}${s ? `<small>${s}</small>` : ""}</span><input type="checkbox" id="${id}"${on ? " checked" : ""}${data}></label>`;
-  const row = (href, ic, t, s, right = "", attrs = "") => `<a class="srow" href="${href}"${attrs}><span class="sic">${ic}</span><span class="stx">${t}${s ? `<small>${s}</small>` : ""}</span><span class="sv">${right}</span><svg class="chv" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>`;
+  const row = (href, ic, t, right = "", attrs = "") => `<a class="srow" href="${href}"${attrs}>${ic || ""}<span class="stx">${t}</span>${right ? `<span class="sv">${right}</span>` : ""}${CHV}</a>`;
+  const tg = (id, on, t, ic = "", data = "") => `<label class="srow tg">${ic}<span class="stx">${t}</span><input type="checkbox" id="${id}"${on ? " checked" : ""}${data}></label>`;
+  const grp = (h, foot = "") => `<div class="sgrp">${h}</div>${foot ? `<p class="sft">${foot}</p>` : ""}`;
   const nOn = !C.off && nperm === "granted", ver = ($('script[src*="app.js"]')?.getAttribute("src") || "").split("v=")[1] || "";
-  const sc = [["🌙", "Bu akşam", "Bu akşam ne yapsak?"], ["🗓️", "Planım", "Takip ettiklerin gün gün"], ["🍿", "Sinema", "Vizyondakiler ve seanslar"], ["📍", "Yakınımda", "Sana en yakın etkinlikler"]];
-  const ios = isIOS, and = /android/i.test(navigator.userAgent);
-  V.innerHTML = `<div class="ayr"><div class="kh"><h1>Ayarlar</h1></div>
-  <h4>Ses ve titreşim</h4><div class="sgrp">${tg("s-ses", sesOn(), "🔈", "Dokunma sesleri", "Çarklarda tık, düğmelerde hafif ses")}${tg("s-klv", store.get("nvny-klavye") !== "0", "⌨️", "Klavye sesleri", "Yazarken iPhone klavyesi gibi")}${tg("s-tit", store.get("nvny-titre") !== "0", "📳", "Titreşim", "Dokununca hafif titreşim")}</div>
-  <h4>Bildirimler</h4><div class="sgrp">${nperm === "granted" ? tg("s-noff", !C.off, "🔔", "Bildirimler", "Hepsini tek dokunuşla aç ya da kapat") : `<div class="srow nr"><span class="sic">🔔</span><span class="stx">Bildirimler<small>${nperm === "denied" ? (ios ? "Kapalı. Açmak için iPhone Ayarlar › Bildirimler › Ne Var Ne Yok" : and ? "Kapalı. Açmak için adres çubuğundaki kilit › İzinler › Bildirimler" : "Kapalı. Tarayıcının site ayarlarından açabilirsin") : "Takip ettiklerinde bir şey değişince ilk sen duy"}</small></span>${nperm === "denied" ? `<span class="sv">Kapalı</span>` : `<button type="button" class="spill" data-notif>Aç</button>`}</div>`}</div>
-  <div class="sgrp nt${nOn ? "" : " dim"}">${NTYPES.map(([k, ic, t, s]) => tg("n-" + k, C[k] !== false, ic, t, s, ` data-nk="${k}"`)).join("")}</div>
-  <p class="sft">Bildirimler yalnızca takip ettiğin etkinlikler, mekânlar, sanatçılar ve filmler içindir. Telefonun bildirim iznini site kapatamaz; burada kapattığında biz göndermeyiz.</p>
-  <h4>Konum</h4><div class="sgrp"><div class="srow nr"><span class="sic">📍</span><span class="stx">Konum izni<small>${gperm === "granted" ? "Uzaklıklar ve Yakınımda için kullanılır; telefonunda kalır" : gperm === "denied" ? "Kapalı. Telefonun ya da tarayıcının ayarlarından açabilirsin" : "İlk kez “Ne kadar uzak?” ya da “Yakınımda”ya dokununca sorulur"}</small></span>${gperm === "prompt" && !inApp ? `<button type="button" class="spill" data-geo>İzin ver</button>` : `<span class="sv">${PERM_TXT[gperm] || ""}</span>`}</div>${tg("s-mes", mesafeOn(), "📏", "Uzaklıkları göster", "“Senden 3,4 km · yürüyerek ~40 dk”")}</div>
-  <h4>Görünüm</h4><div class="sgrp">${tg("s-gece", store.get("nvny-gece") !== "0", "🌙", "Gece göz yormayan mod", "22:00–07:00 arası ekran biraz kısılır ve ısınır")}${tg("s-az", store.get("nvny-az") === "1", "🌀", "Hareketleri azalt", "Kayan ve büyüyen geçişler sadeleşir")}<div class="srow nr col"><span class="stx">Yazı boyutu</span><div class="seg" id="zseg" style="--n:3;--i:${Math.max(0, ZOOMS.findIndex(([z]) => z === +(store.get("nvny-yazi") || 1)))}"><span class="thumb" aria-hidden="true"></span>${ZOOMS.map(([z, l], k) => `<button type="button" data-z="${z}" data-k="${k}" class="${z === +(store.get("nvny-yazi") || 1) ? "on" : ""}">${l}</button>`).join("")}</div></div></div>
-  <h4>Şehrim ve ilgi alanlarım</h4><div class="sgrp">${row("#/?sec=1", "🏙️", "Şehrim", "", esc(cname))}${row("#", "🎯", "Kişiselleştir", "Neleri sevdiğin, semtler, bütçe", "", " data-prefs")}</div>
-  <h4>Ana ekran</h4><div class="sgrp"><div class="srow nr col"><span class="stx">Simgeye basılı tut<small>${standalone ? "Ana ekrandaki Ne Var Ne Yok simgesine basılı tutunca bu kısayollar açılır." : "Uygulamayı indirince ana ekrandaki simgeye basılı tutup bu kısayolları kullanabilirsin."}${and ? " Android'de kısayolu sürükleyip ana ekrana ayrı simge olarak da bırakabilirsin." : ""}</small></span>
-    <div class="hsc"><div class="hsi"><img src="icons/icon-192.png?v=3" alt="" width="58" height="58"></div><div class="hsm">${sc.map(([i, t, s]) => `<div><span>${i}</span><b>${t}</b><small>${s}</small></div>`).join("")}</div></div></div>${standalone ? "" : row("indir/", `<img src="icons/icon-192.png?v=3" alt="" width="29" height="29" style="border-radius:7px">`, "Uygulamayı indir", "Ücretsiz · mağaza gerekmez")}</div>
-  <h4>Verilerim</h4><div class="sgrp"><div class="srow nr"><span class="sic">🔒</span><span class="stx">Her şey bu telefonda<small>Takiplerin, ilgi alanların ve ayarların yalnızca bu cihazda saklanır. Hesap yok, sunucu yok.</small></span></div>
-    <button type="button" class="srow red" data-wipe="takip"><span class="sic">🗓️</span><span class="stx">Takip listemi temizle<small>${Object.keys(follows()).length} etkinlik · ${Object.keys(vfol()).length} mekân</small></span></button><button type="button" class="srow red" data-wipe="prefs"><span class="sic">🎯</span><span class="stx">İlgi alanlarımı sıfırla</span></button><button type="button" class="srow red" data-wipe="hepsi"><span class="sic">🧹</span><span class="stx">Her şeyi sıfırla<small>Uygulama ilk günkü gibi olur</small></span></button></div>
-  <h4>Bize ulaş</h4><div class="sgrp">${row(`mailto:${esc(window.NVNY_SITE?.contact || "")}?subject=${encodeURIComponent("Ne Var Ne Yok · öneri")}`, "✉️", "Bize yaz", "Öneri, yanlış bilgi, kaldırma talebi")}${window.NVNY_SITE?.instagram ? row(esc(window.NVNY_SITE.instagram), "📸", "Instagram", "", "", ' target="_blank" rel="noopener"') : ""}</div>
-  <h4>Hakkında</h4><div class="sgrp">${row("#/bilgi/hakkinda", "ℹ️", "Hakkında")}${row("#/bilgi/kaynaklar", "📚", "Veri kaynakları")}${row("#/bilgi/gizlilik", "🛡️", "Gizlilik")}${row("#/bilgi/kosullar", "📄", "Kullanım koşulları")}</div>
-  <p class="sft c">Ne Var Ne Yok${ver ? " · sürüm " + esc(ver) : ""}<br>by oneside</p></div>${footer()}`;
-  const set = (k, v) => store.set(k, v ? "1" : "0");
-  $("#s-ses").addEventListener("change", (ev) => { set("nvny-ses", ev.target.checked); if (ev.target.checked) snd.on(); });
-  $("#s-klv").addEventListener("change", (ev) => { set("nvny-klavye", ev.target.checked); if (ev.target.checked) snd.key(); });
-  $("#s-tit").addEventListener("change", (ev) => { set("nvny-titre", ev.target.checked); haptic(12); });
-  $("#s-noff")?.addEventListener("change", (ev) => { const c = ncfg(); c.off = !ev.target.checked; store.set("nvny-ncfg", JSON.stringify(c)); NV.set("ncfg", c); $(".sgrp.nt").classList.toggle("dim", c.off); });
-  $$("[data-nk]").forEach((x) => x.addEventListener("change", () => { const c = ncfg(); c[x.dataset.nk] = x.checked; store.set("nvny-ncfg", JSON.stringify(c)); NV.set("ncfg", c); }));
-  $("#s-mes").addEventListener("change", (ev) => set("nvny-mesafe", ev.target.checked));
-  $("#s-gece").addEventListener("change", (ev) => { set("nvny-gece", ev.target.checked); applyLook(); });
-  $("#s-az").addEventListener("change", (ev) => { set("nvny-az", ev.target.checked); applyLook(); });
+  const head = (t) => `<div class="ayr"><a class="sback" href="${base}"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ayarlar</a><h1 class="stl">${t}</h1>`;
+  const and = /android/i.test(navigator.userAgent);
+  document.title = `${sec ? SECT[sec] || "Ayarlar" : "Ayarlar"} · Ne Var Ne Yok`;
+  let html;
+  if (!sec || !SECT[sec]) {
+    html = `<div class="ayr"><h1 class="stl">Ayarlar</h1>
+      <a class="sme" href="#/?sec=1"><img src="icons/icon-192.png?v=3" alt="" width="60" height="60"><span class="stx"><b>Ne Var Ne Yok</b><small>Şehrim: ${esc(cname)}</small></span>${CHV}</a>
+      ${grp(row(`${base}/bildirimler`, SI.bell, "Bildirimler", nOn ? "Açık" : "Kapalı") + row(`${base}/ses`, SI.ses, "Ses ve Titreşim") + row(`${base}/konum`, SI.konum, "Konum", PERM_TXT[gperm] || ""))}
+      ${grp(row(`${base}/gorunum`, SI.gorunum, "Görünüm") + row("#", SI.ilgi, "İlgi Alanlarım", prefs() ? "Seçili" : "", " data-prefs"))}
+      ${grp(row(`${base}/ana-ekran`, SI.ekran, "Ana Ekran") + row(`${base}/veriler`, SI.veri, "Verilerim"))}
+      ${grp(row(`mailto:${esc(window.NVNY_SITE?.contact || "")}?subject=${encodeURIComponent("Ne Var Ne Yok")}`, SI.yaz, "Bize Yaz") + row(`${base}/hakkinda`, SI.bilgi, "Hakkında"))}
+      <p class="sft c">Ne Var Ne Yok${ver ? " · " + esc(ver.slice(0, 7)) : ""} · by oneside</p></div>`;
+  } else if (sec === "bildirimler") {
+    const top = nperm === "granted" ? tg("s-noff", !C.off, "Bildirimlere İzin Ver")
+      : `<div class="srow"><span class="stx">Bildirimlere İzin Ver</span>${nperm === "denied" ? `<span class="sv">Kapalı</span>` : `<button type="button" class="spill" data-notif>Aç</button>`}</div>`;
+    html = head("Bildirimler") + grp(top, nperm === "denied" ? (isIOS ? "Açmak için iPhone Ayarlar › Bildirimler › Ne Var Ne Yok." : and ? "Açmak için adres çubuğundaki kilit › İzinler › Bildirimler." : "Açmak için tarayıcının site ayarlarını kullan.") : "")
+      + `<div class="sgrp nt${nOn ? "" : " dim"}">${NTYPES.map(([k, t, keys]) => tg("n-" + k, keys.some((x) => C[x] !== false), t, "", ` data-nk="${keys.join(",")}"`)).join("")}</div>`
+      + `<p class="sft">Yalnızca takip ettiğin etkinlikler, mekânlar, sanatçılar ve filmler için gönderilir.</p></div>`;
+  } else if (sec === "ses") {
+    html = head("Ses ve Titreşim") + grp(tg("s-ses", sesOn(), "Dokunma Sesleri") + tg("s-klv", store.get("nvny-klavye") !== "0", "Klavye Sesleri") + tg("s-tit", store.get("nvny-titre") !== "0", "Titreşim"), "Çarklardaki tık, düğmelerdeki hafif ses ve yazarken klavye sesi.") + "</div>";
+  } else if (sec === "konum") {
+    html = head("Konum") + grp(`<div class="srow"><span class="stx">Konum İzni</span>${gperm === "prompt" && !inApp ? `<button type="button" class="spill" data-geo>İzin Ver</button>` : `<span class="sv">${PERM_TXT[gperm] || ""}</span>`}</div>` + tg("s-mes", mesafeOn(), "Uzaklıkları Göster"),
+      "Konumun yalnızca bu telefonda, uzaklığı hesaplamak için kullanılır.") + "</div>";
+  } else if (sec === "gorunum") {
+    const zi = Math.max(0, ZOOMS.findIndex(([z]) => z === +(store.get("nvny-yazi") || 1)));
+    html = head("Görünüm") + grp(tg("s-gece", store.get("nvny-gece") !== "0", "Gece Modu"), "22:00–07:00 arası ekran biraz kısılır ve ısınır.")
+      + `<h4>Yazı Boyutu</h4>` + grp(`<div class="srow col"><div class="seg" id="zseg" style="--n:3;--i:${zi}"><span class="thumb" aria-hidden="true"></span>${ZOOMS.map(([z, l], k) => `<button type="button" data-z="${z}" data-k="${k}" class="${k === zi ? "on" : ""}">${l}</button>`).join("")}</div></div>`)
+      + grp(tg("s-az", store.get("nvny-az") === "1", "Hareketleri Azalt"), "Kayan ve büyüyen geçişler sadeleşir.") + "</div>";
+  } else if (sec === "ana-ekran") {
+    const sc = [["Bu akşam", "#ff9f0a"], ["Planım", "#ff3b30"], ["Sinema", "#bf5af2"], ["Yakınımda", "#0a84ff"]];
+    html = head("Ana Ekran") + `<div class="hsc"><img src="icons/icon-192.png?v=3" alt="" width="64" height="64"><div class="hsm">${sc.map(([t, c]) => `<div><i style="background:${c}"></i><b>${t}</b></div>`).join("")}</div></div>
+      <p class="sft">${standalone ? "Ana ekrandaki simgeye basılı tut; bu kısayollar açılır." : "Uygulamayı indirince simgeye basılı tutup bu kısayolları kullanabilirsin."}${and ? " Bir kısayolu sürükleyip ana ekrana ayrı simge olarak da bırakabilirsin." : ""}</p>
+      ${standalone ? "" : grp(row("indir/", "", "Uygulamayı İndir"))}</div>`;
+  } else if (sec === "veriler") {
+    html = head("Verilerim") + grp(`<button type="button" class="srow red" data-wipe="takip"><span class="stx">Takip Listemi Temizle</span><span class="sv">${Object.keys(follows()).length}</span></button><button type="button" class="srow red" data-wipe="prefs"><span class="stx">İlgi Alanlarımı Sıfırla</span></button>`)
+      + grp(`<button type="button" class="srow red" data-wipe="hepsi"><span class="stx">Her Şeyi Sıfırla</span></button>`, "Takiplerin, ilgi alanların ve ayarların yalnızca bu telefonda saklanır. Hesap yok, sunucu yok.") + "</div>";
+  } else if (sec === "hakkinda") {
+    html = head("Hakkında") + grp(`<div class="srow"><span class="stx">Sürüm</span><span class="sv">${esc(ver.slice(0, 7))}</span></div>` + row("#/bilgi/hakkinda", "", "Ne Var Ne Yok Hakkında") + row("#/bilgi/kaynaklar", "", "Veri Kaynakları"))
+      + grp(row("#/bilgi/gizlilik", "", "Gizlilik") + row("#/bilgi/kosullar", "", "Kullanım Koşulları") + (window.NVNY_SITE?.instagram ? row(esc(window.NVNY_SITE.instagram), "", "Instagram", "", ' target="_blank" rel="noopener"') : "")) + "</div>";
+  }
+  V.innerHTML = html; // Ayarlar'da tanıtım ve alt bilgi yok (iPhone Ayarlar gibi sade)
+  const set = (k, v) => store.set(k, v ? "1" : "0"), on = (id, f) => $(id)?.addEventListener("change", (ev) => { f(ev.target.checked); snd.sel?.(); });
+  on("#s-ses", (v) => { set("nvny-ses", v); if (v) snd.on(); });
+  on("#s-klv", (v) => { set("nvny-klavye", v); if (v) snd.key(); });
+  on("#s-tit", (v) => { set("nvny-titre", v); haptic(12); });
+  on("#s-noff", (v) => { const c = ncfg(); c.off = !v; store.set("nvny-ncfg", JSON.stringify(c)); NV.set("ncfg", c); $(".sgrp.nt")?.classList.toggle("dim", c.off); });
+  $$("[data-nk]").forEach((x) => x.addEventListener("change", () => { const c = ncfg(); x.dataset.nk.split(",").forEach((k) => { c[k] = x.checked; }); store.set("nvny-ncfg", JSON.stringify(c)); NV.set("ncfg", c); }));
+  on("#s-mes", (v) => set("nvny-mesafe", v));
+  on("#s-gece", (v) => { set("nvny-gece", v); applyLook(); });
+  on("#s-az", (v) => { set("nvny-az", v); applyLook(); });
   $$("[data-z]").forEach((b) => b.addEventListener("click", () => { store.set("nvny-yazi", b.dataset.z); $("#zseg").style.setProperty("--i", b.dataset.k); $$("[data-z]").forEach((x) => x.classList.toggle("on", x === b)); applyLook(); }));
-  $("[data-notif]")?.addEventListener("click", async () => { await askNotif(city); viewAyarlar(city); });
-  $("[data-geo]")?.addEventListener("click", () => whereAmI(true).then(() => viewAyarlar(city)).catch((err) => geoHelp(city, err?.code)));
-  $("[data-prefs]").addEventListener("click", (ev) => { ev.preventDefault(); openPrefs(city); });
+  $("[data-notif]")?.addEventListener("click", async () => { await askNotif(city); viewAyarlar(city, sec); });
+  $("[data-geo]")?.addEventListener("click", () => whereAmI(true).then(() => viewAyarlar(city, sec)).catch((err) => geoHelp(city, err?.code)));
+  $("[data-prefs]")?.addEventListener("click", (ev) => { ev.preventDefault(); openPrefs(city, () => viewAyarlar(city, sec)); });
   $$("[data-wipe]").forEach((b) => b.addEventListener("click", () => {
     const k = b.dataset.wipe, q = { takip: "Takip ettiğin bütün etkinlik ve mekânlar silinsin mi?", prefs: "İlgi alanların sıfırlansın mı?", hepsi: "Takiplerin, ilgi alanların ve ayarların silinsin; uygulama ilk günkü gibi açılsın mı?" }[k];
     const sh = sheet(`<div class="pn cfm" role="dialog"><div class="bd2"><p class="cq">${q}</p><div class="cb"><button type="button" data-close>Vazgeç</button><button type="button" class="red" data-yes>Sil</button></div></div></div>`, "mn");
     sh.querySelector("[data-yes]").addEventListener("click", () => {
-      if (k !== "prefs") { saveF({}); vsave({}); }
+      if (k !== "prefs") { saveF({}); vsave({}); asave({}); fsave({}); }
       if (k !== "takip") { store.set("nvny-prefs", ""); NV.set("prefs", null); }
       if (k === "hepsi") { try { Object.keys(localStorage).filter((x) => x.startsWith("nvny-")).forEach((x) => localStorage.removeItem(x)); } catch {} NV.set("ncfg", null); NV.set("follows", {}); }
-      sh.close(); haptic(10); toast("Temizlendi ✓", 2500); if (k === "hepsi") setTimeout(() => location.replace("#/"), 300); else viewAyarlar(city);
+      sh.close(); haptic(10); toast("Temizlendi ✓", 2500); if (k === "hepsi") setTimeout(() => location.replace("#/"), 300); else viewAyarlar(city, sec);
     });
   }));
 }
