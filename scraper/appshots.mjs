@@ -44,7 +44,7 @@ const settle = async (ms = 900) => {
 };
 const go = async (hash) => { await page.goto(BASE + hash, { waitUntil: "domcontentloaded" }); await settle(); };
 const shots = {};
-const snap = async (name) => { const f = join(OUT, `_ekran-${name}.png`); await page.screenshot({ path: f }); shots[name] = "data:image/png;base64," + (await readFile(f)).toString("base64"); log(`ekran: ${name}`); };
+const snap = async (name) => { await page.evaluate(() => document.querySelectorAll(".ph img.p").forEach((i) => { if (i.complete && i.naturalWidth) i.parentNode.classList.add("ok"); })).catch(() => {}); await page.waitForTimeout(450); const f = join(OUT, `_ekran-${name}.png`); await page.screenshot({ path: f }); shots[name] = "data:image/png;base64," + (await readFile(f)).toString("base64"); log(`ekran: ${name}`); };
 
 /* 1) il tekerleği: İstanbul ortada */
 await go("#/");
@@ -59,7 +59,10 @@ for (let k = 0; k < 6; k++) {
   const ok = await page.evaluate(() => new Promise((r) => { const s = [...document.querySelectorAll(".stp .sps")]; const c = s.find((x) => { const b = x.getBoundingClientRect(); return b.left >= -5 && b.left < innerWidth / 2; }) || s[0]; const im = c?.querySelector(".po img, img.bg"); if (!im) return r(true); if (im.complete && im.naturalWidth) return r(true); im.addEventListener("load", () => r(true)); im.addEventListener("error", () => r(false)); setTimeout(() => r(im.naturalWidth > 0), 8000); }));
   if (ok) break; await page.click(".stp .nx").catch(() => {}); await page.waitForTimeout(900);
 }
-await page.waitForTimeout(500); await snap("sehir");
+const dbg = await page.evaluate(() => [...document.querySelectorAll(".stp .po img.p")].slice(0, 4).map((i) => [i.complete, i.naturalWidth, i.parentNode.className, i.src.slice(0, 80)]));
+log("vitrin: " + JSON.stringify(dbg));
+await page.evaluate(() => document.querySelectorAll(".ph img.p").forEach((i) => { if (i.complete && i.naturalWidth) i.parentNode.classList.add("ok"); }));
+await page.waitForTimeout(600); await snap("sehir");
 // biraz aşağı: raflar
 await page.evaluate(() => { const r = document.querySelector(".rail"); if (r) scrollTo(0, r.getBoundingClientRect().top + scrollY - 70); });
 await settle(700); await snap("raflar");
