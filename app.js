@@ -126,9 +126,11 @@ function pcmpHTML(e) {
       <span class="px-nm"><b>${esc(x.site)}</b><small>${sub}</small>${x.price && multi ? `<span class="px-bar"><i style="width:${Math.max(8, Math.round((x.price / hi) * 100))}%"></i></span>` : ""}</span>
       <span class="px-amt">${x.price ? TL(x.price) : "—"}</span><span class="px-go">${best ? "Al" : "Git"}${I.ext}</span></a>
       ${x.cats?.length && x.price ? `<div class="cats">${x.cats.slice(0, 10).map((c) => `<span${c[2] === false ? ' class="x"' : ""}>${esc(c[0])} <b>${TL(c[1])}</b>${c[3] != null ? ` · ${c[3]} boş` : ""}${c[2] === false ? " · tükendi" : ""}</span>`).join("")}</div>` : ""}`; };
-  const head = multi ? `<div class="pch"><div><b>Fiyat karşılaştırması</b><small>${P.length} sitede doğrulanmış fiyat</small></div>${hi > lo ? `<span class="sv">Fark ${TL(hi - lo)}</span>` : `<span class="sv eq">Hepsinde aynı</span>`}</div>`
+  const head = multi ? `<div class="pch"><div><b>Fiyat karşılaştırması</b><small>${P.length} sitede doğrulanmış fiyat · hizmet bedeli siteye göre değişebilir</small></div>${hi > lo ? `<span class="sv">Fark ${TL(hi - lo)}</span>` : `<span class="sv eq">Hepsinde aynı</span>`}</div>`
     : `<div class="pch"><div><b>${T.length > 1 ? "Satış siteleri" : "Satış sitesi"}</b><small>${P.length ? "Fiyat satış sitesinde doğrulandı" : "Güncel fiyat satış sitesinde"}</small></div></div>`;
-  return `<section class="pcx">${head}${T.map(row).join("")}</section>`;
+  // Neden tek kartta: aynı etkinlik bu sitelerde aynı gün, aynı saat ve benzer adla bulundu (kullanıcıya şeffaflık)
+  const why = T.length > 1 ? `<p class="pwhy">Bu etkinlik ${T.length} sitede aynı gün${e.t ? ", aynı saat" : ""} ve benzer adla bulunduğu için tek kartta birleştirildi.</p>` : "";
+  return `<section class="pcx">${head}${T.map(row).join("")}${why}</section>`;
 }
 
 function card(e, city) {

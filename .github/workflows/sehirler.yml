@@ -5,6 +5,7 @@ name: Şehirleri güncelle
 on:
   schedule:
     - cron: "0 0 * * *"   # 03:00 Türkiye saati
+    - cron: "0 11 * * *"  # 14:00 Türkiye saati: gün içinde ikinci tarama (fiyat ve durum tazeliği; değerlendirme önerisi, 15.11.2026)
   workflow_dispatch:
     inputs:
       iller:
