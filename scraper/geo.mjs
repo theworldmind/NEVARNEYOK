@@ -71,6 +71,22 @@ for (const [key, city, v] of todo) {
   venues[key] = { lat: +(+hit.lat).toFixed(7), lng: +(+hit.lon).toFixed(7), addr, ilce: ilce.replace(/ İlçesi$/i, ""), src: "osm", v: 2, osm: (hit.category || hit.class) + "/" + hit.type };
   delete miss[key]; found++;
 }
+/* İğne yolun değil binanın üstünde olsun (kullanıcı, 23:47: "CerModern'de yolu gösteriyor, giriş oradan değil").
+   Google'dan gelen konumlar adresin sokaktaki noktası olabiliyor. Mekânın OpenStreetMap'teki bina/mekân kaydı aranır;
+   adı tutuyor ve eski noktaya 500 m'den yakınsa iğne oraya taşınır (eski nokta "gp" olarak kalır). 30 günde bir yeniden bakılır. */
+const mdist = (a, b) => { const r = Math.PI / 180, x = Math.sin((b[0] - a[0]) * r / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin((b[1] - a[1]) * r / 2) ** 2; return 12742e3 * Math.asin(Math.sqrt(x)); };
+let moved = 0, left = Math.max(0, MAX - tried);
+for (const [k, x] of Object.entries(venues)) {
+  if (left <= 0) break;
+  if (!x || !x.place || x.src === "osm" || (x.chk && (Date.parse(today) - Date.parse(x.chk)) / 864e5 < 30)) continue;
+  const city = TR ? k.split("|")[0] : "ankara", name = TR ? k.split("|").slice(1).join("|") : k;
+  let hit = null;
+  try { want = name; for (const q of variants(name)) { const r = await search(q, city); left--; const near = r.filter((h) => mdist([x.lat, x.lng], [+h.lat, +h.lon]) < 500); if (near.length) { hit = near[0]; break; } if (left <= 0) break; } }
+  catch (err) { log("geo: durdu,", err.message); break; }
+  x.chk = today;
+  if (hit) { if (!x.gp) x.gp = [x.lat, x.lng]; x.lat = +(+hit.lat).toFixed(7); x.lng = +(+hit.lon).toFixed(7); x.osm = (hit.category || hit.class) + "/" + hit.type; moved++; }
+}
+if (moved) log(`geo: ${moved} mekânın iğnesi binanın üstüne taşındı`);
 await writeJSON(join(ROOT, VF), venues, true);
 await writeJSON(join(ROOT, MF), miss, true);
 log(`geo: ${todo.length} mekân denendi (${tried} istek), ${found} konum bulundu; toplam ${Object.keys(venues).length} mekânın konumu var`);
