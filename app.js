@@ -343,11 +343,11 @@ function viewCity(city) {
   const featured = pick(E.filter((e) => e.img && e.d <= addD(today, 10)), 8);
   const byCat = (c) => pick(weekL.filter((e) => e.cat === c && e.img), 14).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "").localeCompare(b.t || ""));
   const k = (q) => `#/${city}/kesfet?${q}`;
-  V.innerHTML = `<div class="wash" aria-hidden="true">${featured.map((e, k) => `<img src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async"${k ? "" : ' style="opacity:.42"'}>`).join("")}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1><div class="st"><span><b>${todayL.length}</b> etkinlik bugün</span><span><b>${weekL.length.toLocaleString("tr-TR")}</b> bu hafta</span>${DATA.films?.films?.length ? `<span><b>${DATA.films.films.filter((f) => f.s && Object.keys(f.s).length).length}</b> film vizyonda</span>` : ""}</div>
+  V.innerHTML = `<div class="wash" aria-hidden="true">${featured.map((e, k) => `<img src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async"${k ? "" : ' style="opacity:.42"'}>`).join("")}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1><div id="tdy"></div>
   <button type="button" class="pz" id="pz">${prefs() ? `<span class="dot"></span>Senin için kişiselleştirildi<em>Düzenle</em>` : `${I.spark}Kişiselleştir<em>İlgi alanlarını seç, sana uygun etkinlikler öne çıksın</em>`}</button></section>
   <div class="qk2"><button type="button" id="tnt"><span>🌙</span>Bu akşam ne yapsak?</button><button type="button" id="nrb"><span>📍</span>Yakınımda</button></div>
   ${stories(featured, (e) => `#/${city}/e/${encodeURIComponent(e.slug)}`)}
-  <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
+  <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Ara ya da yaz: cumartesi akşam konser…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
   <div class="qk"><a href="${k("t=bugun")}">Bugün</a><a href="${k("t=yarin")}">Yarın</a><a href="${k("t=haftasonu")}">Hafta sonu</a><a href="#/${city}/sinema">Sinema</a>${Object.keys(CATS).filter((c) => c !== "sinema" && weekL.some((e) => e.cat === c)).map((c) => `<a href="${k("k=" + c)}">${esc(CATS[c])}</a>`).join("")}</div>
   ${notifAsk(city)}
   ${prefs() ? rail("Senin için", "İlgi alanlarına göre bu hafta", uniq([...weekL.filter((e) => e.img)].sort((a, b) => pscore(b) - pscore(a)), 16), city, k("sira=sen&t=hafta")) : ""}
@@ -370,10 +370,11 @@ function viewCity(city) {
       () => rail("Yeni eklenenler", "Son 3 günde", uniq(E.filter((e) => e.isNew && e.img).sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || "")), 16), city, k("yeni=1"))];
     const step = () => { if (!document.body.contains(lt) || !parts.length) return; lt.insertAdjacentHTML("beforebegin", parts.shift()()); idle(step, { timeout: 600 }); };
     idle(step, { timeout: 600 }); }
-  $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); location.hash = `#/${city}/kesfet?q=${encodeURIComponent($("#q").value.trim())}`; });
+  $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); $("#q").blur(); searchGo(city, $("#q").value.trim()); });
   $("#pz").addEventListener("click", () => openPrefs(city, () => viewCity(city)));
   $("#tnt").addEventListener("click", () => tonightSheet(city)); $("#nrb").addEventListener("click", () => nearMe(city));
   kacamak(city);
+  todayCard(city, $("#tdy"), todayL.length, tonight.length, DATA.films?.films?.filter((f) => f.s?.[today]?.length).length || 0);
   bindNotifAsk(city);
   storyInit();
 }
@@ -429,7 +430,7 @@ function viewKesfet(city, f) {
   document.title = `${title} · ${CITIES.find((c) => c.id === city)?.name} · Ne Var Ne Yok`;
   const chips = chipsOf(f).filter(([k]) => k !== "q"), go = (nf) => { location.hash = `#/${city}/kesfet?${toQ(nf)}`; };
   V.innerHTML = `<div class="kh"><h1>${esc(title)}</h1><p>${L.length.toLocaleString("tr-TR")} etkinlik · ${esc(CITIES.find((c) => c.id === city)?.name || "")}</p></div>
-  <div class="fz"><form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" value="${esc(f.q || "")}" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label>
+  <div class="fz"><form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" value="${esc(f.q || "")}" placeholder="Ara ya da yaz: cumartesi akşam konser…" enterkeyhint="search"></label>
   <button type="button" class="fbtn${chips.length ? " on" : ""}" id="fo">${I.flt}<span class="fl">Filtrele</span>${chips.length ? `<span class="n">${chips.length}</span>` : ""}</button></form>
   <div class="frow"><div class="act">${chips.map(([k, l]) => `<button type="button" data-x="${esc(k)}">${esc(l)}</button>`).join("")}</div><button type="button" class="srtb" id="srt">${esc(SIRA[f.sira || ""])}<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div></div>
   <div class="wrap"><div class="seg vw" style="--n:3;--i:${VWI[f.gor || ""] || 0}"><span class="thumb" aria-hidden="true"></span><button type="button" data-vw="" class="${!f.gor ? "on" : ""}">Liste</button><button type="button" data-vw="harita" class="${f.gor === "harita" ? "on" : ""}">Harita</button><button type="button" data-vw="takvim" class="${f.gor === "takvim" ? "on" : ""}">Takvim</button></div></div>
@@ -440,7 +441,7 @@ function viewKesfet(city, f) {
   shown = 60; const gr = $("#gr"), mr = $("#mr");
   const paint = () => { if (!gr) return; gr.innerHTML = L.slice(0, shown).map((e) => card(e, city)).join(""); mr.innerHTML = L.length > shown ? `<button class="more" id="more">Daha fazla göster (${(L.length - shown).toLocaleString("tr-TR")})</button>` : ""; $("#more")?.addEventListener("click", () => { shown += 60; paint(); }); };
   paint();
-  $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); $("#q").blur(); go({ ...f, q: $("#q").value.trim() }); });
+  $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); $("#q").blur(); const v = $("#q").value.trim(), nf = v ? nlParse(v) : null; if (nf) { haptic(5); go({ ...(f.gor ? { gor: f.gor } : {}), ...nf }); } else go({ ...f, q: v }); });
   $$("[data-x]").forEach((b) => b.addEventListener("click", () => go(dropChip(f, b.dataset.x))));
   $("#fo").addEventListener("click", () => openFilters(city, f));
   $("#srt").addEventListener("click", () => sortMenu(f, go));
@@ -576,7 +577,8 @@ function viewEvent(city, slug) {
     <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}Takvime ekle</button><button type="button" id="shr">${I.share}Paylaş</button></div>
     ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl"><span>🎤</span><span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>
     ${live(e) ? `<p class="flh">Takip edersen fiyatı düştüğünde, iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
-    <section class="sec"><h3>Bu etkinlik hakkında</h3><p>${esc(descOf(e))}</p></section>
+    <section class="sec"><h3>Bu etkinlik hakkında</h3><p>${esc(descOf(e))}</p><a class="wrong" href="${wrongMail(e, city)}">Bir yanlış mı var? Bize yaz →</a></section>
+    <div id="wxb"></div>
     <section class="sec"><h3>Konum</h3><div class="mapc">${v?.lat ? `<div class="map" id="map"></div>` : ""}<div class="ad">${I.pin}<span><b>${esc(e.venue || "")}</b><small>${esc(v?.addr || (v?.ilce ? v.ilce + ", " : "") + (CITIES.find((c) => c.id === city)?.name || ""))}</small></span><button type="button" id="vfl" class="vfl${vfol()[vkey(city, e.venue)] ? " on" : ""}">${vfol()[vkey(city, e.venue)] ? I.bellOn + "Mekân takipte" : I.pin + "Mekânı takip et"}</button></div><div class="bt">${v?.lat ? `<button type="button" class="p" id="rte">${I.dir}Yol tarifi</button>` : `<a class="p" href="${dirU}" target="_blank" rel="noopener">${I.dir}Yol tarifi</a>`}<a href="${mapU}" target="_blank" rel="noopener">${I.ext}Haritada aç</a></div></div></section>
   </div></div></div></article>
   ${same.length ? rail("Aynı mekânda", e.venue, same, city, `#/${city}/kesfet?m=${encodeURIComponent(e.venue)}`) : ""}
@@ -588,6 +590,7 @@ function viewEvent(city, slug) {
   $("#flw").addEventListener("click", () => toggleFollow(e, city));
   $("#afl")?.addEventListener("click", (ev) => toggleArtist(e, city, ev.currentTarget));
   otherCities(e, city);
+  wxCard(e, city, $("#wxb"));
   if (v?.lat) { mapInit(v.lat, v.lng); $("#rte").addEventListener("click", () => routeSheet(e, v, city, dirU)); const d = $("#dst"); if (d) distFill(v, d); }
 }
 let leafletP = null;
@@ -752,8 +755,8 @@ function followBoot() {
 const C = window.NVNY_SITE?.contact || "";
 const PAGES = {
   hakkinda: ["Hakkında", `<p><b>Ne Var Ne Yok</b>, şehrinde yapılacak konser, tiyatro, stand-up, opera, bale, çocuk etkinliği, festival, parti ve atölyeleri bir arada gösteren bağımsız bir etkinlik rehberidir.</p><p>Bilet satmıyoruz. Her etkinlikte, bileti satan sitelerin hepsi fiyatlarıyla yan yana gösterilir; “Bilet al” düğmesi seni doğrudan o sitenin satış sayfasına götürür. Satın alma, iade ve değişiklik işlemleri ilgili bilet sitesinin kurallarına tabidir.</p><p>Reklam almıyoruz, komisyon almıyoruz, kimseden ücret almıyoruz. Bir etkinliğin listede yer alması ya da öne çıkması için ödeme yapılmaz.</p><p>Şu an Ankara açık; diğer şehirler yakında.</p>`],
-  kaynaklar: ["Veri kaynakları", `<p>Etkinlikler bilet sitelerinin, kurumların, mekânların ve belediyelerin herkese açık sayfalarından toplanır.</p><p>Toplama her sabah yeniden yapılır; öğleden sonra da bilinen etkinliklerin fiyat ve satış durumu bir kez daha kontrol edilir. Bir site o gün okunamazsa son doğrulanmış bilgisi korunur. Tarihi geçen etkinlikler kendiliğinden kaldırılır. Elle eklenen etkinlikler de aynı listeye katılır.</p><p>Gösterilen fiyat, o sitede listelenen en uygun kategoridir. Fiyat, seans ve satış durumu satış sitesinde değişebilir; satın almadan önce bilet sayfasını kontrol et.</p><p>Etkinlik sayfasındaki harita OpenStreetMap'ten gelir (© OpenStreetMap katkıcıları); mekân konumları OpenStreetMap Nominatim ile bulunur. Yol tarifi ve "Haritada aç" Google Haritalar'a bağlanır.</p>`],
-  gizlilik: ["Gizlilik", `<p>Bu site hesap açtırmaz, form doldurtmaz ve kişisel veri toplamaz. Çerez ya da reklam takibi kullanmaz.</p><p>Kaç kişinin siteye girdiğini görmek için çerezsiz bir sayaç (GoatCounter) kullanılır: kimliğin, IP adresin ya da cihaz kimliğin saklanmaz; yalnızca girilen sayfa, gelinen site ve tarayıcı türü gibi kimseyi tanımlamayan toplam sayılar tutulur. Uygulamayı indirme, takip etme, bildirimleri açma ve "Bilet al" düğmelerine kaç kez basıldığı da aynı şekilde yalnızca sayı olarak tutulur.</p><p>Seçtiğin şehir, ilgi alanların (Kişiselleştir) ve takip ettiğin etkinlikler yalnızca kendi telefonunda ya da tarayıcında saklanır; sunucuya gönderilmez. Tarayıcı verilerini silerek bunları kaldırabilirsin.</p><p>Bildirimler isteğe bağlıdır ve yalnızca sen izin verirsen açılır. Bildirimler telefonun kendisinde, sitemizin herkese açık etkinlik listesiyle karşılaştırılarak oluşturulur; hiçbir bildirim sunucusu ya da kimlik kullanılmaz, kimin neyi takip ettiğini biz bilmeyiz. Bildirimleri tarayıcı ya da telefon ayarlarından istediğin an kapatabilirsin.</p><p>Etkinlik sayfasındaki harita için tarayıcın OpenStreetMap'ten harita parçalarını indirir; senin konumun gönderilmez. Uzaklık ("Senden 3,4 km") yalnızca telefonunda hesaplanır. Uygulama içinde yol tarifi istersen, yolu hesaplamak için yalnızca başlangıç ve varış noktası OpenStreetMap topluluğunun (FOSSGIS) yol sunucusuna gönderilir; biz saklamayız. Bilet sitelerine ve Google Haritalar'a gittiğinde o sitelerin kendi gizlilik kuralları geçerlidir.</p>`],
+  kaynaklar: ["Veri kaynakları", `<p>Etkinlikler bilet sitelerinin, kurumların, mekânların ve belediyelerin herkese açık sayfalarından toplanır.</p><p>Hava durumu: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0). Harita: © OpenStreetMap katkıcıları. Uygulama içi yol tarifi: OpenStreetMap verisiyle FOSSGIS yol sunucusu.</p><p>Toplama her sabah yeniden yapılır; öğleden sonra da bilinen etkinliklerin fiyat ve satış durumu bir kez daha kontrol edilir. Bir site o gün okunamazsa son doğrulanmış bilgisi korunur. Tarihi geçen etkinlikler kendiliğinden kaldırılır. Elle eklenen etkinlikler de aynı listeye katılır.</p><p>Gösterilen fiyat, o sitede listelenen en uygun kategoridir. Fiyat, seans ve satış durumu satış sitesinde değişebilir; satın almadan önce bilet sayfasını kontrol et.</p><p>Etkinlik sayfasındaki harita OpenStreetMap'ten gelir (© OpenStreetMap katkıcıları); mekân konumları OpenStreetMap Nominatim ile bulunur. Yol tarifi ve "Haritada aç" Google Haritalar'a bağlanır.</p>`],
+  gizlilik: ["Gizlilik", `<p>Bu site hesap açtırmaz, form doldurtmaz ve kişisel veri toplamaz. Çerez ya da reklam takibi kullanmaz.</p><p>Kaç kişinin siteye girdiğini görmek için çerezsiz bir sayaç (GoatCounter) kullanılır: kimliğin, IP adresin ya da cihaz kimliğin saklanmaz; yalnızca girilen sayfa, gelinen site ve tarayıcı türü gibi kimseyi tanımlamayan toplam sayılar tutulur. Uygulamayı indirme, takip etme, bildirimleri açma ve "Bilet al" düğmelerine kaç kez basıldığı da aynı şekilde yalnızca sayı olarak tutulur.</p><p>Seçtiğin şehir, ilgi alanların (Kişiselleştir) ve takip ettiğin etkinlikler yalnızca kendi telefonunda ya da tarayıcında saklanır; sunucuya gönderilmez. Tarayıcı verilerini silerek bunları kaldırabilirsin.</p><p>Bildirimler isteğe bağlıdır ve yalnızca sen izin verirsen açılır. Bildirimler telefonun kendisinde, sitemizin herkese açık etkinlik listesiyle karşılaştırılarak oluşturulur; hiçbir bildirim sunucusu ya da kimlik kullanılmaz, kimin neyi takip ettiğini biz bilmeyiz. Bildirimleri tarayıcı ya da telefon ayarlarından istediğin an kapatabilirsin.</p><p>Etkinlik sayfasındaki harita için tarayıcın OpenStreetMap'ten harita parçalarını indirir; senin konumun gönderilmez. Uzaklık ("Senden 3,4 km") yalnızca telefonunda hesaplanır. Hava durumu için Open-Meteo'ya yalnızca ilin ya da mekânın koordinatı gönderilir, senin konumun değil. Uygulama içinde yol tarifi istersen, yolu hesaplamak için yalnızca başlangıç ve varış noktası OpenStreetMap topluluğunun (FOSSGIS) yol sunucusuna gönderilir; biz saklamayız. Bilet sitelerine ve Google Haritalar'a gittiğinde o sitelerin kendi gizlilik kuralları geçerlidir.</p>`],
   kosullar: ["Kullanım koşulları", `<p>Bu site bilgilendirme amaçlıdır. Etkinlik bilgileri (ad, tarih, saat, mekân, fiyat, satış durumu) herkese açık sayfalardan otomatik toplanır; tanıtım metinleri kopyalanmaz. Afişler kopyalanmaz ve sunucumuzda saklanmaz: yalnızca yayımlandıkları kaynak adresten, değiştirilmeden gösterilir (gömülür) ve her afişin üzerinde kaynağı yazar. Kaynak afişi kaldırdığında bizde de görünmez. Etkinlik tanımları bu bilgilerden site tarafından yazılır. Toplayıcı kendini <i>NeVarNeYokBot</i> olarak tanıtır ve sitelerin robots.txt kurallarına uyar.</p><p>Hak sahipleri bir içeriğin kaldırılmasını <a href="mailto:${C}?subject=Kald%C4%B1rma%20talebi">${C}</a> adresinden isteyebilir; talep en geç 48 saat içinde, afişlerde 24 saat içinde yerine getirilir.</p><p>Etkinlik bilgileri; doğruluğu için özen gösterilir ama tarih, saat, fiyat ve satış durumunda değişiklik olabilir. Kesin bilgi her zaman etkinliğin satıldığı sitededir.</p><p>Bilet satın alma işlemleri bu sitede değil, bağlantı verilen bilet sitelerinde yapılır; o işlemlerden ilgili site sorumludur. Etkinlik adları, afişler ve markalar sahiplerine aittir. Afişi olmayan etkinliklerde görülen görseller site tarafından çizilmiş temsili çizimlerdir.</p>`],
   iletisim: ["İletişim", `<p>Soru, öneri, etkinlik ekleme ya da kaldırma talebi için: <a href="mailto:${C}">${C}</a></p><p>Organizatörsen etkinliğini bize yazabilirsin; tanıtım metnin olduğu gibi gösterilebilir.</p>`],
 };
@@ -1456,4 +1459,81 @@ function kacamak(city) {
   io.observe(box);
 }
 
-boot().then(() => { shortcutBoot(); route(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });
+/* ---------- Konuşur gibi arama (kullanıcı isteği, 15.11.2026 00:03): "cumartesi akşam ücretsiz konser", "yarın çocukla ne yapılır" ----------
+   Tamamen telefonda: cümledeki gün, saat, kategori, fiyat, kimler için, semt ve "yakınımda" sözleri filtreye çevrilir; kalan sözcükler ad/mekân araması olur. */
+const NLW = { pazar: 0, pazartesi: 1, sali: 2, carsamba: 3, persembe: 4, cuma: 5, cumartesi: 6 };
+const NLC = [[/\b(cocuk tiyatro\w*|cocuk oyun\w*)\b/, "cocuk"], [/\b(konser\w*|muzik\w*|canli muzik)\b/, "konser"], [/\b(tiyatro\w*|oyun|oyunu|oyunlar\w*)\b/, "tiyatro"], [/\b(stand ?up\w*|standup\w*|komedi\w*|guldur\w*)\b/, "standup"], [/\b(opera\w*|bale\w*|dans\w*)\b/, "sahne"],
+  [/\b(festival\w*|fest)\b/, "festival"], [/\b(parti\w*|dj|gece kulubu)\b/, "parti"], [/\b(atolye\w*|soylesi\w*|workshop|quiz\w*)\b/, "atolye"], [/\b(sinema\w*|film\w*)\b/, "sinema"]];
+const NLSTOP = new Set("ne yapsak yapilir yapabilirim var mi neler nerede gidelim gidilir gitsek bir bi icin ile ve da de etkinlik etkinlikler etkinlikleri olan olacak bakalim goster bul istiyorum lazim acaba hangi".split(" "));
+function nlParse(q0) {
+  let q = " " + fold(q0) + " ", f = {}; const hit = (re) => { if (re.test(q)) { q = q.replace(re, " "); return true; } return false; };
+  const { d: today } = nowIST(), dow = pd(today).getDay();
+  if (hit(/\bbu ?aksam\b/)) { f.t = "bugun"; f.s = "aksam,gece"; }
+  if (hit(/\bbu ?gece\b/)) { f.t = "bugun"; f.s = "gece"; }
+  if (hit(/\b(bugun|bu gun)\b/)) f.t = "bugun";
+  if (hit(/\byarin\w*\b/)) f.t = "yarin";
+  if (hit(/\b(hafta ?sonu\w*|haftasonu\w*)\b/)) f.t = "haftasonu";
+  if (hit(/\bbu hafta\w*\b/)) f.t = "hafta";
+  if (hit(/\bbu ay\w*\b/)) f.t = "ay";
+  for (const [w, n] of Object.entries(NLW)) if (hit(new RegExp("\\b" + w + "(ya|ye|a|e|ki|gunu|aksami|gecesi|sabahi)?\\b"))) { f.gun = addD(today, (n - dow + 7) % 7); delete f.t; }
+  { const m = q.match(/\b(\d{1,2})\s*(ocak|subat|mart|nisan|mayis|haziran|temmuz|agustos|eylul|ekim|kasim|aralik)\b/); if (m) { const ay = ["ocak", "subat", "mart", "nisan", "mayis", "haziran", "temmuz", "agustos", "eylul", "ekim", "kasim", "aralik"].indexOf(m[2]); let y = +today.slice(0, 4); const ds = (yy) => `${yy}-${String(ay + 1).padStart(2, "0")}-${String(+m[1]).padStart(2, "0")}`; if (ds(y) < today) y++; f.gun = ds(y); delete f.t; q = q.replace(m[0], " "); } }
+  const S = []; if (hit(/\bsabah\w*\b/)) S.push("sabah"); if (hit(/\b(ogle\w*|ogleden sonra|gunduz\w*)\b/)) S.push("ogle"); if (hit(/\baksam\w*\b/)) S.push("aksam"); if (hit(/\bgece\w*\b/)) S.push("gece"); if (S.length) f.s = [...new Set([...(f.s ? f.s.split(",") : []), ...S])].join(",");
+  if (hit(/\b(cocuk\w*|aile\w*|minik\w*|bebek\w*)\b/)) f.c = "cocuk";
+  if (hit(/\b(18 ?\+|yetiskin\w*)\b/)) f.c = "yetiskin";
+  const K = []; for (const [re, c] of NLC) if (hit(re)) K.push(c); if (K.length) f.k = [...new Set(K)].join(",");
+  if (hit(/\b(ucretsiz|bedava|free|parasiz)\b/)) f.ucr = 1;
+  { const m = q.match(/\b(\d{2,5})\s*(tl|lira|₺)?\s*(alti|altinda|kadar|ya kadar|ye kadar|dan ucuz|den ucuz)\b/); if (m) { const v = +m[1], b = [250, 500, 750, 1000].find((x) => v <= x) || 1000; f.p = b; q = q.replace(m[0], " "); } }
+  if (hit(/\b(ucuz\w*|uygun fiyat\w*|ekonomik)\b/)) f.p = f.p || 500;
+  if (hit(/\b(yakin\w*|yakinimda|yakinda|etrafimda|civarda)\b/)) f.sira = "yakin";
+  if (hit(/\b(yeni eklenen\w*|yeni)\b/)) f.yeni = 1;
+  if (hit(/\b(fiyati dusen\w*|indirim\w*)\b/)) f.dus = 1;
+  for (const [n] of ILCELER()) { const fn = fold(n); if (fn.length > 3 && q.includes(" " + fn)) { f.il = [...new Set([...(f.il ? f.il.split(",") : []), fn.replace(/\s+/g, "")])].join(","); q = q.replace(new RegExp("\\b" + fn + "\\w*\\b"), " "); } }
+  const rest = q.split(/\s+/).filter((w) => w && !NLSTOP.has(w) && w.length > 1);
+  const structured = Object.keys(f).length > 0; if (rest.length) f.q = rest.join(" ");
+  return structured ? f : null;
+}
+function searchGo(city, raw, base = {}) {
+  const f = raw ? nlParse(raw) : null;
+  if (f) { haptic(5); location.hash = `#/${city}/kesfet?${toQ({ ...base, q: "", t: "", gun: "", ...f })}`; return; }
+  location.hash = `#/${city}/kesfet?${toQ({ ...base, q: raw })}`;
+}
+
+/* ---------- Hava durumu (kullanıcı isteği, 15.11.2026: "Apple kalitesinde, altında bağlantı olmasın") ----------
+   Open-Meteo (anahtarsız, ücretsiz; CC BY 4.0, kaynak Kaynaklar sayfasında). İstek yalnızca ilin/mekânın koordinatıyla yapılır, kişinin konumu gitmez. 16 gün. */
+const WX = new Map();
+const WMO = (c) => c === 0 ? ["☀️", "Açık"] : c <= 2 ? ["🌤️", "Parçalı bulutlu"] : c === 3 ? ["☁️", "Kapalı"] : c <= 48 ? ["🌫️", "Sisli"] : c <= 57 ? ["🌦️", "Çisenti"] : c <= 67 ? ["🌧️", "Yağmurlu"] : c <= 77 ? ["❄️", "Karlı"] : c <= 82 ? ["🌧️", "Sağanak"] : c <= 86 ? ["🌨️", "Kar sağanağı"] : ["⛈️", "Gök gürültülü"];
+function wxOf(lat, lng) {
+  const k = lat.toFixed(1) + "," + lng.toFixed(1); if (WX.has(k)) return WX.get(k);
+  const p = fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(2)}&longitude=${lng.toFixed(2)}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&hourly=temperature_2m,weather_code,precipitation_probability&timezone=Europe%2FIstanbul&forecast_days=16`)
+    .then((r) => r.ok ? r.json() : null).then((j) => { if (!j?.daily) return null; const D = {}; j.daily.time.forEach((d, i) => { D[d] = { c: j.daily.weather_code[i], hi: Math.round(j.daily.temperature_2m_max[i]), lo: Math.round(j.daily.temperature_2m_min[i]), pp: j.daily.precipitation_probability_max[i] }; });
+      const H = {}; (j.hourly?.time || []).forEach((t, i) => { H[t] = { tp: Math.round(j.hourly.temperature_2m[i]), c: j.hourly.weather_code[i], pp: j.hourly.precipitation_probability[i] }; }); return { D, H }; }).catch(() => null);
+  WX.set(k, p); return p;
+}
+async function wxCard(e, city, box) {
+  const v = vOf(e.venue), ll = v?.lat ? [v.lat, v.lng] : ILLL[city]; if (!ll || !box) return;
+  const w = await wxOf(ll[0], ll[1]); const d = w?.D[e.d]; if (!d || !document.body.contains(box)) return;
+  const h = e.t ? w.H[`${e.d}T${e.t.slice(0, 2)}:00`] : null, [ic, tx] = WMO(h ? h.c : d.c), rain = (h ? h.pp : d.pp) || 0;
+  box.innerHTML = `<div class="wxc"><small class="wx0">O GÜN HAVA · ${esc(dLong(e.d).toLocaleUpperCase("tr"))}</small><div class="wx1"><span class="wxi">${ic}</span><div><b>${h ? h.tp : d.hi}°</b><small>${esc(tx)}${e.t ? " · saat " + esc(e.t) : ""}</small></div></div><div class="wx2"><span>En yüksek <b>${d.hi}°</b></span><span>En düşük <b>${d.lo}°</b></span><span>Yağış <b>%${rain}</b></span></div>${rain >= 50 ? `<p>☂️ Şemsiyeni unutma.</p>` : d.hi <= 5 ? `<p>🧣 Sıkı giyin, hava soğuk.</p>` : ""}</div>`;
+}
+
+/* ---------- Bugünün özeti (şehir sayfasının üstünde, Apple widget'ı gibi tek cam kart) ---------- */
+async function todayCard(city, box, n, nT, nF) {
+  if (!box) return; const { d: today } = nowIST(), dt = pd(today);
+  const draw = (wx, near) => { if (!document.body.contains(box)) return; const [ic, tx] = wx ? WMO(wx.c) : ["", ""];
+    box.innerHTML = `<div class="tdy"><div class="td1"><small>BUGÜN</small><b>${dt.getDate()} ${AY[dt.getMonth()]}</b><span>${GUN[dt.getDay()]}</span></div>${wx ? `<div class="td2"><span>${ic}</span><b>${wx.hi}°</b><small>${esc(tx)} · ${wx.lo}°</small></div>` : ""}
+      <div class="td3"><a href="#/${city}/kesfet?t=bugun"><b>${n}</b><small>etkinlik</small></a><a href="#/${city}/kesfet?t=bugun&s=aksam,gece"><b>${nT}</b><small>bu akşam</small></a>${nF ? `<a href="#/${city}/sinema"><b>${nF}</b><small>film</small></a>` : ""}${near ? `<a href="#/${city}/kesfet?sira=yakin&t=bugun"><b>${near}</b><small>en yakını</small></a>` : ""}</div></div>`; };
+  draw(null, ""); const ll = ILLL[city]; let wx = null, near = "";
+  if (ll) { const w = await wxOf(ll[0], ll[1]); wx = w?.D[today] || null; }
+  if (mesafeOn() && ((DATA.me && !DATA.me.c) || await geoGranted())) { try { const p = await whereAmI(); const L = DATA.events.filter((e) => e.d === today && live(e)).map((e) => vOf(e.venue)).filter((v) => v?.lat).map((v) => km(p, [v.lat, v.lng])); if (L.length) near = kmTxt(Math.min(...L)); } catch {} }
+  draw(wx, near);
+}
+
+/* ---------- Güven: "Bir yanlış mı var?" ve çevrimdışı uyarısı ---------- */
+const wrongMail = (e, city) => `mailto:${esc(window.NVNY_SITE?.contact || "")}?subject=${encodeURIComponent("Yanlış bilgi: " + e.title)}&body=${encodeURIComponent(`Etkinlik: ${e.title}\nTarih: ${dLong(e.d)} ${e.t || ""}\nMekân: ${e.venue || ""}\nİl: ${CITIES.find((c) => c.id === city)?.name || city}\nBağlantı: ${location.origin}/e/${city}/${e.slug}/\n\nNe yanlış? (ör. konum, saat, iptal oldu):\n`)}`;
+function offlineBoot() {
+  const bar = document.createElement("div"); bar.className = "offb"; bar.setAttribute("role", "status"); bar.innerHTML = "📡 Bağlantı yok · son bakılan bilgiler gösteriliyor"; document.body.append(bar);
+  const set = () => { bar.classList.toggle("on", !navigator.onLine); if (navigator.onLine && bar.dataset.was === "1") { toast("Bağlantı geri geldi ✓", 2200); } bar.dataset.was = navigator.onLine ? "0" : "1"; };
+  addEventListener("online", set); addEventListener("offline", set); set();
+}
+
+boot().then(() => { offlineBoot(); shortcutBoot(); route(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });
