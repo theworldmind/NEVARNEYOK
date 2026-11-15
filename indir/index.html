@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr" data-ver="2026-11-15-2158">
+<html lang="tr" data-ver="2026-11-15-2310">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -294,7 +294,7 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
    SAYFAYI HER DEĞİŞTİRİŞTE <html data-ver> DEĞERİNİ DE DEĞİŞTİR. */
 (function(){try{var me=document.documentElement.getAttribute("data-ver");
   fetch(location.pathname+"?_="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/data-ver="([^"]+)"/);
-    if(m&&m[1]!==me&&sessionStorage.getItem("nvny-indir-ver")!==m[1]){sessionStorage.setItem("nvny-indir-ver",m[1]);var q=location.search.replace(/[?&]_v=[^&]*/,"");location.replace(location.pathname+(q?q+"&":"?")+"_v="+m[1])}}).catch(function(){})}catch(e){}})();
+    if(m&&m[1]!==me&&location.search.indexOf("_v="+m[1])<0){var q=location.search.replace(/[?&]_v=[^&]*/,"");location.replace(location.pathname+(q?q+"&":"?")+"_v="+m[1])}}).catch(function(){})}catch(e){}})();
 (function(){
   var ua=navigator.userAgent,SH=document.getElementById("sh"),H=document.getElementById("how"),B=document.getElementById("go"),L=document.getElementById("gol"),PL=document.getElementById("plat"),dp=null;
   var ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua),

@@ -1006,10 +1006,12 @@ const inApp = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|TikTok|musical_ly|Twitter
 function geoHelp(city, code) {
   const and = /android/i.test(navigator.userAgent);
   if (inApp) { // Instagram vb. kendi tarayıcısı sitelere konum izni vermez: gerçek tarayıcıda aç (izin penceresi orada çıkar)
-    const u = location.host + location.pathname + `#/${city}/kesfet?sira=yakin&t=hafta`, open = and ? `intent://${u}#Intent;scheme=https;package=com.android.chrome;end` : `x-safari-https://${u}`;
+    // bağlantıda # olmasın (Instagram'ın tarayıcısı "intent" içinde ikinci # görünce boş sayfada kalıyordu); hedef ?k=yakin&il=… ile açılır
+    const u = `${location.host}/?k=yakin&il=${city}`, open = and ? `intent://${u}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent("https://" + u)};end` : `x-safari-https://${u}`;
     const sh = sheet(`<div class="pn" role="dialog" aria-label="Konum"><div class="hd"><b>📍 Yakınındaki etkinlikler</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
       <div class="bd2"><p class="pl1">Instagram'ın içindeki tarayıcı sitelere konum izni vermiyor. ${and ? "Chrome'da" : "Safari'de"} açınca izin penceresi hemen çıkar.</p>
-      <div class="pl-b"><a class="ok" href="${open}">${and ? "Chrome'da aç" : "Safari'de aç"}</a><a href="#" data-center>Şehir merkezine göre sırala</a></div></div></div>`, "mn");
+      <div class="pl-b"><a class="ok" href="${open}">${and ? "Chrome'da aç" : "Safari'de aç"}</a><a href="#" data-center>Şehir merkezine göre sırala</a></div>
+      <p class="pl1" style="margin-top:14px;color:var(--t3);font-size:13px">Açılmazsa sağ üstteki <b>⋮</b> menüsünden <b>Tarayıcıda aç</b>'ı seç.</p></div></div>`, "mn");
     sh.querySelector("[data-center]").addEventListener("click", (ev) => { ev.preventDefault(); const c = cityCenter(city); sh.close(); if (!c) return; DATA.me = { p: c, t: Date.now(), c: 1 }; goNear(city); });
     return;
   }
@@ -1117,7 +1119,9 @@ function viewPlan(city, tab) {
 /* ---------- Simge kısayolları (Android/bilgisayar: simgeye basılı tut) ---------- */
 function shortcutBoot() {
   const k = new URLSearchParams(location.search).get("k"); if (!k) return;
-  const city = (() => { const s = store.get("nvny-city"); return s && CITIES.find((c) => c.id === s && c.live) ? s : "ankara"; })();
+  const il = new URLSearchParams(location.search).get("il");
+  const city = (() => { const s = il || store.get("nvny-city"); return s && CITIES.find((c) => c.id === s && c.live) ? s : "ankara"; })();
+  if (il && CITIES.find((c) => c.id === il && c.live)) { store.set("nvny-city", il); store.set("nvny-intro", "1"); }
   history.replaceState(null, "", location.pathname + ({ aksam: `#/${city}`, sinema: `#/${city}/sinema`, plan: `#/${city}/takip`, yakin: `#/${city}` }[k] || `#/${city}`));
   if (k === "aksam") setTimeout(() => { if (DATA.ready) tonightSheet(city); }, 900);
   if (k === "yakin") setTimeout(() => nearMe(city), 900);

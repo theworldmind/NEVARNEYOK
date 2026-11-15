@@ -730,8 +730,11 @@ html.gece body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-eve
 try{if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true)document.documentElement.classList.add("app")}catch(e){}
 window.NVNY_SITE={contact:"contact.openmind.vision@gmail.com",instagram:"https://www.instagram.com/nevarneyok.etkinlik/"};
 </script>
-<script>/* Kendini yenileme (kullanıcı, 23:01: Instagram ve tarayıcılar eski kopyayı gösterdi): sayfanın taze kopyasındaki app.js sürümü farklıysa bir kez yeniden yükle. */
-(function(){try{var m=document.querySelector('script[src^="app.js?v="]'),me=m&&m.getAttribute("src");fetch("index.html?_="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var x=t.match(/src="(app\.js\?v=[^"]+)"/);if(x&&me&&x[1]!==me&&sessionStorage.getItem("nvny-yen")!==x[1]){sessionStorage.setItem("nvny-yen",x[1]);location.reload()}}).catch(function(){})}catch(e){}})();</script>
+<script>/* Kendini yenileme (kullanıcı, 23:01/23:06): taze kopyadaki app.js sürümü farklıysa YENİ ADRESLE (?_v=sürüm) bir kez açılır.
+   Adreste aynı sürüm zaten varsa bir daha denenmez: önbellek eski kopyayı verse de döngüye girip beyaz ekranda kalmaz. */
+addEventListener("DOMContentLoaded",function(){try{var m=document.querySelector('script[src^="app.js?v="]'),me=m&&m.getAttribute("src");if(!me||!window.fetch)return;
+fetch("index.html?_="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){var x=t.match(/src="app\.js\?v=([^"]+)"/);if(!x||me==="app.js?v="+x[1])return;
+var q=location.search;if(q.indexOf("_v="+x[1])>=0)return;q=q.replace(/[?&]_v=[^&]*/g,"");location.replace(location.pathname+(q?q+"&":"?")+"_v="+x[1]+location.hash)}).catch(function(){})}catch(e){}});</script>
 <script src="takip.js?v=7"></script>
 <script src="app.js?v=f7e83d62d0"></script>
 <script data-goatcounter="https://nevarneyok.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
