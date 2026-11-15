@@ -398,6 +398,66 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .pact{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px}
 .pact .cgo{margin-top:0;height:52px}.pact .cgo.off{background:rgba(255,255,255,.14);color:var(--t2)}
 .cbk{font-weight:700;color:var(--t2);text-decoration:underline;text-underline-offset:3px}
+
+/* ================= APPLE KALİTESİNDE BUZLU CAM (15.11.2026) =================
+   Cam: yarı saydam koyu zemin + ince parlak kenar (hairline) + üst ışık çizgisi.
+   backdrop-filter yalnızca sabit/küçük panellerde (üst çubuk, alttan açılan paneller, bildirim kartları). */
+:root{--gl:rgba(34,34,48,.52);--gl2:rgba(255,255,255,.065);--hl:inset 0 0 0 .5px rgba(255,255,255,.16),inset 0 1px 0 rgba(255,255,255,.07);--blur:saturate(1.8) blur(24px)}
+.top{background:rgba(10,10,16,.5);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border-bottom:.5px solid rgba(255,255,255,.08)}
+.cbtn,.ibtn{background:var(--gl2);box-shadow:var(--hl)}
+.cbtn:active,.ibtn:active{transform:scale(.96)}
+/* şehir sayfasının arkasında öne çıkan afişin bulanık yıkaması (cam katmanlar bunun üstünde) */
+.wash{position:absolute;left:0;right:0;top:0;height:640px;z-index:-1;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent);mask-image:linear-gradient(180deg,#000 30%,transparent)}
+.wash img{width:100%;height:100%;object-fit:cover;filter:blur(70px) saturate(1.6);opacity:.42;transform:scale(1.3)}
+#view{position:relative;isolation:isolate}
+.sin,.fbtn,.pz,.nbox,.cin,.dlb{background:var(--gl2);border:0;box-shadow:var(--hl)}
+.sin:focus-within,.cin:focus-within{box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.qk a,.qk button{background:var(--gl2);border:0;box-shadow:var(--hl);color:var(--tx)}
+.qk .on{background:#fff;color:#0a0a10;box-shadow:none}
+/* alttan açılan paneller: iOS sayfası gibi, tutamaçlı buzlu cam */
+.sh{background:rgba(0,0,0,.42)}
+.sh .pn{background:rgba(30,30,42,.74);-webkit-backdrop-filter:saturate(1.8) blur(34px);backdrop-filter:saturate(1.8) blur(34px);box-shadow:var(--hl),0 -20px 60px rgba(0,0,0,.4);border-radius:30px 30px 0 0;position:relative}
+.sh .pn::before{content:"";position:absolute;left:50%;top:7px;width:38px;height:5px;margin-left:-19px;border-radius:3px;background:rgba(255,255,255,.28)}
+.fsheet .pn.full::before{display:none}
+@media (min-width:700px){.sh .pn{border-radius:30px}.sh .pn::before{display:none}}
+.pn .hd{border-bottom:.5px solid rgba(255,255,255,.1);padding-top:22px}
+.pn .ft{border-top:.5px solid rgba(255,255,255,.1)}
+.pn .ft .rs2{border:0;background:var(--gl2);box-shadow:var(--hl)}
+/* filtre ekranı: iPhone Ayarlar gibi gruplu kartlar */
+.fsx{padding:14px 16px 24px}
+.fs{border:0;margin-bottom:10px;padding:0 16px;border-radius:18px;background:var(--gl2);box-shadow:var(--hl)}
+.fh{padding:16px 0}
+.fh b{font:800 17px var(--fd);font-stretch:92%;letter-spacing:.01em}
+.fs.op{background:rgba(255,255,255,.085)}
+.ch button{border:0;background:rgba(255,255,255,.08);box-shadow:var(--hl);color:var(--tx);height:40px;padding:0 16px}
+.ch button.on{background:#fff;color:#0a0a10;box-shadow:none}
+.ch.col button{background:rgba(255,255,255,.05)}
+.dstrip button{border:0;background:rgba(255,255,255,.07);box-shadow:var(--hl)}
+.vl{border:0;background:rgba(0,0,0,.18);box-shadow:var(--hl)}.vl button{border-top:.5px solid rgba(255,255,255,.08)}
+/* iOS anahtarları */
+.tg2{border-bottom:.5px solid rgba(255,255,255,.08)}
+.tg2 input{width:51px;height:31px;border-radius:16px;background:rgba(120,120,128,.32)}
+.tg2 input::after{left:2px;top:2px;width:27px;height:27px;box-shadow:0 3px 8px rgba(0,0,0,.25)}
+.tg2 input:checked{background:var(--pur)}.tg2 input:checked::after{transform:translateX(20px)}
+.tt{background:rgba(34,34,48,.7);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:0;box-shadow:var(--hl),0 16px 40px rgba(0,0,0,.4);border-radius:18px}
+.buy{border-radius:16px}
+.glass{background:rgba(30,30,44,.45);border:0;box-shadow:var(--hl),0 30px 80px rgba(0,0,0,.45)}
+/* ---- "Uygulamamızı kullan" (scene.global "Get Scene Now" gibi) ---- */
+.appx{padding:56px var(--pad) 8px;max-width:1100px;margin:0 auto}
+.ax{position:relative;overflow:hidden;isolation:isolate;padding:34px 24px 26px;border-radius:30px;background:linear-gradient(160deg,rgba(139,92,246,.22),rgba(139,92,246,.04) 55%),var(--gl2);box-shadow:var(--hl),0 30px 80px rgba(0,0,0,.35);text-align:center}
+.ax::before{content:"";position:absolute;inset:-40% -20% auto;height:80%;z-index:-1;background:radial-gradient(closest-side,rgba(139,92,246,.35),transparent);pointer-events:none}
+.ax-ic{width:84px;height:84px;border-radius:20px;box-shadow:0 14px 34px rgba(0,0,0,.5),inset 0 0 0 .5px rgba(255,255,255,.2)}
+.ax-k{margin-top:16px;font:800 12px var(--f);letter-spacing:.22em;text-transform:uppercase;color:#b9a3fb}
+.ax h2{margin-top:8px;font:900 clamp(38px,10vw,72px)/.9 var(--fd);font-stretch:76%;letter-spacing:-.025em;text-transform:uppercase}
+.ax p{margin:14px auto 0;max-width:460px;color:var(--t2);font-size:16px}
+.ax-b{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:22px}
+.axb{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;border-radius:999px;background:#fff;color:#0a0a10;font:800 17px var(--f);box-shadow:0 10px 30px rgba(255,255,255,.12)}
+.axb:active{transform:scale(.97)}
+.axl{color:var(--t2);font-weight:700}
+.ax-f{list-style:none;display:flex;justify-content:center;gap:10px;margin-top:22px}
+.ax-f li{display:flex;flex-direction:column;align-items:center;min-width:86px;padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.06);box-shadow:var(--hl);color:var(--t2);font-size:12px;font-weight:700}
+.ax-f b{font:900 22px var(--fd);color:#fff;font-stretch:85%}
+.foot .dlb{display:none}
 </style>
 </head>
 <body>
