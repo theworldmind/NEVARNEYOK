@@ -10,6 +10,19 @@ import { CITIES } from "./lib/cities.mjs";
 
 const today = todayIST();
 const key = (e) => fold(e.title).replace(/[^a-z0-9]+/g, "") + "|" + e.d + "|" + (e.t || "");
+// Aynı etkinlik mi? Aynı gün; saat aynı ya da birinde yok; adların anlamlı kelimeleri büyük ölçüde örtüşüyor (ya da biri ötekini kapsıyor).
+// Farklı sitedeki kayıt birleşir, bilet ve fiyatları yan yana durur (kullanıcı isteği, 15.11.2026: "olabildiğince iyi fiyat karşılaştırması").
+const STOP = new Set("ve ile the and a an de da bir icin konseri konser tiyatro oyunu oyun muzikal muzikali stand up standup gosterisi gosteri sahnede canli live tour turnesi etkinligi biletleri bilet ozel performans".split(" "));
+const toks = (t) => new Set(fold(String(t || "").replace(/\([^)]*\)/g, " ")).replace(/[^a-z0-9]+/g, " ").split(" ").filter((w) => w.length > 2 && !STOP.has(w) && !CITIES.some((c) => fold(c.name) === w)));
+const tk = new WeakMap(), T = (e) => tk.get(e) || (tk.set(e, toks(e.title)), tk.get(e));
+function same(a, b) {
+  if (a.t && b.t && a.t !== b.t) return false;
+  if ((a.tickets || []).some((x) => (b.tickets || []).some((y) => y.site === x.site))) return false; // aynı sitenin iki ayrı kaydı birleşmez
+  const A = T(a), B = T(b); if (!A.size || !B.size) return false;
+  let n = 0; for (const w of A) if (B.has(w)) n++;
+  const small = Math.min(A.size, B.size), jac = n / (A.size + B.size - n);
+  return (n >= 2 && n / small >= .8) || jac >= .6 || (small === 1 && n === 1 && a.t && a.t === b.t && fold(a.venue).slice(0, 6) === fold(b.venue).slice(0, 6));
+}
 const tr = (await readJSON(join(ROOT, "data/c/_tr.json"), { events: [] })).events || [];
 const have = new Set(await readdir(join(ROOT, "data/c")).catch(() => []));
 const index = { updated: new Date().toISOString(), cities: {} };
@@ -25,11 +38,12 @@ for (const C of CITIES) {
     films = ((await readJSON(join(ROOT, "data/films.json"), { films: [] })).films || []).filter((f) => Object.keys(f.s || {}).length).length; // yalnızca seansı olan filmler
   } else {
     const own = (await readJSON(join(ROOT, `data/c/src/${C.id}.json`), { events: [] })).events || [];
-    const out = new Map();
+    const out = new Map(), byDay = new Map();
     for (const e of [...tr.filter((x) => x.city === C.id), ...own]) { // kamu kaynağı önce: ad, saat, mekân ondan
       if (e.d < today) continue;
-      const k = key(e), m = out.get(k);
-      if (!m) { out.set(k, { ...e, city: C.id, tickets: [...(e.tickets || [])] }); continue; }
+      const k = key(e); let m = out.get(k);
+      if (!m) m = (byDay.get(e.d) || []).find((x) => same(x, e)); // aynı etkinlik başka sitede başka adla (fiyat karşılaştırması için birleştir)
+      if (!m) { const n = { ...e, city: C.id, tickets: [...(e.tickets || [])] }; out.set(k, n); (byDay.get(e.d) || byDay.set(e.d, []).get(e.d)).push(n); continue; }
       for (const t of e.tickets || []) if (!m.tickets.some((x) => x.site === t.site)) m.tickets.push(t);
       if (!m.img && e.img) { m.img = e.img; m.imgBy = e.imgBy; }
     }
