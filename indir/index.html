@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr" data-ver="2026-11-15-2330">
+<html lang="tr" data-ver="2026-11-15-2340">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -313,7 +313,7 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
   function watchInstall(){if(inst)return;var t0=Date.now(),got=false;addEventListener("appinstalled",function(){got=true;try{localStorage.removeItem("nvny-app-ilk");localStorage.removeItem("nvny-hosgeldin");localStorage.removeItem("nvny-hosgeldin-sor")}catch(e){}ev("uygulama-kuruldu","Uygulama kuruldu")},{once:true});
     inst=setInterval(function(){var age=Date.now()-t0;
       if(navigator.getInstalledRelatedApps){navigator.getInstalledRelatedApps().then(function(L2){if(L2&&L2.length){clearInterval(inst);setDone()}}).catch(function(){})}
-      if(got&&age>20000&&!navigator.getInstalledRelatedApps){clearInterval(inst);setDone()}
+      if(got&&age>20000){clearInterval(inst);setDone()}
       if(got&&age>60000){clearInterval(inst);setDone()}
       if(!got&&age>180000){clearInterval(inst);B.classList.remove("busy");L.textContent="Uygulamayı indir";PL.textContent="Kurulum tamamlanmadı gibi; tekrar deneyebilirsin"}},2000)}
   function ev(p,t){try{window.goatcounter&&goatcounter.count&&goatcounter.count({path:p,title:t,event:true})}catch(e){}}
@@ -325,7 +325,7 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
       :'<p>Bu sayfa Instagram\'ın içinde açıldı. Kurmak için:</p><ol><li>Sağ üstteki <kbd>⋯</kbd> menüsüne dokun</li><li><b>"Tarayıcıda aç"</b>ı seç</li><li>Açılınca "Ana Ekrana Ekle"ye dokun</li></ol>';
     if(ios)return '<p><b>iPhone\'da üç dokunuş:</b></p><ol><li>Alttaki <kbd>Paylaş</kbd> simgesine (kare ve yukarı ok) dokun</li><li><b>"Ana Ekrana Ekle"</b>yi seç</li><li>Sağ üstte <b>"Ekle"</b>ye dokun</li></ol>';
     if(samsung)return '<p><b>Samsung İnternet\'te:</b></p><ol><li>Alttaki <kbd>☰</kbd> menüye dokun</li><li><b>"Sayfayı ekle"</b> → <b>"Ana ekran"</b>ı seç</li></ol>';
-    if(and)return '<p><b>Chrome\'da:</b></p><ol><li>Sağ üstteki <kbd>⋮</kbd> menüye dokun</li><li><b>"Uygulamayı yükle"</b>yi seç</li></ol>';
+    if(and)return '<p>Chrome bu kez tek dokunuşla kurmaya izin vermedi. Ya uygulama zaten telefonunda (ana ekranına bak), ya da kurulum penceresi daha önce kapatıldığı için Chrome bir süre sormuyor. İki dokunuşla kurulur:</p><ol><li>Sağ üstteki <kbd>⋮</kbd> menüye dokun</li><li><b>"Uygulamayı yükle"</b>yi seç</li></ol>';
     return '<p>Bilgisayarda adres çubuğunun sağındaki <kbd>⊕ Yükle</kbd> simgesine tıkla ya da bu sayfayı telefonunda aç.</p>';
   }
   // Instagram vb. uygulama içi tarayıcıdan gelen: kendiliğinden gerçek tarayıcıya geç (oturumda bir kez)
@@ -472,8 +472,12 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
   /* ---- indirme düğmeleri ---- */
   function flash(btn){document.body.classList.add("mor");var f=document.createElement("div");f.className="pflash";document.body.appendChild(f);setTimeout(function(){f.remove()},1050);btn.classList.remove("tap");void btn.offsetWidth;btn.classList.add("tap")}
   [].forEach.call(document.querySelectorAll(".dl"),function(btn){btn.addEventListener("click",function(){ev(btn===B?"indir-sayfasi-dugme":"indir-sayfasi-dugme-alt","İndirme sayfasında düğmeye basıldı");flash(btn);ac();snd.ok();
-    if(dp){var d=dp;dp=null;B.classList.add("busy");L.textContent="Açılıyor…";if(btn!==B)scrollTo({top:0,behavior:"smooth"});d.prompt();d.userChoice.then(function(r){B.classList.remove("busy");
-      if(r.outcome==="accepted"){setBusy();watchInstall()}else{L.textContent="Uygulamayı indir";show(steps())}});return}
+    function fire(){var d=dp;dp=null;B.classList.add("busy");L.textContent="Açılıyor…";if(btn!==B)scrollTo({top:0,behavior:"smooth"});d.prompt();d.userChoice.then(function(r){B.classList.remove("busy");
+      if(r.outcome==="accepted"){setBusy();watchInstall()}else{L.textContent="Uygulamayı indir";show(steps())}})}
+    if(dp){fire();return}
+    /* Chrome kurulum iznini sayfa açıldıktan birkaç saniye sonra verir; erken basılırsa 3 sn bekle, gelirse doğrudan kur (dokunuş 5 sn geçerli) */
+    if(!inApp&&!ios&&!samsung&&window.chrome){var t=Date.now();B.classList.add("busy");L.textContent="Açılıyor…";
+      (function w(){if(dp){fire();return}if(Date.now()-t<3000){setTimeout(w,100);return}B.classList.remove("busy");L.textContent="Uygulamayı indir";show(steps())})();return}
     show(steps());
   })});
 })();
