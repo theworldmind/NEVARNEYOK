@@ -24,7 +24,7 @@ lg = cut(f'{H}/nevarneyok-logo.png', f'{H}/logo.png'); cut(f'{H}/nevarneyok-simg
 # mor camın sol üstüne cam parlaması, alt kenarına hafif derinlik. "any" simgeler kenar boşluklu yuvarlatılmış kare (masaüstü
 # ve Android rıhtımında gerçek uygulama simgesi gibi), apple-touch ve maskable tam kare (sistem kendisi keser).
 from PIL import ImageFilter
-def glass_icon(S=1024):
+def glass_icon(S=1024, fade=False):
     yy, xx = np.mgrid[0:S, 0:S].astype(np.float64) / S
     top, bot = np.array([38., 28, 70]), np.array([9., 8, 15])
     t = np.clip(yy * 1.05, 0, 1)[..., None]; img = top * (1 - t) ** 1.6 + bot * (1 - (1 - t) ** 1.6)
@@ -32,6 +32,9 @@ def glass_icon(S=1024):
     g = np.exp(-(((xx - cx) ** 2 + (yy - cy) ** 2) / (2 * .2 ** 2)))[..., None]
     img = img + np.array([139., 92, 246]) * .42 * g
     img = img + 255 * np.clip(.07 * (1 - yy / .5), 0, None)[..., None]          # üstte ince parlaklık
+    if fade:  # yalnızca zemin kenarlara doğru uygulamanın zeminine erir; büyüteç ve gölgesi olduğu gibi üstüne konur
+        r = np.sqrt((xx - .476) ** 2 + (yy - .476) ** 2); k = np.clip((r - .24) / .22, 0, 1)[..., None] ** 1.3
+        img = img * (1 - k) + np.array([10., 10, 16]) * k
     base = Image.fromarray(np.clip(img, 0, 255).astype(np.uint8)).convert('RGBA')
     mk = Image.open(f'{H}/mark.png').convert('RGBA'); w = round(S * 1223 / 2160); mk = mk.resize((w, w), Image.LANCZOS)
     pos = round(S * (462 - 6) / 2160)
@@ -59,7 +62,10 @@ def squircle(img, margin=.06, n=5):
     hl.putalpha(Image.fromarray(np.clip(edge * .22 * np.clip(1.2 - yy[::4, ::4] * 2, .25, 1), 0, 255).astype(np.uint8)))
     out = Image.alpha_composite(out, hl); out.putalpha(Image.fromarray(np.minimum(np.asarray(out)[..., 3], np.asarray(M)))); return out
 G = glass_icon(); Q = squircle(G)
-for f, w, im in [('icon-512.png', 512, Q), ('icon-192.png', 192, Q), ('apple-touch-icon.png', 180, G), ('icon-maskable-512.png', 512, G)]:
+# Maskable (açılış ekranı ve Android ana ekranı): telefon açılışta bu simgeyi kare olarak gösterebiliyor (kullanıcı, 23:19: "açılış kötü").
+# Kenarlar uygulamanın zemin rengine (#0a0a10) yumuşakça erir; açılışta köşeli kare görünmez, yalnızca ışıklı büyüteç kalır.
+M = glass_icon(fade=True)
+for f, w, im in [('icon-512.png', 512, Q), ('icon-192.png', 192, Q), ('apple-touch-icon.png', 180, G), ('icon-maskable-512.png', 512, M)]:
     o = im.resize((w, w), Image.LANCZOS); (o if im is Q else o.convert('RGB')).save(f'{R}/icons/{f}', optimize=True)
 og = Image.new('RGB', (1200, 630), (11, 10, 16)); L = lg.resize((680, int(680 * lg.height / lg.width)), Image.LANCZOS)
 og.paste(L, ((1200 - L.width) // 2, (630 - L.height) // 2), L); og.save(f'{R}/icons/og.png', optimize=True)

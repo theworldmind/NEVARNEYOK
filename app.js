@@ -24,7 +24,9 @@ const BIG = /congresium|cso ada|jolly joker|if performance|ankara arena|bilkent|
 const PRICE_MAX_H = 36;
 
 /* ---------- Tarih yardımcıları (İstanbul saati) ---------- */
-const nowIST = () => { const p = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date()).map((x) => [x.type, x.value])); return { d: `${p.year}-${p.month}-${p.day}`, hm: `${p.hour}:${p.minute}` }; };
+// saat biçimleyici bir kez kurulur (her çağrıda kurmak açılışta takılma yapıyordu)
+const ISTF = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+const nowIST = () => { const p = Object.fromEntries(ISTF.formatToParts(new Date()).map((x) => [x.type, x.value])); return { d: `${p.year}-${p.month}-${p.day}`, hm: `${p.hour}:${p.minute}` }; };
 const pd = (s) => new Date(s + "T12:00:00");
 const addD = (s, n) => { const d = pd(s); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
 const dShort = (s) => { const d = pd(s); return `${GUNK[d.getDay()]} ${d.getDate()} ${AYK[d.getMonth()]}`; };
@@ -59,18 +61,19 @@ const jget = (u) => fetch(u, { cache: "no-cache" }).then((r) => (r.ok ? r.json()
 async function boot() {
   const [cx, top] = await Promise.all([jget("data/cities.json"), jget("data/one-cikan.json")]);
   if (cx?.cities) CIX = cx.cities; DATA.top = top?.events || []; DATA.boot = true; DATA.venues = DATA.venues || {};
-  jget("data/venues.json").then((vn) => { if (vn) DATA.venues = vn.venues || vn; });
-  setTimeout(() => venueTr(), 2500);
-  // kayıtlı il varsa verisini hemen arkada indirmeye başla (devam edince hazır olsun)
-  const sv = store.get("nvny-city"); if (sv && CITIES.find((c) => c.id === sv && c.live)) prefetch(sv);
+  // Açılışta yalnızca il listesi ve öne çıkanlar; mekân konumları ve il verisi gerektiğinde (il açılınca) iner — açılış takılmasın.
+  const sv = store.get("nvny-city"), first = (standalone && !store.get("nvny-app-ilk")) || !store.get("nvny-intro");
+  if (!first && sv && CITIES.find((c) => c.id === sv && c.live)) prefetch(sv);
 }
 /* Ankara: data/events.json + films.json + buzz.json · diğer iller: data/c/<il>.json + data/c/<il>-films.json */
 const cityLoads = {}, pre = {};
 function prefetch(city) { if (pre[city] || DATA.city === city) return; const ank = city === "ankara";
   pre[city] = Promise.all([jget(ank ? "data/events.json" : `data/c/${city}.json`), jget(ank ? "data/films.json" : `data/c/${city}-films.json`), ank ? jget("data/buzz.json") : null]); }
 function loadCity(city) { return (cityLoads[city] ||= load(city).catch((e) => { delete cityLoads[city]; throw e; })); }
+let venP = null;
 async function load(city) {
   const ank = city === "ankara";
+  if (ank) venP ||= jget("data/venues.json").then((vn) => { if (vn) DATA.venues = vn.venues || vn; }); else venueTr();
   prefetch(city); const [ev, fl, bz] = await pre[city]; delete pre[city];
   DATA.base = ev?.baseline; DATA.updated = ev?.updated; DATA.films = fl; DATA.buzz = bz || {};
   const fresh = (x) => !!(x.price && !x.est && x.seen && x.seen !== DATA.base && (Date.now() - Date.parse(x.seen)) / 36e5 <= PRICE_MAX_H);
@@ -222,8 +225,10 @@ function storyInit() {
 let ACX = null, lastTick = 0, NOISE = null;
 const sesOn = () => store.get("nvny-ses") !== "0";
 const ac = () => { ACX ||= new (window.AudioContext || window.webkitAudioContext)(); if (ACX.state === "suspended") ACX.resume?.()?.catch?.(() => {}); return ACX; };
+let acted = false; // ses motoru ancak ilk dokunuştan sonra kurulur (açılışta kurmak takılma yapıyordu; tarayıcı zaten çaldırmaz)
+["pointerdown", "keydown", "touchstart"].forEach((n) => addEventListener(n, () => { acted = true; }, { once: true, passive: true, capture: true }));
 function blip({ f = 2200, f2 = 0, body = 0, vol = .1, dur = .014, noise = .5, hp = 2500 } = {}) {
-  if (!sesOn()) return;
+  if (!sesOn() || !acted) return;
   try {
     const A = ac(), t = A.currentTime, out = A.createGain(); out.gain.value = vol; out.connect(A.destination);
     // 1) metalik çıt: süzülmüş çok kısa hışırtı (ilk 3 ms)
@@ -297,7 +302,7 @@ function viewCities() {
     }
     if (n !== cur && lis[n]) { lis[cur]?.classList.remove("on"); cur = Math.max(0, Math.min(n, lis.length - 1)); lis[cur].classList.add("on"); wl.setAttribute("aria-activedescendant", lis[cur].id);
       const c = L[cur]; msg.hidden = true; if (drawn) tick();
-      clearTimeout(pfT); if (c?.live) pfT = setTimeout(() => prefetch(c.id), 450); }
+      clearTimeout(pfT); if (c?.live && acted) pfT = setTimeout(() => prefetch(c.id), 450); } // kullanıcı çarka dokunmadan veri inmez (açılış akıcı)
   };
   const draw = (list) => { L = list; cur = -1; drawn = false;
     wl.innerHTML = list.map((c, k) => `<li id="w${k}" role="option" class="${c.live ? "" : "soon"}"><b>${esc(c.name)}</b></li>`).join("");
@@ -313,7 +318,9 @@ function viewCities() {
   ok.addEventListener("click", () => go(L[cur]));
   V.addEventListener("click", (ev) => { const a = ev.target.closest("[data-city]"); if (a) store.set("nvny-city", a.dataset.city); });
   const idle = window.requestIdleCallback || ((f) => setTimeout(f, 120));
-  idle(() => { const el = $("#csl"); if (!el) return; el.outerHTML = `${T.length ? `<h2 class="cs-t">Türkiye'de bu hafta öne çıkanlar</h2>${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}` : ""}${appPromo()}`; storyInit(); }, { timeout: 900 });
+  const csl = () => idle(() => { const el = $("#csl"); if (!el) return; el.outerHTML = `${T.length ? `<h2 class="cs-t">Türkiye'de bu hafta öne çıkanlar</h2>${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}` : ""}${appPromo()}`; storyInit(); }, { timeout: 900 });
+  // tanıtım açıksa arkadaki bölüm tanıtım kapanınca kurulur (açılış akıcı olsun)
+  if ($(".intro") || (!store.get("nvny-intro") && !store.get("nvny-city")) || (standalone && !store.get("nvny-app-ilk"))) addEventListener("nvny-intro-done", csl, { once: true }); else csl();
   draw(ALL);
   // açılışta kayıtlı ile (yoksa en kalabalık ile) kendiliğinden gel
   const start = ALL.indexOf(saved || liveC[0]); if (start > 0) to(start, false); paint();
@@ -699,7 +706,7 @@ function viewTakip(city) {
 
 /* Uygulamayı indirip ilk kez açana: "HOŞ GELDİNİZZZ" bildirimi (izin varsa hemen; yoksa önce kısa bir soru) */
 function welcomeApp() {
-  if (!standalone || store.get("nvny-hosgeldin")) return;
+  if (!standalone || store.get("nvny-hosgeldin") || $(".intro")) return; // tanıtım açıksa bitince çağrılır
   const city = store.get("nvny-city") || "ankara";
   if (notifOn()) { store.set("nvny-hosgeldin", "1"); swUp().then(() => notify("HOŞ GELDİNİZZZ 🎉", "Artık şehrinde ne var ne yok hep cebinde 😍 Takip ettiğin etkinlikte bir şey değişirse ilk sen duyarsın, günü gelince de “Hadi, bugün o gün!” diye haber veririz 🎉", `/#/${city}`, "hosgeldin")); return; }
   if (!NOTIF || Notification.permission === "denied" || store.get("nvny-hosgeldin-sor")) return;
@@ -709,7 +716,7 @@ function welcomeApp() {
     sh.querySelector("[data-ok]").addEventListener("click", () => { sh.close(); askNotif(city); });
   }, 1200);
 }
-addEventListener("appinstalled", () => { try { localStorage.removeItem("nvny-hosgeldin-sor"); } catch {} });
+addEventListener("appinstalled", () => { try { localStorage.removeItem("nvny-hosgeldin-sor"); localStorage.removeItem("nvny-app-ilk"); localStorage.removeItem("nvny-hosgeldin"); } catch {} });
 /* Uygulama açılınca: takip edilenleri güncel veriyle karşılaştır, değişikliği göster */
 function followBoot() {
   const city = DATA.city || store.get("nvny-city") || "ankara";
@@ -777,8 +784,10 @@ function route() {
   const saved = store.get("nvny-city");
   if (P[0] === "bilgi") viewBilgi(P[1]);
   else if (!P.length) { // ilk girişte tanıtım + il seçimi; sonra kayıtlı ille açılır (kullanıcı isteği, 15.11.2026 22:43). İl üstteki düğmeden (#/?sec=1) değişir.
-    if (!Q.sec && saved && CITIES.find((c) => c.id === saved && c.live)) { location.replace(`#/${saved}`); return; }
-    viewCities(); if (!saved && !Q.sec) intro(); }
+    // uygulama her kurulduğunda ilk açılış sıfırdan: tanıtım + il seçimi (tarayıcıda seçilmiş il kendiliğinden açılmaz; kullanıcı, 23:19)
+    const appFirst = standalone && !store.get("nvny-app-ilk");
+    if (!Q.sec && !appFirst && saved && CITIES.find((c) => c.id === saved && c.live)) { location.replace(`#/${saved}`); return; }
+    viewCities(); if ((!saved && !Q.sec) || appFirst) intro(appFirst); }
   else {
     const city = P[0]; if (!CITIES.find((c) => c.id === city && c.live)) { location.replace("#/"); return; }
     store.set("nvny-city", city);
@@ -808,7 +817,7 @@ document.addEventListener("click", (ev) => { const b = ev.target.closest("[data-
 /* ---------- Dokunsal geri bildirim: Android'de titreşim; iPhone'da (iOS 18+) gizli iOS anahtarı ile sistemin kendi "tık"ı ---------- */
 let HX = null;
 function haptic(ms = 6) {
-  if (!sesOn()) return;
+  if (!sesOn() || !acted) return;
   try {
     if (navigator.vibrate) { navigator.vibrate(ms); return; }
     if (!isIOS) return;
@@ -821,7 +830,7 @@ function haptic(ms = 6) {
 /* ---------- Görünüm: gece göz yormayan mod ve yazı boyutu (Kişiselleştir > Görünüm) ---------- */
 const ZOOMS = [[1, "Normal"], [1.1, "Büyük"], [1.2, "Daha büyük"]];
 function applyLook() {
-  const h = +new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Istanbul", hour: "2-digit", hourCycle: "h23" }).format(new Date());
+  const h = +nowIST().hm.slice(0, 2);
   const on = store.get("nvny-gece") !== "0" && (h >= 22 || h < 7);
   document.documentElement.classList.toggle("gece", on);
   const z = +(store.get("nvny-yazi") || 1); document.documentElement.style.setProperty("--zm", z);
@@ -1053,8 +1062,8 @@ function tonightSheet(city) {
 }
 
 /* ---------- Açılış tanıtımı (yalnızca ilk girişte; sonra kayıtlı ille açılır, il üstteki düğmeden değişir) ---------- */
-function intro() {
-  if (store.get("nvny-intro") || $(".intro")) return;
+function intro(force) {
+  if ((!force && store.get("nvny-intro")) || $(".intro")) return;
   const W = [...new Set((DATA.top || []).map((e) => e.img).filter(Boolean))].slice(0, 12);
   const S = [
     ["81 il · tek uygulama", "Şehrinde ne var<br><em>ne yok, hepsi burada.</em>", "Konserler, tiyatrolar, stand-up'lar, festivaller ve sinema seansları; afiş afiş, gün gün."],
@@ -1069,7 +1078,7 @@ function intro() {
     <div class="in-f"><div class="in-d">${S.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div><button type="button" class="in-go">Devam</button></div>`;
   document.body.append(o); document.body.style.overflow = "hidden"; requestAnimationFrame(() => o.classList.add("on"));
   const sc = $(".in-s", o), dots = $$(".in-d i", o), go = $(".in-go", o); let cur = 0;
-  const done = () => { store.set("nvny-intro", "1"); o.classList.remove("on"); document.body.style.overflow = ""; setTimeout(() => o.remove(), 400); setTimeout(() => $("#cq")?.focus({ preventScroll: true }), 420); };
+  const done = () => { store.set("nvny-intro", "1"); if (standalone) store.set("nvny-app-ilk", "1"); setTimeout(welcomeApp, 900); setTimeout(() => dispatchEvent(new Event("nvny-intro-done")), 450); o.classList.remove("on"); document.body.style.overflow = ""; setTimeout(() => o.remove(), 400); setTimeout(() => $("#cq")?.focus({ preventScroll: true }), 420); };
   sc.addEventListener("scroll", () => { const i = Math.round(sc.scrollLeft / sc.clientWidth); if (i !== cur) { cur = i; dots.forEach((d, k) => d.classList.toggle("on", k === i)); go.textContent = i === S.length - 1 ? "Şehrimi seçeyim" : "Devam"; tick(); } }, { passive: true });
   go.addEventListener("click", () => { haptic(6); if (cur >= S.length - 1) return done(); sc.scrollTo({ left: (cur + 1) * sc.clientWidth, behavior: "smooth" }); });
   $(".in-x", o).addEventListener("click", done);
