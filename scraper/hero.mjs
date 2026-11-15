@@ -39,13 +39,13 @@ h1 em{font-style:normal;color:#a78bfa}
 .cy{font:800 24px/1 "Inter Tight",Arial,sans-serif;padding:10px 18px;border-radius:99px;background:#ffffff14;box-shadow:0 0 0 1.5px #ffffff26 inset;white-space:nowrap}
 .cv.c0 .cy{background:#8b5cf6;box-shadow:0 0 40px #8b5cf699}
 .cr{font:500 15px/1 "Inter Tight",Arial,sans-serif;color:#ffffff66;white-space:nowrap}
-.cities{position:absolute;top:1508px;left:90px;right:90px;font:600 28px/1.45 "Inter Tight",Arial,sans-serif;color:#ffffff8a}
+.cities{position:absolute;top:1488px;left:90px;right:90px;font:600 28px/1.45 "Inter Tight",Arial,sans-serif;color:#ffffff8a}
 .cities b{color:#fff;font-weight:800}
-.cta{position:absolute;top:1600px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:22px}
+.cta{position:absolute;top:1566px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:22px}
 .btn{display:inline-flex;align-items:center;gap:12px;padding:22px 38px;border-radius:99px;background:#fff;color:#0a0a10;font:900 34px/1 Archivo,Arial,sans-serif;font-stretch:84%;text-transform:uppercase;box-shadow:0 0 60px #8b5cf688}
 .btn svg{width:30px;height:30px}
 .url{font:700 28px/1 "Inter Tight",Arial,sans-serif;color:#c4b5fd}
-.os{position:absolute;top:1672px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:10px;color:#ffffff99;font:300 22px/1 Poppins}.os svg{width:22px;height:22px;fill:currentColor}.os em{font-style:normal}.os b{font-weight:800}
+.os{position:absolute;top:1676px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:10px;color:#ffffff99;font:300 22px/1 Poppins}.os svg{width:22px;height:22px;fill:currentColor}.os em{font-style:normal}.os b{font-weight:800}
 </style></head><body><div class="glow"></div>
 <div class="logo"><img src="${LOGO}" alt="Ne Var Ne Yok"></div>
 <div class="kick">81 il · tek uygulama</div>
