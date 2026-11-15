@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr" data-ver="2026-11-15-2315">
+<html lang="tr" data-ver="2026-11-15-2322">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -302,7 +302,19 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
   if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true){location.replace("../");return}
   if(ios)PL.textContent="Ücretsiz · 81 il · App Store gerekmez";else if(and)PL.textContent="Ücretsiz · 81 il · Play Store gerekmez";
   addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e});
-  addEventListener("appinstalled",function(){ev("uygulama-kuruldu","Uygulama kuruldu");B.classList.remove("busy");B.classList.add("done");L.textContent="Kuruldu ✓";snd.ok();show("<p><b>Kuruldu! 🎉</b> Ne Var Ne Yok artık uygulamalarının arasında. Açınca bir sürpriz var.</p>")});
+  /* Kurulum durumu (kullanıcı isteği, 23:18: "hemen kuruldu diyor ama inmiyor; inene kadar indiriliyor desin"):
+     "Yükle"ye basınca → İndiriliyor… (dönen halka). Tarayıcının "appinstalled" haberi indirme bitmeden gelebilir; bu yüzden
+     "Kuruldu" ancak telefon uygulamayı gerçekten tanıyınca (getInstalledRelatedApps) ya da bu yoksa haberden 20 sn sonra yazılır. */
+  var inst=0,doneShown=false;
+  function setBusy(){B.classList.remove("done");B.classList.add("busy");L.textContent="İndiriliyor…";PL.textContent="Telefonun uygulamayı indiriyor, birkaç saniye sürebilir…"}
+  function setDone(){if(doneShown)return;doneShown=true;B.classList.remove("busy");B.classList.add("done");L.textContent="Kuruldu ✓";PL.textContent="Ana ekranındaki Ne Var Ne Yok simgesine dokun";snd.ok();
+    show("<p><b>Kuruldu! 🎉</b> Ne Var Ne Yok artık telefonunda. Ana ekranında (ya da uygulamalarının arasında) simgesine dokunarak aç; açınca bir sürpriz var.</p>")}
+  function watchInstall(){if(inst)return;var t0=Date.now(),got=false;addEventListener("appinstalled",function(){got=true;ev("uygulama-kuruldu","Uygulama kuruldu")},{once:true});
+    inst=setInterval(function(){var age=Date.now()-t0;
+      if(navigator.getInstalledRelatedApps){navigator.getInstalledRelatedApps().then(function(L2){if(L2&&L2.length){clearInterval(inst);setDone()}}).catch(function(){})}
+      if(got&&age>20000&&!navigator.getInstalledRelatedApps){clearInterval(inst);setDone()}
+      if(got&&age>60000){clearInterval(inst);setDone()}
+      if(!got&&age>180000){clearInterval(inst);B.classList.remove("busy");L.textContent="Uygulamayı indir";PL.textContent="Kurulum tamamlanmadı gibi; tekrar deneyebilirsin"}},2000)}
   function ev(p,t){try{window.goatcounter&&goatcounter.count&&goatcounter.count({path:p,title:t,event:true})}catch(e){}}
   function show(h){H.innerHTML=h;SH.classList.add("open");[].forEach.call(H.querySelectorAll('a[href^="intent:"],a[href^="x-safari"]'),function(a){a.addEventListener("click",function(e){e.preventDefault();dis(a.getAttribute("href"))})})}
   function hide(){SH.classList.remove("open")}
@@ -460,7 +472,7 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
   function flash(btn){document.body.classList.add("mor");var f=document.createElement("div");f.className="pflash";document.body.appendChild(f);setTimeout(function(){f.remove()},1050);btn.classList.remove("tap");void btn.offsetWidth;btn.classList.add("tap")}
   [].forEach.call(document.querySelectorAll(".dl"),function(btn){btn.addEventListener("click",function(){ev(btn===B?"indir-sayfasi-dugme":"indir-sayfasi-dugme-alt","İndirme sayfasında düğmeye basıldı");flash(btn);ac();snd.ok();
     if(dp){var d=dp;dp=null;B.classList.add("busy");L.textContent="Açılıyor…";if(btn!==B)scrollTo({top:0,behavior:"smooth"});d.prompt();d.userChoice.then(function(r){B.classList.remove("busy");
-      if(r.outcome==="accepted"){B.classList.add("done");L.textContent="İndiriliyor… ✓"}else{L.textContent="Uygulamayı indir";show(steps())}});return}
+      if(r.outcome==="accepted"){setBusy();watchInstall()}else{L.textContent="Uygulamayı indir";show(steps())}});return}
     show(steps());
   })});
 })();
