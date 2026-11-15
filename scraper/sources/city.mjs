@@ -26,7 +26,7 @@ const TR = [
   // Biletix: sitenin kendi arama dizini bütün Türkiye listesini verir (liste sayfası yalnızca ~70 kayıt gösteriyordu); fiyat için yakın tarihlilerin detayı
   { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com", collect: P.biletixCollect, listings: [],
     link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true,
-    city: "tr", maxDetail: 1400, budgetMin: 160, concurrency: 5 },
+    city: "tr", maxDetail: 3200, budgetMin: 165, concurrency: 7 },
 ];
 
 const ONE = [
