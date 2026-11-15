@@ -45,7 +45,7 @@ const PST = (JSON.parse(await readFile(join(ROOT, "data/one-cikan.json"), "utf8"
 const WALL = (o = .55) => PST.length ? `<div class="wall" style="opacity:${o}">${[...Array(28)].map((_, i) => `<i style="background-image:url('${PST[(i * 5) % PST.length].replace(/'/g, "%27")}')"></i>`).join("")}</div><div class="veil"></div>` : "";
 const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg>`;
 const SB = `<div class="sb"><b>9:41</b><i class="di"></i><span><em class="bat"><i></i></em></span></div>`;
-const PHONE = (k, w, x, y, r = 0, z = 2) => shots[k] ? `<div class="ph" style="--pw:${w}px;left:${x}px;top:${y}px;transform:rotate(${r}deg);z-index:${z}"><div class="scr">${SB}<img src="${shots[k]}" alt=""></div></div>` : "";
+const PHONE = (k, w, x, y, r = 0, z = 2, fix = false) => shots[k] ? `<div class="ph" style="--pw:${w}px;${fix ? `width:${w}px;` : ""}left:${x}px;top:${y}px;transform:rotate(${r}deg);z-index:${z}"><div class="scr">${SB}<img src="${shots[k]}" alt=""></div></div>` : "";
 const SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m-4 4 4-4 4 4"/><path d="M8 10H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-2"/></svg>`;
 const PLUS = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg>`;
 const DL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>`;
@@ -107,16 +107,16 @@ const SIGN = (y) => `<div class="foot" style="bottom:auto;top:${y}px"><span clas
 // konu: başlık, alt yazı, gönderide ve hikâyede sahne
 const ADS = [
   { id: "bu-aksam", kick: "Bu akşam ne var?", h: "ŞEHRİNDE<br>BU AKŞAM<br><em>NE VAR?</em>", sub: "Konser, tiyatro, stand-up, sinema. Afiş afiş, saat saat, tek uygulamada.",
-    post: () => PHONE("sehir", 400, 620, 330, 4), story: (y) => PHONE("sehir", 560, 260, y, 0) },
+    post: () => PHONE("sehir", 400, 620, 330, 4), story: (y) => PHONE("sehir", 600, 240, y, 0, 2, true) },
   { id: "fiyat", kick: "Fiyat karşılaştırma", h: "AYNI BİLET,<br><em>FARKLI FİYAT.</em>", sub: "Hangi sitede ne kadar, yan yana gör. En düşük olanı tek dokunuşla al.",
-    post: () => PHONE("fiyat", 400, 620, 330, 4), story: (y) => PHONE("fiyat", 560, 260, y, 0) },
+    post: () => PHONE("fiyat", 400, 620, 330, 4), story: (y) => PHONE("fiyat", 600, 240, y, 0, 2, true) },
   { id: "kacirma", kick: "Takip et, bildirim al", h: "HİÇBİR ŞEYİ<br><em>KAÇIRMA.</em>", sub: "Takip ettiğin etkinlikte bir şey değişirse ilk sen öğren.",
     post: () => `<div style="position:absolute;left:72px;right:72px;top:560px;display:flex;flex-direction:column;gap:18px;z-index:3">${NOTI("Fiyatı düştü 💸", "Takip ettiğin oyunun bileti artık daha uygun. Tam zamanı!")}${NOTI("Yarın büyük gün ✨", "Takip ettiğin konser yarın akşam. Biletin hazır mı?", "2 sa önce")}${NOTI("Saat değişti ⏰", "Takip ettiğin etkinliğin yeni saati 21:00. Takvimini güncellemeyi unutma!", "dün")}</div>`,
     story: () => `<div style="position:absolute;left:72px;right:72px;top:720px;display:flex;flex-direction:column;gap:20px;z-index:3">${NOTI("Fiyatı düştü 💸", "Takip ettiğin oyunun bileti artık daha uygun. Tam zamanı!")}${NOTI("Yarın büyük gün ✨", "Takip ettiğin konser yarın akşam. Biletin hazır mı?", "2 sa önce")}${NOTI("Müjde! 🎉", "Takip ettiğin oyunun biletleri yeniden satışta. Bu sefer kaçırma!", "dün")}${NOTI("Hafta sonu planın hazır mı? 🌟", "Şehrinde bu hafta sonu yüzlerce etkinlik var; sana göre olanları seçtik ✨", "Cuma")}</div>` },
   { id: "81-il", kick: "81 il · tek çark", h: "HANGİ<br><em>ŞEHİRDESİN?</em>", sub: "Kaydır, şehrin ortaya gelsin. Ankara'dan Van'a, 81 ilin etkinlikleri burada.",
-    post: () => PHONE("cark", 400, 620, 330, 4), story: (y) => PHONE("cark", 560, 260, y, 0) },
+    post: () => PHONE("cark", 400, 620, 330, 4), story: (y) => PHONE("cark", 600, 240, y, 0, 2, true) },
   { id: "sinema", kick: "Vizyonda ne var?", h: "SEANSLAR<br><em>SALON SALON.</em>", sub: "Şehrindeki sinemaların seansları gün gün. Filmi seç, saatini bul.",
-    post: () => PHONE("sinema", 400, 620, 330, 4), story: (y) => PHONE("sinema", 560, 260, y, 0) },
+    post: () => PHONE("sinema", 400, 620, 330, 4), story: (y) => PHONE("sinema", 600, 240, y, 0, 2, true) },
 ];
 const NOTES = {
   "bu-aksam": "Not: fiyatlar uygulamada yalnızca satış sitesinde doğrulanmışsa görünür.",
