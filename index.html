@@ -409,13 +409,13 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .whl .band{position:absolute;left:0;right:0;top:50%;height:52px;margin-top:-26px;border-radius:14px;background:rgba(255,255,255,.09);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);pointer-events:none}
 #wl{list-style:none;height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none;padding:104px 0;overscroll-behavior:contain;outline:0}
 #wl::-webkit-scrollbar{display:none}
-#wl li{height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px;scroll-snap-align:center;cursor:pointer;will-change:opacity}
-#wl li b{transform-origin:left center;will-change:transform;white-space:nowrap}
-#wl li b{font:800 21px/1 var(--fd);font-stretch:86%;text-transform:uppercase;letter-spacing:.005em}
+#wl li{height:52px;display:flex;align-items:center;justify-content:center;gap:12px;padding:0 16px;scroll-snap-align:center;cursor:pointer;will-change:opacity}
+#wl li b{transform-origin:center;will-change:transform;white-space:nowrap;backface-visibility:hidden}
+#wl li b{font:800 22px/1 var(--fd);font-stretch:86%;text-transform:uppercase;letter-spacing:.005em}
 #wl li small{font:700 12px var(--f);color:var(--t2);white-space:nowrap}
 #wl li.on small{color:#b9a3fb}
 #wl li.soon b{color:var(--t2)}
-.pact{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px}
+.pact{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:16px}.pact .cgo{width:100%;justify-content:center}
 .pact .cgo{margin-top:0;height:52px}.pact .cgo.off{background:rgba(255,255,255,.14);color:var(--t2)}
 .cbk{font-weight:700;color:var(--t2);text-decoration:underline;text-underline-offset:3px}
 

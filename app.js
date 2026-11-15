@@ -164,6 +164,22 @@ function storyInit() {
   play();
 }
 
+
+/* Tekerlek tık sesi (iPhone saat tekerleği gibi): çok kısa, kısık bir tık; Android'de 6 ms titreşim. Ses ilk dokunuşta açılır (tarayıcı kuralı). */
+let ACX = null, lastTick = 0;
+function tick() {
+  const t = performance.now(); if (t - lastTick < 28) return; lastTick = t;
+  try { navigator.vibrate?.(6); } catch {}
+  try {
+    ACX ||= new (window.AudioContext || window.webkitAudioContext)(); if (ACX.state === "suspended") ACX.resume();
+    const n = ACX.currentTime, o = ACX.createOscillator(), g = ACX.createGain(), f = ACX.createBiquadFilter();
+    o.type = "square"; o.frequency.setValueAtTime(2400, n); o.frequency.exponentialRampToValueAtTime(900, n + .012);
+    f.type = "highpass"; f.frequency.value = 1200;
+    g.gain.setValueAtTime(.0001, n); g.gain.exponentialRampToValueAtTime(.06, n + .002); g.gain.exponentialRampToValueAtTime(.0001, n + .02);
+    o.connect(f).connect(g).connect(ACX.destination); o.start(n); o.stop(n + .025);
+  } catch {}
+}
+addEventListener("touchstart", () => { try { ACX ||= new (window.AudioContext || window.webkitAudioContext)(); ACX.resume(); } catch {} }, { once: true, passive: true });
 /* Türkçe yönelme eki: Ankara'ya, İstanbul'a, İzmir'e, Çorum'a, Muş'a */
 function dat(n) { const w = n.toLocaleLowerCase("tr"), v = [...w].reverse().find((c) => "aeıioöuü".includes(c)) || "a", back = "aıou".includes(v); return ("aeıioöuü".includes(w.slice(-1)) ? "y" : "") + (back ? "a" : "e"); }
 function viewCities() {
@@ -181,27 +197,27 @@ function viewCities() {
     <label class="cin">${I.pin}<input id="cq" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Yaz ya da aşağıdan seç…" aria-label="Şehir ara"></label>
     <div class="whl"><div class="band" aria-hidden="true"></div><ul id="wl" role="listbox" aria-label="İller" tabindex="0"></ul></div>
     <p class="cmsg" id="cmsg" hidden></p>
-    <div class="pact"><button type="button" class="cgo" id="cok">Seç</button>${saved ? `<a class="cbk" href="#/${saved.id}" data-city="${saved.id}">${esc(saved.name)}'${dat(saved.name)} devam et →</a>` : ""}</div>
+    <div class="pact"><button type="button" class="cgo" id="cok">Devam et</button>${saved ? `<a class="cbk" href="#/${saved.id}" data-city="${saved.id}">${esc(saved.name)}'${dat(saved.name)} devam et →</a>` : ""}</div>
   </div></section>
-  <p class="cnow"><b>${liveC.length}</b> ilde etkinlikler açık${liveC.length ? ` · en kalabalık: ${liveC.slice(0, 5).map((c) => `<a href="#/${c.id}" data-city="${c.id}">${c.name}</a>`).join(", ")}` : ""}</p>
   <div id="csl"></div><div class="cs-ft"><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
   /* Saat tekerleği gibi il seçici: alfabetik, kaydırdıkça ortadaki büyür (yalnızca transform/opacity) */
-  const q = $("#cq"), wl = $("#wl"), msg = $("#cmsg"), ok = $("#cok"), IH = 52; let L = ALL, cur = 0, raf = 0, pfT = 0;
+  const q = $("#cq"), wl = $("#wl"), msg = $("#cmsg"), ok = $("#cok"), IH = 52; let L = ALL, cur = 0, raf = 0, pfT = 0, drawn = false;
   const go = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; }
     msg.hidden = false; msg.innerHTML = `<b>${esc(c.name)}</b> için şu an listede etkinlik yok; her gece yeniden bakıyoruz. Şunlara göz atabilirsin: ${liveC.slice(0, 4).map((x) => `<a href="#/${x.id}" data-city="${x.id}">${x.name}</a>`).join(", ")}`; };
   const paint = () => {
     raf = 0; const mid = wl.scrollTop + wl.clientHeight / 2, n = Math.round((mid - wl.clientHeight / 2) / IH);
     const lis = wl.children; for (let k = Math.max(0, n - 5); k < Math.min(lis.length, n + 6); k++) {
       const d = Math.abs((k * IH + IH / 2 + (wl.clientHeight - IH) / 2) - mid) / IH, li = lis[k];
-      li.firstChild.style.transform = `scale(${Math.max(.8, 1.2 - d * .16).toFixed(3)})`; li.style.opacity = Math.max(.22, 1 - d * .3).toFixed(2);
+      const sd = ((k * IH + IH / 2 + (wl.clientHeight - IH) / 2) - mid) / IH; // işaretli uzaklık (yukarı -, aşağı +)
+      li.firstChild.style.transform = `perspective(420px) rotateX(${(-sd * 17).toFixed(1)}deg) scale(${Math.max(.78, 1.22 - d * .17).toFixed(3)})`; li.style.opacity = Math.max(.18, 1 - d * .32).toFixed(2);
     }
     if (n !== cur && lis[n]) { lis[cur]?.classList.remove("on"); cur = Math.max(0, Math.min(n, lis.length - 1)); lis[cur].classList.add("on"); wl.setAttribute("aria-activedescendant", lis[cur].id);
-      const c = L[cur]; ok.textContent = c ? (c.live ? `${c.name}'${dat(c.name)} git` : `${c.name} · etkinlik yok`) : "Seç"; ok.classList.toggle("off", !c?.live); msg.hidden = true;
+      const c = L[cur]; msg.hidden = true; if (drawn) tick();
       clearTimeout(pfT); if (c?.live) pfT = setTimeout(() => prefetch(c.id), 450); }
   };
-  const draw = (list) => { L = list; cur = -1;
-    wl.innerHTML = list.map((c, k) => `<li id="w${k}" role="option" class="${c.live ? "" : "soon"}"><b>${esc(c.name)}</b><small>${sub(c)}</small></li>`).join("");
-    wl.scrollTop = 0; cur = 0; wl.children[0]?.classList.add("on"); paint(); const c = L[0]; ok.textContent = c ? (c.live ? `${c.name}'${dat(c.name)} git` : `${c.name} · etkinlik yok`) : "Seç"; ok.classList.toggle("off", !c?.live); };
+  const draw = (list) => { L = list; cur = -1; drawn = false;
+    wl.innerHTML = list.map((c, k) => `<li id="w${k}" role="option" class="${c.live ? "" : "soon"}"><b>${esc(c.name)}</b></li>`).join("");
+    wl.scrollTop = 0; cur = 0; wl.children[0]?.classList.add("on"); paint(); drawn = true; };
   const to = (k, smooth = true) => wl.scrollTo({ top: k * IH, behavior: smooth ? "smooth" : "auto" });
   wl.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(paint); }, { passive: true });
   wl.addEventListener("click", (ev) => { const li = ev.target.closest("li"); if (!li) return; const k = [...wl.children].indexOf(li); if (k === cur) go(L[k]); else to(k); });
