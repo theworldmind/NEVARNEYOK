@@ -49,6 +49,9 @@ jobs:
       - name: Paylaşım sayfaları (81 il, her etkinlik; WhatsApp/Instagram önizlemesi)
         continue-on-error: true
         run: node scraper/share-pages.mjs
+      - name: 81 il için Google sayfaları (/<il>/, hafta sonu, bugün, kategoriler)
+        continue-on-error: true
+        run: node scraper/il-pages.mjs
       - name: Yayın klasörünü hazırla
         run: |
           mkdir -p _site
