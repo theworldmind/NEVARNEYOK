@@ -1,0 +1,22 @@
+# Kaynak düzeltmek için: verilen sayfaların ham HTML'ini "sayfa" dalına koyar (kendini tanıtan kimlikle, robots.txt'e uyan siteler için).
+name: Sayfa indir (inceleme)
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Boşlukla ayrılmış adresler"
+        required: true
+permissions:
+  contents: write
+jobs:
+  indir:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          URLS: ${{ github.event.inputs.urls }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/s && cd /tmp/s && i=0
+          for u in $URLS; do i=$((i+1)); curl -sL -A "NeVarNeYokBot/1.0 (+https://nevarneyok.net.tr)" -H "Accept-Language: tr-TR" "$u" -o "sayfa-$i.html"; echo "$i $u" >> liste.txt; done
+          git init -q -b sayfa && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm "sayfalar"
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" sayfa
