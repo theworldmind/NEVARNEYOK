@@ -242,6 +242,55 @@ for (const ad of ADS) {
     await cp.screenshot({ path: join(OUT, file) }); out.push({ file, type: story ? "STORY" : "POST", caption: ad.cap }); log(`reklam: ${file}`);
   }
 }
+/* --- VİTRİN: Apple tanıtımı gibi kaydırmalı gönderi (kullanıcı isteği, 15.11.2026: "Instagram portre, temamızı yansıtan, Apple kalitesinde uygulama görselleri").
+   6 sayfa 1080×1350: sade ortalı başlık, büyük gerçek ekranlı telefonlar, yansıma, mor ışık; kalabalık etiket yok. */
+const ICON = "data:image/png;base64," + (await readFile(join(ROOT, "icons/icon-512.png"))).toString("base64");
+const VCSS = `.v{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.v .vg{position:absolute;inset:0;background:radial-gradient(60% 34% at 50% 72%,#8b5cf65c,transparent 70%),radial-gradient(50% 24% at 50% 0%,#8b5cf628,transparent 70%)}
+.v .vl{position:relative;margin-top:64px;height:46px}.v .vl img{height:100%}
+.v .ve{position:relative;margin-top:26px;font:700 26px/1 "Inter Tight",Arial,sans-serif;color:#c4b5fd}
+.v h2{position:relative;margin-top:14px;font:900 104px/.86 Archivo,"Arial Narrow",Arial,sans-serif;font-stretch:70%;text-transform:uppercase;letter-spacing:-.005em}
+.v h2 em{font-style:normal;color:#a78bfa}
+.v .vs{position:relative;margin-top:18px;max-width:760px;font:600 29px/1.3 "Inter Tight",Arial,sans-serif;color:#ffffffb0}
+.v .vst{position:absolute;left:0;right:0;bottom:0;top:var(--st,560px);-webkit-mask-image:linear-gradient(#000 78%,transparent 96%);mask-image:linear-gradient(#000 78%,transparent 96%)}
+.v .ph .pl{display:none}
+.v .vf{position:absolute;left:0;right:0;bottom:30px;display:flex;justify-content:center;align-items:center;gap:14px;font:700 22px/1 "Inter Tight",Arial,sans-serif;color:#ffffff90}
+.v .vf b{color:#fff}.v .vf i{font-style:normal;color:#ffffff40}
+.v .bub{text-align:left}
+.v .ic{position:relative;margin-top:150px;width:260px;height:260px;border-radius:60px;box-shadow:0 0 0 2px #ffffff22,0 40px 90px -20px #000,0 0 120px #8b5cf699}
+.v .btn{position:relative;margin-top:60px;display:inline-flex;align-items:center;gap:14px;padding:26px 46px;border-radius:99px;background:#fff;color:#0a0a10;font:900 40px/1 Archivo,Arial,sans-serif;font-stretch:84%;text-transform:uppercase;box-shadow:0 0 70px #8b5cf688}
+.v .btn svg{width:34px;height:34px}
+.v .url{position:relative;margin-top:28px;font:800 34px/1 "Inter Tight",Arial,sans-serif;color:#c4b5fd}
+.v .pills{position:relative;margin-top:34px;display:flex;gap:12px}.v .pills span{font:700 22px/1 "Inter Tight",Arial,sans-serif;padding:13px 20px;border-radius:99px;background:#ffffff10;box-shadow:0 0 0 1.5px #ffffff22 inset}`;
+const VF = (n) => `<div class="vf"><b>nevarneyok.net.tr/indir</b><i>·</i><span>${n}/6</span></div>`;
+const VP = (k, w, x, y, r = 0, z = 1) => P(k, w, x, y, r, z);
+const VITRIN = [
+  { n: 1, e: "81 il · tek uygulama", h: "NE VAR NE YOK.<br><em>ARTIK CEBİNDE.</em>", s: "Konser, tiyatro, stand-up ve sinema. Hangi ildeysen.", st: 520,
+    body: () => VP("tekerlek", 330, 80, 150, -9, 1) + VP(`sehir_${A}`, 380, 350, 60, 0, 3) + VP(`sinema_${B}`, 330, 670, 150, 9, 1) },
+  { n: 2, e: "Bir kaydır, bir dokun", h: "ŞEHRİNİ<br><em>SEÇ.</em>", s: "81 il tek tekerlekte. Ortaya gelen il büyür, dokun ve gir.", st: 500,
+    body: () => VP("tekerlek", 440, 320, 40, 0, 2) },
+  { n: 3, e: "Afiş afiş, raf raf", h: "BU AKŞAM<br><em>NE VAR?</em>", s: `${NM(A)}, ${NM(B)}, ${NM(Cc)}… Bu akşam, hafta sonu, vizyondakiler.`, st: 500,
+    body: () => VP(`raflar_${A}`, 380, 150, 60, -5, 1) + VP(`raflar_${B}`, 380, 550, 110, 5, 2) },
+  { n: 4, e: "Takip et, rahat et", h: "HİÇBİR ŞEYİ<br><em>KAÇIRMA.</em>", s: "İptal, erteleme, saat ya da yer değişirse ilk sen öğren.", st: 500,
+    body: () => VP(shots.takip ? "takip" : "etkinlik", 440, 320, 70, 0, 2) + NOTE("Yarın akşam! ⏰", "Takip ettiğin etkinlik yarın. Biletini unutma 😉", 60, 10, 500, "şimdi") },
+  { n: 5, e: "Vizyonda ne var?", h: "SEANSLAR<br><em>SALON SALON.</em>", s: "Şehrindeki sinemalar gün gün, saat saat.", st: 500,
+    body: () => VP(`sinema_${A}`, 380, 150, 110, -5, 1) + VP(`sinema_${B}`, 380, 550, 60, 5, 2) },
+  { n: 6, end: true },
+];
+const vhtml = (v) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><style>${CSS}${VCSS}</style></head><body><div class="v"><div class="vg"></div>
+${v.end ? `<div class="vl"><img src="${LOGO}" alt="Ne Var Ne Yok"></div><img class="ic" src="${ICON}" alt=""><h2 style="margin-top:60px">HEMEN<br><em>İNDİR.</em></h2>
+<div class="pills"><span>Ücretsiz</span><span>Üyelik yok</span><span>Android · iPhone</span><span>81 il</span></div>
+<div class="btn">Uygulamayı indir<svg viewBox="0 0 24 24"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="url">nevarneyok.net.tr/indir</div>
+<div class="os" style="position:absolute;bottom:34px;left:0;right:0"><span>by</span>${OS}<em>one<b>side</b></em></div>`
+  : `<div class="vl"><img src="${LOGO}" alt="Ne Var Ne Yok"></div><div class="ve">${v.e}</div><h2>${v.h}</h2><p class="vs">${v.s}</p><div class="vst" style="--st:${v.st}px">${v.body()}</div>${VF(v.n)}`}
+</div></body></html>`;
+for (const v of VITRIN) {
+  await cp.setViewportSize({ width: 1080, height: 1350 });
+  await cp.setContent(vhtml(v), { waitUntil: "networkidle" }); await cp.evaluate(async () => { await Promise.all(["900 100px Archivo", "700 30px \"Inter Tight\""].map((f) => document.fonts.load(f).catch(() => {}))); await document.fonts.ready; }); await cp.waitForTimeout(300);
+  const file = `vitrin-${v.n}.png`; await cp.screenshot({ path: join(OUT, file) }); log(`vitrin: ${file}`);
+}
+out.push({ file: VITRIN.map((v) => `vitrin-${v.n}.png`).join(","), type: "CAROUSEL", caption: `Ne Var Ne Yok artık cebinde 📲✨\n\n${DAN(A)} ${YA(B)}, 81 ilin konserleri, tiyatroları, stand-up'ları ve sinema seansları tek uygulamada. Kaydır, gör 👉\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\nÜcretsiz · üyelik yok · Android ve iPhone\n\n#nevarneyok #etkinlik #konser #tiyatro #standup #sinema #haftasonu #ankara #istanbul #izmir` });
+
 await writeFile(join(OUT, "uygulama-reklam.json"), JSON.stringify({ city: cityName, posts: out }, null, 2));
 await browser.close(); srv.close();
 log(`Uygulama reklamları hazır: ${out.length} görsel → ${OUT}`);
