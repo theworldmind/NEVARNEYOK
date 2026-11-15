@@ -147,7 +147,7 @@ const UP = (c) => NM(c).toLocaleUpperCase("tr");
 const P = (k, w, x, y, r = 0, z = 1, label = "") => shots[k] ? `<div class="ph" style="--pw:${w}px;left:${x}px;top:${y}px;transform:rotate(${r}deg);z-index:${z}">${label ? `<span class="pl">📍 ${label}</span>` : ""}<div class="scr">${STATUS}<img src="${shots[k]}" alt=""></div></div>` : "";
 // bütün Türkiye şeridi: büyük iller önde, sonra diğerleri, "81 İL"
 const ORDER = Object.entries(IDX).sort((a, b) => (b[1].n + b[1].films * 5) - (a[1].n + a[1].films * 5)).map(([id]) => id);
-const RIBBON = (y, r = -4) => { const L = ORDER.slice(0, 22).map((c, k) => `<span class="${k < 4 ? "b" : ""}">${UP(c)}</span>`).join("<i>•</i>"); return `<div class="rib" style="bottom:${y}px;transform:rotate(${r}deg)"><div>${L}<i>•</i><span class="b">81 İL</span><i>•</i>${L}</div></div>`; };
+const RIBBON = () => ""; // il şeridi kaldırıldı (kullanıcı: "mor şeridi güzel bulmuyorum", 15.11.2026)
 const CLOUD = (story) => { const mx = Math.max(...Object.values(IDX).map((c) => c.n + c.films * 5)) || 1;
   const ids = Object.keys(IDX).sort((a, b) => NM(a).localeCompare(NM(b), "tr"));
   return `<div class="cloud${story ? " st" : ""}">${ids.map((c) => { const v = IDX[c].n + IDX[c].films * 5, f = Math.round((story ? 26 : 21) + Math.sqrt(v / mx) * (story ? 92 : 74)); const top = ORDER.indexOf(c);
