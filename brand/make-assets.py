@@ -25,31 +25,44 @@ lg = cut(f'{H}/nevarneyok-logo.png', f'{H}/logo.png'); cut(f'{H}/nevarneyok-simg
 # ve Android rıhtımında gerçek uygulama simgesi gibi), apple-touch ve maskable tam kare (sistem kendisi keser).
 from PIL import ImageFilter
 def glass_icon(S=1024, fade=False):
+    """Apple kalitesinde simge (16.11.2026, kullanıcı: "uygulamamızın logosunu Apple profesyonelliğinde yap"). Büyüteç BİREBİR, yeri ve boyu aynı;
+    yalnızca ışık: derin mor degrade zemin + sol üstte yumuşak ışık + çapraz ince parlaklık; beyaz halkada çok hafif hacim;
+    mor mercek gerçek cam küre gibi (üstte açık lavanta, altta derinlik, sol üstte yay yansıma ve parıltı, altta kırılan ışık); altında yumuşak gölge."""
     yy, xx = np.mgrid[0:S, 0:S].astype(np.float64) / S
-    top, bot = np.array([38., 28, 70]), np.array([9., 8, 15])
-    t = np.clip(yy * 1.05, 0, 1)[..., None]; img = top * (1 - t) ** 1.6 + bot * (1 - (1 - t) ** 1.6)
-    cx, cy = .476, .476  # merceğin merkezi (kullanıcının simgesinde)
-    g = np.exp(-(((xx - cx) ** 2 + (yy - cy) ** 2) / (2 * .2 ** 2)))[..., None]
-    img = img + np.array([139., 92, 246]) * .42 * g
-    img = img + 255 * np.clip(.07 * (1 - yy / .5), 0, None)[..., None]          # üstte ince parlaklık
-    if fade:  # yalnızca zemin kenarlara doğru uygulamanın zeminine erir; büyüteç ve gölgesi olduğu gibi üstüne konur
+    top, bot = np.array([62., 40, 150]), np.array([10., 8, 22])
+    t = np.clip(xx * .35 + yy * .9, 0, 1)[..., None] ** 1.15
+    img = top * (1 - t) + bot * t
+    g1 = np.exp(-(((xx - .3) ** 2 + (yy - .22) ** 2) / (2 * .26 ** 2)))[..., None]; img = img + np.array([120., 90, 255]) * .32 * g1
+    g2 = np.exp(-(((xx - .476) ** 2 + (yy - .476) ** 2) / (2 * .2 ** 2)))[..., None]; img = img + np.array([139., 92, 246]) * .30 * g2
+    sheen = np.clip(1 - np.abs((xx + yy) - .62) / .22, 0, 1) ** 2 * np.clip(1 - yy * 1.6, 0, 1); img = img + 255 * .05 * sheen[..., None]
+    img = img + 255 * np.clip(.06 * (1 - yy / .35), 0, None)[..., None]
+    if fade:
         r = np.sqrt((xx - .476) ** 2 + (yy - .476) ** 2); k = np.clip((r - .24) / .22, 0, 1)[..., None] ** 1.3
         img = img * (1 - k) + np.array([10., 10, 16]) * k
     base = Image.fromarray(np.clip(img, 0, 255).astype(np.uint8)).convert('RGBA')
     mk = Image.open(f'{H}/mark.png').convert('RGBA'); w = round(S * 1223 / 2160); mk = mk.resize((w, w), Image.LANCZOS)
     pos = round(S * (462 - 6) / 2160)
     a = np.asarray(mk).astype(np.float64); al = a[..., 3] / 255
-    sh = Image.new('L', (S, S)); sh.paste(Image.fromarray((al * 255).astype(np.uint8)), (pos, pos + round(S * .025)))
-    sh = sh.filter(ImageFilter.GaussianBlur(S * .03)); shadow = Image.new('RGBA', (S, S), (4, 2, 12, 0)); shadow.putalpha(sh.point(lambda v: int(v * .7)))
-    base = Image.alpha_composite(base, shadow)
-    # mor cam: parlama + derinlik (yalnızca mor bölgede)
-    rgb = a[..., :3]; pur = al * np.clip(1 - np.linalg.norm(rgb - [139, 92, 246], axis=-1) / 90, 0, 1)
-    my, mx = np.mgrid[0:w, 0:w].astype(np.float64) / w
-    spec = np.exp(-(((mx - .36) ** 2) / (2 * .16 ** 2) + ((my - .33) ** 2) / (2 * .12 ** 2)))
-    deep = np.clip((my - .45) / .45, 0, 1) * np.clip((mx + my - .9) / .9, 0, 1)
-    rgb = rgb + (255 - rgb) * (pur * spec * .42)[..., None] - rgb * (pur * deep * .3)[..., None]
-    wht = al * np.clip(1 - np.linalg.norm(a[..., :3] - 255, axis=-1) / 60, 0, 1)   # beyaz halka: alta doğru çok hafif lavanta
-    rgb = rgb - (wht * my * 22)[..., None] * np.array([1, 1.15, .4])
+    for blur, off, op in [(.045, .04, .55), (.012, .012, .35)]:   # uzun yumuşak gölge + yakın gölge
+        sh = Image.new('L', (S, S)); sh.paste(Image.fromarray((al * 255).astype(np.uint8)), (pos, pos + round(S * off)))
+        sh = sh.filter(ImageFilter.GaussianBlur(S * blur)); shadow = Image.new('RGBA', (S, S), (6, 2, 20, 0)); shadow.putalpha(sh.point(lambda v, o=op: int(v * o)))
+        base = Image.alpha_composite(base, shadow)
+    rgb = a[..., :3].copy(); my, mx = np.mgrid[0:w, 0:w].astype(np.float64) / w
+    pur = al * np.clip(1 - np.linalg.norm(rgb - [139, 92, 246], axis=-1) / 90, 0, 1)
+    ys, xs = np.where(pur > .5); cx, cy, rr = (xs.min() + xs.max()) / 2 / w, (ys.min() + ys.max()) / 2 / w, (xs.max() - xs.min()) / 2 / w
+    u, v = (mx - cx) / rr, (my - cy) / rr; d = np.sqrt(u ** 2 + v ** 2)
+    topl = np.clip(-v * .5 + .5, 0, 1)
+    light, deep, base_c = np.array([200., 176, 255]), np.array([70., 32, 170]), np.array([139., 92, 246])
+    col = deep * (1 - topl[..., None]) ** 1.3 + light * topl[..., None] ** 1.5; col = col * .6 + base_c * .4
+    arc = np.exp(-((d - .70) ** 2) / (2 * .075 ** 2)) * np.clip((-u - v) / 1.2, 0, 1) ** 1.4
+    glint = np.exp(-(((u + .36) ** 2) + ((v + .4) ** 2)) / (2 * .1 ** 2))
+    caust = np.exp(-(((u - .1) ** 2) / (2 * .35 ** 2) + ((v - .62) ** 2) / (2 * .14 ** 2)))   # alttan kırılan ışık
+    shade = np.clip((u + v) / 1.4, 0, 1) ** 1.5 * .25; edge = np.clip((d - .9) / .1, 0, 1) ** 2 * .35
+    col = col * (1 - shade[..., None] - edge[..., None]) + (255 - col) * (arc * .55 + glint * .9 + caust * .22)[..., None]
+    rgb = rgb * (1 - pur[..., None]) + col * pur[..., None]
+    wht = al * np.clip(1 - np.linalg.norm(a[..., :3] - 255, axis=-1) / 60, 0, 1)        # beyaz halka: üstte saf beyaz, altta çok hafif lavanta, iç kenarda ince gölge
+    rim = np.exp(-((d - 1.02) ** 2) / (2 * .03 ** 2))
+    rgb = rgb - (wht * (my * 26 + rim * 30))[..., None] * np.array([1, 1.12, .55])
     mk = Image.fromarray(np.dstack([np.clip(rgb, 0, 255), a[..., 3]]).astype(np.uint8), 'RGBA')
     base.alpha_composite(mk, (pos, pos))
     return base

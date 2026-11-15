@@ -345,7 +345,7 @@ function viewCity(city) {
   const k = (q) => `#/${city}/kesfet?${q}`;
   V.innerHTML = `<div class="wash" aria-hidden="true">${featured.map((e, k) => `<img src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async"${k ? "" : ' style="opacity:.42"'}>`).join("")}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1><div id="tdy"></div>${yilHome(city)}
   <button type="button" class="pz" id="pz">${prefs() ? `<span class="dot"></span>Senin için kişiselleştirildi<em>Düzenle</em>` : `${I.spark}Kişiselleştir<em>İlgi alanlarını seç, sana uygun etkinlikler öne çıksın</em>`}</button></section>
-  <div class="qk2"><button type="button" id="tnt"><span>🌙</span>Bu akşam ne yapsak?</button><button type="button" id="nrb"><span>📍</span>Yakınımda</button></div>
+  <div class="qk2"><button type="button" id="tnt">${cgIcon("haftaiciaksam")}Bu akşam ne yapsak?</button><button type="button" id="nrb"><span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span>Yakınımda</button></div>
   ${stories(featured, (e) => `#/${city}/e/${encodeURIComponent(e.slug)}`)}
   <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Ara ya da yaz: cumartesi akşam konser…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
   <div class="qk"><a href="${k("t=bugun")}">Bugün</a><a href="${k("t=yarin")}">Yarın</a><a href="${k("t=haftasonu")}">Hafta sonu</a><a href="#/${city}/sinema">Sinema</a>${Object.keys(CATS).filter((c) => c !== "sinema" && weekL.some((e) => e.cat === c)).map((c) => `<a href="${k("k=" + c)}">${esc(CATS[c])}</a>`).join("")}</div>
@@ -486,7 +486,7 @@ function openFilters(city, f0) {
   const body = () => `<div class="pn full flt" role="dialog" aria-label="Filtrele"><div class="hd"><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button><b>Filtrele</b><button type="button" class="lnk" data-reset>Temizle</button></div><div class="bd2 fsx">
     <h4>Ne zaman?</h4><div class="pills">${pill("t", "", "Tümü")}${Object.entries(TIMES).map(([k, l]) => pill("t", k, l)).join("")}</div>
     <div class="dstrip in">${days.map((d) => `<button type="button" data-gun="${d}" class="${f.gun === d && !f.t ? "on" : ""}"><small>${d === today ? "Bugün" : GUNK[pd(d).getDay()]}</small><b>${pd(d).getDate()}</b></button>`).join("")}</div>
-    <h4>Kategori <em>birden çok seçebilirsin</em></h4><div class="tiles">${tileM("k", "sinema", "Film", CIC.sinema || "🎬", (DATA.films?.films || []).filter((x) => Object.keys(x.s || {}).length).length + " film vizyonda")}${Object.entries(CATS).filter(([k]) => k !== "sinema").map(([k, l]) => tileM("k", k, l, CIC[k] || "✨", catN(k).toLocaleString("tr-TR") + " etkinlik")).join("")}</div>
+    <h4>Kategori <em>birden çok seçebilirsin</em></h4><div class="tiles">${tileM("k", "sinema", "Film", CIC.sinema, (DATA.films?.films || []).filter((x) => Object.keys(x.s || {}).length).length + " film vizyonda")}${Object.entries(CATS).filter(([k]) => k !== "sinema").map(([k, l]) => tileM("k", k, l, CIC[k] || "", catN(k).toLocaleString("tr-TR") + " etkinlik")).join("")}</div>
     ${list(f.k).includes("sinema") && filmGenres().length ? `<h4>Film türü</h4><div class="grp"><div class="ch">${filmGenres().map((g) => `<button type="button" data-many="fg" data-v="${esc(g)}" class="${list(f.fg).includes(g) ? "on" : ""}">${esc(g)}</button>`).join("")}</div></div>` : ""}
     <h4>Saat</h4><div class="tiles">${Object.entries(SAAT).map(([k, l]) => tileM("s", k, l.split(" · ")[0], SIC[k], l.split(" · ")[1])).join("")}</div>
     <h4>Fiyat <em>yalnızca son 36 saatte doğrulanmış</em></h4><div class="pills">${pill("p", "", "Hepsi")}${Object.entries(FIYAT).map(([k, l]) => pill("p", k, l.replace(" ve altı", "'e kadar").replace("₺1.000'e", "₺1.000'e"))).join("")}</div>
@@ -526,8 +526,24 @@ function pscore(e) {
   if (P.kids && (e.cat === "cocuk" || (ageN(e) != null && ageN(e) <= 8))) n += 3;
   return n + e.score / 10;
 }
-const CIC = { konser: "🎤", tiyatro: "🎭", standup: "🎙️", sahne: "🩰", cocuk: "🧸", festival: "🎪", parti: "🪩", atolye: "🎨" };
-const WIC = { haftaiciaksam: "🌙", haftasonugunduz: "☀️", haftasonuaksam: "🌆" };
+// Apple tarzı simgeler (kullanıcı, 16.11.2026: "simgeler Apple profesyonelliğinde olsun"): renkli yuvarlak kare içinde beyaz çizim; emoji yok
+const CG = {
+  konser: ["#ff375f", "<path d=\"M9 17V6.5l9-2V15\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linejoin=\"round\"/><circle cx=\"7\" cy=\"17\" r=\"2.6\" fill=\"#fff\"/><circle cx=\"16\" cy=\"15\" r=\"2.6\" fill=\"#fff\"/>"],
+  tiyatro: ["#bf5af2", "<path d=\"M4.5 5.5c3 1.3 6 1.3 9 0v5.2c0 3-2 5.3-4.5 5.3S4.5 13.7 4.5 10.7z\" fill=\"#fff\"/><path d=\"M11 9.4c2.8 1 5.6 1 8.5-.2v5c0 2.9-1.9 5.3-4.3 5.3-1.6 0-3-1-3.7-2.6\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.8\"/><circle cx=\"7.3\" cy=\"9\" r=\".9\" fill=\"#000\" opacity=\".35\"/><circle cx=\"10.7\" cy=\"9\" r=\".9\" fill=\"#000\" opacity=\".35\"/>"],
+  standup: ["#ff9f0a", "<rect x=\"8.5\" y=\"3\" width=\"7\" height=\"11\" rx=\"3.5\" fill=\"#fff\"/><path d=\"M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.9\" stroke-linecap=\"round\"/>"],
+  sahne: ["#ff6482", "<circle cx=\"12\" cy=\"5.2\" r=\"2\" fill=\"#fff\"/><path d=\"M12 8v6.5M12 10l-5-2.2M12 10l5-2.2M12 14.5l-3 6M12 14.5l3.5 5.5\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\"/>"],
+  cocuk: ["#30d158", "<circle cx=\"12\" cy=\"10\" r=\"6.5\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/><path d=\"M12 16.5v4.5\" stroke=\"#fff\" stroke-width=\"1.6\"/><path d=\"M9.5 7.5a3.4 3.4 0 0 1 2.5-1\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.6\" stroke-linecap=\"round\"/>"],
+  festival: ["#64d2ff", "<path d=\"M12 3 4 9.5h16z\" fill=\"#fff\"/><path d=\"M5.5 10.5V20h13v-9.5\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/><path d=\"M10 20v-5h4v5\" fill=\"#fff\"/>"],
+  parti: ["#5e5ce6", "<circle cx=\"12\" cy=\"13\" r=\"6.5\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/><path d=\"M5.8 11h12.4M5.8 15h12.4M12 6.5c-2.2 2-2.2 11 0 13M12 6.5c2.2 2 2.2 11 0 13\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.3\"/><path d=\"M12 3v3.5\" stroke=\"#fff\" stroke-width=\"1.8\"/>"],
+  atolye: ["#ffcc00", "<path d=\"M12 4a8 8 0 1 0 0 16c1.4 0 2-1 1.4-2.1-.7-1.3.1-2.4 1.5-2.4H17a3 3 0 0 0 3-3c0-4.7-3.6-8.5-8-8.5z\" fill=\"#fff\"/><circle cx=\"8\" cy=\"11\" r=\"1.3\" fill=\"#ff9f0a\"/><circle cx=\"11\" cy=\"7.8\" r=\"1.3\" fill=\"#ff375f\"/><circle cx=\"15\" cy=\"8.6\" r=\"1.3\" fill=\"#0a84ff\"/>"],
+  sinema: ["#ff453a", "<rect x=\"3.5\" y=\"7\" width=\"12.5\" height=\"10\" rx=\"2\" fill=\"#fff\"/><path d=\"M16 11l4.5-2.6v7.2L16 13z\" fill=\"#fff\"/>"],
+  haftaiciaksam: ["#5e5ce6", "<path d=\"M15.5 4.5a7.5 7.5 0 1 0 4 12.6A6.2 6.2 0 0 1 15.5 4.5z\" fill=\"#fff\"/>"],
+  haftasonugunduz: ["#ff9f0a", "<circle cx=\"12\" cy=\"12\" r=\"4.4\" fill=\"#fff\"/><g stroke=\"#fff\" stroke-width=\"1.8\" stroke-linecap=\"round\"><path d=\"M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4\"/></g>"],
+  haftasonuaksam: ["#ff6b35", "<path d=\"M3.5 17h17\" stroke=\"#fff\" stroke-width=\"1.8\" stroke-linecap=\"round\"/><path d=\"M6.5 17a5.5 5.5 0 0 1 11 0z\" fill=\"#fff\"/><path d=\"M5 20.5h14\" stroke=\"#fff\" stroke-width=\"1.6\" stroke-linecap=\"round\" opacity=\".6\"/>"]
+};
+const cgIcon = (k) => CG[k] ? `<span class="cgi" style="background:${CG[k][0]}"><svg viewBox="0 0 24 24">${CG[k][1]}</svg></span>` : "";
+const CIC = Object.fromEntries(Object.keys(CATS).map((k) => [k, cgIcon(k)]));
+const WIC = { haftaiciaksam: cgIcon("haftaiciaksam"), haftasonugunduz: cgIcon("haftasonugunduz"), haftasonuaksam: cgIcon("haftasonuaksam") };
 function openPrefs(city, after) {
   const P = prefs() || { cats: [], ilce: [], when: [], budget: 0, kids: false };
   const tile = (k, v, l, ic) => `<button type="button" class="tile${(P[k] || []).includes(v) ? " on" : ""}" data-p="${k}" data-v="${esc(v)}" aria-pressed="${(P[k] || []).includes(v)}"><span class="ti">${ic || "✨"}</span><span class="tl3">${esc(l)}</span><i class="tk" aria-hidden="true">✓</i></button>`;
@@ -578,7 +594,7 @@ function viewEvent(city, slug) {
     ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">Bilet al · ${esc((best || T[0]).site)}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
     ${T.length ? `${tix}<p class="chk">${checked ? `Fiyatlar satış sitelerinde ${ago(checked)} kontrol edildi. ` : ""}Hizmet bedeli ve son fiyat siteye göre değişebilir; satın alma ve iade bileti satan sitenin kurallarına tabidir.</p>` : ""}
     <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}Takvime ekle</button><button type="button" id="shr">${I.share}Paylaş</button></div>
-    ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl"><span>🎤</span><span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>
+    ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl">${cgIcon("standup")}<span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>
     ${live(e) ? `<p class="flh">Takip edersen fiyatı düştüğünde, iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
     <section class="sec"><h3>Bu etkinlik hakkında</h3>${infoBlock(e, city)}<a class="wrong" href="${wrongMail(e, city)}">Bir yanlış mı var? Bize yaz →</a></section>
     <div id="wxb"></div>
@@ -941,7 +957,7 @@ async function shareEv(e, city) {
   const u = shareUrl(e, city), text = `${e.title} · ${dShort(e.d)}${e.t ? " " + e.t : ""} · ${e.venue}`, fn = `nevarneyok-${e.slug}.jpg`;
   const sh = sheet(`<div class="pn shp" role="dialog" aria-label="Paylaş"><div class="hd"><b>Paylaş</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2">
     <div class="shv"><div class="shi sk" id="shi"></div><div class="shm"><b>${esc(e.title)}</b><small>${esc(dShort(e.d))}${e.t ? " · " + esc(e.t) : ""}</small><small>${esc(e.venue || "")}</small></div></div>
-    <div class="sha"><button type="button" data-a="story"><i>📸</i><span>Hikâyende paylaş</span></button><button type="button" data-a="link"><i>💬</i><span>Arkadaşına gönder</span></button><button type="button" data-a="save"><i>⬇️</i><span>Görseli kaydet</span></button><button type="button" data-a="copy"><i>🔗</i><span>Bağlantıyı kopyala</span></button></div>
+    <div class="sha"><button type="button" data-a="story"><i style="background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16.8" cy="7.2" r="1.1" fill="#fff"/></svg></i><span>Hikâyende paylaş</span></button><button type="button" data-a="link"><i style="background:#30d158"><svg viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8S16.7 18 12 18c-.9 0-1.8-.1-2.6-.3L5 19.5l1.3-3.4C4.6 14.9 3.5 13.2 3.5 11.3 3.5 7.5 7.3 4.5 12 4.5z" fill="#fff"/></svg></i><span>Arkadaşına gönder</span></button><button type="button" data-a="save"><i style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>Görseli kaydet</span></button><button type="button" data-a="copy"><i style="background:#8e8e93"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg></i><span>Bağlantıyı kopyala</span></button></div>
     <p class="shn">Arkadaşın bağlantıyı açınca etkinlik doğrudan Ne Var Ne Yok'ta açılır; önizlemede adı, tarihi ve afişi görünür.</p></div></div>`, "mn");
   let blobP = storyOf(e, city).then((b) => { const im = new Image(); im.src = URL.createObjectURL(b); im.alt = ""; const box = sh.querySelector("#shi"); box.classList.remove("sk"); box.append(im); return b; });
   blobP.catch(() => sh.querySelector("#shi")?.classList.add("no"));
@@ -1104,7 +1120,7 @@ function geoHelp(city, code) {
     const sh = sheet(`<div class="pn" role="dialog" aria-label="Konum"><div class="hd"><b>📍 Yakınındaki etkinlikler</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
       <div class="bd2"><p class="pl1">Instagram'ın içindeki tarayıcı sitelere konum izni vermiyor. ${and ? "Chrome'da" : "Safari'de"} açınca izin penceresi hemen çıkar.</p>
       <div class="pl-b"><a class="ok" href="${open}">${and ? "Chrome'da aç" : "Safari'de aç"}</a><a href="#" data-center>Şehir merkezine göre sırala</a></div>
-      <p class="pl1" style="margin-top:14px;color:var(--t3);font-size:13px">Açılmazsa sağ üstteki <b>⋮</b> menüsünden <b>Tarayıcıda aç</b>'ı seç.</p>${standalone ? "" : `<a class="gapp" href="indir/"><img src="icons/icon-192.png?v=2" alt="" width="40" height="40"><span><b>Uygulamayı indirirsen daha kolay</b><small>Konum ve bildirimler tek dokunuşla çalışır · ücretsiz</small></span></a>`}</div></div>`, "mn");
+      <p class="pl1" style="margin-top:14px;color:var(--t3);font-size:13px">Açılmazsa sağ üstteki <b>⋮</b> menüsünden <b>Tarayıcıda aç</b>'ı seç.</p>${standalone ? "" : `<a class="gapp" href="indir/"><img src="icons/icon-192.png?v=4" alt="" width="40" height="40"><span><b>Uygulamayı indirirsen daha kolay</b><small>Konum ve bildirimler tek dokunuşla çalışır · ücretsiz</small></span></a>`}</div></div>`, "mn");
     sh.querySelector("[data-center]").addEventListener("click", (ev) => { ev.preventDefault(); const c = cityCenter(city); sh.close(); if (!c) return; DATA.me = { p: c, t: Date.now(), c: 1 }; goNear(city); });
     sh.querySelector(".ok").addEventListener("click", (ev) => { ev.preventDefault(); haptic(6); dis(open); });
     return;
@@ -1116,7 +1132,7 @@ function geoHelp(city, code) {
     : "Cihazının konum servisi kapalı ya da konum şu an bulunamıyor. Konumu açıp tekrar dene.";
   const sh = sheet(`<div class="pn" role="dialog" aria-label="Konum"><div class="hd"><b>📍 Yakınındaki etkinlikler</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
     <div class="bd2"><p class="pl1">${code === 1 ? "Konum izni daha önce kapatılmış; bu yüzden tarayıcı bir daha soramıyor." : "Konumuna şu an ulaşamadık."}</p><p class="pl1">${how}</p><p class="pl1" style="color:var(--t3)">Konumun yalnızca bu cihazda, uzaklığı hesaplamak için kullanılır; hiçbir yere gönderilmez.</p>
-    <div class="pl-b"><button type="button" class="ok" data-again>Tekrar dene</button><a href="#" data-center>Şehir merkezine göre sırala</a></div>${standalone ? "" : `<a class="gapp" href="indir/"><img src="icons/icon-192.png?v=2" alt="" width="40" height="40"><span><b>Uygulamayı indirirsen daha kolay</b><small>Konum ve bildirimler tek dokunuşla çalışır · ücretsiz</small></span></a>`}</div></div>`, "mn");
+    <div class="pl-b"><button type="button" class="ok" data-again>Tekrar dene</button><a href="#" data-center>Şehir merkezine göre sırala</a></div>${standalone ? "" : `<a class="gapp" href="indir/"><img src="icons/icon-192.png?v=4" alt="" width="40" height="40"><span><b>Uygulamayı indirirsen daha kolay</b><small>Konum ve bildirimler tek dokunuşla çalışır · ücretsiz</small></span></a>`}</div></div>`, "mn");
   sh.querySelector("[data-again]").addEventListener("click", async () => { try { await whereAmI(true); sh.close(); goNear(city); } catch (e2) { sh.close(); setTimeout(() => geoHelp(city, e2?.code), 300); } });
   sh.querySelector("[data-center]").addEventListener("click", (ev) => { ev.preventDefault(); const c = cityCenter(city); sh.close();
     if (!c) { toast("Bu ilde mekân konumları henüz toplanıyor; birkaç gün içinde hazır olacak 📍", 7000); return; }
@@ -1153,7 +1169,7 @@ function intro(force) {
   const o = document.createElement("div"); o.className = "intro"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", "Tanıtım");
   o.innerHTML = `<div class="in-w" aria-hidden="true">${W.concat(W).slice(0, 12).map((u) => `<img src="${esc(u)}" alt="" referrerpolicy="no-referrer" decoding="async">`).join("")}</div>
     <button type="button" class="in-x">Geç</button>
-    <div class="in-s">${S.map((s, i) => `<section><div class="in-c">${i === 0 ? `<img class="in-ic" src="icons/icon-512.png?v=2" alt="" width="96" height="96">` : `<div class="in-n">${i + 1}/${S.length}</div>`}<small>${s[0]}</small><h2>${s[1]}</h2><p>${s[2]}</p></div></section>`).join("")}</div>
+    <div class="in-s">${S.map((s, i) => `<section><div class="in-c">${i === 0 ? `<img class="in-ic" src="icons/icon-512.png?v=4" alt="" width="96" height="96">` : `<div class="in-n">${i + 1}/${S.length}</div>`}<small>${s[0]}</small><h2>${s[1]}</h2><p>${s[2]}</p></div></section>`).join("")}</div>
     <div class="in-f"><div class="in-d">${S.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div><button type="button" class="in-go">Devam</button></div>`;
   document.body.append(o); document.body.style.overflow = "hidden"; requestAnimationFrame(() => o.classList.add("on"));
   const sc = $(".in-s", o), dots = $$(".in-d i", o), go = $(".in-go", o); let cur = 0;
@@ -1276,7 +1292,7 @@ function routeSheet(e, v, city, gUrl) {
   haptic(6);
   const sh = sheet(`<div class="pn rtp" role="dialog" aria-label="Yol tarifi"><div class="hd"><span class="rth"><b>Yol tarifi</b><small>${esc(e.venue || "")}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
     <div class="rtm map" id="rmap"></div>
-    <div class="bd2"><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">🚶 Yürüyerek</button><button type="button" data-m="car" role="tab">🚗 Arabayla</button></div>
+    <div class="bd2"><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
     <div class="rsum" id="rsum"><span class="sk" style="display:block;height:52px;border-radius:14px"></span></div>
     <ol class="rst" id="rst"></ol>
     <a class="rg" href="${gUrl}" target="_blank" rel="noopener">${I.ext}Google Haritalar'da aç</a>
@@ -1350,7 +1366,7 @@ async function viewAyarlar(city, sec) {
   let html;
   if (!sec || !SECT[sec]) {
     html = `<div class="ayr"><h1 class="stl">Ayarlar</h1>
-      <a class="sme" href="#/?sec=1"><img src="icons/icon-192.png?v=3" alt="" width="60" height="60"><span class="stx"><b>Ne Var Ne Yok</b><small>Şehrim: ${esc(cname)}</small></span>${CHV}</a>
+      <a class="sme" href="#/?sec=1"><img src="icons/icon-192.png?v=4" alt="" width="60" height="60"><span class="stx"><b>Ne Var Ne Yok</b><small>Şehrim: ${esc(cname)}</small></span>${CHV}</a>
       ${grp(row(`${base}/bildirimler`, SI.bell, "Bildirimler", nOn ? "Açık" : "Kapalı") + row(`${base}/ses`, SI.ses, "Ses ve Titreşim") + row(`${base}/konum`, SI.konum, "Konum", PERM_TXT[gperm] || ""))}
       ${grp(row(`${base}/gorunum`, SI.gorunum, "Görünüm") + row("#", SI.ilgi, "İlgi Alanlarım", prefs() ? "Seçili" : "", " data-prefs"))}
       ${grp(row(`${base}/ana-ekran`, SI.ekran, "Ana Ekran") + row(`${base}/veriler`, SI.veri, "Verilerim"))}
@@ -1374,7 +1390,7 @@ async function viewAyarlar(city, sec) {
       + grp(tg("s-az", store.get("nvny-az") === "1", "Hareketleri Azalt"), "Kayan ve büyüyen geçişler sadeleşir.") + "</div>";
   } else if (sec === "ana-ekran") {
     const sc = [["Bu akşam", "#ff9f0a"], ["Planım", "#ff3b30"], ["Sinema", "#bf5af2"], ["Yakınımda", "#0a84ff"]];
-    html = head("Ana Ekran") + `<div class="hsc"><img src="icons/icon-192.png?v=3" alt="" width="64" height="64"><div class="hsm">${sc.map(([t, c]) => `<div><i style="background:${c}"></i><b>${t}</b></div>`).join("")}</div></div>
+    html = head("Ana Ekran") + `<div class="hsc"><img src="icons/icon-192.png?v=4" alt="" width="64" height="64"><div class="hsm">${sc.map(([t, c]) => `<div><i style="background:${c}"></i><b>${t}</b></div>`).join("")}</div></div>
       <p class="sft">${standalone ? "Ana ekrandaki simgeye basılı tut; bu kısayollar açılır." : "Uygulamayı indirince simgeye basılı tutup bu kısayolları kullanabilirsin."}${and ? " Bir kısayolu sürükleyip ana ekrana ayrı simge olarak da bırakabilirsin." : ""}</p>
       ${standalone ? "" : grp(row("indir/", "", "Uygulamayı İndir"))}</div>`;
   } else if (sec === "veriler") {
@@ -1461,8 +1477,8 @@ function seansSheet(f, city, d, t, cid, cin, btn) {
 }
 function followLists(city) {
   const A = Object.entries(afol()), F = Object.entries(ffol()), N = CNAME();
-  return `${A.length ? `<h3 class="fl-h">Takip ettiğin sanatçı ve oyunlar</h3><div class="sgrp">${A.map(([k, a]) => `<div class="srow nr"><span class="sic">🎤</span><span class="stx">${esc(a.name)}<small>${(a.seen || []).length} yaklaşan tarih · ${[...new Set((a.seen || []).map((s) => N[s.split("/")[0]]).filter(Boolean))].slice(0, 3).join(", ") || "yeni tarih bekleniyor"}</small></span><button type="button" class="spill gh" data-ax="${esc(k)}">Bırak</button></div>`).join("")}</div>` : ""}
-  ${F.length ? `<h3 class="fl-h">Takip ettiğin filmler</h3><div class="sgrp">${F.map(([id, f]) => `<a class="srow" href="#/${f.city}/film/${esc(id)}"><span class="sic">🍿</span><span class="stx">${esc(f.title)}<small>${f.had ? "Vizyonda · " + esc(N[f.city] || "") : "Seansları bekleniyor"}</small></span><button type="button" class="spill gh" data-fx="${esc(id)}" onclick="event.preventDefault()">Bırak</button></a>`).join("")}</div>` : ""}
+  return `${A.length ? `<h3 class="fl-h">Takip ettiğin sanatçı ve oyunlar</h3><div class="sgrp">${A.map(([k, a]) => `<div class="srow nr">${cgIcon("standup")}<span class="stx">${esc(a.name)}<small>${(a.seen || []).length} yaklaşan tarih · ${[...new Set((a.seen || []).map((s) => N[s.split("/")[0]]).filter(Boolean))].slice(0, 3).join(", ") || "yeni tarih bekleniyor"}</small></span><button type="button" class="spill gh" data-ax="${esc(k)}">Bırak</button></div>`).join("")}</div>` : ""}
+  ${F.length ? `<h3 class="fl-h">Takip ettiğin filmler</h3><div class="sgrp">${F.map(([id, f]) => `<a class="srow" href="#/${f.city}/film/${esc(id)}">${cgIcon("sinema")}<span class="stx">${esc(f.title)}<small>${f.had ? "Vizyonda · " + esc(N[f.city] || "") : "Seansları bekleniyor"}</small></span><button type="button" class="spill gh" data-fx="${esc(id)}" onclick="event.preventDefault()">Bırak</button></a>`).join("")}</div>` : ""}
   ${!A.length && !F.length ? `<p class="flh" style="margin-top:20px">Bir etkinliğin sayfasındaki <b>🎤 Yeni tarihlerini takip et</b> ya da bir filmin sayfasındaki <b>Filmi takip et</b> ile buraya ekleyebilirsin.</p>` : ""}`;
 }
 async function watchBoot(city) {
@@ -1629,7 +1645,7 @@ function pastMove() { // tarihi geçen takipleri "Gittin mi?" listesine al
 }
 function gittiAsk(city) {
   const S = gsor(); if (!S.length) return "";
-  return `<section class="gas"><h3>Gittin mi? 🎟️</h3><p>Gittiklerin yıl sonunda özetinde çıkar.</p>${S.slice(-5).reverse().map((x) => `<div class="ga" data-gid="${esc(x.id)}"><span class="ga-p">${x.img ? `<img src="${esc(x.img)}" alt="" referrerpolicy="no-referrer">` : ""}</span><span class="ga-t"><b>${esc(x.title)}</b><small>${esc(dShort(x.d))} · ${esc(x.venue)}</small></span><span class="ga-b"><button type="button" data-go="1">Gittim 🎉</button><button type="button" data-go="0" aria-label="Gitmedim">Gitmedim</button></span></div>`).join("")}</section>`;
+  return `<section class="gas"><h3>Gittin mi?</h3><p>Gittiklerin yıl sonunda özetinde çıkar.</p>${S.slice(-5).reverse().map((x) => `<div class="ga" data-gid="${esc(x.id)}"><span class="ga-p">${x.img ? `<img src="${esc(x.img)}" alt="" referrerpolicy="no-referrer">` : ""}</span><span class="ga-t"><b>${esc(x.title)}</b><small>${esc(dShort(x.d))} · ${esc(x.venue)}</small></span><span class="ga-b"><button type="button" data-go="1">Gittim 🎉</button><button type="button" data-go="0" aria-label="Gitmedim">Gitmedim</button></span></div>`).join("")}</section>`;
 }
 function gittiBind(city, after) {
   $$("[data-go]").forEach((b) => b.addEventListener("click", () => { const row = b.closest("[data-gid]"), id = row.dataset.gid, S = gsor(), x = S.find((y) => y.id === id); store.set(GSKEY, JSON.stringify(S.filter((y) => y.id !== id)));
@@ -1642,7 +1658,7 @@ const yilOf = () => { const d = nowIST().d, m = +d.slice(5, 7); return m === 1 ?
 const yilWin = () => { const d = nowIST().d; return d.slice(5, 7) === "12" || d.slice(5) === "01-01"; };
 function yilCard(city) {
   const y = String(yilOf()), G = gittim().filter((x) => x.d.startsWith(y)), win = yilWin();
-  return `<a class="yil${win ? " dec" : ""}" href="#/${city}/yilim"><span class="yl-e">${I.gift || "🎁"}</span><span><b>${win ? `${y} özetin hazır` : `${y} özetin`}</b><small>${G.length ? `${G.length} etkinlik${win ? " · izle ve paylaş" : " · aralıkta tam özetin çıkacak"}` : "Gittiğin etkinlikler yıl sonunda özetine dönüşür"}</small></span><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>`;
+  return `<a class="yil${win ? " dec" : ""}" href="#/${city}/yilim"><span class="yl-e"><span class="cgi" style="background:linear-gradient(135deg,#ff375f,#bf5af2)"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="2" fill="#fff"/><rect x="3" y="7" width="18" height="4" rx="1.5" fill="#fff"/><path d="M12 7v13" stroke="#ff375f" stroke-width="2"/><path d="M12 7c-1.5-3-5-3.5-5-1.2C7 7 9.5 7 12 7c2.5 0 5 0 5-1.2C17 3.5 13.5 4 12 7z" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span></span><span><b>${win ? `${y} özetin hazır` : `${y} özetin`}</b><small>${G.length ? `${G.length} etkinlik${win ? " · izle ve paylaş" : " · aralıkta tam özetin çıkacak"}` : "Gittiğin etkinlikler yıl sonunda özetine dönüşür"}</small></span><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>`;
 }
 function yilHome(city) { // ana sayfadaki duyuru (yalnızca 1 Aralık – 1 Ocak)
   if (!yilWin()) return ""; const y = String(yilOf()), G = gittim().filter((x) => x.d.startsWith(y)); if (!G.length) return "";
