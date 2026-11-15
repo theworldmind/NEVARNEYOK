@@ -225,3 +225,31 @@ export async function biletinialCollect({ fetchText, getPage, today, src, city }
   const note = [miss.length && `okunamayan: ${miss.join(", ")}`, noSeance.length && `seansı listede olmayan ${noSeance.length} film: ${noSeance.slice(0, 12).join("; ")}`].filter(Boolean).join(" · ");
   return { raws: out, detail: [...detail], images, note };
 }
+
+// Biletix: sitenin kendi arama sayfasının kullandığı açık arama dizini (/solr/tr/select; robots.txt'te kapalı değil).
+// Bütün Türkiye'deki etkinlikleri ad, tarih, saat, mekân, il, tür, durum ve afişle tek seferde verir (15.11.2026: 3.466 kayıt).
+// Fiyat dizinde yok: yakın tarihli olanların detay sayfası (en çok maxDetail) okunur. Tanıtım metni (description) alınmaz.
+const BX_ST = (s) => /sold|tuken/i.test(s) ? "tukendi" : /cancel|iptal/i.test(s) ? "iptal" : /postpon|ertel/i.test(s) ? "ertelendi" : "";
+const BX_CAT = (c, sub) => { const x = `${sub || ""} ${c || ""}`.toLowerCase();
+  return /comedy|stand/.test(x) ? "standup" : /opera|ballet|bale|dance|dans|classic/.test(x) ? "sahne" : /theat|tiyatro|musical/.test(x) ? "tiyatro" : /festival/.test(x) ? "festival" : /family|child|cocuk/.test(x) ? "cocuk" : /music/.test(x) ? "konser" : /sport/.test(x) ? "spor" : /museum|exhib|sergi/.test(x) ? "sergi" : ""; };
+export async function biletixCollect({ fetchText, city, today }) {
+  const from = `${today || new Date().toISOString().slice(0, 10)}T00:00:00Z`;
+  const out = [], seen = new Set(); let total = 0;
+  for (let start = 0; start < 6000; start += 1000) {
+    const q = `https://www.biletix.com/solr/tr/select?wt=json&q=*:*&sort=start%20asc&start=${start}&rows=1000&fq=start:%5B${encodeURIComponent(from)}%20TO%20*%5D`;
+    const j = await getJSON(fetchText, q); const docs = j?.response?.docs || []; total = j?.response?.numFound || total;
+    for (const x of docs) {
+      if (!x.id || !x.start || seen.has(x.id)) continue; seen.add(x.id);
+      const il = (x.city || [])[0] || x.region || "";
+      if (city !== "tr" && city && !new RegExp(city, "i").test(il.toLocaleLowerCase("tr").replace(/ı/g, "i").normalize("NFD").replace(/[̀-ͯ]/g, ""))) continue;
+      const loc = new Date(Date.parse(x.start) + 3 * 36e5).toISOString(); // Türkiye saati
+      out.push({ title: (x.sname || (x.name || [])[0] || "").trim(), d: loc.slice(0, 10), t: loc.slice(11, 16), venue: (x.svenue || (x.venue || [])[0] || "").trim(), city: il,
+        url: `https://www.biletix.com/etkinlik/${x.id}/TURKIYE/tr`, via: "bilet", pc: 0, status: BX_ST(x.status || ""), catHint: BX_CAT(x.category, x.subcategory),
+        image: x.image_url ? `https://www.biletix.com/static/images/live/event/eventimages/${x.image_url}` : "" });
+    }
+    if (!docs.length || start + 1000 >= total) break;
+  }
+  // fiyat için detay: en yakın tarihliler önce
+  const detail = out.filter((e) => !e.status).sort((a, b) => a.d.localeCompare(b.d)).map((e) => e.url);
+  return { raws: out.filter((e) => e.title && e.d), detail: [...new Set(detail)], note: `dizinde ${total} kayıt` };
+}

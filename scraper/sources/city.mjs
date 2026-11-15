@@ -23,10 +23,10 @@ const TR = [
   { id: "iticket", name: "iTicket", kind: "bilet", home: "https://iticket.com.tr",
     listings: ["https://iticket.com.tr/tr/events", "https://iticket.com.tr/en/events/music"],
     link: /iticket\.com\.tr\/(en|tr)\/events\/[a-z-]+\/[a-z0-9-]+/i, render: true, city: "tr", maxDetail: 400, budgetMin: 60 },
-  { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com",
-    listings: ["https://www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1"],
-    link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, loadMore: ["Daha fazla", "Daha Fazla Göster"],
-    city: "tr", maxDetail: 900, budgetMin: 150, concurrency: 4 },
+  // Biletix: sitenin kendi arama dizini bütün Türkiye listesini verir (liste sayfası yalnızca ~70 kayıt gösteriyordu); fiyat için yakın tarihlilerin detayı
+  { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com", collect: P.biletixCollect, listings: [],
+    link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true,
+    city: "tr", maxDetail: 1400, budgetMin: 160, concurrency: 5 },
 ];
 
 const ONE = [

@@ -25,8 +25,8 @@ function monthUrl(base, k) { const d = new Date(); d.setDate(1); d.setMonth(d.ge
 export default [
   /* ===================== BİLET SİTELERİ ===================== */
   { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com",
-    listings: ["https://www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Ankara"],
-    link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, loadMore: ["Daha fazla", "Daha Fazla Göster"], city: "tr", maxDetail: 220, budgetMin: 24, concurrency: 4 },
+    collect: P.biletixCollect, listings: [], // sitenin kendi arama dizini (Ankara'dakilerin hepsi), fiyat için detay
+    link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true, city: "tr", maxDetail: 260, budgetMin: 24, concurrency: 4 },
   // Liste sayfalarının kendi "daha fazla" isteği bütün kayıtları ve seansları verir (sinema ve festival dahil);
   // birden çok salonlu kayıtlar detay sayfasından okunur
   { id: "biletinial", name: "Biletinial", kind: "bilet", home: "https://biletinial.com", collect: P.biletinialCollect,

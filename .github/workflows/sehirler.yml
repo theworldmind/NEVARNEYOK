@@ -10,6 +10,10 @@ on:
       iller:
         description: "Yalnızca bu iller (boşlukla, boş = hepsi). Örnek: istanbul izmir"
         required: false
+      turkiye:
+        description: "Yalnızca bütün Türkiye listelerini (Biletix, Sanatçepte, DOB…) tara ve birleştir"
+        type: boolean
+        default: false
       film:
         description: "Yalnızca sinema seanslarını yenile (hızlı)"
         type: boolean
@@ -75,6 +79,7 @@ jobs:
 
   il:
     needs: liste
+    if: github.event.inputs.turkiye != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     strategy:
