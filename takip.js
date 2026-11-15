@@ -95,5 +95,9 @@ var NV = (function () {
       return { tag: "digest", title: "Pazar keyfi 🎈", body: (mk ? "Aileyle gidebileceğin " + mk + " etkinlik dahil, " : "") + nm + " bugün " + n(P.length) + " etkinlik var. Güzel bir pazar geçir! 💜", url: base + "?t=bugun" + (mk ? "&c=cocuk" : "") }; }
     return null; // salı: dinlen 🙂
   }
-  return { fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today };
+  /* Ayarlar → Bildirimler (kullanıcı isteği, 15.11.2026 23:46): kişi her türü ayrı ayrı kapatabilir. cfg: { off: true } hepsini kapatır,
+     { fiyat: false } yalnızca o türü. Tür, bildirimin etiketinin önekinden anlaşılır. */
+  var NK = { s: "degisiklik", d: "degisiklik", t: "degisiklik", v: "degisiklik", x: "degisiklik", r: "hatirlatma", h: "azkaldi", a: "nasildi", p: "fiyat", digest: "oneri", mekan: "mekan", y: "satis", k: "sanatci", f: "film", g: "yolacik", n: "koltuk" };
+  function allow(m, cfg) { if (!cfg) return true; if (cfg.off) return false; var tg = String(m && m.tag || ""), p = tg === "digest" ? "digest" : tg.split("-")[0], k = NK[p]; return !k || cfg[k] !== false; }
+  return { fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today, allow: allow, NK: NK };
 })();

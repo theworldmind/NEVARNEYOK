@@ -741,6 +741,33 @@ html.gece body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-eve
 .rg{display:flex;align-items:center;justify-content:center;gap:8px;margin:16px 0 0;height:46px;border-radius:14px;background:var(--s2);font-weight:700;font-size:14px;text-align:center}.rg svg{width:16px;height:16px}
 .rnote{margin:12px 2px 6px;color:var(--t3);font-size:12px;line-height:1.45}
 .me{width:22px;height:22px;border-radius:50%;background:#3b82f6;border:3px solid #fff;box-shadow:0 0 0 7px rgba(59,130,246,.25),0 4px 12px rgba(0,0,0,.5)}
+
+/* Ayarlar (15.11.2026 23:46) — iPhone Ayarlar gibi gruplu cam kartlar */
+.ayr{max-width:680px;margin:0 auto;padding:0 16px 30px}
+.ayr h4{margin:28px 16px 8px;font:600 13px var(--f);letter-spacing:.02em;text-transform:uppercase;color:var(--t3)}
+.sgrp{border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 0 0 1px rgba(255,255,255,.08),0 12px 30px rgba(0,0,0,.25)}
+.sgrp+.sgrp{margin-top:12px}
+.sgrp.dim{opacity:.45;pointer-events:none}
+.sgrp{transition:opacity .25s}
+.srow,.st2{display:flex;align-items:center;gap:14px;width:100%;min-height:54px;padding:10px 16px;text-align:left;font:600 16px var(--f);color:#fff;border:0;background:none;border-bottom:.5px solid rgba(255,255,255,.08)}
+.sgrp>:last-child{border-bottom:0}
+.srow.col{flex-direction:column;align-items:stretch}.srow.col .seg{margin-top:4px}
+.sic{flex:none;display:grid;place-items:center;width:29px;height:29px;border-radius:8px;background:rgba(139,92,246,.22);font-size:16px}
+.stx{flex:1;min-width:0}.stx small{display:block;margin-top:2px;color:var(--t3);font:500 13px/1.35 var(--f)}
+.sv{color:var(--t3);font-weight:500}
+.srow .chv{width:16px;height:16px;color:rgba(235,235,245,.35);flex:none}
+.srow.red .stx{color:#ff6b6b}
+.spill{flex:none;height:32px;padding:0 16px;border-radius:999px;background:#fff;color:#0a0a10;font:800 14px var(--f)}
+.sft{margin:10px 16px 0;color:var(--t3);font-size:13px;line-height:1.45}.sft.c{text-align:center;margin-top:30px}
+.hsc{display:flex;gap:14px;align-items:flex-start;margin-top:12px}
+.hsi img{display:block;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.45)}
+.hsm{flex:1;border-radius:14px;overflow:hidden;background:rgba(40,40,52,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 10px 30px rgba(0,0,0,.4)}
+.hsm div{display:grid;grid-template-columns:28px 1fr;column-gap:8px;padding:9px 12px;border-bottom:.5px solid rgba(255,255,255,.08)}.hsm div:last-child{border:0}
+.hsm span{grid-row:span 2;align-self:center;font-size:17px}.hsm b{font-size:14px}.hsm small{color:var(--t3);font-size:12px}
+.cfm .cq{margin:8px 0 18px;font-size:17px;font-weight:600;line-height:1.4;text-align:center}
+.cfm .cb{display:flex;gap:10px}.cfm .cb button{flex:1;height:48px;border-radius:14px;background:var(--s2);font:700 15px var(--f)}.cfm .cb .red{background:#ff453a;color:#fff}
+.top #setBtn{display:grid}
+html.rm *,html.rm *::before,html.rm *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 </style>
 </head>
 <body>
@@ -751,6 +778,7 @@ html.gece body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-eve
   <a class="dl-top" href="indir/" data-app>Uygulamayı indir</a>
   <a class="cbtn" id="cityBtn" href="#/?sec=1"><span>Ankara</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></a>
   <a class="ibtn fbell" id="flwBtn" href="#/ankara/takip" aria-label="Planım"><svg class="ic" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b></b></a>
+  <a class="ibtn" id="setBtn" href="#/ankara/ayarlar" aria-label="Ayarlar"><svg class="ic" viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a>
   <a class="ibtn" id="srchBtn" href="#/ankara/kesfet" aria-label="Ara"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
 </header>
 <main id="view"></main>
@@ -769,7 +797,7 @@ window.NVNY_SITE={contact:"contact.openmind.vision@gmail.com",instagram:"https:/
 addEventListener("load",function(){setTimeout(function(){try{var m=document.querySelector('script[src^="app.js?v="]'),me=m&&m.getAttribute("src");if(!me||!window.fetch)return;
 fetch("index.html?_="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){var x=t.match(/src="app\.js\?v=([^"]+)"/);if(!x||me==="app.js?v="+x[1])return;
 var q=location.search;if(q.indexOf("_v="+x[1])>=0)return;q=q.replace(/[?&]_v=[^&]*/g,"");location.replace(location.pathname+(q?q+"&":"?")+"_v="+x[1]+location.hash)}).catch(function(){})}catch(e){}},2500)});</script>
-<script src="takip.js?v=7"></script>
+<script src="takip.js?v=8"></script>
 <script src="app.js?v=f7e83d62d0"></script>
 <script data-goatcounter="https://nevarneyok.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
