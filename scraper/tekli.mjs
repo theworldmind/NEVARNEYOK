@@ -107,22 +107,24 @@ const SIGN = (y) => `<div class="foot" style="bottom:auto;top:${y}px"><span clas
 // konu: başlık, alt yazı, gönderide ve hikâyede sahne
 const ADS = [
   { id: "bu-aksam", kick: "Bu akşam ne var?", h: "ŞEHRİNDE<br>BU AKŞAM<br><em>NE VAR?</em>", sub: "Konser, tiyatro, stand-up, sinema. Afiş afiş, saat saat, tek uygulamada.",
-    post: () => PHONE("sehir", 400, 620, 330, 4), story: () => PHONE("sehir", 520, 280, 770, 0) },
+    post: () => PHONE("sehir", 400, 620, 330, 4), story: (y) => PHONE("sehir", 560, 260, y, 0) },
   { id: "fiyat", kick: "Fiyat karşılaştırma", h: "AYNI BİLET,<br><em>FARKLI FİYAT.</em>", sub: "Hangi sitede ne kadar, yan yana gör. En düşük olanı tek dokunuşla al.",
-    post: () => PHONE("fiyat", 400, 620, 330, 4), story: () => PHONE("fiyat", 520, 280, 770, 0) },
+    post: () => PHONE("fiyat", 400, 620, 330, 4), story: (y) => PHONE("fiyat", 560, 260, y, 0) },
   { id: "kacirma", kick: "Takip et, bildirim al", h: "HİÇBİR ŞEYİ<br><em>KAÇIRMA.</em>", sub: "Takip ettiğin etkinlikte bir şey değişirse ilk sen öğren.",
     post: () => `<div style="position:absolute;left:72px;right:72px;top:560px;display:flex;flex-direction:column;gap:18px;z-index:3">${NOTI("Fiyatı düştü 💸", "Takip ettiğin oyunun bileti artık daha uygun. Tam zamanı!")}${NOTI("Yarın büyük gün ✨", "Takip ettiğin konser yarın akşam. Biletin hazır mı?", "2 sa önce")}${NOTI("Saat değişti ⏰", "Takip ettiğin etkinliğin yeni saati 21:00. Takvimini güncellemeyi unutma!", "dün")}</div>`,
     story: () => `<div style="position:absolute;left:72px;right:72px;top:720px;display:flex;flex-direction:column;gap:20px;z-index:3">${NOTI("Fiyatı düştü 💸", "Takip ettiğin oyunun bileti artık daha uygun. Tam zamanı!")}${NOTI("Yarın büyük gün ✨", "Takip ettiğin konser yarın akşam. Biletin hazır mı?", "2 sa önce")}${NOTI("Müjde! 🎉", "Takip ettiğin oyunun biletleri yeniden satışta. Bu sefer kaçırma!", "dün")}${NOTI("Hafta sonu planın hazır mı? 🌟", "Şehrinde bu hafta sonu yüzlerce etkinlik var; sana göre olanları seçtik ✨", "Cuma")}</div>` },
   { id: "81-il", kick: "81 il · tek çark", h: "HANGİ<br><em>ŞEHİRDESİN?</em>", sub: "Kaydır, şehrin ortaya gelsin. Ankara'dan Van'a, 81 ilin etkinlikleri burada.",
-    post: () => PHONE("cark", 400, 620, 330, 4), story: () => PHONE("cark", 520, 280, 770, 0) },
+    post: () => PHONE("cark", 400, 620, 330, 4), story: (y) => PHONE("cark", 560, 260, y, 0) },
   { id: "sinema", kick: "Vizyonda ne var?", h: "SEANSLAR<br><em>SALON SALON.</em>", sub: "Şehrindeki sinemaların seansları gün gün. Filmi seç, saatini bul.",
-    post: () => PHONE("sinema", 400, 620, 330, 4), story: () => PHONE("sinema", 520, 280, 770, 0) },
+    post: () => PHONE("sinema", 400, 620, 330, 4), story: (y) => PHONE("sinema", 560, 260, y, 0) },
 ];
 const NOTES = {
   "bu-aksam": "Not: fiyatlar uygulamada yalnızca satış sitesinde doğrulanmışsa görünür.",
 };
 const post = (a) => doc(1350, `${TOP(56)}<div class="kick">${a.kick}</div><h1 style="font-size:100px">${a.h}</h1><p class="sub" style="top:${a.id === "kacirma" ? 430 : 500}px;width:${a.id === "kacirma" ? 936 : 500}px">${a.sub}</p>${a.post()}${a.id === "kacirma" ? CTA(72, 1100, 936) : CTA(72, 1080, 500)}${SIGN(1290)}`, .85);
-const story = (a) => doc(1920, `${TOP(240)}<div class="kick" style="top:330px">${a.kick}</div><h1 style="top:388px;font-size:118px">${a.h}</h1><p class="sub" style="top:${a.id === "kacirma" ? 620 : 640}px;width:936px">${a.sub}</p>${a.story()}${CTA(72, 1550, 936)}`, .85);
+// hikâye: başlık satır sayısına göre alt yazı; bağlantı kartı alt yazının hemen altında, telefon en altta ekrandan taşarak yükselir (kart telefonun altında kalmasın)
+const story = (a) => { const L = (a.h.match(/<br>/g) || []).length + 1, T = 388 + L * 102 + 26, K = a.id === "kacirma";
+  return doc(1920, `${TOP(240)}<div class="kick" style="top:330px">${a.kick}</div><h1 style="top:388px;font-size:118px">${a.h}</h1><p class="sub" style="top:${T}px;width:936px">${a.sub}</p>${K ? a.story() + CTA(72, 1550, 936) : CTA(72, T + 112, 936) + a.story(T + 300)}`, .85); };
 
 const p = await browser.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
 for (const a of ADS) for (const [kind, H, fn] of [["gonderi", 1350, post], ["hikaye", 1920, story]]) {
