@@ -17,7 +17,10 @@ var NV = (function () {
   function set(k, v) { return db().then(function (d) { return new Promise(function (res) { var tx = d.transaction("kv", "readwrite"); tx.objectStore("kv").put(v, k); tx.oncomplete = function () { res(true); }; tx.onerror = function () { res(false); }; }); }).catch(function () { return false; }); }
 
   /* Etkinliğin takip için saklanan hali */
-  function snap(e, slug) { return { slug: slug, title: e.title, tk: key(e.title), vk: key(e.venue), venue: e.venue || "", d: e.d, t: e.t || "", status: e.status || "", at: Date.now() }; }
+  // En düşük doğrulanmış fiyat (fiyat kuralı: satış sitesinde son 36 saatte görülmüş) ve satan site
+  function low(e) { var b = null; (e.tickets || []).forEach(function (x) { if (x.price && !x.est && x.seen && (Date.now() - Date.parse(x.seen)) / 36e5 <= 36 && (!b || x.price < b.price)) b = x; }); return b; }
+  var TL = function (n) { return "₺" + Math.round(n).toLocaleString("tr-TR"); };
+  function snap(e, slug) { var l = low(e); return { slug: slug, title: e.title, tk: key(e.title), vk: key(e.venue), venue: e.venue || "", d: e.d, t: e.t || "", status: e.status || "", p: l ? l.price : 0, at: Date.now() }; }
 
   /* Takip listesini güncel veriyle karşılaştır → { msgs, follows } */
   function check(follows, events, city) {
@@ -49,6 +52,12 @@ var NV = (function () {
         if (key(e.venue) !== f.vk && e.venue && f.venue) msgs.push({ tag: "v-" + id, title: f.title, body: "Mekânı değişti: artık " + e.venue + ".", url: url });
         if (e.d === t1 && !f.r1) { msgs.push({ tag: "r-" + id, title: "Yarın: " + e.title, body: [e.venue, e.t].filter(Boolean).join(" · ") + ". Unutma!", url: url }); n.r1 = 1; }
         if (e.d === t0 && !f.r0) { msgs.push({ tag: "r-" + id, title: "Bugün: " + e.title, body: [e.venue, e.t].filter(Boolean).join(" · ") + ". İyi eğlenceler!", url: url }); n.r0 = 1; }
+      }
+      // Fiyat düştüyse haber ver (kullanıcı isteği, 15.11.2026: fiyat karşılaştırmasında en iyisi olalım): en az %3 ya da ₺25
+      var l = low(e);
+      if (l && st !== "iptal" && st !== "ertelendi" && st !== "tukendi") {
+        if (f.p && l.price < f.p && (f.p - l.price >= 25 || l.price <= f.p * .97)) msgs.push({ tag: "p-" + id, title: "Fiyatı düştü: " + f.title, body: TL(l.price) + " (önce " + TL(f.p) + ") · " + l.site + ". Kaçırma!", url: url });
+        n.p = l.price;
       }
       n.d = e.d; n.t = e.t || ""; n.venue = e.venue || ""; n.vk = key(e.venue); n.status = st;
       if (n.d < t0) return;
