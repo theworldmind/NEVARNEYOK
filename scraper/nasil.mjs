@@ -54,9 +54,9 @@ const CSS = `@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&text=onesidby&display=swap");
 *{box-sizing:border-box;margin:0}html,body{width:1080px;height:1350px}
 body{position:relative;overflow:hidden;background:#0a0a10;color:#fff;font-family:"Inter Tight",Arial,sans-serif;-webkit-font-smoothing:antialiased}
-.wall{position:absolute;inset:-12% -22%;display:grid;grid-template-columns:repeat(7,1fr);gap:22px;transform:rotate(-10deg);filter:blur(10px) saturate(1.3)}
+.wall{position:absolute;inset:-12% -22%;display:grid;grid-template-columns:repeat(7,1fr);gap:22px;transform:rotate(-10deg);filter:blur(5px) saturate(1.35) brightness(1.1)}
 .wall i{aspect-ratio:2/3;border-radius:20px;background:#1a1726 center/cover}
-.veil{position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 45%,#0a0a1033,#0a0a10cc 80%),linear-gradient(#0a0a10b0,#0a0a1055 35%,#0a0a1099 70%,#0a0a10f0)}
+.veil{position:absolute;inset:0;background:radial-gradient(75% 55% at 50% 45%,#0a0a1000,#0a0a10aa 85%),linear-gradient(#0a0a10cc,#0a0a1040 30%,#0a0a1060 65%,#0a0a10e6)}
 .glow{position:absolute;inset:0;background:radial-gradient(50% 30% at 75% 70%,#8b5cf650,transparent 70%),radial-gradient(45% 25% at 10% 5%,#8b5cf640,transparent 70%)}
 .glass{position:absolute;border-radius:36px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.05));-webkit-backdrop-filter:blur(30px) saturate(1.6);backdrop-filter:blur(30px) saturate(1.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 1.5px rgba(255,255,255,.14),0 40px 80px -30px rgba(0,0,0,.7)}
 .top{position:absolute;z-index:6;top:56px;left:72px;right:72px;display:flex;align-items:center;justify-content:space-between}.top img{height:44px}
@@ -93,10 +93,10 @@ const page = (n, body, o) => `<!doctype html><html lang="tr"><head><meta charset
 const P = [
   // 1 kapak
   page(1, `<div class="kick">Ücretsiz · üyelik yok</div>
-    <h1>ŞEHRİNDE<br>NE VAR NE YOK,<br><em>ARTIK CEBİNDE.</em></h1>
-    <p class="sub" style="top:540px;width:500px">81 ilin konserleri, tiyatroları, stand-up'ları ve sinema seansları tek uygulamada. Nasıl kurulur, içinde neler var? Kaydır, anlatalım.</p>
+    <h1 style="font-size:86px">ŞEHRİNDE<br>NE VAR NE YOK,<br><em>ARTIK CEBİNDE.</em></h1>
+    <p class="sub" style="top:500px;width:500px">81 ilin konserleri, tiyatroları, stand-up'ları ve sinema seansları tek uygulamada. Nasıl kurulur, içinde neler var? Kaydır, anlatalım.</p>
     <div class="glass" style="left:72px;top:800px;width:500px;padding:30px"><div class="app"><img src="${ICON}" alt=""><div><b>Ne Var Ne Yok</b><small>Android · iPhone<br>Mağaza gerekmez</small></div></div></div>
-    ${PHONE("sehir", 400, 618, 270, 4)}`, .6),
+    ${PHONE("sehir", 390, 630, 470, 4)}`, .85),
   // 2 bio'daki bağlantı
   page(2, `<div class="kick">Adım 1</div>
     <h1>PROFİLDEKİ<br><em>BAĞLANTIYA</em><br>DOKUN.</h1>
@@ -106,7 +106,7 @@ const P = [
       <p style="margin-top:26px;font:600 25px/1.4 'Inter Tight',Arial,sans-serif;color:#ffffffd8">🎟️ 81 ilin konserleri, tiyatroları ve sinema seansları<br>💸 Fiyatları karşılaştır · 🔔 Hiçbir şeyi kaçırma<br>👇 Uygulamayı ücretsiz kur</p>
       <div style="margin-top:22px"><span class="url">${LINK}nevarneyok.net.tr/indir</span></div>
     </div>
-    <div class="tap" style="left:660px;top:1010px">${TAP}</div>`, .55),
+    <div class="tap" style="left:660px;top:1010px">${TAP}</div>`, .8),
   // 3 indirme sayfası
   page(3, `<div class="kick">Adım 2</div>
     <h1>İNDİRME<br>SAYFASI<br><em>AÇILIR.</em></h1>
@@ -114,7 +114,7 @@ const P = [
       <div class="st"><span class="n">✓</span><div><b>Instagram'ın içinde mi açıldı?</b><small>Dert etme, seni kendiliğinden Chrome'a ya da Safari'ye geçiriyoruz. Kurulum orada yapılıyor.</small></div></div>
       <div class="st" style="margin-top:24px"><span class="n">✓</span><div><b>Telefonunu tanır</b><small>Android'de mi iPhone'da mı olduğuna göre doğru adımları gösterir.</small></div></div>
     </div>
-    ${PHONE("indir", 400, 618, 270, 4)}`, .5),
+    ${PHONE("indir", 400, 618, 270, 4)}`, .8),
   // 4 kurulum: Android ve iPhone yan yana
   page(4, `<div class="kick">Adım 3</div>
     <h1>BİR DOKUNUŞ,<br><em>KURULDU.</em></h1>
@@ -130,7 +130,7 @@ const P = [
       <div class="st"><span class="n">2</span><div><b>Ana Ekrana Ekle <span class="ico">${PLUS}</span></b><small>Listede biraz aşağıda.</small></div></div>
       <div class="st"><span class="n">3</span><div><b>"Ekle"</b><small>Sağ üstte. Simge ana ekranında! 🎉</small></div></div>
     </div>
-    <p class="sub" style="top:1110px;width:936px;font-size:24px;text-align:center">Mağaza yok, hesap yok, ödeme yok. Kurulum telefonunda yer kaplamaz, saniyeler sürer.</p>`, .45),
+    <p class="sub" style="top:1110px;width:936px;font-size:24px;text-align:center">Mağaza yok, hesap yok, ödeme yok. Kurulum telefonunda yer kaplamaz, saniyeler sürer.</p>`, .75),
   // 5 uygulamanın içi
   page(5, `<div class="kick">İçinde neler var?</div>
     <h1>AFİŞ AFİŞ,<br><em>ŞEHİR ŞEHİR.</em></h1>
@@ -141,7 +141,7 @@ const P = [
       <div class="feat"><span class="fi">🔔</span><div><b>Takip et, kaçırma</b><small>İptal, saat değişikliği, fiyat düşüşü.</small></div></div>
       <div class="feat"><span class="fi">🍿</span><div><b>Sinema seansları</b><small>Salon salon, gün gün.</small></div></div>
     </div>
-    ${PHONE("cark", 330, 560, 330, -6, 1)}${PHONE("fiyat", 360, 700, 420, 5, 3)}`, .5),
+    ${PHONE("cark", 320, 575, 470, -6, 1)}${PHONE("fiyat", 350, 705, 520, 5, 3)}`, .8),
   // 6 kapanış
   page(6, `<h1 style="top:170px;text-align:center">HADİ,<br><em>CEBİNE AL.</em></h1>
     <div class="glass" style="left:150px;right:150px;top:470px;padding:46px 40px;display:flex;flex-direction:column;align-items:center;text-align:center">
@@ -151,7 +151,7 @@ const P = [
       <span class="url" style="margin-top:30px">${LINK}Bio'daki bağlantıya dokun</span>
       <span style="margin-top:18px;font:700 22px/1 'Inter Tight',Arial,sans-serif;color:#ffffff90">ya da yaz: nevarneyok.net.tr/indir</span>
     </div>
-    <div class="tap" style="left:640px;top:990px">${TAP}</div>`, .65),
+    <div class="tap" style="left:640px;top:990px">${TAP}</div>`, .9),
 ];
 const p = await browser.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
 for (let i = 0; i < P.length; i++) {
