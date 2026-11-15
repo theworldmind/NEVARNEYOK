@@ -164,5 +164,5 @@ jobs:
           git add -A data/c data/cities.json
           if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
           git commit -qm "Şehirler güncellendi: $(date '+%d.%m.%Y %H:%M')"
-          for i in 1 2 3 4; do git pull -q --rebase --autostash -X ours && git push -q && break; sleep 8; done
+          for i in 1 2 3 4; do git pull -q --rebase --autostash -X theirs && git push -q && break; sleep 8; done
           gh workflow run pages.yml --ref main || true
