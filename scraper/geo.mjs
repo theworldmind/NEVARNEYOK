@@ -15,6 +15,8 @@ const VF = TR ? "data/venues-tr.json" : "data/venues.json", MF = TR ? "data/geo-
 const venues = (await readJSON(join(ROOT, VF), {})) || {};
 const miss = (await readJSON(join(ROOT, MF), {})) || {};
 const fold = (s) => String(s || "").toLocaleLowerCase("tr").replace(/[^a-z0-9çğıöşü]+/g, " ").trim();
+let dropped = 0; for (const [k, x] of Object.entries(venues)) if (x && x.src === "osm" && x.v !== 2) { delete venues[k]; delete miss[k]; dropped++; }
+if (dropped) log(`geo: eski yöntemle bulunmuş ${dropped} konum silindi, sıkı kurala göre yeniden aranacak`);
 const known = new Set(Object.keys(venues).map(fold));
 const NAME = Object.fromEntries(CITIES.map((c) => [c.id, c.name]));
 
@@ -35,19 +37,38 @@ async function search(q, city) {
   await sleep(1100);
   if (!r.ok) throw new Error("Nominatim " + r.status);
   const L = await r.json();
-  if (!TR) return L.filter((x) => +x.lat > BOX.s && +x.lat < BOX.n && +x.lon > BOX.w && +x.lon < BOX.e);
-  return L.filter((x) => { const a = x.address || {}; return [a.province, a.state, a.city].some((p) => p && fl2(p).includes(fl2(il))); });
+  const ok = (x) => isPlace(x) && nameOk(want, x);
+  if (!TR) return L.filter((x) => +x.lat > BOX.s && +x.lat < BOX.n && +x.lon > BOX.w && +x.lon < BOX.e && ok(x));
+  return L.filter((x) => { const a = x.address || {}; return ok(x) && [a.province, a.state, a.city].some((p) => p && fl2(p).includes(fl2(il))); });
+}
+/* Yanlış konum olmasın (kullanıcı, 15.11.2026 23:46: "bazıları yanlış gösteriyor, hepsi doğru olmalı"). Önceden ilk sonuç alınıyordu;
+   "Farabi Sahnesi" Farabi Sokağı'na, "Necip Fazıl Salonu" Pursaklar'daki aynı adlı yere, "Pursaklar DT Sahnesi" ilçenin ortasına düşüyordu.
+   Artık yalnızca bina/mekân türündeki sonuç (sokak, mahalle, ilçe değil) ve adı mekânın ayırt edici bir sözcüğünü içeren sonuç kabul edilir.
+   Bulunamazsa harita gösterilmez: yanlış harita göstermektense haritasız. */
+const BAD = new Set(["highway", "place", "boundary", "landuse", "natural", "railway", "waterway", "route", "junction"]);
+const isPlace = (x) => !BAD.has(x.category || x.class) && !["road", "suburb", "neighbourhood", "quarter", "city", "town", "village", "county", "state", "province", "district", "municipality", "hamlet"].includes(x.addresstype);
+const STOP = new Set("sahne sahnesi salon salonu salonlari belediyesi belediye ankara kultur merkezi merkez muzesi muze devlet tiyatrolari tiyatro tiyatrosu sanat sanatlar sanatlari cafe kafe pub bar otel hotel park parki ici ve the club kulup kongre konferans avm alisveris dt ckm yeni buyuk kucuk salonlar".split(" "));
+const toks = (s) => fl2(s).replace(/[çğöşü]/g, (c) => ({ ç: "c", ğ: "g", ö: "o", ş: "s", ü: "u" }[c])).split(" ").filter((w) => w.length >= 3);
+let want = "";
+function nameOk(v, x) {
+  const vn = toks(v), all = toks([x.name, x.display_name?.split(",")[0]].join(" "));
+  const key = vn.filter((w) => !STOP.has(w) && !Object.values(NAME).some((n) => toks(n).includes(w)));
+  if (!all.length) return false;
+  const par = (v.match(/\(([^)]+)\)/) || [])[1]; // "(Gençlik Parkı İçi)" gibi ipucu: sonucun adresinde de geçmeli
+  if (par) { const dn = toks(x.display_name || ""); const pk = toks(par).filter((w) => !["ici", "yani", "karsisi"].includes(w)); if (pk.length && !pk.some((w) => dn.includes(w) || all.includes(w))) return false; }
+  if (!key.length) return vn.every((w) => all.includes(w)); // "Etimesgut Belediyesi" gibi: bütün sözcükler tutmalı
+  return key.some((w) => all.includes(w));
 }
 let found = 0, tried = 0;
 for (const [key, city, v] of todo) {
   let hit = null;
-  try { for (const q of variants(v)) { const r = await search(q, city); tried++; if (r.length) { hit = r[0]; break; } } }
+  try { want = v; for (const q of variants(v)) { const r = await search(q, city); tried++; if (r.length) { hit = r[0]; break; } } }
   catch (err) { log("geo: durdu,", err.message); break; }
   if (!hit) { miss[key] = today; continue; }
   const a = hit.address || {};
   const ilce = a.city_district || a.district || a.town || a.county || a.suburb || "";
   const addr = [a.road && (a.road + (a.house_number ? " No:" + a.house_number : "")), a.suburb || a.neighbourhood, ilce].filter(Boolean).join(", ");
-  venues[key] = { lat: +(+hit.lat).toFixed(7), lng: +(+hit.lon).toFixed(7), addr, ilce: ilce.replace(/ İlçesi$/i, ""), src: "osm" };
+  venues[key] = { lat: +(+hit.lat).toFixed(7), lng: +(+hit.lon).toFixed(7), addr, ilce: ilce.replace(/ İlçesi$/i, ""), src: "osm", v: 2, osm: (hit.category || hit.class) + "/" + hit.type };
   delete miss[key]; found++;
 }
 await writeJSON(join(ROOT, VF), venues, true);
