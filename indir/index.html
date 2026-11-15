@@ -18,155 +18,198 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,700..900&family=Inter+Tight:wght@500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&text=onesidby&display=swap">
 <style>
-/* Uygulama indirme sayfası — Apple kalitesinde buzlu cam (15.11.2026). Giriş ekranı yok; açılır açılmaz düğme görünür. */
-:root{--bg:#0a0a10;--tx:#f5f5f7;--t2:#a1a1aa;--t3:#71717a;--pur:#8b5cf6;--gl:rgba(255,255,255,.065);--hl:inset 0 0 0 .5px rgba(255,255,255,.16),inset 0 1px 0 rgba(255,255,255,.07);
-  --f:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;--fd:"Archivo","Inter Tight",system-ui,sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{min-height:100%;background:var(--bg);color:var(--tx);font:500 16px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+/* UYGULAMA İNDİRME SAYFASI (kullanıcı isteği, 15.11.2026 21:16): tek düğme, başka bir şey yok. Apple kalitesinde buzlu cam.
+   Altta güncel afişler Apple saat kordonu / il çarkı gibi YATAY akar: ortaya gelen büyür, geçince eski boyuna döner, her geçişte çark "tık"ı.
+   Arka plandaki renk ortadaki afişe göre değişir (iki katman, yalnızca opacity). Kurulum adımları yalnızca gerekince alttan açılan cam panelde. */
+:root{--bg:#0a0a10;--tx:#f5f5f7;--t2:rgba(235,235,245,.62);--t3:rgba(235,235,245,.38);--pur:#8b5cf6;
+  --lg:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04) 45%,rgba(255,255,255,.02));
+  --lgk:inset 0 0 0 .5px rgba(255,255,255,.22),inset 0 1px 0 rgba(255,255,255,.22),0 1px 2px rgba(0,0,0,.25),0 30px 70px -20px rgba(0,0,0,.7);
+  --f:"Inter Tight",-apple-system,system-ui,"Segoe UI",sans-serif;--fd:"Archivo","Inter Tight",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);color:var(--tx);font:500 16px/1.5 var(--f);-webkit-font-smoothing:antialiased;overflow:hidden}
+body{background:transparent}
+@supports (-webkit-touch-callout:none){html,body{font-family:-apple-system,var(--f)}}
 a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
-/* arka plan: saat kordonu gibi aşağı yukarı süzülen afiş sütunları (yalnızca transform), üstünde koyu örtü */
-.band{position:fixed;inset:-10% -30%;z-index:-2;display:flex;gap:14px;justify-content:center;transform:rotate(-12deg);pointer-events:none;opacity:.55}
-.band .col{display:flex;flex-direction:column;gap:14px;width:150px;flex:none;animation:up 60s linear infinite}
-.band .col:nth-child(even){animation-name:down;animation-duration:70s}
-.band img{width:150px;aspect-ratio:830/1200;object-fit:cover;border-radius:16px;display:block;background:#1b1b27}
-@keyframes up{to{transform:translateY(-50%)}}@keyframes down{from{transform:translateY(-50%)}to{transform:none}}
-.veil{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(70% 50% at 50% 30%,rgba(10,10,16,.35),rgba(10,10,16,.92) 75%),linear-gradient(180deg,rgba(10,10,16,.2),#0a0a10 92%)}
-.glow{position:fixed;left:50%;top:22%;width:120vw;height:60vh;margin-left:-60vw;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(139,92,246,.32),transparent);animation:breathe 5s ease-in-out infinite alternate}
-@keyframes breathe{to{opacity:.55;transform:scale(1.08)}}
-@media (prefers-reduced-motion:reduce){.band .col,.glow{animation:none}}
-main{max-width:560px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 20px calc(36px + env(safe-area-inset-bottom))}
-.lg{display:flex;justify-content:space-between;align-items:center}
-.lg img{height:34px;width:auto;display:block}
-.lg a{font-weight:700;color:var(--t2);font-size:14px}
-.hero{display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:42px}
-.icw{position:relative}.icw::before{content:"";position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,.55),transparent);z-index:-1;animation:breathe 3s ease-in-out infinite alternate}
-.ic{display:block;width:132px;height:132px;border-radius:30px;box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 .5px rgba(255,255,255,.2);animation:pop .7s cubic-bezier(.2,1.4,.4,1) both}
-@keyframes pop{from{opacity:0;transform:scale(.6) translateY(10px)}}
-h1{margin-top:22px;font:900 clamp(40px,11vw,64px)/.92 var(--fd);font-stretch:76%;letter-spacing:-.025em;text-transform:uppercase}
-.s{margin-top:10px;color:var(--t2);font-size:17px;max-width:400px}
-.meta{display:flex;margin-top:24px;border-radius:18px;background:var(--gl);box-shadow:var(--hl);-webkit-backdrop-filter:saturate(1.8) blur(24px);backdrop-filter:saturate(1.8) blur(24px)}
-.meta div{padding:12px 18px;text-align:center}.meta div+div{border-left:.5px solid rgba(255,255,255,.12)}
-.meta small{display:block;font:700 10px var(--f);letter-spacing:.12em;text-transform:uppercase;color:var(--t3)}
-.meta b{display:block;margin-top:2px;font:900 20px var(--fd);font-stretch:86%}
-.card{margin-top:28px;padding:22px;border-radius:30px;background:rgba(28,28,42,.42);box-shadow:var(--hl),0 30px 80px rgba(0,0,0,.4);-webkit-backdrop-filter:saturate(1.8) blur(28px);backdrop-filter:saturate(1.8) blur(28px)}
-.btn{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:62px;border-radius:999px;background:#fff;color:#0a0a10;font:800 18px var(--f);transition:transform .15s}
-.btn::before{content:"";position:absolute;inset:-14px -10px;border-radius:999px;background:radial-gradient(closest-side,rgba(139,92,246,.95),rgba(139,92,246,0));z-index:-1;opacity:.55;animation:gpulse 2.2s ease-in-out infinite alternate}
-@keyframes gpulse{to{opacity:1;transform:scale(1.06)}}
+/* arka plan: ortadaki afişin bulanık rengi */
+.wash{position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden}
+.wash img{position:absolute;inset:-10%;width:120%;height:120%;object-fit:cover;filter:blur(80px) saturate(1.7);opacity:0;transition:opacity 1.4s ease;will-change:opacity}
+.wash img.on{opacity:.5}
+.veil{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(80% 45% at 50% 30%,rgba(139,92,246,.22),transparent 70%),linear-gradient(180deg,rgba(10,10,16,.5),rgba(10,10,16,.12) 50%,rgba(10,10,16,.55))}
+.v{height:100%;height:100svh;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 0 calc(14px + env(safe-area-inset-bottom))}
+.top{display:flex;justify-content:space-between;align-items:center;padding:0 20px;max-width:640px;width:100%;margin:0 auto}
+.top img{height:30px;width:auto;display:block}
+.top a.s{height:34px;padding:0 14px;display:flex;align-items:center;border-radius:999px;font:700 13px var(--f);color:var(--t2);background:var(--lg),rgba(255,255,255,.03);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.2),inset 0 1px 0 rgba(255,255,255,.14)}
+.hero{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+.ic{position:relative;width:min(30vw,128px);aspect-ratio:1}
+.ic::before{content:"";position:absolute;inset:-40%;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,.6),transparent);z-index:-1;animation:br 3.2s ease-in-out infinite alternate}
+.ic img{width:100%;height:100%;display:block;filter:drop-shadow(0 22px 40px rgba(0,0,0,.6));animation:pop .8s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.7) translateY(12px)}}
+@keyframes br{to{opacity:.55;transform:scale(1.1)}}
+h1{margin-top:20px;font:900 clamp(38px,10.5vw,62px)/.9 var(--fd);font-stretch:74%;letter-spacing:-.02em;text-transform:uppercase;text-shadow:0 10px 40px rgba(0,0,0,.4)}
+h1 em{font-style:normal;color:#c4b5fd}
+.cta{width:min(100%,380px);margin-top:28px}
+.btn{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:64px;border-radius:999px;background:#fff;color:#0a0a10;font:800 19px var(--f);transition:transform .15s cubic-bezier(.2,.8,.2,1)}
+.btn::before{content:"";position:absolute;inset:-16px -12px;border-radius:999px;background:radial-gradient(closest-side,rgba(139,92,246,.95),rgba(139,92,246,0));z-index:-1;opacity:.55;animation:gp 2.2s ease-in-out infinite alternate}
+@keyframes gp{to{opacity:1;transform:scale(1.06)}}
 .btn .shw{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none}
-.btn .shw i{position:absolute;top:0;bottom:0;left:-60%;width:50%;background:linear-gradient(105deg,transparent,rgba(139,92,246,.55),rgba(255,255,255,.95),rgba(139,92,246,.55),transparent);transform:skewX(-18deg);animation:gshine 2.8s cubic-bezier(.4,0,.2,1) infinite}
-@keyframes gshine{0%,35%{transform:translateX(0) skewX(-18deg)}100%{transform:translateX(420%) skewX(-18deg)}}
-.btn.tap{animation:gtap .5s cubic-bezier(.2,.8,.2,1)}@keyframes gtap{30%{transform:scale(.94)}70%{transform:scale(1.04)}}
-.btn.busy{background:linear-gradient(90deg,#fff,#ece6ff)}.btn.done{background:#8b5cf6;color:#fff}
+.btn .shw i{position:absolute;top:0;bottom:0;left:-60%;width:50%;background:linear-gradient(105deg,transparent,rgba(139,92,246,.5),rgba(255,255,255,.95),rgba(139,92,246,.5),transparent);transform:skewX(-18deg);animation:gs 2.8s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes gs{0%,35%{transform:translateX(0) skewX(-18deg)}100%{transform:translateX(420%) skewX(-18deg)}}
+.btn:active{transform:scale(.96)}.btn svg{width:22px;height:22px}
+.btn.tap{animation:gt .5s cubic-bezier(.2,.8,.2,1)}@keyframes gt{30%{transform:scale(.94)}70%{transform:scale(1.04)}}
+.btn.busy{background:linear-gradient(90deg,#fff,#ece6ff)}.btn.done{background:var(--pur);color:#fff}
 .btn .sp{width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(10,10,16,.2);border-top-color:#0a0a10;animation:spin .7s linear infinite;display:none}.btn.busy .sp{display:block}.btn.busy svg{display:none}
 @keyframes spin{to{transform:rotate(1turn)}}
-.pflash{position:fixed;inset:0;z-index:50;pointer-events:none;background:radial-gradient(60% 50% at 50% 55%,rgba(139,92,246,.8),rgba(91,43,224,.35) 45%,rgba(10,10,16,0) 80%);opacity:0;animation:pfl 1s cubic-bezier(.2,.8,.2,1) forwards}
+.plat{margin-top:14px;color:var(--t3);font:600 13px var(--f)}
+.pflash{position:fixed;inset:0;z-index:50;pointer-events:none;background:radial-gradient(60% 50% at 50% 50%,rgba(139,92,246,.75),rgba(91,43,224,.3) 45%,transparent 80%);opacity:0;animation:pfl 1s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes pfl{25%{opacity:1}100%{opacity:0}}
-.btn:active{transform:scale(.97)}.btn svg{width:22px;height:22px}.btn[hidden]{display:none}
-.plat{margin-top:12px;text-align:center;color:var(--t3);font-size:13px;font-weight:600}
-.how{margin-top:18px}.how[hidden]{display:none}
-.how p{color:var(--t2);font-weight:600;margin-bottom:10px}
-.how ol{list-style:none;counter-reset:s;border-radius:18px;background:rgba(0,0,0,.18);box-shadow:var(--hl);overflow:hidden}
-.how li{counter-increment:s;display:flex;align-items:center;gap:14px;padding:14px 16px;font-weight:600}
-.how li+li{border-top:.5px solid rgba(255,255,255,.08)}
-.how li::before{content:counter(s);display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:var(--pur);color:#fff;font:800 14px var(--f)}
-kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,255,255,.12);font:700 14px var(--f)}
-.alt{display:flex;align-items:center;justify-content:center;height:54px;margin-top:12px;border-radius:16px;background:var(--gl);box-shadow:var(--hl);font-weight:800}
-.ft{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-.ft div{padding:18px 16px;border-radius:22px;background:rgba(28,28,42,.42);box-shadow:var(--hl);-webkit-backdrop-filter:saturate(1.6) blur(20px);backdrop-filter:saturate(1.6) blur(20px)}
-.ft b{display:block;font:900 18px/1.05 var(--fd);font-stretch:86%;text-transform:uppercase}
-.ft small{display:block;margin-top:6px;color:var(--t2);font-size:13px;line-height:1.35}
-.ft i{display:block;font-style:normal;font-size:22px;margin-bottom:8px}
-.cap{margin-top:18px;text-align:center;color:var(--t3);font-size:11px}
-.site{display:block;margin-top:22px;text-align:center;color:var(--t2);font-weight:700}
-.site u{text-underline-offset:3px}
-.os{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:22px;color:#fff}
-.os .by{font:300 13px Poppins,var(--f);opacity:.55}.os svg{width:20px;height:20px;fill:#fff}.os .w{font:300 17px/1 Poppins,var(--f)}.os .w b{font-weight:800}
-#kurx{position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:rgba(10,10,16,.55);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);animation:kxi .25s ease-out}
-#kurx .kx{display:flex;flex-direction:column;align-items:center;gap:10px;padding:34px 30px 26px;width:min(86vw,360px);border-radius:30px;background:linear-gradient(180deg,rgba(139,92,246,.22),rgba(255,255,255,.05));box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 30px 80px rgba(0,0,0,.6),0 0 80px rgba(139,92,246,.35);text-align:center}
-#kurx img{width:92px;height:92px;border-radius:22px;box-shadow:0 0 40px rgba(139,92,246,.6)}
-#kurx b{font:900 28px/1 Archivo,system-ui,sans-serif;font-stretch:80%;text-transform:uppercase;margin-top:6px}
-#kurx span{color:rgba(255,255,255,.7);font-size:15px}
-#kurx button{margin-top:12px;width:100%;padding:17px;border:0;border-radius:99px;background:#fff;color:#0a0a10;font:800 19px/1 "Inter Tight",system-ui,sans-serif;box-shadow:0 0 40px rgba(139,92,246,.7);animation:kxp 1.6s ease-in-out infinite}
-#kurx small{color:rgba(255,255,255,.5);font-size:13px}
+/* saat kordonu: yatay afiş çarkı */
+.band{position:relative;height:min(42svh,330px);flex:none;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);perspective:1200px}
+.band.drag{cursor:grabbing}
+.band .it{position:absolute;left:50%;top:calc(50% - var(--w) * .723 - 16px);width:var(--w);margin-left:calc(var(--w) / -2);will-change:transform,opacity;backface-visibility:hidden}
+.band .pi{position:relative;aspect-ratio:830/1200;border-radius:18px;overflow:hidden;background:#15121f;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.2),0 24px 50px -16px rgba(0,0,0,.85)}
+.band .pi img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.band .pi::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,rgba(255,255,255,.22),transparent 38%);pointer-events:none}
+.band .cp{display:flex;justify-content:center;margin-top:10px;opacity:0;transition:opacity .25s}
+.band .it.on .cp{opacity:1}
+.band .cp span{padding:6px 12px;border-radius:999px;font:800 11px var(--f);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;background:var(--lg),rgba(255,255,255,.04);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.22),inset 0 1px 0 rgba(255,255,255,.18);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.band .cp span b{color:#c4b5fd;font-weight:800}
+.ft{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:4px}
+.ft small{color:var(--t3);font-size:10.5px}
+.os{display:flex;align-items:center;gap:8px;color:#fff;opacity:.7}.os .by{font:300 12px Poppins,var(--f)}.os svg{width:16px;height:16px;fill:#fff}.os .w{font:300 14px/1 Poppins,var(--f)}.os .w b{font-weight:800}
+/* kurulum adımları: alttan açılan cam panel (iOS sayfası gibi) */
+.sh{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .25s}
+.sh.open{opacity:1;pointer-events:auto}
+.sh .pn{width:min(100%,520px);padding:10px 20px calc(22px + env(safe-area-inset-bottom));border-radius:30px 30px 0 0;background:var(--lg),rgba(28,26,40,.72);-webkit-backdrop-filter:saturate(1.8) blur(34px);backdrop-filter:saturate(1.8) blur(34px);box-shadow:var(--lgk);transform:translateY(100%);transition:transform .42s cubic-bezier(.2,.9,.25,1)}
+.sh.open .pn{transform:none}
+.sh .hd{width:38px;height:5px;border-radius:3px;background:rgba(255,255,255,.3);margin:0 auto 16px}
+.sh p{color:var(--t2);font-weight:600;margin-bottom:12px}.sh p b{color:#fff}
+.sh ol{list-style:none;counter-reset:s;border-radius:18px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.12);overflow:hidden}
+.sh li{counter-increment:s;display:flex;align-items:center;gap:14px;padding:15px 16px;font-weight:600}
+.sh li+li{border-top:.5px solid rgba(255,255,255,.08)}
+.sh li::before{content:counter(s);display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:var(--pur);color:#fff;font:800 14px var(--f);box-shadow:0 0 18px rgba(139,92,246,.6)}
+kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,255,255,.14);font:700 14px var(--f)}
+.alt{display:flex;align-items:center;justify-content:center;height:56px;margin-top:6px;border-radius:999px;background:#fff;color:#0a0a10;font-weight:800}
+.sh .ok{display:block;width:100%;height:50px;margin-top:14px;border-radius:999px;background:var(--lg),rgba(255,255,255,.06);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.2);font-weight:800}
+#kurx{position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:rgba(10,10,16,.5);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);animation:kxi .25s ease-out}
+#kurx .kx{display:flex;flex-direction:column;align-items:center;gap:10px;padding:34px 30px 26px;width:min(86vw,360px);border-radius:32px;background:var(--lg),rgba(139,92,246,.14);box-shadow:var(--lgk),0 0 80px rgba(139,92,246,.35);text-align:center}
+#kurx img{width:96px;height:96px}
+#kurx b{font:900 28px/1 var(--fd);font-stretch:80%;text-transform:uppercase;margin-top:6px}
+#kurx span{color:var(--t2);font-size:15px}
+#kurx button{margin-top:12px;width:100%;padding:18px;border-radius:99px;background:#fff;color:#0a0a10;font:800 19px/1 var(--f);box-shadow:0 0 40px rgba(139,92,246,.7);animation:kxp 1.6s ease-in-out infinite}
+#kurx small{color:var(--t3);font-size:13px}
 @keyframes kxi{from{opacity:0}}@keyframes kxp{50%{transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){.ic::before,.btn::before,.btn .shw i{animation:none}}
+@media (max-height:640px){.band{height:36svh}.ic{width:96px}h1{margin-top:14px}.cta{margin-top:18px}}
 </style>
 </head>
 <body>
-<div class="band" id="band" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div><div class="glow" aria-hidden="true"></div>
-<main>
-  <div class="lg"><a href="../" aria-label="Ana sayfa"><img src="../brand/logo.png" alt="Ne Var Ne Yok" width="1301" height="653"></a><a href="../">Siteye git →</a></div>
-  <section class="hero">
-    <div class="icw"><img class="ic" src="../icons/icon-512.png" alt="" width="132" height="132"></div>
-    <h1>Ne var ne yok,<br>artık cebinde.</h1>
-    <p class="s">Bütün Türkiye'nin konserleri, tiyatroları, sinema seansları ve festivalleri tek uygulamada.</p>
-    <div class="meta"><div><small>Fiyat</small><b>Ücretsiz</b></div><div><small>Kapsam</small><b>81 il</b></div><div><small>Bildirim</small><b>Var</b></div></div>
-  </section>
-  <section class="card">
-    <button class="btn" id="go" type="button"><span class="shw"><i></i></span><span class="sp" aria-hidden="true"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="gol">Uygulamayı indir</span></button>
-    <p class="plat" id="plat">Android · iPhone · mağaza gerekmez</p>
-    <div class="how" id="how" hidden></div>
-  </section>
-  <section class="ft">
-    <div><i>🔔</i><b>Takip et</b><small>İptal, erteleme, saat değişikliği: bildirimle ilk sen öğren.</small></div>
-    <div><i>🗺️</i><b>81 il</b><small>Şehrini seç; bugün ve bu hafta ne var ne yok gör.</small></div>
-    <div><i>🎬</i><b>Sinema</b><small>Vizyondaki filmler, salon salon seanslar.</small></div>
-    <div><i>🎟️</i><b>Bilet siteleri</b><small>Satış siteleri yan yana, doğrulanmış fiyatlar.</small></div>
-  </section>
-  <p class="cap" id="cap" hidden>Arkadaki afişler etkinliklerin kendi sayfalarından gösterilir; görseller sahiplerine aittir.</p>
-  <a class="site" href="../"><u>Önce siteye göz at</u> → nevarneyok.net.tr</a>
-  <div class="os" aria-label="by oneside"><span class="by">by</span><svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg><span class="w">one<b>side</b></span></div>
-</main>
+<div class="wash" id="wash" aria-hidden="true"><img class="on" alt="" referrerpolicy="no-referrer"><img alt="" referrerpolicy="no-referrer"></div><div class="veil" aria-hidden="true"></div>
+<div class="v">
+  <div class="top"><a href="../" aria-label="Ana sayfa"><img src="../brand/logo.png" alt="Ne Var Ne Yok" width="1301" height="653"></a><a class="s" href="../">Siteye git</a></div>
+  <main class="hero">
+    <div class="ic"><img src="../icons/icon-512.png?v=2" alt="" width="128" height="128"></div>
+    <h1>Ne var ne yok,<br><em>artık cebinde.</em></h1>
+    <div class="cta">
+      <button class="btn" id="go" type="button"><span class="shw"><i></i></span><span class="sp" aria-hidden="true"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="gol">Uygulamayı indir</span></button>
+      <p class="plat" id="plat">Ücretsiz · 81 il · Android ve iPhone</p>
+    </div>
+  </main>
+  <div class="band" id="band" aria-hidden="true"></div>
+  <div class="ft"><small id="cap" hidden>Afişler etkinliklerin kendi sayfalarından gösterilir; görseller sahiplerine aittir.</small>
+    <div class="os" aria-label="by oneside"><span class="by">by</span><svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg><span class="w">one<b>side</b></span></div></div>
+</div>
+<div class="sh" id="sh" role="dialog" aria-modal="true" aria-label="Nasıl kurulur"><div class="pn"><div class="hd"></div><div id="how"></div><button type="button" class="ok" id="shx">Tamam</button></div></div>
 <script>
 (function(){
-  var ua=navigator.userAgent,H=document.getElementById("how"),B=document.getElementById("go"),L=document.getElementById("gol"),PL=document.getElementById("plat"),dp=null;
+  var ua=navigator.userAgent,SH=document.getElementById("sh"),H=document.getElementById("how"),B=document.getElementById("go"),L=document.getElementById("gol"),PL=document.getElementById("plat"),dp=null;
   var ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua),
       inApp=/Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|TikTok|musical_ly|Twitter|Snapchat|LinkedInApp/i.test(ua),samsung=/SamsungBrowser/i.test(ua);
   if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true){location.replace("../");return}
-  if(ios){L.textContent="Ana Ekrana Ekle";PL.textContent="iPhone · App Store gerekmez · ücretsiz"}
-  else if(and){PL.textContent="Android · Play Store gerekmez · ücretsiz"}
+  if(ios)PL.textContent="Ücretsiz · 81 il · App Store gerekmez";else if(and)PL.textContent="Ücretsiz · 81 il · Play Store gerekmez";
   addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e});
-  addEventListener("appinstalled",function(){ev("uygulama-kuruldu","Uygulama kuruldu");B.classList.remove("busy");B.classList.add("done");L.textContent="Kuruldu ✓";show("<p><b>Kuruldu! 🎉</b> Ne Var Ne Yok artık uygulamalarının arasında. Açınca bir sürpriz var.</p>")});
+  addEventListener("appinstalled",function(){ev("uygulama-kuruldu","Uygulama kuruldu");B.classList.remove("busy");B.classList.add("done");L.textContent="Kuruldu ✓";ok2();show("<p><b>Kuruldu! 🎉</b> Ne Var Ne Yok artık uygulamalarının arasında. Açınca bir sürpriz var.</p>")});
   function ev(p,t){try{window.goatcounter&&goatcounter.count&&goatcounter.count({path:p,title:t,event:true})}catch(e){}}
-  function show(h){H.innerHTML=h;H.hidden=false}
+  function show(h){H.innerHTML=h;SH.classList.add("open")}
+  function hide(){SH.classList.remove("open")}
+  SH.addEventListener("click",function(e){if(e.target===SH)hide()});document.getElementById("shx").addEventListener("click",hide);
   function steps(){
     if(inApp)return and?'<p>Bu sayfa Instagram\'ın içinde açıldı; uygulama buradan kurulamıyor.</p><a class="alt" href="intent://'+location.host+location.pathname+'?kur=1#Intent;scheme=https;package=com.android.chrome;end">Chrome\'da aç</a>'
       :'<p>Bu sayfa Instagram\'ın içinde açıldı. Kurmak için:</p><ol><li>Sağ üstteki <kbd>⋯</kbd> menüsüne dokun</li><li><b>"Tarayıcıda aç"</b>ı seç</li><li>Açılınca "Ana Ekrana Ekle"ye dokun</li></ol>';
-    if(ios)return '<p>iPhone\'da üç adımda kurulur:</p><ol><li>Alttaki <kbd>Paylaş</kbd> simgesine (kare ve yukarı ok) dokun</li><li><b>"Ana Ekrana Ekle"</b>yi seç</li><li>Sağ üstte <b>"Ekle"</b>ye dokun</li></ol>';
-    if(samsung)return '<p>Samsung İnternet\'te:</p><ol><li>Alttaki <kbd>☰</kbd> menüye dokun</li><li><b>"Sayfayı ekle"</b> → <b>"Ana ekran"</b>ı seç</li></ol>';
-    if(and)return '<p>Chrome\'da:</p><ol><li>Sağ üstteki <kbd>⋮</kbd> menüye dokun</li><li><b>"Uygulamayı yükle"</b>yi seç</li></ol>';
+    if(ios)return '<p><b>iPhone\'da üç dokunuş:</b></p><ol><li>Alttaki <kbd>Paylaş</kbd> simgesine (kare ve yukarı ok) dokun</li><li><b>"Ana Ekrana Ekle"</b>yi seç</li><li>Sağ üstte <b>"Ekle"</b>ye dokun</li></ol>';
+    if(samsung)return '<p><b>Samsung İnternet\'te:</b></p><ol><li>Alttaki <kbd>☰</kbd> menüye dokun</li><li><b>"Sayfayı ekle"</b> → <b>"Ana ekran"</b>ı seç</li></ol>';
+    if(and)return '<p><b>Chrome\'da:</b></p><ol><li>Sağ üstteki <kbd>⋮</kbd> menüye dokun</li><li><b>"Uygulamayı yükle"</b>yi seç</li></ol>';
     return '<p>Bilgisayarda adres çubuğunun sağındaki <kbd>⊕ Yükle</kbd> simgesine tıkla ya da bu sayfayı telefonunda aç.</p>';
   }
-  if(inApp||ios)show(steps());
-  // Instagram vb. uygulama içi tarayıcıdan gelen: kurulum orada olmaz, kendiliğinden gerçek tarayıcıya geç (kullanıcı isteği, 15.11.2026: "direkt indirme yerine gitsin")
+  // Instagram vb. uygulama içi tarayıcıdan gelen: kendiliğinden gerçek tarayıcıya geç (oturumda bir kez)
   var kur=/[?&]kur=1/.test(location.search),self=location.host+location.pathname;
   if(inApp&&!sessionStorage.getItem("nvny-yonlendi")){
     try{sessionStorage.setItem("nvny-yonlendi","1")}catch(e){}
-    if(and){ev("indir-chromea-yonlendi","Instagram'dan Chrome'a yönlendi");show('<p><b>Chrome\'da açılıyor…</b> Açılmazsa aşağıdaki düğmeye dokun.</p><a class="alt" href="intent://'+self+'?kur=1#Intent;scheme=https;package=com.android.chrome;end">Chrome\'da aç</a>');
-      location.href="intent://"+self+"?kur=1#Intent;scheme=https;package=com.android.chrome;end"}
+    if(and){ev("indir-chromea-yonlendi","Instagram'dan Chrome'a yönlendi");location.href="intent://"+self+"?kur=1#Intent;scheme=https;package=com.android.chrome;end"}
     else if(ios){ev("indir-safariye-yonlendi","Instagram'dan Safari'ye yönlendi");location.href="x-safari-https://"+self+"?kur=1"}
   }
-  // tarayıcıya geçince: kurulum penceresi hazır olur olmaz ekranın tamamı "Yükle" düğmesi (tarayıcı kurulumu bir dokunuşla açar)
+  // tarayıcıya geçince: kurulum hazır olur olmaz ekranın tamamı "Yükle" kartı (tarayıcı kurulumu bir dokunuşla açar)
   if(kur&&!inApp){
-    if(ios){H.scrollIntoView({block:"center"})}
+    if(ios)setTimeout(function(){show(steps())},700);
     addEventListener("beforeinstallprompt",function(){if(document.getElementById("kurx"))return;
-      var o=document.createElement("div");o.id="kurx";o.innerHTML='<div class="kx"><img src="../icons/icon-192.png" alt=""><b>Ne Var Ne Yok</b><span>81 ilin etkinlikleri · ücretsiz</span><button type="button">Yükle</button><small>Ekranın herhangi bir yerine dokun</small></div>';
-      document.body.appendChild(o);
-      o.addEventListener("click",function(){o.remove();B.click()},{once:true});
+      var o=document.createElement("div");o.id="kurx";o.innerHTML='<div class="kx"><img src="../icons/icon-192.png?v=2" alt=""><b>Ne Var Ne Yok</b><span>81 ilin etkinlikleri · ücretsiz</span><button type="button">Yükle</button><small>Ekranın herhangi bir yerine dokun</small></div>';
+      document.body.appendChild(o);o.addEventListener("click",function(){o.remove();B.click()},{once:true});
     });
   }
-  // arka plandaki kordonlar: Türkiye'de öne çıkan etkinliklerin afişleri (yalnızca adres; kaynağından gösterilir)
-  fetch("../data/one-cikan.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(j){
-    var I=(j.events||[]).map(function(e){return e.img}).filter(Boolean);if(I.length<3)return;
-    var band=document.getElementById("band"),cols=5,h="";
-    for(var c=0;c<cols;c++){var L=[];for(var k=0;k<6;k++)L.push(I[(c*3+k)%I.length]);L=L.concat(L);
-      h+='<div class="col">'+L.map(function(u){return '<img src="'+u.replace(/"/g,"")+'" alt="" referrerpolicy="no-referrer" loading="lazy" decoding="async">'}).join("")+'</div>'}
-    band.innerHTML=h;document.getElementById("cap").hidden=false;
-  }).catch(function(){});
+  /* ---- Apple çark sesi (sitedekiyle aynı: Web Audio, dosyasız; ilk dokunuştan sonra çalar; "nvny-ses"=0 ise sessiz) ---- */
+  var AC=null,NZ=null,lt=0;
+  function sesOn(){try{return localStorage.getItem("nvny-ses")!=="0"}catch(e){return true}}
+  function ac(){if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==="suspended"&&AC.resume)AC.resume().catch(function(){});return AC}
+  function blip(o){if(!sesOn()||!AC||AC.state!=="running")return;try{var A=AC,t=A.currentTime,out=A.createGain();out.gain.value=o.vol;out.connect(A.destination);
+    if(o.noise){if(!NZ){var n=Math.round(A.sampleRate*.004);NZ=A.createBuffer(1,n,A.sampleRate);var d=NZ.getChannelData(0);for(var k=0;k<n;k++)d[k]=(Math.random()*2-1)*Math.pow(1-k/n,4)}
+      var s=A.createBufferSource(),h=A.createBiquadFilter(),g=A.createGain();s.buffer=NZ;h.type="highpass";h.frequency.value=o.hp;g.gain.value=o.noise;s.connect(h).connect(g).connect(out);s.start(t)}
+    var os=A.createOscillator(),gg=A.createGain();os.type="sine";os.frequency.setValueAtTime(o.f,t);os.frequency.exponentialRampToValueAtTime(o.f2,t+o.dur);
+    gg.gain.setValueAtTime(.0001,t);gg.gain.linearRampToValueAtTime(1,t+.0008);gg.gain.exponentialRampToValueAtTime(.0001,t+o.dur);os.connect(gg).connect(out);os.start(t);os.stop(t+o.dur+.01);
+    if(o.body){var b=A.createOscillator(),bg=A.createGain();b.type="triangle";b.frequency.setValueAtTime(o.body,t);bg.gain.setValueAtTime(.0001,t);bg.gain.linearRampToValueAtTime(.55,t+.0006);bg.gain.exponentialRampToValueAtTime(.0001,t+o.dur*.7);b.connect(bg).connect(out);b.start(t);b.stop(t+o.dur)}
+  }catch(e){}}
+  function tick(user){var t=performance.now();if(t-lt<32)return;lt=t;blip({f:2200,f2:1750,body:1100,vol:user?.085:.05,dur:.014,noise:.55,hp:3000});if(user&&sesOn())try{navigator.vibrate&&navigator.vibrate(3)}catch(e){}}
+  ["pointerdown","touchstart","keydown"].forEach(function(n){addEventListener(n,function(){ac()},{passive:true})});
+  /* ---- Saat kordonu: güncel afişler yatay akar; ortadaki büyür, geçince küçülür ---- */
+  var band=document.getElementById("band"),wash=document.getElementById("wash").children,CAT={konser:"Konser",tiyatro:"Tiyatro",standup:"Stand-up",sahne:"Opera · Bale · Dans",cocuk:"Çocuk & Aile",festival:"Festival",parti:"Parti",atolye:"Atölye",sinema:"Sinema"};
+  function washTo(u){var a=wash[0],b=wash[1],f=a.classList.contains("on")?a:b,k=f===a?b:a;if(!u||f.getAttribute("src")===u)return;
+    k.onload=function(){if(k.getAttribute("src")!==u)return;k.classList.add("on");f.classList.remove("on")};k.setAttribute("src",u);if(k.complete&&k.naturalWidth)k.onload()}
+  function esc(t){return String(t||"").replace(/[&<>"]/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]})}
+  Promise.all([fetch("../data/one-cikan.json",{cache:"no-cache"}).then(function(r){return r.json()}).catch(function(){return{}}),
+               fetch("../data/films.json",{cache:"no-cache"}).then(function(r){return r.json()}).catch(function(){return{}})]).then(function(R){
+    var E=(R[0].events||[]).filter(function(e){return e.img}).map(function(e){return{img:e.img,a:CAT[e.cat]||"Etkinlik",b:e.cityName||""}});
+    var F=(R[1].films||[]).filter(function(f){return f.img&&f.s&&Object.keys(f.s).length}).slice(0,8).map(function(f){return{img:f.img,a:"Sinema",b:"Vizyonda"}});
+    var X=[],i=0,j=0;while(i<E.length||j<F.length){if(i<E.length)X.push(E[i++]);if(i<E.length)X.push(E[i++]);if(j<F.length)X.push(F[j++])}
+    if(X.length<3)return;run(X);document.getElementById("cap").hidden=false;
+  });
+  function run(X){
+    var W,G,S,N,off=0,v=38,last=0,cur=-1,drag=null,vel=0,idleT=0,els=[],red=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function size(){W=Math.round(Math.min((band.clientHeight-46)/1.9,innerWidth*.36,200));G=Math.round(W*.16);S=W+G;band.style.setProperty("--w",W+"px");
+      // döngü en az ekranın 1,6 katı olsun
+      var need=Math.ceil((innerWidth*1.6)/S)+2,L=X.slice();while(L.length<need)L=L.concat(X);
+      if(L.length!==N){N=L.length;band.innerHTML=L.map(function(e){return '<div class="it"><div class="pi"><img src="'+esc(e.img)+'" alt="" referrerpolicy="no-referrer" decoding="async" draggable="false" onerror="this.closest(\'.it\').style.display=\'none\'"></div><div class="cp"><span>'+esc(e.a)+(e.b?' · <b>'+esc(e.b)+'</b>':'')+'</span></div></div>'}).join("");els=[].slice.call(band.children);band._L=L}}
+    function paint(){var span=N*S,c=-1,best=1e9;
+      for(var k=0;k<N;k++){var x=k*S-off;x=((x%span)+span*1.5)%span-span/2;var d=x/S,a=Math.abs(d),el=els[k];
+        if(a>innerWidth/S/2+1.5){el.style.visibility="hidden";continue}el.style.visibility="";
+        var sc=1+.3*Math.max(0,1-a)-Math.min(a,4)*.035,ry=Math.max(-50,Math.min(50,-d*14)),y=Math.min(a,1)*14;
+        el.style.transform="translate3d("+x.toFixed(1)+"px,"+y.toFixed(1)+"px,0) rotateY("+ry.toFixed(1)+"deg) scale("+sc.toFixed(3)+")";
+        el.style.opacity=(1-Math.min(a,3)*.17).toFixed(3);el.style.zIndex=100-Math.round(a*10);if(a<best){best=a;c=k}}
+      if(c!==cur){if(cur>=0)els[cur]&&els[cur].classList.remove("on");cur=c;els[c].classList.add("on");if(last)tick(!!drag);washTo(band._L[c].img)}}
+    function frame(t){var dt=last?Math.min(.05,(t-last)/1000):0;last=t;
+      if(!drag){if(Math.abs(vel)>5){off+=vel*dt;vel*=Math.pow(.05,dt)}else{vel=0;if(t>idleT&&!red)off+=v*dt}}
+      paint();requestAnimationFrame(frame)}
+    band.addEventListener("pointerdown",function(e){drag={x:e.clientX,o:off,t:performance.now(),lx:e.clientX};vel=0;band.classList.add("drag");try{band.setPointerCapture(e.pointerId)}catch(_){} });
+    band.addEventListener("pointermove",function(e){if(!drag)return;var now=performance.now(),dx=e.clientX-drag.lx,dtt=Math.max(1,now-drag.t);vel=-dx/dtt*1000;drag.lx=e.clientX;drag.t=now;off=drag.o-(e.clientX-drag.x)});
+    function up(){if(!drag)return;drag=null;band.classList.remove("drag");vel=Math.max(-2600,Math.min(2600,vel));idleT=performance.now()+1600}
+    band.addEventListener("pointerup",up);band.addEventListener("pointercancel",up);
+    band.addEventListener("wheel",function(e){var d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;off+=d;idleT=performance.now()+1600;e.preventDefault()},{passive:false});
+    addEventListener("resize",function(){size()});size();requestAnimationFrame(frame);
+  }
+  function ok2(){}
   function flash(){var f=document.createElement("div");f.className="pflash";document.body.appendChild(f);setTimeout(function(){f.remove()},1050);B.classList.remove("tap");void B.offsetWidth;B.classList.add("tap")}
-  B.addEventListener("click",function(){ev("indir-sayfasi-dugme","İndirme sayfasında düğmeye basıldı");flash();
+  B.addEventListener("click",function(){ev("indir-sayfasi-dugme","İndirme sayfasında düğmeye basıldı");flash();ac();blip({f:1320,f2:1300,vol:.07,dur:.07,noise:0});
     if(dp){var d=dp;dp=null;B.classList.add("busy");L.textContent="Açılıyor…";d.prompt();d.userChoice.then(function(r){B.classList.remove("busy");
       if(r.outcome==="accepted"){B.classList.add("done");L.textContent="İndiriliyor… ✓"}else{L.textContent="Uygulamayı indir";show(steps())}});return}
-    show(steps());H.scrollIntoView({behavior:"smooth",block:"center"});
+    show(steps());
   });
 })();
 </script>
