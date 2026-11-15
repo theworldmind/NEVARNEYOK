@@ -1,13 +1,13 @@
 /* NE VAR NE YOK · bildirim service worker'ı (yalnızca bildirim için; sayfaları önbelleğe almaz, çevrimdışı çalışma yok).
    Android'de kurulan uygulamada telefon arada bir (günde aşağı yukarı bir kez) "nvny-takip" ile uyandırır:
-   güncel etkinlik listesini indirir, takip edilenlerdeki değişiklikleri ve hatırlatmaları bildirir. */
-importScripts("takip.js?v=5");
+   güncel etkinlik listesini indirir, takip edilenlerdeki değişiklikleri ve hatırlatmaları (1 hafta, 3 gün, 1 gün önce, o gün, az kaldı, ertesi gün) bildirir;
+   değişiklik yoksa günün tatlı önerisini (NV.digest, günde en çok bir) gönderir. */
+importScripts("takip.js?v=6");
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 
 async function run() {
   const follows = (await NV.get("follows")) || {}, prefs = await NV.get("prefs"), city = (await NV.get("city")) || "ankara", cityName = await NV.get("cityName");
-  if (!Object.keys(follows).length && !prefs) return;
   const today = NV.today(), file = (c) => (c === "ankara" ? "data/events.json" : `data/c/${c}.json`);
   const get = async (c) => { const r = await fetch(file(c), { cache: "no-store" }); if (!r.ok) return null; return ((await r.json()).events || []).filter((e) => e.d >= today); };
   // takip edilenler hangi illerdeyse o illerin verisi indirilir
