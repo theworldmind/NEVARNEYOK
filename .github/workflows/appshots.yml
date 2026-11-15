@@ -8,6 +8,10 @@ on:
         description: "Ekranlardaki iller, ilki ana il (boşlukla)"
         required: false
         default: ankara istanbul izmir antalya
+      sadece_turkiye:
+        description: "Yalnızca 'Tüm Türkiye cebinde' hikâyesi (hızlı)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -33,7 +37,13 @@ jobs:
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
           sudo apt-get install -y -qq fonts-noto-color-emoji >/dev/null || true
+      - name: Tüm Türkiye hikâyesi
+        working-directory: scraper
+        env:
+          OUT_DIR: /tmp/uygulama
+        run: node hero.mjs
       - name: Görselleri üret
+        if: github.event.inputs.sadece_turkiye != 'true'
         working-directory: scraper
         env:
           OUT_DIR: /tmp/uygulama
