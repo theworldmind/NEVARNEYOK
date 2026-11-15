@@ -614,6 +614,17 @@ html.app body:has(.tabs:not([hidden])) #view{padding-bottom:calc(96px + env(safe
 .wash img.on{opacity:.42}
 /* kayan sayfa kartı da cam */
 .sps::after{box-shadow:inset 0 0 0 .5px rgba(255,255,255,.16),inset 0 1px 0 rgba(255,255,255,.12)}
+
+/* ===== 22:03 (kullanıcı isteği) ===== */
+/* Arka plan rengi: her afiş ayrı katman, küçük çizilip büyütülür (ucuz bulanıklık); görünürlük kaydırmaya bağlı, geçiş yok (anlık) */
+.wash img{position:absolute;left:-6%;top:-6%;width:14%;height:14%;object-fit:cover;filter:blur(6px) saturate(1.6);transform:scale(8.6);transform-origin:0 0;opacity:0;transition:none;will-change:opacity}
+.wash img.on{opacity:0}
+/* Sayfa göstergesi: Apple gibi cam hap içinde noktalar; öndeki uzayıp kapsül olur ve süre dolarken beyazla dolar */
+.stp .sg{left:50%;right:auto;top:14px;transform:translateX(-50%);gap:6px;padding:7px 10px;border-radius:999px;background:rgba(10,10,16,.32);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.18),inset 0 1px 0 rgba(255,255,255,.1)}
+.stp .sg i{flex:none;width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.38);transition:width .5s cubic-bezier(.2,.8,.2,1),background .3s}
+.stp .sg i.on{width:30px;background:rgba(255,255,255,.26)}
+.stp .sg i.done b{transform:scaleX(0)}
+.stp .sg b{border-radius:3px}
 </style>
 </head>
 <body>
