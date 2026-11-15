@@ -607,18 +607,18 @@ async function askNotif(city) {
   if (p !== "granted") return false;
   NV.set("prefs", prefs()); NV.set("city", city); NV.set("follows", follows());
   await swUp(); gcEv("bildirim-acildi", "Bildirimler açıldı");
-  if (standalone && !store.get("nvny-hosgeldin")) { store.set("nvny-hosgeldin", "1"); notify("HOŞ GELDİNİZZZ 🎉", "Artık hiçbir şeyi kaçırmazsın! Takip ettiğin etkinlikte bir şey değişirse ilk senin haberin olacak, bir gün önceden de dürteceğiz 😉 Arada bir \"bu hafta sonu şunlar var\" diye de yazarız.", `/#/${city}`, "hosgeldin"); }
+  if (standalone && !store.get("nvny-hosgeldin")) { store.set("nvny-hosgeldin", "1"); notify("HOŞ GELDİNİZZZ 🎉", "Ne Var Ne Yok artık cebinde ✨ Takip ettiğin etkinlikte bir şey değişirse ilk sen bileceksin, günü gelince de nazikçe hatırlatacağız. Hafta sonları sana göre küçük öneriler de gelecek.", `/#/${city}`, "hosgeldin"); }
   else toast("Bildirimler açık 🔔");
   $$(".nask").forEach((x) => x.remove()); $$(".nbox").forEach((x) => { x.outerHTML = notifBox(city); });
   return true;
 }
 function notifBox(city, inSheet) {
   if (notifOn()) return `<div class="nbox ok">${I.bellOn}<span><b>Bildirimler açık</b><small>Takip ettiğin etkinliklerdeki değişiklikleri ve hatırlatmaları gönderiyoruz; arada bir de güzel etkinlikleri.</small></span></div>`;
-  return `<div class="nbox">${I.bell}<span><b>Bildirimleri aç, etkinliklerden haberdar ol</b><small>Takip ettiğin etkinlik iptal olursa, saati ya da yeri değişirse haber verelim; bir gün önce de hatırlatalım.</small></span><button type="button" class="nb-go" data-notif>Bildirimleri aç</button></div>`;
+  return `<div class="nbox">${I.bell}<span><b>Bildirimleri aç, hiçbir şeyi kaçırma</b><small>Takip ettiğin etkinlikte iptal, saat ya da yer değişikliği olursa, fiyatı düşerse ilk sen öğren; günü gelince de hatırlatalım.</small></span><button type="button" class="nb-go" data-notif>Bildirimleri aç</button></div>`;
 }
 function notifAsk(city) {
   if (notifOn() || store.get("nvny-nask-x") || (NOTIF && Notification.permission === "denied")) return "";
-  return `<div class="nask wrap"><div class="nbox">${I.bell}<span><b>Bildirimleri aç, etkinliklerden haberdar ol</b><small>Takip ettiğin etkinliklerde değişiklik olursa ilk sen öğren.</small></span><button type="button" class="nb-go" data-notif>Aç</button><button type="button" class="nb-x" data-nx aria-label="Kapat">✕</button></div></div>`;
+  return `<div class="nask wrap"><div class="nbox">${I.bell}<span><b>Bildirimleri aç, hiçbir şeyi kaçırma</b><small>Takip ettiğin etkinliklerde bir şey değişirse ilk sen öğren.</small></span><button type="button" class="nb-go" data-notif>Aç</button><button type="button" class="nb-x" data-nx aria-label="Kapat">✕</button></div></div>`;
 }
 function bindNotifBox(root, city) { root.addEventListener("click", (ev) => { if (ev.target.closest("[data-notif]")) askNotif(city); }); }
 function bindNotifAsk(city) {
@@ -657,7 +657,7 @@ function viewTakip(city) {
 function welcomeApp() {
   if (!standalone || store.get("nvny-hosgeldin")) return;
   const city = store.get("nvny-city") || "ankara";
-  if (notifOn()) { store.set("nvny-hosgeldin", "1"); swUp().then(() => notify("HOŞ GELDİNİZZZ 🎉", "Ne Var Ne Yok artık telefonunda! Takip ettiğin etkinlikte bir şey değişirse ilk senin haberin olacak, bir gün önceden de dürteceğiz 😉", `/#/${city}`, "hosgeldin")); return; }
+  if (notifOn()) { store.set("nvny-hosgeldin", "1"); swUp().then(() => notify("HOŞ GELDİNİZZZ 🎉", "Ne Var Ne Yok artık cebinde ✨ Takip ettiğin etkinlikte bir şey değişirse ilk sen bileceksin, günü gelince de nazikçe hatırlatacağız.", `/#/${city}`, "hosgeldin")); return; }
   if (!NOTIF || Notification.permission === "denied" || store.get("nvny-hosgeldin-sor")) return;
   store.set("nvny-hosgeldin-sor", "1");
   setTimeout(() => {

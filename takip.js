@@ -10,6 +10,7 @@ var NV = (function () {
   var today = function () { var p = {}; new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day; };
   var addD = function (s, n) { var d = new Date(s + "T12:00:00"); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
   var ST = { iptal: "iptal edildi", ertelendi: "ertelendi", tukendi: "biletleri tükendi" };
+  var STB = { iptal: "Üzgünüz 😔 Bu etkinlik iptal edildi. Ayrıntılar ve bilet iadesi için dokun.", ertelendi: "Bu etkinlik ertelendi 🗓️ Yeni tarihi belli olunca sana haber vereceğiz.", tukendi: "Biletler tükendi 🎟️ Yeniden satışa çıkarsa ilk sen öğreneceksin." };
 
   /* --- küçük anahtar-değer deposu (IndexedDB) --- */
   function db() { return new Promise(function (res, rej) { var r = indexedDB.open("nvny", 1); r.onupgradeneeded = function () { r.result.createObjectStore("kv"); }; r.onsuccess = function () { res(r.result); }; r.onerror = function () { rej(r.error); }; }); }
@@ -37,26 +38,26 @@ var NV = (function () {
       var url = "/#/" + (f.city || city || "ankara") + "/e/" + encodeURIComponent(e ? e.slug || f.slug : f.slug), n = Object.assign({}, f);
       if (!e) {
         if (f.d < t0) return; // geçmiş: listeden çıkar
-        if (!f.gone) { msgs.push({ tag: "x-" + id, title: f.title, body: "Bu etkinlik artık listemizde görünmüyor; iptal edilmiş ya da satıştan kalkmış olabilir. Bilet sitesinden kontrol et.", url: url }); n.gone = 1; }
+        if (!f.gone) { msgs.push({ tag: "x-" + id, title: f.title, body: "Bu etkinliği artık listemizde göremiyoruz 🤔 İptal edilmiş ya da satıştan kalkmış olabilir; bilet sitesine bir göz atmanı öneririz.", url: url }); n.gone = 1; }
         out[id] = n; return;
       }
       n.gone = 0; if (e.slug) n.slug = e.slug;
       var st = e.status || "";
       if (st !== f.status) {
-        if (ST[st]) msgs.push({ tag: "s-" + id, title: f.title, body: "Takip ettiğin etkinlik " + ST[st] + "." + (st === "tukendi" ? "" : " Ayrıntılar için dokun."), url: url });
-        else if (f.status === "tukendi") msgs.push({ tag: "s-" + id, title: f.title, body: "Yeniden bilet satışa çıktı!", url: url });
+        if (ST[st]) msgs.push({ tag: "s-" + id, title: f.title, body: STB[st], url: url });
+        else if (f.status === "tukendi") msgs.push({ tag: "s-" + id, title: "Müjde! 🎉 " + f.title, body: "Biletler yeniden satışta. Bu sefer kaçırma, dokun ve yerini ayır!", url: url });
       }
       if (st !== "iptal" && st !== "ertelendi") {
-        if (e.d !== f.d) msgs.push({ tag: "d-" + id, title: f.title, body: "Tarihi değişti: " + dLong(f.d) + " yerine " + dLong(e.d) + (e.t ? ", " + e.t : "") + ".", url: url });
-        else if ((e.t || "") !== f.t && e.t && f.t) msgs.push({ tag: "t-" + id, title: f.title, body: "Saati değişti: " + f.t + " yerine " + e.t + ".", url: url });
-        if (key(e.venue) !== f.vk && e.venue && f.venue) msgs.push({ tag: "v-" + id, title: f.title, body: "Mekânı değişti: artık " + e.venue + ".", url: url });
-        if (e.d === t1 && !f.r1) { msgs.push({ tag: "r-" + id, title: "Yarın: " + e.title, body: [e.venue, e.t].filter(Boolean).join(" · ") + ". Unutma!", url: url }); n.r1 = 1; }
-        if (e.d === t0 && !f.r0) { msgs.push({ tag: "r-" + id, title: "Bugün: " + e.title, body: [e.venue, e.t].filter(Boolean).join(" · ") + ". İyi eğlenceler!", url: url }); n.r0 = 1; }
+        if (e.d !== f.d) msgs.push({ tag: "d-" + id, title: f.title, body: "Tarih değişti 🗓️ Yeni tarih " + dLong(e.d) + (e.t ? ", saat " + e.t : "") + " (önceden " + dLong(f.d) + " idi). Planını güncellemeyi unutma.", url: url });
+        else if ((e.t || "") !== f.t && e.t && f.t) msgs.push({ tag: "t-" + id, title: f.title, body: "Saat değişti ⏰ Yeni saat " + e.t + " (önceden " + f.t + " idi).", url: url });
+        if (key(e.venue) !== f.vk && e.venue && f.venue) msgs.push({ tag: "v-" + id, title: f.title, body: "Mekân değişti 📍 Yeni yeri: " + e.venue + ". Yol tarifi için dokun.", url: url });
+        if (e.d === t1 && !f.r1) { msgs.push({ tag: "r-" + id, title: "Yarın büyük gün ✨ " + e.title, body: [e.venue, e.t && "saat " + e.t].filter(Boolean).join(", ") + ". Biletin hazır mı?", url: url }); n.r1 = 1; }
+        if (e.d === t0 && !f.r0) { msgs.push({ tag: "r-" + id, title: "Bugün görüşüyoruz 🎉 " + e.title, body: [e.venue, e.t && "saat " + e.t].filter(Boolean).join(", ") + ". Şimdiden iyi eğlenceler!", url: url }); n.r0 = 1; }
       }
       // Fiyat düştüyse haber ver (kullanıcı isteği, 15.11.2026: fiyat karşılaştırmasında en iyisi olalım): en az %3 ya da ₺25
       var l = low(e);
       if (l && st !== "iptal" && st !== "ertelendi" && st !== "tukendi") {
-        if (f.p && l.price < f.p && (f.p - l.price >= 25 || l.price <= f.p * .97)) msgs.push({ tag: "p-" + id, title: "Fiyatı düştü: " + f.title, body: TL(l.price) + " (önce " + TL(f.p) + ") · " + l.site + ". Kaçırma!", url: url });
+        if (f.p && l.price < f.p && (f.p - l.price >= 25 || l.price <= f.p * .97)) msgs.push({ tag: "p-" + id, title: "Fiyatı düştü 💸 " + f.title, body: "Artık " + TL(l.price) + " (önceden " + TL(f.p) + ") · " + l.site + ". Tam zamanı!", url: url });
         n.p = l.price;
       }
       n.d = e.d; n.t = e.t || ""; n.venue = e.venue || ""; n.vk = key(e.venue); n.status = st;
@@ -74,7 +75,7 @@ var NV = (function () {
     var L = events.filter(function (e) { return e.d >= fri && e.d <= sun && e.status !== "iptal" && e.status !== "ertelendi"; });
     if (!L.length) return null;
     var mine = prefs && prefs.cats && prefs.cats.length ? L.filter(function (e) { return prefs.cats.indexOf(e.cat) >= 0; }).length : 0;
-    return { tag: "digest", title: "Hafta sonu " + (cityName || "şehrinde") + " ne var ne yok?", body: L.length.toLocaleString("tr-TR") + " etkinlik seni bekliyor" + (mine ? "; " + mine + " tanesi tam senlik." : ". Göz atmak için dokun."), url: "/#/" + (city || "ankara") + "/kesfet?t=haftasonu" + (mine ? "&sira=sen" : "") };
+    return { tag: "digest", title: "Hafta sonu planın hazır mı? 🌟", body: (cityName || "Şehrinde") + " bu hafta sonu " + L.length.toLocaleString("tr-TR") + " etkinlik var" + (mine ? "; " + mine + " tanesi tam sana göre ✨" : ". Bir göz atmak için dokun."), url: "/#/" + (city || "ankara") + "/kesfet?t=haftasonu" + (mine ? "&sira=sen" : "") };
   }
   return { fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today };
 })();
