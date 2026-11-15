@@ -6,7 +6,7 @@
 import { join } from "node:path";
 import { readdir } from "node:fs/promises";
 import { ROOT, log, readJSON, writeJSON, todayIST, fold } from "./lib/util.mjs";
-import { CITIES } from "./lib/cities.mjs";
+import { CITIES, cityOfText } from "./lib/cities.mjs";
 
 const today = todayIST();
 const key = (e) => fold(e.title).replace(/[^a-z0-9]+/g, "") + "|" + e.d + "|" + (e.t || "");
@@ -30,6 +30,23 @@ const pool7 = []; // girişteki kayan sayfalar için: her ilin önümüzdeki 7 g
 const wk = new Date(Date.parse(today + "T12:00:00Z") + 7 * 864e5).toISOString().slice(0, 10);
 const take = (C, L) => { for (const e of L) if (e.img && e.d >= today && e.d <= wk && !/iptal|ertelendi/.test(e.status || "")) pool7.push({ e, C, s: (e.tickets || []).length * 2 + (e.status === "tukendi" ? 3 : 0) + (/arena|psm|akm|kongre|opera|cso|stadyum|holly stone|jolly joker|bostanci|volkswagen|harbiye/i.test(e.venue || "") ? 3 : 0) + (["konser", "tiyatro", "standup", "festival"].includes(e.cat) ? 1 : 0) }); };
 
+/* Turne seansları yanlış ile yazılmasın (kullanıcı, 15.11.2026: "konumlar doğru olmalı"): bilet sitesinin etkinlik sayfası bütün illerin
+   seanslarını verdiği için aynı seans (ad, gün, saat, mekân) birden çok ilin listesine düşebiliyor. Seans birden çok ilde varsa yalnızca
+   mekânın asıl ilinde kalır: mekân adında il geçiyorsa o il; yoksa o mekânda en çok farklı etkinliği olan il (Ankara kendi taramasıyla sayılır). */
+const vk = (e) => fold(e.venue || "").replace(/[^a-z0-9]+/g, "");
+const sk = (e) => key(e) + "|" + vk(e);
+const SRC = {}, vTitles = new Map(), sCities = new Map();
+for (const C of CITIES) {
+  const L = C.id === "ankara" ? ((await readJSON(join(ROOT, "data/events.json"), { events: [] })).events || []) : [...tr.filter((x) => x.city === C.id), ...(((await readJSON(join(ROOT, `data/c/src/${C.id}.json`), { events: [] })).events) || [])];
+  SRC[C.id] = L;
+  for (const e of L) { if (e.d < today || !e.venue) continue; const v = vk(e);
+    const m = vTitles.get(v) || vTitles.set(v, new Map()).get(v); (m.get(C.id) || m.set(C.id, new Set()).get(C.id)).add(fold(e.title));
+    (sCities.get(sk(e)) || sCities.set(sk(e), new Set()).get(sk(e))).add(C.id); }
+}
+const homeOf = (e) => { const t = cityOfText(e.venue || ""); if (t) return t; const m = vTitles.get(vk(e)); if (!m) return ""; let best = "", bn = 0; for (const [c, S] of m) if (S.size > bn) { bn = S.size; best = c; } return best; };
+let dropped = 0;
+const wrongCity = (e, cid) => { const cs = sCities.get(sk(e)); if (!cs || cs.size < 2) return false; const h = homeOf(e); if (h && h !== cid && cs.has(h)) { dropped++; return true; } return false; };
+
 for (const C of CITIES) {
   let n = 0, films = 0, posters = 0;
   if (C.id === "ankara") {
@@ -41,6 +58,7 @@ for (const C of CITIES) {
     const out = new Map(), byDay = new Map();
     for (const e of [...tr.filter((x) => x.city === C.id), ...own]) { // kamu kaynağı önce: ad, saat, mekân ondan
       if (e.d < today) continue;
+      if (wrongCity(e, C.id)) continue;
       const k = key(e); let m = out.get(k);
       if (!m) m = (byDay.get(e.d) || []).find((x) => same(x, e)); // aynı etkinlik başka sitede başka adla (fiyat karşılaştırması için birleştir)
       if (!m) { const n = { ...e, city: C.id, tickets: [...(e.tickets || [])] }; out.set(k, n); (byDay.get(e.d) || byDay.set(e.d, []).get(e.d)).push(n); continue; }
@@ -61,5 +79,6 @@ await writeJSON(join(ROOT, "data/cities.json"), index, true);
   for (let round = 0; round < 12 && top.length < 12; round++) for (const id of order) { const x = byCity[id].find((y) => !seen.has(fold(y.e.title))); if (!x || top.length >= 12) continue; seen.add(fold(x.e.title));
     const e = x.e; top.push({ title: e.title, d: e.d, t: e.t || "", venue: e.venue || "", cat: e.cat || "", img: e.img, imgBy: e.imgBy || "", city: x.C.id, cityName: x.C.name }); }
   await writeJSON(join(ROOT, "data/one-cikan.json"), { updated: index.updated, events: top }, true); }
+log(`Şehirler: başka ilin listesine düşmüş ${dropped} turne seansı asıl iline bırakıldı`);
 const open = Object.values(index.cities).filter((c) => c.n || c.films);
 log(`Şehirler: ${open.length}/81 ilde etkinlik ya da film var · toplam ${Object.values(index.cities).reduce((a, c) => a + c.n, 0)} etkinlik`);

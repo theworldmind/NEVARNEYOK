@@ -2,7 +2,7 @@
    Android'de kurulan uygulamada telefon arada bir (günde aşağı yukarı bir kez) "nvny-takip" ile uyandırır:
    güncel etkinlik listesini indirir, takip edilenlerdeki değişiklikleri ve hatırlatmaları (1 hafta, 3 gün, 1 gün önce, o gün, az kaldı, ertesi gün) bildirir;
    değişiklik yoksa günün tatlı önerisini (NV.digest, günde en çok bir) gönderir. */
-importScripts("takip.js?v=8");
+importScripts("takip.js?v=9");
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 
@@ -18,6 +18,11 @@ async function run() {
     const res = NV.check(F, ev, c); F = res.follows; msgs = msgs.concat(res.msgs);
   }
   await NV.set("follows", F);
+  // yeni tarihlerini takip ettiği sanatçı/oyunlar (81 ilin dizini) ve takip ettiği filmler (ilin film dosyası)
+  const arts = (await NV.get("arts")) || {}, fl = (await NV.get("films")) || {};
+  if (Object.keys(arts).length) { try { const idx = await (await fetch("idx/a.json", { cache: "no-store" })).json(); const r = NV.watchA(arts, idx, null); await NV.set("arts", r.arts); msgs = msgs.concat(r.msgs); } catch {} }
+  for (const c of [...new Set(Object.values(fl).map((f) => f.city || "ankara"))]) { try { const fd = await (await fetch(c === "ankara" ? "data/films.json" : `data/c/${c}-films.json`, { cache: "no-store" })).json(); const r = NV.watchF(Object.fromEntries(Object.entries(fl).filter(([, f]) => (f.city || "ankara") === c)), fd.films || [], c, ""); Object.assign(fl, r.films); msgs = msgs.concat(r.msgs); } catch {} }
+  await NV.set("films", fl);
   const cfg = await NV.get("ncfg"); msgs = msgs.filter((m) => NV.allow(m, cfg));
   for (const m of msgs.slice(0, 4)) await self.registration.showNotification(m.title, { body: m.body, tag: m.tag, icon: "icons/icon-192.png", badge: "icons/icon-192.png", data: { url: m.url } });
   const dg = mine && NV.digest(mine, prefs, await NV.get("lastDigest"), city, cityName);

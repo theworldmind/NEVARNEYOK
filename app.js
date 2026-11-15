@@ -563,6 +563,7 @@ function viewEvent(city, slug) {
     ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">Bilet al · ${esc((best || T[0]).site)}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
     ${T.length ? `${tix}<p class="chk">${checked ? `Fiyatlar satış sitelerinde ${ago(checked)} kontrol edildi. ` : ""}Hizmet bedeli ve son fiyat siteye göre değişebilir; satın alma ve iade bileti satan sitenin kurallarına tabidir.</p>` : ""}
     <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}Takvime ekle</button><button type="button" id="shr">${I.share}Paylaş</button></div>
+    ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl"><span>🎤</span><span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>
     ${live(e) ? `<p class="flh">Takip edersen fiyatı düştüğünde, iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
     <section class="sec"><h3>Bu etkinlik hakkında</h3><p>${esc(descOf(e))}</p></section>
     <section class="sec"><h3>Konum</h3><div class="mapc">${v?.lat ? `<div class="map" id="map"></div>` : ""}<div class="ad">${I.pin}<span><b>${esc(e.venue || "")}</b><small>${esc(v?.addr || (v?.ilce ? v.ilce + ", " : "") + (CITIES.find((c) => c.id === city)?.name || ""))}</small></span><button type="button" id="vfl" class="vfl${vfol()[vkey(city, e.venue)] ? " on" : ""}">${vfol()[vkey(city, e.venue)] ? I.bellOn + "Mekân takipte" : I.pin + "Mekânı takip et"}</button></div><div class="bt">${v?.lat ? `<button type="button" class="p" id="rte">${I.dir}Yol tarifi</button>` : `<a class="p" href="${dirU}" target="_blank" rel="noopener">${I.dir}Yol tarifi</a>`}<a href="${mapU}" target="_blank" rel="noopener">${I.ext}Haritada aç</a></div></div></section>
@@ -574,6 +575,8 @@ function viewEvent(city, slug) {
   $("#cal").addEventListener("click", () => calAdd({ ...e, city }));
   $("#vfl").addEventListener("click", (ev) => toggleVenue(e, city, ev.currentTarget));
   $("#flw").addEventListener("click", () => toggleFollow(e, city));
+  $("#afl")?.addEventListener("click", (ev) => toggleArtist(e, city, ev.currentTarget));
+  otherCities(e, city);
   if (v?.lat) { mapInit(v.lat, v.lng); $("#rte").addEventListener("click", () => routeSheet(e, v, city, dirU)); const d = $("#dst"); if (d) distFill(v, d); }
 }
 let leafletP = null;
@@ -604,7 +607,7 @@ function viewFilm(city, id, day) {
   if (!f) { V.innerHTML = `<div class="empty">Film bulunamadı.</div>${footer()}`; return; }
   document.title = `${f.title} · seanslar · Ne Var Ne Yok`;
   const { d: today, hm } = nowIST(), days = Object.keys(f.s || {}).filter((x) => x >= today).sort(), d = days.includes(day) ? day : days[0];
-  const rows = (f.s[d] || []).map(([cid, s]) => { const [times, fmt] = s.split("|"); return { c: C[cid] || { name: "Salon " + cid }, times: times.split(","), fmt }; }).sort((a, b) => a.c.name.localeCompare(b.c.name, "tr"));
+  const rows = (f.s[d] || []).map(([cid, s]) => { const [times, fmt] = s.split("|"); return { cid, c: C[cid] || { name: "Salon " + cid }, times: times.split(","), fmt }; }).sort((a, b) => a.c.name.localeCompare(b.c.name, "tr"));
   V.innerHTML = `<article class="dt"><div class="bk"><img src="${esc(f.img)}" alt="" referrerpolicy="no-referrer"></div><div class="in">
   <a class="back" href="#/${city}/sinema">${I.back}Sinema</a>
   <div class="dg"><div class="dp"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div></div><div>
@@ -612,10 +615,14 @@ function viewFilm(city, id, day) {
   <h1>${esc(f.title)}</h1>
   <div class="meta">${f.release ? `<div>${I.cal}<span>Vizyon tarihi<small>${dLong(f.release)}</small></span></div>` : ""}<div>${I.pin}<span>${rows.length} salonda seans<small>${dLong(d)}</small></span></div></div>
   <div class="days" style="padding:18px 0 0">${days.map((x) => { const dt = pd(x); return `<button type="button" data-d="${x}" class="${x === d ? "on" : ""}">${x === today ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
-  <div class="ss">${rows.map((r) => `<div class="h"><b>${esc(r.c.name)}</b>${r.c.addr ? `<small>${esc(r.c.addr)}</small>` : ""}<div class="tm">${r.times.map((t) => `<span class="${d === today && t < hm ? "ps" : ""}">${esc(t)}</span>`).join("")}${r.fmt ? `<i>${esc(r.fmt)}</i>` : ""}</div></div>`).join("")}</div>
+  <div class="ss">${rows.map((r) => `<div class="h"><b>${esc(r.c.name)}</b>${r.c.addr ? `<small>${esc(r.c.addr)}</small>` : ""}<div class="tm">${r.times.map((t) => d === today && t < hm ? `<span class="ps">${esc(t)}</span>` : `<button type="button" class="${follows()[sid(f, r.cid, d, t)] ? "on" : ""}" data-st="${esc(t)}" data-cid="${esc(r.cid)}">${esc(t)}</button>`).join("")}${r.fmt ? `<i>${esc(r.fmt)}</i>` : ""}</div></div>`).join("")}</div>
+  <div class="shr"><button type="button" id="ffl" class="flw${ffol()[f.id] ? " on" : ""}">${ffol()[f.id] ? I.bellOn + "Film takipte" : I.bell + "Filmi takip et"}</button></div>
+  <p class="flh">${rows.length ? "Seans saatine dokun: seansı takip et, takvimine ekle ya da biletini al." : "Bu filmin şehrinde henüz seansı yok. Takip edersen seanslar açılınca haber veririz."}</p>
   <a class="buy" href="${esc(f.url)}" target="_blank" rel="noopener" data-buy="sinemalar.com">Seanslar ve bilet · sinemalar.com</a>
   </div></div></div></article>${footer()}`;
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/film/${id}?gun=${b.dataset.d}`; }));
+  $("#ffl").addEventListener("click", (ev) => toggleFilm(f, city, ev.currentTarget));
+  $$("[data-st]").forEach((b) => b.addEventListener("click", () => seansSheet(f, city, d, b.dataset.st, b.dataset.cid, C[b.dataset.cid] || { name: "Salon" }, b)));
 }
 
 
@@ -721,7 +728,7 @@ function followBoot() {
   const city = DATA.city || store.get("nvny-city") || "ankara";
   NV.set("city", city); NV.set("cityName", CITIES.find((c) => c.id === city)?.name || ""); if (prefs()) NV.set("prefs", prefs());
   if (notifOn()) swUp();
-  venueCheck();
+  venueCheck(); watchBoot(city);
   const F = follows(); if (!Object.keys(F).length) return;
   const res = NV.check(F, DATA.events, DATA.city || city);
   saveF(res.follows);
@@ -1127,13 +1134,13 @@ function viewPlan(city, tab) {
   setTop(city); document.title = "Planım · Ne Var Ne Yok";
   const F = follows(), V2 = vfol(), { d: today } = nowIST();
   const rows = Object.entries(F).map(([id, f]) => {
-    const c = f.city || city, e = c === DATA.city ? (DATA.bySlug.get(f.slug) || DATA.events.find((x) => NV.key(x.title) === f.tk && x.d === f.d) || null) : null;
+    const c = f.city || city, e = f.kind === "seans" ? null : c === DATA.city ? (DATA.bySlug.get(f.slug) || DATA.events.find((x) => NV.key(x.title) === f.tk && x.d === f.d) || null) : null;
     return { id, f, c, e, d: e?.d || f.d, t: e?.t ?? f.t ?? "" };
   }).filter((r) => r.d >= today).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "99").localeCompare(b.t || "99"));
   const dow = pd(today).getDay(), fri = addD(today, (5 - dow + 7) % 7), wkS = dow === 6 || dow === 0 ? today : fri, wkE = dow === 0 ? today : addD(fri, 2);
   const wk = rows.filter((r) => r.d >= wkS && r.d <= wkE);
   const dayH = (d) => d === today ? "Bugün" : d === addD(today, 1) ? "Yarın" : dLong(d);
-  const href = (r) => `#/${r.c}/e/${encodeURIComponent(r.e?.slug || r.f.slug)}`;
+  const href = (r) => r.f.kind === "seans" ? `#/${r.c}/film/${r.f.film}?gun=${r.d}` : `#/${r.c}/e/${encodeURIComponent(r.e?.slug || r.f.slug)}`;
   const item = (r) => { const e = r.e || { title: r.f.title, venue: r.f.venue, d: r.d, t: r.t, img: r.f.img, cat: r.f.cat, status: r.f.status || "" };
     const st = e.status === "iptal" ? "İptal edildi" : e.status === "ertelendi" ? "Ertelendi" : e.status === "tukendi" ? "Tükendi" : "";
     return `<div class="pl-i${st && st !== "Tükendi" ? " x" : ""}"><span class="pl-t">${esc(r.t || "—")}</span><a class="pl-p" href="${href(r)}">${poster(e, { badge: false })}</a>
@@ -1152,8 +1159,8 @@ function viewPlan(city, tab) {
       ${L && L.length ? `<div class="rs">${uniq(L, 10).map((e) => card(e, v.city)).join("")}</div>` : L ? `<p class="vn-e">Şu an listede etkinlik yok; eklenince haber veririz.</p>` : `<p class="vn-e"><a href="#/${v.city}/takip?m=1">${esc(CITIES.find((c) => c.id === v.city)?.name || "")} sayfasında gör →</a></p>`}</div>`).join("")
     : `<div class="empty">Henüz takip ettiğin mekân yok. Bir etkinliğin sayfasında, Konum bölümündeki <b>Mekânı takip et</b>'e dokun; o mekâna yeni etkinlik eklenince haber verelim.</div>`;
   V.innerHTML = `<div class="kh"><h1>Planım</h1><p>${rows.length} etkinlik · ${VL.length} mekân takipte</p></div>
-  <div class="wrap"><div class="seg pl-seg" style="--n:2;--i:${tab ? 1 : 0}"><span class="thumb" aria-hidden="true"></span><button type="button" data-tab="0" class="${tab ? "" : "on"}">Planım</button><button type="button" data-tab="1" class="${tab ? "on" : ""}">Mekânlarım</button></div></div>
-  <div class="wrap plan">${tab ? ven : plan}</div>
+  <div class="wrap"><div class="seg pl-seg" style="--n:2;--i:${tab ? 1 : 0}"><span class="thumb" aria-hidden="true"></span><button type="button" data-tab="0" class="${tab ? "" : "on"}">Planım</button><button type="button" data-tab="1" class="${tab ? "on" : ""}">Takiplerim</button></div></div>
+  <div class="wrap plan">${tab ? ven + followLists(city) : plan}</div>
   <div class="wrap" style="margin-top:22px">${notifBox(city)}</div>${footer()}`;
   bindNotifBox(V, city);
   $$("[data-tab]").forEach((b) => b.addEventListener("click", () => { history.replaceState(null, "", `#/${city}/takip${b.dataset.tab === "1" ? "?m=1" : ""}`); viewPlan(city, b.dataset.tab === "1"); }));
@@ -1161,6 +1168,8 @@ function viewPlan(city, tab) {
   $$("[data-cal]").forEach((b) => b.addEventListener("click", () => { const r = rows.find((x) => x.id === b.dataset.cal); if (r) calAdd({ ...(r.e || { title: r.f.title, venue: r.f.venue, d: r.d, t: r.t, cat: r.f.cat, slug: r.f.slug }), city: r.c }); }));
   $("#calAll")?.addEventListener("click", () => calAdd(rows.map((r) => ({ ...(r.e || { title: r.f.title, venue: r.f.venue, d: r.d, t: r.t, cat: r.f.cat, slug: r.f.slug }), city: r.c }))));
   $$("[data-vx]").forEach((b) => b.addEventListener("click", () => { const V3 = vfol(); delete V3[b.dataset.vx]; vsave(V3); haptic(6); viewPlan(city, true); }));
+  $$("[data-ax]").forEach((b) => b.addEventListener("click", () => { const A = afol(); delete A[b.dataset.ax]; asave(A); haptic(6); viewPlan(city, true); }));
+  $$("[data-fx]").forEach((b) => b.addEventListener("click", () => { const F3 = ffol(); delete F3[b.dataset.fx]; fsave(F3); haptic(6); viewPlan(city, true); }));
 }
 
 /* ---------- Simge kısayolları (Android/bilgisayar: simgeye basılı tut) ---------- */
@@ -1270,8 +1279,8 @@ function routeSheet(e, v, city, gUrl) {
    iPhone Ayarlar gibi gruplu kartlar. Her şey yalnızca bu telefonda saklanır. Üst çubuktaki dişliden açılır: #/<il>/ayarlar */
 const ncfg = () => { try { return JSON.parse(store.get("nvny-ncfg") || "{}") || {}; } catch { return {}; } };
 const NTYPES = [["degisiklik", "🔔", "Takip ettiklerimdeki değişiklikler", "İptal, erteleme, saat, tarih ya da yer değişikliği"], ["hatirlatma", "🗓️", "Hatırlatmalar", "1 hafta, 3 gün, 1 gün önce ve o gün"], ["azkaldi", "⏳", "“Az kaldı”", "Başlamasına 3 saatten az kalınca"], ["yolacik", "🚶", "Yola çıkma vakti", "Mekâna olan uzaklığına göre, çıkman gereken saatte"],
-  ["fiyat", "💸", "Fiyat düşünce", "Takip ettiğin etkinliğin doğrulanmış fiyatı düşerse"], ["satis", "🎟️", "Satışa çıkınca ve yeniden satışta", "Biletler satışa çıkınca, tükenen yeniden açılınca"], ["koltuk", "🪑", "Son koltuklar", "Satış sitesi boş koltuk sayısını veriyorsa"],
-  ["mekan", "📍", "Takip ettiğim mekânlar", "Mekâna yeni etkinlik eklenince"], ["sanatci", "🎤", "Takip ettiğim sanatçılar", "Yeni tarih ya da yeni şehir eklenince"], ["film", "🍿", "Filmler ve seanslar", "Film şehrine gelince, seansından önce, son gösterim haftası"],
+  ["fiyat", "💸", "Fiyat düşünce", "Takip ettiğin etkinliğin doğrulanmış fiyatı düşerse"], ["satis", "🎟️", "Yeniden satışta", "Tükenen etkinliğin biletleri yeniden açılınca"],
+  ["mekan", "📍", "Takip ettiğim mekânlar", "Mekâna yeni etkinlik eklenince"], ["sanatci", "🎤", "Takip ettiğim sanatçı ve oyunlar", "Herhangi bir ilde yeni tarih satışa çıkınca"], ["film", "🍿", "Filmler", "Takip ettiğin filmin seansları açılınca"],
   ["nasildi", "🌟", "“Dün nasıldı?”", "Etkinlikten bir gün sonra"], ["oneri", "✨", "Günün önerisi", "Günde en çok bir tane, ilgi alanına göre"]];
 const PERM_TXT = { granted: "Açık", denied: "Kapalı", prompt: "Sorulmadı" };
 async function viewAyarlar(city) {
@@ -1321,6 +1330,69 @@ async function viewAyarlar(city) {
       sh.close(); haptic(10); toast("Temizlendi ✓", 2500); if (k === "hepsi") setTimeout(() => location.replace("#/"), 300); else viewAyarlar(city);
     });
   }));
+}
+
+/* ---------- Yeni tarihlerini takip et (sanatçı/oyun), filmi takip et, seansı takip et (kullanıcı isteği, 15.11.2026 23:56) ----------
+   Hepsi yalnızca bu telefonda. Yeni tarih 81 ilin dizininden (idx/a.json, share-pages.mjs) bulunur; film seansları ilin film dosyasından. */
+const AKEY = "nvny-sanatci", FLKEY = "nvny-film";
+const afol = () => { try { return JSON.parse(store.get(AKEY) || "{}") || {}; } catch { return {}; } };
+const asave = (A) => { store.set(AKEY, JSON.stringify(A)); NV.set("arts", A); };
+const ffol = () => { try { return JSON.parse(store.get(FLKEY) || "{}") || {}; } catch { return {}; } };
+const fsave = (F) => { store.set(FLKEY, JSON.stringify(F)); NV.set("films", F); };
+const aName = (e) => { if (e.cat === "sinema") return ""; const n = String(e.title || "").split(/\s[-|–:]\s/)[0].replace(/\([^)]*\)/g, "").replace(/\s+(konseri|konserleri)$/i, "").trim(); return NV.akey(n).length >= 3 ? n : ""; };
+let aIdxP = null;
+const aIdx = () => aIdxP ||= fetch("idx/a.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : {}).catch(() => { aIdxP = null; return {}; });
+const CNAME = () => Object.fromEntries(CITIES.map((c) => [c.id, c.name]));
+async function toggleArtist(e, city, btn) {
+  const A = afol(), k = NV.akey(e.title), n = aName(e);
+  if (A[k]) { delete A[k]; asave(A); btn.classList.remove("on"); btn.querySelector("small").textContent = "Yeni tarihlerini takip et · her ilde"; toast("Takipten çıkarıldı", 2500); return; }
+  snd.ok(); haptic(8); A[k] = { name: n, at: Date.now() }; asave(A); btn.classList.add("on"); btn.querySelector("small").textContent = "Yeni tarihleri takipte ✓";
+  const idx = await aIdx(), L = NV.ahits(k, idx).filter((x) => x[1] >= nowIST().d); A[k].seen = L.map((x) => x[0] + "/" + x[3]); asave(A); gcEv("sanatci-takip", "Sanatçı takip");
+  toast(`🎤 <span><b>${esc(n)}</b><small>Şu an ${L.length} tarihi var. Herhangi bir ilde yeni tarih eklenince ilk sen duyacaksın.${notifOn() ? "" : " Bildirimleri açmayı unutma."}</small></span>`, 6000);
+}
+async function otherCities(e, city) {
+  const box = $("#oth"); if (!box || e.cat === "sinema") return; const k = NV.akey(e.title); if (!k || k.length < 3) return;
+  const idx = await aIdx(); if (!document.body.contains(box)) return;
+  const t = nowIST().d, L = NV.ahits(k, idx).filter((x) => x[0] !== city && x[1] >= t);
+  if (!L.length) return; const by = new Map(); for (const x of L.sort((p, q) => p[1].localeCompare(q[1]))) if (!by.has(x[0])) by.set(x[0], x);
+  const N = CNAME(), R = [...by.values()].slice(0, 8);
+  box.innerHTML = `<div class="oth"><h4>Başka şehirlerde de</h4>${R.map((x) => `<a href="#/${x[0]}/e/${encodeURIComponent(x[3])}"><b>${esc(N[x[0]] || x[0])}</b><span>${dShort(x[1])}${x[2] ? " · " + esc(x[2]) : ""}</span><small>${esc(x[4])}</small></a>`).join("")}${by.size > 8 ? `<p>+${by.size - 8} ilde daha</p>` : ""}</div>`;
+}
+function toggleFilm(f, city, btn) {
+  const F = ffol();
+  if (F[f.id]) { delete F[f.id]; fsave(F); btn.classList.remove("on"); btn.innerHTML = I.bell + "Filmi takip et"; toast("Takipten çıkarıldı", 2500); return; }
+  const has = Object.keys(f.s || {}).some((d) => d >= nowIST().d && f.s[d]?.length);
+  F[f.id] = { title: f.title, tk: NV.key(f.title), city, img: f.img, had: has, at: Date.now() }; fsave(F); snd.ok(); haptic(8);
+  btn.classList.add("on"); btn.innerHTML = I.bellOn + "Film takipte"; gcEv("film-takip", "Film takip");
+  toast(`🍿 <span><b>${esc(f.title)}</b><small>${has ? "Takiptesin. Bir seansı takip etmek için saatine dokun; seansından önce hatırlatalım." : "Seansları açılınca ilk sen duyacaksın."}</small></span>`, 6000);
+}
+const sid = (f, cid, d, t) => `seans|${f.id}|${cid}|${d}|${t}`;
+function seansSheet(f, city, d, t, cid, cin, btn) {
+  haptic(6); const id = sid(f, cid, d, t), on = !!follows()[id];
+  const sh = sheet(`<div class="pn sns" role="dialog" aria-label="Seans"><div class="hd"><span class="rth"><b>${esc(t)}</b><small>${esc(dLong(d))}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2">
+    <div class="sn1"><div class="sn-p"><img src="${esc(f.img)}" alt="" referrerpolicy="no-referrer"></div><div><b>${esc(f.title)}</b><small>${esc(cin.name)}</small>${cin.addr ? `<small>${esc(cin.addr)}</small>` : ""}</div></div>
+    <div class="sn-b"><button type="button" class="${on ? "on" : ""}" data-fl>${on ? I.bellOn + "Seans takipte" : I.bell + "Bu seansı takip et"}</button><button type="button" data-cal>${I.cal}Takvime ekle</button></div>
+    <a class="buy" href="${esc(f.url)}" target="_blank" rel="noopener" data-buy="sinemalar.com">Bilet al · sinemalar.com</a>
+    <p class="shn">Takip edersen seans Planım'a girer; bir gün önce ve başlamadan önce hatırlatırız.</p></div></div>`, "mn");
+  sh.querySelector("[data-fl]").addEventListener("click", (ev) => { const F = follows(), b = ev.currentTarget;
+    if (F[id]) { delete F[id]; saveF(F); b.classList.remove("on"); b.innerHTML = I.bell + "Bu seansı takip et"; btn.classList.remove("on"); }
+    else { F[id] = { kind: "seans", film: f.id, title: f.title, tk: NV.key(f.title), vk: NV.key(cin.name), venue: cin.name, d, t, city, img: f.img, cat: "sinema", slug: "", status: "", at: Date.now() }; saveF(F); snd.ok(); haptic(8);
+      b.classList.add("on"); b.innerHTML = I.bellOn + "Seans takipte"; btn.classList.add("on"); toast(`🍿 Seans Planım'a eklendi. <a href="#/${city}/takip">Planım →</a>`, 4500); gcEv("seans-takip", "Seans takip"); }
+    setTop(city); });
+  sh.querySelector("[data-cal]").addEventListener("click", () => calAdd({ title: f.title, venue: cin.name, d, t, dur: f.dur ? f.dur + " dk" : "", cat: "sinema", slug: "", city }));
+}
+function followLists(city) {
+  const A = Object.entries(afol()), F = Object.entries(ffol()), N = CNAME();
+  return `${A.length ? `<h3 class="fl-h">Takip ettiğin sanatçı ve oyunlar</h3><div class="sgrp">${A.map(([k, a]) => `<div class="srow nr"><span class="sic">🎤</span><span class="stx">${esc(a.name)}<small>${(a.seen || []).length} yaklaşan tarih · ${[...new Set((a.seen || []).map((s) => N[s.split("/")[0]]).filter(Boolean))].slice(0, 3).join(", ") || "yeni tarih bekleniyor"}</small></span><button type="button" class="spill gh" data-ax="${esc(k)}">Bırak</button></div>`).join("")}</div>` : ""}
+  ${F.length ? `<h3 class="fl-h">Takip ettiğin filmler</h3><div class="sgrp">${F.map(([id, f]) => `<a class="srow" href="#/${f.city}/film/${esc(id)}"><span class="sic">🍿</span><span class="stx">${esc(f.title)}<small>${f.had ? "Vizyonda · " + esc(N[f.city] || "") : "Seansları bekleniyor"}</small></span><button type="button" class="spill gh" data-fx="${esc(id)}" onclick="event.preventDefault()">Bırak</button></a>`).join("")}</div>` : ""}
+  ${!A.length && !F.length ? `<p class="flh" style="margin-top:20px">Bir etkinliğin sayfasındaki <b>🎤 Yeni tarihlerini takip et</b> ya da bir filmin sayfasındaki <b>Filmi takip et</b> ile buraya ekleyebilirsin.</p>` : ""}`;
+}
+async function watchBoot(city) {
+  const msgs = [], A = afol(), F = ffol(), cfg = ncfg();
+  if (Object.keys(F).length && DATA.films?.films) { const r = NV.watchF(F, DATA.films.films, city, CITIES.find((c) => c.id === city)?.name || ""); fsave(r.films); msgs.push(...r.msgs); }
+  if (Object.keys(A).length) { const idx = await aIdx(); if (Object.keys(idx).length) { const r = NV.watchA(A, idx, CNAME()); asave(r.arts); msgs.push(...r.msgs); } }
+  msgs.filter((m) => NV.allow(m, cfg)).slice(0, 3).forEach((m, i) => { setTimeout(() => toast(`${I.bellOn}<span><b>${esc(m.title)}</b><small>${esc(m.body)}</small><a href="${esc(m.url.replace(/^\//, ""))}">Göster →</a></span>`, 9000), 1400 + i * 500);
+    if (notifOn()) swUp().then(() => notify(m.title, m.body, m.url, m.tag)); });
 }
 
 boot().then(() => { shortcutBoot(); route(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });

@@ -4,7 +4,7 @@
 // gösterilir, kopyalanmaz). Sayfayı açan kişi anında uygulamadaki etkinlik sayfasına geçer. Arama motorlarına kapalıdır (noindex);
 // arama için Ankara'nın etkinlik/ sayfaları vardır.
 // Ad (slug) uygulamadaki slugOf ile birebir aynı kurulur; aynı gün aynı adlı ikinci etkinliğe "-2" eklenir.
-import { readdir, rm, mkdir, writeFile } from "node:fs/promises";
+import { readdir, rm, mkdir, writeFile, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ROOT, readJSON, todayIST, log } from "./lib/util.mjs";
 
@@ -21,6 +21,9 @@ const CATS = { konser: "Konser", tiyatro: "Tiyatro", standup: "Stand-up", sahne:
 const cities = (await readJSON(join(ROOT, "data/cities.json"), { cities: {} })).cities || {};
 const OG = new Set((await readJSON(join(ROOT, "s/_og.json"), [])) || []); // afişi olmayan etkinliğin önizleme kartı (share-img.mjs)
 await rm(join(ROOT, "e"), { recursive: true, force: true });
+// Yeni tarihlerini takip et (takip.js → NV.akey): 81 ilin dizini idx/a.json — anahtar → [[il, gün, saat, ad, mekân]]
+const NVK = new Function(await readFile(join(ROOT, "takip.js"), "utf8") + ";return NV")();
+const AIDX = {};
 let n = 0;
 for (const [id, c] of Object.entries(cities)) {
   const file = id === "ankara" ? "data/events.json" : `data/c/${id}.json`;
@@ -41,8 +44,11 @@ for (const [id, c] of Object.entries(cities)) {
 <link rel="icon" type="image/png" href="/icons/icon-192.png?v=2"><script>location.replace(${JSON.stringify(app)})</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a10;color:#fff;font:600 16px system-ui,sans-serif;text-align:center}a{color:#c4b5fd}</style>
 </head><body><p><b>${esc(title)}</b><br>${esc(when)} · ${esc(e.venue || "")}<br><br><a href="${esc(app)}">Ne Var Ne Yok'ta aç →</a></p></body></html>`;
+    { const ak = NVK.akey(e.title); if (ak && ak.length >= 3 && e.status !== "iptal") (AIDX[ak] ||= []).push([id, e.d, e.t || "", s, e.venue || ""]); }
     const dir = join(ROOT, "e", id, s);
     await mkdir(dir, { recursive: true }); await writeFile(join(dir, "index.html"), html); n++;
   }
 }
+await mkdir(join(ROOT, "idx"), { recursive: true }); await writeFile(join(ROOT, "idx/a.json"), JSON.stringify(AIDX));
 log(`Paylaşım sayfaları: ${n} etkinlik (e/<il>/<ad>/)`);
+log(`Yeni tarih dizini: ${Object.keys(AIDX).length} ad (idx/a.json)`);

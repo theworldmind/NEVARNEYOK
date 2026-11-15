@@ -143,6 +143,9 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
       // tek il: kaynak o ilin listesini veriyor; başka il yazan kayıt alınmaz
       const C = cityById(CITY), other = r.city && cityOfText(r.city);
       if (other && other !== C.id) return false;
+      // Turne: bilet sitesinin etkinlik sayfası bütün illerdeki seansları verir (15.11.2026: Rize'de Bandırma, Ankara, Bursa seansları görünüyordu).
+      // Adresi ya da mekânın adı başka ili gösteren seans bu ile yazılmaz.
+      { const oa = cityOfText(r.address || "") || cityOfText(r.venue || ""); if (oa && oa !== C.id) return false; }
       if (src.city === "tr" && !C.re.test(cfold([r.venue, r.address, r.city, r.url].join(" ")))) return false;
       r.cid = C.id;
     }

@@ -28,6 +28,14 @@ var NV = (function () {
     var t0 = today(), t1 = addD(t0, 1), msgs = [], out = {};
     Object.keys(follows || {}).forEach(function (id) {
       var f = follows[id], e = null, best = 1e9;
+      if (f.kind === "seans") { // takip edilen sinema seansı: yalnızca hatırlatma (film listesinde ayrı tutulur)
+        if (f.d < t0) return; var su = "/#/" + (f.city || city || "ankara") + "/film/" + f.film + "?gun=" + f.d, sn = Object.assign({}, f);
+        if (f.d === t1 && !f.r1) { msgs.push({ tag: "r-" + id, title: "Yarın sinema var 🍿 " + f.title, body: f.venue + ", saat " + f.t + ". Biletin hazır mı?", url: su }); sn.r1 = 1; }
+        if (f.d === t0) { var nm2 = new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" }), dm2 = (+f.t.slice(0, 2) * 60 + +f.t.slice(3, 5)) - (+nm2.slice(0, 2) * 60 + +nm2.slice(3, 5));
+          if (dm2 > 0 && dm2 <= 180 && !f.rh) { msgs.push({ tag: "h-" + id, title: "Film " + f.t + "'de başlıyor 🍿", body: f.title + " · " + f.venue + ". Mısırını kap, yola çık 🚀", url: su }); sn.rh = 1; sn.r0 = 1; }
+          else if (!f.r0 && dm2 > 180) { msgs.push({ tag: "r-" + id, title: "Bugün sinema günü 🎬 " + f.title, body: f.venue + ", saat " + f.t + ". İyi seyirler!", url: su }); sn.r0 = 1; } }
+        out[id] = sn; return;
+      }
       if ((f.city || "ankara") !== (city || "ankara")) { out[id] = f; return; } // başka ildeki takip: o ilin verisiyle bakılır
       for (var i = 0; i < events.length; i++) {
         var x = events[i]; if (key(x.title) !== f.tk) continue;
@@ -47,7 +55,7 @@ var NV = (function () {
       var st = e.status || "";
       if (st !== f.status) {
         if (ST[st]) msgs.push({ tag: "s-" + id, title: f.title, body: STB[st], url: url });
-        else if (f.status === "tukendi") msgs.push({ tag: "s-" + id, title: "Müjde! 🎉 " + f.title, body: "Biletler yeniden satışta. Bu sefer kaçırma, dokun ve yerini ayır!", url: url });
+        else if (f.status === "tukendi") msgs.push({ tag: "y-" + id, title: "Müjde! 🎉 " + f.title, body: "Biletler yeniden satışta. Bu sefer kaçırma, dokun ve yerini ayır!", url: url });
       }
       if (st !== "iptal" && st !== "ertelendi") {
         if (e.d !== f.d) msgs.push({ tag: "d-" + id, title: f.title, body: "Tarih değişti 🗓️ Yeni tarih " + dLong(e.d) + (e.t ? ", saat " + e.t : "") + " (önceden " + dLong(f.d) + " idi). Takvimini güncellemeyi unutma!", url: url });
@@ -95,9 +103,36 @@ var NV = (function () {
       return { tag: "digest", title: "Pazar keyfi 🎈", body: (mk ? "Aileyle gidebileceğin " + mk + " etkinlik dahil, " : "") + nm + " bugün " + n(P.length) + " etkinlik var. Güzel bir pazar geçir! 💜", url: base + "?t=bugun" + (mk ? "&c=cocuk" : "") }; }
     return null; // salı: dinlen 🙂
   }
+  /* Yeni tarihlerini takip et (sanatçı, oyun, gösteri; kullanıcı isteği, 15.11.2026): etkinliğin adından anahtar ("Duman Konseri" → "duman",
+     "Cem Eren Öztürk - Erte" → "cem eren ozturk"). 81 ilin dizini idx/a.json (share-pages.mjs): anahtar → [[il, gün, saat, ad, mekân]].
+     Takipten sonra eklenen her yeni tarih "satışa çıktı" bildirimi olur (her ilde). */
+  function akey(t) { var x = String(t || "").split(/\s[-|–:]\s/)[0].replace(/\([^)]*\)/g, " "); return fold(x).replace(/\b(konseri|konserleri|konser|canli|live|akustik|ozel|turnesi|tour|20\d\d)\b/g, " ").replace(/\s+/g, " ").trim(); }
+  function ahits(fk, idx) { var L = (idx[fk] || []).slice(); if (fk.length >= 6) for (var k in idx) if (k !== fk && k.indexOf(fk + " ") === 0) L = L.concat(idx[k]); return L; }
+  var CN = null;
+  function watchA(arts, idx, names) {
+    var t0 = today(), msgs = [], out = {};
+    Object.keys(arts || {}).forEach(function (k) {
+      var a = Object.assign({}, arts[k]), seen = {}; (a.seen || []).forEach(function (s) { seen[s] = 1; });
+      var L = ahits(k, idx).filter(function (x) { return x[1] >= t0; }), nw = L.filter(function (x) { return !seen[x[0] + "/" + x[3]]; });
+      if (a.seen && nw.length) { var x = nw.sort(function (p, q) { return p[1] < q[1] ? -1 : 1; })[0], cn = (names && names[x[0]]) || x[0];
+        msgs.push({ tag: "k-" + k, title: "🎤 " + a.name + ": yeni tarih!", body: (nw.length > 1 ? nw.length + " yeni tarih eklendi. İlki " : "") + cn + " · " + dLong(x[1]) + (x[2] ? " · " + x[2] : "") + (x[4] ? " · " + x[4] : "") + ". Biletler satışta 🎟️", url: "/#/" + x[0] + "/e/" + encodeURIComponent(x[3]) }); }
+      a.seen = L.map(function (x) { return x[0] + "/" + x[3]; }); out[k] = a;
+    });
+    return { msgs: msgs, arts: out };
+  }
+  /* Filmi takip et: film şehrine gelince / seansları açılınca (yakında vizyona girecek filmler dahil) */
+  function watchF(fl, films, city, cityName) {
+    var t0 = today(), msgs = [], out = {};
+    Object.keys(fl || {}).forEach(function (id) { var f = Object.assign({}, fl[id]); if ((f.city || "ankara") !== city) { out[id] = f; return; }
+      var m = null; for (var i = 0; i < films.length; i++) if (String(films[i].id) === String(id) || key(films[i].title) === f.tk) { m = films[i]; break; }
+      var has = !!(m && m.s && Object.keys(m.s).some(function (d) { return d >= t0 && m.s[d] && m.s[d].length; }));
+      if (has && !f.had) msgs.push({ tag: "f-" + id, title: "🍿 " + f.title + " vizyonda!", body: (cityName ? cityName + "'da " : "") + "seanslar açıldı, biletler satışta 🎟️ Saatlere bakmak için dokun.", url: "/#/" + city + "/film/" + (m ? m.id : id) });
+      f.had = has; out[id] = f; });
+    return { msgs: msgs, films: out };
+  }
   /* Ayarlar → Bildirimler (kullanıcı isteği, 15.11.2026 23:46): kişi her türü ayrı ayrı kapatabilir. cfg: { off: true } hepsini kapatır,
      { fiyat: false } yalnızca o türü. Tür, bildirimin etiketinin önekinden anlaşılır. */
   var NK = { s: "degisiklik", d: "degisiklik", t: "degisiklik", v: "degisiklik", x: "degisiklik", r: "hatirlatma", h: "azkaldi", a: "nasildi", p: "fiyat", digest: "oneri", mekan: "mekan", y: "satis", k: "sanatci", f: "film", g: "yolacik", n: "koltuk" };
   function allow(m, cfg) { if (!cfg) return true; if (cfg.off) return false; var tg = String(m && m.tag || ""), p = tg === "digest" ? "digest" : tg.split("-")[0], k = NK[p]; return !k || cfg[k] !== false; }
-  return { fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today, allow: allow, NK: NK };
+  return { fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today, allow: allow, NK: NK, akey: akey, ahits: ahits, watchA: watchA, watchF: watchF };
 })();
