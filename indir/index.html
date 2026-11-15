@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" data-ver="2026-11-15-2152">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -284,6 +284,12 @@ kbd{display:inline-block;padding:1px 8px;border-radius:7px;background:rgba(255,2
   <div class="os" aria-label="by oneside"><span class="by">by</span><svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg><span class="w">one<b>side</b></span></div></footer>
 <div class="sh" id="sh" role="dialog" aria-modal="true" aria-label="Nasıl kurulur"><div class="pn"><div class="hd"></div><div id="how"></div><button type="button" class="ok" id="shx">Tamam</button></div></div>
 <script>
+/* Kendini yenileme (kullanıcı, 21:51: telefonda eski sürüm kaldı): GitHub Pages sayfayı 10 dk önbellekte tutar.
+   Açılışta sayfanın taze kopyasındaki data-ver'e bakılır; farklıysa bir kez (oturumda sürüm başına) yenisi yüklenir.
+   SAYFAYI HER DEĞİŞTİRİŞTE <html data-ver> DEĞERİNİ DE DEĞİŞTİR. */
+(function(){try{var me=document.documentElement.getAttribute("data-ver");
+  fetch(location.pathname+"?_="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var m=t.match(/data-ver="([^"]+)"/);
+    if(m&&m[1]!==me&&sessionStorage.getItem("nvny-indir-ver")!==m[1]){sessionStorage.setItem("nvny-indir-ver",m[1]);var q=location.search.replace(/[?&]_v=[^&]*/,"");location.replace(location.pathname+(q?q+"&":"?")+"_v="+m[1])}}).catch(function(){})}catch(e){}})();
 (function(){
   var ua=navigator.userAgent,SH=document.getElementById("sh"),H=document.getElementById("how"),B=document.getElementById("go"),L=document.getElementById("gol"),PL=document.getElementById("plat"),dp=null;
   var ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua),
