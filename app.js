@@ -171,18 +171,27 @@ function setTop(city) {
 function stories(items, hrefOf, { cityTag = false } = {}) {
   if (!items.length) return "";
   return `<section class="stp" aria-roledescription="carousel" aria-label="Öne çıkanlar"><div class="sg">${items.map(() => "<i><b></b></i>").join("")}</div>
-  <div class="sv">${items.map((e, i) => `<a class="sps" href="${hrefOf(e)}" aria-label="${esc(e.title)}"><img class="bg" src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" ${i > 1 ? 'loading="lazy"' : ""} decoding="async">
-    <div class="po">${poster(e, { badge: false, lazy: i > 1 })}</div>
+  <div class="sv">${items.map((e, i) => `<a class="sps" href="${hrefOf(e)}" aria-label="${esc(e.title)}"><img class="bg" src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async">
+    <div class="po">${poster(e, { badge: false, lazy: false })}</div>
     <div class="tx"><span class="tg">${esc(CATS[e.cat] || "Etkinlik")}${cityTag && e.cityName ? " · " + esc(e.cityName) : ""}</span><h2>${esc(e.title)}</h2><div class="m">${rel(e.d)}${e.t ? " · " + esc(e.t) : ""}${e.venue ? " · " + esc(e.venue) : ""}</div><span class="go">İncele ${I.arr || "→"}</span></div></a>`).join("")}</div>
   <button type="button" class="nv pv" aria-label="Önceki"></button><button type="button" class="nv nx" aria-label="Sonraki"></button></section>`;
 }
 let stpStop = null;
+/* Şehir sayfasının arkasındaki bulanık renk, o an görünen afişe geçer: arka katman yüklenince iki katman yer değiştirir (yalnızca opacity) */
+function washTo(src) {
+  const w = $(".wash"); if (!w || !src) return; const [a, b] = w.querySelectorAll("img"); if (!b) return;
+  const front = a.classList.contains("on") ? a : b, back = front === a ? b : a;
+  if (front.getAttribute("src") === src) return;
+  const swap = () => { if (back.getAttribute("src") !== src) return; back.classList.add("on"); front.classList.remove("on"); };
+  back.onload = swap; back.setAttribute("src", src); if (back.complete && back.naturalWidth) swap();
+}
 function storyInit() {
   stpStop?.(); const root = $(".stp"); if (!root) return;
   root.querySelectorAll(".ph img.p").forEach((i) => { if (i.complete && i.naturalWidth) i.parentNode.classList.add("ok"); });
   const sv = $(".sv", root), segs = $$(".sg i", root), N = segs.length; let i = 0, alive = true, lock = 0;
   const paint = () => segs.forEach((g, k) => { g.className = k < i ? "done" : ""; });
-  const play = () => { paint(); const b = segs[i]; void b.offsetWidth; b.className = "on"; };
+  const slides = $$(".sps", root);
+  const play = () => { paint(); const b = segs[i]; void b.offsetWidth; b.className = "on"; washTo(slides[i]?.querySelector("img.bg")?.getAttribute("src")); };
   const go = (n, smooth = true) => { i = (n + N) % N; lock = Date.now(); sv.scrollTo({ left: i * sv.clientWidth, behavior: smooth ? "smooth" : "auto" }); play(); };
   segs.forEach((g) => g.querySelector("b").addEventListener("animationend", () => { if (alive && document.body.contains(root)) go(i + 1); }));
   $(".nx", root).addEventListener("click", () => go(i + 1)); $(".pv", root).addEventListener("click", () => go(i - 1));
@@ -297,7 +306,7 @@ function viewCity(city) {
   const featured = pick(E.filter((e) => e.img && e.d <= addD(today, 10)), 8);
   const byCat = (c) => pick(weekL.filter((e) => e.cat === c && e.img), 14).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "").localeCompare(b.t || ""));
   const k = (q) => `#/${city}/kesfet?${q}`;
-  V.innerHTML = `<div class="wash" aria-hidden="true">${featured[0] ? `<img src="${esc(featured[0].img)}" alt="" referrerpolicy="no-referrer">` : ""}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1><div class="st"><span><b>${todayL.length}</b> etkinlik bugün</span><span><b>${weekL.length.toLocaleString("tr-TR")}</b> bu hafta</span>${DATA.films?.films?.length ? `<span><b>${DATA.films.films.filter((f) => f.s && Object.keys(f.s).length).length}</b> film vizyonda</span>` : ""}</div>
+  V.innerHTML = `<div class="wash" aria-hidden="true">${featured[0] ? `<img class="on" src="${esc(featured[0].img)}" alt="" referrerpolicy="no-referrer"><img alt="" referrerpolicy="no-referrer">` : ""}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1><div class="st"><span><b>${todayL.length}</b> etkinlik bugün</span><span><b>${weekL.length.toLocaleString("tr-TR")}</b> bu hafta</span>${DATA.films?.films?.length ? `<span><b>${DATA.films.films.filter((f) => f.s && Object.keys(f.s).length).length}</b> film vizyonda</span>` : ""}</div>
   <button type="button" class="pz" id="pz">${prefs() ? `<span class="dot"></span>Senin için kişiselleştirildi<em>Düzenle</em>` : `${I.spark}Kişiselleştir<em>İlgi alanlarını seç, sana uygun etkinlikler öne çıksın</em>`}</button></section>
   ${stories(featured, (e) => `#/${city}/e/${encodeURIComponent(e.slug)}`)}
   <form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
