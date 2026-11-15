@@ -6,7 +6,6 @@
 // Afişler etkinliklerin herkese açık afişleridir: değiştirilmeden (kırpılmadan, sığdırılarak), altında "Görsel: <kaynak>".
 // Afişi yüklenmeyen etkinlik görselden çıkarılır; yeterli afiş yoksa o görsel üretilmez. Fiyat yazılmaz.
 import { join } from "node:path";
-import { createRequire } from "node:module";
 import { mkdir, readFile } from "node:fs/promises";
 import { ROOT, esc, writeJSON, todayIST, log } from "./lib/util.mjs";
 import { fmtDate, dayName, addDaysISO } from "./lib/site.mjs";
@@ -43,8 +42,9 @@ function pick(list, n) {
 }
 
 let lid = 0;
-const NVLOGO = createRequire(import.meta.url)("../brand/logo.js");
-const WORD = (cls = "") => `<div class="wm ${cls}" style="--u:.0073em">${NVLOGO("l" + ++lid)}</div>`;
+// Logo: kullanıcının dosyası birebir (brand/logo.png); sayfa setContent ile açıldığı için gömülü
+const LOGO = "data:image/png;base64," + (await import("node:fs")).readFileSync(new URL("../brand/logo.png", import.meta.url)).toString("base64");
+const WORD = (cls = "") => `<div class="wm ${cls}"><img src="${LOGO}" alt="Ne Var Ne Yok"></div>`;
 const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg>`;
 const CTA = `<div class="cta"><div class="tile">${WORD("sm")}</div><div class="ct"><b>Uygulamamızı indirin</b><span>nevarneyok.net.tr/indir</span><i>Android · iPhone · ücretsiz</i></div><div class="go">İNDİR<svg viewBox="0 0 24 24"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
 <div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div>`;
@@ -58,8 +58,7 @@ body::before{content:"";position:absolute;inset:0;background-image:radial-gradie
 .wm{display:inline-flex;flex-direction:column;font:800 44px/.9 "Bricolage Grotesque",system-ui;font-variation-settings:"wdth" 85;letter-spacing:-.02em}
 .wm .O{display:inline-block;width:.86em;height:.86em;vertical-align:-.08em;margin:0 .015em}.wm .O svg{width:100%;height:100%;overflow:visible}
 .wm.sm{font-size:21px}
-.wm>.nvl{color:#fff}
-${NVLOGO.css}
+.wm img{display:block;height:1.62em;width:auto}
 .top{display:flex;justify-content:space-between;align-items:center}
 .pill{padding:10px 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);font:700 17px "JetBrains Mono",monospace;letter-spacing:.2em}
 h1{margin-top:34px;font:800 88px/.95 "Bricolage Grotesque",system-ui;font-variation-settings:"wdth" 96;letter-spacing:-.01em}

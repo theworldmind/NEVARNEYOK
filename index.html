@@ -9,6 +9,7 @@
 <meta property="og:url" content="https://nevarneyok.net.tr/">
 <meta name="description" content="Konser, tiyatro, sinema, stand-up ve çocuk etkinlikleri; bilet siteleri yan yana. Şehrini seç, ne var ne yok gör.">
 <meta name="theme-color" content="#0a0a10">
+<link rel="preload" as="image" href="brand/logo.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -31,8 +32,8 @@ img{display:block;max-width:100%}
 .ic{width:20px;height:20px;flex:none}
 
 
-/* ---- Logo (brand/logo.js): beyaz yazı, beyaz büyüteç, mor cam ---- */
-.wm{display:inline-flex;font-size:20px;--u:.0073em;color:#fff}
+/* ---- Logo: kullanıcının dosyası birebir (brand/logo.png, saydam zemin) ---- */
+.wm{display:inline-flex;font-size:22px}.wm img{display:block;height:1.62em;width:auto}
 
 /* ---- Üst çubuk ---- */
 .top{position:sticky;top:0;z-index:50;height:62px;display:flex;align-items:center;gap:12px;padding:0 var(--pad);background:rgba(10,10,16,.82);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
@@ -187,7 +188,7 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .ph .tp small{font:700 11px var(--f);letter-spacing:.16em;text-transform:uppercase;color:var(--t3)}
 .ph .bd{position:absolute;left:8px;top:8px;z-index:2;padding:4px 8px;border-radius:7px;background:rgba(10,10,16,.78);font:700 11px var(--f);letter-spacing:.04em}
 .ph .bd.x{background:#fff;color:#0a0a10}
-.cd .t{margin-top:10px;font:800 15px/1.2 var(--f);letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cd .t{margin-top:10px;font:800 16px/1.12 var(--fd);font-stretch:90%;letter-spacing:-.005em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .cd .m{margin-top:4px;color:var(--t2);font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cd .m2{color:var(--t3);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cd .pr{margin-top:6px;font-weight:700;font-size:13px}
@@ -333,7 +334,7 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .os{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:#fff}
 .os span{font:300 13px Poppins,var(--f);opacity:.55}.os svg{width:20px;height:20px;fill:#fff}.os em{font:300 17px/1 Poppins,var(--f);font-style:normal}.os em b{font-weight:800}
 .dlb{display:flex;align-items:center;gap:14px;margin-top:8px;padding:16px;border-radius:18px;background:var(--s1);border:1px solid var(--line)}
-.dlb .tl{display:grid;place-items:center;width:58px;height:58px;border-radius:15px;background:radial-gradient(120% 90% at 20% 10%,#3a1f5c,#14163a 55%,#0a0b19);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);flex:none}
+.dlb .tl{display:grid;place-items:center;width:58px;height:58px;border-radius:15px;background:#0a0a10;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);flex:none}
 .dlb .tl .wm{font-size:12px}
 .dlb b{display:block;font-weight:800;font-size:16px}.dlb small{color:var(--t2)}
 .dlb .go2{margin-left:auto;height:40px;padding:0 16px;border-radius:999px;background:var(--acc);color:var(--on-acc);font-weight:800;display:flex;align-items:center}
@@ -389,9 +390,7 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 try{if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true)document.documentElement.classList.add("app")}catch(e){}
 window.NVNY_SITE={contact:"contact.openmind.vision@gmail.com",instagram:"https://www.instagram.com/nevarneyok.etkinlik/"};
 </script>
-<script src="brand/logo.js?v=3"></script>
 <script src="takip.js?v=2"></script>
-<script>document.head.insertAdjacentHTML("beforeend","<style>"+NVLOGO.css+"</style>")</script>
 <script src="app.js?v=8e6041a4c8"></script>
 <script data-goatcounter="https://nevarneyok.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
