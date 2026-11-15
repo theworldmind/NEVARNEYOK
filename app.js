@@ -53,17 +53,22 @@ const I = {
 /* ---------- Veri ---------- */
 const DATA = { events: [], venues: {}, films: null, buzz: {}, base: null, ready: false };
 const gcEv = (p, t) => { const f = () => { try { window.goatcounter?.count?.({ path: p, title: t || p, event: true }); } catch {} }; window.goatcounter?.count ? f() : setTimeout(f, 3000); };
-const jget = (u) => fetch(u, { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+const jget = (u) => fetch(u, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
 async function boot() {
-  const [vn, cx, top] = await Promise.all([jget("data/venues.json"), jget("data/cities.json"), jget("data/one-cikan.json")]);
-  DATA.venues = vn?.venues || vn || {}; if (cx?.cities) CIX = cx.cities; DATA.top = top?.events || []; DATA.boot = true;
+  const [cx, top] = await Promise.all([jget("data/cities.json"), jget("data/one-cikan.json")]);
+  if (cx?.cities) CIX = cx.cities; DATA.top = top?.events || []; DATA.boot = true; DATA.venues = DATA.venues || {};
+  jget("data/venues.json").then((vn) => { if (vn) DATA.venues = vn.venues || vn; });
+  // kayıtlı il varsa verisini hemen arkada indirmeye başla (devam edince hazır olsun)
+  const sv = store.get("nvny-city"); if (sv && CITIES.find((c) => c.id === sv && c.live)) prefetch(sv);
 }
 /* Ankara: data/events.json + films.json + buzz.json · diğer iller: data/c/<il>.json + data/c/<il>-films.json */
-const cityLoads = {};
+const cityLoads = {}, pre = {};
+function prefetch(city) { if (pre[city] || DATA.city === city) return; const ank = city === "ankara";
+  pre[city] = Promise.all([jget(ank ? "data/events.json" : `data/c/${city}.json`), jget(ank ? "data/films.json" : `data/c/${city}-films.json`), ank ? jget("data/buzz.json") : null]); }
 function loadCity(city) { return (cityLoads[city] ||= load(city).catch((e) => { delete cityLoads[city]; throw e; })); }
 async function load(city) {
   const ank = city === "ankara";
-  const [ev, fl, bz] = await Promise.all([jget(ank ? "data/events.json" : `data/c/${city}.json`), jget(ank ? "data/films.json" : `data/c/${city}-films.json`), ank ? jget("data/buzz.json") : null]);
+  prefetch(city); const [ev, fl, bz] = await pre[city]; delete pre[city];
   DATA.base = ev?.baseline; DATA.updated = ev?.updated; DATA.films = fl; DATA.buzz = bz || {};
   const fresh = (x) => !!(x.price && !x.est && x.seen && x.seen !== DATA.base && (Date.now() - Date.parse(x.seen)) / 36e5 <= PRICE_MAX_H);
   const { d: today, hm } = nowIST();
@@ -182,7 +187,7 @@ function viewCities() {
   ${T.length ? `<h2 class="cs-t">Türkiye'de bu hafta öne çıkanlar</h2>${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}` : ""}
   ${appPromo()}<div class="cs-ft"><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
   /* Saat tekerleği gibi il seçici: alfabetik, kaydırdıkça ortadaki büyür (yalnızca transform/opacity) */
-  const q = $("#cq"), wl = $("#wl"), msg = $("#cmsg"), ok = $("#cok"), IH = 52; let L = ALL, cur = 0, raf = 0;
+  const q = $("#cq"), wl = $("#wl"), msg = $("#cmsg"), ok = $("#cok"), IH = 52; let L = ALL, cur = 0, raf = 0, pfT = 0;
   const go = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; }
     msg.hidden = false; msg.innerHTML = `<b>${esc(c.name)}</b> için şu an listede etkinlik yok; her gece yeniden bakıyoruz. Şunlara göz atabilirsin: ${liveC.slice(0, 4).map((x) => `<a href="#/${x.id}" data-city="${x.id}">${x.name}</a>`).join(", ")}`; };
   const paint = () => {
@@ -192,7 +197,8 @@ function viewCities() {
       li.firstChild.style.transform = `scale(${Math.max(.8, 1.2 - d * .16).toFixed(3)})`; li.style.opacity = Math.max(.22, 1 - d * .3).toFixed(2);
     }
     if (n !== cur && lis[n]) { lis[cur]?.classList.remove("on"); cur = Math.max(0, Math.min(n, lis.length - 1)); lis[cur].classList.add("on"); wl.setAttribute("aria-activedescendant", lis[cur].id);
-      const c = L[cur]; ok.textContent = c ? (c.live ? `${c.name}'${dat(c.name)} git` : `${c.name} · etkinlik yok`) : "Seç"; ok.classList.toggle("off", !c?.live); msg.hidden = true; }
+      const c = L[cur]; ok.textContent = c ? (c.live ? `${c.name}'${dat(c.name)} git` : `${c.name} · etkinlik yok`) : "Seç"; ok.classList.toggle("off", !c?.live); msg.hidden = true;
+      clearTimeout(pfT); if (c?.live) pfT = setTimeout(() => prefetch(c.id), 450); }
   };
   const draw = (list) => { L = list; cur = -1;
     wl.innerHTML = list.map((c, k) => `<li id="w${k}" role="option" class="${c.live ? "" : "soon"}"><b>${esc(c.name)}</b><small>${sub(c)}</small></li>`).join("");
@@ -605,7 +611,7 @@ function route() {
   if (!DATA.boot) return;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
     const need = P0 && P0 !== "bilgi" && CITIES.find((c) => c.id === P0 && c.live) && DATA.city !== P0;
-    if (need) { V.innerHTML = `<div class="ld"><span></span></div>`; loadCity(P0).then(() => { cityLoads[P0] = null; route(); followBoot(); }).catch(() => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; }); return; } }
+    if (need) { const nm = CITIES.find((c) => c.id === P0)?.name || ""; V.innerHTML = `<section class="city sk"><h1 style="--L:${[...nm].length}">${esc(nm)}</h1><div class="st"><span class="skl" style="width:120px"></span><span class="skl" style="width:90px"></span></div></section><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div>`; setTop(P0); loadCity(P0).then(() => { cityLoads[P0] = null; route(); followBoot(); }).catch(() => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; }); return; } }
   scrollMem.set(lastHash, scrollY);
   $$(".sh").forEach((x) => x.remove()); document.body.style.overflow = "";
   const h = location.hash.replace(/^#/, "") || "/", [path, qs] = h.split("?"), P = path.split("/").filter(Boolean), Q = Object.fromEntries(new URLSearchParams(qs || ""));
