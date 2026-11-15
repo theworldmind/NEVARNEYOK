@@ -1578,17 +1578,6 @@ async function wxCard(e, city, box) {
   box.innerHTML = `<div class="wxc"><small class="wx0">O GÜN HAVA · ${esc(dLong(e.d).toLocaleUpperCase("tr"))}</small><div class="wx1"><span class="wxi">${ic}</span><div><b>${h ? h.tp : d.hi}°</b><small>${esc(tx)}${e.t ? " · saat " + esc(e.t) : ""}</small></div></div><div class="wx2"><span>En yüksek <b>${d.hi}°</b></span><span>En düşük <b>${d.lo}°</b></span><span>Yağış <b>%${rain}</b></span></div>${rain >= 50 ? `<p>☂️ Şemsiyeni unutma.</p>` : d.hi <= 5 ? `<p>🧣 Sıkı giyin, hava soğuk.</p>` : ""}</div>`;
 }
 
-/* ---------- Bugünün özeti (şehir sayfasının üstünde, Apple widget'ı gibi tek cam kart) ---------- */
-async function todayCard(city, box, n, nT, nF) {
-  if (!box) return; const { d: today } = nowIST(), dt = pd(today);
-  const draw = (wx, near) => { if (!document.body.contains(box)) return; const [ic, tx] = wx ? WMO(wx.c) : ["", ""];
-    box.innerHTML = `<div class="tdy"><div class="td1"><small>BUGÜN</small><b>${dt.getDate()} ${AY[dt.getMonth()]}</b><span>${GUN[dt.getDay()]}</span></div>${wx ? `<div class="td2"><span>${ic}</span><b>${wx.hi}°</b><small>${esc(tx)} · ${wx.lo}°</small></div>` : ""}
-      <div class="td3"><a href="#/${city}/kesfet?t=bugun"><b>${n}</b><small>etkinlik</small></a><a href="#/${city}/kesfet?t=bugun&s=aksam,gece"><b>${nT}</b><small>bu akşam</small></a>${nF ? `<a href="#/${city}/sinema"><b>${nF}</b><small>film</small></a>` : ""}${near ? `<a href="#/${city}/kesfet?sira=yakin&t=bugun"><b>${near}</b><small>en yakını</small></a>` : ""}</div></div>`; };
-  draw(null, ""); const ll = ILLL[city]; let wx = null, near = "";
-  if (ll) { const w = await wxOf(ll[0], ll[1]); wx = w?.D[today] || null; }
-  if (mesafeOn() && ((DATA.me && !DATA.me.c) || await geoGranted())) { try { const p = await whereAmI(); const L = DATA.events.filter((e) => e.d === today && live(e)).map((e) => vOf(e.venue)).filter((v) => v?.lat).map((v) => km(p, [v.lat, v.lng])); if (L.length) near = kmTxt(Math.min(...L)); } catch {} }
-  draw(wx, near);
-}
 
 /* ---------- Güven: "Bir yanlış mı var?" ve çevrimdışı uyarısı ---------- */
 const wrongMail = (e, city) => `mailto:${esc(window.NVNY_SITE?.contact || "")}?subject=${encodeURIComponent("Yanlış bilgi: " + e.title)}&body=${encodeURIComponent(`Etkinlik: ${e.title}\nTarih: ${dLong(e.d)} ${e.t || ""}\nMekân: ${e.venue || ""}\nİl: ${CITIES.find((c) => c.id === city)?.name || city}\nBağlantı: ${location.origin}/e/${city}/${e.slug}/\n\nNe yanlış? (ör. konum, saat, iptal oldu):\n`)}`;
@@ -1768,6 +1757,112 @@ function sheetDrag(sh) {
   pn.addEventListener("touchmove", (ev) => { if (!on) return; dy = Math.max(0, ev.touches[0].clientY - y0); if (dy > 4) { pn.style.transition = "none"; pn.style.transform = `translate3d(0,${dy}px,0)`; } }, { passive: true });
   pn.addEventListener("touchend", () => { if (!on) return; on = false; const v = dy / Math.max(1, performance.now() - t0); pn.style.transition = "transform .32s cubic-bezier(.32,.72,0,1)";
     if (dy > 120 || v > .6) { pn.style.transform = "translate3d(0,100%,0)"; haptic(5); setTimeout(() => sh.close(), 120); } else pn.style.transform = ""; }, { passive: true });
+}
+
+/* ---------- Hava durumu, Apple Hava gibi (kullanıcı isteği, 16.11.2026 01:28–01:37) ----------
+   Bugün kartında günler yana kayar; dokununca hava paneli: büyük sıcaklık, bugünden sonraki günlere kesintisiz saatlik akış + sıcaklık eğrisi,
+   16 günlük tahmin (en yüksek/en düşük iki eğri), hissedilen, rüzgâr, UV, gün doğumu/batımı, nem, görüş, basınç, ay evresi.
+   Veri Open-Meteo (anahtarsız; yalnızca ilin koordinatı gider). Simgeler kendi çizimimiz (SVG). */
+const WXF = new Map();
+function wxFull(lat, lng) {
+  const k = lat.toFixed(2) + "," + lng.toFixed(2); if (WXF.has(k)) return WXF.get(k);
+  const u = `https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(2)}&longitude=${lng.toFixed(2)}&timezone=Europe%2FIstanbul&forecast_days=16`
+    + "&current=temperature_2m,apparent_temperature,weather_code,relative_humidity_2m,wind_speed_10m,wind_direction_10m,surface_pressure,is_day"
+    + "&hourly=temperature_2m,weather_code,precipitation_probability,is_day,visibility,uv_index"
+    + "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset,uv_index_max";
+  const p = fetch(u).then((r) => r.ok ? r.json() : null).catch(() => null); WXF.set(k, p); p.then((j) => { if (!j) WXF.delete(k); }); return p;
+}
+// Apple tarzı renkli hava simgeleri
+function wIcon(c, day = 1, s = 28) {
+  const sun = `<circle cx="12" cy="12" r="4.6" fill="#ffd60a"/><g stroke="#ffd60a" stroke-width="1.8" stroke-linecap="round">${[0, 45, 90, 135, 180, 225, 270, 315].map((a) => { const r = a * Math.PI / 180; return `<line x1="${12 + Math.cos(r) * 7.4}" y1="${12 + Math.sin(r) * 7.4}" x2="${12 + Math.cos(r) * 9.6}" y2="${12 + Math.sin(r) * 9.6}"/>`; }).join("")}</g>`;
+  const moon = `<path d="M15.5 4.5a7.5 7.5 0 1 0 4 12.6A6.2 6.2 0 0 1 15.5 4.5z" fill="#e5e5ea"/>`;
+  const cloud = (y = 0, o = 1, x = 0) => `<path transform="translate(${x} ${y})" d="M7 19h10.5a4 4 0 0 0 .4-8 5.5 5.5 0 0 0-10.6 1.4A3.3 3.3 0 0 0 7 19z" fill="#fff" opacity="${o}"/>`;
+  const drops = (col = "#64d2ff") => `<g stroke="${col}" stroke-width="1.7" stroke-linecap="round"><line x1="9" y1="20.5" x2="8" y2="23"/><line x1="13" y1="20.5" x2="12" y2="23"/><line x1="17" y1="20.5" x2="16" y2="23"/></g>`;
+  const snow = `<g fill="#fff"><circle cx="8.5" cy="21.6" r="1.1"/><circle cx="12.5" cy="22.4" r="1.1"/><circle cx="16.5" cy="21.6" r="1.1"/></g>`;
+  let g;
+  if (c === 0) g = day ? sun : moon;
+  else if (c <= 2) g = `<g transform="translate(-3 -4) scale(.82)">${day ? sun : moon}</g>${cloud(1.5, 1, 1.5)}`;
+  else if (c === 3) g = `${cloud(-3, .55, -3)}${cloud(1)}`;
+  else if (c <= 48) g = `${cloud(-2)}<g stroke="#d1d1d6" stroke-width="1.6" stroke-linecap="round"><line x1="5" y1="21" x2="19" y2="21"/><line x1="7" y1="23.4" x2="17" y2="23.4"/></g>`;
+  else if (c <= 67 || (c >= 80 && c <= 82)) g = `${cloud(-3)}${drops()}`;
+  else if (c <= 77 || c === 85 || c === 86) g = `${cloud(-3)}${snow}`;
+  else g = `${cloud(-3)}<path d="M13 16.5l-3 4h3l-1.5 3.8" fill="none" stroke="#ffd60a" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>`;
+  return `<svg class="wic" viewBox="0 0 24 24" width="${s}" height="${s}" aria-hidden="true">${g}</svg>`;
+}
+const WTX = (c) => WMO(c)[1];
+const hm2 = (iso) => iso.slice(11, 16);
+function wxBg(c, day) { return !day ? "linear-gradient(180deg,#0b1026,#1c2340 60%,#262c4a)" : c <= 1 ? "linear-gradient(180deg,#2f6fd6,#5b9cf0 60%,#8bbcf5)" : c <= 3 ? "linear-gradient(180deg,#4b5d78,#6f819b 60%,#8e9db3)" : "linear-gradient(180deg,#38465c,#4f5d73 60%,#66738a)"; }
+function moonPhase(d = new Date()) { const L = 29.530588853, ph = ((((d.getTime() - Date.UTC(2000, 0, 6, 18, 14)) / 864e5) % L) + L) % L / L;
+  const name = ph < .03 || ph > .97 ? "Yeni ay" : ph < .22 ? "Hilal (büyüyen)" : ph < .28 ? "İlk dördün" : ph < .47 ? "Şişkin ay (büyüyen)" : ph < .53 ? "Dolunay" : ph < .72 ? "Şişkin ay (küçülen)" : ph < .78 ? "Son dördün" : "Hilal (küçülen)";
+  const toFull = Math.round(((.5 - ph + 1) % 1) * 29.53); return { ph, name, toFull }; }
+function moonSvg(ph) { const r = 28, c = 30, k = Math.cos(2 * Math.PI * ph), rx = Math.abs(k) * r, wax = ph < .5;
+  const d = wax ? `M${c},${c - r} A${r},${r} 0 0 1 ${c},${c + r} A${rx},${r} 0 0 ${k > 0 ? 0 : 1} ${c},${c - r}Z` : `M${c},${c - r} A${r},${r} 0 0 0 ${c},${c + r} A${rx},${r} 0 0 ${k > 0 ? 1 : 0} ${c},${c - r}Z`;
+  return `<svg class="moon" viewBox="0 0 60 60"><circle cx="30" cy="30" r="28" fill="rgba(255,255,255,.12)"/><path d="${d}" fill="#f2f2f7"/></svg>`; }
+function smoothPath(pts) { if (pts.length < 2) return ""; let d = `M${pts[0][0]},${pts[0][1]}`; for (let i = 0; i < pts.length - 1; i++) { const [x0, y0] = pts[i], [x1, y1] = pts[i + 1], cx = (x0 + x1) / 2; d += ` C${cx},${y0} ${cx},${y1} ${x1},${y1}`; } return d; }
+
+async function wxSheet(city) {
+  const ll = ILLL[city]; if (!ll) return; const cname = CITIES.find((c) => c.id === city)?.name || "";
+  const sh = sheet(`<div class="pn wxp" role="dialog" aria-label="Hava durumu"><div class="hd"><span></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2" id="wxb2"><div class="sk" style="height:60vh;border-radius:20px"></div></div></div>`, "mn wxs");
+  const j = await wxFull(ll[0], ll[1]); const box = sh.querySelector("#wxb2"); if (!box) return;
+  if (!j?.current) { box.innerHTML = `<p class="kmn">Hava durumu şu an alınamadı.</p>`; return; }
+  const C = j.current, D = j.daily, H = j.hourly, nowI = Math.max(0, H.time.findIndex((t) => t >= C.time.slice(0, 13)));
+  sh.querySelector(".pn").style.background = wxBg(C.weather_code, C.is_day);
+  // saatlik akış: şimdiden itibaren 72 saat, günler arası kesintisiz; gün doğumu/batımı araya girer
+  const W = 62, items = [];
+  for (let i = nowI; i < Math.min(H.time.length, nowI + 72); i++) {
+    const t = H.time[i], d = t.slice(0, 10), di = D.time.indexOf(d);
+    if (i > nowI && t.endsWith("T00:00")) items.push({ sep: GUN[pd(d).getDay()] });
+    items.push({ t: i === nowI ? "Şimdi" : hm2(t), c: H.weather_code[i], day: H.is_day[i], tp: Math.round(H.temperature_2m[i]), pp: H.precipitation_probability[i] });
+    for (const [k, lbl] of [["sunrise", "Gün doğumu"], ["sunset", "Gün batımı"]]) { const s = D[k]?.[di]; if (s && s > t && s < (H.time[i + 1] || "z")) items.push({ sun: k, t: hm2(s), lbl }); }
+  }
+  const temps = items.filter((x) => x.tp != null).map((x) => x.tp), mx = Math.max(...temps), mn = Math.min(...temps);
+  let x = 0; const pts = []; const cols = items.map((it) => { const w = it.sep ? 34 : W, cx = x + w / 2; x += w; if (it.tp != null) pts.push([cx, 10 + (1 - (it.tp - mn) / Math.max(1, mx - mn)) * 40]); return { it, w }; });
+  const totalW = x;
+  const hourly = `<div class="wxh"><div class="wxhs" style="width:${totalW}px"><svg class="wxcurve" width="${totalW}" height="60" viewBox="0 0 ${totalW} 60"><defs><linearGradient id="wg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffd60a" stop-opacity=".35"/><stop offset="1" stop-color="#ffd60a" stop-opacity="0"/></linearGradient></defs><path d="${smoothPath(pts)} L${pts[pts.length - 1][0]},60 L${pts[0][0]},60 Z" fill="url(#wg)"/><path d="${smoothPath(pts)}" fill="none" stroke="#ffd60a" stroke-width="2.4" stroke-linecap="round"/><circle cx="${pts[0][0]}" cy="${pts[0][1]}" r="4" fill="#fff"/></svg>
+    <div class="wxrow">${cols.map(({ it, w }) => it.sep ? `<div class="wsep" style="width:${w}px"><span>${esc(it.sep)}</span></div>` : it.sun ? `<div class="wc" style="width:${w}px"><small>${it.t}</small>${it.sun === "sunrise" ? `<svg class="wic" viewBox="0 0 24 24" width="28" height="28"><path d="M4 18h16" stroke="#ffd60a" stroke-width="1.8" stroke-linecap="round"/><path d="M7 18a5 5 0 0 1 10 0" fill="#ffd60a"/><path d="M12 6v4M9.5 8.5 12 6l2.5 2.5" stroke="#ffd60a" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>` : `<svg class="wic" viewBox="0 0 24 24" width="28" height="28"><path d="M4 18h16" stroke="#ff9f0a" stroke-width="1.8" stroke-linecap="round"/><path d="M7 18a5 5 0 0 1 10 0" fill="#ff9f0a"/><path d="M12 6v4M9.5 7.5 12 10l2.5-2.5" stroke="#ff9f0a" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>`}<b class="sm">${it.lbl}</b></div>`
+      : `<div class="wc" style="width:${w}px"><small>${it.t}</small>${wIcon(it.c, it.day)}${it.pp >= 30 ? `<i>%${it.pp}</i>` : "<i></i>"}<b>${it.tp}°</b></div>`).join("")}</div></div></div>`;
+  // 16 gün: iki eğri (en yüksek sarı, en düşük mavi), dokununca o günün etkinlikleri
+  const DW = 74, hi = D.temperature_2m_max.map(Math.round), lo = D.temperature_2m_min.map(Math.round), gmax = Math.max(...hi), gmin = Math.min(...lo), yy = (v) => 14 + (1 - (v - gmin) / Math.max(1, gmax - gmin)) * 70;
+  const hp = hi.map((v, i) => [i * DW + DW / 2, yy(v)]), lp = lo.map((v, i) => [i * DW + DW / 2, yy(v)]), today = nowIST().d;
+  const cnt = {}; for (const e of DATA.events || []) if (live(e)) cnt[e.d] = (cnt[e.d] || 0) + 1;
+  const daily = `<div class="wxh"><div class="wxds" style="width:${D.time.length * DW}px">${D.time.map((d, i) => `<a class="wd" href="#/${city}/kesfet?gun=${d}" style="width:${DW}px"><small>${d === today ? "Bugün" : GUNK[pd(d).getDay()]}</small><small class="dt2">${d.slice(8, 10)}.${d.slice(5, 7)}</small>${wIcon(D.weather_code[i], 1)}<i>${D.precipitation_probability_max[i] >= 30 ? "%" + D.precipitation_probability_max[i] : ""}</i><b>${hi[i]}°</b></a>`).join("")}
+    <svg class="wxcurve2" width="${D.time.length * DW}" height="100" viewBox="0 0 ${D.time.length * DW} 100"><path d="${smoothPath(hp)}" fill="none" stroke="#ffd60a" stroke-width="2.4"/><path d="${smoothPath(lp)}" fill="none" stroke="#64d2ff" stroke-width="2.4"/>${hp.map(([a, b]) => `<circle cx="${a}" cy="${b}" r="3.2" fill="#ffd60a"/>`).join("")}${lp.map(([a, b]) => `<circle cx="${a}" cy="${b}" r="3.2" fill="#64d2ff"/>`).join("")}</svg>
+    <div class="wxlo">${D.time.map((d, i) => `<span style="width:${DW}px">${lo[i]}°${cnt[d] ? `<em>${cnt[d]} etkinlik</em>` : ""}</span>`).join("")}</div></div></div>`;
+  // ayrıntı kutucukları
+  const di0 = D.time.indexOf(today), sr = D.sunrise[di0], ss = D.sunset[di0], toM = (s) => +s.slice(11, 13) * 60 + +s.slice(14, 16), nm = toM(C.time), frac = Math.max(0, Math.min(1, (nm - toM(sr)) / (toM(ss) - toM(sr))));
+  const uv = Math.round(H.uv_index?.[nowI] ?? D.uv_index_max[di0] ?? 0), vis = Math.round((H.visibility?.[nowI] ?? 0) / 1000), mp = moonPhase(), wd = C.wind_direction_10m, bft = Math.min(12, Math.round(Math.pow(C.wind_speed_10m / 3.6 / .836, 2 / 3)));
+  const YON = ["K", "KD", "D", "GD", "G", "GB", "B", "KB"][Math.round(wd / 45) % 8];
+  const ax = 10 + frac * 140, ay = 58 - Math.sin(frac * Math.PI) * 40;
+  const tiles = `<div class="wxt">
+    <div class="wt"><small>HİSSEDİLEN</small><b>${Math.round(C.apparent_temperature)}°</b><p>${Math.abs(C.apparent_temperature - C.temperature_2m) < 2 ? "Gerçek sıcaklığa yakın" : C.apparent_temperature < C.temperature_2m ? "Daha soğuk hissettiriyor" : "Daha sıcak hissettiriyor"}</p></div>
+    <div class="wt"><small>RÜZGÂR</small><div class="cmp"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="5" stroke-dasharray="1.5 3"/><text x="40" y="12" text-anchor="middle">K</text><text x="72" y="44" text-anchor="middle">D</text><text x="40" y="76" text-anchor="middle">G</text><text x="8" y="44" text-anchor="middle">B</text><g transform="rotate(${wd + 180} 40 40)"><path d="M40 10 L44 22 L36 22Z" fill="#fff"/><line x1="40" y1="20" x2="40" y2="62" stroke="#fff" stroke-width="2.2"/></g><circle cx="40" cy="40" r="14" fill="rgba(0,0,0,.35)"/><text x="40" y="44" text-anchor="middle" class="big">${Math.round(C.wind_speed_10m)}</text></svg></div><p>${YON} yönünden, ${Math.round(C.wind_speed_10m)} km/sa · ${bft} bofor</p></div>
+    <div class="wt"><small>UV İNDEKSİ</small><b>${uv}</b><div class="uvb"><i style="left:${Math.min(100, uv / 11 * 100)}%"></i></div><p>${uv <= 2 ? "Düşük" : uv <= 5 ? "Orta" : uv <= 7 ? "Yüksek" : "Çok yüksek"}</p></div>
+    <div class="wt"><small>GÜN DOĞUMU</small><b>${hm2(sr)}</b><svg class="arc" viewBox="0 0 160 64"><path d="M10 58 Q80 -22 150 58" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/><line x1="0" y1="58" x2="160" y2="58" stroke="rgba(255,255,255,.25)"/><circle cx="${ax}" cy="${ay}" r="5" fill="#ffd60a"/></svg><p>Gün batımı ${hm2(ss)}</p></div>
+    <div class="wt"><small>NEM</small><b>%${C.relative_humidity_2m}</b><p>${C.relative_humidity_2m > 80 ? "Nemli" : C.relative_humidity_2m < 35 ? "Kuru" : "Rahat"}</p></div>
+    <div class="wt"><small>GÖRÜŞ</small><b>${vis} km</b><p>${vis >= 10 ? "Açık görüş" : vis >= 4 ? "İyi görüş" : "Sınırlı görüş"}</p></div>
+    <div class="wt"><small>BASINÇ</small><b>${Math.round(C.surface_pressure)}</b><p>hPa</p></div>
+    <div class="wt"><small>AY</small>${moonSvg(mp.ph)}<p>${mp.name}${mp.toFull > 0 && mp.name !== "Dolunay" ? ` · dolunaya ${mp.toFull} gün` : ""}</p></div></div>`;
+  box.innerHTML = `<div class="wxt0"><small>${esc(cname)}</small><b>${Math.round(C.temperature_2m)}°</b><span>${esc(WTX(C.weather_code))}</span><span>En yüksek ${hi[di0]}° · En düşük ${lo[di0]}°</span></div>
+    <div class="wxg"><h5>Saatlik tahmin</h5>${hourly}</div><div class="wxg"><h5>16 günlük tahmin <em>Bir güne dokun, o günün etkinlikleri açılsın</em></h5>${daily}</div>${tiles}<p class="wxsrc">Veri: Open-Meteo.com</p>`;
+}
+
+/* Bugün kartı (kullanıcı, 01:37: "48 32 30 kutuları boş duruyor, başka bir şey öner"): sol üstte tarih, sağda yana kayan günlerin havası
+   (dokununca hava paneli), altta "Sıradaki": birazdan başlayacak 3 etkinlik küçük afişleriyle; en altta tek satır sayılar. */
+async function todayCard(city, box, n, nT, nF) {
+  if (!box) return; const { d: today, hm } = nowIST(), dt = pd(today);
+  const L = DATA.events.filter((e) => live(e) && ((e.d === today && e.t && e.t >= hm) || e.d === addD(today, 1))).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "99").localeCompare(b.t || "99"));
+  const up = uniq(L.filter((e) => e.img), 3);
+  const mins = (e) => { if (e.d !== today || !e.t) return ""; const m = (+e.t.slice(0, 2) * 60 + +e.t.slice(3, 5)) - (+hm.slice(0, 2) * 60 + +hm.slice(3, 5)); return m < 60 ? `${m} dk sonra` : `${Math.floor(m / 60)} sa ${m % 60 ? (m % 60) + " dk " : ""}sonra`; };
+  const nextH = up.length ? `<div class="nx"><h6>${up[0].d === today ? "Sıradaki" : "Yarın"}</h6>${up.map((e) => `<a class="nxi" href="#/${city}/e/${encodeURIComponent(e.slug)}"><span class="nxp">${poster(e, { badge: false })}</span><span class="nxt"><b>${esc(e.title)}</b><small>${e.d === today ? `<em>${esc(e.t)}</em> · ${mins(e)}` : `<em>${esc(e.t || "")}</em>`}</small><small>${esc(e.venue || "")}</small></span></a>`).join("")}</div>` : "";
+  const line = `<a class="tln" href="#/${city}/kesfet?t=bugun">Bugün <b>${n}</b> etkinlik · akşam <b>${nT}</b>${nF ? ` · <b>${nF}</b> film` : ""}</a>`;
+  box.innerHTML = `<div class="tdy"><div class="td1"><small>BUGÜN</small><b>${dt.getDate()} ${AY[dt.getMonth()]}</b><span>${GUN[dt.getDay()]}</span></div><button type="button" class="tdw" id="tdw" aria-label="Hava durumu"><span class="sk" style="display:block;width:120px;height:70px;border-radius:14px"></span></button>${nextH}${line}</div>`;
+  const ll = ILLL[city]; if (!ll) return;
+  const j = await wxFull(ll[0], ll[1]); const w = $("#tdw", box); if (!w || !j?.daily) { w?.remove(); return; }
+  const D = j.daily, cur = j.current;
+  w.innerHTML = `<div class="tws">${D.time.slice(0, 7).map((d, i) => `<div class="tw"><span class="twd">${i === 0 ? "Şimdi" : GUNK[pd(d).getDay()] + " " + +d.slice(8, 10)}</span>${wIcon(i === 0 ? cur.weather_code : D.weather_code[i], i === 0 ? cur.is_day : 1, 34)}<b>${Math.round(i === 0 ? cur.temperature_2m : D.temperature_2m_max[i])}°</b><small>${esc(WTX(i === 0 ? cur.weather_code : D.weather_code[i]))}</small><small>${Math.round(D.temperature_2m_max[i])}° / ${Math.round(D.temperature_2m_min[i])}°</small></div>`).join("")}</div><div class="twdots">${D.time.slice(0, 7).map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div>`;
+  const sc = $(".tws", w), dots = $$(".twdots i", w); let li = 0;
+  sc.addEventListener("scroll", () => { const k = Math.round(sc.scrollLeft / sc.clientWidth); if (k !== li) { li = k; dots.forEach((d, i) => d.classList.toggle("on", i === k)); tick(); } }, { passive: true });
+  w.addEventListener("click", () => { haptic(6); wxSheet(city); });
 }
 
 boot().then(() => { offlineBoot(); shortcutBoot(); route(); splashOut(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { splashOut(); V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });
