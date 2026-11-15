@@ -115,9 +115,9 @@ function pcmpHTML(e) {
   const row = (x) => { const d = x.price && multi ? x.price - lo : 0, best = multi && x.price === lo;
     const sub = !x.price ? "Fiyat sitede" : best ? "En düşük fiyat" : multi ? `+${TL(d)} · %${Math.round((d / lo) * 100)} daha yüksek` : "Satış sitesinde doğrulandı";
     return `<a class="pr2${best ? " lo" : ""}${x.price ? "" : " na"}" href="${esc(x.url)}" target="_blank" rel="noopener" data-buy="${esc(x.site)}">
-      <span class="lg" style="--c:${SITEC[x.site] || "#8b5cf6"}">${esc((x.site || "?").replace(/^(the )/i, "").charAt(0).toLocaleUpperCase("tr"))}</span>
-      <span class="nm"><b>${esc(x.site)}</b><small>${sub}</small>${x.price && multi ? `<span class="bar"><i style="width:${Math.max(8, Math.round((x.price / hi) * 100))}%"></i></span>` : ""}</span>
-      <span class="pz">${x.price ? TL(x.price) : "—"}</span><span class="go">${best ? "Al" : "Git"}${I.ext}</span></a>
+      <span class="px-lg" style="--c:${SITEC[x.site] || "#8b5cf6"}">${esc((x.site || "?").replace(/^(the )/i, "").charAt(0).toLocaleUpperCase("tr"))}</span>
+      <span class="px-nm"><b>${esc(x.site)}</b><small>${sub}</small>${x.price && multi ? `<span class="px-bar"><i style="width:${Math.max(8, Math.round((x.price / hi) * 100))}%"></i></span>` : ""}</span>
+      <span class="px-amt">${x.price ? TL(x.price) : "—"}</span><span class="px-go">${best ? "Al" : "Git"}${I.ext}</span></a>
       ${x.cats?.length && x.price ? `<div class="cats">${x.cats.slice(0, 10).map((c) => `<span${c[2] === false ? ' class="x"' : ""}>${esc(c[0])} <b>${TL(c[1])}</b>${c[3] != null ? ` · ${c[3]} boş` : ""}${c[2] === false ? " · tükendi" : ""}</span>`).join("")}</div>` : ""}`; };
   const head = multi ? `<div class="pch"><div><b>Fiyat karşılaştırması</b><small>${P.length} sitede doğrulanmış fiyat</small></div>${hi > lo ? `<span class="sv">Fark ${TL(hi - lo)}</span>` : `<span class="sv eq">Hepsinde aynı</span>`}</div>`
     : `<div class="pch"><div><b>${T.length > 1 ? "Satış siteleri" : "Satış sitesi"}</b><small>${P.length ? "Fiyat satış sitesinde doğrulandı" : "Güncel fiyat satış sitesinde"}</small></div></div>`;
