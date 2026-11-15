@@ -53,7 +53,13 @@ await page.waitForTimeout(700); await snap("tekerlek");
 
 /* 2) şehir sayfası (kayan sayfalar + raflar) */
 await page.evaluate((c) => localStorage.setItem("nvny-city", c), CITY);
-await go(`#/${CITY}`); await page.waitForTimeout(600); await snap("sehir");
+await go(`#/${CITY}`);
+// vitrin (kayan sayfalar) afişi yüklenene kadar bekle; yüklenmeyen sayfayı atla
+for (let k = 0; k < 6; k++) {
+  const ok = await page.evaluate(() => new Promise((r) => { const s = [...document.querySelectorAll(".stp .sps")]; const c = s.find((x) => { const b = x.getBoundingClientRect(); return b.left >= -5 && b.left < innerWidth / 2; }) || s[0]; const im = c?.querySelector(".po img, img.bg"); if (!im) return r(true); if (im.complete && im.naturalWidth) return r(true); im.addEventListener("load", () => r(true)); im.addEventListener("error", () => r(false)); setTimeout(() => r(im.naturalWidth > 0), 8000); }));
+  if (ok) break; await page.click(".stp .nx").catch(() => {}); await page.waitForTimeout(900);
+}
+await page.waitForTimeout(500); await snap("sehir");
 // biraz aşağı: raflar
 await page.evaluate(() => { const r = document.querySelector(".rail"); if (r) scrollTo(0, r.getBoundingClientRect().top + scrollY - 70); });
 await settle(700); await snap("raflar");
