@@ -155,7 +155,7 @@ const P = [
 ];
 const p = await browser.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
 for (let i = 0; i < P.length; i++) {
-  await p.setContent(P[i], { waitUntil: "networkidle" }); await p.evaluate(async () => { await Promise.all(["900 100px Archivo", "700 30px \"Inter Tight\""].map((f) => document.fonts.load(f).catch(() => {}))); await document.fonts.ready; }); await p.waitForTimeout(400);
+  await p.setContent(P[i], { waitUntil: "networkidle", timeout: 60000 }).catch(() => {}); await p.evaluate(async () => { await Promise.all(["900 100px Archivo", "700 30px \"Inter Tight\""].map((f) => document.fonts.load(f).catch(() => {}))); await document.fonts.ready; }); await p.waitForTimeout(400);
   await p.screenshot({ path: join(OUT, `nasil-${i + 1}.png`) }); log(`nasil-${i + 1}.png`);
 }
 await browser.close(); srv.close();

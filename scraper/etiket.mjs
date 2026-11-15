@@ -47,7 +47,7 @@ h1 em{font-style:normal;color:#a78bfa}
 
 const browser = await chromium.launch();
 const p = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
-await p.setContent(html, { waitUntil: "networkidle" });
+await p.setContent(html, { waitUntil: "networkidle", timeout: 60000 }).catch(() => {});
 await p.evaluate(async () => { await Promise.all(["900 100px Archivo", "700 30px \"Inter Tight\""].map((f) => document.fonts.load(f).catch(() => {}))); await document.fonts.ready; });
 await p.waitForTimeout(300);
 await p.screenshot({ path: join(OUT, "etiket-hikaye.png") });

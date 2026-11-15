@@ -286,7 +286,7 @@ ${v.end ? `<div class="vl"><img src="${LOGO}" alt="Ne Var Ne Yok"></div><img cla
 </div></body></html>`;
 for (const v of VITRIN) {
   await cp.setViewportSize({ width: 1080, height: 1350 });
-  await cp.setContent(vhtml(v), { waitUntil: "networkidle" }); await cp.evaluate(async () => { await Promise.all(["900 100px Archivo", "700 30px \"Inter Tight\""].map((f) => document.fonts.load(f).catch(() => {}))); await document.fonts.ready; }); await cp.waitForTimeout(300);
+  await cp.setContent(vhtml(v), { waitUntil: "networkidle", timeout: 60000 }).catch(() => {}); await cp.evaluate(async () => { await Promise.all(["900 100px Archivo", "700 30px \"Inter Tight\""].map((f) => document.fonts.load(f).catch(() => {}))); await document.fonts.ready; }); await cp.waitForTimeout(300);
   const file = `vitrin-${v.n}.png`; await cp.screenshot({ path: join(OUT, file) }); log(`vitrin: ${file}`);
 }
 out.push({ file: VITRIN.map((v) => `vitrin-${v.n}.png`).join(","), type: "CAROUSEL", caption: `Ne Var Ne Yok artık cebinde 📲✨\n\n${DAN(A)} ${YA(B)}, 81 ilin konserleri, tiyatroları, stand-up'ları ve sinema seansları tek uygulamada. Kaydır, gör 👉\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\nÜcretsiz · üyelik yok · Android ve iPhone\n\n#nevarneyok #etkinlik #konser #tiyatro #standup #sinema #haftasonu #ankara #istanbul #izmir` });

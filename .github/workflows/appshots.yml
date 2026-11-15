@@ -41,7 +41,7 @@ jobs:
         working-directory: scraper
         env:
           OUT_DIR: /tmp/uygulama
-        run: node hero.mjs && node etiket.mjs && node nasil.mjs
+        run: node hero.mjs; node etiket.mjs; node nasil.mjs
       - name: Görselleri üret
         if: github.event.inputs.sadece_turkiye != 'true'
         working-directory: scraper
