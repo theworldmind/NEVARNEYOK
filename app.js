@@ -157,31 +157,53 @@ function storyInit() {
 function dat(n) { const w = n.toLocaleLowerCase("tr"), v = [...w].reverse().find((c) => "aeıioöuü".includes(c)) || "a", back = "aıou".includes(v); return ("aeıioöuü".includes(w.slice(-1)) ? "y" : "") + (back ? "a" : "e"); }
 function viewCities() {
   setTop(null); document.title = "Ne Var Ne Yok · Şehrinin etkinliklerine göz at";
-  const liveC = CITIES.filter((c) => c.live).sort((a, b) => b.n - a.n), top = liveC.slice(0, 8);
+  const liveC = CITIES.filter((c) => c.live).sort((a, b) => b.n - a.n);
   const T = (DATA.top || []).filter((e) => e.img && CITIES.find((c) => c.id === e.city && c.live)).slice(0, 10);
   const saved = CITIES.find((c) => c.id === store.get("nvny-city") && c.live);
+  const ALL = [...CITIES].sort((a, b) => a.name.localeCompare(b.name, "tr"));
+  const sub = (c) => c.live ? (c.n ? `${c.n.toLocaleString("tr-TR")} etkinlik` : "Sinema seansları") : "Şu an etkinlik yok";
+  const wall = [...new Set(T.map((e) => e.img))].slice(0, 9);
   V.innerHTML = `<div class="cs"><div class="cs-h">${WM()}</div>
-  <h1>Hangi şehirdesin?</h1><p class="lead">Şehrini yaz; konser, tiyatro, sinema, festival… o şehirde bugün ve bu hafta ne var ne yok gör.</p>
-  <div class="cpick"><label class="cin">${I.pin}<input id="cq" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Şehrini yaz…" aria-label="Şehir ara" role="combobox" aria-expanded="false" aria-controls="cl"></label><ul class="cl" id="cl" role="listbox" hidden></ul><p class="cmsg" id="cmsg" hidden></p></div>
-  ${saved ? `<a class="cgo" href="#/${saved.id}" data-city="${saved.id}">${esc(saved.name)}'${dat(saved.name)} devam et <span>→</span></a>` : ""}
-  <p class="cnow">${liveC.length > 1 ? `<b>${liveC.length}</b> ilde etkinlikler açık: ` : "Şu an açık: "}${top.map((c) => `<a href="#/${c.id}" data-city="${c.id}">${c.name}</a>`).join(", ")}${liveC.length > top.length ? ` <span>ve ${liveC.length - top.length} il daha</span>` : ""}</p>
+  <section class="pick">${wall.length ? `<div class="pwall" aria-hidden="true">${wall.concat(wall).slice(0, 9).map((u) => `<img src="${esc(u)}" alt="" referrerpolicy="no-referrer" decoding="async">`).join("")}</div>` : ""}
+  <div class="glass">
+    <h1>Hangi şehirdesin?</h1>
+    <label class="cin">${I.pin}<input id="cq" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Yaz ya da aşağıdan seç…" aria-label="Şehir ara"></label>
+    <div class="whl"><div class="band" aria-hidden="true"></div><ul id="wl" role="listbox" aria-label="İller" tabindex="0"></ul></div>
+    <p class="cmsg" id="cmsg" hidden></p>
+    <div class="pact"><button type="button" class="cgo" id="cok">Seç</button>${saved ? `<a class="cbk" href="#/${saved.id}" data-city="${saved.id}">${esc(saved.name)}'${dat(saved.name)} devam et →</a>` : ""}</div>
+  </div></section>
+  <p class="cnow"><b>${liveC.length}</b> ilde etkinlikler açık${liveC.length ? ` · en kalabalık: ${liveC.slice(0, 5).map((c) => `<a href="#/${c.id}" data-city="${c.id}">${c.name}</a>`).join(", ")}` : ""}</p>
   ${T.length ? `<h2 class="cs-t">Türkiye'de bu hafta öne çıkanlar</h2>${stories(T, (e) => `#/${e.city}/e/${encodeURIComponent(slugOf(e))}`, { cityTag: true })}` : ""}
   <div class="cs-ft"><a class="dlb" href="indir/" data-app><span class="tl">${WM()}</span><span><b>Uygulamamızı indirin</b><small>Android · iPhone · ücretsiz</small></span><span class="go2">İndir</span></a><div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div></div></div>`;
-  const q = $("#cq"), ul = $("#cl"), msg = $("#cmsg"); let sel = 0, L = [];
-  const choose = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; } q.value = c.name; ul.hidden = true; q.setAttribute("aria-expanded", "false"); msg.hidden = false; msg.innerHTML = `<b>${esc(c.name)}</b> için şu an listede etkinlik yok; her gece yeniden bakıyoruz. Yakındaki illere göz atabilirsin: ${top.slice(0, 4).map((x) => `<a href="#/${x.id}" data-city="${x.id}">${x.name}</a>`).join(", ")}`; };
-  const sub = (c) => c.live ? (c.n ? `${c.n.toLocaleString("tr-TR")} etkinlik` : "Sinema seansları") : "Şu an etkinlik yok";
-  const draw = () => {
-    const v = fold(q.value).trim(); msg.hidden = true;
-    L = v ? CITIES.filter((c) => fold(c.name).startsWith(v)).sort((a, b) => rank(a) - rank(b)).concat(CITIES.filter((c) => !fold(c.name).startsWith(v) && fold(c.name).includes(v))).slice(0, 7) : top.slice(0, 6);
-    sel = 0; ul.hidden = !L.length; q.setAttribute("aria-expanded", String(!!L.length));
-    ul.innerHTML = L.length ? L.map((c, i) => `<li role="option" data-i="${i}" class="${i === sel ? "on" : ""}${c.live ? "" : " soon"}"><b>${esc(c.name)}</b><small>${sub(c)}</small></li>`).join("") : "";
-    if (v && !L.length) { msg.hidden = false; msg.textContent = "Bu adla bir il bulamadık."; }
+  /* Saat tekerleği gibi il seçici: alfabetik, kaydırdıkça ortadaki büyür (yalnızca transform/opacity) */
+  const q = $("#cq"), wl = $("#wl"), msg = $("#cmsg"), ok = $("#cok"), IH = 52; let L = ALL, cur = 0, raf = 0;
+  const go = (c) => { if (!c) return; if (c.live) { store.set("nvny-city", c.id); location.hash = `#/${c.id}`; return; }
+    msg.hidden = false; msg.innerHTML = `<b>${esc(c.name)}</b> için şu an listede etkinlik yok; her gece yeniden bakıyoruz. Şunlara göz atabilirsin: ${liveC.slice(0, 4).map((x) => `<a href="#/${x.id}" data-city="${x.id}">${x.name}</a>`).join(", ")}`; };
+  const paint = () => {
+    raf = 0; const mid = wl.scrollTop + wl.clientHeight / 2, n = Math.round((mid - wl.clientHeight / 2) / IH);
+    const lis = wl.children; for (let k = Math.max(0, n - 5); k < Math.min(lis.length, n + 6); k++) {
+      const d = Math.abs((k * IH + IH / 2 + (wl.clientHeight - IH) / 2) - mid) / IH, li = lis[k];
+      li.firstChild.style.transform = `scale(${Math.max(.8, 1.2 - d * .16).toFixed(3)})`; li.style.opacity = Math.max(.22, 1 - d * .3).toFixed(2);
+    }
+    if (n !== cur && lis[n]) { lis[cur]?.classList.remove("on"); cur = Math.max(0, Math.min(n, lis.length - 1)); lis[cur].classList.add("on"); wl.setAttribute("aria-activedescendant", lis[cur].id);
+      const c = L[cur]; ok.textContent = c ? (c.live ? `${c.name}'${dat(c.name)} git` : `${c.name} · etkinlik yok`) : "Seç"; ok.classList.toggle("off", !c?.live); msg.hidden = true; }
   };
-  q.addEventListener("input", draw); q.addEventListener("focus", draw);
-  q.addEventListener("keydown", (ev) => { if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { ev.preventDefault(); sel = (sel + (ev.key === "ArrowDown" ? 1 : L.length - 1)) % (L.length || 1); $$("li", ul).forEach((li, i) => li.classList.toggle("on", i === sel)); } else if (ev.key === "Enter") { ev.preventDefault(); choose(L[sel]); } });
-  ul.addEventListener("pointerdown", (ev) => { const li = ev.target.closest("li"); if (li) { ev.preventDefault(); choose(L[+li.dataset.i]); } });
-  document.addEventListener("pointerdown", function off(ev) { if (!document.body.contains(q)) return document.removeEventListener("pointerdown", off); if (!ev.target.closest(".cpick")) ul.hidden = true; });
+  const draw = (list) => { L = list; cur = -1;
+    wl.innerHTML = list.map((c, k) => `<li id="w${k}" role="option" class="${c.live ? "" : "soon"}"><b>${esc(c.name)}</b><small>${sub(c)}</small></li>`).join("");
+    wl.scrollTop = 0; cur = 0; wl.children[0]?.classList.add("on"); paint(); const c = L[0]; ok.textContent = c ? (c.live ? `${c.name}'${dat(c.name)} git` : `${c.name} · etkinlik yok`) : "Seç"; ok.classList.toggle("off", !c?.live); };
+  const to = (k, smooth = true) => wl.scrollTo({ top: k * IH, behavior: smooth ? "smooth" : "auto" });
+  wl.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(paint); }, { passive: true });
+  wl.addEventListener("click", (ev) => { const li = ev.target.closest("li"); if (!li) return; const k = [...wl.children].indexOf(li); if (k === cur) go(L[k]); else to(k); });
+  wl.addEventListener("keydown", (ev) => { if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { ev.preventDefault(); to(Math.max(0, Math.min(L.length - 1, cur + (ev.key === "ArrowDown" ? 1 : -1)))); } else if (ev.key === "Enter") go(L[cur]); });
+  q.addEventListener("input", () => { const v = fold(q.value).trim();
+    const list = v ? ALL.filter((c) => fold(c.name).startsWith(v)).concat(ALL.filter((c) => !fold(c.name).startsWith(v) && fold(c.name).includes(v))) : ALL;
+    msg.hidden = !!list.length || !v; if (!list.length) msg.textContent = "Bu adla bir il bulamadık."; draw(list); });
+  q.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); go(L[cur]); } else if (ev.key === "ArrowDown") { ev.preventDefault(); wl.focus(); to(Math.min(L.length - 1, cur + 1)); } });
+  ok.addEventListener("click", () => go(L[cur]));
   V.addEventListener("click", (ev) => { const a = ev.target.closest("[data-city]"); if (a) store.set("nvny-city", a.dataset.city); });
+  draw(ALL);
+  // açılışta kayıtlı ile (yoksa en kalabalık ile) kendiliğinden gel
+  const start = ALL.indexOf(saved || liveC[0]); if (start > 0) to(start, false); paint();
   storyInit();
 }
 

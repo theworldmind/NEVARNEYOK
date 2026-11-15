@@ -22,7 +22,7 @@ for (const C of CITIES) {
   if (C.id === "ankara") {
     const ev = (await readJSON(join(ROOT, "data/events.json"), { events: [] })).events || [];
     const L = ev.filter((e) => e.d >= today); n = L.length; posters = L.filter((e) => e.img).length; take(C, L);
-    films = ((await readJSON(join(ROOT, "data/films.json"), { films: [] })).films || []).length;
+    films = ((await readJSON(join(ROOT, "data/films.json"), { films: [] })).films || []).filter((f) => Object.keys(f.s || {}).length).length; // yalnızca seansı olan filmler
   } else {
     const own = (await readJSON(join(ROOT, `data/c/src/${C.id}.json`), { events: [] })).events || [];
     const out = new Map();
@@ -35,7 +35,7 @@ for (const C of CITIES) {
     }
     const events = [...out.values()].sort((a, b) => a.d.localeCompare(b.d) || (a.t || "99").localeCompare(b.t || "99"));
     n = events.length; posters = events.filter((e) => e.img).length; take(C, events);
-    if (have.has(`${C.id}-films.json`)) films = ((await readJSON(join(ROOT, `data/c/${C.id}-films.json`), { films: [] })).films || []).length;
+    if (have.has(`${C.id}-films.json`)) films = ((await readJSON(join(ROOT, `data/c/${C.id}-films.json`), { films: [] })).films || []).filter((f) => Object.keys(f.s || {}).length).length; // yalnızca seansı olan filmler
     if (n || have.has(`${C.id}.json`)) await writeJSON(join(ROOT, `data/c/${C.id}.json`), { updated: index.updated, city: C.name, events }, false);
   }
   index.cities[C.id] = { name: C.name, n, posters, films };
