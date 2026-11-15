@@ -18,11 +18,13 @@ const TR = [
     collect: P.dobCollect, listings: [], link: null, city: "tr", defaultCat: "sahne" },
   // Bütün Türkiye'yi listeleyen bilet siteleri (15.11.2026, kullanıcı: "daha çok siteden veri al"): kayıt mekân/adresinden iline dağıtılır
   { id: "tiyatrolar", name: "tiyatrolar.com.tr", kind: "bilet", home: "https://tiyatrolar.com.tr",
-    listings: ["https://tiyatrolar.com.tr/tiyatro-oyunlari"],
+    // eski /tiyatro-oyunlari sayfası kaldırıldı (404); oyunlar ana sayfada ve "sahnedekiler" listelerinde (keşif 15.11.2026)
+    listings: ["https://tiyatrolar.com.tr/", ...[1, 2, 3, 4].map((t) => `https://tiyatrolar.com.tr/sahnedekiler/?tip=${t}`)],
     link: /tiyatrolar\.com\.tr\/tiyatro(-bilet)?\/[a-z0-9-]+/i, sitemap: true, render: true, city: "tr", defaultCat: "tiyatro", maxDetail: 1500, concurrency: 5, budgetMin: 150 },
   { id: "iticket", name: "iTicket", kind: "bilet", home: "https://iticket.com.tr",
-    listings: ["https://iticket.com.tr/tr/events", "https://iticket.com.tr/en/events/music"],
-    link: /iticket\.com\.tr\/(en|tr)\/events\/[a-z-]+\/[a-z0-9-]+/i, render: true, city: "tr", maxDetail: 400, budgetMin: 60 },
+    // site yeni adreslere geçti (/etkinlikler/<tür>/<il>/<ad>); bütün etkinlikler sayfa sayfa (keşif 15.11.2026)
+    listings: [...Array.from({ length: 25 }, (_, i) => `https://iticket.com.tr/etkinlikler/tumu?page=${i + 1}`)],
+    link: /iticket\.com\.tr\/(etkinlikler\/[a-z-]+\/[a-z-]+\/[a-z0-9-]+|(en|tr)\/events\/[a-z-]+\/[a-z-]+\/[a-z0-9-]+)/i, render: true, city: "tr", maxDetail: 900, concurrency: 5, budgetMin: 120 },
   // Biletix: sitenin kendi arama dizini bütün Türkiye listesini verir (liste sayfası yalnızca ~70 kayıt gösteriyordu); fiyat için yakın tarihlilerin detayı
   { id: "biletix", name: "Biletix", kind: "bilet", home: "https://www.biletix.com", collect: P.biletixCollect, listings: [],
     link: /biletix\.com\/(etkinlik|etkinlik-grup)\/[A-Z0-9]+\//i, render: true, renderDetail: true,
@@ -36,5 +38,8 @@ const ONE = [
     link: /biletinial\.com\/tr-tr\/(tiyatro|muzik|opera-bale|etkinlik|stand-up|festival|cocuk-aktiviteleri|egitim)\/[a-z0-9-]+/i, render: true,
     loadMore: ["Daha fazlasını göster", "Daha Fazla"], city: C.id, maxDetail: 320, budgetMin: 30 },
 ];
+
+// İle özel resmî kaynaklar (belediyelerin kendi bilet siteleri)
+if (CITY === "izmir") ONE.push({ id: "izmirks", name: "İzmir Kültürsanat", kind: "kurum", home: "https://kultursanat.izmir.bel.tr", collect: P.izmirKsCollect, listings: [], link: null, city: "izmir" });
 
 export default CITY === "tr" ? TR : ONE;

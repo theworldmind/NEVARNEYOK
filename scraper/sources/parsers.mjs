@@ -253,3 +253,23 @@ export async function biletixCollect({ fetchText, city, today }) {
   const detail = out.filter((e) => !e.status).sort((a, b) => a.d.localeCompare(b.d)).map((e) => e.url);
   return { raws: out.filter((e) => e.title && e.d), detail: [...new Set(detail)], note: `dizinde ${total} kayıt` };
 }
+
+// İzmir Büyükşehir Belediyesi Kültürsanat (kultursanat.izmir.bel.tr): belediyenin kendi bilet sitesi; sayfanın kullandığı
+// seans listesi (kultursanatapi.izmir.bel.tr/api/session/list) yakalanır. Ad, tarih, saat, mekân, afiş ve (yazıyorsa) fiyat. Tanıtım metni alınmaz.
+const izSlug = (t) => String(t || "").toLocaleLowerCase("tr").replace(/ı/g, "").replace(/ü/g, "u").replace(/ö/g, "o").replace(/ç/g, "c").replace(/ş/g, "s").replace(/ğ/g, "g").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+export async function izmirKsCollect({ getPage }) {
+  const out = [], seen = new Set(), keys = new Set();
+  for (const u of ["https://kultursanat.izmir.bel.tr/", "https://kultursanat.izmir.bel.tr/etkinlikler"]) {
+    const page = await getPage(u, { render: true, scrolls: 4 });
+    const links = new Map(); for (const m of (page.html || "").matchAll(/href="(\/event\/[^"\/]+\/([0-9a-f-]{36}))"/g)) links.set(m[2], "https://kultursanat.izmir.bel.tr" + m[1]);
+    for (const j of (page.jsons || []).filter((x) => /session\/list/i.test(x.url))) for (const x of j.data?.data || []) {
+      if (!x.eventDate || !x.event?.name) continue; Object.keys(x).forEach((k) => keys.add(k));
+      const k = x.event.id + x.eventDate; if (seen.has(k)) continue; seen.add(k);
+      const pr = [x.price, x.minPrice, x.ticketPrice, ...(Array.isArray(x.prices) ? x.prices.map((p) => p?.price ?? p) : []), ...(Array.isArray(x.blocks) ? x.blocks.map((b) => b?.price) : [])].map(Number).filter((n) => n > 0);
+      out.push({ title: clean(x.event.name), d: day(x.eventDate), t: hhmm(x.eventDate), venue: clean(x.venue?.name || ""), city: "İzmir",
+        url: links.get(x.event.id) || `https://kultursanat.izmir.bel.tr/event/${izSlug(x.event.name)}/${x.event.id}`, via: "site", pc: pr.length ? 3 : 0, price: pr.length ? Math.min(...pr) : undefined,
+        org: clean(x.company?.name || "İzmir Büyükşehir Belediyesi"), image: x.eventImageUrl || "", status: x.isSoldOut === true ? "tukendi" : "" });
+    }
+  }
+  return { raws: out, note: `seans alanları: ${[...keys].slice(0, 30).join(",")}` };
+}
