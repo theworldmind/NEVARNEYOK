@@ -998,11 +998,22 @@ function cityCenter(city) {
 }
 async function nearMe(city) {
   haptic(6); // izin penceresi dokunuşun hemen ardından açılsın diye konum önce istenir, mekân dosyası sonra
+  if (inApp) { await venueTr(); return geoHelp(city, 1); }
   try { await whereAmI(); await venueTr(); goNear(city); return; }
   catch (err) { geoHelp(city, err?.code); }
 }
+const inApp = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|TikTok|musical_ly|Twitter|Snapchat|LinkedInApp/i.test(navigator.userAgent);
 function geoHelp(city, code) {
-  const and = /android/i.test(navigator.userAgent), how = code === 1
+  const and = /android/i.test(navigator.userAgent);
+  if (inApp) { // Instagram vb. kendi tarayıcısı sitelere konum izni vermez: gerçek tarayıcıda aç (izin penceresi orada çıkar)
+    const u = location.host + location.pathname + `#/${city}/kesfet?sira=yakin&t=hafta`, open = and ? `intent://${u}#Intent;scheme=https;package=com.android.chrome;end` : `x-safari-https://${u}`;
+    const sh = sheet(`<div class="pn" role="dialog" aria-label="Konum"><div class="hd"><b>📍 Yakınındaki etkinlikler</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+      <div class="bd2"><p class="pl1">Instagram'ın içindeki tarayıcı sitelere konum izni vermiyor. ${and ? "Chrome'da" : "Safari'de"} açınca izin penceresi hemen çıkar.</p>
+      <div class="pl-b"><a class="ok" href="${open}">${and ? "Chrome'da aç" : "Safari'de aç"}</a><a href="#" data-center>Şehir merkezine göre sırala</a></div></div></div>`, "mn");
+    sh.querySelector("[data-center]").addEventListener("click", (ev) => { ev.preventDefault(); const c = cityCenter(city); sh.close(); if (!c) return; DATA.me = { p: c, t: Date.now(), c: 1 }; goNear(city); });
+    return;
+  }
+  const how = code === 1
     ? (isIOS ? "iPhone'da <b>Ayarlar › Gizlilik ve Güvenlik › Konum Servisleri</b>'ni aç; sonra <b>Ayarlar › Safari › Konum</b>'u <b>Sor</b> ya da <b>İzin Ver</b> yap."
       : and ? (standalone ? "<b>Ayarlar › Uygulamalar › Ne Var Ne Yok › İzinler › Konum</b>'dan <b>Uygulamayı kullanırken izin ver</b>'i seç." : "Adres çubuğunun solundaki <b>kilit</b> simgesine dokun › <b>İzinler</b> › <b>Konum</b>'u aç.")
       : "Adres çubuğunun solundaki <b>ayar</b> simgesine tıkla › <b>Konum</b>'u <b>İzin ver</b> yap.")
