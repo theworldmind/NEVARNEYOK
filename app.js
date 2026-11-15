@@ -94,6 +94,9 @@ async function load(city) {
     o.score = (BIG.test(o.venue || "") ? 3 : 0) + (o.tickets.length > 1 ? 2 : 0) + (o.price ? 1 : 0) + (o.img ? 2 : 0) + (o.status === "tukendi" ? 2 : 0) + (["konser", "tiyatro", "standup"].includes(o.cat) ? 1 : 0);
     o.isNew = o.firstSeen && (Date.now() - Date.parse(o.firstSeen)) / 864e5 <= 3 && o.firstSeen.slice(0, 10) !== (DATA.base || "").slice(0, 10);
     o.q = fold([o.title, o.venue, o.genre, CATS[o.cat], o.org].join(" "));
+    o.free = /ücretsiz/i.test(e.note || "");
+    // Fiyatı düşenler: önceki doğrulanmış en düşük fiyat şimdikinden yüksekse ve değişim son 7 günde olduysa (fiyat kuralı: yalnızca doğrulanmış fiyat)
+    o.drop = o.price && e.prevPrice > o.price && e.priceChanged && (Date.now() - Date.parse(e.priceChanged)) / 864e5 <= 7 ? Math.round((1 - o.price / e.prevPrice) * 100) : 0;
     return o;
   }).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "99").localeCompare(b.t || "99"));
   DATA.bySlug = new Map(DATA.events.map((e) => [e.slug, e]));
@@ -143,7 +146,7 @@ function pcmpHTML(e) {
 
 function card(e, city) {
   const np = e.tickets.filter((x) => x.price).length;
-  const pr = e.price ? `<div class="pr">${TL(e.price)}'den${np > 1 ? `<i>${np} sitede</i>` : ""}</div>` : "";
+  const pr = e.price ? `<div class="pr">${TL(e.price)}'den${e.drop ? `<i class="dn">↓ %${e.drop}</i>` : np > 1 ? `<i>${np} sitede</i>` : ""}</div>` : e.free ? `<div class="pr">Ücretsiz</div>` : "";
   return `<a class="cd${live(e) ? "" : " off"}" href="#/${city}/e/${encodeURIComponent(e.slug)}">${poster(e)}${e._km != null ? `<span class="km">${I.pin}${kmTxt(e._km)}</span>` : ""}<div class="t">${esc(e.title)}</div><div class="m">${rel(e.d)}${e.t ? " · " + esc(e.t) : ""}</div><div class="m2">${esc(e.venue || "")}</div>${pr}</a>`;
 }
 function rail(title, sub, list, city, more) {
@@ -353,6 +356,9 @@ function viewCity(city) {
   ${rail("Hafta sonu", wkend.length + " etkinlik", pick(wkend.filter((e) => e.img), 16), city, k("t=haftasonu"))}
   ${(() => { const L = E.filter((e) => e.img && live(e) && e.tickets.filter((x) => x.price).length > 1).map((e) => { const p = e.tickets.filter((x) => x.price).map((x) => x.price); return [e, Math.max(...p) - Math.min(...p)]; }).filter(([, d]) => d > 0).sort((a, b) => b[1] - a[1]).map(([e]) => e);
      return L.length >= 3 ? rail("Fiyatları karşılaştır", "Siteler arasında fiyatı farklı olanlar", uniq(L, 16), city, k("cok=1&sira=fiyat")) : ""; })()}
+  ${(() => { const L = E.filter((e) => e.drop && e.img).sort((a, b) => b.drop - a.drop); return L.length >= 3 ? rail("Fiyatı düşenler", "Son 7 günde doğrulanmış fiyatı düşenler", uniq(L, 16), city, k("dus=1")) : ""; })()}
+  ${(() => { const L = E.filter((e) => e.free && e.img && e.d <= addD(today, 13)); return L.length >= 3 ? rail("Ücretsiz", "Önümüzdeki iki hafta", uniq(L, 16), city, k("ucr=1")) : ""; })()}
+  <div id="kac"></div>
   <div id="later"></div>${footer()}`;
   const fav = prefs()?.cats || [], order = ["konser", "tiyatro", "standup", "cocuk", "sahne", "atolye"].sort((a, b) => fav.includes(b) - fav.includes(a));
   const later = () => `${order.map((c) => rail(CATS[c], "Bu hafta", byCat(c), city, k("k=" + c))).join("")}
@@ -367,6 +373,7 @@ function viewCity(city) {
   $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); location.hash = `#/${city}/kesfet?q=${encodeURIComponent($("#q").value.trim())}`; });
   $("#pz").addEventListener("click", () => openPrefs(city, () => viewCity(city)));
   $("#tnt").addEventListener("click", () => tonightSheet(city)); $("#nrb").addEventListener("click", () => nearMe(city));
+  kacamak(city);
   bindNotifAsk(city);
   storyInit();
 }
@@ -396,10 +403,10 @@ function applyF(f) {
   let L = DATA.events.filter((e) => (f.iptal ? !live(e) : live(e)) && (!K.length || K.includes(e.cat)) && (!range || (e.d >= range[0] && e.d <= range[1]))
     && (!Sx.length || Sx.includes(slot(e.t))) && (!f.p || (e.price && e.price <= +f.p)) && (!f.m || e.venue === f.m) && (!IL.length || IL.includes(fold(ilceOf(e)).replace(/\s+/g, "")))
     && (!f.c || (f.c === "cocuk" ? e.cat === "cocuk" || (ageN(e) != null && ageN(e) <= 8) : ageN(e) >= 18)) && (!f.yeni || e.isNew) && (!f.cok || e.tickets.filter((x) => x.price).length > 1)
-    && (!f.tk || e.status !== "tukendi") && q.every((w) => e.q.includes(w)));
+    && (!f.tk || e.status !== "tukendi") && (!f.dus || e.drop) && (!f.ucr || e.free) && q.every((w) => e.q.includes(w)));
   DATA.events.forEach((e) => { e._km = null; });
   if (f.sira === "yakin" && DATA.me) { const me = DATA.me.p; L.forEach((e) => { const v = vOf(e.venue); e._km = v?.lat ? km(me, [v.lat, v.lng]) : null; }); L = [...L].sort((a, b) => (a._km ?? 1e9) - (b._km ?? 1e9) || a.d.localeCompare(b.d)); }
-  else if (f.sira === "populer") L = [...L].sort((a, b) => b.score - a.score); else if (f.sira === "fiyat") L = [...L].sort((a, b) => (a.price ?? 1e9) - (b.price ?? 1e9)); else if (f.sira === "sen") L = [...L].sort((a, b) => pscore(b) - pscore(a) || a.d.localeCompare(b.d));
+  else if (f.sira === "populer") L = [...L].sort((a, b) => b.score - a.score); else if (f.sira === "fiyat") L = [...L].sort((a, b) => (a.price ?? 1e9) - (b.price ?? 1e9)); else if (f.sira === "sen") L = [...L].sort((a, b) => pscore(b) - pscore(a) || a.d.localeCompare(b.d)); else if (f.dus) L = [...L].sort((a, b) => b.drop - a.drop);
   return L;
 }
 const ILCELER = () => { if (DATA.city !== "ankara") return []; const m = new Map(); for (const e of DATA.events) { const i = ilceOf(e); if (i && live(e)) m.set(i, (m.get(i) || 0) + 1); } return [...m].sort((a, b) => b[1] - a[1]); };
@@ -408,7 +415,7 @@ function chipsOf(f) {
   if (f.q) c.push(["q", `“${f.q}”`]); if (f.t) c.push(["t", TIMES[f.t]]); if (f.gun) c.push(["gun", dShort(f.gun)]);
   list(f.k).forEach((k) => c.push(["k:" + k, CATS[k]])); list(f.s).forEach((k) => c.push(["s:" + k, SAAT[k].split(" · ")[0]]));
   if (f.p) c.push(["p", FIYAT[f.p]]); list(f.il).forEach((k) => c.push(["il:" + k, ILCELER().find(([n]) => fold(n).replace(/\s+/g, "") === k)?.[0] || k]));
-  if (f.m) c.push(["m", f.m]); if (f.c) c.push(["c", KIM[f.c]]); if (f.yeni) c.push(["yeni", "Yeni eklenenler"]); if (f.cok) c.push(["cok", "Fiyat karşılaştırmalı"]); if (f.tk) c.push(["tk", "Tükenenler gizli"]); if (f.iptal) c.push(["iptal", "İptal / ertelenen"]);
+  if (f.m) c.push(["m", f.m]); if (f.c) c.push(["c", KIM[f.c]]); if (f.yeni) c.push(["yeni", "Yeni eklenenler"]); if (f.cok) c.push(["cok", "Fiyat karşılaştırmalı"]); if (f.tk) c.push(["tk", "Tükenenler gizli"]); if (f.iptal) c.push(["iptal", "İptal / ertelenen"]); if (f.dus) c.push(["dus", "Fiyatı düşenler"]); if (f.ucr) c.push(["ucr", "Ücretsiz"]);
   return c;
 }
 const dropChip = (f, key) => { const nf = { ...f }; const [k, v] = key.split(":"); if (v) { const L = list(nf[k]).filter((x) => x !== v); if (L.length) nf[k] = L.join(","); else delete nf[k]; } else delete nf[k]; return nf; };
@@ -418,16 +425,20 @@ function viewKesfet(city, f) {
   setTop(city);
   if (f.sira === "yakin" && !DATA.me) { venueTr().then(() => whereAmI()).then(() => { if (location.hash.includes("sira=yakin")) viewKesfet(city, f); }).catch((err) => geoHelp(city, err?.code)); }
   else if (f.sira === "yakin" && !DATA.vtr && city !== "ankara") { venueTr().then(() => viewKesfet(city, f)); }
-  const L = applyF(f), K = list(f.k), title = K.length === 1 ? CATS[K[0]] : f.t ? TIMES[f.t] : f.gun ? dLong(f.gun) : f.yeni ? "Yeni eklenenler" : f.iptal ? "İptal ve ertelenenler" : f.q ? "Arama" : f.sira === "sen" ? "Senin için" : "Keşfet";
+  const L = applyF(f), K = list(f.k), title = K.length === 1 ? CATS[K[0]] : f.t ? TIMES[f.t] : f.gun ? dLong(f.gun) : f.yeni ? "Yeni eklenenler" : f.iptal ? "İptal ve ertelenenler" : f.dus ? "Fiyatı düşenler" : f.ucr ? "Ücretsiz" : f.q ? "Arama" : f.sira === "sen" ? "Senin için" : "Keşfet";
   document.title = `${title} · ${CITIES.find((c) => c.id === city)?.name} · Ne Var Ne Yok`;
   const chips = chipsOf(f).filter(([k]) => k !== "q"), go = (nf) => { location.hash = `#/${city}/kesfet?${toQ(nf)}`; };
   V.innerHTML = `<div class="kh"><h1>${esc(title)}</h1><p>${L.length.toLocaleString("tr-TR")} etkinlik · ${esc(CITIES.find((c) => c.id === city)?.name || "")}</p></div>
   <div class="fz"><form class="sbar" id="sf"><label class="sin">${I.srch}<input id="q" type="search" value="${esc(f.q || "")}" placeholder="Etkinlik, mekân, sanatçı ara…" enterkeyhint="search"></label>
   <button type="button" class="fbtn${chips.length ? " on" : ""}" id="fo">${I.flt}<span class="fl">Filtrele</span>${chips.length ? `<span class="n">${chips.length}</span>` : ""}</button></form>
   <div class="frow"><div class="act">${chips.map(([k, l]) => `<button type="button" data-x="${esc(k)}">${esc(l)}</button>`).join("")}</div><button type="button" class="srtb" id="srt">${esc(SIRA[f.sira || ""])}<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div></div>
-  <div class="grid" id="gr"></div><div id="mr"></div>${L.length ? "" : `<div class="empty">Bu seçimle etkinlik bulunamadı.<br>Filtreleri gevşetmeyi dene.</div>`}${footer()}`;
+  <div class="wrap"><div class="seg vw" style="--n:3;--i:${VWI[f.gor || ""] || 0}"><span class="thumb" aria-hidden="true"></span><button type="button" data-vw="" class="${!f.gor ? "on" : ""}">Liste</button><button type="button" data-vw="harita" class="${f.gor === "harita" ? "on" : ""}">Harita</button><button type="button" data-vw="takvim" class="${f.gor === "takvim" ? "on" : ""}">Takvim</button></div></div>
+  ${f.gor === "harita" ? `<div class="kmap"><div class="map" id="kmap"></div><p class="kmn" id="kmn"></p></div>` : f.gor === "takvim" ? calView(city, f, L) : `<div class="grid" id="gr"></div><div id="mr"></div>`}${L.length ? "" : `<div class="empty">Bu seçimle etkinlik bulunamadı.<br>Filtreleri gevşetmeyi dene.</div>`}${footer()}`;
+  $$("[data-vw]").forEach((b) => b.addEventListener("click", () => { snd.sel?.(); const nf = { ...f }; if (b.dataset.vw) nf.gor = b.dataset.vw; else delete nf.gor; history.replaceState(null, "", `#/${city}/kesfet?${toQ(nf)}`); viewKesfet(city, nf); }));
+  $$("[data-cday]").forEach((b) => b.addEventListener("click", () => { const nf = { ...f }; delete nf.gor; delete nf.t; nf.gun = b.dataset.cday; go(nf); }));
+  if (f.gor === "harita") mapView(city, L);
   shown = 60; const gr = $("#gr"), mr = $("#mr");
-  const paint = () => { gr.innerHTML = L.slice(0, shown).map((e) => card(e, city)).join(""); mr.innerHTML = L.length > shown ? `<button class="more" id="more">Daha fazla göster (${(L.length - shown).toLocaleString("tr-TR")})</button>` : ""; $("#more")?.addEventListener("click", () => { shown += 60; paint(); }); };
+  const paint = () => { if (!gr) return; gr.innerHTML = L.slice(0, shown).map((e) => card(e, city)).join(""); mr.innerHTML = L.length > shown ? `<button class="more" id="more">Daha fazla göster (${(L.length - shown).toLocaleString("tr-TR")})</button>` : ""; $("#more")?.addEventListener("click", () => { shown += 60; paint(); }); };
   paint();
   $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); $("#q").blur(); go({ ...f, q: $("#q").value.trim() }); });
   $$("[data-x]").forEach((b) => b.addEventListener("click", () => go(dropChip(f, b.dataset.x))));
@@ -1393,6 +1404,56 @@ async function watchBoot(city) {
   if (Object.keys(A).length) { const idx = await aIdx(); if (Object.keys(idx).length) { const r = NV.watchA(A, idx, CNAME()); asave(r.arts); msgs.push(...r.msgs); } }
   msgs.filter((m) => NV.allow(m, cfg)).slice(0, 3).forEach((m, i) => { setTimeout(() => toast(`${I.bellOn}<span><b>${esc(m.title)}</b><small>${esc(m.body)}</small><a href="${esc(m.url.replace(/^\//, ""))}">Göster →</a></span>`, 9000), 1400 + i * 500);
     if (notifOn()) swUp().then(() => notify(m.title, m.body, m.url, m.tag)); });
+}
+
+/* ---------- Keşfet: harita ve takvim görünümü, hafta sonu kaçamağı (kullanıcı isteği, 15.11.2026 23:56) ---------- */
+const VWI = { "": 0, harita: 1, takvim: 2 };
+function calView(city, f, L0) {
+  const { d: today } = nowIST(), L = f.t || f.gun ? applyF({ ...f, t: "", gun: "" }) : L0, cnt = {};
+  for (const e of L) cnt[e.d] = (cnt[e.d] || 0) + 1;
+  const dow = (pd(today).getDay() + 6) % 7, start = addD(today, -dow), max = Math.max(1, ...Object.values(cnt));
+  const weeks = [...Array(6)].map((_, w) => [...Array(7)].map((_, i) => addD(start, w * 7 + i)));
+  let lastM = -1;
+  return `<div class="cal">${["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"].map((x) => `<b class="cw">${x}</b>`).join("")}
+    ${weeks.flat().map((d) => { const n = cnt[d] || 0, dt = pd(d), m = dt.getMonth(), past = d < today, newM = m !== lastM && dt.getDate() <= 7 ? (lastM = m, true) : (lastM = m, false);
+      return `<button type="button" class="kc${past ? " ps" : ""}${d === today ? " td" : ""}${[0, 6].includes(dt.getDay()) ? " we" : ""}"${past || !n ? " disabled" : ` data-cday="${d}"`} style="--a:${n ? (.18 + .62 * n / max).toFixed(2) : 0}"><span class="kd">${dt.getDate()}${newM || d === start ? `<small>${AYK[m]}</small>` : ""}</span>${n ? `<i>${n}</i>` : ""}</button>`; }).join("")}</div>
+    <p class="kmn">Bir güne dokun, o günün etkinlikleri açılsın. Renk koyulaştıkça o gün daha çok etkinlik var.</p>`;
+}
+function mapView(city, L) {
+  const el = $("#kmap"); if (!el) return;
+  const G = new Map(); let none = 0;
+  for (const e of L) { const v = vOf(e.venue); if (!v?.lat) { none++; continue; } const k = v.lat.toFixed(5) + "," + v.lng.toFixed(5); (G.get(k) || G.set(k, { v, name: e.venue, L: [] }).get(k)).L.push(e); }
+  $("#kmn").textContent = G.size ? `${G.size} mekânda ${L.length - none} etkinlik${none ? ` · ${none} etkinliğin mekân konumu henüz yok` : ""}` : "Bu seçimdeki mekânların konumları henüz toplanıyor.";
+  leaflet().then(() => { if (!document.body.contains(el)) return; const Lf = window.L;
+    const m = Lf.map(el, { zoomControl: false, attributionControl: true, tap: false });
+    Lf.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, className: "dk", attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(m);
+    const pts = [];
+    for (const g of G.values()) { const e0 = g.L.find((e) => e.img) || g.L[0]; pts.push([g.v.lat, g.v.lng]);
+      const ic = Lf.divIcon({ className: "", html: `<div class="mp">${e0.img ? `<img src="${esc(e0.img)}" alt="" referrerpolicy="no-referrer">` : `<span>${esc((CATS[e0.cat] || "•").slice(0, 1))}</span>`}${g.L.length > 1 ? `<b>${g.L.length}</b>` : ""}</div>`, iconSize: [46, 58], iconAnchor: [23, 58] });
+      Lf.marker([g.v.lat, g.v.lng], { icon: ic }).addTo(m).on("click", () => { haptic(5);
+        const sh = sheet(`<div class="pn" role="dialog" aria-label="${esc(g.name)}"><div class="hd"><span class="rth"><b>${esc(g.name)}</b><small>${g.L.length} etkinlik</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2"><div class="mpl">${uniq(g.L, 30, (e) => e.slug).map((e) => `<a href="#/${city}/e/${encodeURIComponent(e.slug)}"><span class="mpi">${poster(e, { badge: false })}</span><span><b>${esc(e.title)}</b><small>${rel(e.d)}${e.t ? " · " + esc(e.t) : ""}</small></span></a>`).join("")}</div></div></div>`, "mn"); }); }
+    if (pts.length) m.fitBounds(pts, { padding: [40, 40], maxZoom: 15 }); else { const c = cityCenter(city); m.setView(c || [39.93, 32.86], 11); }
+    if (DATA.me && !DATA.me.c) Lf.marker(DATA.me.p, { icon: Lf.divIcon({ className: "", html: '<div class="me"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(m);
+  }).catch(() => { el.innerHTML = `<p class="kmn">Harita şu an açılamadı.</p>`; });
+}
+// 81 ilin merkezi (yaklaşık): hafta sonu kaçamağı için yakın iller
+const ILLL = { adana: [37.00, 35.32], adiyaman: [37.76, 38.28], afyonkarahisar: [38.76, 30.54], agri: [39.72, 43.05], amasya: [40.65, 35.83], ankara: [39.93, 32.86], antalya: [36.89, 30.71], artvin: [41.18, 41.82], aydin: [37.85, 27.84], balikesir: [39.65, 27.88], bilecik: [40.14, 29.98], bingol: [38.88, 40.50], bitlis: [38.40, 42.11], bolu: [40.74, 31.61], burdur: [37.72, 30.29], bursa: [40.19, 29.06], canakkale: [40.15, 26.41], cankiri: [40.60, 33.62], corum: [40.55, 34.95], denizli: [37.78, 29.09], diyarbakir: [37.91, 40.24], edirne: [41.68, 26.56], elazig: [38.68, 39.22], erzincan: [39.75, 39.49], erzurum: [39.90, 41.27], eskisehir: [39.78, 30.52], gaziantep: [37.07, 37.38], giresun: [40.91, 38.39], gumushane: [40.46, 39.48], hakkari: [37.58, 43.74], hatay: [36.20, 36.16], isparta: [37.76, 30.55], mersin: [36.81, 34.64], istanbul: [41.01, 28.98], izmir: [38.42, 27.14], kars: [40.60, 43.10], kastamonu: [41.38, 33.78], kayseri: [38.73, 35.49], kirklareli: [41.73, 27.22], kirsehir: [39.15, 34.16], kocaeli: [40.77, 29.92], konya: [37.87, 32.48], kutahya: [39.42, 29.98], malatya: [38.35, 38.31], manisa: [38.61, 27.43], kahramanmaras: [37.58, 36.94], mardin: [37.31, 40.74], mugla: [37.22, 28.36], mus: [38.75, 41.51], nevsehir: [38.62, 34.71], nigde: [37.97, 34.68], ordu: [40.98, 37.88], rize: [41.02, 40.52], sakarya: [40.78, 30.40], samsun: [41.29, 36.33], siirt: [37.93, 41.94], sinop: [42.03, 35.15], sivas: [39.75, 37.02], tekirdag: [40.98, 27.51], tokat: [40.31, 36.55], trabzon: [41.00, 39.72], tunceli: [39.11, 39.55], sanliurfa: [37.16, 38.79], usak: [38.68, 29.41], van: [38.50, 43.38], yozgat: [39.82, 34.81], zonguldak: [41.45, 31.79], aksaray: [38.37, 34.03], bayburt: [40.26, 40.23], karaman: [37.18, 33.22], kirikkale: [39.85, 33.51], batman: [37.88, 41.13], sirnak: [37.52, 42.46], bartin: [41.63, 32.34], ardahan: [41.11, 42.70], igdir: [39.92, 44.04], yalova: [40.65, 29.27], karabuk: [41.20, 32.62], kilis: [36.72, 37.12], osmaniye: [37.07, 36.25], duzce: [40.84, 31.16] };
+function slugList(list) { const { d: today, hm } = nowIST(), seen = new Map();
+  return list.filter((e) => e.d >= today && !(e.d === today && e.t && e.t < hm && timeDiff(e.t, hm) > 120)).map((e) => { let s = slugOf(e); const n = (seen.get(s) || 0) + 1; seen.set(s, n); if (n > 1) s += "-" + n; return { t: "", status: "", ...e, slug: s, tickets: (e.tickets || []).map((x) => ({ ...x, price: null })) }; }); }
+function kacamak(city) {
+  const box = $("#kac"), me = ILLL[city]; if (!box || !me) return;
+  const io = new IntersectionObserver(async (en) => { if (!en[0].isIntersecting) return; io.disconnect();
+    const near = CITIES.filter((c) => c.id !== city && c.live && ILLL[c.id]).map((c) => ({ c, k: km(me, ILLL[c.id]) })).filter((x) => x.k <= 300).sort((a, b) => a.k - b.k).slice(0, 4);
+    if (!near.length) return;
+    const { d: today } = nowIST(), dow = pd(today).getDay(), fri = addD(today, (5 - dow + 7) % 7), s0 = dow === 6 || dow === 0 ? today : fri, s1 = dow === 0 ? today : addD(fri, 2);
+    const got = await Promise.all(near.map(({ c, k }) => jget(c.id === "ankara" ? "data/events.json" : `data/c/${c.id}.json`).then((j) => ({ c, k, L: slugList(j?.events || []).filter((e) => e.d >= s0 && e.d <= s1 && e.img && live(e)) })).catch(() => ({ c, k, L: [] }))));
+    const pool = got.filter((g) => g.L.length).flatMap((g) => uniq(g.L.sort((a, b) => (b.tickets.length + (BIG.test(b.venue || "") ? 3 : 0)) - (a.tickets.length + (BIG.test(a.venue || "") ? 3 : 0))), 6).map((e) => ({ e, g })));
+    if (pool.length < 3 || !document.body.contains(box)) return;
+    const mix = []; for (let i = 0; mix.length < pool.length && i < 8; i++) for (const g of got) { const x = pool.filter((p) => p.g === g)[i]; if (x) mix.push(x); }
+    const names = got.filter((g) => g.L.length).map((g) => `${g.c.name} ${Math.round(g.k / 10) * 10} km`).join(" · ");
+    box.outerHTML = `<section class="rail"><div class="rh"><div><h3>Hafta sonu kaçamağı</h3><small>${esc(names)}</small></div></div><div class="rs">${mix.slice(0, 16).map(({ e, g }) => card({ ...e, venue: `${e.venue} · ${g.c.name}` }, g.c.id)).join("")}</div></section>`;
+  }, { rootMargin: "400px" });
+  io.observe(box);
 }
 
 boot().then(() => { shortcutBoot(); route(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });

@@ -53,19 +53,22 @@ if (need.length) {
   await ctx.route("https://nv.local/**", async (r) => { const p = new URL(r.request().url()).pathname.slice(1); try { r.fulfill({ body: await readFile(join(ROOT, p)) }); } catch { r.abort(); } });
   const page = await ctx.newPage();
   await page.setContent(`<!doctype html><html><head><base href="https://nv.local/"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter+Tight:wght@400;500;600;700;800&display=swap"></head><body><script>${PJS}</script></body></html>`, { waitUntil: "networkidle" }).catch(() => {});
-  let ok = 0, bad = 0;
+  let ok = 0, bad = 0; const fails = [];
   for (let i = 0; i < need.length; i += 6) {
-    await Promise.all(need.slice(i, i + 6).map(async (j) => {
+    await Promise.all(need.slice(i, i + 6).map(async (j0) => { let j = j0;
+      // afiş önce burada indirilir (tarayıcıdan yüklenemeyen siteler için), çizime veri olarak verilir
+      if (j.kind === "story") { try { const r = await fetch(j.ev.img, { headers: { "user-agent": "Mozilla/5.0 (compatible; NeVarNeYokBot/1.0; +https://nevarneyok.net.tr)", accept: "image/*" }, signal: AbortSignal.timeout(15000) });
+        if (r.ok) { const ct = r.headers.get("content-type") || "image/jpeg"; j = { ...j, ev: { ...j.ev, img: `data:${ct};base64,${Buffer.from(await r.arrayBuffer()).toString("base64")}` } }; } else fails.push(new URL(j.ev.img).host + " " + r.status); } catch (e) { fails.push(new URL(j.ev.img).host + " " + e.name); } }
       const data = await page.evaluate(async ({ kind, ev }) => {
         try { let im = null; if (kind === "story") im = await Promise.race([NVS.img(ev.img, false), new Promise((_, n) => setTimeout(n, 12000))]);
           const cv = kind === "story" ? await NVS.story(ev, im) : await NVS.card(ev); return cv.toDataURL("image/jpeg", .84); } catch (e) { return null; }
       }, j).catch(() => null);
       if (!data) { bad++; return; }
-      await mkdir(dirname(join(OUT, j.f)), { recursive: true }); await writeFile(join(OUT, j.f), Buffer.from(data.split(",")[1], "base64")); NM[j.f] = j.h; ok++;
+      await mkdir(dirname(join(OUT, j0.f)), { recursive: true }); await writeFile(join(OUT, j0.f), Buffer.from(data.split(",")[1], "base64")); NM[j0.f] = j0.h; ok++;
     }));
   }
   await b.close();
-  log(`share-img: ${ok} görsel çizildi, ${bad} afiş yüklenemedi`);
+  log(`share-img: ${ok} görsel çizildi, ${bad} afiş yüklenemedi${fails.length ? " · " + Object.entries(fails.reduce((m, x) => (m[x] = (m[x] || 0) + 1, m), {})).map(([k, v]) => k + "×" + v).join(", ") : ""}`);
 }
 // artık gerekmeyenleri sil
 for (const f of Object.keys(M)) if (!NM[f]) await rm(join(OUT, f), { force: true });
