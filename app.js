@@ -280,6 +280,8 @@ document.addEventListener("click", (ev) => { const b = ev.target.closest?.(".til
 function dat(n) { const w = n.toLocaleLowerCase("tr"), v = [...w].reverse().find((c) => "aeıioöuü".includes(c)) || "a", back = "aıou".includes(v); return ("aeıioöuü".includes(w.slice(-1)) ? "y" : "") + (back ? "a" : "e"); }
 function viewCities() {
   setTop(null); document.title = "Ne Var Ne Yok · Şehrinin etkinliklerine göz at";
+  { const sv = CITIES.find((c) => c.id === store.get("nvny-city") && c.live); $(".cback")?.remove();
+    if (sv && /[?&]sec=1/.test(location.hash) && !document.querySelector(".intro")) { const b = document.createElement("a"); b.className = "cback"; b.href = `#/${sv.id}`; b.innerHTML = `<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>${esc(sv.name)}`; b.addEventListener("click", () => { snd.back?.(); haptic(5); }); document.body.append(b); addEventListener("hashchange", () => b.remove(), { once: true }); } }
   const liveC = CITIES.filter((c) => c.live).sort((a, b) => b.n - a.n);
   const T = (DATA.top || []).filter((e) => e.img && CITIES.find((c) => c.id === e.city && c.live)).slice(0, 10);
   const saved = CITIES.find((c) => c.id === store.get("nvny-city") && c.live);
@@ -791,8 +793,8 @@ document.addEventListener("click", (ev) => { if (ev.target.closest?.(".tabs a"))
 function tabsUpdate(P) {
   const T = $("#tabs"), city = P[0] && P[0] !== "bilgi" ? P[0] : (P[0] === "bilgi" ? store.get("nvny-city") : null);
   T.hidden = !city; if (!city) return;
-  const cur = !P[1] ? "home" : P[1] === "kesfet" ? "kesfet" : P[1] === "sinema" || P[1] === "film" ? "sinema" : P[1] === "takip" ? "takip" : "";
-  const href = { home: `#/${city}`, kesfet: `#/${city}/kesfet`, sinema: `#/${city}/sinema`, takip: `#/${city}/takip` };
+  const cur = !P[1] ? "home" : P[1] === "kesfet" ? "kesfet" : P[1] === "sinema" || P[1] === "film" ? "sinema" : P[1] === "takip" ? "takip" : P[1] === "harita" ? "harita" : "";
+  const href = { home: `#/${city}`, kesfet: `#/${city}/kesfet`, sinema: `#/${city}/sinema`, harita: `#/${city}/harita`, takip: `#/${city}/takip` };
   $$("a", T).forEach((a) => { a.href = href[a.dataset.t]; a.classList.toggle("on", a.dataset.t === cur); });
   const n = Object.keys(follows()).length, b = $('[data-t="takip"] b', T); b.textContent = n || ""; b.classList.toggle("has", !!n);
 }
@@ -846,11 +848,12 @@ function route() {
     else if (P[1] === "takip") viewPlan(city, !!Q.m);
     else if (P[1] === "ayarlar") viewAyarlar(city, P[2]);
     else if (P[1] === "yilim") viewYil(city);
+    else if (P[1] === "harita") viewHarita(city);
     else viewCity(city);
   }
   V.dataset.h = location.hash;
   // iPhone gibi: ileri sağdan, geri soldan (derinlikli), sekmeler arası anında; kenardan kaydırarak geri dönüldüyse canlandırma yok
-  const isRoot = !P.length || P[0] === "bilgi" || (P.length === 1) || (P.length === 2 && ["kesfet", "sinema", "takip"].includes(P[1]) && !qs);
+  const isRoot = !P.length || P[0] === "bilgi" || (P.length === 1) || (P.length === 2 && ["kesfet", "sinema", "takip", "harita"].includes(P[1]) && !qs);
   navTrack(lastHash, location.hash, isRoot);
   if (routed && V.dataset.sw !== "1") { V.classList.remove("go", "gt", "gb"); void V.offsetWidth; V.classList.add(navDir === "push" ? "go" : navDir === "back" ? "gb" : "gt"); }
   V.dataset.sw = ""; routed = true; // ilk sayfa canlandırmasız
@@ -1289,34 +1292,77 @@ async function routeOf(mode, a, b) {
   RCACHE.set(k, j.routes[0]); return j.routes[0];
 }
 function routeSheet(e, v, city, gUrl) {
+  /* Yol tarifi + navigasyon (kullanıcı isteği, 16.11.2026 02:17: "kişi yürüdükçe orada da ilerlesin; araçla ya da yaya; güzel yapalım").
+     Önce özet: süre, mesafe, varış, adım adım tarif. "Başla" ile navigasyon: harita tam ekran, seni izler; üstte sıradaki dönüş ve kalan metre,
+     altta kalan süre, mesafe, varış saati; geçtiğin yol solar; dönüşe yaklaşınca titreşim + kısa ses ve istersen Türkçe sesli yönlendirme (telefonun kendi sesi);
+     yoldan saparsan yeniden hesaplanır; ekran kapanmaz (izin verirse). Konum yalnızca yol hesaplamak için yol sunucusuna gider. */
   haptic(6);
-  const sh = sheet(`<div class="pn rtp" role="dialog" aria-label="Yol tarifi"><div class="hd"><span class="rth"><b>Yol tarifi</b><small>${esc(e.venue || "")}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+  const sh = sheet(`<div class="pn rtp" role="dialog" aria-label="Yol tarifi"><div class="hd"><button type="button" class="sbk" data-close><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Geri</button><span class="rth"><b>Yol tarifi</b><small>${esc(e.venue || "")}</small></span><span style="width:64px"></span></div>
     <div class="rtm map" id="rmap"></div>
+    <div class="nvt" id="nvt"><i></i><span><b></b><small></small></span></div>
+    <div class="nvb" id="nvb"><span><b id="nvm"></b><small id="nvk"></small></span><button type="button" class="nvv" id="nvv" aria-label="Sesli yönlendirme"></button><button type="button" class="nve" id="nve">Bitir</button></div>
+    <button type="button" class="nvc" id="nvc" aria-label="Konumuma dön"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button>
     <div class="bd2"><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
     <div class="rsum" id="rsum"><span class="sk" style="display:block;height:52px;border-radius:14px"></span></div>
     <ol class="rst" id="rst"></ol>
     <a class="rg" href="${gUrl}" target="_blank" rel="noopener">${I.ext}Google Haritalar'da aç</a>
-    <p class="rnote">Yol OpenStreetMap verisiyle hesaplanır; trafik hesaba katılmaz. Toplu taşıma ve sesli yol tarifi için Google Haritalar. Bunun için yalnızca başlangıç ve varış noktası OpenStreetMap'in yol sunucusuna gider, bizde saklanmaz.</p></div></div>`, "mn rt");
-  let map = null, line = null, me = null, watch = null, mode = null, from = null, R = null;
+    <p class="rnote">Yol OpenStreetMap verisiyle hesaplanır; trafik hesaba katılmaz. Toplu taşıma için Google Haritalar. Bunun için yalnızca başlangıç ve varış noktası OpenStreetMap'in yol sunucusuna gider, bizde saklanmaz.</p></div></div>`, "mn rt");
+  let map = null, line = null, done = null, me = null, watch = null, mode = null, from = null, R = null, S = [], nav = false, C = [], cum = [], sIdx = [], ni = 0, lastStep = -1, warned = -1, wl = null, follow = true;
+  let voice = store.get("nvny-sesli") !== "0";
   const dest = [v.lat, v.lng], seg = sh.querySelector(".rseg"), sum = sh.querySelector("#rsum"), st = sh.querySelector("#rst");
-  const oldClose = sh.close; sh.close = () => { if (watch != null) navigator.geolocation.clearWatch(watch); oldClose(); };
+  const oldClose = sh.close; sh.close = () => { if (watch != null) navigator.geolocation.clearWatch(watch); try { wl?.release(); speechSynthesis.cancel(); } catch {} oldClose(); };
   const setMode = (m) => { mode = m; seg.classList.toggle("r", m === "car"); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.m === m)); };
+  const say = (t) => { if (!voice || !("speechSynthesis" in window)) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t.replace(/<[^>]+>/g, "")); u.lang = "tr-TR"; u.rate = 1.02; speechSynthesis.speak(u); } catch {} };
+  const vIcon = () => { $("#nvv", sh).innerHTML = voice ? '<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z" fill="currentColor"/><path d="M16 9.5l5 5M21 9.5l-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>'; };
+  const prep = () => { // yol noktaları, birikimli mesafe, her adımın yol üzerindeki yeri
+    C = R.geometry.coordinates.map((c) => [c[1], c[0]]); cum = [0]; for (let i = 1; i < C.length; i++) cum.push(cum[i - 1] + km(C[i - 1], C[i]) * 1000);
+    let j = 0; sIdx = S.map((s) => { const p = [s.maneuver.location[1], s.maneuver.location[0]]; let b = j, bd = 1e9; for (let i = j; i < C.length; i++) { const d = km(p, C[i]); if (d < bd) { bd = d; b = i; } if (bd < .005 && i > b + 5) break; } j = b; return b; });
+    ni = 0; lastStep = -1; warned = -1;
+  };
   const paint = async () => {
     sum.innerHTML = `<span class="sk" style="display:block;height:52px;border-radius:14px"></span>`; st.innerHTML = "";
     try { R = await routeOf(mode, from, dest); }
     catch { sum.innerHTML = `<div class="rerr">Yol şu an hesaplanamadı. Kuş uçuşu ${kmTxt(km(from, dest))}. <a href="${gUrl}" target="_blank" rel="noopener">Google Haritalar'da aç ↗</a></div>`; return; }
+    S = R.legs[0].steps.filter((s, i, a) => !(s.maneuver.type === "new name" && s.distance < 15 && i < a.length - 1)); prep();
     const min = Math.max(1, Math.round(R.duration / 60)), at = new Date(Date.now() + R.duration * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
     const late = e.t && e.d === nowIST().d ? (() => { const [h, mm] = e.t.split(":").map(Number), leave = h * 60 + mm - min - 10, n = nowIST().hm.split(":").map(Number), now = n[0] * 60 + n[1]; return leave >= now ? `<small class="go">Tam yetişmek için en geç <b>${String(Math.floor(leave / 60)).padStart(2, "0")}:${String(leave % 60).padStart(2, "0")}</b>'da çık</small>` : now < h * 60 + mm ? `<small class="go late">Başlamasına ${h * 60 + mm - now} dk var, hemen çıkmalısın</small>` : ""; })() : "";
-    sum.innerHTML = `<div class="rs1"><b>${durTxt(min)}</b><span>${mTxt(R.distance)} · varış ${at}</span></div>${late}`;
-    const S = R.legs[0].steps.filter((s, i, a) => !(s.maneuver.type === "new name" && s.distance < 15 && i < a.length - 1));
+    sum.innerHTML = `<div class="rs1"><b>${durTxt(min)}</b><span>${mTxt(R.distance)} · varış ${at}</span><button type="button" class="nvs" id="nvs">Başla</button></div>${late}`;
     st.innerHTML = S.map((s, i) => `<li data-i="${i}"><i>${arrow(s)}</i><span>${stepTxt(s, e.venue || "")}${s.distance >= 5 && s.maneuver.type !== "arrive" ? `<small>${mTxt(s.distance)}</small>` : ""}</span></li>`).join("");
     st.querySelectorAll("li").forEach((li) => li.addEventListener("click", () => { const s = S[+li.dataset.i]; if (map) map.flyTo([s.maneuver.location[1], s.maneuver.location[0]], 17, { duration: .5 }); haptic(4); }));
-    if (map) { line?.remove(); line = window.L.polyline(R.geometry.coordinates.map((c) => [c[1], c[0]]), { color: "#a78bfa", weight: 6, opacity: .95, lineCap: "round", lineJoin: "round", dashArray: mode === "foot" ? "1 10" : null }).addTo(map); map.fitBounds(line.getBounds(), { padding: [34, 34] }); }
+    $("#nvs", sum).addEventListener("click", start);
+    if (map) { line?.remove(); done?.remove(); done = window.L.polyline([], { color: "#8e8e93", weight: 6, opacity: .7, lineCap: "round" }).addTo(map); line = window.L.polyline(C, { color: "#a78bfa", weight: 7, opacity: .98, lineCap: "round", lineJoin: "round", dashArray: mode === "foot" ? "1 11" : null }).addTo(map); if (!nav) map.fitBounds(line.getBounds(), { padding: [34, 34] }); }
+    if (nav) update(from, true);
   };
+  function update(p, force) { // navigasyon sırasında her konum değişiminde
+    if (!R || !C.length) return;
+    let b = ni, bd = 1e9; for (let i = Math.max(0, ni - 5); i < Math.min(C.length, ni + 60); i++) { const d = km(p, C[i]); if (d < bd) { bd = d; b = i; } }
+    if (b >= ni || force) ni = b;
+    const left = Math.max(0, cum[cum.length - 1] - cum[ni] + bd * 1000), k = sIdx.findIndex((x, i) => i > 0 && x > ni), step = k < 0 ? S.length - 1 : k, toTurn = Math.max(0, cum[sIdx[step]] - cum[ni]);
+    const s = S[step], tx = stepTxt(s, e.venue || "");
+    const T = $("#nvt", sh); T.querySelector("i").innerHTML = arrow(s); T.querySelector("b").textContent = s.maneuver.type === "arrive" ? "Varış" : mTxt(toTurn); T.querySelector("small").innerHTML = tx;
+    const min = Math.max(1, Math.round(R.duration * (left / Math.max(1, R.distance)) / 60)), at = new Date(Date.now() + min * 60e3).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
+    $("#nvm", sh).textContent = durTxt(min); $("#nvk", sh).textContent = `${mTxt(left)} · varış ${at}`;
+    done?.setLatLngs(C.slice(0, ni + 1).concat([p])); line?.setLatLngs([p].concat(C.slice(ni + 1)));
+    if (step !== lastStep) { lastStep = step; T.classList.remove("pop"); void T.offsetWidth; T.classList.add("pop"); if (!force) { snd.sel?.(); haptic(8); } say(`${mTxt(toTurn)} sonra, ${tx}`); }
+    if (toTurn < (mode === "car" ? 120 : 35) && warned !== step && s.maneuver.type !== "arrive") { warned = step; haptic(25); snd.ok(); say(tx); }
+    if (left < 25) { T.querySelector("b").textContent = "Vardın 🎉"; T.querySelector("small").innerHTML = esc(e.venue || ""); if (warned !== -2) { warned = -2; snd.ok(); haptic(40); say("Vardın. İyi eğlenceler!"); } }
+    if (follow && map) map.setView(p, Math.max(map.getZoom(), mode === "car" ? 16 : 17), { animate: true });
+  }
+  async function start() {
+    if (!R) return; nav = true; follow = true; sh.classList.add("nav"); snd.push?.(); haptic(12); vIcon();
+    try { wl = await navigator.wakeLock?.request("screen"); } catch {}
+    setTimeout(() => { map?.invalidateSize(); update(from, true); }, 360);
+  }
+  function stop() { nav = false; sh.classList.remove("nav"); try { wl?.release(); speechSynthesis.cancel(); } catch {} setTimeout(() => { map?.invalidateSize(); if (line) map.fitBounds(line.getBounds(), { padding: [34, 34] }); }, 360); haptic(6); }
+  $("#nve", sh).addEventListener("click", stop);
+  $("#nvv", sh).addEventListener("click", () => { voice = !voice; store.set("nvny-sesli", voice ? "1" : "0"); vIcon(); snd.sel?.(); if (!voice) try { speechSynthesis.cancel(); } catch {} });
+  $("#nvc", sh).addEventListener("click", () => { follow = true; if (from && map) map.setView(from, 17, { animate: true }); haptic(5); });
   seg.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { if (b.dataset.m === mode || !from) return; snd.sel?.(); haptic(4); setMode(b.dataset.m); paint(); }));
   leaflet().then(() => { const L = window.L, el = sh.querySelector("#rmap"); if (!document.body.contains(el)) return;
     map = L.map(el, { zoomControl: false, attributionControl: true, tap: false }).setView(dest, 15);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, className: "dk", attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · yol: FOSSGIS' }).addTo(map);
+    map.on("dragstart", () => { if (nav) { follow = false; sh.classList.add("free"); } });
+    map.on("moveend", () => { if (follow) sh.classList.remove("free"); });
     L.marker(dest, { icon: L.divIcon({ className: "", html: '<div class="pin"></div>', iconSize: [30, 30], iconAnchor: [15, 30] }) }).addTo(map);
     if (from) { me = L.marker(from, { icon: L.divIcon({ className: "", html: '<div class="me"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(map); if (R) paint(); }
   }).catch(() => sh.querySelector("#rmap")?.remove());
@@ -1324,11 +1370,11 @@ function routeSheet(e, v, city, gUrl) {
     from = p; const k = km(p, dest); setMode(k < 2.5 ? "foot" : "car");
     if (map && !me) me = window.L.marker(p, { icon: window.L.divIcon({ className: "", html: '<div class="me"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(map);
     paint();
-    // sayfa açıkken mavi nokta seninle ilerler; yoldan 80 m'den çok saparsan yol yeniden hesaplanır
-    if (navigator.geolocation?.watchPosition) watch = navigator.geolocation.watchPosition((q) => { const np = [q.coords.latitude, q.coords.longitude]; DATA.me = { p: np, t: Date.now() };
+    if (navigator.geolocation?.watchPosition) watch = navigator.geolocation.watchPosition((q) => { const np = [q.coords.latitude, q.coords.longitude]; DATA.me = { p: np, t: Date.now() }; locSave(np);
       me?.setLatLng(np);
-      if (R && km(from, np) > .08) { const C = R.geometry.coordinates, off = Math.min(...C.filter((_, i) => i % 3 === 0).map((c) => km(np, [c[1], c[0]]))); if (off > .08) { from = np; paint(); } }
-    }, () => {}, { enableHighAccuracy: true, maximumAge: 5000, timeout: 30000 });
+      if (R && C.length) { let off = 1e9; for (let i = Math.max(0, ni - 3); i < Math.min(C.length, ni + 40); i++) off = Math.min(off, km(np, C[i])); if (off > .06) { from = np; paint(); return; } }
+      from = np; if (nav) update(np);
+    }, () => {}, { enableHighAccuracy: true, maximumAge: 2000, timeout: 30000 });
   }).catch((err) => { sh.close(); setTimeout(() => geoHelp(city, err?.code), 280); });
 }
 
@@ -1714,7 +1760,7 @@ function splashOut() { const s = $("#spl"); if (!s) return; requestAnimationFram
    - Telefonda ekranın sol kenarından sağa çekince sayfa parmağı izleyerek geri gider (iOS kenar kaydırması).
    - İleri: yeni sayfa sağdan gelir; geri: önceki sayfa soldan hafifçe gelir (iOS'taki derinlik); sekmeler arası anında. */
 const NAVS = [];
-const TABN = { "": "Bugün", kesfet: "Keşfet", sinema: "Sinema", takip: "Planım", ayarlar: "Ayarlar", yilim: "Özetin" };
+const TABN = { "": "Bugün", kesfet: "Keşfet", sinema: "Sinema", harita: "Harita", takip: "Planım", ayarlar: "Ayarlar", yilim: "Özetin" };
 function labelOf(hh) {
   const P2 = (hh || "").replace(/^#\/?/, "").split("?")[0].split("/").filter(Boolean);
   if (!P2.length) return "İller"; if (P2[0] === "bilgi") return "Bilgi";
@@ -1828,7 +1874,7 @@ function smoothPath(pts) { if (pts.length < 2) return ""; let d = `M${pts[0][0]}
 
 async function wxSheet(city) {
   const ll = ILLL[city]; if (!ll) return; const cname = CITIES.find((c) => c.id === city)?.name || "";
-  const sh = sheet(`<div class="pn wxp" role="dialog" aria-label="Hava durumu"><div class="hd"><span></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2" id="wxb2"><div class="sk" style="height:60vh;border-radius:20px"></div></div></div>`, "mn wxs");
+  const sh = sheet(`<div class="pn wxp" role="dialog" aria-label="Hava durumu"><div class="hd"><button type="button" class="sbk" data-close><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Geri</button><span></span></div><div class="bd2" id="wxb2"><div class="sk" style="height:60vh;border-radius:20px"></div></div></div>`, "mn wxs");
   const j = await wxFull(ll[0], ll[1]); const box = sh.querySelector("#wxb2"); if (!box) return;
   if (!j?.current) { box.innerHTML = `<p class="kmn">Hava durumu şu an alınamadı.</p>`; return; }
   const C = j.current, D = j.daily, H = j.hourly, nowI = Math.max(0, H.time.findIndex((t) => t >= C.time.slice(0, 13)));
@@ -1957,6 +2003,61 @@ function recoRail(city) {
   const L = uniq(S.sort((a, b) => b[1] - a[1]).map((x) => x[0]).filter((e) => e.img), 14), W = new Map(S.map((x) => [x[0], x[2]]));
   if (L.length < 3) return "";
   return `<section class="rail reco"><div class="rh"><div><h3>Sana önerilerimiz</h3><small>Takip ettiklerine ve gittiklerine göre</small></div></div><div class="rs">${L.map((e) => card(e, city).replace(/<\/a>$/, `<div class="why">${esc(W.get(e) || "")}</div></a>`)).join("")}</div></section>`;
+}
+
+/* ---------- Harita sekmesi (kullanıcı isteği, 16.11.2026 02:17) ----------
+   Bütün etkinlikler haritada. Uzaktan bakınca afişler karışmasın diye her mekân kategorisinin simgesiyle (konser, tiyatro, stand-up…) görünür;
+   yaklaştıkça (yakınlaştırma 15+) simgeler dönerek afişe dönüşür. Mekâna dokununca o mekândaki etkinlikler alttan açılır (basılı tutunca önizleme),
+   oradan yol tarifi. Üstte cam şerit: ne zaman ve kategori. Sağ altta "konumum". Afişler yalnızca yakına gelince iner (veri ve akıcılık). */
+const HM = { when: "bugun", cats: [] };
+function viewHarita(city) {
+  setTop(city); document.title = `Harita · ${CITIES.find((c) => c.id === city)?.name || ""} · Ne Var Ne Yok`;
+  const W = [["bugun", "Bugün"], ["yarin", "Yarın"], ["haftasonu", "Hafta sonu"], ["hafta", "Bu hafta"]];
+  const cats = Object.keys(CATS).filter((k) => k !== "sinema" && DATA.events.some((e) => e.cat === k && live(e)));
+  V.innerHTML = `<div class="hmap"><div class="map" id="hm"></div>
+    <div class="hm-top"><div class="hm-w">${W.map(([k, l]) => `<button type="button" data-w="${k}" class="${HM.when === k ? "on" : ""}">${l}</button>`).join("")}</div>
+    <div class="hm-c">${cats.map((k) => `<button type="button" data-c="${k}" class="${HM.cats.includes(k) ? "on" : ""}">${cgIcon(k)}<span>${esc(CATS[k])}</span></button>`).join("")}</div></div>
+    <div class="hm-n" id="hmn"></div>
+    <button type="button" class="hm-me" id="hmme" aria-label="Konumum"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button></div>`;
+  const el = $("#hm"); let map = null, layer = null, meM = null;
+  const draw = () => {
+    if (!map) return; layer?.remove(); layer = window.L.layerGroup().addTo(map);
+    const L = applyF({ t: HM.when }).filter((e) => !HM.cats.length || HM.cats.includes(e.cat));
+    const G = new Map(); let none = 0;
+    for (const e of L) { const v = vOf(e.venue); if (!v?.lat) { none++; continue; } const k = v.lat.toFixed(4) + "," + v.lng.toFixed(4); (G.get(k) || G.set(k, { v, name: e.venue, L: [] }).get(k)).L.push(e); }
+    const pts = [];
+    for (const g of G.values()) {
+      const cc = {}; for (const e of g.L) cc[e.cat] = (cc[e.cat] || 0) + 1; const top = Object.entries(cc).sort((a, b) => b[1] - a[1])[0][0];
+      const e0 = g.L.find((e) => e.img) || g.L[0]; pts.push([g.v.lat, g.v.lng]);
+      const html = `<div class="mk" style="--c:${CG[top]?.[0] || "#8b5cf6"}"><span class="mk-s"><svg viewBox="0 0 24 24">${CG[top]?.[1] || ""}</svg></span><span class="mk-p">${e0.img ? `<img data-src="${esc(e0.img)}" alt="" referrerpolicy="no-referrer">` : `<em>${esc(e0.title.slice(0, 26))}</em>`}</span>${g.L.length > 1 ? `<b>${g.L.length}</b>` : ""}</div>`;
+      window.L.marker([g.v.lat, g.v.lng], { icon: window.L.divIcon({ className: "", html, iconSize: [46, 62], iconAnchor: [23, 31] }), riseOnHover: true }).addTo(layer).on("click", () => venueSheet(city, g));
+    }
+    $("#hmn").innerHTML = `<b>${L.length - none}</b> etkinlik · <b>${G.size}</b> mekân${none ? ` <small>· ${none} etkinliğin konumu henüz yok</small>` : ""}`;
+    near();
+    return pts;
+  };
+  const near = () => { if (!map || !layer) return; const n = map.getZoom() >= 15; el.classList.toggle("near", n);
+    if (n) { const b = map.getBounds().pad(.3); layer.eachLayer((m) => { if (!b.contains(m.getLatLng())) return; const im = m.getElement()?.querySelector("img[data-src]"); if (im) { im.src = im.dataset.src; im.removeAttribute("data-src"); } }); } };
+  leaflet().then(() => { if (!document.body.contains(el)) return; const L = window.L;
+    map = L.map(el, { zoomControl: false, attributionControl: true, tap: false, zoomSnap: .5 });
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, className: "dk", attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+    let wasNear = null;
+    map.on("zoomend moveend", () => { const n = map.getZoom() >= 15; if (wasNear !== null && n !== wasNear) { tick(); haptic(5); } wasNear = n; near(); });
+    window.__hm = map; const pts = draw(); const c = cityCenter(city) || ILLL[city] || [39.93, 32.86];
+    if (pts && pts.length > 1) map.fitBounds(pts, { paddingTopLeft: [30, 150], paddingBottomRight: [30, 150], maxZoom: 13 }); else map.setView(pts?.[0] || c, 12);
+    if (DATA.me && !DATA.me.c) meM = L.marker(DATA.me.p, { icon: L.divIcon({ className: "", html: '<div class="me"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(map);
+  }).catch(() => { el.innerHTML = `<p class="kmn">Harita şu an açılamadı.</p>`; });
+  $$("[data-w]").forEach((b) => b.addEventListener("click", () => { HM.when = b.dataset.w; $$("[data-w]").forEach((x) => x.classList.toggle("on", x === b)); snd.sel?.(); haptic(4); draw(); }));
+  $$("[data-c]").forEach((b) => b.addEventListener("click", () => { const k = b.dataset.c; HM.cats = HM.cats.includes(k) ? HM.cats.filter((x) => x !== k) : [...HM.cats, k]; b.classList.toggle("on"); snd.sel?.(); haptic(4); draw(); }));
+  $("#hmme").addEventListener("click", () => { haptic(6); whereAmI(true).then((p) => { if (!map) return; meM?.remove(); meM = window.L.marker(p, { icon: window.L.divIcon({ className: "", html: '<div class="me"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(map); map.flyTo(p, 15, { duration: .8 }); }).catch((err) => geoHelp(city, err?.code)); });
+}
+function venueSheet(city, g) {
+  snd.pop?.(); haptic(8);
+  const L = uniq(g.L.sort((a, b) => a.d.localeCompare(b.d) || (a.t || "").localeCompare(b.t || "")), 40, (e) => e.slug), d = DATA.me && !DATA.me.c ? km(DATA.me.p, [g.v.lat, g.v.lng]) : null;
+  const sh = sheet(`<div class="pn" role="dialog" aria-label="${esc(g.name)}"><div class="hd"><span class="rth"><b>${esc(g.name)}</b><small>${L.length} etkinlik${g.v.ilce ? " · " + esc(g.v.ilce) : ""}${d != null ? " · " + kmTxt(d) : ""}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+    <div class="bd2"><div class="mpl">${L.map((e) => `<a href="#/${city}/e/${encodeURIComponent(e.slug)}"><span class="mpi">${poster(e, { badge: false })}</span><span><b>${esc(e.title)}</b><small>${rel(e.d)}${e.t ? " · " + esc(e.t) : ""}${e.price ? " · " + TL(e.price) + "'den" : ""}</small></span></a>`).join("")}</div>
+    <div class="vsb"><button type="button" class="ok" data-r>${I.dir}Yol tarifi</button></div></div></div>`, "mn");
+  sh.querySelector("[data-r]").addEventListener("click", () => { sh.close(); setTimeout(() => routeSheet(L[0], g.v, city, `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent([g.name, g.v.addr].filter(Boolean).join(", "))}${g.v.place ? "&destination_place_id=" + g.v.place : ""}`), 280); });
 }
 
 boot().then(() => { offlineBoot(); shortcutBoot(); route(); splashOut(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { splashOut(); V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });

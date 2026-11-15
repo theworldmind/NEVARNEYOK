@@ -949,6 +949,47 @@ html.app #spl img{width:min(52vw,240px);height:auto;transition:transform .55s cu
 .afl>.cgi{width:38px;height:38px;border-radius:11px}
 .yl-e .cgi{width:42px;height:42px;border-radius:11px}.yl-e .cgi svg{width:26px;height:26px}
 .srow>.cgi{width:29px;height:29px;border-radius:7px}
+
+/* Harita sekmesi (16.11.2026 02:17) */
+.hmap{position:relative;height:calc(100svh - 62px - env(safe-area-inset-top));margin-bottom:calc(-96px - env(safe-area-inset-bottom))}
+.hmap .map{position:absolute;inset:0;background:#14141c}
+.hm-top{position:absolute;left:10px;right:10px;top:10px;z-index:500;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.hm-w,.hm-c{pointer-events:auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:5px;border-radius:999px;background:rgba(22,20,32,.55);-webkit-backdrop-filter:saturate(1.8) blur(22px);backdrop-filter:saturate(1.8) blur(22px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 .5px rgba(255,255,255,.12),0 10px 30px rgba(0,0,0,.35)}
+.hm-w{align-self:center}.hm-c{border-radius:20px}.hm-w::-webkit-scrollbar,.hm-c::-webkit-scrollbar{display:none}
+.hm-w button{flex:none;height:34px;padding:0 15px;border-radius:999px;font:700 14px var(--f);color:rgba(235,235,245,.75);transition:background .2s,color .2s}.hm-w button.on{background:#fff;color:#0a0a10}
+.hm-c button{flex:none;display:flex;align-items:center;gap:7px;height:38px;padding:0 12px 0 5px;border-radius:14px;font:600 13.5px var(--f);color:#fff;opacity:.6;transition:opacity .2s,background .2s}.hm-c button.on{opacity:1;background:rgba(255,255,255,.14)}.hm-c .cgi{width:28px;height:28px}
+.hm-n{position:absolute;left:50%;bottom:calc(108px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:500;padding:8px 14px;border-radius:999px;font:600 13px var(--f);white-space:nowrap;background:rgba(22,20,32,.6);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}.hm-n small{color:var(--t3)}
+.hm-me{position:absolute;right:14px;bottom:calc(150px + env(safe-area-inset-bottom));z-index:500;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#0a84ff;background:rgba(30,30,40,.7);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 8px 20px rgba(0,0,0,.35)}.hm-me svg{width:22px;height:22px}.hm-me:active{transform:scale(.92)}
+.mk{position:relative;width:46px;height:62px;perspective:400px}
+.mk-s,.mk-p{position:absolute;left:50%;top:50%;backface-visibility:hidden;transition:transform .42s cubic-bezier(.32,.72,0,1),opacity .3s}
+.mk-s{width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;display:grid;place-items:center;background:var(--c);box-shadow:0 0 0 3px rgba(255,255,255,.95),0 6px 16px rgba(0,0,0,.5)}.mk-s svg{width:20px;height:20px}
+.mk-p{width:44px;height:60px;margin:-30px 0 0 -22px;border-radius:9px;overflow:hidden;background:var(--c);box-shadow:0 0 0 2.5px #fff,0 10px 22px rgba(0,0,0,.55);transform:rotateY(-90deg) scale(.6);opacity:0}
+.mk-p img{width:100%;height:100%;object-fit:cover}.mk-p em{display:grid;place-items:center;height:100%;padding:3px;font:800 8px/1.1 var(--f);font-style:normal;text-align:center;color:#fff}
+.near .mk-s{transform:rotateY(90deg) scale(.6);opacity:0}.near .mk-p{transform:none;opacity:1}
+.mk b{position:absolute;right:-6px;top:6px;z-index:2;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:#fff;color:#0a0a10;font:800 11px/20px var(--f);text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.4);transition:top .42s cubic-bezier(.32,.72,0,1)}.near .mk b{top:-6px}
+.vsb{margin-top:14px}.vsb .ok{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:50px;border-radius:14px;background:#fff;color:#0a0a10;font:800 16px var(--f)}.vsb svg{width:18px;height:18px}
+/* Navigasyon (yürüdükçe ilerleyen yol tarifi) */
+.sbk{display:flex;align-items:center;gap:1px;height:36px;padding:0 10px 0 2px;color:#c4b5fd;font:600 17px -apple-system,"Inter Tight",sans-serif;border-radius:10px}.sbk svg{width:24px;height:24px}.sbk:active{opacity:.45}
+.rtp .hd{justify-content:space-between}.rtp .rth{text-align:center}
+.rs1{flex-wrap:wrap}.nvs{margin-left:auto;height:44px;padding:0 26px;border-radius:999px;background:linear-gradient(180deg,#34d058,#28a745);color:#fff;font:800 17px var(--f);box-shadow:0 8px 22px rgba(52,199,89,.35)}
+.nvt,.nvb,.nvc{display:none}
+.sh.rt.nav .pn{height:100svh;max-height:100svh;border-radius:0}
+.sh.rt.nav .hd,.sh.rt.nav .bd2{display:none}
+.sh.rt.nav .rtm{position:absolute;inset:0;height:auto}
+.sh.rt.nav .nvt{display:flex;position:absolute;left:12px;right:12px;top:calc(env(safe-area-inset-top) + 12px);z-index:600;align-items:center;gap:14px;padding:16px 18px;border-radius:22px;background:linear-gradient(180deg,rgba(40,120,70,.92),rgba(30,96,56,.92));-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 14px 40px rgba(0,0,0,.45)}
+.nvt i{flex:none;width:52px;height:52px;display:grid;place-items:center}.nvt i svg{width:46px;height:46px;color:#fff}.nvt b{display:block;font:800 30px/1 -apple-system,"Inter Tight",sans-serif;letter-spacing:-.02em}.nvt small{display:block;margin-top:4px;font-size:16px;line-height:1.3;color:rgba(255,255,255,.92)}.nvt small b{display:inline;font:inherit;font-weight:700}
+.nvt.pop{animation:nvp .45s cubic-bezier(.32,.72,0,1)}@keyframes nvp{from{transform:translateY(-10px) scale(.97);opacity:.4}}
+.sh.rt.nav .nvb{display:flex;position:absolute;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom) + 14px);z-index:600;align-items:center;gap:10px;padding:12px 12px 12px 20px;border-radius:24px;background:rgba(24,22,34,.8);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 14px 40px rgba(0,0,0,.45)}
+.nvb>span{flex:1}.nvb b{display:block;font:800 26px/1 -apple-system,"Inter Tight",sans-serif;color:#34c759}.nvb small{color:var(--t2);font-size:14px}
+.nvv{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);color:#fff}.nvv svg{width:22px;height:22px}
+.nve{height:46px;padding:0 20px;border-radius:999px;background:#ff453a;color:#fff;font:800 16px var(--f)}
+.sh.rt.nav.free .nvc{display:grid;position:absolute;right:14px;bottom:calc(env(safe-area-inset-bottom) + 100px);z-index:600;width:48px;height:48px;border-radius:50%;place-items:center;color:#0a84ff;background:rgba(30,30,40,.8);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}.nvc svg{width:22px;height:22px}
+.wxp .hd{display:flex;justify-content:space-between}
+.cback{position:fixed;top:calc(env(safe-area-inset-top) + 12px);left:12px;z-index:70;display:flex;align-items:center;gap:2px;height:40px;padding:0 16px 0 8px;border-radius:999px;color:#fff;font:600 16px -apple-system,"Inter Tight",sans-serif;background:rgba(30,28,42,.55);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 .5px rgba(255,255,255,.12);animation:tbk .35s cubic-bezier(.32,.72,0,1) both}.cback svg{width:22px;height:22px}.cback:active{transform:scale(.95)}
+.hmap .map{height:100%!important;border-radius:0!important}
+.sh.rt.nav .pn{position:relative}.sh.rt.nav .rtm{position:absolute!important;inset:0!important;height:100%!important;min-height:0}
+.leaflet-container{background:#14141c}
+.pn .hd .rth b{font-size:19px;line-height:1.1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 </style>
 </head>
 <body>
@@ -969,6 +1010,7 @@ html.app #spl img{width:min(52vw,240px);height:auto;transition:transform .55s cu
   <a data-t="home"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Bugün</span></a>
   <a data-t="kesfet"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Keşfet</span></a>
   <a data-t="sinema"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 9.5h17M8 5v4.5M13 5v4.5M17.5 5v4.5" stroke="currentColor" stroke-width="1.8"/></svg><span>Sinema</span></a>
+  <a data-t="harita"><svg viewBox="0 0 24 24"><path d="M9 4.5 3.5 6.8v12.7L9 17.2l6 2.3 5.5-2.3V4.5L15 6.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 4.5v12.7M15 6.8v12.7" stroke="currentColor" stroke-width="2"/></svg><span>Harita</span></a>
   <a data-t="takip"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="15" r="1.6" fill="currentColor"/></svg><span>Planım</span><b></b></a>
 </nav>
 <script>
