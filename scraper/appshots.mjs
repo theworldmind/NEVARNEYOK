@@ -46,45 +46,41 @@ const go = async (hash) => { await page.goto(BASE + hash, { waitUntil: "domconte
 const shots = {};
 const snap = async (name) => { await page.evaluate(() => document.querySelectorAll(".ph img.p").forEach((i) => { if (i.complete && i.naturalWidth) i.parentNode.classList.add("ok"); })).catch(() => {}); await page.waitForTimeout(450); const f = join(OUT, `_ekran-${name}.png`); await page.screenshot({ path: f }); shots[name] = "data:image/png;base64," + (await readFile(f)).toString("base64"); log(`ekran: ${name}`); };
 
-/* 1) il tekerleği: İstanbul ortada */
+/* Ekranlar: ana il (MAIN) bütün ekranlar; diğer büyük illerde şehir sayfası, raflar ve sinema.
+   Kullanıcı isteği (15.11.2026): görsellerde daha çok Ankara, İstanbul…; bütün Türkiye olduğu anlaşılsın. */
+const CITIES_ = (process.env.SHOT_CITIES || "ankara istanbul izmir antalya").split(/\s+/).filter(Boolean);
+const MAIN = CITIES_[0];
+const waitStory = async () => {
+  for (let k = 0; k < 6; k++) {
+    const ok = await page.evaluate(() => new Promise((r) => { const s = [...document.querySelectorAll(".stp .sps")]; const c = s.find((x) => { const b = x.getBoundingClientRect(); return b.left >= -5 && b.left < innerWidth / 2; }) || s[0]; const im = c?.querySelector(".po img"); if (!im) return r(true); if (im.complete && im.naturalWidth) return r(true); im.addEventListener("load", () => r(true)); im.addEventListener("error", () => r(false)); setTimeout(() => r(im.naturalWidth > 0), 8000); }));
+    if (ok) break; await page.click(".stp .nx").catch(() => {}); await page.waitForTimeout(900);
+  }
+};
+
+/* 1) il tekerleği: ana il ortada */
 await go("#/");
-await page.evaluate((id) => { const wl = document.querySelector("#wl"); const li = [...wl.querySelectorAll("li")]; const i = li.findIndex((x) => (x.dataset.id || x.textContent).toLocaleLowerCase("tr").startsWith(id === "istanbul" ? "i̇stanbul" : id) || x.textContent.trim() === "İstanbul"); wl.scrollTop = Math.max(0, i) * 52; }, CITY);
+await page.evaluate((id) => { const wl = document.querySelector("#wl"); const li = [...wl.querySelectorAll("li")]; const f = (t) => t.toLocaleLowerCase("tr").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ı/g, "i"); const i = li.findIndex((x) => f(x.textContent.trim()) === id); wl.scrollTop = Math.max(0, i) * 52; }, MAIN);
 await page.waitForTimeout(700); await snap("tekerlek");
 
-/* 2) şehir sayfası (kayan sayfalar + raflar) */
-await page.evaluate((c) => localStorage.setItem("nvny-city", c), CITY);
-await go(`#/${CITY}`);
-// vitrin (kayan sayfalar) afişi yüklenene kadar bekle; yüklenmeyen sayfayı atla
-for (let k = 0; k < 6; k++) {
-  const ok = await page.evaluate(() => new Promise((r) => { const s = [...document.querySelectorAll(".stp .sps")]; const c = s.find((x) => { const b = x.getBoundingClientRect(); return b.left >= -5 && b.left < innerWidth / 2; }) || s[0]; const im = c?.querySelector(".po img, img.bg"); if (!im) return r(true); if (im.complete && im.naturalWidth) return r(true); im.addEventListener("load", () => r(true)); im.addEventListener("error", () => r(false)); setTimeout(() => r(im.naturalWidth > 0), 8000); }));
-  if (ok) break; await page.click(".stp .nx").catch(() => {}); await page.waitForTimeout(900);
+for (const C of CITIES_) {
+  await page.evaluate((c) => localStorage.setItem("nvny-city", c), C);
+  await go(`#/${C}`); await waitStory(); await page.waitForTimeout(400); await snap(`sehir_${C}`);
+  await page.evaluate(() => { const r = document.querySelector(".rail"); if (r) scrollTo(0, r.getBoundingClientRect().top + scrollY - 70); });
+  await settle(700); await snap(`raflar_${C}`);
+  if (C === MAIN) {
+    const ev = await page.evaluate(() => { const L = [...document.querySelectorAll('a.cd[href*="/e/"]')].filter((x) => !x.classList.contains("off")); return (L.find((x) => x.querySelector(".ph.ok img")) || L[0])?.getAttribute("href"); });
+    if (ev) { await go(ev); await snap("etkinlik");
+      const f = await page.$("#flw"); if (f) { await f.click(); await page.waitForTimeout(400); await page.evaluate(() => scrollTo(0, 0)); await page.waitForTimeout(300); await snap("takip"); } }
+    await go(`#/${C}/kesfet?t=haftasonu&k=konser,tiyatro&f=1`); await page.waitForTimeout(700); await snap("filtre");
+    await page.evaluate(() => localStorage.setItem("nvny-prefs", JSON.stringify({ cats: ["konser", "tiyatro", "standup"], ilce: [], when: ["aksam", "haftasonu"], budget: 600, kids: false })));
+    await go(`#/${C}`); const pz = await page.$("#pz"); if (pz) { await pz.click(); await page.waitForTimeout(800); await snap("kisisel"); }
+    await page.evaluate(() => localStorage.removeItem("nvny-prefs"));
+  }
+  await go(`#/${C}/sinema`); await snap(`sinema_${C}`);
 }
-const dbg = await page.evaluate(() => [...document.querySelectorAll(".stp .po img.p")].slice(0, 4).map((i) => [i.complete, i.naturalWidth, i.parentNode.className, i.src.slice(0, 80)]));
-log("vitrin: " + JSON.stringify(dbg));
-await page.evaluate(() => document.querySelectorAll(".ph img.p").forEach((i) => { if (i.complete && i.naturalWidth) i.parentNode.classList.add("ok"); }));
-await page.waitForTimeout(600); await snap("sehir");
-// biraz aşağı: raflar
-await page.evaluate(() => { const r = document.querySelector(".rail"); if (r) scrollTo(0, r.getBoundingClientRect().top + scrollY - 70); });
-await settle(700); await snap("raflar");
-
-/* 3) etkinlik sayfası: afişi yüklenmiş, iptal edilmemiş bir etkinlik; Takip et'e dokun */
-const ev = await page.evaluate(() => { const L = [...document.querySelectorAll('a.cd[href*="/e/"]')].filter((x) => !x.classList.contains("off")); return (L.find((x) => x.querySelector(".ph.ok img")) || L[0])?.getAttribute("href"); });
-if (ev) {
-  await go(ev); await snap("etkinlik");
-  const f = await page.$("#flw"); if (f) { await f.click(); await page.waitForTimeout(400); await page.evaluate(() => scrollTo(0, 0)); await page.waitForTimeout(300); await snap("takip"); }
-}
-
-/* 4) filtreler: hafta sonu + konser/tiyatro seçili */
-await go(`#/${CITY}/kesfet?t=haftasonu&k=konser,tiyatro&f=1`); await page.waitForTimeout(700); await snap("filtre");
-
-/* 5) kişiselleştir: birkaç ilgi alanı seçili */
-await page.evaluate(() => localStorage.setItem("nvny-prefs", JSON.stringify({ cats: ["konser", "tiyatro", "standup"], ilce: [], when: ["aksam", "haftasonu"], budget: 600, kids: false })));
-await go(`#/${CITY}`); const pz = await page.$("#pz"); if (pz) { await pz.click(); await page.waitForTimeout(800); await snap("kisisel"); }
-await page.evaluate(() => localStorage.removeItem("nvny-prefs"));
-
-/* 6) sinema */
-await go(`#/${CITY}/sinema`); await snap("sinema");
-const cityName = await page.evaluate((c) => (window.CITIES || []).find?.((x) => x.id === c)?.name, CITY).catch(() => null) || (CITY === "istanbul" ? "İstanbul" : CITY);
+const [A, B, Cc, D] = [CITIES_[0], CITIES_[1] || CITIES_[0], CITIES_[2] || CITIES_[0], CITIES_[3] || CITIES_[1] || CITIES_[0]];
+const IDX = JSON.parse(await readFile(join(ROOT, "data/cities.json"), "utf8")).cities;
+const cityName = CITIES_.map((c) => IDX[c]?.name || c).join(", ");
 
 /* --- reklamlar --- */
 const LOGO = "data:image/png;base64," + (await readFile(join(ROOT, "brand/logo.png"))).toString("base64");
@@ -124,6 +120,14 @@ h1 em{font-style:normal;color:#a78bfa;text-shadow:0 0 50px #8b5cf6aa}
 .bub b{display:block;font:800 25px/1.15 "Inter Tight"}.bub p{font:500 22px/1.3 "Inter Tight";color:#ffffffb8;margin-top:4px}.bub small{font:600 18px/1 "Inter Tight";color:#ffffff80;position:absolute;right:22px;top:18px}
 .tag{position:absolute;padding:14px 22px;border-radius:99px;background:#8b5cf6;font:800 24px/1 "Inter Tight";box-shadow:0 0 30px #8b5cf688;white-space:nowrap}
 .tag.w{background:#fff;color:#0a0a10;box-shadow:0 20px 40px -10px #000a}
+.pl{position:absolute;left:50%;top:-20px;transform:translateX(-50%);padding:10px 18px;border-radius:99px;background:#fff;color:#0a0a10;font:800 calc(var(--pw)*.058)/1 Archivo,Arial,sans-serif;font-stretch:88%;text-transform:uppercase;white-space:nowrap;box-shadow:0 14px 30px -10px #000a;z-index:3}
+.ph{margin-top:0}.stage{padding-top:0}
+.rib{position:absolute;left:-60px;right:-60px;height:78px;background:#8b5cf6;box-shadow:0 0 60px #8b5cf6aa,0 20px 40px -10px #000c;z-index:6;overflow:hidden;display:flex;align-items:center}
+.rib div{display:flex;gap:22px;align-items:center;white-space:nowrap;font:900 40px/1 Archivo,Arial,sans-serif;font-stretch:76%;text-transform:uppercase;padding-left:30px}
+.rib span{color:#ffffffd8}.rib span.b{color:#fff}.rib i{font-style:normal;color:#0a0a1088}
+.cloud{position:absolute;inset:10px 40px 120px;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:2px 18px;line-height:.95}
+.cloud span{font-weight:900;font-family:Archivo,Arial,sans-serif;font-stretch:74%;color:#ffffff59}
+.cloud span.t2{color:#ffffffd0}.cloud span.t1{color:#a78bfa;text-shadow:0 0 40px #8b5cf6aa}
 .pts{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.pts i{font:700 24px/1 "Inter Tight";font-style:normal;padding:13px 20px;border-radius:99px;background:#ffffff12;box-shadow:0 0 0 1.5px #ffffff20 inset}`;
 
 const PST = (JSON.parse(await readFile(join(ROOT, "data/one-cikan.json"), "utf8").catch(() => "{}")).events || []).map((e) => e.img).filter(Boolean);
@@ -132,35 +136,53 @@ const LOGOH = `<div class="logo"><img src="${LOGO}" alt="Ne Var Ne Yok"></div>`;
 const NOTE = (t, p, x, y, w = 520, when = "şimdi") => `<div class="bub" style="left:${x}px;top:${y}px;--bw:${w}px"><div class="ai"><img src="${LOGO}" alt=""></div><div><b>${t}</b><p>${p}</p></div><small>${when}</small></div>`;
 
 // Her reklam: sahne, yatay/dikey için ayrı konumlar
+const NM = (c) => IDX[c]?.name || c;
+// Türkçe ekler: Ankara'dan / İzmir'den, Ankara'ya / İzmir'e
+const lastV = (w) => (w.toLocaleLowerCase("tr").match(/[aıoueiöü](?=[^aıoueiöü]*$)/) || ["a"])[0];
+const back = (w) => "aıou".includes(lastV(w));
+const DAN = (c) => { const w = NM(c); return `${w}'${/[fsthçşkp]$/i.test(w) ? "t" : "d"}${back(w) ? "a" : "e"}n`; };
+const YA = (c) => { const w = NM(c); return `${w}'${/[aıoueiöü]$/i.test(w) ? "y" : ""}${back(w) ? "a" : "e"}`; };
+const UP = (c) => NM(c).toLocaleUpperCase("tr");
+// telefon: ekran, genişlik, konum, açı, üstünde il etiketi
+const P = (k, w, x, y, r = 0, z = 1, label = "") => shots[k] ? `<div class="ph" style="--pw:${w}px;left:${x}px;top:${y}px;transform:rotate(${r}deg);z-index:${z}">${label ? `<span class="pl">📍 ${label}</span>` : ""}<div class="scr">${STATUS}<img src="${shots[k]}" alt=""></div></div>` : "";
+// bütün Türkiye şeridi: büyük iller önde, sonra diğerleri, "81 İL"
+const ORDER = Object.entries(IDX).sort((a, b) => (b[1].n + b[1].films * 5) - (a[1].n + a[1].films * 5)).map(([id]) => id);
+const RIBBON = (y, r = -4) => { const L = ORDER.slice(0, 22).map((c, k) => `<span class="${k < 4 ? "b" : ""}">${UP(c)}</span>`).join("<i>•</i>"); return `<div class="rib" style="bottom:${y}px;transform:rotate(${r}deg)"><div>${L}<i>•</i><span class="b">81 İL</span><i>•</i>${L}</div></div>`; };
+const CLOUD = (story) => { const mx = Math.max(...Object.values(IDX).map((c) => c.n + c.films * 5)) || 1;
+  const ids = Object.keys(IDX).sort((a, b) => NM(a).localeCompare(NM(b), "tr"));
+  return `<div class="cloud${story ? " st" : ""}">${ids.map((c) => { const v = IDX[c].n + IDX[c].films * 5, f = Math.round((story ? 26 : 21) + Math.sqrt(v / mx) * (story ? 92 : 74)); const top = ORDER.indexOf(c);
+    return `<span class="${top < 3 ? "t1" : top < 10 ? "t2" : ""}" style="font-size:${f}px">${UP(c)}</span>`; }).join("")}</div>`; };
+
 const ADS = [
-  { id: "uygulama-cebinde", kick: "81 ilin etkinlikleri", h: "NE VAR NE YOK,<br><em>ARTIK CEBİNDE.</em>", sub: "Konser, tiyatro, stand-up, sinema seansları. Şehrini seç, hemen gör.",
-    stage: (s) => s ? `${phone("raflar", "")}`.replace('class="ph "', `class="ph" style="--pw:400px;left:60px;top:150px;transform:rotate(-8deg)"`) + phone("sehir").replace('class="ph "', `class="ph" style="--pw:470px;left:305px;top:40px;z-index:2"`) + phone("sinema").replace('class="ph "', `class="ph" style="--pw:400px;left:620px;top:150px;transform:rotate(8deg)"`)
-      : phone("raflar").replace('class="ph "', `class="ph" style="--pw:330px;left:70px;top:90px;transform:rotate(-8deg)"`) + phone("sehir").replace('class="ph "', `class="ph" style="--pw:380px;left:350px;top:20px;z-index:2"`) + phone("sinema").replace('class="ph "', `class="ph" style="--pw:330px;left:680px;top:90px;transform:rotate(8deg)"`),
-    cap: "Ne var ne yok, artık cebinde 📲✨\n\n81 ilin konserleri, tiyatroları, stand-up'ları ve sinema seansları tek uygulamada. Şehrini seç, bu akşam neler var hemen gör; sevdiğin etkinliği takip et, bir şey değişirse ilk sen öğren 🔔\n\n📲 Uygulamamızı indirin: nevarneyok.net.tr/indir (bağlantı profilde)\nÜcretsiz · Android ve iPhone\n\n#nevarneyok #etkinlik #konser #tiyatro #standup #sinema #bugünneyapsak #haftasonu" },
-  { id: "uygulama-sehrini-sec", kick: "Bir kaydır, bir dokun", h: "ŞEHRİNİ SEÇ,<br><em>NE VAR NE YOK GÖR.</em>", sub: "81 il tek tekerlekte. Kaydır, şehrin ortaya gelsin, gerisini biz gösterelim.",
-    stage: (s) => phone("tekerlek").replace('class="ph "', `class="ph" style="--pw:${s ? 500 : 420}px;left:${s ? 200 : 120}px;top:${s ? 20 : 20}px;transform:rotate(-4deg)"`) +
-      phone("sehir").replace('class="ph "', `class="ph" style="--pw:${s ? 380 : 330}px;left:${s ? 600 : 590}px;top:${s ? 200 : 150}px;transform:rotate(6deg);z-index:2"`) +
-      `<div class="tag" style="left:${s ? 120 : 80}px;bottom:${s ? 190 : 170}px;z-index:3">📍 81 il</div><div class="tag w" style="left:${s ? 120 : 80}px;bottom:${s ? 110 : 90}px;z-index:3">Tık tık… işte burada 👆</div>`,
-    cap: "Şehrini seç, ne var ne yok gör 📍\n\n81 il tek tekerlekte: kaydır, şehrin ortaya gelsin, dokun. Bu akşam, hafta sonu, vizyondaki filmler… hepsi karşında.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #etkinlik #şehir #konser #tiyatro #sinema #haftasonu" },
+  { id: "uygulama-turkiye", kick: "Tek uygulama · 81 il", h: "TÜM TÜRKİYE'NİN<br><em>ETKİNLİKLERİ.</em>", sub: `${DAN(A)} ${YA(B)}, ${DAN(Cc)} ${YA(D)}… Hangi ildeysen orada ne var ne yok, gör.`,
+    stage: (s) => CLOUD(s) + RIBBON(s ? 130 : 70, -3),
+    cap: `Tüm Türkiye'nin etkinlikleri tek uygulamada 🇹🇷\n\n${NM(A)}, ${NM(B)}, ${NM(Cc)}, ${NM(D)}… 81 ilin konserleri, tiyatroları, stand-up'ları ve sinema seansları. Hangi ildeysen şehrini seç, orada ne var ne yok hemen gör.\n\n📲 Uygulamamızı indirin: nevarneyok.net.tr/indir (bağlantı profilde)\nÜcretsiz · Android ve iPhone\n\n#nevarneyok #etkinlik #ankara #istanbul #izmir #antalya #konser #tiyatro #sinema #türkiye` },
+  { id: "uygulama-cebinde", kick: `${UP(A)} · ${UP(B)} · ${UP(Cc)} · 81 İL`, h: "NE VAR NE YOK,<br><em>ARTIK CEBİNDE.</em>", sub: "Konser, tiyatro, stand-up, sinema seansları. Şehrini seç, hemen gör.",
+    stage: (s) => s ? P(`sehir_${B}`, 400, 50, 170, -8, 1, NM(B)) + P(`sehir_${A}`, 470, 305, 70, 0, 2, NM(A)) + P(`sehir_${Cc}`, 400, 630, 170, 8, 1, NM(Cc)) + RIBBON(150, -4)
+      : P(`sehir_${B}`, 330, 60, 110, -8, 1, NM(B)) + P(`sehir_${A}`, 380, 350, 50, 0, 2, NM(A)) + P(`sehir_${Cc}`, 330, 690, 110, 8, 1, NM(Cc)) + RIBBON(90, -4),
+    cap: `Ne var ne yok, artık cebinde 📲✨\n\n${NM(A)}, ${NM(B)}, ${NM(Cc)}… 81 ilin konserleri, tiyatroları, stand-up'ları ve sinema seansları tek uygulamada. Şehrini seç, bu akşam neler var hemen gör; sevdiğin etkinliği takip et, bir şey değişirse ilk sen öğren 🔔\n\n📲 Uygulamamızı indirin: nevarneyok.net.tr/indir (bağlantı profilde)\nÜcretsiz · Android ve iPhone\n\n#nevarneyok #etkinlik #ankara #istanbul #izmir #konser #tiyatro #standup #sinema #haftasonu` },
+  { id: "uygulama-sehrini-sec", kick: "81 il · bir kaydır, bir dokun", h: "ŞEHRİNİ SEÇ,<br><em>NE VAR NE YOK GÖR.</em>", sub: `${NM(A)}, ${NM(B)}, ${NM(Cc)}… 81 il tek tekerlekte. Kaydır, şehrin ortaya gelsin.`,
+    stage: (s) => P("tekerlek", s ? 480 : 400, s ? 110 : 110, s ? 30 : 20, -5, 1) + P(`sehir_${A}`, s ? 400 : 340, s ? 580 : 590, s ? 190 : 120, 6, 2, NM(A)) + RIBBON(s ? 150 : 90, -4),
+    cap: `Şehrini seç, ne var ne yok gör 📍\n\n${NM(A)}, ${NM(B)}, ${NM(Cc)}, ${NM(D)}… 81 il tek tekerlekte: kaydır, şehrin ortaya gelsin, dokun. Bu akşam, hafta sonu, vizyondaki filmler… hepsi karşında.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #etkinlik #ankara #istanbul #izmir #konser #tiyatro #sinema #haftasonu` },
   { id: "uygulama-takip", kick: "Takip et, rahat et", h: "HİÇBİR ŞEYİ<br><em>KAÇIRMA.</em>", sub: "Takip ettiğin etkinlikte iptal, erteleme, saat ya da yer değişirse ilk senin haberin olur.",
-    stage: (s) => phone(shots.takip ? "takip" : "etkinlik").replace('class="ph "', `class="ph" style="--pw:${s ? 500 : 430}px;left:${s ? 290 : 325}px;top:${s ? 150 : 40}px"`) +
+    stage: (s) => P(shots.takip ? "takip" : "etkinlik", s ? 500 : 430, s ? 290 : 325, s ? 150 : 40, 0, 1, NM(A)) +
       NOTE("Yarın akşam! ⏰", "Takip ettiğin etkinlik yarın. Biletini unutma 😉", s ? 70 : 40, s ? 30 : 110, s ? 600 : 520, "şimdi") +
       NOTE("Saat değişti 🔔", "Takip ettiğin etkinliğin saati güncellendi, bir bak.", s ? 420 : 480, s ? 560 : 520, s ? 600 : 520, "2 sa önce"),
-    cap: "Takip et, hiçbir şeyi kaçırma 🔔\n\nGitmek istediğin etkinliğe \"Takip et\" de; iptal, erteleme, saat ya da yer değişikliğinde bildirimle ilk sen öğren. Bir gün önceden de dürtüyoruz 😉\n\nTakip listen yalnızca senin telefonunda kalır; üyelik yok, giriş yok.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #etkinlik #konser #tiyatro #bildirim #haftasonu" },
+    cap: "Takip et, hiçbir şeyi kaçırma 🔔\n\nGitmek istediğin etkinliğe \"Takip et\" de; iptal, erteleme, saat ya da yer değişikliğinde bildirimle ilk sen öğren. Bir gün önceden de dürtüyoruz 😉 81 ilin hangisinde olursan ol.\n\nTakip listen yalnızca senin telefonunda kalır; üyelik yok, giriş yok.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #etkinlik #konser #tiyatro #bildirim #haftasonu" },
   { id: "uygulama-sana-gore", kick: "Filtrele, kişiselleştir", h: "TAM<br><em>SANA GÖRE.</em>", sub: "Ne zaman, hangi tür, hangi saat, kimlerle… Seç, sana uygun olanlar öne çıksın.",
-    stage: (s) => phone("filtre").replace('class="ph "', `class="ph" style="--pw:${s ? 450 : 390}px;left:${s ? 80 : 110}px;top:${s ? 60 : 30}px;transform:rotate(-5deg)"`) +
-      phone("kisisel").replace('class="ph "', `class="ph" style="--pw:${s ? 450 : 390}px;left:${s ? 540 : 570}px;top:${s ? 220 : 70}px;transform:rotate(5deg);z-index:2"`) +
+    stage: (s) => P("filtre", s ? 450 : 390, s ? 80 : 110, s ? 60 : 30, -5, 1) + P("kisisel", s ? 450 : 390, s ? 540 : 570, s ? 220 : 70, 5, 2) +
       `<div class="tag" style="left:${s ? 90 : 60}px;bottom:${s ? 110 : 100}px;z-index:3">🎸 Konser</div><div class="tag w" style="left:${s ? 290 : 250}px;bottom:${s ? 90 : 80}px;z-index:3">Hafta sonu</div><div class="tag" style="left:${s ? 520 : 480}px;bottom:${s ? 110 : 100}px;z-index:3">👨‍👩‍👧 Aile</div>`,
     cap: "Tam sana göre ✨\n\nKonser mi, tiyatro mu, stand-up mı? Bu akşam mı, hafta sonu mu? Ailecek mi? Seç; \"Senin için\" rafı ve sıralama sana göre oluşsun. Seçimlerin yalnızca senin telefonunda kalır.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #etkinlik #konser #tiyatro #standup #aile #haftasonu" },
-  { id: "uygulama-sinema", kick: "Vizyonda ne var?", h: "SEANSLAR<br><em>SALON SALON.</em>", sub: "Şehrindeki bütün sinemaların seansları gün gün, salon salon. Bilete tek dokunuş.",
-    stage: (s) => phone("sinema").replace('class="ph "', `class="ph" style="--pw:${s ? 520 : 440}px;left:${s ? 280 : 320}px;top:${s ? 60 : 20}px"`) +
-      `<div class="tag" style="left:${s ? 90 : 70}px;top:${s ? 260 : 160}px;z-index:3">🍿 Vizyonda</div><div class="tag w" style="left:${s ? 690 : 740}px;bottom:${s ? 200 : 170}px;z-index:3">20:30 · 22:45</div>`,
-    cap: "Vizyonda ne var? 🍿\n\nŞehrindeki sinemaların seansları gün gün, salon salon. Filmi seç, saatini bul, bilete tek dokunuşla geç.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #sinema #vizyon #film #seans #haftasonu" },
+  { id: "uygulama-sinema", kick: "Vizyonda ne var?", h: "SEANSLAR<br><em>SALON SALON.</em>", sub: `${DAN(A)} ${YA(B)}, şehrindeki sinemaların seansları gün gün, salon salon.`,
+    stage: (s) => P(`sinema_${B}`, s ? 440 : 380, s ? 80 : 110, s ? 60 : 30, -5, 1, NM(B)) + P(`sinema_${A}`, s ? 440 : 380, s ? 560 : 590, s ? 200 : 70, 5, 2, NM(A)) +
+      `<div class="tag" style="left:${s ? 70 : 60}px;bottom:${s ? 120 : 90}px;z-index:3">🍿 Vizyonda</div>`,
+    cap: `Vizyonda ne var? 🍿\n\n${DAN(A)} ${YA(B)}, 81 ilde sinemaların seansları gün gün, salon salon. Filmi seç, saatini bul, bilete tek dokunuşla geç.\n\n📲 nevarneyok.net.tr/indir (bağlantı profilde)\n\n#nevarneyok #sinema #vizyon #film #seans #ankara #istanbul` },
 ];
 
 const html = (ad, story) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><style>${CSS}</style></head><body>${WALL}<div class="bg"></div>
-<div class="pg" style="--top:${story ? 230 : 70}px;--bot:${story ? 220 : 56}px;--hs:${story ? 136 : 118}px">${LOGOH}<div class="kick">${ad.kick}</div><h1>${ad.h}</h1>${story ? `<p class="sub">${ad.sub}</p>` : ""}
-<div class="stage">${ad.stage(story)}</div>${CTA}</div></body></html>`;
+<div class="pg" style="--top:${story ? 230 : 70}px;--bot:${story ? 220 : 56}px;--hs:${story ? 128 : 112}px">${LOGOH}<div class="kick">${ad.kick}</div><h1>${ad.h}</h1>${story ? `<p class="sub">${ad.sub}</p>` : ""}
+<div class="stage">${ad.stage(story)}</div>${CTA}</div>
+<script>document.fonts.ready.then(()=>{const c=document.querySelector(".cloud");if(c){let k=1;const S=[...c.children].map(x=>parseFloat(x.style.fontSize));for(let t=0;t<40&&c.scrollHeight>c.clientHeight+2;t++){k*=.95;c.children.length&&[...c.children].forEach((x,i)=>x.style.fontSize=S[i]*k+"px")}}})</script></body></html>`;
 
 const out = [];
 const cp = await browser.newPage({ deviceScaleFactor: 1 });
