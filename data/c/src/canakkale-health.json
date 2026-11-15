@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:46:33.480Z",
+ "runAt": "2026-11-15T10:28:56.677Z",
  "mode": "full",
- "total": 245,
+ "total": 252,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=%C3%87anakkale: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 122,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 245,
-   "prevCount": 0,
+   "count": 252,
+   "prevCount": 245,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: canakkale",
     "biletinial.com/tr-tr/tiyatro/canakkale: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/canakkale: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 37,
+   "seconds": 36,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:46:33.480Z"
+   "lastOk": "2026-11-15T10:28:56.677Z"
   }
  }
 }

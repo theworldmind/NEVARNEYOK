@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:50:37.056Z",
+ "runAt": "2026-11-15T10:31:49.524Z",
  "mode": "full",
- "total": 52,
+ "total": 54,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=K%C3%BCtahya: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 120,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 52,
-   "prevCount": 0,
+   "count": 54,
+   "prevCount": 52,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kutahya",
     "biletinial.com/tr-tr/tiyatro/kutahya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kutahya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 26,
+   "seconds": 31,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:50:37.056Z"
+   "lastOk": "2026-11-15T10:31:49.524Z"
   }
  }
 }

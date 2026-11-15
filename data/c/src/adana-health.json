@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:42:46.049Z",
+ "runAt": "2026-11-15T10:26:56.370Z",
  "mode": "full",
- "total": 453,
+ "total": 454,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Adana: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 126,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 453,
-   "prevCount": 0,
+   "count": 454,
+   "prevCount": 453,
    "error": "",
    "notes": [
     "açık veri: 10 seans",
     "biletinial.com/tr-tr/tiyatro/adana: 62 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/adana: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 56,
+   "seconds": 60,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:42:46.049Z"
+   "lastOk": "2026-11-15T10:26:56.370Z"
   }
  }
 }

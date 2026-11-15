@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:54:12.099Z",
+ "runAt": "2026-11-15T10:33:36.635Z",
  "mode": "full",
- "total": 591,
+ "total": 592,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Sakarya: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 116,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 592,
-   "prevCount": 0,
+   "count": 593,
+   "prevCount": 591,
    "error": "",
    "notes": [
     "açık veri: 29 seans",
     "biletinial.com/tr-tr/tiyatro/sakarya: 73 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sakarya: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 60,
+   "seconds": 59,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:54:12.099Z"
+   "lastOk": "2026-11-15T10:33:36.635Z"
   }
  }
 }

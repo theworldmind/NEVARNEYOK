@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:51:18.989Z",
+ "runAt": "2026-11-15T10:32:45.278Z",
  "mode": "full",
- "total": 424,
+ "total": 423,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 5,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Mersin: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 119,
-   "failStreak": 0,
-   "lastOk": "2026-11-15T08:51:18.989Z"
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 419,
-   "prevCount": 0,
+   "count": 424,
+   "prevCount": 419,
    "error": "",
    "notes": [
     "açık veri: 2 seans",
     "biletinial.com/tr-tr/tiyatro/mersin: 53 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mersin: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 56,
+   "seconds": 57,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:51:18.989Z"
+   "lastOk": "2026-11-15T10:32:45.278Z"
   }
  }
 }

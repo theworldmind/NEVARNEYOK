@@ -1,25 +1,9 @@
 {
- "runAt": "2026-11-15T08:46:36.057Z",
+ "runAt": "2026-11-15T10:29:07.802Z",
  "mode": "full",
  "total": 0,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=%C3%87ank%C4%B1r%C4%B1: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 127,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
@@ -34,8 +18,8 @@
     "biletinial.com/tr-tr/tiyatro/cankiri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/cankiri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
-   "failStreak": 1,
+   "seconds": 25,
+   "failStreak": 2,
    "lastOk": null
   }
  }

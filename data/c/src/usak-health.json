@@ -1,33 +1,17 @@
 {
- "runAt": "2026-11-15T08:54:59.779Z",
+ "runAt": "2026-11-15T10:35:20.853Z",
  "mode": "full",
- "total": 51,
+ "total": 53,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=U%C5%9Fak: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 116,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 51,
-   "prevCount": 0,
+   "count": 53,
+   "prevCount": 51,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: usak",
@@ -36,7 +20,7 @@
    ],
    "seconds": 28,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:54:59.779Z"
+   "lastOk": "2026-11-15T10:35:20.853Z"
   }
  }
 }

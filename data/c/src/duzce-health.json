@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:46:34.784Z",
+ "runAt": "2026-11-15T10:29:06.869Z",
  "mode": "full",
- "total": 149,
+ "total": 150,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=D%C3%BCzce: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 117,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 149,
-   "prevCount": 0,
+   "count": 150,
+   "prevCount": 149,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: duzce",
     "biletinial.com/tr-tr/tiyatro/duzce: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
+   "seconds": 35,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:46:34.784Z"
+   "lastOk": "2026-11-15T10:29:06.869Z"
   }
  }
 }

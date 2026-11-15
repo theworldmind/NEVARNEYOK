@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:48:46.231Z",
+ "runAt": "2026-11-15T10:31:14.688Z",
  "mode": "full",
- "total": 1277,
+ "total": 1212,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 3,
-   "prevCount": 67,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=%C4%B0zmir: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 226,
-   "failStreak": 1,
-   "lastOk": "2026-11-15T08:36:10.723Z"
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1222,
-   "prevCount": 960,
+   "count": 1225,
+   "prevCount": 1212,
    "error": "",
    "notes": [
-    "açık veri: 253 seans, 21 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/izmir: 150 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 254 seans, 19 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/izmir: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/izmir: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 123,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:48:46.231Z"
+   "lastOk": "2026-11-15T10:31:14.688Z"
   }
  }
 }

@@ -1,41 +1,25 @@
 {
- "runAt": "2026-11-15T08:46:57.456Z",
+ "runAt": "2026-11-15T10:29:21.579Z",
  "mode": "full",
  "total": 21,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=G%C3%BCm%C3%BC%C5%9Fhane: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 138,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 21,
-   "prevCount": 0,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
+   "prevCount": 21,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: gumushane",
-    "biletinial.com/tr-tr/tiyatro/gumushane: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "liste açılmadı: https://biletinial.com/tr-tr/tiyatro/gumushane (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/tiyatro/gumushane\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/tiyatro/gumushane\", waiting until \"domcontentloaded\"\n)",
+    "liste açılmadı: https://biletinial.com/tr-tr/muzik/gumushane (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/muzik/gumushane\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/muzik/gumushane\", waiting until \"domcontentloaded\"\n)"
    ],
-   "seconds": 28,
-   "failStreak": 0,
+   "seconds": 156,
+   "failStreak": 1,
    "lastOk": "2026-11-15T08:46:57.456Z"
   }
  }

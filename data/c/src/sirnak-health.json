@@ -1,33 +1,17 @@
 {
- "runAt": "2026-11-15T08:54:24.850Z",
+ "runAt": "2026-11-15T10:34:17.223Z",
  "mode": "full",
- "total": 40,
+ "total": 41,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=%C5%9E%C4%B1rnak: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 143,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 40,
-   "prevCount": 0,
+   "count": 41,
+   "prevCount": 40,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: sirnak",
@@ -36,7 +20,7 @@
    ],
    "seconds": 30,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:54:24.850Z"
+   "lastOk": "2026-11-15T10:34:17.223Z"
   }
  }
 }

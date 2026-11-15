@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:42:48.160Z",
+ "runAt": "2026-11-15T10:26:50.823Z",
  "mode": "full",
- "total": 56,
+ "total": 58,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Batman: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 132,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 56,
-   "prevCount": 0,
+   "count": 58,
+   "prevCount": 56,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: batman",
     "biletinial.com/tr-tr/tiyatro/batman: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/batman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
+   "seconds": 28,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:42:48.160Z"
+   "lastOk": "2026-11-15T10:26:50.823Z"
   }
  }
 }

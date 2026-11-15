@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:46:41.698Z",
+ "runAt": "2026-11-15T10:29:01.995Z",
  "mode": "full",
- "total": 74,
+ "total": 87,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Erzincan: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 139,
-   "failStreak": 0,
-   "lastOk": "2026-11-15T08:46:41.698Z"
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 73,
-   "prevCount": 0,
+   "count": 87,
+   "prevCount": 73,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: erzincan",
-    "biletinial.com/tr-tr/tiyatro/erzincan: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/erzincan: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 31,
+   "seconds": 30,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:46:41.698Z"
+   "lastOk": "2026-11-15T10:29:01.995Z"
   }
  }
 }

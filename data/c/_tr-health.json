@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-15T08:42:47.112Z",
+ "runAt": "2026-11-15T10:27:08.237Z",
  "mode": "full",
- "total": 922,
+ "total": 1005,
  "written": true,
  "sources": {
   "sanatcepte": {
@@ -10,15 +10,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 881,
-   "prevCount": 0,
+   "count": 874,
+   "prevCount": 880,
    "error": "",
    "notes": [
-    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 363 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 360 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 94,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:42:47.112Z"
+   "lastOk": "2026-11-15T10:27:08.237Z"
   },
   "dob": {
    "id": "dob",
@@ -26,15 +26,65 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 204,
+   "count": 203,
+   "prevCount": 203,
+   "error": "",
+   "notes": [
+    "açık veri: 203 seans"
+   ],
+   "seconds": 22,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T10:27:08.237Z"
+  },
+  "tiyatrolar": {
+   "id": "tiyatrolar",
+   "name": "tiyatrolar.com.tr",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 2,
    "prevCount": 0,
    "error": "",
    "notes": [
-    "açık veri: 204 seans"
+    "tiyatrolar.com.tr/tiyatro-oyunlari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "site haritası: 2000 adres"
    ],
-   "seconds": 20,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:42:47.112Z"
+   "lastOk": "2026-11-15T10:27:08.237Z"
+  },
+  "iticket": {
+   "id": "iticket",
+   "name": "iTicket",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 15,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "iticket.com.tr/tr/events: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "iticket.com.tr/en/events/music: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 31,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T10:27:08.237Z"
+  },
+  "biletix": {
+   "id": "biletix",
+   "name": "Biletix",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 70,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 144,
+   "failStreak": 0,
+   "lastOk": "2026-11-15T10:27:08.237Z"
   }
  }
 }

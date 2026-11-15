@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:50:51.189Z",
+ "runAt": "2026-11-15T10:32:18.230Z",
  "mode": "full",
- "total": 116,
+ "total": 118,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Malatya: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 124,
-   "failStreak": 0,
-   "lastOk": "2026-11-15T08:50:51.189Z"
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 115,
-   "prevCount": 0,
+   "count": 118,
+   "prevCount": 115,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: malatya",
     "biletinial.com/tr-tr/tiyatro/malatya: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/malatya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 35,
+   "seconds": 39,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:50:51.189Z"
+   "lastOk": "2026-11-15T10:32:18.230Z"
   }
  }
 }

@@ -1,42 +1,26 @@
 {
- "runAt": "2026-11-15T08:50:10.824Z",
+ "runAt": "2026-11-15T10:31:32.941Z",
  "mode": "full",
- "total": 111,
+ "total": 113,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Karab%C3%BCk: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 122,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 111,
-   "prevCount": 0,
+   "count": 113,
+   "prevCount": 111,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: karabuk",
     "biletinial.com/tr-tr/tiyatro/karabuk: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/karabuk: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
+   "seconds": 36,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:50:10.824Z"
+   "lastOk": "2026-11-15T10:31:32.941Z"
   }
  }
 }

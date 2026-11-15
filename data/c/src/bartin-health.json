@@ -1,33 +1,17 @@
 {
- "runAt": "2026-11-15T08:42:51.231Z",
+ "runAt": "2026-11-15T10:26:55.775Z",
  "mode": "full",
- "total": 119,
+ "total": 121,
  "written": true,
  "sources": {
-  "biletix": {
-   "id": "biletix",
-   "name": "Biletix",
-   "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
-   "prevCount": 0,
-   "error": "",
-   "notes": [
-    "www.biletix.com/search/TURKIYE/tr?category_sb=-1&date_sb=-1&city_sb=Bart%C4%B1n: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 118,
-   "failStreak": 1,
-   "lastOk": null
-  },
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 119,
-   "prevCount": 0,
+   "count": 121,
+   "prevCount": 119,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: bartin",
@@ -36,7 +20,7 @@
    ],
    "seconds": 31,
    "failStreak": 0,
-   "lastOk": "2026-11-15T08:42:51.231Z"
+   "lastOk": "2026-11-15T10:26:55.775Z"
   }
  }
 }
