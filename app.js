@@ -876,10 +876,41 @@ function calAdd(list) {
 
 /* ---------- Paylaş: etkinliğin kendi paylaşım sayfası (e/<il>/<ad>/; WhatsApp/Instagram önizlemesinde ad, tarih, mekân ve afiş) ---------- */
 const shareUrl = (e, city) => `${location.origin}/e/${city}/${e.slug}/`;
-async function shareEv(e, city, btn) {
+/* Paylaş (kullanıcı isteği, 15.11.2026: "paylaşımlar güzel olsun; arkadaşına ya da hikâyesine; afiş olmazsa olmaz"):
+   iOS paylaşım sayfası gibi alttan açılan cam panel; üstte hikâye görselinin önizlemesi. Hikâye görseli telefonda çizilir (paylas.js);
+   afişini telefona vermeyen sitelerde yayında önceden hazırlanmış görsel (s/<il>/<ad>.jpg) kullanılır. Afiş değiştirilmez, kaynağı yazar. */
+let paylasP = null;
+const paylasJS = () => paylasP ||= window.NVS ? Promise.resolve() : new Promise((ok, no) => { const s = document.createElement("script"); s.src = "paylas.js?v=1"; s.onload = ok; s.onerror = no; document.head.append(s); });
+function storyOf(e, city) {
+  const ev = { title: e.title, when: `${GUN[pd(e.d).getDay()]}, ${pd(e.d).getDate()} ${AY[pd(e.d).getMonth()]}${e.t ? " · " + e.t : ""}`, venue: e.venue || "", cityName: CITIES.find((c) => c.id === city)?.name || "", cat: e.cat, imgBy: e.imgBy || "", base: "" };
+  const toBlob = (cv) => new Promise((ok) => cv.toBlob(ok, "image/jpeg", .9));
+  return paylasJS().then(async () => {
+    if (e.img) { // 1) afişi sitesi izin veriyorsa telefonda çiz
+      try { const im = await NVS.img(e.img, true); const cv = await NVS.story(ev, im); return await toBlob(cv); } catch {}
+      try { const r = await fetch(`s/${city}/${encodeURIComponent(e.slug)}.jpg`, { cache: "no-cache" }); if (r.ok) return await r.blob(); } catch {} // 2) önceden hazırlanmış
+    }
+    return toBlob(await NVS.story(ev, null)); // 3) afişi olmayan etkinlik: kendi tasarımımız
+  });
+}
+async function shareEv(e, city) {
   haptic(6); gcEv("paylas", "Paylaş");
-  const u = shareUrl(e, city), text = `${e.title} · ${dShort(e.d)}${e.t ? " " + e.t : ""} · ${e.venue}`;
-  try { if (navigator.share) { await navigator.share({ title: e.title, text, url: u }); return; } await navigator.clipboard.writeText(u); toast("Bağlantı kopyalandı 🔗 Yapıştırınca afişiyle görünür."); } catch {}
+  const u = shareUrl(e, city), text = `${e.title} · ${dShort(e.d)}${e.t ? " " + e.t : ""} · ${e.venue}`, fn = `nevarneyok-${e.slug}.jpg`;
+  const sh = sheet(`<div class="pn shp" role="dialog" aria-label="Paylaş"><div class="hd"><b>Paylaş</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2">
+    <div class="shv"><div class="shi sk" id="shi"></div><div class="shm"><b>${esc(e.title)}</b><small>${esc(dShort(e.d))}${e.t ? " · " + esc(e.t) : ""}</small><small>${esc(e.venue || "")}</small></div></div>
+    <div class="sha"><button type="button" data-a="story"><i>📸</i><span>Hikâyende paylaş</span></button><button type="button" data-a="link"><i>💬</i><span>Arkadaşına gönder</span></button><button type="button" data-a="save"><i>⬇️</i><span>Görseli kaydet</span></button><button type="button" data-a="copy"><i>🔗</i><span>Bağlantıyı kopyala</span></button></div>
+    <p class="shn">Arkadaşın bağlantıyı açınca etkinlik doğrudan Ne Var Ne Yok'ta açılır; önizlemede adı, tarihi ve afişi görünür.</p></div></div>`, "mn");
+  let blobP = storyOf(e, city).then((b) => { const im = new Image(); im.src = URL.createObjectURL(b); im.alt = ""; const box = sh.querySelector("#shi"); box.classList.remove("sk"); box.append(im); return b; });
+  blobP.catch(() => sh.querySelector("#shi")?.classList.add("no"));
+  sh.querySelector(".sha").addEventListener("click", async (ev) => {
+    const b = ev.target.closest("[data-a]"); if (!b) return; haptic(5); const a = b.dataset.a;
+    try {
+      if (a === "link") { if (navigator.share) await navigator.share({ title: e.title, text, url: u }); else { await navigator.clipboard.writeText(u); toast("Bağlantı kopyalandı 🔗"); } gcEv("paylas-link", "Bağlantı paylaşıldı"); }
+      else if (a === "copy") { await navigator.clipboard.writeText(u); toast("Bağlantı kopyalandı 🔗 Yapıştırınca afişiyle görünür.", 3500); }
+      else { b.classList.add("bz"); const blob = await blobP; b.classList.remove("bz"); const file = new File([blob], fn, { type: "image/jpeg" });
+        if (a === "story" && navigator.canShare?.({ files: [file] })) { await navigator.share({ files: [file], title: e.title, text: u }); gcEv("paylas-hikaye", "Hikâyede paylaşıldı"); }
+        else { const l = document.createElement("a"); l.href = URL.createObjectURL(blob); l.download = fn; document.body.append(l); l.click(); l.remove(); toast(a === "story" ? "Görsel kaydedildi 📸 Instagram'da hikâye eklerken galeriden seç." : "Görsel kaydedildi ✓", 4500); } }
+    } catch (err) { b.classList.remove("bz"); if (err?.name !== "AbortError") toast("Paylaşım açılamadı, bağlantıyı kopyalamayı dene.", 3500); }
+  });
 }
 
 /* ---------- Mekânı takip et: o mekâna yeni etkinlik eklenince haber ver ---------- */

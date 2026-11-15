@@ -19,6 +19,7 @@ const dShort = (s) => { const d = new Date(s + "T12:00:00"); return `${GUNK[d.ge
 const CATS = { konser: "Konser", tiyatro: "Tiyatro", standup: "Stand-up", sahne: "Opera · Bale · Dans", cocuk: "Çocuk & Aile", festival: "Festival", parti: "Parti", atolye: "Atölye & Söyleşi", sinema: "Sinema" };
 
 const cities = (await readJSON(join(ROOT, "data/cities.json"), { cities: {} })).cities || {};
+const OG = new Set((await readJSON(join(ROOT, "s/_og.json"), [])) || []); // afişi olmayan etkinliğin önizleme kartı (share-img.mjs)
 await rm(join(ROOT, "e"), { recursive: true, force: true });
 let n = 0;
 for (const [id, c] of Object.entries(cities)) {
@@ -30,13 +31,13 @@ for (const [id, c] of Object.entries(cities)) {
     const title = e.title, when = `${dShort(e.d)}${e.t ? " · " + e.t : ""}`;
     const desc = `${when} · ${e.venue || c.name || ""} · ${CATS[e.cat] || "Etkinlik"} · Ne Var Ne Yok'ta bilet sitelerini ve fiyatları gör.`;
     const app = `/#/${id}/e/${encodeURIComponent(s)}`;
-    const img = e.img || `${BASE}/icons/og.png`;
+    const img = e.img || (OG.has(`${id}/${s}-og.jpg`) ? `${BASE}/s/${id}/${s}-og.jpg` : `${BASE}/icons/og.png`);
     const html = `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>${esc(title)} · ${esc(when)}</title><meta name="description" content="${esc(desc)}">
 <meta property="og:site_name" content="Ne Var Ne Yok"><meta property="og:type" content="website"><meta property="og:locale" content="tr_TR">
 <meta property="og:title" content="${esc(title)} · ${esc(when)}"><meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${BASE}/e/${id}/${esc(s)}/"><meta property="og:image" content="${esc(img)}">
-<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a0a10">
+<meta property="og:image:alt" content="${esc(title)} afişi"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a0a10">
 <link rel="icon" type="image/png" href="/icons/icon-192.png?v=2"><script>location.replace(${JSON.stringify(app)})</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a10;color:#fff;font:600 16px system-ui,sans-serif;text-align:center}a{color:#c4b5fd}</style>
 </head><body><p><b>${esc(title)}</b><br>${esc(when)} · ${esc(e.venue || "")}<br><br><a href="${esc(app)}">Ne Var Ne Yok'ta aç →</a></p></body></html>`;

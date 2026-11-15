@@ -774,6 +774,19 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.01ms!important;
 .wm .shn{position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask:url(brand/logo-cam.png) center/100% 100% no-repeat;mask:url(brand/logo-cam.png) center/100% 100% no-repeat}
 .wm .shn::after{content:"";position:absolute;top:-30%;bottom:-30%;left:0;width:42%;background:linear-gradient(100deg,transparent 0,rgba(167,139,250,.5) 30%,rgba(255,255,255,.95) 50%,rgba(167,139,250,.5) 70%,transparent 100%);transform:translateX(-130%) skewX(-14deg);animation:shn 1.5s cubic-bezier(.45,0,.2,1) .6s 1 forwards;will-change:transform}
 @keyframes shn{to{transform:translateX(330%) skewX(-14deg)}}
+
+/* Paylaş paneli (15.11.2026) */
+.shp .bd2{padding-top:16px}
+.shv{display:flex;gap:16px;align-items:center}
+.shi{flex:none;width:108px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:var(--s2);box-shadow:0 10px 30px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.1)}
+.shi img{display:block;width:100%;height:100%;object-fit:cover;animation:fi .3s ease}
+@keyframes fi{from{opacity:0}}
+.shm b{display:block;font:800 19px/1.2 var(--fd);font-stretch:85%;text-transform:uppercase}.shm small{display:block;margin-top:6px;color:var(--t2)}
+.sha{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.sha button{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 4px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(255,255,255,.07);font:600 12.5px/1.2 var(--f);text-align:center}
+.sha i{font-style:normal;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:rgba(139,92,246,.22);font-size:21px}
+.sha button.bz i{animation:pz 1s ease-in-out infinite}@keyframes pz{50%{transform:scale(.88);opacity:.6}}
+.shn{margin:16px 2px 4px;color:var(--t3);font-size:13px;line-height:1.45}
 </style>
 </head>
 <body>
