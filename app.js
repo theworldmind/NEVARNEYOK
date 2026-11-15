@@ -118,7 +118,7 @@ const pick = (list, n) => uniq([...list].sort((a, b) => b.score - a.score || a.d
 function appPromo() {
   return `<section class="appx" data-app><div class="ax"><img class="ax-ic" src="icons/icon-192.png" alt="" width="84" height="84"><div class="ax-k">Uygulama</div>
   <h2>Ne var ne yok,<br>artık cebinde.</h2><p>Bütün Türkiye'nin konserleri, tiyatroları, sinema seansları tek yerde. Takip et; iptal, erteleme ve saat değişikliklerini bildirimle ilk sen öğren.</p>
-  <div class="ax-b"><a class="axb" href="indir/">${I.dl || ""}Uygulamamızı kullan</a><a class="axl" href="indir/">Nasıl indirilir →</a></div>
+  <div class="ax-b"><a class="axb glowbtn" href="indir/"><span class="shw"><i></i></span>Uygulamamızı kullan</a><a class="axl" href="indir/">Nasıl indirilir →</a></div>
   <ul class="ax-f"><li><b>81</b>il</li><li><b>🔔</b>bildirim</li><li><b>0₺</b>ücretsiz</li></ul></div></section>`;
 }
 function footer() {
@@ -280,7 +280,7 @@ function applyF(f) {
   if (f.sira === "populer") L = [...L].sort((a, b) => b.score - a.score); else if (f.sira === "fiyat") L = [...L].sort((a, b) => (a.price ?? 1e9) - (b.price ?? 1e9)); else if (f.sira === "sen") L = [...L].sort((a, b) => pscore(b) - pscore(a) || a.d.localeCompare(b.d));
   return L;
 }
-const ILCELER = () => { const m = new Map(); for (const e of DATA.events) { const i = ilceOf(e); if (i && live(e)) m.set(i, (m.get(i) || 0) + 1); } return [...m].sort((a, b) => b[1] - a[1]); };
+const ILCELER = () => { if (DATA.city !== "ankara") return []; const m = new Map(); for (const e of DATA.events) { const i = ilceOf(e); if (i && live(e)) m.set(i, (m.get(i) || 0) + 1); } return [...m].sort((a, b) => b[1] - a[1]); };
 function chipsOf(f) {
   const c = [];
   if (f.q) c.push(["q", `“${f.q}”`]); if (f.t) c.push(["t", TIMES[f.t]]); if (f.gun) c.push(["gun", dShort(f.gun)]);
@@ -380,21 +380,26 @@ function pscore(e) {
   if (P.kids && (e.cat === "cocuk" || (ageN(e) != null && ageN(e) <= 8))) n += 3;
   return n + e.score / 10;
 }
+const CIC = { konser: "🎤", tiyatro: "🎭", standup: "🎙️", sahne: "🩰", cocuk: "🧸", festival: "🎪", parti: "🪩", atolye: "🎨" };
+const WIC = { haftaiciaksam: "🌙", haftasonugunduz: "☀️", haftasonuaksam: "🌆" };
 function openPrefs(city, after) {
   const P = prefs() || { cats: [], ilce: [], when: [], budget: 0, kids: false };
+  const tile = (k, v, l, ic) => `<button type="button" class="tile${(P[k] || []).includes(v) ? " on" : ""}" data-p="${k}" data-v="${esc(v)}" aria-pressed="${(P[k] || []).includes(v)}"><span class="ti">${ic || "✨"}</span><span class="tl3">${esc(l)}</span><i class="tk" aria-hidden="true">✓</i></button>`;
   const chip = (k, v, l) => `<button type="button" data-p="${k}" data-v="${esc(v)}" class="${(P[k] || []).includes(v) ? "on" : ""}">${esc(l)}</button>`;
-  const sh = sheet(`<div class="pn full" role="dialog" aria-label="Kişiselleştir"><div class="hd"><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button><b>Kişiselleştir</b><button type="button" class="lnk" data-clear>Sıfırla</button></div><div class="bd2">
-    <p class="pl1">Neleri sevdiğini seç; ana sayfada <b>Senin için</b> rafı ve sıralama buna göre oluşsun. Seçimlerin yalnızca bu telefonda saklanır, hiçbir yere gönderilmez.</p>
-    <h4>Neleri seversin?</h4><div class="ch">${Object.entries(CATS).filter(([k]) => k !== "sinema").map(([k, l]) => chip("cats", k, l)).join("")}</div>
-    <h4>Hangi semtler sana yakın?</h4><div class="ch">${ILCELER().map(([n]) => chip("ilce", fold(n).replace(/\s+/g, ""), n)).join("")}</div>
-    <h4>Ne zaman çıkarsın?</h4><div class="ch">${Object.entries(WHEN).map(([k, l]) => chip("when", k, l)).join("")}</div>
-    <h4>Bütçe</h4><div class="ch">${[[0, "Fark etmez"], [300, "₺300'e kadar"], [600, "₺600'e kadar"], [1000, "₺1.000'e kadar"]].map(([v, l]) => `<button type="button" data-b="${v}" class="${(P.budget || 0) === v ? "on" : ""}">${l}</button>`).join("")}</div>
-    <label class="tg2" style="margin-top:14px"><span>Çocuklarla da gidiyorum<small>Çocuk ve aile etkinlikleri öne çıksın</small></span><input type="checkbox" id="kids"${P.kids ? " checked" : ""}></label>
+  const B = [[0, "Fark etmez"], [300, "₺300"], [600, "₺600"], [1000, "₺1.000"]], bi = Math.max(0, B.findIndex(([v]) => v === (P.budget || 0)));
+  const IL = ILCELER(), cname = CITIES.find((c) => c.id === city)?.name || "";
+  const sh = sheet(`<div class="pn full prf" role="dialog" aria-label="Kişiselleştir"><div class="hd"><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button><b>Kişiselleştir</b><button type="button" class="lnk" data-clear>Sıfırla</button></div><div class="bd2">
+    <p class="pl1">Neleri sevdiğini seç; <b>Senin için</b> rafı ve sıralama buna göre oluşsun. Seçimlerin yalnızca bu telefonda kalır.</p>
+    <h4>Neleri seversin?</h4><div class="tiles">${Object.entries(CATS).filter(([k]) => k !== "sinema").map(([k, l]) => tile("cats", k, l, CIC[k])).join("")}</div>
+    ${IL.length ? `<h4>${esc(cname)} · Hangi semtler sana yakın?</h4><div class="grp"><div class="ch">${IL.slice(0, 14).map(([n]) => chip("ilce", fold(n).replace(/\s+/g, ""), n)).join("")}</div></div>` : ""}
+    <h4>Ne zaman çıkarsın?</h4><div class="tiles t3">${Object.entries(WHEN).map(([k, l]) => tile("when", k, l, WIC[k])).join("")}</div>
+    <h4>Bütçe</h4><div class="seg" style="--n:${B.length};--i:${bi}"><span class="thumb" aria-hidden="true"></span>${B.map(([v, l], k) => `<button type="button" data-b="${v}" data-k="${k}" class="${k === bi ? "on" : ""}">${l}</button>`).join("")}</div>
+    <div class="grp" style="margin-top:22px"><label class="tg2"><span>Çocuklarla da gidiyorum<small>Çocuk ve aile etkinlikleri öne çıksın</small></span><input type="checkbox" id="kids"${P.kids ? " checked" : ""}></label></div>
     <h4>Bildirimler</h4>${notifBox(city, true)}
   </div><div class="ft"><button type="button" class="ok" data-save>Kaydet</button></div></div>`, "fsheet");
   sh.addEventListener("click", (ev) => {
-    const c = ev.target.closest("[data-p]"); if (c) { const k = c.dataset.p, v = c.dataset.v; P[k] = (P[k] || []).includes(v) ? P[k].filter((x) => x !== v) : [...(P[k] || []), v]; c.classList.toggle("on"); return; }
-    const bb = ev.target.closest("[data-b]"); if (bb) { P.budget = +bb.dataset.b; $$("[data-b]", sh).forEach((x) => x.classList.toggle("on", x === bb)); return; }
+    const c = ev.target.closest("[data-p]"); if (c) { const k = c.dataset.p, v = c.dataset.v; P[k] = (P[k] || []).includes(v) ? P[k].filter((x) => x !== v) : [...(P[k] || []), v]; c.classList.toggle("on"); c.setAttribute("aria-pressed", c.classList.contains("on")); return; }
+    const bb = ev.target.closest("[data-b]"); if (bb) { P.budget = +bb.dataset.b; $(".seg", sh).style.setProperty("--i", bb.dataset.k); $$("[data-b]", sh).forEach((x) => x.classList.toggle("on", x === bb)); return; }
     if (ev.target.closest("[data-clear]")) { store.set("nvny-prefs", ""); sh.close(); after?.(); return; }
     if (ev.target.closest("[data-save]")) { P.kids = $("#kids", sh).checked; store.set("nvny-prefs", JSON.stringify(P)); NV.set("prefs", P); sh.close(); after?.(); }
   });
@@ -614,6 +619,17 @@ function tabsUpdate(P) {
   $$("a", T).forEach((a) => { a.href = href[a.dataset.t]; a.classList.toggle("on", a.dataset.t === cur); });
   const n = Object.keys(follows()).length, b = $('[data-t="takip"] b', T); b.textContent = n || ""; b.classList.toggle("has", !!n);
 }
+
+
+/* Parlayan indir düğmesi: dokununca mor ışık ekrana yayılır, sonra indirme sayfasına geçilir */
+document.addEventListener("click", (ev) => {
+  const b = ev.target.closest(".glowbtn"); if (!b) return;
+  const r = b.getBoundingClientRect(), f = document.createElement("div"); f.className = "pflash";
+  f.style.setProperty("--fx", ((r.left + r.width / 2) / innerWidth * 100).toFixed(1) + "%"); f.style.setProperty("--fy", ((r.top + r.height / 2) / innerHeight * 100).toFixed(1) + "%");
+  document.body.append(f); setTimeout(() => f.remove(), 950);
+  b.classList.remove("tap"); void b.offsetWidth; b.classList.add("tap");
+  if (b.tagName === "A" && b.getAttribute("href")) { ev.preventDefault(); const h = b.href; gcEv("indir-dugmesi", "Uygulamamızı kullan"); setTimeout(() => { location.href = h; }, 320); }
+});
 
 /* ---------- Yönlendirme ---------- */
 const scrollMem = new Map();
