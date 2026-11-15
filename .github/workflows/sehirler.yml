@@ -110,7 +110,7 @@ jobs:
         env:
           CITY: ${{ matrix.il.id }}
           CITY_NAME: ${{ matrix.il.name }}
-          SINEMA_CITY: ${{ matrix.il.id == 'istanbul' && 'istanbul-avrupa,istanbul-anadolu' || matrix.il.id == 'afyonkarahisar' && 'afyonkarahisar,afyon' || matrix.il.id == 'sakarya' && 'sakarya,adapazari' || matrix.il.id }}
+          SINEMA_CITY: ${{ matrix.il.id == 'istanbul' && 'istanbul,istanbul-anadolu' || matrix.il.id == 'afyonkarahisar' && 'afyon' || matrix.il.id == 'sakarya' && 'adapazari' || matrix.il.id }}
           FILMS_FILE: ${{ github.workspace }}/data/c/${{ matrix.il.id }}-films.json
         run: node films.mjs
       - uses: actions/upload-artifact@v4
