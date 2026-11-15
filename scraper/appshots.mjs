@@ -122,7 +122,7 @@ h1 em{font-style:normal;color:#a78bfa;text-shadow:0 0 50px #8b5cf6aa}
 .tag.w{background:#fff;color:#0a0a10;box-shadow:0 20px 40px -10px #000a}
 .pl{position:absolute;left:50%;top:-20px;transform:translateX(-50%);padding:10px 18px;border-radius:99px;background:#fff;color:#0a0a10;font:800 calc(var(--pw)*.058)/1 Archivo,Arial,sans-serif;font-stretch:88%;text-transform:uppercase;white-space:nowrap;box-shadow:0 14px 30px -10px #000a;z-index:3}
 .ph{margin-top:0}.stage{padding-top:0}
-.rib{position:absolute;left:-60px;right:-60px;height:78px;background:#8b5cf6;box-shadow:0 0 60px #8b5cf6aa,0 20px 40px -10px #000c;z-index:6;overflow:hidden;display:flex;align-items:center}
+.rib{position:absolute;left:-60px;right:-60px;height:78px;background:#8b5cf6;box-shadow:0 0 60px #8b5cf6aa,0 20px 40px -10px #000c;z-index:0;overflow:hidden;display:flex;align-items:center}
 .rib div{display:flex;gap:22px;align-items:center;white-space:nowrap;font:900 40px/1 Archivo,Arial,sans-serif;font-stretch:76%;text-transform:uppercase;padding-left:30px}
 .rib span{color:#ffffffd8}.rib span.b{color:#fff}.rib i{font-style:normal;color:#0a0a1088}
 .cloud{position:absolute;inset:10px 40px 120px;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:2px 18px;line-height:.95}
