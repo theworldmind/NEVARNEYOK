@@ -109,13 +109,20 @@ function poster(e, { badge = true, lazy = true } = {}) {
 }
 /* FİYAT KARŞILAŞTIRMASI (kullanıcı isteği, 15.11.2026: "olabildiğince iyi fiyat karşılaştırması"): aynı etkinliği satan siteler alt alta;
    en düşük yeşil "En düşük" etiketiyle, diğerlerinde fark (₺ ve %), fiyat çubuğu, sitenin kendi fiyat kategorileri; yalnızca doğrulanmış (≤36 sa) fiyatlar. */
+// Satış sitelerinin kendi simgeleri (kullanıcı isteği, 15.11.2026): dosya saklanmaz, sitenin kendi adresinden gösterilir (afişler gibi);
+// yüklenemezse sitenin renginde baş harf kalır. Bilinmeyen sitede bilet adresinin alan adındaki /favicon.ico denenir.
+const SITEI = { Biletinial: "https://b6s54eznn8xq.merlincdn.net/dist/assets/img/favicons/favicon-152.png", Biletix: "https://www.biletix.com/favicon.ico",
+  "Sanatçepte": "https://www.sanatcepte.gov.tr/images/fav/apple-icon-76x76.png", iTicket: "https://iticket.com.tr/apple-touch-icon.png",
+  Passo: "https://www.passo.com.tr/assets/fav-icons/fav-128px.png", Biletino: "https://biletino.com/assets/favicon/apple-icon-72x72.png",
+  "Ankara DOB": "https://www.operabale.gov.tr/favicon.ico", Mobilet: "https://www.mobilet.com/favicon.ico" };
+const siteIco = (x) => { if (SITEI[x.site]) return SITEI[x.site]; try { return `https://${new URL(x.url).host}/favicon.ico`; } catch { return ""; } };
 const SITEC = { Biletinial: "#e8424f", Biletix: "#0071ce", Passo: "#e30613", Bubilet: "#7b2ff7", "iTicket": "#00b26a", "Sanatçepte": "#c8102e", "Bilkent Bilet": "#003a70", "tiyatrolar.com.tr": "#f59e0b", Mobilet: "#ff6a00", Biletino: "#ff3d00" };
 function pcmpHTML(e) {
   const T = e.tickets, P = T.filter((x) => x.price), lo = P.length ? Math.min(...P.map((x) => x.price)) : 0, hi = P.length ? Math.max(...P.map((x) => x.price)) : 0, multi = P.length > 1;
   const row = (x) => { const d = x.price && multi ? x.price - lo : 0, best = multi && x.price === lo;
     const sub = !x.price ? "Fiyat sitede" : best ? "En düşük fiyat" : multi ? `+${TL(d)} · %${Math.round((d / lo) * 100)} daha yüksek` : "Satış sitesinde doğrulandı";
     return `<a class="pr2${best ? " lo" : ""}${x.price ? "" : " na"}" href="${esc(x.url)}" target="_blank" rel="noopener" data-buy="${esc(x.site)}">
-      <span class="px-lg" style="--c:${SITEC[x.site] || "#8b5cf6"}">${esc((x.site || "?").replace(/^(the )/i, "").charAt(0).toLocaleUpperCase("tr"))}</span>
+      <span class="px-lg" style="--c:${SITEC[x.site] || "#8b5cf6"}">${siteIco(x) ? `<img src="${esc(siteIco(x))}" alt="${esc(x.site)}" referrerpolicy="no-referrer" loading="lazy" onerror="this.parentNode.classList.add('nf');this.remove()">` : ""}<b>${esc((x.site || "?").charAt(0).toLocaleUpperCase("tr"))}</b></span>
       <span class="px-nm"><b>${esc(x.site)}</b><small>${sub}</small>${x.price && multi ? `<span class="px-bar"><i style="width:${Math.max(8, Math.round((x.price / hi) * 100))}%"></i></span>` : ""}</span>
       <span class="px-amt">${x.price ? TL(x.price) : "—"}</span><span class="px-go">${best ? "Al" : "Git"}${I.ext}</span></a>
       ${x.cats?.length && x.price ? `<div class="cats">${x.cats.slice(0, 10).map((c) => `<span${c[2] === false ? ' class="x"' : ""}>${esc(c[0])} <b>${TL(c[1])}</b>${c[3] != null ? ` · ${c[3]} boş` : ""}${c[2] === false ? " · tükendi" : ""}</span>`).join("")}</div>` : ""}`; };

@@ -1,0 +1,34 @@
+# İnceleme: verilen sayfaların telefon boyunda ekran görüntüsünü "ekran" dalına koyar (canlı sitede görünümü denetlemek için).
+name: Ekran görüntüsü (inceleme)
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Boşlukla ayrılmış adresler (adres#kaydır=SEÇİCİ ile o öğeye kaydırılır)"
+        required: true
+permissions:
+  contents: write
+jobs:
+  cek:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - env:
+          URLS: ${{ github.event.inputs.urls }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/e && cd /tmp/e && npm init -y >/dev/null && npm i -s playwright@1 >/dev/null && npx playwright install --with-deps chromium >/dev/null
+          cat > s.mjs <<'JS'
+          import { chromium } from "playwright";
+          const b = await chromium.launch(); const c = await b.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: "tr-TR" });
+          let i = 0;
+          for (const a of process.env.URLS.split(/\s+/).filter(Boolean)) { i++; const [u, sel] = a.split("#kaydir="); const p = await c.newPage();
+            await p.goto(u, { waitUntil: "networkidle", timeout: 45000 }).catch(() => {}); await p.waitForTimeout(2500);
+            if (sel) await p.evaluate((s) => { const e = document.querySelector(s); if (e) scrollTo(0, e.getBoundingClientRect().top + scrollY - 140); }, sel);
+            await p.waitForTimeout(1200); await p.screenshot({ path: `ekran-${i}.png` }); await p.close(); }
+          await b.close();
+          JS
+          node s.mjs; rm -rf node_modules package*.json s.mjs
+          git init -q -b ekran && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm "ekranlar"
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ekran
