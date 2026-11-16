@@ -249,7 +249,19 @@ function blip({ f = 2200, f2 = 0, body = 0, vol = .1, dur = .014, noise = .5, hp
   } catch {}
 }
 const buzz = (ms) => haptic(ms); // Android titreşim, iPhone 18+ sistem tıkı (aşağıda)
-function tick() { const t = performance.now(); if (t - lastTick < 32) return; lastTick = t; blip({ f: 2200, f2: 1750, body: 1100, vol: .085, dur: .014, noise: .55, hp: 3000 }); buzz(3); }
+/* Çark tıkı (kullanıcı, 16.11.2026 10:30: "Apple saat sesi gibi, daha metalik"): iPhone'un saat/alarm çarkındaki gibi çok kısa, parlak, metalik "tık".
+   Uyumsuz (metal gibi) üst tonlar 3,2–9,6 kHz'de birkaç milisaniyede söner + dar bantlı çok kısa çıtırtı + neredeyse duyulmayan alçak gövde.
+   Her dişte perde çok az değişir (gerçek mekanizma gibi), art arda hızlı çevirince ses biraz kısılır (kulağı yormaz). */
+let tickN = 0;
+function tick() { const now = performance.now(); if (now - lastTick < 26) return; const fast = now - lastTick < 90; lastTick = now; buzz(3);
+  if (!sesOn() || !acted) return;
+  try { const A = ac(), t = A.currentTime, out = A.createGain(), j = 1 + ((tickN++ % 3) - 1) * .012; out.gain.value = fast ? .075 : .1; out.connect(A.destination);
+    if (!NOISE) { const n = Math.round(A.sampleRate * .004); NOISE = A.createBuffer(1, n, A.sampleRate); const d = NOISE.getChannelData(0); for (let k = 0; k < n; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / n, 4); }
+    const ns = A.createBufferSource(), bp = A.createBiquadFilter(), ng = A.createGain(); ns.buffer = NOISE; bp.type = "bandpass"; bp.frequency.value = 6200 * j; bp.Q.value = 2.2; ng.gain.value = 1.1; ns.connect(bp).connect(ng).connect(out); ns.start(t);
+    for (const [f, a, d] of [[3170, 1, .011], [4790, .6, .008], [6930, .38, .006], [9580, .2, .004]]) { const o = A.createOscillator(), g = A.createGain(); o.type = "sine"; o.frequency.value = f * j;
+      g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(a, t + .0004); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.connect(g).connect(out); o.start(t); o.stop(t + d + .005); }
+    const b = A.createOscillator(), bg = A.createGain(); b.type = "sine"; b.frequency.value = 240; bg.gain.setValueAtTime(.0001, t); bg.gain.linearRampToValueAtTime(.35, t + .0005); bg.gain.exponentialRampToValueAtTime(.0001, t + .005); b.connect(bg).connect(out); b.start(t); b.stop(t + .01);
+  } catch {} }
 const snd = {
   on() { blip({ f: 1650, f2: 1500, body: 820, vol: .09, dur: .022, noise: .35, hp: 2200 }); buzz(5); },
   off() { blip({ f: 1150, f2: 1000, body: 600, vol: .08, dur: .022, noise: .3, hp: 1800 }); buzz(5); },
@@ -2127,12 +2139,13 @@ function viewHarita(city) {
     <button type="button" class="hm-n" id="hmn"><span class="sk" style="display:inline-block;width:150px;height:14px;border-radius:7px"></span></button></div>`;
   const el = $("#hm"), wrap = $("#hmw"), N = CNAME(); let map = null, IX = null, VG = [], UG = new Map(), E = [], pinM = null, meM = null, live = 0, posters = new Map(), favM = [], raf = 0;
   const alive = () => document.body.contains(el);
+  const vSheet = (g) => { const today = nowIST().d, S = new Set(g.L), rg = hmRange(HM.when); venueSheetX({ ...g, more: g.vi == null ? [] : IX.e.filter((x) => x[0] === g.vi && !S.has(x) && x[3] >= today && (x[3] < rg[0] || x[3] > rg[1]) && x[3] <= addD(today, 120)) }); };
   const lt = () => mTheme() === "acik";
   // veriyi haritanın anlayacağı biçime çevir (filtre değişince yalnızca kaynaklar yenilenir; katmanlar yerinde kalır)
   const build = () => {
     E = hmFilter(IX, HM); const { d: today, hm } = nowIST(), now = +hm.slice(0, 2) * 60 + +hm.slice(3, 5);
     const byV = new Map(); UG = new Map(); for (const x of E) { if (x[0] >= 0) (byV.get(x[0]) || byV.set(x[0], []).get(x[0])).push(x); else (UG.get(x[7]) || UG.set(x[7], []).get(x[7])).push(x); }
-    VG = [...byV].map(([vi, L]) => ({ v: IX.v[vi], L })); const byC = new Map(); live = 0;
+    VG = [...byV].map(([vi, L]) => ({ v: IX.v[vi], L, vi })); const byC = new Map(); live = 0;
     const vf = VG.map((g, i) => { const cc = {}; for (const x of g.L) cc[x[5]] = (cc[x[5]] || 0) + 1; const top = Object.entries(cc).sort((p, q) => q[1] - p[1])[0][0];
       const lv = g.L.some((x) => x[3] === today && x[4] && (() => { const m = +x[4].slice(0, 2) * 60 + +x[4].slice(3, 5) - now; return m <= 180 && m >= -60; })()); if (lv) live++;
       byC.set(g.v[2], (byC.get(g.v[2]) || 0) + g.L.length);
@@ -2145,8 +2158,13 @@ function viewHarita(city) {
   };
   const setData = () => { if (!map || !IX) return; const D = build(); for (const k of Object.keys(D)) map.getSource(k)?.setData(D[k]);
     $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik${HM.when === "tumu" ? "" : " · " + HMW.find((w) => w[0] === HM.when)[1].toLowerCase()}<small> · ${VG.length} mekân</small>`;
-    const tg = hmTags(); $("#hmfn").textContent = tg.length || ""; $("#hmt").innerHTML = tg.length ? tg.map((t) => `<span>${esc(t)}</span>`).join("") + `<button type="button" id="hmt0">Sıfırla</button>` : "";
-    $("#hmt0")?.addEventListener("click", () => { Object.assign(HM, { ...HM0 }); hmSave(); snd.sel?.(); haptic(5); setData(); });
+    // haritanın üstünde her zaman: Tümü · Bugün · Yarın · Hafta sonu… (Apple Haritalar'daki hızlı seçimler gibi) + seçili diğer filtreler
+    const tg = hmTags(), ot = tg.filter((t) => t !== hmWhen()), row = $("#hmt"); $("#hmfn").textContent = tg.length || "";
+    row.innerHTML = HMW.map(([k, l]) => `<button type="button" class="hw${HM.when === k ? " on" : ""}" data-hw="${k}">${l}</button>`).join("") + (ot.length ? `<i class="hsep"></i>${ot.map((t) => `<span>${esc(t)}</span>`).join("")}<button type="button" id="hmt0">Sıfırla</button>` : "");
+    const on = row.querySelector(".hw.on"); if (on) row.scrollLeft = on.offsetLeft - row.clientWidth / 2 + on.offsetWidth / 2;
+    $$("[data-hw]", row).forEach((b) => b.addEventListener("click", () => { if (HM.when === b.dataset.hw) return; HM.when = b.dataset.hw; hmSave(); snd.sel?.(); haptic(5); setData(); }));
+    $$("#hmt span", row).forEach((x) => x.addEventListener("click", () => $("#hmf").click()));
+    $("#hmt0")?.addEventListener("click", () => { Object.assign(HM, { ...HM0, when: HM.when, cats: [] }); hmSave(); snd.sel?.(); haptic(5); setData(); });
     posters.forEach((m) => m.remove()); posters.clear(); near(); pulse(); };
   // katmanlar (stil her değiştiğinde yeniden eklenir)
   let IMG = null;
@@ -2181,8 +2199,8 @@ function viewHarita(city) {
       paint: { "text-color": lt() ? ["case", ["==", ["get", "me"], 1], "#fff", "#1c1c1e"] : "#fff", "icon-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 1, 9.5, 0], "text-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 1, 9.5, 0] } });
     const ptr = (id) => { map.on("mouseenter", id, () => { map.getCanvas().style.cursor = "pointer"; }); map.on("mouseleave", id, () => { map.getCanvas().style.cursor = ""; }); };
     if (!map.__nvb) { map.__nvb = 1; ["ven", "ven-n", "un", "city"].forEach(ptr);
-      map.on("click", "ven", (ev) => { const g = VG[ev.features[0].properties.i]; if (g) { recAdd({ k: "v", l: g.v[3], s: N[g.v[2]] || "", c: g.v[2] }); venueSheetX(g); } });
-      map.on("click", "ven-n", (ev) => { const g = VG[ev.features[0].properties.i]; if (g) venueSheetX(g); });
+      map.on("click", "ven", (ev) => { const g = VG[ev.features[0].properties.i]; if (g) { recAdd({ k: "v", l: g.v[3], s: N[g.v[2]] || "", c: g.v[2] }); vSheet(g); } });
+      map.on("click", "ven-n", (ev) => { const g = VG[ev.features[0].properties.i]; if (g) vSheet(g); });
       map.on("click", "un", (ev) => { const c = ev.features[0].properties.c; if (UG.has(c)) unSheet(c, UG.get(c)); });
       map.on("click", "city", (ev) => { const c = ev.features[0].properties.c; haptic(6); snd.push?.(); goCity(c); }); }
     setData();
@@ -2201,7 +2219,7 @@ function viewHarita(city) {
       if (kept.some((k) => r[0] < k[2] && r[2] > k[0] && r[1] < k[3] && r[3] > k[1])) continue; kept.push(r); want.add(i);
       if (!posters.has(i)) { const x0 = g.L.find((x) => x[6]) || g.L[0], cc = CG[x0[5]]?.[0] || "#8b5cf6";
         const e = elOf(`<button type="button" class="mk2${g.L.every((x) => x[9] === "t") ? " so" : ""}" style="--c:${cc}" aria-label="${esc(g.v[3])}"><span>${x0[6] ? `<img src="${esc(x0[6])}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<em>${esc(x0[2].slice(0, 30))}</em></span>${g.L.length > 1 ? `<b>${g.L.length}</b>` : ""}</button>`);
-        e.addEventListener("click", (ev) => { ev.stopPropagation(); recAdd({ k: "v", l: g.v[3], s: N[g.v[2]] || "", c: g.v[2] }); venueSheetX(g); });
+        e.addEventListener("click", (ev) => { ev.stopPropagation(); recAdd({ k: "v", l: g.v[3], s: N[g.v[2]] || "", c: g.v[2] }); vSheet(g); });
         posters.set(i, new maplibregl.Marker({ element: e, anchor: "bottom", offset: [0, 4] }).setLngLat([g.v[1], g.v[0]]).addTo(map)); } }
     for (const [i, mk] of posters) if (!want.has(i)) { mk.remove(); posters.delete(i); } };
   // "canlı" mekânlar: başlamasına 3 saatten az kalan (ya da yeni başlamış) etkinliği olanlar yumuşakça nabız gibi atar
@@ -2292,7 +2310,8 @@ function viewHarita(city) {
     const ui = () => { $$("[data-w]", sh).forEach((b) => b.classList.toggle("on", b.dataset.w === T.when)); $$("[data-b]", sh).forEach((b) => b.classList.toggle("on", +b.dataset.b === T.bud));
       $$("[data-k]", sh).forEach((b) => b.classList.toggle("on", T.cats.includes(b.dataset.k))); all.checked = !T.from; $("#hft", sh).checked = T.tk; $("#hfr", sh).classList.toggle("off", !T.from);
       lab.textContent = T.from ? `${T.from} ve sonrası` : "Bütün saatler"; clearTimeout(cnt); cnt = setTimeout(count, 60); };
-    const count = () => { const L = hmFilter(IX, T); go.textContent = `${L.length.toLocaleString("tr-TR")} etkinliği göster`; go.disabled = !L.length;
+    // her değişiklik haritaya hemen yansır (Apple gibi; kapatınca da kalır), düğme yalnızca paneli kapatır
+    const count = () => { Object.assign(HM, { when: T.when, cats: [...T.cats], from: T.from, bud: T.bud, tk: T.tk }); hmSave(); setData(); const L = E; go.textContent = `${L.length.toLocaleString("tr-TR")} etkinliği göster`; go.disabled = !L.length;
       const K = {}; for (const x of hmFilter(IX, { ...T, cats: [] })) K[x[5]] = (K[x[5]] || 0) + 1; $$("[data-kn]", sh).forEach((s) => { s.textContent = K[s.dataset.kn] || ""; }); };
     const setRuler = (t, smooth) => { const i = Math.round((+t.slice(0, 2) * 60 + +t.slice(3, 5)) / STEP); idx = i; rs.scrollTo({ left: i * 12, behavior: smooth ? "smooth" : "auto" }); };
     // saat çarkı: Apple saatindeki gibi her çeyrek saatte tık sesi ve hafif titreşim
@@ -2304,7 +2323,7 @@ function viewHarita(city) {
     $$("[data-b]", sh).forEach((b) => b.addEventListener("click", () => { T.bud = +b.dataset.b; snd.sel?.(); haptic(4); ui(); }));
     $$("[data-k]", sh).forEach((b) => b.addEventListener("click", () => { const k = b.dataset.k; T.cats = T.cats.includes(k) ? T.cats.filter((x) => x !== k) : [...T.cats, k]; snd.sel?.(); haptic(4); ui(); }));
     $("#hf0", sh).addEventListener("click", () => { Object.assign(T, { ...HM0, cats: [] }); snd.sel?.(); haptic(5); ui(); });
-    go.addEventListener("click", () => { Object.assign(HM, { when: T.when, cats: T.cats, from: T.from, bud: T.bud, tk: T.tk }); hmSave(); snd.ok(); haptic(10); sh.close(); setData(); });
+    go.addEventListener("click", () => { snd.ok(); haptic(10); sh.close(); });
     ui(); requestAnimationFrame(() => setRuler(T.from || "18:00", false)); });
   $("#hmn").addEventListener("click", () => $("#hmf").click());
   // arama: kayıtlı yerler, son aramalar, il, mekân, etkinlik ve herhangi bir yer adı
@@ -2314,7 +2333,7 @@ function viewHarita(city) {
     if (r.k === "c") { goCity(r.c); return; }
     if (r.k === "p" || r.k === "f") { nearPlace(r.ll, r.l); return; }
     const g = VG.find((g) => g.v[3] === (r.k === "v" ? r.l : r.vn) && g.v[2] === r.c);
-    if (r.k === "v") { if (g) { map.flyTo({ center: [g.v[1], g.v[0]], zoom: 16, duration: 1000 }); setTimeout(() => venueSheetX(g), 1050); } else goCity(r.c); return; }
+    if (r.k === "v") { if (g) { map.flyTo({ center: [g.v[1], g.v[0]], zoom: 16, duration: 1000 }); setTimeout(() => vSheet(g), 1050); } else goCity(r.c); return; }
     if (r.k === "e") { location.hash = `#/${r.c}/e/${encodeURIComponent(r.slug)}`; } };
   const home = () => { const F = favs(), R = recents();
     res.innerHTML = `<div class="hm-fv">${F.map((f, i) => `<button type="button" data-fi="${i}">${favIc(f.n)}<span>${esc(f.n)}</span></button>`).join("")}<button type="button" class="add" data-fa><span class="cgi" style="background:rgba(120,120,128,.36)"><svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span><span>Ekle</span></button></div>
@@ -2337,11 +2356,11 @@ function viewHarita(city) {
     res.hidden = false;
     $$("[data-qf]", res).forEach((b) => b.addEventListener("click", () => { const f = F[+b.dataset.qf]; done(); favSheet(f); }));
     $$("[data-qc]", res).forEach((b) => b.addEventListener("click", () => { const c = b.dataset.qc; recAdd({ k: "c", l: N[c], s: "İl", c }); done(); goCity(c); }));
-    $$("[data-qv]", res).forEach((b) => b.addEventListener("click", () => { const g = venues[+b.dataset.qv]; recAdd({ k: "v", l: g.v[3], s: "Mekân · " + (N[g.v[2]] || ""), c: g.v[2] }); done(); map.flyTo({ center: [g.v[1], g.v[0]], zoom: 16, duration: 1000 }); setTimeout(() => venueSheetX(g), 1050); }));
+    $$("[data-qv]", res).forEach((b) => b.addEventListener("click", () => { const g = venues[+b.dataset.qv]; recAdd({ k: "v", l: g.v[3], s: "Mekân · " + (N[g.v[2]] || ""), c: g.v[2] }); done(); map.flyTo({ center: [g.v[1], g.v[0]], zoom: 16, duration: 1000 }); setTimeout(() => vSheet(g), 1050); }));
     $$("[data-qe]", res).forEach((b) => b.addEventListener("click", () => { const x = evs[+b.dataset.qe], v = x[0] >= 0 ? IX.v[x[0]] : null; recAdd({ k: "e", l: x[2], s: `${dShort(x[3])} · ${v ? v[3] : x[8]} · ${N[x[7]] || ""}`, c: x[7], slug: x[1], cat: x[5], vn: v ? v[3] : x[8] }); done();
       const g = v ? VG.find((g) => g.v === v) : { v: [null, null, x[7], x[8], ""], L: (UG.get(x[7]) || []).filter((z) => z[8] === x[8]) };
       if (v) map.flyTo({ center: [v[1], v[0]], zoom: 16, duration: 1000 }); else if (ILLL[x[7]]) map.flyTo({ center: [ILLL[x[7]][1], ILLL[x[7]][0]], zoom: 11.5, duration: 1000 });
-      setTimeout(() => g && venueSheetX(g), 1050); }));
+      setTimeout(() => g && vSheet(g), 1050); }));
   };
   const done = (snd2 = true) => { inp.blur(); res.hidden = true; if (snd2) { haptic(6); snd.push?.(); } };
   /* Yer araması (kullanıcı, 16.11.2026 09:07): semt, mahalle, ilçe, cadde ya da herhangi bir yer adı OpenStreetMap'te aranır (Photon, anahtarsız);
@@ -2391,19 +2410,30 @@ function viewHarita(city) {
   el.addEventListener("pointerdown", () => { if (!res.hidden) { res.hidden = true; inp.blur(); } });
 }
 // konumu henüz bulunmayan mekânların etkinlikleri (il içinde tek liste, mekân mekân)
+// haritadaki listeler gün gün (Apple Takvim gibi başlıklar); satırda saat, durum ve doğrulanmış fiyat
+const hmRows = (L0, c, venue) => { const L = [...L0].sort((a, b) => a[3].localeCompare(b[3]) || (a[4] || "").localeCompare(b[4] || "")); let last = "", out = "";
+  for (const x of L) { if (x[3] !== last) { last = x[3]; const r = rel(x[3]); out += `<h5 class="mdh">${esc(r)}${r === "Bugün" || r === "Yarın" ? `<small>${esc(dShort(x[3]))}</small>` : ""}</h5>`; }
+    const pr = hmPrice(x), st = x[9] === "t" ? `<em class="mst">Tükendi</em>` : x[9] === "e" ? `<em class="mst">Ertelendi</em>` : "";
+    out += `<a href="#/${x[7] || c}/e/${encodeURIComponent(x[1])}"${x[9] === "t" ? ' class="so"' : ""}><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}"><svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}</span></span><span><b>${esc(x[2])}</b><small>${x[4] ? esc(x[4]) + soon(x) : "Saat sitede"}${venue && x[8] ? " · " + esc(x[8]) : ""}${pr ? " · " + TL(pr) + "'den" : x[12] ? " · Ücretsiz" : ""}</small>${st}</span></a>`; }
+  return out; };
+const soon = (x) => { const { d, hm } = nowIST(); if (x[3] !== d || !x[4]) return ""; const m = timeDiff(hm, x[4]); return m < -15 ? " · başladı" : m <= 0 ? " · şimdi" : m < 60 ? ` · ${m} dk sonra` : m < 360 ? ` · ${Math.round(m / 60)} sa sonra` : ""; };
+const hmWhen = () => HM.when !== "tumu" ? HMW.find((w) => w[0] === HM.when)?.[1] : "";
+// konumu henüz bulunmayan mekânların etkinlikleri (il içinde tek liste)
 function unSheet(c, L0) {
-  snd.pop?.(); haptic(8); const N = CNAME(), L = [...L0].sort((a, b) => a[3].localeCompare(b[3]) || (a[4] || "").localeCompare(b[4] || ""));
-  sheet(`<div class="pn" role="dialog" aria-label="${esc(N[c] || c)}"><div class="hd"><span class="rth"><b>${esc(N[c] || c)}</b><small>${L.length} etkinlik · mekân konumları henüz haritada yok</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
-    <div class="bd2"><div class="mpl">${L.map((x) => `<a href="#/${c}/e/${encodeURIComponent(x[1])}"><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}"><svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}</span></span><span><b>${esc(x[2])}</b><small>${rel(x[3])}${x[4] ? " · " + esc(x[4]) : ""} · ${esc(x[8])}</small></span></a>`).join("")}</div></div></div>`, "mn");
+  snd.pop?.(); haptic(8); const N = CNAME(), w = hmWhen();
+  sheet(`<div class="pn" role="dialog" aria-label="${esc(N[c] || c)}"><div class="hd"><span class="rth"><b>${esc(N[c] || c)}</b><small>${w ? esc(w) + " · " : ""}${L0.length} etkinlik · mekân konumları henüz haritada yok</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+    <div class="bd2"><div class="mpl">${hmRows(L0, c, true)}</div></div></div>`, "mn");
 }
-// haritadaki mekân: etkinlikleri (her ilden), yol tarifi
+// haritadaki mekân: seçili günün etkinlikleri; diğer günler tek dokunuşla; yol tarifi
 function venueSheetX(g) {
   snd.pop?.(); haptic(8);
-  const [lat, lng, c, name, ilce] = g.v, N = CNAME(), d = lat != null && DATA.me && !DATA.me.c ? km(DATA.me.p, [lat, lng]) : null;
-  const L = [...g.L].sort((a, b) => a[3].localeCompare(b[3]) || (a[4] || "").localeCompare(b[4] || ""));
-  const sh = sheet(`<div class="pn" role="dialog" aria-label="${esc(name)}"><div class="hd"><span class="rth"><b>${esc(name)}</b><small>${esc([ilce, N[c]].filter(Boolean).join(", "))} · ${L.length} etkinlik${d != null ? " · " + kmTxt(d) : ""}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
-    <div class="bd2"><div class="mpl">${L.map((x) => `<a href="#/${c}/e/${encodeURIComponent(x[1])}"><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}"><svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}</span></span><span><b>${esc(x[2])}</b><small>${rel(x[3])}${x[4] ? " · " + esc(x[4]) : ""}</small></span></a>`).join("")}</div>
+  const [lat, lng, c, name, ilce] = g.v, N = CNAME(), d = lat != null && DATA.me && !DATA.me.c ? km(DATA.me.p, [lat, lng]) : null, w = hmWhen(), more = g.more || [];
+  const sh = sheet(`<div class="pn" role="dialog" aria-label="${esc(name)}"><div class="hd"><span class="rth"><b>${esc(name)}</b><small>${esc([ilce, N[c]].filter(Boolean).join(", "))}${d != null ? " · " + kmTxt(d) : ""}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+    <div class="bd2">${w && !["bugun", "yarin"].includes(HM.when) ? `<p class="mwl"><span>${esc(w)}</span>${g.L.length} etkinlik</p>` : ""}<div class="mpl">${hmRows(g.L, c)}</div>
+    ${more.length ? `<button type="button" class="mmore" data-m>Başka günlerde ${more.length} etkinlik daha<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="mpl" data-mm hidden></div>` : ""}
     ${lat != null ? `<div class="vsb"><button type="button" class="ok" data-r>${I.dir}Yol tarifi</button></div>` : `<p class="kmn" style="margin:12px 2px 0">Bu mekânın haritadaki yeri henüz bulunmadı; bulununca kendi yerinde görünecek.</p>`}</div></div>`, "mn");
+  sh.querySelector("[data-m]")?.addEventListener("click", (ev) => { const m = sh.querySelector("[data-mm]"); m.innerHTML = hmRows(more, c); m.hidden = false; ev.currentTarget.remove(); snd.sel?.(); haptic(5); });
+  const L = [...g.L, ...more].sort((a, b) => a[3].localeCompare(b[3]));
   sh.querySelector("[data-r]")?.addEventListener("click", () => { sh.close(); const v = { lat, lng, ilce }; setTimeout(() => routeSheet({ title: L[0][2], venue: name, d: L[0][3], t: L[0][4] }, v, c, `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(name + ", " + (N[c] || ""))}`), 280); });
 }
 
