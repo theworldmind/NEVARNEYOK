@@ -2348,17 +2348,42 @@ function viewHarita(city) {
      seçince harita oraya gider ve en yakın etkinlikler uzaklığa göre sıralanır. Gönderilen yalnızca yazılan yer adıdır. */
   let pq = 0;
   const PTY = { city: "İl / şehir", district: "İlçe / semt", locality: "Mahalle", street: "Cadde / sokak", house: "Adres", county: "İlçe", state: "İl", other: "Yer" };
-  const placeSearch = (q) => { const my = ++pq; if (q.length < 3) return;
-    setTimeout(() => { if (my !== pq) return;
-      fetch(`https://photon.komoot.io/api/?limit=5&bbox=25.6,35.8,44.9,42.2&q=${encodeURIComponent(q)}`).then((r) => r.ok ? r.json() : null).then((j) => {
-        if (my !== pq || res.hidden) return; const box = $("#hmpl", res); if (!box) return;
-        const F = (j?.features || []).filter((f) => (f.properties?.countrycode || "").toUpperCase() === "TR").slice(0, 4);
-        $("#hm0", res)?.remove();
-        if (!F.length) { if (!res.querySelector("button")) box.innerHTML = `<p class="hm-0">“${esc(q)}” bulunamadı.</p>`; return; }
-        box.innerHTML = F.map((f, i) => { const p = f.properties; return `<button type="button" data-qp="${i}">${ico.p}<span><b>${esc(p.name || q)}</b><small>${esc([PTY[p.type] || "Yer", p.district, p.city !== p.name ? p.city : "", p.state].filter(Boolean).join(" · "))} · yakındaki etkinlikler</small></span></button>`; }).join("");
-        $$("[data-qp]", box).forEach((b) => b.addEventListener("click", () => { const f = F[+b.dataset.qp], [lng, lat] = f.geometry.coordinates, p = f.properties; recAdd({ k: "p", l: p.name || q, s: [PTY[p.type] || "Yer", p.city, p.state].filter(Boolean).join(" · "), ll: [lat, lng] }); done(); nearPlace([lat, lng], p.name || q); }));
-      }).catch(() => { $("#hm0", res)?.remove(); });
-    }, 300); };
+  /* (16.11.2026 09:59, kullanıcı: "Sıhhiye Erkek Öğrenci Yurdu bizde görünmüyor, her yer görünmeli")
+     - yazılan il adı sorgudan çıkarılır, arama o ile (yoksa haritanın baktığı yere) yönlendirilir; sonuçlar önce adı tam tutanlar, sonra yakınlık
+     - tam eşleşme yoksa yerin semti/mahallesi de çıkar (ör. "Sıhhiye"), yakındaki etkinlikler oradan
+     - "Daha derin ara": OpenStreetMap'in ikinci arama servisi (Nominatim; kuralı gereği yazarken değil, yalnızca dokununca)
+     - yine yoksa: Google Haritalar'da bak ya da haritada basılı tutup kendin kaydet */
+  const GEN = new Set(["yurdu", "yurt", "yurtlari", "ogrenci", "erkek", "kiz", "ozel", "devlet", "okulu", "okul", "lisesi", "universitesi", "fakultesi", "hastanesi", "camii", "cami", "parki", "park", "merkezi", "sitesi", "apartmani", "mahallesi", "mah", "caddesi", "cad", "sokak", "sokagi", "sk", "binasi", "kampusu", "ve", "ile", "subesi", "magazasi", "restoran", "kafe", "cafe", "otel", "oteli", "salonu", "spor", "kurs", "kursu", "dershanesi", "anaokulu", "ilkokulu", "ortaokulu"]);
+  const pNorm = (f, src) => { if (src === "n") { const ad = f.address || {}; return { n: f.name || f.display_name.split(",")[0], s: ["Yer", ad.suburb || ad.neighbourhood || ad.quarter, ad.town || ad.city_district || ad.county, ad.province || ad.state].filter(Boolean).join(" · "), ll: [+f.lat, +f.lon] }; }
+    const p = f.properties || {}; return { n: p.name || p.street || "", s: [PTY[p.type] || "Yer", p.district || p.locality, p.city !== p.name ? p.city : "", p.state].filter(Boolean).join(" · "), ll: [f.geometry.coordinates[1], f.geometry.coordinates[0]], tp: p.type }; };
+  const photon = (q, ll, n = 10) => fetch(`https://photon.komoot.io/api/?limit=${n}&bbox=25.6,35.8,44.9,42.2&lat=${ll[0]}&lon=${ll[1]}&location_bias_scale=0.25&q=${encodeURIComponent(q)}`).then((r) => r.ok ? r.json() : null).then((j) => (j?.features || []).filter((f) => (f.properties?.countrycode || "").toUpperCase() === "TR").map((f) => pNorm(f))).catch(() => []);
+  const placeSearch = (raw) => { const my = ++pq; if (raw.length < 3) return;
+    const c0 = map ? map.getCenter() : null; let ll = c0 ? [c0.lat, c0.lng] : ILLL[city] || [39.93, 32.86], cityHit = null;
+    const W = raw.split(/\s+/).filter((w) => { const f = fold(w.replace(/['’].*$/, "")).trim(); const c = CITIES.find((c) => fold(c.name) === f); if (c && !cityHit) { cityHit = c; return false; } return true; });
+    if (cityHit && ILLL[cityHit.id]) ll = ILLL[cityHit.id]; const q = W.join(" ") || raw, sig = W.map((w) => fold(w).trim()).filter((w) => w.length > 1);
+    const key = W.filter((w) => { const f = fold(w).trim(); return f.length > 1 && !GEN.has(f); });
+    const full = (n) => { const f = fold(n); return sig.every((w) => f.includes(w)); };
+    setTimeout(async () => { if (my !== pq) return;
+      let L = await photon(q, ll); if (my !== pq || res.hidden) return;
+      const rank = (A) => A.filter((x) => x.n).map((x) => [x, (full(x.n) ? 0 : 1e4) + km(ll, x.ll)]).sort((a, b) => a[1] - b[1]).map((x) => x[0]);
+      L = rank(L); const exact = L.some((x) => full(x.n));
+      let area = [];
+      if (!exact && key.length && key.length < sig.length) { area = (await photon(key.join(" "), ll, 4)).filter((x) => ["district", "locality", "city", "county", "street", "other"].includes(x.tp) || full(x.n)).slice(0, 1); if (my !== pq || res.hidden) return; }
+      const seen = new Set(), R = [...area, ...L].filter((x) => { const k = fold(x.n) + x.ll.map((v) => v.toFixed(3)); if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 6);
+      draw(R, exact, q);
+    }, 300);
+    const draw = (R, exact, q) => { const box = $("#hmpl", res); if (!box) return; $("#hm0", res)?.remove();
+      box.innerHTML = R.map((x, i) => `<button type="button" data-qp="${i}">${ico.p}<span><b>${esc(x.n)}</b><small>${esc(x.s)} · yakındaki etkinlikler</small></span></button>`).join("")
+        + (exact ? "" : `<button type="button" data-qd>${ico.r.replace("rgba(120,120,128,.36)", "#5e5ce6")}<span><b>“${esc(q)}” için daha derin ara</b><small>OpenStreetMap'te ikinci bir aramayla</small></span></button>
+        <a class="hm-g" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(raw)}" target="_blank" rel="noopener"><span class="cgi" style="background:#34c759"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#34c759"/></svg></span><span><b>Google Haritalar'da bak ↗</b><small>Bulursan buraya dön, haritada o noktaya basılı tutup kaydet</small></span></a>`);
+      $$("[data-qp]", box).forEach((b) => b.addEventListener("click", () => { const x = R[+b.dataset.qp]; recAdd({ k: "p", l: x.n, s: x.s, ll: x.ll }); done(); nearPlace(x.ll, x.n); }));
+      $("[data-qd]", box)?.addEventListener("click", (ev) => { const bt = ev.currentTarget; bt.querySelector("small").textContent = "Aranıyor…"; haptic(4);
+        const c = map ? map.getCenter() : { lat: 39.93, lng: 32.86 };
+        fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&countrycodes=tr&accept-language=tr&limit=8&viewbox=${c.lng - .7},${c.lat + .5},${c.lng + .7},${c.lat - .5}&q=${encodeURIComponent(raw)}`).then((r) => r.ok ? r.json() : []).then((j) => {
+          const N2 = (j || []).map((f) => pNorm(f, "n")).filter((x) => x.n && !R.some((y) => km(y.ll, x.ll) < .05));
+          if (!N2.length) { bt.querySelector("b").textContent = "Başka sonuç bulunamadı"; bt.querySelector("small").textContent = "Haritada yerine basılı tutup kendin kaydedebilirsin"; bt.disabled = true; return; }
+          const A = [...N2, ...R]; draw([...A.filter((x) => full(x.n)), ...A.filter((x) => !full(x.n))].slice(0, 10), true, q); snd.sel?.(); }).catch(() => { bt.querySelector("small").textContent = "Şu an aranamadı, tekrar dene"; }); });
+    }; };
   let qt = null; inp.addEventListener("input", () => { clearTimeout(qt); qt = setTimeout(search, 120); });
   inp.addEventListener("focus", () => search());
   $("#hmq").addEventListener("submit", (ev) => { ev.preventDefault(); search(); res.querySelector("button[data-qf],button[data-qc],button[data-qv],button[data-qe],button[data-qp]")?.click(); });
