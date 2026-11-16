@@ -48,7 +48,13 @@ ONE.push(
   { id: "radar", name: "Radar Türkiye", kind: "toplayici", home: "https://www.radarturkiye.com",
     listings: [...["", "-muzik", "-tiyatro", "-hafta-sonu"].map((k) => `https://www.radarturkiye.com/${C.id}${k}-etkinlikleri`), ...Array.from({ length: 14 }, (_, g) => `https://www.radarturkiye.com/etkinlikler?genre=${g + 1}&city=${C.id}`)], scrolls: 6,
     link: /radarturkiye\.com\/etkinlik\/[a-z0-9-]+/i, render: true, city: C.id, maxDetail: Math.round(MD * 0.6), budgetMin: Math.round(BM * 0.6) },
-  { id: "bugece", name: "BUGECE", kind: "bilet", home: "https://bugece.co", collect: P.bugeceCollect, cityUrl: C.id, cityName: C.name, listings: [], link: null, city: C.id });
+  { id: "bugece", name: "BUGECE", kind: "bilet", home: "https://bugece.co", collect: P.bugeceCollect, cityUrl: C.id, cityName: C.name, listings: [], link: null, city: C.id },
+  // AllEvents (il sayfalarında JSON-LD Event) ve biletimGO (il sayfası); 17.11.2026, kullanıcı: "her şey olacak"
+  { id: "allevents", name: "AllEvents", kind: "toplayici", home: "https://allevents.in",
+    listings: ["", "/all", "/concerts", "/parties", "/comedy", "/performances", "/workshops", "/kids"].map((k) => `https://allevents.in/${C.id}${k}`), scrolls: 5,
+    link: new RegExp(`allevents\\.in\\/${C.id}\\/[^\\/?#]+\\/\\d{6,}`, "i"), render: true, city: C.id, maxDetail: Math.round(MD * 0.4), budgetMin: Math.round(BM * 0.4) },
+  { id: "biletimgo", name: "biletimGO", kind: "bilet", home: "https://www.biletimgo.com", listings: [`https://www.biletimgo.com/sehir-etkinlikleri/${C.id}`], scrolls: 5,
+    link: /biletimgo\.com\/etkinlik\/[a-z0-9-]+-\d+/i, render: true, renderDetail: true, city: C.id, maxDetail: Math.round(MD * 0.3), budgetMin: Math.round(BM * 0.3) });
 
 // İstanbul: kurumların kendi siteleri (kaynak önceliği: kurum → mekân → bilet)
 if (CITY === "istanbul") ONE.push(

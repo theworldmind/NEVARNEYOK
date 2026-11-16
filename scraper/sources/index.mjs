@@ -126,6 +126,13 @@ export default [
     // tür süzgeçli listeler (sayfadaki /etkinlikler?genre=N&city=ankara bağlantıları) her türün ilk sayfasını ayrı verir; Radar'ın /api yolu robots ile kapalı, kullanılmaz
     listings: [...["", "-muzik", "-tiyatro", "-hafta-sonu"].map((k) => `https://www.radarturkiye.com/ankara${k}-etkinlikleri`), ...Array.from({ length: 14 }, (_, g) => `https://www.radarturkiye.com/etkinlikler?genre=${g + 1}&city=ankara`)], scrolls: 6,
     link: /radarturkiye\.com\/etkinlik\/[a-z0-9-]+/i, render: true, city: "ankara", maxDetail: 420 },
+  // (17.11.2026, kullanıcı: "her şey olacak") AllEvents: il sayfaları etkinlikleri yapısal veriyle (JSON-LD Event) verir; bar, kulüp, buluşma etkinlikleri de var
+  { id: "allevents", name: "AllEvents", kind: "toplayici", home: "https://allevents.in",
+    listings: ["", "/all", "/concerts", "/music", "/parties", "/comedy", "/performances", "/theatre", "/workshops", "/kids", "/arts", "/festivals", "/entertainment", "/recently-added"].map((k) => `https://allevents.in/ankara${k}`), scrolls: 6,
+    link: /allevents\.in\/ankara\/[^\/?#]+\/\d{6,}/i, render: true, city: "ankara", maxDetail: 360 },
+  // biletimGO: il sayfası /sehir-etkinlikleri/<il>
+  { id: "biletimgo", name: "biletimGO", kind: "bilet", home: "https://www.biletimgo.com", listings: ["https://www.biletimgo.com/sehir-etkinlikleri/ankara"], scrolls: 6,
+    link: /biletimgo\.com\/etkinlik\/[a-z0-9-]+-\d+/i, render: true, renderDetail: true, city: "ankara", maxDetail: 200 },
   { id: "ra", name: "Resident Advisor", kind: "toplayici", home: "https://ra.co",
     listings: ["https://ra.co/events/tr/ankara"],
     link: /ra\.co\/events\/\d+/i, render: true, renderDetail: true, city: "tr", defaultCat: "parti" },
