@@ -147,5 +147,10 @@ var NV = (function () {
      { fiyat: false } yalnızca o türü. Tür, bildirimin etiketinin önekinden anlaşılır. */
   var NK = { s: "degisiklik", d: "degisiklik", t: "degisiklik", v: "degisiklik", x: "degisiklik", r: "hatirlatma", h: "azkaldi", a: "nasildi", p: "fiyat", digest: "oneri", mekan: "mekan", y: "satis", k: "sanatci", f: "film", g: "yolacik", n: "koltuk" };
   function allow(m, cfg) { if (!cfg) return true; if (cfg.off) return false; var tg = String(m && m.tag || ""), p = tg === "digest" ? "digest" : tg.split("-")[0], k = NK[p]; return !k || cfg[k] !== false; }
-  return { fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today, allow: allow, NK: NK, akey: akey, ahits: ahits, watchA: watchA, watchF: watchF };
+  /* Kısa paylaşım kodu (16.11.2026): /e/<kod> paylaşım, /d/<kod> davet. Uygulama, sw ve yayındaki sayfa üretici aynı kodu üretir (cyrb53 → 7 karakter). */
+  function scode(city, slug) { var str = city + "|" + slug, h1 = 0xdeadbeef, h2 = 0x41c6ce57, i, ch;
+    for (i = 0; i < str.length; i++) { ch = str.charCodeAt(i); h1 = Math.imul(h1 ^ ch, 2654435761); h2 = Math.imul(h2 ^ ch, 1597334677); }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507); h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909); h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507); h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    var n = 4294967296 * (2097151 & h2) + (h1 >>> 0), B = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", out = ""; for (i = 0; i < 7; i++) { out += B[n % 62]; n = Math.floor(n / 62); } return out; }
+  return { scode: scode, fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today, allow: allow, NK: NK, akey: akey, ahits: ahits, watchA: watchA, watchF: watchF };
 })();

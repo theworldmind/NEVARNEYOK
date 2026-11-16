@@ -608,7 +608,7 @@ function viewEvent(city, slug) {
     ${st ? `<div class="stb">${st}.${e.stNews ? " Haberlere göre: " + e.stNews.slice(0, 2).map((x) => `<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc((DATA.buzz.names || {})[x[0]] || x[0])} haberi ↗</a>`).join(" ") + " · Bilet sitesinden de kontrol edin." : ""}</div>` : ""}
     ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">Bilet al · ${esc((best || T[0]).site)}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
     ${T.length ? `${tix}<p class="chk">${checked ? `Fiyatlar satış sitelerinde ${ago(checked)} kontrol edildi. ` : ""}Hizmet bedeli ve son fiyat siteye göre değişebilir; satın alma ve iade bileti satan sitenin kurallarına tabidir.</p>` : ""}
-    <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}Takvime ekle</button><button type="button" id="shr">${I.share}Paylaş</button></div>
+    <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}Takvime ekle</button><button type="button" id="inv" class="invb">💌 Davet et</button><button type="button" id="shr">${I.share}Paylaş</button></div>
     ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl">${cgIcon("standup")}<span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>
     ${live(e) ? `<p class="flh">Takip edersen fiyatı düştüğünde, iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
     <section class="sec"><h3>Bu etkinlik hakkında</h3>${infoBlock(e, city)}<a class="wrong" href="${wrongMail(e, city)}">Bir yanlış mı var? Bize yaz →</a></section>
@@ -619,6 +619,7 @@ function viewEvent(city, slug) {
   ${sim.length ? rail("Bunlar da ilgini çekebilir", CATS[e.cat] || "", sim, city, `#/${city}/kesfet?k=${e.cat}`) : ""}
   ${footer()}`;
   $("#shr").addEventListener("click", () => shareEv(e, city));
+  $("#inv").addEventListener("click", () => inviteEv(e, city));
   $("#cal").addEventListener("click", () => calAdd({ ...e, city }));
   $("#vfl").addEventListener("click", (ev) => toggleVenue(e, city, ev.currentTarget));
   $("#flw").addEventListener("click", () => toggleFollow(e, city));
@@ -951,7 +952,58 @@ function calAdd(list) {
 }
 
 /* ---------- Paylaş: etkinliğin kendi paylaşım sayfası (e/<il>/<ad>/; WhatsApp/Instagram önizlemesinde ad, tarih, mekân ve afiş) ---------- */
-const shareUrl = (e, city) => `${location.origin}/e/${city}/${e.slug}/`;
+/* ---------- Paylaş ve Davet et (kullanıcı isteği, 16.11.2026 14:51–14:58: "önizleme güzel olsun, bilgi versin; afiş olacak, biz de olacağız; davet düğmesi") ----------
+   Kısa bağlantılar: /e/<kod> paylaşım, /d/<kod> davet (NV.scode; sayfaları share-pages.mjs üretir). Mesajlar emojili ve satır satır;
+   fiyat yalnızca son 36 saatte doğrulanmışsa yazılır (önizlemede hiç yazılmaz). Davette kişi hazır cümlelerden birini seçer ya da kendisi yazar. */
+const SITE = "https://nevarneyok.net.tr";
+const shareUrl = (e, city) => `${SITE}/e/${NV.scode(city, e.slug)}`;
+const inviteUrl = (e, city, line) => `${SITE}/d/${NV.scode(city, e.slug)}${line ? "?s=" + encodeURIComponent(line) : ""}`;
+const CEMO = { konser: "🎶", tiyatro: "🎭", standup: "😂", sahne: "🩰", cocuk: "🎈", festival: "🎉", parti: "🪩", atolye: "🎨", sinema: "🎬" };
+const dLongTR = (d) => { const x = pd(d); return `${x.getDate()} ${AY[x.getMonth()]} ${GUN[x.getDay()]}`; };
+const kalan = (d) => { const n = Math.round((pd(d) - pd(nowIST().d)) / 864e5); return n <= 0 ? "bugün" : n === 1 ? "yarın" : n < 31 ? `${n} gün sonra` : ""; };
+const placeOf = (e, city) => { const v = vOf(e.venue); return [e.venue, v?.ilce, CITIES.find((c) => c.id === city)?.name].filter(Boolean).filter((x, i, A) => A.indexOf(x) === i).join(", "); };
+function shareText(e, city, line) {
+  const k = kalan(e.d), fp = e.tickets?.filter((x) => x.price).map((x) => x.price), pr = fp?.length ? Math.min(...fp) : 0;
+  return [line ? `💌 *${line}*` : "", `${CEMO[e.cat] || "🎟️"} *${e.title}*`, `📅 ${dLongTR(e.d)}${e.t ? " · " + e.t : ""}${k ? ` (${k})` : ""}`, `📍 ${placeOf(e, city)}`,
+    !line && pr ? `🎟️ ${TL(pr)}'den${fp.length > 1 ? ` · ${new Set(e.tickets.filter((x) => x.price).map((x) => x.site)).size} sitede` : ""}` : "",
+    "", line ? `💌 Davetin burada: ${inviteUrl(e, city, line)}` : `🔍 Ne Var Ne Yok'ta aç: ${shareUrl(e, city)}`].filter((x, i) => x !== "" || i === 5).join("\n");
+}
+// Davet cümleleri (kullanıcıyla 14:57–14:58'de seçildi: ölçülü, sıcak; kategoriye uygun olanlar başta)
+const INV_G = ["Beraber gidelim mi?", "Buna gitmeye ne dersin?", "Güzel bir etkinlik buldum, gelir misin?", "Bu tarih için bir planım var, katılır mısın?", "Birlikte gidersek güzel olur", "Bu akşamki plan: burası. Var mısın?", "Hafta sonu için güzel bir fikir", "Gidiyor muyuz?"];
+const INV_C = { konser: "Bu konsere beraber gidelim mi?", tiyatro: "Bu oyunu birlikte izleyelim mi?", standup: "Güzel bir gösteri var, gelir misin?", sinema: "Bu filme beraber gidelim mi?", cocuk: "Çocuklarla gidebileceğimiz güzel bir etkinlik", sahne: "Bu gösteriye birlikte gidelim mi?", festival: "Bu festivale beraber gidelim mi?", atolye: "Birlikte gidelim mi, ilgini çekebilir" };
+const INV_E = ["💌", "🎟️", "✨", "🗓️", "🙌", "📍", "🎉", "✅"];
+function ogCanvas(e, city, line) { // davet/paylaşım görseli: afiş telefonda çizilir; izin vermeyen sitelerde yayında hazırlanmış görsel
+  const ev = { title: e.title, when: `${dLongTR(e.d)}${e.t ? " · " + e.t : ""}`, venue: e.venue || "", cityName: CITIES.find((c) => c.id === city)?.name || "", cat: e.cat, imgBy: e.imgBy || "", base: "" };
+  return paylasJS().then(async () => { let im = null; if (e.img) { try { im = await NVS.img(e.img, true); } catch {} }
+    if (!im && e.img) { try { const r = await fetch(`s/o/${NV.scode(city, e.slug)}.jpg`, { cache: "no-cache" }); if (r.ok && !line) return await r.blob(); } catch {} }
+    const cv = await NVS.og(ev, im, line); return await new Promise((ok) => cv.toBlob(ok, "image/jpeg", .9)); });
+}
+async function inviteEv(e, city) {
+  haptic(6); snd.sheet?.(); gcEv("davet", "Davet et");
+  const L = [...(INV_C[e.cat] ? [INV_C[e.cat]] : []), ...INV_G], mine = (() => { try { return JSON.parse(store.get("nvny-davet") || "[]"); } catch { return []; } })();
+  const all = [...mine.filter((x) => !L.includes(x)).slice(0, 3), ...L]; let cur = all[(Math.random() * Math.min(all.length, 5)) | 0];
+  const sh = sheet(`<div class="pn ivp" role="dialog" aria-label="Davet et"><div class="hd"><span class="rth"><b>Davet et 💌</b><small>${esc(e.title)}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2">
+    <div class="ivv"><div class="ivi sk" id="ivi"></div></div>
+    <h4>Davet cümlen</h4><div class="ivl" id="ivl">${all.map((x, i) => `<button type="button" data-i="${i}" class="${x === cur ? "on" : ""}"><span>${INV_E[i % INV_E.length]}</span>${esc(x)}</button>`).join("")}</div>
+    <label class="fvi ivw"><span>✍️</span><input id="ivt" maxlength="70" placeholder="Ya da kendin yaz…" enterkeyhint="done"></label>
+    <button type="button" class="ok ivgo" id="ivgo">Davet et 💌</button>
+    <p class="shn">Arkadaşın davetiyeyi açınca afişi, tarihi ve mekânı görür; tek dokunuşla takvimine ekler, biletine ve yol tarifine ulaşır.</p></div></div>`, "mn");
+  const box = sh.querySelector("#ivi"); let blobP = null, tm = 0;
+  const draw = () => { box.classList.add("sk"); const my = (blobP = ogCanvas(e, city, cur)); my.then((b) => { if (my !== blobP) return; box.classList.remove("sk"); box.innerHTML = ""; const im = new Image(); im.src = URL.createObjectURL(b); im.alt = ""; box.append(im); }).catch(() => box.classList.remove("sk")); };
+  draw();
+  sh.querySelector("#ivl").addEventListener("click", (ev) => { const b = ev.target.closest("[data-i]"); if (!b) return; cur = all[+b.dataset.i]; sh.querySelectorAll("#ivl button").forEach((x) => x.classList.toggle("on", x === b)); sh.querySelector("#ivt").value = ""; snd.sel?.(); haptic(4); draw(); });
+  sh.querySelector("#ivt").addEventListener("input", (ev) => { const v = ev.target.value.trim(); if (!v) return; cur = v; sh.querySelectorAll("#ivl button").forEach((x) => x.classList.remove("on")); clearTimeout(tm); tm = setTimeout(draw, 450); });
+  sh.querySelector("#ivgo").addEventListener("click", async (ev) => { const bt = ev.currentTarget; haptic(8); bt.classList.add("bz");
+    const typed = sh.querySelector("#ivt").value.trim(); if (typed) store.set("nvny-davet", JSON.stringify([typed, ...mine.filter((x) => x !== typed)].slice(0, 6)));
+    const text = shareText(e, city, cur);
+    try { const blob = await blobP.catch(() => null), file = blob && new File([blob], `davet-${e.slug}.jpg`, { type: "image/jpeg" });
+      if (file && navigator.canShare?.({ files: [file], text })) await navigator.share({ files: [file], text });
+      else if (navigator.share) await navigator.share({ text });
+      else { await navigator.clipboard.writeText(text); toast("Davet kopyalandı 💌 İstediğin yere yapıştır."); }
+      snd.ok(); gcEv("davet-gonder", "Davet gönderildi"); sh.close();
+    } catch (err) { if (err?.name !== "AbortError") { try { await navigator.clipboard.writeText(text); toast("Davet kopyalandı 💌 İstediğin yere yapıştır.", 3500); } catch { toast("Davet açılamadı, tekrar dene.", 3000); } } }
+    bt.classList.remove("bz"); });
+}
 /* Paylaş (kullanıcı isteği, 15.11.2026: "paylaşımlar güzel olsun; arkadaşına ya da hikâyesine; afiş olmazsa olmaz"):
    iOS paylaşım sayfası gibi alttan açılan cam panel; üstte hikâye görselinin önizlemesi. Hikâye görseli telefonda çizilir (paylas.js);
    afişini telefona vermeyen sitelerde yayında önceden hazırlanmış görsel (s/<il>/<ad>.jpg) kullanılır. Afiş değiştirilmez, kaynağı yazar. */
@@ -970,18 +1022,19 @@ function storyOf(e, city) {
 }
 async function shareEv(e, city) {
   haptic(6); gcEv("paylas", "Paylaş");
-  const u = shareUrl(e, city), text = `${e.title} · ${dShort(e.d)}${e.t ? " " + e.t : ""} · ${e.venue}`, fn = `nevarneyok-${e.slug}.jpg`;
+  const u = shareUrl(e, city), text = shareText(e, city), fn = `nevarneyok-${e.slug}.jpg`;
   const sh = sheet(`<div class="pn shp" role="dialog" aria-label="Paylaş"><div class="hd"><b>Paylaş</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2">
     <div class="shv"><div class="shi sk" id="shi"></div><div class="shm"><b>${esc(e.title)}</b><small>${esc(dShort(e.d))}${e.t ? " · " + esc(e.t) : ""}</small><small>${esc(e.venue || "")}</small></div></div>
-    <div class="sha"><button type="button" data-a="story"><i style="background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16.8" cy="7.2" r="1.1" fill="#fff"/></svg></i><span>Hikâyende paylaş</span></button><button type="button" data-a="link"><i style="background:#30d158"><svg viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8S16.7 18 12 18c-.9 0-1.8-.1-2.6-.3L5 19.5l1.3-3.4C4.6 14.9 3.5 13.2 3.5 11.3 3.5 7.5 7.3 4.5 12 4.5z" fill="#fff"/></svg></i><span>Arkadaşına gönder</span></button><button type="button" data-a="save"><i style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>Görseli kaydet</span></button><button type="button" data-a="copy"><i style="background:#8e8e93"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg></i><span>Bağlantıyı kopyala</span></button></div>
+    <div class="sha"><button type="button" class="shinv" data-a="inv">💌<span><b>Davet et</b><small>Afişli davetiye · "Beraber gidelim mi?"</small></span></button><button type="button" data-a="story"><i style="background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16.8" cy="7.2" r="1.1" fill="#fff"/></svg></i><span>Hikâyende paylaş</span></button><button type="button" data-a="link"><i style="background:#30d158"><svg viewBox="0 0 24 24"><path d="M12 4.5c4.7 0 8.5 3 8.5 6.8S16.7 18 12 18c-.9 0-1.8-.1-2.6-.3L5 19.5l1.3-3.4C4.6 14.9 3.5 13.2 3.5 11.3 3.5 7.5 7.3 4.5 12 4.5z" fill="#fff"/></svg></i><span>Arkadaşına gönder</span></button><button type="button" data-a="save"><i style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>Görseli kaydet</span></button><button type="button" data-a="copy"><i style="background:#8e8e93"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg></i><span>Bağlantıyı kopyala</span></button></div>
     <p class="shn">Arkadaşın bağlantıyı açınca etkinlik doğrudan Ne Var Ne Yok'ta açılır; önizlemede adı, tarihi ve afişi görünür.</p></div></div>`, "mn");
   let blobP = storyOf(e, city).then((b) => { const im = new Image(); im.src = URL.createObjectURL(b); im.alt = ""; const box = sh.querySelector("#shi"); box.classList.remove("sk"); box.append(im); return b; });
   blobP.catch(() => sh.querySelector("#shi")?.classList.add("no"));
   sh.querySelector(".sha").addEventListener("click", async (ev) => {
     const b = ev.target.closest("[data-a]"); if (!b) return; haptic(5); const a = b.dataset.a;
     try {
-      if (a === "link") { if (navigator.share) await navigator.share({ title: e.title, text, url: u }); else { await navigator.clipboard.writeText(u); toast("Bağlantı kopyalandı 🔗"); } gcEv("paylas-link", "Bağlantı paylaşıldı"); }
-      else if (a === "copy") { await navigator.clipboard.writeText(u); toast("Bağlantı kopyalandı 🔗 Yapıştırınca afişiyle görünür.", 3500); }
+      if (a === "link") { if (navigator.share) await navigator.share({ text }); else { await navigator.clipboard.writeText(text); toast("Kopyalandı 🔗 İstediğin yere yapıştır."); } gcEv("paylas-link", "Bağlantı paylaşıldı"); }
+      else if (a === "copy") { await navigator.clipboard.writeText(text); toast("Kopyalandı 🔗 Yapıştırınca afişiyle görünür.", 3500); }
+      else if (a === "inv") { sh.close(); setTimeout(() => inviteEv(e, city), 280); return; }
       else { b.classList.add("bz"); const blob = await blobP; b.classList.remove("bz"); const file = new File([blob], fn, { type: "image/jpeg" });
         if (a === "story" && navigator.canShare?.({ files: [file] })) { await navigator.share({ files: [file], title: e.title, text: u }); gcEv("paylas-hikaye", "Hikâyede paylaşıldı"); }
         else { const l = document.createElement("a"); l.href = URL.createObjectURL(blob); l.download = fn; document.body.append(l); l.click(); l.remove(); toast(a === "story" ? "Görsel kaydedildi 📸 Instagram'da hikâye eklerken galeriden seç." : "Görsel kaydedildi ✓", 4500); } }
@@ -1046,7 +1099,7 @@ function peek(e, city, from) {
     <div class="pk-i"><small>${esc(CATS[e.cat] || "Etkinlik")}${st ? " · " + st : ""}</small><b>${esc(e.title)}</b>
     <span>${dLong(e.d)}${e.t ? " · " + esc(e.t) : ""}</span><span>${esc(e.venue || "")}</span>${e.price ? `<span class="pr">${TL(e.price)}'den${e.tickets.filter((x) => x.price).length > 1 ? " · " + e.tickets.filter((x) => x.price).length + " sitede" : ""}</span>` : ""}</div>
     <div class="pk-m"><a href="${href}" data-pk="open">${I.info}<span>Etkinliği aç</span></a><button type="button" data-pk="flw">${isF(e) ? I.bellOn : I.bell}<span>${isF(e) ? "Takip ediliyor" : "Takip et"}</span></button>
-    <button type="button" data-pk="cal">${I.cal}<span>Takvime ekle</span></button><button type="button" data-pk="shr">${I.share}<span>Paylaş</span></button>
+    <button type="button" data-pk="cal">${I.cal}<span>Takvime ekle</span></button><button type="button" data-pk="inv"><span class="pke">💌</span><span>Davet et</span></button><button type="button" data-pk="shr">${I.share}<span>Paylaş</span></button>
     ${best && live(e) ? `<a href="${esc(best.url)}" target="_blank" rel="noopener" data-buy="${esc(best.site)}">${I.ext}<span>Bilet al · ${esc(best.site)}</span></a>` : ""}</div></div>`;
   document.body.append(o); document.body.style.overflow = "hidden";
   const r = from.getBoundingClientRect(), c = $(".pk-c", o), cr = c.getBoundingClientRect();
@@ -1061,6 +1114,7 @@ function peek(e, city, from) {
     else if (k === "flw") { const F = follows(), id = fid(e); if (F[id]) { delete F[id]; toast("Takipten çıkarıldı"); } else { F[id] = { ...NV.snap(e, e.slug), city }; snd.ok(); toast(`Takip ediyorsun. <a href="#/${city}/takip">Planım →</a>`); } saveF(F); setTop(city); tabsUpdate(location.hash.replace(/^#\/?/, "").split("?")[0].split("/")); close(); }
     else if (k === "cal") { calAdd({ ...e, city }); close(); }
     else if (k === "shr") { shareEv(e, city); close(); }
+    else if (k === "inv") { inviteEv(e, city); close(); }
   });
   addEventListener("hashchange", close, { once: true });
 }

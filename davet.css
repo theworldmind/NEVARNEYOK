@@ -1,0 +1,41 @@
+/* Davet sayfası (d/<kod>/) — share-pages.mjs üretir */
+:root{color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html,body{min-height:100%;background:#0a0a10;color:#fff;font:500 16px/1.4 -apple-system,"Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+
+.bg{position:fixed;inset:-10%;background:#0a0a10 center/cover;filter:blur(48px) saturate(1.4);opacity:.6;transform:scale(1.1)}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,16,.35),rgba(10,10,16,.82) 60%,#0a0a10)}
+
+main{position:relative;max-width:460px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) 20px calc(28px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:18px;animation:in .6s cubic-bezier(.32,.72,0,1) both}
+
+@keyframes in{from{opacity:0;transform:translateY(18px) scale(.98)}
+}
+
+.lg{height:40px;margin-bottom:4px}
+.lg img{height:100%}
+
+.inv{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.06));-webkit-backdrop-filter:blur(20px) saturate(1.7);backdrop-filter:blur(20px) saturate(1.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 0 0 .5px rgba(255,255,255,.25),0 14px 34px rgba(0,0,0,.4);font:800 20px/1.25 "Inter Tight",sans-serif;text-align:center}
+
+.ps{position:relative;width:min(100%,340px);border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.14)}
+.ps img{display:block;width:100%;height:auto}
+
+.cr{align-self:center;margin-top:-10px;font-size:11.5px;color:rgba(235,235,245,.5)}
+
+h1{font:900 34px/.98 "Archivo",sans-serif;font-stretch:78%;text-transform:uppercase;text-align:center;letter-spacing:-.01em}
+
+.mt{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.mt b{font:800 18px "Inter Tight",sans-serif}
+.mt span{color:rgba(235,235,245,.72)}
+
+.bt{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:6px}
+
+.bt a,.bt button{display:flex;align-items:center;justify-content:center;gap:9px;height:54px;border:0;border-radius:18px;font:800 17px "Inter Tight",sans-serif;color:#fff;text-decoration:none;background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 .5px rgba(255,255,255,.12);cursor:pointer;transition:transform .15s}
+
+.bt .p{background:#fff;color:#0a0a10;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.bt .p.ok{background:#30d158;color:#04210f}
+.bt>*:active{transform:scale(.97)}
+
+.rw{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ft{margin-top:8px;font-size:12.5px;color:rgba(235,235,245,.45);text-align:center}
+.ft a{color:rgba(235,235,245,.7)}
+

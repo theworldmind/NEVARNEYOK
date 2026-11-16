@@ -89,5 +89,47 @@ var NVS = (function () {
       return cv;
     });
   }
-  return { story: story, card: card, img: img };
+  /* Bağlantı önizlemesi ve davet görseli 1080×1350 (kullanıcı isteği, 16.11.2026 14:54–14:58: "afiş olacak, biz de olacağız; Apple kalitesi").
+     Arkada afişin bulanık rengi; ortada afiş DEĞİŞTİRİLMEDEN (kırpılmaz, oranıyla, yuvarlak köşeli çerçevede, altında "Görsel: <kaynak>");
+     davette üstte buzlu cam kapsülde davet cümlesi; altta buzlu cam şeritte logomuz, tarih ve mekân. Afişi olmayan etkinlikte kendi tasarımımız. */
+  function og(ev, poster, line) {
+    var W = 1080, H = 1350, cv = document.createElement("canvas"); cv.width = W; cv.height = H; var c = cv.getContext("2d"), col = COL[ev.cat] || "#8b5cf6";
+    return Promise.all([fonts(), img((ev.base || "") + "brand/logo-cam.png").catch(function () { return null; })]).then(function (r) {
+      var logo = r[1]; c.fillStyle = "#0a0a10"; c.fillRect(0, 0, W, H);
+      if (poster) wash(c, poster, W, H, [.5, .6, .88]); else { glow(c, W, H, col, W * .15, H * .15, W * 1.1, .6); glow(c, W, H, "#8b5cf6", W * .95, H * .8, W, .38); }
+      var top = 56, stripH = 172, sy = H - 44 - stripH;
+      if (line) { // davet cümlesi: buzlu cam kapsül
+        c.font = '800 50px "Inter Tight", sans-serif'; var ll = wrap(c, line, W - 220, 2), bh = ll.length * 62 + 46, bw = 0; for (var q = 0; q < ll.length; q++) bw = Math.max(bw, c.measureText(ll[q]).width); bw = Math.min(W - 100, bw + 110);
+        c.save(); c.shadowColor = "rgba(0,0,0,.45)"; c.shadowBlur = 40; c.shadowOffsetY = 14; rr(c, (W - bw) / 2, top, bw, bh, 34); c.fillStyle = "rgba(30,26,46,.62)"; c.fill(); c.restore();
+        var gl = c.createLinearGradient(0, top, 0, top + bh); gl.addColorStop(0, "rgba(255,255,255,.2)"); gl.addColorStop(1, "rgba(255,255,255,.05)"); rr(c, (W - bw) / 2, top, bw, bh, 34); c.fillStyle = gl; c.fill();
+        c.lineWidth = 2; c.strokeStyle = "rgba(255,255,255,.3)"; c.stroke();
+        c.fillStyle = "#fff"; c.textAlign = "center"; c.textBaseline = "middle"; for (var k = 0; k < ll.length; k++) c.fillText(ll[k], W / 2, top + 23 + 31 + k * 62);
+        top += bh + 36;
+      }
+      if (poster) {
+        var avail = sy - top - 64, ar = poster.height / poster.width, ph = Math.min(avail, 880 * ar), pw = ph / ar, px = (W - pw) / 2;
+        c.save(); c.shadowColor = "rgba(0,0,0,.6)"; c.shadowBlur = 70; c.shadowOffsetY = 28; rr(c, px, top, pw, ph, 30); c.fillStyle = "#000"; c.fill(); c.restore();
+        c.save(); rr(c, px, top, pw, ph, 30); c.clip(); c.drawImage(poster, px, top, pw, ph); c.restore();
+        c.save(); rr(c, px + .5, top + .5, pw - 1, ph - 1, 30); c.strokeStyle = "rgba(255,255,255,.24)"; c.lineWidth = 2; c.stroke(); c.restore();
+        if (ev.imgBy) { c.font = '500 24px "Inter Tight", sans-serif'; c.fillStyle = "rgba(255,255,255,.55)"; c.textAlign = "right"; c.textBaseline = "top"; c.fillText("Görsel: " + ev.imgBy, px + pw, top + ph + 14); }
+      } else { // afişsiz: kategori, büyük ad
+        var y = top + 40; pill(c, W / 2, y, CATN[ev.cat] || "ETKİNLİK", '800 28px "Inter Tight", sans-serif', hexA(col, .92), "#fff", 26, 56, "c"); y += 100;
+        var fs = 112; c.font = '900 ' + fs + 'px "Archivo", "Arial Narrow", sans-serif'; try { c.fontStretch = "condensed"; } catch (e) {}
+        var tl = wrap(c, up(ev.title), W - 160, 5); c.fillStyle = "#fff"; c.textAlign = "center"; c.textBaseline = "top"; var th = tl.length * fs * .96; y = Math.max(y, top + (sy - top - th) / 2 - 20);
+        for (var i = 0; i < tl.length; i++) { c.fillText(tl[i], W / 2, y); y += fs * .96; } try { c.fontStretch = "normal"; } catch (e) {}
+      }
+      // alt şerit: buzlu cam, solda logo, sağda tarih ve mekân
+      c.save(); c.shadowColor = "rgba(0,0,0,.5)"; c.shadowBlur = 50; c.shadowOffsetY = 18; rr(c, 44, sy, W - 88, stripH, 40); c.fillStyle = "rgba(22,20,34,.72)"; c.fill(); c.restore();
+      var sg = c.createLinearGradient(0, sy, 0, sy + stripH); sg.addColorStop(0, "rgba(255,255,255,.16)"); sg.addColorStop(.5, "rgba(255,255,255,.05)"); sg.addColorStop(1, "rgba(255,255,255,.02)"); rr(c, 44, sy, W - 88, stripH, 40); c.fillStyle = sg; c.fill();
+      c.lineWidth = 2; c.strokeStyle = "rgba(255,255,255,.22)"; c.stroke();
+      var lx = 84, lw = 0;
+      if (logo) { var lh = 84; lw = lh * logo.width / logo.height; c.drawImage(logo, lx, sy + (stripH - lh) / 2 - 12, lw, lh); c.font = '600 21px "Inter Tight", sans-serif'; c.fillStyle = "rgba(235,235,245,.6)"; c.textAlign = "left"; c.textBaseline = "top"; c.fillText("nevarneyok.net.tr", lx + 2, sy + (stripH + lh) / 2 - 4); lw = Math.max(lw, c.measureText("nevarneyok.net.tr").width); }
+      var dx = lx + lw + 40; c.fillStyle = "rgba(255,255,255,.18)"; c.fillRect(dx, sy + 34, 2, stripH - 68);
+      var tx = dx + 34, tw = W - 44 - 36 - tx; c.textAlign = "left"; c.textBaseline = "alphabetic";
+      c.font = '800 38px "Inter Tight", sans-serif'; c.fillStyle = "#fff"; c.fillText(wrap(c, ev.when || "", tw, 1)[0] || "", tx, sy + 74);
+      c.font = '500 30px "Inter Tight", sans-serif'; c.fillStyle = "rgba(235,235,245,.75)"; var vl = wrap(c, [ev.venue, ev.cityName].filter(Boolean).join(" · "), tw, 2); for (var j = 0; j < vl.length; j++) c.fillText(vl[j], tx, sy + 118 + j * 36);
+      return cv;
+    });
+  }
+  return { story: story, card: card, og: og, img: img };
 })();

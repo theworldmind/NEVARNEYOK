@@ -2,7 +2,7 @@
    Android'de kurulan uygulamada telefon arada bir (günde aşağı yukarı bir kez) "nvny-takip" ile uyandırır:
    güncel etkinlik listesini indirir, takip edilenlerdeki değişiklikleri ve hatırlatmaları (1 hafta, 3 gün, 1 gün önce, o gün, az kaldı, ertesi gün) bildirir;
    değişiklik yoksa gün içinde öneri gönderir (NV.digest: sabah, öğle, akşam; her dilimde en çok bir). Telefon uyandırma sıklığına kendisi karar verir. */
-importScripts("takip.js?v=10");
+importScripts("takip.js?v=11");
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 

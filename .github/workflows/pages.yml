@@ -38,9 +38,9 @@ jobs:
           path: s
           key: paylas-gorsel-${{ github.run_id }}
           restore-keys: paylas-gorsel-
-      - name: Hikâye görselleri (afişli, önümüzdeki 4 gün)
+      - name: Paylaşım ve davet görselleri (afiş + logo, 7 gün) ve hikâye görselleri (4 gün)
         continue-on-error: true
-        timeout-minutes: 15
+        timeout-minutes: 40
         working-directory: scraper
         run: |
           npm install --no-audit --no-fund
