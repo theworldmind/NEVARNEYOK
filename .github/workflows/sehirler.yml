@@ -159,10 +159,10 @@ jobs:
       - name: Mekân konumları (80 il, "Yakınımda" için; OpenStreetMap)
         working-directory: scraper
         continue-on-error: true
-        timeout-minutes: 14
+        timeout-minutes: 30
         env:
           GEO_SCOPE: tr
-          GEO_MAX: "150"
+          GEO_MAX: "400"
         run: node geo.mjs
       - name: Kaydet ve yayınla
         env:

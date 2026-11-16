@@ -30,13 +30,31 @@ const todo = [...cnt].sort((a, b) => b[1][2] - a[1][2]).map(([k, x]) => [k, x[0]
 // "Karagöz Müzesi · Hayali Küçük Ali Sahne" → önce tamamı, sonra ana ad; salon/sahne ekleri atılarak yeniden denenir
 const variants = (v) => [...new Set([v, v.split(/ · | - |,/)[0], v.replace(/\b(sahnesi|sahne|salonu|salon|kırmızı salon|mor salon)\b.*$/i, "").trim()].filter((x) => x && x.length > 3))];
 const fl2 = (s) => fold(s).replace(/ı/g, "i");
+/* Nominatim GitHub sunucularından çoğu zaman 503 veriyor (16.11.2026: 150 mekânda 1 sonuç). O zaman aynı OpenStreetMap verisini veren
+   anahtarsız Photon (photon.komoot.io) kullanılır; aynı sıkı kurallar (bina/mekân türü, ad tutmalı, doğru il) geçerli. Saniyede en çok 1 istek. */
+let provider = "nom";
+const PT = { street: "road", locality: "suburb", district: "district", city: "city", county: "county", state: "state", house: "house", other: "other" };
 async function search(q, city) {
   const il = NAME[city] || "Ankara";
-  const u = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=3&countrycodes=tr&accept-language=tr&q=${encodeURIComponent(q + ", " + il)}`;
-  const r = await fetch(u, { headers: { "user-agent": UA, referer: "https://nevarneyok.net.tr/" } });
-  await sleep(1100);
-  if (!r.ok) throw new Error("Nominatim " + r.status);
-  const L = await r.json();
+  let L;
+  if (provider === "nom") {
+    const u = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=3&countrycodes=tr&accept-language=tr&q=${encodeURIComponent(q + ", " + il)}`;
+    const r = await fetch(u, { headers: { "user-agent": UA, referer: "https://nevarneyok.net.tr/" } });
+    await sleep(1100);
+    if (r.ok) L = await r.json();
+    else if ([403, 429, 503].includes(r.status)) { provider = "photon"; log(`geo: Nominatim ${r.status}, Photon'a geçildi`); }
+    else throw new Error("Nominatim " + r.status);
+  }
+  if (provider === "photon") {
+    const u = `https://photon.komoot.io/api/?limit=5&bbox=25.6,35.8,44.9,42.2&q=${encodeURIComponent(q + ", " + il)}`;
+    const r = await fetch(u, { headers: { "user-agent": UA, referer: "https://nevarneyok.net.tr/" } });
+    await sleep(1100);
+    if (!r.ok) throw new Error("Photon " + r.status);
+    const j = await r.json();
+    L = (j.features || []).filter((f) => (f.properties?.countrycode || "TR").toUpperCase() === "TR").map((f) => { const p = f.properties || {};
+      return { lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0], name: p.name || "", category: p.osm_key, class: p.osm_key, type: p.osm_value, addresstype: PT[p.type] || p.type,
+        display_name: [p.name, p.street, p.district, p.city, p.county, p.state].filter(Boolean).join(", "), address: { province: p.state, state: p.state, city: p.city, county: p.county, road: p.street, suburb: p.district, house_number: p.housenumber } }; });
+  }
   const ok = (x) => isPlace(x) && nameOk(want, x);
   if (!TR) return L.filter((x) => +x.lat > BOX.s && +x.lat < BOX.n && +x.lon > BOX.w && +x.lon < BOX.e && ok(x));
   return L.filter((x) => { const a = x.address || {}; return ok(x) && [a.province, a.state, a.city].some((p) => p && fl2(p).includes(fl2(il))); });
