@@ -2044,16 +2044,21 @@ function viewHarita(city) {
       const ll = ILLL[c]; if (!ll) continue;
       window.L.marker(ll, { icon: window.L.divIcon({ className: "", html: `<div class="ub"><b>${L.length}</b><span>etkinlik daha</span></div>`, iconSize: [92, 40], iconAnchor: [46, -26] }), zIndexOffset: 2000 }).addTo(vLayer).on("click", () => unSheet(c, L)); }
     for (const [c, k] of byC) { const ll = ILLL[c] || [k.la / k.m, k.lo / k.m];
-      window.L.marker(ll, { icon: window.L.divIcon({ className: "", html: `<div class="cb${c === city ? " me" : ""}"><b>${esc(N[c] || c)}</b><span>${k.n} etkinlik</span></div>`, iconSize: [104, 46], iconAnchor: [52, 23] }) }).addTo(cLayer)
+      window.L.marker(ll, { icon: window.L.divIcon({ className: "", html: `<div class="cb${c === city ? " me" : ""}"><b>${esc(N[c] || c)}</b><span>${k.n} etkinlik</span><i>${k.n}</i></div>`, iconSize: [104, 46], iconAnchor: [52, 23] }), n: k.n + (c === city ? 1e6 : 0) }).addTo(cLayer)
         .on("click", () => { haptic(6); snd.push?.(); const pts = VG.filter((g) => g.v[2] === c).map((g) => [g.v[0], g.v[1]]).concat(UG.has(c) ? [ll] : []); if (pts.length > 1) map.flyToBounds(pts, { padding: [70, 70], maxZoom: 13, duration: .9 }); else map.flyTo(ll, 12, { duration: .9 }); }); }
     $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik · <b>${byC.size}</b> il`;
     lod(true);
   };
   let lastLod = "";
+  // Apple Haritalar gibi: uzakta üst üste binen il etiketleri küçük noktaya döner; sayısı büyük olan (ve senin ilin) önce yer alır
+  const declutter = () => { const ms = []; cLayer.eachLayer((mk) => ms.push(mk)); ms.sort((p, q) => q.options.n - p.options.n); const kept = [];
+    for (const mk of ms) { const p = map.latLngToContainerPoint(mk.getLatLng()), r = [p.x - 50, p.y - 22, p.x + 50, p.y + 22], hit = kept.some((k) => r[0] < k[2] && r[2] > k[0] && r[1] < k[3] && r[3] > k[1]);
+      mk.getElement()?.firstElementChild?.classList.toggle("dot", hit); if (!hit) kept.push(r); } };
   const lod = (force) => { if (!map) return; const z = map.getZoom(), m = z < 10 ? "far" : z >= 14.5 ? "near" : "mid"; // uzakta yalnızca il ve sayı; yaklaşınca simgeler; iyice yaklaşınca afişler
     if (m !== lastLod || force) { if (lastLod && m !== lastLod && !force) { tick(); haptic(5); } lastLod = m; el.classList.toggle("near", m === "near");
       if (m === "far") { vLayer && map.hasLayer(vLayer) && map.removeLayer(vLayer); cLayer && !map.hasLayer(cLayer) && cLayer.addTo(map); }
       else { cLayer && map.hasLayer(cLayer) && map.removeLayer(cLayer); vLayer && !map.hasLayer(vLayer) && vLayer.addTo(map); } }
+    if (m === "far" && cLayer) declutter();
     if (m === "near" && vLayer) { const bb = map.getBounds().pad(.3); vLayer.eachLayer((mk) => { if (!bb.contains(mk.getLatLng())) return; const im = mk.getElement()?.querySelector("img[data-src]"); if (im) { im.src = im.dataset.src; im.removeAttribute("data-src"); } }); } };
   Promise.all([leaflet(), hIdx()]).then(([, ix]) => { if (!document.body.contains(el)) return; const L = window.L; IX = ix || { v: [], e: [] };
     map = L.map(el, { zoomControl: false, attributionControl: true, tap: false, zoomSnap: .5, minZoom: 5, maxBounds: [[33, 23], [45, 47]] });
