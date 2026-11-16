@@ -82,26 +82,39 @@ var NV = (function () {
     return { msgs: msgs, follows: out };
   }
 
-  /* Haftanın her günü en çok bir tatlı öneri (kullanıcı isteği, 15.11.2026: "bildirim sayımız az olmasın, samimi ve cana yakın olsun").
-     Pazartesi haftanın planı, Çarşamba bu akşam, Perşembe-Cuma hafta sonu, Cumartesi bugün, Pazar pazar keyfi; ilgi alanı varsa ona göre. */
+  /* Gün içinde öneriler (kullanıcı isteği, 16.11.2026 12:11: "arada bildirim göndersin, gün içinde"): her gün üç zaman dilimi, her dilimde en çok bir:
+     sabah (09–12) günün özeti, öğle (12–16) bu akşam için tek bir afişli öneri, akşam (16–21:30) günün/haftanın sohbet tadında notu.
+     21:30–09:00 arası sessiz. İlgi alanı varsa ona göre. `last` = { d: gün, s: [gönderilen dilimler] }. Ne zaman uyanacağına telefon karar verir (Android). */
   function digest(events, prefs, last, city, cityName) {
-    var t0 = today(), d = new Date(t0 + "T12:00:00").getDay();
-    if (last && new Date(last).toLocaleDateString("en-CA", { timeZone: "Europe/Istanbul" }) === t0) return null; // bugün zaten yazdık
+    var t0 = today(), d = new Date(t0 + "T12:00:00").getDay(), hm = new Date().toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit", hour12: false });
+    var slot = hm >= "09:00" && hm < "12:00" ? "sabah" : hm >= "12:00" && hm < "16:00" ? "ogle" : hm >= "16:00" && hm < "21:30" ? "aksam" : null; if (!slot) return null;
+    var L0 = last && typeof last === "object" && last.d === t0 ? last.s || [] : []; if (L0.indexOf(slot) >= 0) return null;
     var ok = function (e) { return e.status !== "iptal" && e.status !== "ertelendi"; }, cats = prefs && prefs.cats && prefs.cats.length ? prefs.cats : null;
     var mineOf = function (L) { return cats ? L.filter(function (e) { return cats.indexOf(e.cat) >= 0; }).length : 0; };
     var nm = cityName ? (function (w) { var v = (w.toLocaleLowerCase("tr").match(/[aıoueiöü](?=[^aıoueiöü]*$)/) || ["a"])[0]; return w + "'" + (/[fsthçşkp]$/i.test(w) ? "t" : "d") + ("aıou".indexOf(v) >= 0 ? "a" : "e"); })(cityName) : "Şehrinde", base = "/#/" + (city || "ankara") + "/kesfet", n = function (x) { return x.toLocaleString("tr-TR"); };
     var range = function (a, b) { return events.filter(function (e) { return e.d >= a && e.d <= b && ok(e); }); };
+    var out = function (o) { o.tag = "digest"; o.slot = slot; return o; };
+    var T = range(t0, t0).filter(function (e) { return !e.t || e.t >= hm; }), mT = mineOf(T);
+    if (slot === "sabah") { if (!T.length) return null;
+      var G = ["Günaydın ☀️", "Güne güzel başla ☕", "Bugün neler var? 👀"][d % 3];
+      return out({ title: G, body: nm + " bugün " + n(T.length) + " etkinlik var" + (mT ? "; " + mT + " tanesi tam senin tarzın 😍" : ". Akşama bir plan yapalım mı?"), url: base + "?t=bugun" + (mT ? "&sira=sen" : "") }); }
+    if (slot === "ogle") { // bu akşam için tek, afişli öneri (ilgi alanı önce; aynı etkinliği iki kez önerme)
+      var C = T.filter(function (e) { return e.img && (!e.t || e.t >= "17:00") && e.status !== "tukendi"; });
+      var pref = C.filter(function (e) { return cats && cats.indexOf(e.cat) >= 0; }), pool = pref.length ? pref : C; if (!pool.length) return null;
+      var pick = pool[(d * 7 + t0.charCodeAt(9)) % pool.length];
+      return out({ title: "Bu akşam bunu kaçırma 🎟️", body: pick.title + (pick.t ? " · " + pick.t : "") + (pick.venue ? " · " + pick.venue : ""), image: pick.img, url: base + "?t=bugun&q=" + encodeURIComponent(pick.title) }); }
+    // akşam: günün tadında not
     if (d === 1) { var W = range(t0, addD(t0, 6)), m1 = mineOf(W); if (!W.length) return null;
-      return { tag: "digest", title: "Yeni hafta, yeni planlar 🗓️", body: nm + " bu hafta " + n(W.length) + " etkinlik var" + (m1 ? "; " + m1 + " tanesi tam senin tarzın 😍" : ". Takvimini şimdiden doldur!"), url: base + "?t=hafta" + (m1 ? "&sira=sen" : "") }; }
-    if (d === 3) { var T = range(t0, t0), m3 = mineOf(T); if (!T.length) return null;
-      return { tag: "digest", title: "Hafta ortası molası ☕", body: "Bu akşam " + nm + " " + n(T.length) + " etkinlik var" + (m3 ? ", " + m3 + " tanesi sana göre." : ".") + " Haftanın yorgunluğunu atmaya ne dersin? 🌙", url: base + "?t=bugun" + (m3 ? "&sira=sen" : "") }; }
-    if (d === 4 || d === 5) { var fri = addD(t0, (5 - d + 7) % 7), L = range(fri, addD(fri, 2)), m5 = mineOf(L); if (!L.length) return null;
-      return { tag: "digest", title: "Hafta sonu planın hazır mı? 🌟", body: nm + " bu hafta sonu " + n(L.length) + " etkinlik var" + (m5 ? "; " + m5 + " tanesi tam sana göre ✨" : ". Bir göz atmak için dokun."), url: base + "?t=haftasonu" + (m5 ? "&sira=sen" : "") }; }
-    if (d === 6) { var S = range(t0, t0), m6 = mineOf(S); if (!S.length) return null;
-      return { tag: "digest", title: "Bugün ne yapsak? ☀️", body: "Cumartesi keyfi için " + nm + " bugün " + n(S.length) + " etkinlik var" + (m6 ? ", " + m6 + " tanesi tam senlik 🎯" : "") + ". Hadi bir bak!", url: base + "?t=bugun" + (m6 ? "&sira=sen" : "") }; }
-    if (d === 0) { var P = range(t0, t0), kids = prefs && prefs.kids, mk = kids ? P.filter(function (e) { return e.cat === "cocuk"; }).length : 0; if (!P.length) return null;
-      return { tag: "digest", title: "Pazar keyfi 🎈", body: (mk ? "Aileyle gidebileceğin " + mk + " etkinlik dahil, " : "") + nm + " bugün " + n(P.length) + " etkinlik var. Güzel bir pazar geçir! 💜", url: base + "?t=bugun" + (mk ? "&c=cocuk" : "") }; }
-    return null; // salı: dinlen 🙂
+      return out({ title: "Yeni hafta, yeni planlar 🗓️", body: nm + " bu hafta " + n(W.length) + " etkinlik var" + (m1 ? "; " + m1 + " tanesi tam senin tarzın 😍" : ". Takvimini şimdiden doldur!"), url: base + "?t=hafta" + (m1 ? "&sira=sen" : "") }); }
+    if (d === 4 || d === 5) { var fri = addD(t0, (5 - d + 7) % 7), H = range(fri, addD(fri, 2)), m5 = mineOf(H); if (!H.length) return null;
+      return out({ title: "Hafta sonu planın hazır mı? 🌟", body: nm + " bu hafta sonu " + n(H.length) + " etkinlik var" + (m5 ? "; " + m5 + " tanesi tam sana göre ✨" : ". Bir göz atmak için dokun."), url: base + "?t=haftasonu" + (m5 ? "&sira=sen" : "") }); }
+    if (!T.length) { var Y = range(addD(t0, 1), addD(t0, 1)); if (!Y.length) return null; return out({ title: "Yarına plan yapalım mı? 🌙", body: nm + " yarın " + n(Y.length) + " etkinlik var. Şimdiden seç, keyfini çıkar 💜", url: base + "?t=yarin" }); }
+    var tt = [["Bu akşam ne yapıyoruz? 🌙", "Bu akşam " + nm + " hâlâ " + n(T.length) + " etkinlik var" + (mT ? ", " + mT + " tanesi sana göre" : "") + ". Evde kalmak yok! ✨"],
+      ["Hafta ortası molası ☕", "Bu akşam " + nm + " " + n(T.length) + " etkinlik var. Haftanın yorgunluğunu atmaya ne dersin? 🎶"],
+      ["Akşam planı 🎭", nm + " bu akşam " + n(T.length) + " etkinlik seni bekliyor" + (mT ? "; " + mT + " tanesi tam senlik 🎯" : "") + "."]][d % 3];
+    if (d === 6) tt = ["Cumartesi akşamı 🎉", nm + " bu akşam " + n(T.length) + " etkinlik var" + (mT ? ", " + mT + " tanesi tam senlik 🎯" : "") + ". Hadi bir bak!"];
+    if (d === 0) tt = ["Pazar keyfi 🎈", nm + " bu akşam " + n(T.length) + " etkinlik var. Haftayı güzel kapat 💜"];
+    return out({ title: tt[0], body: tt[1], url: base + "?t=bugun" + (mT ? "&sira=sen" : "") });
   }
   /* Yeni tarihlerini takip et (sanatçı, oyun, gösteri; kullanıcı isteği, 15.11.2026): etkinliğin adından anahtar ("Duman Konseri" → "duman",
      "Cem Eren Öztürk - Erte" → "cem eren ozturk"). 81 ilin dizini idx/a.json (share-pages.mjs): anahtar → [[il, gün, saat, ad, mekân]].

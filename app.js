@@ -689,7 +689,7 @@ const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent), standalone = docume
 async function swUp() {
   if (!("serviceWorker" in navigator)) return null;
   try { await navigator.serviceWorker.register("sw.js", { scope: "./" }); const r = await navigator.serviceWorker.ready;
-    if (r.periodicSync) { try { const st = await navigator.permissions.query({ name: "periodic-background-sync" }); if (st.state === "granted") await r.periodicSync.register("nvny-takip", { minInterval: 12 * 36e5 }); } catch {} }
+    if (r.periodicSync) { try { const st = await navigator.permissions.query({ name: "periodic-background-sync" }); if (st.state === "granted") await r.periodicSync.register("nvny-takip", { minInterval: 3 * 36e5 }); /* gün içinde öneriler için daha sık iste; telefon kendi sınırını uygular */ } catch {} }
     return r; } catch { return null; }
 }
 async function notify(title, body, url, tag) {
