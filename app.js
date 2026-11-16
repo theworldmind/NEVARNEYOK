@@ -1315,7 +1315,8 @@ function routeSheet(e, v, city, gUrl) {
     <div class="nvt" id="nvt"><i></i><span><b></b><small></small></span></div>
     <div class="nvb" id="nvb"><span><b id="nvm"></b><small id="nvk"></small></span><button type="button" class="nvv" id="nvv" aria-label="Sesli yönlendirme"></button><button type="button" class="nve" id="nve">Bitir</button></div>
     <button type="button" class="nvc" id="nvc" aria-label="Konumuma dön"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button>
-    <div class="bd2"><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
+    <div class="bd2"><div class="rfr" id="rfr" role="tablist" aria-label="Nereden"></div><div class="rfx" id="rfx" hidden><label class="fvi"><svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><input id="rfi" placeholder="Semt, adres ya da yer adı" enterkeyhint="search" autocomplete="off"></label><div class="rfl" id="rfl"></div></div>
+    <div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
     <div class="rsum" id="rsum"><span class="sk" style="display:block;height:52px;border-radius:14px"></span></div>
     <ol class="rst" id="rst"></ol>
     <a class="rg" href="${gUrl}" target="_blank" rel="noopener">${I.ext}Google Haritalar'da aç</a>
@@ -1388,18 +1389,44 @@ function routeSheet(e, v, city, gUrl) {
       mapOk = true; if (C.length) { rDraw(); if (!nav) fitRoute(); } });
     map.on("dragstart", () => { if (nav) { follow = false; sh.classList.add("free"); } });
     new maplibregl.Marker({ element: elOf('<div class="pin"></div>'), anchor: "bottom" }).setLngLat(LL(dest)).addTo(map);
-    if (from) { me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat(LL(from)).addTo(map); if (R) paint(); }
+    if (meP) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat(LL(meP)).addTo(map);
+    if (src === "x" && xPlace) pin(xPlace.ll, '<div class="pin"></div>'); else { const f = F.find((x) => x.id === src); if (f) pin(f.ll, `<span class="fv"><span class="fvp">${favIc(f.n)}</span><b>${esc(f.n)}</b></span>`); }
+    if (R) paint();
   }).catch(() => sh.querySelector("#rmap")?.remove());
-  whereAmI(true).then((p) => {
-    from = p; const k = km(p, dest); setMode(k < 2.5 ? "foot" : "car");
-    if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([p[1], p[0]]).addTo(map);
-    paint();
-    if (navigator.geolocation?.watchPosition) watch = navigator.geolocation.watchPosition((q) => { const np = [q.coords.latitude, q.coords.longitude]; DATA.me = { p: np, t: Date.now() }; locSave(np);
-      me?.setLngLat([np[1], np[0]]);
+  /* Nereden? (kullanıcı, 16.11.2026 14:59: "illa konuma gerek yok; okulunu işaretlediyse okuldan, evden ya da başka bir yerden çizelim")
+     Konumum · haritada kaydettiğin yerler (Ev, Okul…) · Başka bir yer (semt, adres, yer adı). Kayıtlı ya da aranan yerden çizilen yolda
+     navigasyon başlamaz (yalnızca özet ve adım adım tarif); "Başla" yalnızca Konumum seçiliyken. Seçim bu telefonda hatırlanır. */
+  const rfr = $("#rfr", sh), rfx = $("#rfx", sh), F = (() => { try { return JSON.parse(store.get("nvny-yerler") || "[]") || []; } catch { return []; } })();
+  let src = store.get("nvny-rota-kaynak") || "me", meP = null, srcM = null, xPlace = null, watching = false;
+  const pin = (ll, html) => { srcM?.remove(); srcM = null; if (map && html) srcM = new maplibregl.Marker({ element: elOf(html), anchor: "bottom" }).setLngLat([ll[1], ll[0]]).addTo(map); };
+  const chips = () => { rfr.innerHTML = `<button type="button" data-s="me" class="${src === "me" ? "on" : ""}"><span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span>Konumum</button>`
+      + F.map((f) => `<button type="button" data-s="${f.id}" class="${src === f.id ? "on" : ""}">${favIc(f.n)}${esc(f.n)}</button>`).join("")
+      + `<button type="button" data-s="x" class="${src === "x" ? "on" : ""}"><span class="cgi" style="background:rgba(120,120,128,.4)"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="#fff" stroke-width="2.2"/><path d="m15.5 15.5 4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>${src === "x" && xPlace ? esc(xPlace.n) : "Başka yer"}</button>`;
+    rfr.querySelectorAll("[data-s]").forEach((b) => b.addEventListener("click", () => { snd.sel?.(); haptic(4); pick(b.dataset.s, true); })); };
+  const go = (p) => { from = p; if (!mode) setMode(km(p, dest) < 2.5 ? "foot" : "car"); paint(); };
+  const startWatch = () => { if (watching || !navigator.geolocation?.watchPosition) return; watching = true;
+    watch = navigator.geolocation.watchPosition((q) => { const np = [q.coords.latitude, q.coords.longitude]; meP = np; DATA.me = { p: np, t: Date.now() }; locSave(np);
+      if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([np[1], np[0]]).addTo(map); me?.setLngLat([np[1], np[0]]);
+      if (src !== "me") return;
       if (R && C.length) { let off = 1e9; for (let i = Math.max(0, ni - 3); i < Math.min(C.length, ni + 40); i++) off = Math.min(off, km(np, C[i])); if (off > .06) { from = np; paint(); return; } }
       from = np; if (nav) update(np);
-    }, () => {}, { enableHighAccuracy: true, maximumAge: 2000, timeout: 30000 });
-  }).catch((err) => { sh.close(); setTimeout(() => geoHelp(city, err?.code), 280); });
+    }, () => {}, { enableHighAccuracy: true, maximumAge: 2000, timeout: 30000 }); };
+  function pick(s, user) {
+    if (nav && s !== "me") return; src = s; store.set("nvny-rota-kaynak", s === "x" ? "me" : s); chips(); rfx.hidden = s !== "x" || !!(xPlace && !user); sh.classList.toggle("fixed", s !== "me");
+    if (s === "me") { pin(null); if (meP) { go(meP); return; }
+      sum.innerHTML = `<span class="sk" style="display:block;height:52px;border-radius:14px"></span>`;
+      whereAmI(true).then((p) => { meP = p; if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([p[1], p[0]]).addTo(map); if (src === "me") go(p); startWatch(); })
+        .catch((err) => { if (F.length) { toast("Konumun alınamadı; kayıtlı yerlerinden birini seçebilirsin 📍", 3500); pick(F[0].id); } else { sh.close(); setTimeout(() => geoHelp(city, err?.code), 280); } });
+      return; }
+    if (s === "x") { if (xPlace && !user) { pin(xPlace.ll, '<div class="pin"></div>'); go(xPlace.ll); } else { sum.innerHTML = `<p class="rnote" style="margin:4px 2px">Nereden yola çıkacaksın? Semt, adres ya da yer adı yaz.</p>`; st.innerHTML = ""; setTimeout(() => $("#rfi", sh).focus(), 120); } return; }
+    const f = F.find((x) => x.id === s); if (!f) return pick("me"); pin(f.ll, `<span class="fv"><span class="fvp">${favIc(f.n)}</span><b>${esc(f.n)}</b></span>`); go(f.ll);
+  }
+  let rq = 0; $("#rfi", sh).addEventListener("input", (ev) => { const q = ev.target.value.trim(), my = ++rq, box = $("#rfl", sh); if (q.length < 3) { box.innerHTML = ""; return; }
+    setTimeout(() => { if (my !== rq) return; const c = dest; fetch(`https://photon.komoot.io/api/?limit=6&bbox=25.6,35.8,44.9,42.2&lat=${c[0]}&lon=${c[1]}&location_bias_scale=0.3&q=${encodeURIComponent(q)}`).then((r) => r.ok ? r.json() : null).then((j) => { if (my !== rq) return;
+      const L = (j?.features || []).filter((f) => (f.properties?.countrycode || "").toUpperCase() === "TR").slice(0, 5);
+      box.innerHTML = L.length ? L.map((f, i) => { const p = f.properties; return `<button type="button" data-i="${i}"><b>${esc(p.name || p.street || q)}</b><small>${esc([p.district || p.locality, p.city, p.state].filter(Boolean).join(" · "))}</small></button>`; }).join("") : `<p class="rnote">“${esc(q)}” bulunamadı.</p>`;
+      box.querySelectorAll("[data-i]").forEach((b) => b.addEventListener("click", () => { const f = L[+b.dataset.i], [lng, lat] = f.geometry.coordinates; xPlace = { n: f.properties.name || q, ll: [lat, lng] }; snd.sel?.(); haptic(5); $("#rfi", sh).blur(); box.innerHTML = ""; pick("x"); })); }).catch(() => {}); }, 280); });
+  chips(); pick(F.some((f) => f.id === src) ? src : "me");
 }
 
 /* ---------- Ayarlar (kullanıcı isteği, 15.11.2026 23:46: "ayarlar kısmı olsun; sesi, bildirimleri açıp kapatabilsin") ----------
