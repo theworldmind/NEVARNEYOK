@@ -1,10 +1,16 @@
 {
  "Bilkent Konser Salonu": {
   "place": "ChIJSRSfAxlH0xQRnpFBTlzTpQQ",
-  "lat": 39.8692562,
-  "lng": 32.7553574,
+  "lat": 39.8689242,
+  "lng": 32.7549683,
   "addr": "1598. Cd. No:1, Üniversiteler, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-16",
+  "gp": [
+   39.8692562,
+   32.7553574
+  ],
+  "osm": "amenity/theatre"
  },
  "Kite Ankara": {
   "place": "ChIJxSO__51P0xQRoQ0zTWRvHaA",
@@ -626,200 +632,211 @@
   "addr": "2168. Sk. No:11A, Turgut Özal, Yenimahalle",
   "ilce": "Yenimahalle"
  },
+ "Türk Telekom Opera Salonu": {
+  "lat": 39.940777,
+  "lng": 32.8565062,
+  "addr": "Susam Caddesi, Hacı Bayram Mahallesi, Altındağ",
+  "ilce": "Altındağ",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
  "Yakın Sahne": {
   "lat": 39.9742965,
   "lng": 32.631854,
   "addr": "2. Meşrutiyet Caddesi, Eryaman Mahallesi, Etimesgut",
   "ilce": "Etimesgut",
-  "src": "osm"
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
  },
  "Etimesgut Belediyesi 100. Yıl Cumhuriyet Kültür Merkezi": {
   "lat": 39.976705,
   "lng": 32.6383561,
   "addr": "Orhan Bey Caddesi, Altay Mahallesi, Etimesgut",
   "ilce": "Etimesgut",
-  "src": "osm"
- },
- "Etimesgut CKM Sahnesi": {
-  "lat": 39.976705,
-  "lng": 32.6383561,
-  "addr": "Orhan Bey Caddesi, Altay Mahallesi, Etimesgut",
-  "ilce": "Etimesgut",
-  "src": "osm"
- },
- "TED Ankara Koleji Ata Sahne": {
-  "lat": 39.8273994,
-  "lng": 32.7753286,
-  "addr": "Kolej Caddesi No:5, Taşpınar Mahallesi, Gölbaşı",
-  "ilce": "Gölbaşı",
-  "src": "osm"
- },
- "Farabi Sahnesi": {
-  "lat": 39.8962202,
-  "lng": 32.8591748,
-  "addr": "Farabi Sokağı No:17/A, Çankaya Mahallesi, Çankaya",
-  "ilce": "Çankaya",
-  "src": "osm"
- },
- "Etimesgut Belediyesi": {
-  "lat": 39.9466165,
-  "lng": 32.6599602,
-  "addr": "Necip Fazıl Sokağı, 30 Ağustos Mahallesi, Etimesgut",
-  "ilce": "Etimesgut",
-  "src": "osm"
- },
- "Berlin Cafe Pub": {
-  "lat": 39.9162322,
-  "lng": 32.8584009,
-  "addr": "Selanik Caddesi No:67/A, Kocatepe Mahallesi, Çankaya",
-  "ilce": "Çankaya",
-  "src": "osm"
- },
- "ANADOLU MEDENİYETLERİ MÜZESİ": {
-  "lat": 39.9379477,
-  "lng": 32.8617618,
-  "addr": "Çıkrıkçılar Yokuşu Sokak No:2, Kale Mahallesi, Altındağ",
-  "ilce": "Altındağ",
-  "src": "osm"
- },
- "Pursaklar DT Sahnesi": {
-  "lat": 40.0381052,
-  "lng": 32.896908,
-  "addr": "Pursaklar",
-  "ilce": "Pursaklar",
-  "src": "osm"
- },
- "Gökyay Vakfı Satranç Müzesi": {
-  "lat": 39.9346959,
-  "lng": 32.8633082,
-  "addr": "Ulucanlar Caddesi No:3, Hacettepe Mahallesi, Altındağ",
-  "ilce": "Altındağ",
-  "src": "osm"
- },
- "Last Penny Büklüm": {
-  "lat": 39.9094911,
-  "lng": 32.8598458,
-  "addr": "Büklüm Caddesi, Kavaklıdere Mahallesi, Çankaya",
-  "ilce": "Çankaya",
-  "src": "osm"
- },
- "CUMHURİYET MÜZESİ": {
-  "lat": 39.9413832,
-  "lng": 32.8516225,
-  "addr": "Cumhuriyet Caddesi No:22, Hacı Bayram Mahallesi, Altındağ",
-  "ilce": "Altındağ",
-  "src": "osm"
- },
- "Kuzu Effect AVM": {
-  "lat": 39.8458661,
-  "lng": 32.8280031,
-  "addr": "Elif Naci Sokağı, Or-An Mahallesi, Çankaya",
-  "ilce": "Çankaya",
-  "src": "osm"
- },
- "Spor": {
-  "lat": 39.9379155,
-  "lng": 32.8439139,
-  "addr": "Hipodrom Caddesi, Hacı Bayram Mahallesi, Altındağ",
-  "ilce": "Altındağ",
-  "src": "osm"
- },
- "Ozanlar, Şht. Üsteğmen Cengiz Ulusinan Sk. No:63, 54100": {
-  "lat": 39.9268215,
-  "lng": 32.8697868,
-  "addr": "Ozanlar Caddesi, Çamlıtepe Mahallesi, Çankaya",
-  "ilce": "Çankaya",
-  "src": "osm"
- },
- "Devlet Tiyatroları · Ankara": {
-  "lat": 39.9381477,
-  "lng": 32.8527597,
-  "addr": "İstiklal Caddesi, Hacı Bayram Mahallesi, Altındağ",
-  "ilce": "Altındağ",
-  "src": "osm"
- },
- "Necip Fazıl Salonu (Gençlik Parkı İçi)": {
-  "lat": 40.029925,
-  "lng": 32.897402,
-  "addr": "Yunus Emre Mahallesi, Pursaklar",
-  "ilce": "Pursaklar",
-  "src": "osm"
- },
- "Manja Coffee": {
-  "lat": 39.909362,
-  "lng": 32.8044865,
-  "addr": "1480. Sokak, Çukurambar Mahallesi, Çankaya",
-  "ilce": "Çankaya",
-  "src": "osm"
- },
- "Tenedos": {
-  "lat": 39.9001463,
-  "lng": 32.8572941,
-  "addr": "Güneş Sokak No:4, Güvenevler Mahallesi, Çankaya",
-  "ilce": "Çankaya",
-  "src": "osm"
- },
- "JW Marriott Ankara · Pool Garden": {
-  "lat": 39.9096118,
-  "lng": 32.806565,
-  "addr": "1443. Cadde, Kızılırmak Mahallesi, Çankaya",
-  "ilce": "Çankaya",
-  "src": "osm"
- },
- "Türk Telekom Opera Salonu": {
-  "lat": 39.940777,
-  "lng": 32.8565062,
-  "addr": "Susam Caddesi, Hacı Bayram Mahallesi, Altındağ",
-  "ilce": "Altındağ",
-  "src": "osm"
- },
- "Cumhurbaşkanlığı Senfoni Orkestrası Ankara": {
-  "lat": 39.9329551,
-  "lng": 32.8505724,
-  "addr": "Altınsoy Caddesi, Hacı Bayram Mahallesi, Altındağ",
-  "ilce": "Altındağ",
-  "src": "osm"
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/social_centre"
  },
  "Ata Sahne": {
   "lat": 39.8273183,
   "lng": 32.7752988,
   "addr": "2801. Cadde, Taşpınar Mahallesi, Gölbaşı",
   "ilce": "Gölbaşı",
-  "src": "osm"
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/conference_centre"
  },
- "Ankara Yeni Sahne": {
-  "lat": 40.2094256,
-  "lng": 32.2206831,
-  "addr": "Aşağı, Güdül",
-  "ilce": "Güdül",
-  "src": "osm"
+ "Etimesgut CKM Sahnesi": {
+  "lat": 39.976705,
+  "lng": 32.6383561,
+  "addr": "Orhan Bey Caddesi, Altay Mahallesi, Etimesgut",
+  "ilce": "Etimesgut",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/social_centre"
+ },
+ "TED Ankara Koleji Ata Sahne": {
+  "lat": 39.8273994,
+  "lng": 32.7753286,
+  "addr": "2801. Cadde, Taşpınar Mahallesi, Gölbaşı",
+  "ilce": "Gölbaşı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/conference_centre"
+ },
+ "Etimesgut Belediyesi": {
+  "lat": 39.9466165,
+  "lng": 32.6599602,
+  "addr": "Necip Fazıl Sokağı, 30 Ağustos Mahallesi, Etimesgut",
+  "ilce": "Etimesgut",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall"
+ },
+ "Berlin Cafe Pub": {
+  "lat": 39.9162322,
+  "lng": 32.8584009,
+  "addr": "Selanik Caddesi No:67/A, Kocatepe Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "Farabi Sahnesi": {
+  "lat": 39.8962202,
+  "lng": 32.8591748,
+  "addr": "Farabi Sokağı No:17/A, Çankaya Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "Last Penny Büklüm": {
+  "lat": 39.9094911,
+  "lng": 32.8598458,
+  "addr": "Büklüm Caddesi, Kavaklıdere Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "ANADOLU MEDENİYETLERİ MÜZESİ": {
+  "lat": 39.9379477,
+  "lng": 32.8617618,
+  "addr": "Çıkrıkçılar Yokuşu Sokak No:2, Kale Mahallesi, Altındağ",
+  "ilce": "Altındağ",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
  },
  "Türk Amerikan Derneği": {
   "lat": 39.8984273,
   "lng": 32.8582216,
   "addr": "Cinnah Caddesi No:20, Güvenevler Mahallesi, Çankaya",
   "ilce": "Çankaya",
-  "src": "osm"
+  "src": "osm",
+  "v": 2,
+  "osm": "office/association"
+ },
+ "Gökyay Vakfı Satranç Müzesi": {
+  "lat": 39.9346959,
+  "lng": 32.8633082,
+  "addr": "Ulucanlar Caddesi No:3, Hacettepe Mahallesi, Altındağ",
+  "ilce": "Altındağ",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
  },
  "Ankara HiltonSA": {
   "lat": 39.9016807,
   "lng": 32.8643652,
   "addr": "Tahran Caddesi No:12, Gaziosmanpaşa Mahallesi, Çankaya",
   "ilce": "Çankaya",
-  "src": "osm"
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "Necip Fazıl Salonu (Gençlik Parkı İçi)": {
+  "lat": 40.029925,
+  "lng": 32.897402,
+  "addr": "Yunus Emre Mahallesi, Pursaklar",
+  "ilce": "Pursaklar",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "JW Marriott Ankara · Pool Garden": {
+  "lat": 39.9096118,
+  "lng": 32.806565,
+  "addr": "1443. Cadde, Kızılırmak Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "CUMHURİYET MÜZESİ": {
+  "lat": 39.9413832,
+  "lng": 32.8516225,
+  "addr": "Cumhuriyet Caddesi No:22, Hacı Bayram Mahallesi, Altındağ",
+  "ilce": "Altındağ",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
+ },
+ "Spor": {
+  "lat": 39.9379155,
+  "lng": 32.8439139,
+  "addr": "Hipodrom Caddesi, Hacı Bayram Mahallesi, Altındağ",
+  "ilce": "Altındağ",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/sports_centre"
+ },
+ "Ozanlar, Şht. Üsteğmen Cengiz Ulusinan Sk. No:63, 54100": {
+  "lat": 39.9276308,
+  "lng": 32.8691006,
+  "addr": "Ozanlar Caddesi, Çamlıtepe Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/taxi"
+ },
+ "Manja Coffee": {
+  "lat": 39.9919236,
+  "lng": 32.7465906,
+  "addr": "Melih Gökçek Bulvarı, Serhat Mahallesi, Yenimahalle",
+  "ilce": "Yenimahalle",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
  },
  "Çağdaş Sanatlar Merkezi": {
   "lat": 39.908632,
   "lng": 32.8575528,
   "addr": "John F. Kennedy Caddesi No:4, Kavaklıdere Mahallesi, Çankaya",
   "ilce": "Çankaya",
-  "src": "osm"
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
  },
- "Bilkent Otel ve Konferans Merkezi": {
-  "lat": 39.8746349,
-  "lng": 32.7640251,
-  "addr": "İhsan Doğramacı Bulvarı, Üniversiteler Mahallesi",
-  "ilce": "Üniversiteler Mahallesi",
-  "src": "osm"
+ "Tenedos": {
+  "lat": 39.9001463,
+  "lng": 32.8572941,
+  "addr": "Güneş Sokak No:4, Güvenevler Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/pub"
+ },
+ "Cumhurbaşkanlığı Senfoni Orkestrası Ankara": {
+  "lat": 39.9334047,
+  "lng": 32.8504597,
+  "addr": "Talatpaşa Bulvarı, Hacı Bayram Mahallesi, Altındağ",
+  "ilce": "Altındağ",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
  }
 }
