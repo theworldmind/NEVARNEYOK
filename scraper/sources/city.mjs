@@ -41,6 +41,16 @@ const ONE = [
     link: /biletinial\.com\/tr-tr\/(tiyatro|muzik|opera-bale|etkinlik|stand-up|festival|cocuk-aktiviteleri|egitim)\/[a-z0-9-]+/i, render: true,
     loadMore: ["Daha fazlasını göster", "Daha Fazla"], city: C.id, maxDetail: MD, budgetMin: BM },
 ];
+// (17.11.2026, kullanıcı: "Ankara'da bugün 52 etkinlik çok az") her il için iki geniş kaynak daha:
+// Radar Türkiye (il sayfası /<il>-etkinlikleri; konser, tiyatro, sergi, atölye) ve BUGECE (il sayfası /tr/browse/<il>/events; konser ve gece etkinlikleri).
+// Etkinlik sayfalarında yapısal veri (Event / MusicEvent) var; ilin sayfası başka ili gösteren kaydı runner zaten eler.
+ONE.push(
+  { id: "radar", name: "Radar Türkiye", kind: "toplayici", home: "https://www.radarturkiye.com",
+    listings: ["", "-muzik", "-tiyatro", "-hafta-sonu"].map((k) => `https://www.radarturkiye.com/${C.id}${k}-etkinlikleri`), scrolls: 6,
+    link: /radarturkiye\.com\/etkinlik\/[a-z0-9-]+/i, render: true, city: C.id, maxDetail: Math.round(MD * 0.6), budgetMin: Math.round(BM * 0.6) },
+  { id: "bugece", name: "BUGECE", kind: "bilet", home: "https://bugece.co", listings: [`https://bugece.co/tr/browse/${C.id}/events`], scrolls: 8,
+    link: /bugece\.co\/tr\/event\/[a-z0-9-]+/i, render: true, renderDetail: true, city: C.id, maxDetail: Math.round(MD * 0.4), budgetMin: Math.round(BM * 0.4) });
+
 // İstanbul: kurumların kendi siteleri (kaynak önceliği: kurum → mekân → bilet)
 if (CITY === "istanbul") ONE.push(
   { id: "iksv", name: "İKSV", kind: "kurum", home: "https://www.iksv.org", collect: P.iksvCollect, listings: [], link: null, city: "istanbul" },
