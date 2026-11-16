@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:29:40.541Z",
+ "runAt": "2026-11-16T01:05:21.697Z",
  "mode": "full",
- "total": 25,
+ "total": 24,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 25,
-   "prevCount": 23,
+   "ok": false,
+   "status": "dustu",
+   "count": 6,
+   "prevCount": 25,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: igdir",
     "biletinial.com/tr-tr/tiyatro/igdir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 0,
+   "seconds": 26,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:29:40.541Z"
   }
  }

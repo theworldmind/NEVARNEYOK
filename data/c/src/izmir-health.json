@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T13:47:42.399Z",
+ "runAt": "2026-11-16T01:06:37.540Z",
  "mode": "full",
- "total": 1235,
+ "total": 1206,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1220,
-   "prevCount": 1212,
+   "ok": false,
+   "status": "dustu",
+   "count": 400,
+   "prevCount": 1207,
    "error": "",
    "notes": [
-    "açık veri: 249 seans, 18 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/izmir: 150 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/izmir: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "açık veri: 243 seans, 16 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/izmir: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/izmir: 36 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 123,
-   "failStreak": 0,
+   "seconds": 122,
+   "failStreak": 1,
    "lastOk": "2026-11-15T13:47:42.399Z"
   },
   "izmirks": {
@@ -28,15 +28,15 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 28,
-   "prevCount": 0,
+   "count": 27,
+   "prevCount": 28,
    "error": "",
    "notes": [
-    "açık veri: 37 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate"
+    "açık veri: 35 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate"
    ],
-   "seconds": 21,
+   "seconds": 20,
    "failStreak": 0,
-   "lastOk": "2026-11-15T13:47:42.399Z"
+   "lastOk": "2026-11-16T01:06:37.540Z"
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-15T10:27:03.459Z",
+ "runAt": "2026-11-16T01:02:17.878Z",
  "mode": "full",
  "total": 21,
  "written": true,
@@ -8,18 +8,18 @@
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 21,
-   "prevCount": 20,
+   "ok": false,
+   "status": "dustu",
+   "count": 4,
+   "prevCount": 21,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: artvin",
     "biletinial.com/tr-tr/tiyatro/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/artvin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 0,
+   "seconds": 29,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:27:03.459Z"
   }
  }

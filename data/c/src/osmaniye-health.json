@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-15T10:33:34.890Z",
+ "runAt": "2026-11-16T01:09:13.752Z",
  "mode": "full",
  "total": 47,
  "written": true,
@@ -8,18 +8,18 @@
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 47,
-   "prevCount": 46,
+   "ok": false,
+   "status": "dustu",
+   "count": 13,
+   "prevCount": 47,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: osmaniye",
     "biletinial.com/tr-tr/tiyatro/osmaniye: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/osmaniye: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 31,
-   "failStreak": 0,
+   "seconds": 27,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:33:34.890Z"
   }
  }

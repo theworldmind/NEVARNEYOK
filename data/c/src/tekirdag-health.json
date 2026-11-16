@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:34:30.216Z",
+ "runAt": "2026-11-16T01:10:26.654Z",
  "mode": "full",
- "total": 511,
+ "total": 494,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 511,
-   "prevCount": 510,
+   "ok": false,
+   "status": "dustu",
+   "count": 77,
+   "prevCount": 511,
    "error": "",
    "notes": [
-    "açık veri: 15 seans",
-    "biletinial.com/tr-tr/tiyatro/tekirdag: 63 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 14 seans",
+    "biletinial.com/tr-tr/tiyatro/tekirdag: 61 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/tekirdag: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 57,
-   "failStreak": 0,
+   "seconds": 60,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:34:30.216Z"
   }
  }

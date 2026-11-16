@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:26:54.551Z",
+ "runAt": "2026-11-16T01:02:28.798Z",
  "mode": "full",
- "total": 117,
+ "total": 118,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 118,
-   "prevCount": 116,
+   "ok": false,
+   "status": "dustu",
+   "count": 18,
+   "prevCount": 117,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: aksaray",
     "biletinial.com/tr-tr/tiyatro/aksaray: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/aksaray: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 0,
+   "seconds": 33,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:26:54.551Z"
   }
  }

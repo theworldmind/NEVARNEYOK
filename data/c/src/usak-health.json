@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:35:20.853Z",
+ "runAt": "2026-11-16T01:11:18.728Z",
  "mode": "full",
- "total": 53,
+ "total": 52,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 53,
-   "prevCount": 51,
+   "ok": false,
+   "status": "dustu",
+   "count": 11,
+   "prevCount": 53,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: usak",
     "biletinial.com/tr-tr/tiyatro/usak: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/usak: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 0,
+   "seconds": 32,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:35:20.853Z"
   }
  }

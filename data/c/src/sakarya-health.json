@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:33:36.635Z",
+ "runAt": "2026-11-16T01:09:36.493Z",
  "mode": "full",
- "total": 592,
+ "total": 567,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 593,
-   "prevCount": 591,
+   "ok": false,
+   "status": "dustu",
+   "count": 91,
+   "prevCount": 592,
    "error": "",
    "notes": [
-    "açık veri: 29 seans",
-    "biletinial.com/tr-tr/tiyatro/sakarya: 73 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 27 seans",
+    "biletinial.com/tr-tr/tiyatro/sakarya: 71 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sakarya: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 59,
-   "failStreak": 0,
+   "seconds": 61,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:33:36.635Z"
   }
  }

@@ -1,17 +1,17 @@
 {
- "runAt": "2026-11-15T10:34:17.223Z",
+ "runAt": "2026-11-16T01:10:02.816Z",
  "mode": "full",
- "total": 41,
+ "total": 40,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 41,
-   "prevCount": 40,
+   "ok": false,
+   "status": "dustu",
+   "count": 7,
+   "prevCount": 41,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: sirnak",
@@ -19,7 +19,7 @@
     "biletinial.com/tr-tr/muzik/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 30,
-   "failStreak": 0,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:34:17.223Z"
   }
  }

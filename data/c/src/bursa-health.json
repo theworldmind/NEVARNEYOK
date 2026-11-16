@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:28:55.678Z",
+ "runAt": "2026-11-16T01:02:18.828Z",
  "mode": "full",
- "total": 1148,
+ "total": 1114,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1149,
-   "prevCount": 1010,
+   "ok": false,
+   "status": "dustu",
+   "count": 275,
+   "prevCount": 1148,
    "error": "",
    "notes": [
-    "açık veri: 189 seans, 4 detay sayfası",
+    "açık veri: 184 seans, 4 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/bursa: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bursa: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 102,
-   "failStreak": 0,
+   "seconds": 103,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:28:55.678Z"
   }
  }

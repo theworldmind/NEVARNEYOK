@@ -1,16 +1,16 @@
 {
- "runAt": "2026-11-15T10:26:56.628Z",
+ "runAt": "2026-11-16T01:02:17.040Z",
  "mode": "full",
- "total": 94,
+ "total": 88,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 95,
+   "ok": false,
+   "status": "dustu",
+   "count": 12,
    "prevCount": 94,
    "error": "",
    "notes": [
@@ -18,8 +18,8 @@
     "biletinial.com/tr-tr/tiyatro/burdur: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/burdur: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 0,
+   "seconds": 30,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:26:56.628Z"
   }
  }

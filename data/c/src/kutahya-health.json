@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:31:49.524Z",
+ "runAt": "2026-11-16T01:07:49.377Z",
  "mode": "full",
- "total": 54,
+ "total": 48,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 54,
-   "prevCount": 52,
+   "ok": false,
+   "status": "dustu",
+   "count": 7,
+   "prevCount": 54,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kutahya",
     "biletinial.com/tr-tr/tiyatro/kutahya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kutahya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 31,
-   "failStreak": 0,
+   "seconds": 32,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:31:49.524Z"
   }
  }

@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:26:54.672Z",
+ "runAt": "2026-11-16T01:02:14.951Z",
  "mode": "full",
- "total": 333,
+ "total": 322,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 333,
-   "prevCount": 331,
+   "ok": false,
+   "status": "dustu",
+   "count": 57,
+   "prevCount": 333,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: aydin",
-    "biletinial.com/tr-tr/tiyatro/aydin: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/aydin: 42 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/aydin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 43,
-   "failStreak": 0,
+   "seconds": 40,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:26:54.672Z"
   }
  }

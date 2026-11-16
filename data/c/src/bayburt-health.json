@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:27:12.789Z",
+ "runAt": "2026-11-16T01:02:14.837Z",
  "mode": "full",
- "total": 12,
+ "total": 11,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 12,
-   "prevCount": 11,
+   "ok": false,
+   "status": "dustu",
+   "count": 2,
+   "prevCount": 12,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: bayburt",
     "biletinial.com/tr-tr/tiyatro/bayburt: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bayburt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 27,
-   "failStreak": 0,
+   "seconds": 28,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:27:12.789Z"
   }
  }

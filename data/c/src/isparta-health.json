@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:30:20.889Z",
+ "runAt": "2026-11-16T01:05:42.187Z",
  "mode": "full",
- "total": 103,
+ "total": 99,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 103,
-   "prevCount": 101,
+   "ok": false,
+   "status": "dustu",
+   "count": 17,
+   "prevCount": 103,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: isparta",
-    "biletinial.com/tr-tr/tiyatro/isparta: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/isparta: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/isparta: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 36,
-   "failStreak": 0,
+   "seconds": 32,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:30:20.889Z"
   }
  }

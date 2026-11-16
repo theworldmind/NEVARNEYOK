@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:33:20.243Z",
+ "runAt": "2026-11-16T01:09:06.583Z",
  "mode": "full",
- "total": 369,
+ "total": 353,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 369,
-   "prevCount": 368,
+   "ok": false,
+   "status": "dustu",
+   "count": 90,
+   "prevCount": 369,
    "error": "",
    "notes": [
-    "açık veri: 7 seans, 1 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/mugla: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 5 seans, 1 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/mugla: 55 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mugla: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 53,
-   "failStreak": 0,
+   "seconds": 59,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:33:20.243Z"
   }
  }

@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:34:03.738Z",
+ "runAt": "2026-11-16T01:09:48.985Z",
  "mode": "full",
- "total": 85,
+ "total": 83,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 85,
-   "prevCount": 84,
+   "ok": false,
+   "status": "dustu",
+   "count": 14,
+   "prevCount": 85,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: sinop",
     "biletinial.com/tr-tr/tiyatro/sinop: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sinop: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 33,
-   "failStreak": 0,
+   "seconds": 32,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:34:03.738Z"
   }
  }

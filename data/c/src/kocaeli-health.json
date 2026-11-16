@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:31:25.120Z",
+ "runAt": "2026-11-16T01:07:32.865Z",
  "mode": "full",
- "total": 550,
+ "total": 539,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 550,
-   "prevCount": 548,
+   "ok": false,
+   "status": "dustu",
+   "count": 106,
+   "prevCount": 550,
    "error": "",
    "notes": [
-    "açık veri: 22 seans",
-    "biletinial.com/tr-tr/tiyatro/kocaeli: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 17 seans",
+    "biletinial.com/tr-tr/tiyatro/kocaeli: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kocaeli: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 64,
-   "failStreak": 0,
+   "seconds": 65,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:31:25.120Z"
   }
  }

@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:34:41.755Z",
+ "runAt": "2026-11-16T01:10:18.074Z",
  "mode": "full",
- "total": 123,
+ "total": 119,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 123,
-   "prevCount": 120,
+   "ok": false,
+   "status": "dustu",
+   "count": 19,
+   "prevCount": 123,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: tokat",
     "biletinial.com/tr-tr/tiyatro/tokat: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/tokat: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 35,
-   "failStreak": 0,
+   "seconds": 30,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:34:41.755Z"
   }
  }

@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:33:27.840Z",
+ "runAt": "2026-11-16T01:09:12.238Z",
  "mode": "full",
- "total": 20,
+ "total": 17,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 20,
-   "prevCount": 9,
+   "ok": false,
+   "status": "dustu",
+   "count": 3,
+   "prevCount": 20,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: mus",
     "biletinial.com/tr-tr/tiyatro/mus: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mus: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
-   "failStreak": 0,
+   "seconds": 28,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:33:27.840Z"
   }
  }

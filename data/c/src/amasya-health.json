@@ -1,17 +1,17 @@
 {
- "runAt": "2026-11-15T10:26:53.901Z",
+ "runAt": "2026-11-16T01:02:16.151Z",
  "mode": "full",
- "total": 141,
+ "total": 132,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 141,
-   "prevCount": 139,
+   "ok": false,
+   "status": "dustu",
+   "count": 15,
+   "prevCount": 141,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: amasya",
@@ -19,7 +19,7 @@
     "biletinial.com/tr-tr/muzik/amasya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 32,
-   "failStreak": 0,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:26:53.901Z"
   }
  }

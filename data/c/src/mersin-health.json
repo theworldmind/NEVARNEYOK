@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:32:45.278Z",
+ "runAt": "2026-11-16T01:08:00.870Z",
  "mode": "full",
- "total": 423,
+ "total": 414,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 424,
-   "prevCount": 419,
+   "ok": false,
+   "status": "dustu",
+   "count": 86,
+   "prevCount": 423,
    "error": "",
    "notes": [
-    "açık veri: 2 seans",
-    "biletinial.com/tr-tr/tiyatro/mersin: 53 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 1 seans",
+    "biletinial.com/tr-tr/tiyatro/mersin: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mersin: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 57,
-   "failStreak": 0,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:32:45.278Z"
   }
  }

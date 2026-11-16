@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:29:48.292Z",
+ "runAt": "2026-11-16T01:05:01.338Z",
  "mode": "full",
- "total": 201,
+ "total": 196,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 201,
-   "prevCount": 199,
+   "ok": false,
+   "status": "dustu",
+   "count": 28,
+   "prevCount": 201,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: hatay",
     "biletinial.com/tr-tr/tiyatro/hatay: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/hatay: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 35,
-   "failStreak": 0,
+   "seconds": 36,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:29:48.292Z"
   }
  }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-15T10:33:55.583Z",
+ "runAt": "2026-11-16T01:09:53.085Z",
  "mode": "full",
  "total": 12,
  "written": true,
@@ -8,18 +8,18 @@
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 12,
-   "prevCount": 11,
+   "ok": false,
+   "status": "dustu",
+   "count": 3,
+   "prevCount": 12,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: siirt",
     "biletinial.com/tr-tr/tiyatro/siirt: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/siirt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
-   "failStreak": 0,
+   "seconds": 31,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:33:55.583Z"
   }
  }

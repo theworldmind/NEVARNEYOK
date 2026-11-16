@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:33:25.988Z",
+ "runAt": "2026-11-16T01:09:18.976Z",
  "mode": "full",
- "total": 114,
+ "total": 108,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 114,
-   "prevCount": 112,
+   "ok": false,
+   "status": "dustu",
+   "count": 19,
+   "prevCount": 114,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: nigde",
     "biletinial.com/tr-tr/tiyatro/nigde: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/nigde: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 30,
-   "failStreak": 0,
+   "seconds": 36,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:33:25.988Z"
   }
  }

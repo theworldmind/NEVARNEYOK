@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:31:32.941Z",
+ "runAt": "2026-11-16T01:07:12.029Z",
  "mode": "full",
- "total": 113,
+ "total": 106,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 113,
-   "prevCount": 111,
+   "ok": false,
+   "status": "dustu",
+   "count": 12,
+   "prevCount": 113,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: karabuk",
     "biletinial.com/tr-tr/tiyatro/karabuk: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/karabuk: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 36,
-   "failStreak": 0,
+   "seconds": 31,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:31:32.941Z"
   }
  }

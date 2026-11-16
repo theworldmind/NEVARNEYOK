@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:29:04.289Z",
+ "runAt": "2026-11-16T01:04:41.533Z",
  "mode": "full",
- "total": 180,
+ "total": 168,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 180,
-   "prevCount": 175,
+   "ok": false,
+   "status": "dustu",
+   "count": 24,
+   "prevCount": 180,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: corum",
     "biletinial.com/tr-tr/tiyatro/corum: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/corum: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 31,
-   "failStreak": 0,
+   "seconds": 33,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:29:04.289Z"
   }
  }

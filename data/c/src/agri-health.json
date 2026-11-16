@@ -1,17 +1,17 @@
 {
- "runAt": "2026-11-15T10:26:56.640Z",
+ "runAt": "2026-11-16T01:02:39.847Z",
  "mode": "full",
- "total": 25,
+ "total": 24,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 25,
-   "prevCount": 24,
+   "ok": false,
+   "status": "dustu",
+   "count": 5,
+   "prevCount": 25,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: agri",
@@ -19,7 +19,7 @@
     "biletinial.com/tr-tr/muzik/agri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 29,
-   "failStreak": 0,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:26:56.640Z"
   }
  }

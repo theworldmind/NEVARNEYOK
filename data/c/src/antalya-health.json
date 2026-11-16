@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:26:50.458Z",
+ "runAt": "2026-11-16T01:02:12.161Z",
  "mode": "full",
- "total": 883,
+ "total": 853,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 884,
-   "prevCount": 830,
+   "ok": false,
+   "status": "dustu",
+   "count": 315,
+   "prevCount": 883,
    "error": "",
    "notes": [
-    "açık veri: 191 seans, 9 detay sayfası",
+    "açık veri: 167 seans, 10 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/antalya: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/antalya: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 93,
-   "failStreak": 0,
+   "seconds": 95,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:26:50.458Z"
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-15T10:35:23.044Z",
+ "runAt": "2026-11-16T01:11:26.282Z",
  "mode": "full",
- "total": 92,
+ "total": 57,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,17 +10,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 92,
-   "prevCount": 80,
+   "count": 57,
+   "prevCount": 92,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: van",
-    "biletinial.com/tr-tr/tiyatro/van: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/van: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 39,
+   "seconds": 40,
    "failStreak": 0,
-   "lastOk": "2026-11-15T10:35:23.044Z"
+   "lastOk": "2026-11-16T01:11:26.282Z"
   }
  }
 }

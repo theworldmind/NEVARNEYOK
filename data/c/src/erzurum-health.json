@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:29:11.195Z",
+ "runAt": "2026-11-16T01:04:36.367Z",
  "mode": "full",
- "total": 81,
+ "total": 76,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 81,
-   "prevCount": 70,
+   "ok": false,
+   "status": "dustu",
+   "count": 27,
+   "prevCount": 81,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: erzurum",
     "biletinial.com/tr-tr/tiyatro/erzurum: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 0,
+   "seconds": 28,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:29:11.195Z"
   }
  }

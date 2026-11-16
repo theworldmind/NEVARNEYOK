@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:31:19.700Z",
+ "runAt": "2026-11-16T01:07:03.877Z",
  "mode": "full",
- "total": 155,
+ "total": 149,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 155,
-   "prevCount": 153,
+   "ok": false,
+   "status": "dustu",
+   "count": 19,
+   "prevCount": 155,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kirklareli",
-    "biletinial.com/tr-tr/tiyatro/kirklareli: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/kirklareli: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kirklareli: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 0,
+   "seconds": 33,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:31:19.700Z"
   }
  }

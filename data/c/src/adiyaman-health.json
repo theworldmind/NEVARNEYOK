@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:26:56.406Z",
+ "runAt": "2026-11-16T01:02:40.275Z",
  "mode": "full",
- "total": 23,
+ "total": 20,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 23,
-   "prevCount": 24,
+   "ok": false,
+   "status": "dustu",
+   "count": 8,
+   "prevCount": 23,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: adiyaman",
     "biletinial.com/tr-tr/tiyatro/adiyaman: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/adiyaman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 0,
+   "seconds": 31,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:26:56.406Z"
   }
  }

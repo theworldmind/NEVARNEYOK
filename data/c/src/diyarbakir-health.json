@@ -1,25 +1,25 @@
 {
- "runAt": "2026-11-15T10:29:07.999Z",
+ "runAt": "2026-11-16T01:04:29.489Z",
  "mode": "full",
- "total": 241,
+ "total": 236,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 241,
-   "prevCount": 240,
+   "ok": false,
+   "status": "dustu",
+   "count": 61,
+   "prevCount": 241,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: diyarbakir",
-    "biletinial.com/tr-tr/tiyatro/diyarbakir: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/diyarbakir: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/diyarbakir: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 39,
-   "failStreak": 0,
+   "seconds": 41,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:29:07.999Z"
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-15T10:29:59.618Z",
+ "runAt": "2026-11-16T01:06:38.201Z",
  "mode": "full",
- "total": 3563,
+ "total": 2701,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,17 +10,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 3390,
-   "prevCount": 3549,
+   "count": 2534,
+   "prevCount": 3563,
    "error": "",
    "notes": [
-    "açık veri: 1501 seans, 242 detay sayfası",
+    "açık veri: 1471 seans, 234 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/istanbul: 154 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/istanbul: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 155,
+   "seconds": 156,
    "failStreak": 0,
-   "lastOk": "2026-11-15T10:29:59.618Z"
+   "lastOk": "2026-11-16T01:06:38.201Z"
   }
  }
 }

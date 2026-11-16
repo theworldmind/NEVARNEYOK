@@ -1,17 +1,17 @@
 {
- "runAt": "2026-11-15T10:26:50.823Z",
+ "runAt": "2026-11-16T01:02:16.023Z",
  "mode": "full",
- "total": 58,
+ "total": 57,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 58,
-   "prevCount": 56,
+   "ok": false,
+   "status": "dustu",
+   "count": 14,
+   "prevCount": 58,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: batman",
@@ -19,7 +19,7 @@
     "biletinial.com/tr-tr/muzik/batman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 28,
-   "failStreak": 0,
+   "failStreak": 1,
    "lastOk": "2026-11-15T10:26:50.823Z"
   }
  }
