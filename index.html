@@ -1041,9 +1041,6 @@ button.hm-n{color:#fff}
 .mk2 b{position:absolute;top:-8px;right:-8px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:#7c3aed;font:800 11px/20px var(--f);color:#fff;box-shadow:0 0 0 2px #fff}
 .mk2.so{opacity:.5}.mk2:active{transform:scale(.94)}
 @keyframes mk2{from{transform:perspective(300px) rotateY(-90deg) scale(.6);opacity:0}}
-.fv{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0;animation:mkIn .35s cubic-bezier(.32,.72,0,1) both}
-.fv .cgi{width:34px;height:34px;border-radius:50%;box-shadow:0 0 0 2.5px #fff,0 6px 16px rgba(0,0,0,.5)}.fv .cgi svg{width:20px;height:20px}
-.fv b{padding:2px 7px;border-radius:7px;font:800 11.5px var(--f);color:#fff;background:rgba(18,16,28,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);white-space:nowrap}
 .hm-fv{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:14px 14px 12px;border-bottom:.5px solid rgba(255,255,255,.08)}.hm-fv::-webkit-scrollbar{display:none}
 .hm-r .hm-fv button{flex:none;width:auto;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;border:0;font:600 12px var(--f);color:rgba(235,235,245,.85);max-width:72px}
 .hm-fv .cgi{width:50px;height:50px;border-radius:50%}.hm-fv .cgi svg{width:26px;height:26px}.hm-fv span:last-child{max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -1084,6 +1081,26 @@ button.hm-n{color:#fff}
 .hmap.lt .hm-q input{color:#1c1c1e}.hmap.lt .hm-q input::placeholder,.hmap.lt .hm-q>svg{color:rgba(60,60,67,.6)}.hmap.lt .hm-f{background:rgba(0,0,0,.06)!important}.hmap.lt .hm-f svg{color:#1c1c1e}
 .hmap.lt .hm-ctl button{color:#1c1c1e;border-color:rgba(0,0,0,.08)}.hmap.lt .hm-ctl .bl{color:#0a84ff}.hmap.lt .hm-ctl button.on{color:#7c3aed}.hmap.lt .hm-cmp{color:#1c1c1e}.hmap.lt .hm-n small{color:rgba(60,60,67,.6)}
 .hmap.lt .maplibregl-ctrl-attrib{background:rgba(255,255,255,.7)!important;color:#333}.hmap.lt .maplibregl-ctrl-attrib a{color:#333}
+
+/* kayıtlı yer iğnesi (Apple Haritalar gibi) */
+.fvm{z-index:4}
+.fv{display:flex;flex-direction:column;align-items:center;padding:0;background:none}
+.fvp{position:relative;display:block;filter:drop-shadow(0 5px 10px rgba(0,0,0,.45))}
+.fvp .cgi{width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 2.5px #fff}.fvp .cgi svg{width:23px;height:23px}
+.fvp::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;margin-left:-6px;background:#fff;clip-path:polygon(0 0,100% 0,50% 100%)}
+.fv b{display:block;height:20px;margin-top:2px;padding:0 2px;font:800 12.5px/20px -apple-system,"Inter Tight",sans-serif;color:#fff;white-space:nowrap;text-shadow:0 0 3px #0b0b12,0 0 3px #0b0b12,0 1px 6px rgba(0,0,0,.8)}
+.hmap.lt .fv b{color:#1c1c1e;text-shadow:0 0 3px #fff,0 0 3px #fff,0 1px 6px rgba(255,255,255,.9)}
+.fv:active .fvp{transform:scale(.92)}
+.fv.new .fvp{animation:fvdrop .6s cubic-bezier(.3,1.4,.5,1) both}.fv.new b{animation:fvb .35s .35s both}
+@keyframes fvdrop{from{transform:translateY(-46px) scale(.7);opacity:0}60%{opacity:1}}@keyframes fvb{from{opacity:0;transform:translateY(-4px)}}
+/* benim konumum: Apple gibi nefes alan mavi nokta */
+.me::after{content:"";position:absolute;inset:-3px;border-radius:50%;box-shadow:0 0 0 3px rgba(59,130,246,.55);animation:mepl 2.2s ease-out infinite;pointer-events:none}
+@keyframes mepl{from{transform:scale(1);opacity:.9}to{transform:scale(3.2);opacity:0}}
+@media (prefers-reduced-motion:reduce){.me::after,.fv.new .fvp{animation:none}}
+/* açık haritada arama paneli de açık cam */
+.hmap.lt .hm-r{background:rgba(255,255,255,.9);color:#1c1c1e;box-shadow:inset 0 1px 0 #fff,0 0 0 .5px rgba(0,0,0,.08),0 16px 40px rgba(0,0,0,.18)}
+.hmap.lt .hm-r small,.hmap.lt .hm-rh b,.hmap.lt .hm-0{color:rgba(60,60,67,.6)}.hmap.lt .hm-r button{border-color:rgba(0,0,0,.07)}.hmap.lt .hm-fv{border-color:rgba(0,0,0,.07)}.hmap.lt .hm-r .hm-fv button{color:#1c1c1e}
+.hmap.lt .hm-r .hm-rh button{color:#7c3aed}
 </style>
 </head>
 <body>

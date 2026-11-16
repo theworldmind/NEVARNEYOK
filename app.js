@@ -2026,7 +2026,7 @@ const MAP_URL = window.NVNY_MAPSTYLE || "https://tiles.openfreemap.org/styles/li
 const mTheme = () => store.get("nvny-harita-tema") || "koyu";
 let MSJ = null; const MST = {};
 const mStyle = (th) => MST[th] ||= (MSJ ||= fetch(MAP_URL).then((r) => { if (!r.ok) throw new Error("style"); return r.json(); }).catch((e) => { MSJ = null; throw e; }))
-  .then((j) => { const s = JSON.parse(JSON.stringify(j)); if (th === "koyu") darkStyle(s); build3d(s, th); return s; }).catch((e) => { delete MST[th]; throw e; });
+  .then((j) => { const s = JSON.parse(JSON.stringify(j)); if (th === "koyu") darkStyle(s); build3d(s, th); trNames(s); skyOf(s, th); return s; }).catch((e) => { delete MST[th]; throw e; });
 const cvx = document.createElement("canvas").getContext("2d");
 const rgbOf = (c) => { if (typeof c !== "string" || c.length > 40) return null; cvx.fillStyle = "#010203"; cvx.fillStyle = c; const v = cvx.fillStyle; if (v === "#010203" && !/^#010203$/i.test(c)) return null;
   if (v[0] === "#") return [parseInt(v.slice(1, 3), 16), parseInt(v.slice(3, 5), 16), parseInt(v.slice(5, 7), 16), 1]; const m = v.match(/[\d.]+/g); return m ? [+m[0], +m[1], +m[2], m[3] != null ? +m[3] : 1] : null; };
@@ -2047,6 +2047,11 @@ function darkStyle(st) {
     if (L.type === "symbol" && p["icon-opacity"] == null) p["icon-opacity"] = .7;
     if (L.type === "raster") p["raster-brightness-max"] = .35; }
 }
+// yer adları Türkçe (OpenStreetMap'teki name:tr, yoksa yerel ad): "Black Sea" değil "Karadeniz"
+function trNames(st) { for (const L of st.layers || []) { const tf = L.layout?.["text-field"]; if (!tf) continue; const j = JSON.stringify(tf); if (!/name/.test(j) || /ref|housenumber/.test(j)) continue; L.layout["text-field"] = ["coalesce", ["get", "name:tr"], ["get", "name"]]; } }
+// 3B'de ufuk ve gökyüzü (eğince haritanın ucu gökyüzüne yumuşakça kaybolur, Apple Haritalar gibi)
+function skyOf(st, th) { st.sky = th === "koyu" ? { "sky-color": "#0b0a16", "horizon-color": "#221a3d", "fog-color": "#0c0c14", "sky-horizon-blend": .6, "horizon-fog-blend": .7, "fog-ground-blend": .55, "atmosphere-blend": 0 }
+  : { "sky-color": "#a9cdf5", "horizon-color": "#e8eef8", "fog-color": "#f2f2f4", "sky-horizon-blend": .6, "horizon-fog-blend": .7, "fog-ground-blend": .55, "atmosphere-blend": 0 }; }
 function build3d(st, th) {
   const L = st.layers || []; if (L.some((x) => x.type === "fill-extrusion")) return;
   const src = Object.keys(st.sources || {}).find((k) => st.sources[k].type === "vector"); if (!src) return;
@@ -2079,9 +2084,18 @@ const hmSave = () => store.set("nvny-harita", JSON.stringify(HM));
 const jsGet = (k, d) => { try { return JSON.parse(store.get(k) || "null") ?? d; } catch { return d; } };
 const favs = () => jsGet("nvny-yerler", []), favSave = (L) => store.set("nvny-yerler", JSON.stringify(L));
 const recents = () => jsGet("nvny-hson", []), recAdd = (r) => { const L = recents().filter((x) => x.k !== r.k || x.l !== r.l); L.unshift(r); store.set("nvny-hson", JSON.stringify(L.slice(0, 8))); };
-const FAVI = [[/^ev|evim|home/i, "#0a84ff", '<path d="M4 11.5 12 5l8 6.5V20h-5.5v-5h-5v5H4z" fill="#fff"/>'], [/okul|üni|unı|kampüs|fakülte|lise|kurs/i, "#ff9f0a", '<path d="M2.5 9.5 12 5l9.5 4.5L12 14z" fill="#fff"/><path d="M6.5 11.8V16c3.2 2.4 7.8 2.4 11 0v-4.2L12 14.5z" fill="#fff"/>'],
-  [/(^|\s)iş(yeri|im)?(\s|$)|ofis|büro|şirket|work/, "#a2845e", '<rect x="4" y="8" width="16" height="11" rx="2.2" fill="#fff"/><path d="M9 8V6.3c0-.7.6-1.3 1.3-1.3h3.4c.7 0 1.3.6 1.3 1.3V8" fill="none" stroke="#fff" stroke-width="1.9"/>'],
-  [/spor|gym|salon|fitness|havuz/i, "#30d158", '<path d="M3 10v4M6 8v8M18 8v8M21 10v4M6 12h12" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>'], [/./, "#8b5cf6", '<path d="M12 4.5l2.3 4.9 5.2.6-3.9 3.6 1.1 5.2L12 16.2l-4.7 2.6 1.1-5.2-3.9-3.6 5.2-.6z" fill="#fff"/>']];
+// kayıtlı yer simgeleri (Apple Haritalar'daki gibi renkli daire, beyaz çizim): yazdığın ada göre kendiliğinden seçilir
+const FAVI = [[/^(ev|evim|home)\b|^ev$/, "#0a84ff", '<path d="M4 11.5 12 5l8 6.5V20h-5.5v-5h-5v5H4z" fill="#fff"/>'],
+  [/okul|üni|kampüs|fakülte|lise|kurs|dershane|yurt/, "#ff9f0a", '<path d="M2.5 9.5 12 5l9.5 4.5L12 14z" fill="#fff"/><path d="M6.5 11.8V16c3.2 2.4 7.8 2.4 11 0v-4.2L12 14.5z" fill="#fff"/>'],
+  [/(^|\s)iş(yeri|im)?(\s|$)|ofis|büro|şirket|work|plaza/, "#a2845e", '<rect x="4" y="8" width="16" height="11" rx="2.2" fill="#fff"/><path d="M9 8V6.3c0-.7.6-1.3 1.3-1.3h3.4c.7 0 1.3.6 1.3 1.3V8" fill="none" stroke="#fff" stroke-width="1.9"/>'],
+  [/spor|gym|fitness|havuz|halı ?saha|antrenman/, "#ff375f", '<path d="M3 10v4M6 8v8M18 8v8M21 10v4M6 12h12" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>'],
+  [/kafe|cafe|kahve|starbucks|çay/, "#ac8e68", '<path d="M5 9h11v5a4.5 4.5 0 0 1-4.5 4.5h-2A4.5 4.5 0 0 1 5 14z" fill="#fff"/><path d="M16 10.5h1.5a2.3 2.3 0 0 1 0 4.6H16" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M8.5 4.5v2M11.5 4.5v2" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>'],
+  [/hastane|doktor|sağlık|eczane|klinik/, "#ff3b30", '<path d="M10 4.5h4v5.5h5.5v4H14v5.5h-4V14H4.5v-4H10z" fill="#fff"/>'],
+  [/park|bahçe|orman|göl|sahil|deniz/, "#34c759", '<path d="M12 3.5 6.5 11h3L6 16h12l-3.5-5h3z" fill="#fff"/><path d="M12 16v4.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>'],
+  [/market|alışveriş|avm|çarşı/, "#ffb800", '<path d="M4 5h2.2l2 10h9.3l1.8-7H7.3" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="9.5" cy="18.8" r="1.6" fill="#fff"/><circle cx="16.5" cy="18.8" r="1.6" fill="#fff"/>'],
+  [/sevgil|aşk|kalbim|nişanl|eş(im)?$/, "#ff2d55", '<path d="M12 19.5s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.5c0 5.4-7.5 10-7.5 10z" fill="#fff"/>'],
+  [/anne|baba|annem|babam|aile|dede|nine|teyze|hala|amca|dayı|kardeş|arkadaş/, "#bf5af2", '<circle cx="9" cy="8.5" r="2.8" fill="#fff"/><circle cx="16" cy="9.5" r="2.3" fill="#fff"/><path d="M3.5 19c.4-3.6 2.7-5.6 5.5-5.6s5.1 2 5.5 5.6zM14 13.6c2.9-.6 5.6 1.1 6.3 5.4h-4.6" fill="#fff"/>'],
+  [/./, "#8b5cf6", '<path d="M12 4.5l2.3 4.9 5.2.6-3.9 3.6 1.1 5.2L12 16.2l-4.7 2.6 1.1-5.2-3.9-3.6 5.2-.6z" fill="#fff"/>']];
 const favIc = (n) => { n = String(n || "").toLocaleLowerCase("tr"); const m = FAVI.find(([r]) => r.test(n)) || FAVI[FAVI.length - 1]; return `<span class="cgi" style="background:${m[1]}"><svg viewBox="0 0 24 24">${m[2]}</svg></span>`; };
 let HIDX = null;
 const hIdx = () => HIDX ||= fetch("idx/harita.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : null).then((j) => { if (j?.t) for (const x of j.e) { x[2] = j.t[x[2]]; x[6] = x[6] >= 0 ? j.i[x[6]] : ""; } return j; }).catch(() => { HIDX = null; return null; });
@@ -2140,7 +2154,7 @@ function viewHarita(city) {
     const D = build(); IMG ||= await mImgs(); if (!alive() || !map) return;
     for (const [k, im] of IMG) if (!map.hasImage("c-" + k)) map.addImage("c-" + k, im, { pixelRatio: 2 });
     if (!map.hasImage("c-diger")) map.addImage("c-diger", IMG[0][1], { pixelRatio: 2 });
-    if (!map.hasImage("pill")) map.addImage("pill", mPill("rgba(28,25,42,.9)", "rgba(167,139,250,.55)"), mPillOpt);
+    if (map.hasImage("pill")) map.removeImage("pill"); map.addImage("pill", lt() ? mPill("rgba(255,255,255,.94)", "rgba(124,58,237,.35)") : mPill("rgba(28,25,42,.9)", "rgba(167,139,250,.55)"), mPillOpt);
     if (!map.hasImage("pill-me")) map.addImage("pill-me", mPill("rgba(124,58,237,.96)", "rgba(255,255,255,.45)"), mPillOpt);
     for (const k of Object.keys(D)) if (!map.getSource(k)) map.addSource(k, { type: "geojson", data: D[k] }); else map.getSource(k).setData(D[k]);
     if (!map.getSource("ring")) map.addSource("ring", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
@@ -2161,10 +2175,10 @@ function viewHarita(city) {
     map.addLayer({ id: "ven-n", type: "symbol", source: "hv", minzoom: 12.3, layout: { "text-field": ["get", "nm"], "text-font": font, "text-size": 11.5, "text-offset": [0, 1.75], "text-anchor": "top", "text-max-width": 9, "text-optional": true },
       paint: { "text-color": lt() ? "#1c1c1e" : "#fff", "text-halo-color": lt() ? "rgba(255,255,255,.92)" : "rgba(11,11,18,.9)", "text-halo-width": 1.6, "text-opacity": ["interpolate", ["linear"], ["zoom"], 12.3, 0, 12.9, 1] } });
     map.addLayer({ id: "un", type: "symbol", source: "hu", minzoom: 8.6, maxzoom: 15, layout: { "icon-image": "pill", "icon-text-fit": "both", "icon-text-fit-padding": [3, 9, 3, 9], "text-field": ["get", "t"], "text-font": font, "text-size": 11.5, "text-offset": [0, 2.6], "icon-allow-overlap": true, "text-allow-overlap": true },
-      paint: { "text-color": "#fff", "icon-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 0, 9.4, 1], "text-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 0, 9.4, 1] } });
+      paint: { "text-color": lt() ? "#3a2a6b" : "#fff", "icon-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 0, 9.4, 1], "text-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 0, 9.4, 1] } });
     map.addLayer({ id: "city", type: "symbol", source: "hc", maxzoom: 9.6, layout: { "icon-image": ["case", ["==", ["get", "me"], 1], "pill-me", "pill"], "icon-text-fit": "both", "icon-text-fit-padding": [4, 11, 4, 11], "symbol-sort-key": ["get", "k"],
       "text-field": ["format", ["get", "nm"], { "font-scale": 1 }, "\n", {}, ["get", "t"], { "font-scale": .78 }], "text-font": font, "text-size": 13.5, "text-line-height": 1.15, "icon-padding": 3 },
-      paint: { "text-color": "#fff", "icon-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 1, 9.5, 0], "text-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 1, 9.5, 0] } });
+      paint: { "text-color": lt() ? ["case", ["==", ["get", "me"], 1], "#fff", "#1c1c1e"] : "#fff", "icon-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 1, 9.5, 0], "text-opacity": ["interpolate", ["linear"], ["zoom"], 8.6, 1, 9.5, 0] } });
     const ptr = (id) => { map.on("mouseenter", id, () => { map.getCanvas().style.cursor = "pointer"; }); map.on("mouseleave", id, () => { map.getCanvas().style.cursor = ""; }); };
     if (!map.__nvb) { map.__nvb = 1; ["ven", "ven-n", "un", "city"].forEach(ptr);
       map.on("click", "ven", (ev) => { const g = VG[ev.features[0].properties.i]; if (g) { recAdd({ k: "v", l: g.v[3], s: N[g.v[2]] || "", c: g.v[2] }); venueSheetX(g); } });
@@ -2230,7 +2244,10 @@ function viewHarita(city) {
   /* Kayıtlı yerler (kullanıcı, 09:22: "GTA gibi; bir yeri seçip okul ya da ev yazabilmeli, değiştirene kadar kalmalı"): haritada bir yere basılı tut → ad ver.
      Haritada kendi simgesiyle durur, aramanın en üstünde çıkar; dokununca yakındaki etkinlikler, adını değiştir, sil. */
   const drawFavs = () => { favM.forEach((m) => m.remove()); favM = []; if (!map) return;
-    for (const f of favs()) { const e = elOf(`<button type="button" class="fv" aria-label="${esc(f.n)}">${favIc(f.n)}<b>${esc(f.n)}</b></button>`); e.addEventListener("click", (ev) => { ev.stopPropagation(); favSheet(f); }); favM.push(new maplibregl.Marker({ element: e, anchor: "bottom" }).setLngLat([f.ll[1], f.ll[0]]).addTo(map)); } };
+    // Apple Haritalar'daki gibi: renkli daire + uç (tam o noktayı gösterir) + altında adı; her yakınlıkta ve afişlerin üstünde durur
+    for (const f of favs()) { const e = elOf(`<button type="button" class="fv${f.id === newFav ? " new" : ""}" aria-label="${esc(f.n)}"><span class="fvp">${favIc(f.n)}</span><b>${esc(f.n)}</b></button>`); e.addEventListener("click", (ev) => { ev.stopPropagation(); favSheet(f); });
+      favM.push(new maplibregl.Marker({ element: e, anchor: "bottom", offset: [0, 22], className: "fvm" }).setLngLat([f.ll[1], f.ll[0]]).addTo(map)); } newFav = ""; };
+  let newFav = "";
   const favEdit = (ll, f) => { snd.pop?.(); haptic(14);
     const sh = sheet(`<div class="pn fve" role="dialog" aria-label="Yeri kaydet"><div class="hd"><span class="rth"><b>${f ? "Adını değiştir" : "Bu yeri kaydet"}</b><small>${f ? esc(f.n) : "Haritada hep burada durur; değiştirene kadar."}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
       <div class="bd2"><label class="fvi">${favIc(f?.n || "")}<input id="fvn" maxlength="28" placeholder="Ev, okul, iş, spor salonu…" value="${esc(f?.n || "")}" enterkeyhint="done"></label>
@@ -2239,7 +2256,7 @@ function viewHarita(city) {
     const inp2 = $("#fvn", sh), ok = $("#fvs", sh), ic = () => { sh.querySelector(".fvi .cgi").outerHTML = favIc(inp2.value.trim()); ok.disabled = !inp2.value.trim(); };
     inp2.addEventListener("input", ic); ic(); setTimeout(() => { if (!f) inp2.focus(); }, 380);
     $$("[data-q]", sh).forEach((b) => b.addEventListener("click", () => { inp2.value = b.dataset.q; ic(); snd.sel?.(); haptic(4); }));
-    const save = () => { const n = inp2.value.trim(); if (!n) return; const L = favs(); if (f) { const x = L.find((y) => y.id === f.id); if (x) x.n = n; } else L.push({ id: Date.now().toString(36), n, ll: [+ll[0].toFixed(6), +ll[1].toFixed(6)] });
+    const save = () => { const n = inp2.value.trim(); if (!n) return; const L = favs(); if (f) { const x = L.find((y) => y.id === f.id); if (x) x.n = n; } else { newFav = Date.now().toString(36); L.push({ id: newFav, n, ll: [+ll[0].toFixed(6), +ll[1].toFixed(6)] }); }
       favSave(L); snd.ok(); haptic(12); pinM?.remove(); sh.close(); drawFavs(); };
     ok.addEventListener("click", save); inp2.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); save(); } });
     $("#fvy", sh)?.addEventListener("click", () => { sh.close(); setTimeout(() => nearList(ll, "Bu noktanın yakınında"), 280); }); };
