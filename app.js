@@ -2044,13 +2044,13 @@ function viewHarita(city) {
       const ll = ILLL[c]; if (!ll) continue;
       window.L.marker(ll, { icon: window.L.divIcon({ className: "", html: `<div class="ub"><b>${L.length}</b><span>etkinlik daha</span></div>`, iconSize: [92, 40], iconAnchor: [46, -26] }), zIndexOffset: 2000 }).addTo(vLayer).on("click", () => unSheet(c, L)); }
     for (const [c, k] of byC) { const ll = ILLL[c] || [k.la / k.m, k.lo / k.m];
-      window.L.marker(ll, { icon: window.L.divIcon({ className: "", html: `<div class="cb${c === city ? " me" : ""}"><b>${k.n}</b><span>${esc(N[c] || c)}</span></div>`, iconSize: [96, 44], iconAnchor: [48, 22] }) }).addTo(cLayer)
+      window.L.marker(ll, { icon: window.L.divIcon({ className: "", html: `<div class="cb${c === city ? " me" : ""}"><b>${esc(N[c] || c)}</b><span>${k.n} etkinlik</span></div>`, iconSize: [104, 46], iconAnchor: [52, 23] }) }).addTo(cLayer)
         .on("click", () => { haptic(6); snd.push?.(); const pts = VG.filter((g) => g.v[2] === c).map((g) => [g.v[0], g.v[1]]).concat(UG.has(c) ? [ll] : []); if (pts.length > 1) map.flyToBounds(pts, { padding: [70, 70], maxZoom: 13, duration: .9 }); else map.flyTo(ll, 12, { duration: .9 }); }); }
     $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik · <b>${byC.size}</b> il`;
     lod(true);
   };
   let lastLod = "";
-  const lod = (force) => { if (!map) return; const z = map.getZoom(), m = z < 9 ? "far" : z >= 15 ? "near" : "mid";
+  const lod = (force) => { if (!map) return; const z = map.getZoom(), m = z < 10 ? "far" : z >= 14.5 ? "near" : "mid"; // uzakta yalnızca il ve sayı; yaklaşınca simgeler; iyice yaklaşınca afişler
     if (m !== lastLod || force) { if (lastLod && m !== lastLod && !force) { tick(); haptic(5); } lastLod = m; el.classList.toggle("near", m === "near");
       if (m === "far") { vLayer && map.hasLayer(vLayer) && map.removeLayer(vLayer); cLayer && !map.hasLayer(cLayer) && cLayer.addTo(map); }
       else { cLayer && map.hasLayer(cLayer) && map.removeLayer(cLayer); vLayer && !map.hasLayer(vLayer) && vLayer.addTo(map); } }

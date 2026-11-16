@@ -1006,6 +1006,10 @@ html.app #spl img{width:min(52vw,240px);height:auto;transition:transform .55s cu
 .hm-top .hm-w{align-self:center}
 .hm-q input::-webkit-search-cancel-button{display:none}
 .ub{display:flex;align-items:center;gap:5px;justify-content:center;width:92px;height:32px;border-radius:16px;background:rgba(30,26,46,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 1px rgba(255,255,255,.18),0 6px 16px rgba(0,0,0,.4)}.ub b{font:800 13px var(--f)}.ub span{font:600 10.5px var(--f);color:rgba(255,255,255,.75)}
+/* Harita katmanları (16.11.2026 09:06): uzakta il adı + sayı; yaklaşınca simgeler belirir; iyice yaklaşınca afiş */
+.cb{width:104px;height:46px;animation:mkIn .4s cubic-bezier(.32,.72,0,1) both}.cb b{font:800 14px/1.1 var(--f);max-width:96px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cb span{font:600 11px/1.2 var(--f);color:rgba(255,255,255,.75)}
+.mk,.ub{animation:mkIn .4s cubic-bezier(.32,.72,0,1) both}
+@keyframes mkIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
