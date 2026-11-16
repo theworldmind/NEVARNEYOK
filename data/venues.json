@@ -14,78 +14,113 @@
  },
  "Kite Ankara": {
   "place": "ChIJxSO__51P0xQRoQ0zTWRvHaA",
-  "lat": 39.8988169,
-  "lng": 32.8536811,
+  "lat": 39.8987576,
+  "lng": 32.8537041,
   "addr": "Güvenlik Cd. No:97, Güvenevler, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17",
+  "gp": [
+   39.8988169,
+   32.8536811
+  ],
+  "osm": "amenity/nightclub"
  },
  "Arcadium AVM": {
   "place": "ChIJ7zdFyew40xQR9EyXAZxbfpY",
-  "lat": 39.8828733,
-  "lng": 32.6859268,
+  "lat": 39.8828148,
+  "lng": 32.6857159,
   "addr": "Koru, 2432. Cd. No:192, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17",
+  "gp": [
+   39.8828733,
+   32.6859268
+  ],
+  "osm": "shop/mall"
  },
  "Aralık Sahne": {
   "place": "ChIJn5hAOLtP0xQRi1ZOnnVbz80",
   "lat": 39.9132997,
   "lng": 32.8589311,
   "addr": "Esat Cd. No:28/A, Kavaklıdere, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17"
  },
  "Fade Sahne": {
   "place": "ChIJa7gzsJ1P0xQRs1upq1TA3CA",
   "lat": 39.8964902,
   "lng": 32.8558367,
   "addr": "Farabi Sk. 39/A, Güvenevler, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17"
  },
  "Bambu Sahne": {
   "place": "ChIJb_qHeiVP0xQRpKucc8H5RW8",
   "lat": 39.9206017,
   "lng": 32.8495738,
   "addr": "Kumrular Cd. 20-A, Kızılay, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17"
  },
  "Tatbikat Sahnesi Ankara": {
   "place": "ChIJm0pX3Z5P0xQR5gd4mkQpALQ",
-  "lat": 39.898567,
-  "lng": 32.857888,
+  "lat": 39.8985762,
+  "lng": 32.8578794,
   "addr": "Güneş Sk. No:21, Güvenevler, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17",
+  "gp": [
+   39.898567,
+   32.857888
+  ],
+  "osm": "amenity/theatre"
  },
  "Nergiz Kültür Sanat Merkezi": {
   "place": "ChIJbWOJPxdP0xQRIMqbPACzDeo",
   "lat": 39.9228607,
   "lng": 32.8521248,
   "addr": "Menekşe 1 Sk. No:10, Kızılay, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17"
  },
  "Kült Kavaklıdere": {
   "place": "ChIJ33JwLmVP0xQR805SK4-Hyzc",
-  "lat": 39.9047539,
-  "lng": 32.860827,
+  "lat": 39.9047664,
+  "lng": 32.860862,
   "addr": "Tunalı Hilmi Cd. No:105, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17",
+  "gp": [
+   39.9047539,
+   32.860827
+  ],
+  "osm": "amenity/cinema"
  },
  "Actor Studio · Panora AVM": {
   "place": "ChIJu4VusElE0xQRLrNPg_xvzxk",
   "lat": 39.8480407,
   "lng": 32.8334828,
   "addr": "Panora AVM, Kudüs Cd. No:3, Oran, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-17"
  },
  "CSO Ada · Bankkart Mavi Salon": {
   "place": "ChIJKcLx159P0xQRk3d_wvbrcDY",
-  "lat": 39.9339098,
-  "lng": 32.8486038,
+  "lat": 39.9329551,
+  "lng": 32.8505724,
   "addr": "Talatpaşa Blv. No:38, Opera, Altındağ",
   "ilce": "Altındağ",
   "aliases": [
    "CSO Ada Ankara · Mavi Salon",
    "CSO Ada Mavi Salon",
    "CSO Ada Bankkart Mavi Salon"
-  ]
+  ],
+  "chk": "2026-11-17",
+  "gp": [
+   39.9339098,
+   32.8486038
+  ],
+  "osm": "amenity/arts_centre"
  },
  "CSO Ada · Ziraat Bankası Ana Salon": {
   "place": "ChIJKcLx159P0xQRk3d_wvbrcDY",
@@ -892,5 +927,23 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/cinema"
+ },
+ "Aqua Vega": {
+  "lat": 39.8876851,
+  "lng": 32.9349322,
+  "addr": "2308. Sokak, Akşemsettin Mahallesi, Mamak",
+  "ilce": "Mamak",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/aquarium"
+ },
+ "Terra Point Art Studio": {
+  "lat": 39.923591,
+  "lng": 32.8283926,
+  "addr": "Azerbaycan Caddesi No:85/A, Yukarı Bahçelievler Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
  }
 }
