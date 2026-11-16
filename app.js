@@ -957,7 +957,9 @@ function calAdd(list) {
    fiyat yalnızca son 36 saatte doğrulanmışsa yazılır (önizlemede hiç yazılmaz). Davette kişi hazır cümlelerden birini seçer ya da kendisi yazar. */
 const SITE = "https://nevarneyok.net.tr";
 const shareUrl = (e, city) => `${SITE}/e/${NV.scode(city, e.slug)}`;
-const inviteUrl = (e, city, line, mk) => `${SITE}/d/${NV.scode(city, e.slug)}${line ? "?s=" + encodeURIComponent(line) + (mk ? "&k=1" : "") : ""}`;
+// Hazır cümleler bağlantıda kısa kodla gider (?c=g3 / ?c=konser); yalnızca kendi yazılan cümle ?s= ile (bağlantı kısa ve temiz kalsın). Liste davet.js'te de aynı.
+const invQ = (e, line) => { const g = INV_G.indexOf(line); return g >= 0 ? "c=g" + g : line === INV_C[e.cat] ? "c=" + e.cat : "s=" + encodeURIComponent(line); };
+const inviteUrl = (e, city, line, mk) => `${SITE}/d/${NV.scode(city, e.slug)}${line ? "?" + invQ(e, line) + (mk ? "&k=1" : "") : ""}`;
 const CEMO = { konser: "🎶", tiyatro: "🎭", standup: "😂", sahne: "🩰", cocuk: "🎈", festival: "🎉", parti: "🪩", atolye: "🎨", sinema: "🎬" };
 const dLongTR = (d) => { const x = pd(d); return `${x.getDate()} ${AY[x.getMonth()]} ${GUN[x.getDay()]}`; };
 const kalan = (d) => { const n = Math.round((pd(d) - pd(nowIST().d)) / 864e5); return n <= 0 ? "bugün" : n === 1 ? "yarın" : n < 31 ? `${n} gün sonra` : ""; };
@@ -969,7 +971,7 @@ function shareText(e, city, line, mk) { // mk: kalpli mektup (kullanıcı seçer
     !line && pr ? `🎟️ ${TL(pr)}'den${fp.length > 1 ? ` · ${new Set(e.tickets.filter((x) => x.price).map((x) => x.site)).size} sitede` : ""}` : "",
     "", line ? `${ic} Davetin burada: ${inviteUrl(e, city, line, mk)}` : `🔍 Ne Var Ne Yok'ta aç: ${shareUrl(e, city)}`].filter((x, i) => x !== "" || i === 5).join("\n");
 }
-// Davet cümleleri (kullanıcıyla 14:57–14:58'de seçildi: ölçülü, sıcak; kategoriye uygun olanlar başta)
+// Davet cümleleri — değiştirirsen davet.js'teki kopyayı da değiştir (kullanıcıyla 14:57–14:58'de seçildi: ölçülü, sıcak; kategoriye uygun olanlar başta)
 const INV_G = ["Beraber gidelim mi?", "Buna gitmeye ne dersin?", "Güzel bir etkinlik buldum, gelir misin?", "Bu tarih için bir planım var, katılır mısın?", "Birlikte gidersek güzel olur", "Bu akşamki plan: burası. Var mısın?", "Hafta sonu için güzel bir fikir", "Gidiyor muyuz?"];
 const INV_C = { konser: "Bu konsere beraber gidelim mi?", tiyatro: "Bu oyunu birlikte izleyelim mi?", standup: "Güzel bir gösteri var, gelir misin?", sinema: "Bu filme beraber gidelim mi?", cocuk: "Çocuklarla gidebileceğimiz güzel bir etkinlik", sahne: "Bu gösteriye birlikte gidelim mi?", festival: "Bu festivale beraber gidelim mi?", atolye: "Birlikte gidelim mi, ilgini çekebilir" };
 const INV_E = ["✉️", "🎟️", "✨", "🗓️", "🙌", "📍", "🎉", "✅"];
@@ -984,25 +986,27 @@ async function inviteEv(e, city) {
   const L = [...(INV_C[e.cat] ? [INV_C[e.cat]] : []), ...INV_G], mine = (() => { try { return JSON.parse(store.get("nvny-davet") || "[]"); } catch { return []; } })();
   const all = [...mine.filter((x) => !L.includes(x)).slice(0, 3), ...L]; let cur = all[(Math.random() * Math.min(all.length, 5)) | 0];
   const sh = sheet(`<div class="pn ivp" role="dialog" aria-label="Davet et"><div class="hd"><span class="rth"><b>Davet et ✉️</b><small>${esc(e.title)}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2">
-    <div class="ivv"><div class="ivi sk" id="ivi"></div></div>
+    <div class="ivv"><div class="ivb"><div class="ivc"><div class="ivi sk" id="ivi"></div><div class="ivm"><b>✉️ Beraber gidelim mi? · ${esc(e.title)}</b><small>nevarneyok.net.tr</small></div></div><p class="ivx" id="ivx"></p></div></div>
     <h4>Davet cümlen</h4><div class="ivl" id="ivl">${all.map((x, i) => `<button type="button" data-i="${i}" class="${x === cur ? "on" : ""}"><span>${INV_E[i % INV_E.length]}</span>${esc(x)}</button>`).join("")}</div>
     <div class="seg ivk" id="ivk" style="--n:2;--i:0"><span class="thumb"></span><button type="button" class="on" data-k="0" aria-label="Zarf">✉️</button><button type="button" data-k="1" aria-label="Kalpli zarf">💌</button></div>
     <label class="fvi ivw"><span>✍️</span><input id="ivt" maxlength="70" placeholder="Ya da kendin yaz…" enterkeyhint="done"></label>
     <button type="button" class="ok ivgo" id="ivgo">Davet et ✉️</button>
     <p class="shn">Arkadaşın davetiyeyi açınca afişi, tarihi ve mekânı görür; tek dokunuşla takvimine ekler, biletine ve yol tarifine ulaşır.</p></div></div>`, "mn");
-  const box = sh.querySelector("#ivi"); let blobP = null, tm = 0;
-  const draw = () => { box.classList.add("sk"); const my = (blobP = ogCanvas(e, city, cur)); my.then((b) => { if (my !== blobP) return; box.classList.remove("sk"); box.innerHTML = ""; const im = new Image(); im.src = URL.createObjectURL(b); im.alt = ""; box.append(im); }).catch(() => box.classList.remove("sk")); };
-  draw(); let mk = false;
+  /* Davet bağlantı olarak gider (kullanıcı, 16.11.2026 15:39: "link atıyoruz; galeriye inen görsel istemiyoruz"): mesaj + /d/<kod> bağlantısı;
+     WhatsApp vb. bağlantının önizlemesini (afiş + logo, s/o/<kod>.jpg) kendisi gösterir. Paneldeki kutu bu önizlemenin aynısını gösterir. */
+  const box = sh.querySelector("#ivi"), msg = sh.querySelector("#ivx"); let tm = 0;
+  fetch(`s/o/${NV.scode(city, e.slug)}.jpg`, { cache: "no-cache" }).then((r) => r.ok && /image/.test(r.headers.get("content-type") || "") ? r.blob() : ogCanvas(e, city, null))
+    .then((b) => { box.classList.remove("sk"); const im = new Image(); im.src = URL.createObjectURL(b); im.alt = ""; box.append(im); }).catch(() => box.classList.remove("sk"));
+  const draw = () => { msg.innerHTML = esc(shareText(e, city, cur, mk)).replace(/\*([^*\n]+)\*/g, "<b>$1</b>").replace(/(https:\/\/\S+)/g, '<u>$1</u>').replace(/\n/g, "<br>"); };
+  let mk = false; draw();
   sh.querySelector("#ivk").addEventListener("click", (ev) => { const b = ev.target.closest("[data-k]"); if (!b) return; mk = b.dataset.k === "1"; const g = sh.querySelector("#ivk"); g.style.setProperty("--i", mk ? 1 : 0); g.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
-    sh.querySelector("#ivgo").textContent = mk ? "Davet et 💌" : "Davet et ✉️"; sh.querySelector("#ivl button span").textContent = mk ? "💌" : "✉️"; snd.sel?.(); haptic(4); });
+    sh.querySelector("#ivgo").textContent = mk ? "Davet et 💌" : "Davet et ✉️"; sh.querySelector("#ivl button span").textContent = mk ? "💌" : "✉️"; draw(); snd.sel?.(); haptic(4); });
   sh.querySelector("#ivl").addEventListener("click", (ev) => { const b = ev.target.closest("[data-i]"); if (!b) return; cur = all[+b.dataset.i]; sh.querySelectorAll("#ivl button").forEach((x) => x.classList.toggle("on", x === b)); sh.querySelector("#ivt").value = ""; snd.sel?.(); haptic(4); draw(); });
   sh.querySelector("#ivt").addEventListener("input", (ev) => { const v = ev.target.value.trim(); if (!v) return; cur = v; sh.querySelectorAll("#ivl button").forEach((x) => x.classList.remove("on")); clearTimeout(tm); tm = setTimeout(draw, 450); });
   sh.querySelector("#ivgo").addEventListener("click", async (ev) => { const bt = ev.currentTarget; haptic(8); bt.classList.add("bz");
     const typed = sh.querySelector("#ivt").value.trim(); if (typed) store.set("nvny-davet", JSON.stringify([typed, ...mine.filter((x) => x !== typed)].slice(0, 6)));
     const text = shareText(e, city, cur, mk);
-    try { const blob = await blobP.catch(() => null), file = blob && new File([blob], `davet-${e.slug}.jpg`, { type: "image/jpeg" });
-      if (file && navigator.canShare?.({ files: [file], text })) await navigator.share({ files: [file], text });
-      else if (navigator.share) await navigator.share({ text });
+    try { if (navigator.share) await navigator.share({ text });
       else { await navigator.clipboard.writeText(text); toast(`Davet kopyalandı ${mk ? "💌" : "✉️"} İstediğin yere yapıştır.`); }
       snd.ok(); gcEv("davet-gonder", "Davet gönderildi"); sh.close();
     } catch (err) { if (err?.name !== "AbortError") { try { await navigator.clipboard.writeText(text); toast(`Davet kopyalandı ${mk ? "💌" : "✉️"} İstediğin yere yapıştır.`, 3500); } catch { toast("Davet açılamadı, tekrar dene.", 3000); } } }
