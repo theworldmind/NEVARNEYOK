@@ -2221,7 +2221,11 @@ const FAVI = [[/^(ev|evim|home)\b|^ev$/, "#0a84ff", '<path d="M4 11.5 12 5l8 6.5
   [/./, "#8b5cf6", '<path d="M12 4.5l2.3 4.9 5.2.6-3.9 3.6 1.1 5.2L12 16.2l-4.7 2.6 1.1-5.2-3.9-3.6 5.2-.6z" fill="#fff"/>']];
 const favIc = (n) => { n = String(n || "").toLocaleLowerCase("tr"); const m = FAVI.find(([r]) => r.test(n)) || FAVI[FAVI.length - 1]; return `<span class="cgi" style="background:${m[1]}"><svg viewBox="0 0 24 24">${m[2]}</svg></span>`; };
 let HIDX = null;
-const hIdx = () => HIDX ||= fetch("idx/harita.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : null).then((j) => { if (j?.t) for (const x of j.e) { x[2] = j.t[x[2]]; x[6] = x[6] >= 0 ? j.i[x[6]] : ""; } return j; }).catch(() => { HIDX = null; return null; });
+// Harita dizini. İnemezse (zayıf çekim, uygulama arkada beklerken bağlantı kopması) sonuç önbelleğe "boş" diye yazılmaz: bir sonraki çağrı yeniden dener.
+// (16.11.2026 19:54, kullanıcı ekranı: "0 etkinlik · 0 mekân" — başarısız indirme boş liste gibi gösteriliyordu.)
+const hIdx = () => HIDX ||= fetch("/idx/harita.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then((j) => { if (!Array.isArray(j?.e) || !j.e.length) throw new Error("bos"); if (j.t) for (const x of j.e) { x[2] = j.t[x[2]]; x[6] = x[6] >= 0 ? j.i[x[6]] : ""; } return j; })
+  .catch(() => { HIDX = null; return null; });
 const hmRange = (when) => { const { d: today } = nowIST(), dow = pd(today).getDay(), fri = addD(today, (5 - dow + 7) % 7);
   return { bugun: [today, today], yarin: [addD(today, 1), addD(today, 1)], haftasonu: [dow === 6 || dow === 0 ? today : fri, dow === 0 ? today : addD(fri, 2)], hafta: [today, addD(today, 6)], ay: [today, addD(today, 30)], tumu: [today, "9999"] }[when] || [today, "9999"]; };
 const hmPrice = (x) => x[10] && Date.now() / 36e5 - x[11] <= PRICE_MAX_H ? x[10] : 0; // fiyat kuralı: 36 saatten eski fiyat yok sayılır
@@ -2296,7 +2300,7 @@ function viewHarita(city) {
     <button type="button" class="hm-cmp" id="hmc" aria-label="Kuzeye çevir" hidden>${ICO.cmp}</button>
     <div class="hm-tc" id="hmtc" hidden><div class="hm-tch"><span><b>Başlama saati</b><small id="hmtl"></small></span><div class="hm-seg" role="tablist"><i></i><button type="button" data-ta="1">Tüm gün</button><button type="button" data-ta="0">Saat seç</button></div><button type="button" class="hm-tcx" aria-label="Kapat">✕</button></div><div id="hmtr">${trHTML()}</div></div>
     <button type="button" class="hm-n" id="hmn"><span class="sk" style="display:inline-block;width:150px;height:14px;border-radius:7px"></span></button></div>`;
-  const el = $("#hm"), wrap = $("#hmw"), N = CNAME(); let map = null, IX = null, VG = [], UG = new Map(), E = [], pinM = null, meM = null, live = 0, posters = new Map(), favM = [], raf = 0;
+  const el = $("#hm"), wrap = $("#hmw"), N = CNAME(); let map = null, IX = null, retryIx = null, VG = [], UG = new Map(), E = [], pinM = null, meM = null, live = 0, posters = new Map(), favM = [], raf = 0;
   const alive = () => document.body.contains(el);
   const vSheet = (g) => { const today = nowIST().d, S = new Set(g.L), rg = hmRange(HM.when); venueSheetX({ ...g, more: g.vi == null ? [] : IX.e.filter((x) => x[0] === g.vi && !S.has(x) && x[3] >= today && (x[3] < rg[0] || x[3] > rg[1]) && x[3] <= addD(today, 120)) }); };
   const lt = () => mTheme() === "acik";
@@ -2316,7 +2320,8 @@ function viewHarita(city) {
     return { hv: fc(vf), hu: fc(uf), hc: fc(cf), hh: fc([...vf, ...uf]) };
   };
   const setData = () => { if (!map || !IX) return; const D = build(); for (const k of Object.keys(D)) map.getSource(k)?.setData(D[k]);
-    $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik${HM.when === "tumu" ? "" : " · " + HMW.find((w) => w[0] === HM.when)[1].toLowerCase()}<small> · ${VG.length} mekân</small>`;
+    if (!IX.e.length) { $("#hmn").classList.add("err"); $("#hmn").innerHTML = `<b>Etkinlikler yüklenemedi</b><small> · Tekrar dene</small>`; return; }
+    $("#hmn").classList.remove("err"); $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik${HM.when === "tumu" ? "" : " · " + HMW.find((w) => w[0] === HM.when)[1].toLowerCase()}<small> · ${VG.length} mekân</small>`;
     // haritanın üstünde her zaman: Tümü · Bugün · Yarın · Hafta sonu… (Apple Haritalar'daki hızlı seçimler gibi) + seçili diğer filtreler
     const tg = hmTags(), ot = tg.filter((t) => t !== hmWhen()), row = $("#hmt"); $("#hmfn").textContent = tg.length || "";
     row.innerHTML = `<button type="button" class="hw hcl${HM.from ? " on" : ""}" data-hclk><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${HM.from ? HM.from + "+" : "Saat"}</button><i class="hsep"></i>` + HMW.map(([k, l]) => `<button type="button" class="hw${HM.when === k ? " on" : ""}" data-hw="${k}">${l}</button>`).join("") + (ot.filter((t) => !/ sonrası$/.test(t)).length ? `<i class="hsep"></i>${ot.filter((t) => !/ sonrası$/.test(t)).map((t) => `<span>${esc(t)}</span>`).join("")}<button type="button" id="hmt0">Sıfırla</button>` : "");
@@ -2397,6 +2402,9 @@ function viewHarita(city) {
   // haritayı kur; en son kaldığı yer (aynı il seçiliyse) yoksa seçili il
   const cam = HM.cam && HM.cam.city === city ? HM.cam : null;
   Promise.all([mlgl(), hIdx(), mStyle(mTheme())]).then(([, ix, style]) => { if (!alive()) return; IX = ix || { v: [], e: [] };
+    // dizin inmediyse sessizce yeniden dene (1,5 / 4 / 10 / 20 sn, bağlantı gelince ve uygulamaya dönünce); gelince harita yerinde dolar
+    if (!ix) { let n = 0, busy = false; const retry = () => { if (busy || !alive() || IX.e.length) return; busy = true; hIdx().then((j) => { busy = false; if (j && alive()) { IX = j; setData(); } else if (alive() && n < 4) setTimeout(retry, [1500, 4000, 10000, 20000][n++]); }); };
+      setTimeout(retry, 1500); addEventListener("online", retry); document.addEventListener("visibilitychange", () => { if (!document.hidden) retry(); }); retryIx = retry; }
     map = new maplibregl.Map({ container: el, style, center: cam ? cam.c : [(ILLL[city] || [39.93, 32.86])[1], (ILLL[city] || [39.93, 32.86])[0]], zoom: cam ? cam.z : 10.5, pitch: cam?.p || 0, bearing: cam?.b || 0,
       minZoom: 4.6, maxZoom: 18.5, maxPitch: 70, maxBounds: [[19, 32], [51, 46]], attributionControl: { compact: true }, dragRotate: true, pitchWithRotate: true, fadeDuration: 180 });
     window.__hm = map; map.touchZoomRotate.enableRotation();
@@ -2489,7 +2497,7 @@ function viewHarita(city) {
     $("#hf0", sh).addEventListener("click", () => { Object.assign(T, { ...HM0, cats: [] }); snd.sel?.(); haptic(5); ui(); R.sync(); });
     go.addEventListener("click", () => { snd.ok(); haptic(10); sh.close(); });
     ui(); R.sync(); });
-  $("#hmn").addEventListener("click", () => $("#hmf").click());
+  $("#hmn").addEventListener("click", () => { if (IX && !IX.e.length) { haptic(5); $("#hmn").innerHTML = `<b>Yeniden deneniyor</b>`; retryIx?.(); return; } $("#hmf").click(); });
   // arama: kayıtlı yerler, son aramalar, il, mekân, etkinlik ve herhangi bir yer adı
   const inp = $("#hmi"), res = $("#hmr"), clr = $("#hmx");
   const ico = { c: '<span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#0a84ff"/></svg></span>', v: '<span class="cgi" style="background:#8e8e93"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10h-5v-6H9v6z" fill="#fff"/></svg></span>', p: '<span class="cgi" style="background:#ff453a"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#ff453a"/></svg></span>', r: '<span class="cgi" style="background:rgba(120,120,128,.36)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M12 8v4.3l2.8 1.8" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>' };
