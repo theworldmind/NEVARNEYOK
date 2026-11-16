@@ -1825,5 +1825,523 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/community_centre"
+ },
+ "erzurum|Cinetekno": {
+  "lat": 39.8931071,
+  "lng": 41.239319,
+  "addr": "Çat Yolu Caddesi, Üniversite, Yakutiye",
+  "ilce": "Yakutiye",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "kocaeli|Paribu Cineverse (41 Burda)": {
+  "lat": 40.7571052,
+  "lng": 29.9459909,
+  "addr": "41 Burda AVM, Sanayi Mahallesi, İzmit",
+  "ilce": "İzmit",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "trabzon|Lara": {
+  "lat": 41.0048296,
+  "lng": 39.7280712,
+  "addr": "Cudibey Mektep Sokak, Gazipaşa Mahallesi, Ortahisar",
+  "ilce": "Ortahisar",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "kayseri|Paribu Cineverse (Forum Kayseri)": {
+  "lat": 38.723766,
+  "lng": 35.4974367,
+  "addr": "Sivas Bulvarı, Seyitgazi, Melikgazi",
+  "ilce": "Melikgazi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "sakarya|Adapazarı Agora": {
+  "lat": 40.776089,
+  "lng": 30.3811613,
+  "addr": "Eski Kazımpaşa Caddesi, Arabacıalanı Mahallesi, Serdivan",
+  "ilce": "Serdivan",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "denizli|Beyaz Sahne": {
+  "lat": 37.7523273,
+  "lng": 29.0854692,
+  "addr": "Çamlık Bulvarı, Mehmetçik Mahallesi, Pamukkale",
+  "ilce": "Pamukkale",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "izmir|Paribu Cineverse (Mavibahçe)": {
+  "lat": 38.4746178,
+  "lng": 27.0748585,
+  "addr": "Cahar Dudayev Bulvarı No:Kat:3, Mavişehir Mahallesi, Karşıyaka",
+  "ilce": "Karşıyaka",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "antalya|Erasta": {
+  "lat": 36.9073154,
+  "lng": 30.6652338,
+  "addr": "3042. Sokak, Fabrikalar Mahallesi, Kepez",
+  "ilce": "Kepez",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/department_store"
+ },
+ "antalya|Agora": {
+  "lat": 36.9149225,
+  "lng": 30.7722079,
+  "addr": "Yan Yol, Altınova Sinan Mahallesi, Kepez",
+  "ilce": "Kepez",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "duzce|Özdilek Cinetime": {
+  "lat": 40.8526269,
+  "lng": 31.1643616,
+  "addr": "Umut Sokak, Hamidiye, Hamidiye",
+  "ilce": "Hamidiye",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "izmir|Agora Balçova": {
+  "lat": 38.3949769,
+  "lng": 27.052482,
+  "addr": "Mithatpaşa Caddesi Yanyolu, Bahçelerarası Mahallesi, Balçova",
+  "ilce": "Balçova",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "izmir|Paribu Cineverse (İzmir Park)": {
+  "lat": 38.4054177,
+  "lng": 27.1285355,
+  "addr": "Eşrefpaşa Caddesi No:408 Eşrefpaşa Konak/İzmir",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "highway/primary",
+  "adr": 1
+ },
+ "ordu|Cinevizyon": {
+  "lat": 40.9838932,
+  "lng": 37.8822527,
+  "addr": "Bucak Cadde, Şarkiye Mahallesi, Altınordu",
+  "ilce": "Altınordu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "siirt|Park AVM cineBİG": {
+  "lat": 37.9141161,
+  "lng": 41.8964841,
+  "addr": "56100 Siirt Merkez/Siirt",
+  "ilce": "Veysel Karani Mah.",
+  "src": "osm",
+  "v": 2,
+  "osm": "railway/station",
+  "adr": 1
+ },
+ "adiyaman|Park Cinegold": {
+  "lat": 37.750222,
+  "lng": 38.2386704,
+  "addr": "Adıyaman Park Avm",
+  "ilce": "Yeni Sanayi Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/department_store",
+  "adr": 1
+ },
+ "balikesir|10 Burda CINEMApink by maximum": {
+  "lat": 39.6174189,
+  "lng": 27.8903201,
+  "addr": "Gaziosmanpaşa Mahallesi, Yeni İzmir Yolu, 10050 Altıeylül/Balıkesir",
+  "ilce": "Altıeylül",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/courthouse",
+  "adr": 1
+ },
+ "giresun|G-City": {
+  "lat": 40.913347,
+  "lng": 38.3836193,
+  "addr": "Okul Sokak, Fevzi Çakmak, Fevzi Çakmak Mahallesi",
+  "ilce": "Fevzi Çakmak Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "izmir|Paribu Cineverse (Optimum)": {
+  "lat": 38.3364971,
+  "lng": 27.1354848,
+  "addr": "341. Sokak, Beyazevler Mahallesi, Gaziemir",
+  "ilce": "Gaziemir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "izmir|Paribu Cineverse (Point Bornova)": {
+  "lat": 38.4306865,
+  "lng": 27.2097803,
+  "addr": "4174. Sokak, Yeşilova Mahallesi, Bornova",
+  "ilce": "Bornova",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "nigde|Yeni Sinema": {
+  "lat": 37.9678586,
+  "lng": 34.6779484,
+  "addr": "Külhan Sokak, Kale Mah., Kale Mahallesi",
+  "ilce": "Kale Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "ordu|Fatsa Cinemas": {
+  "lat": 41.031501,
+  "lng": 37.4991848,
+  "addr": "Samsun-Ordu yolu, Mustafakemalpaşa Mahallesi, Fatsa",
+  "ilce": "Fatsa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "kirikkale|Paribu Cineverse (Podium)": {
+  "lat": 39.8560382,
+  "lng": 33.4824486,
+  "addr": "Kayseri-Kırıkkale yolu, Kızılırmak Mahallesi, Yahşihan",
+  "ilce": "Yahşihan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "kocaeli|Özdilek Cinetime": {
+  "lat": 40.745076,
+  "lng": 30.0632906,
+  "addr": "Özdilek Avm, Emekevler Mahallesi, Kartepe",
+  "ilce": "Kartepe",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "izmir|Karaca": {
+  "lat": 38.3364852,
+  "lng": 27.1354492,
+  "addr": "341. Sokak, Beyazevler Mahallesi, Gaziemir",
+  "ilce": "Gaziemir",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/department_store"
+ },
+ "antalya|Megapol": {
+  "lat": 36.8919929,
+  "lng": 30.6751031,
+  "addr": "Meltem Bulvarı, Meltem Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "istanbul|Güngören Park": {
+  "lat": 41.0081595,
+  "lng": 28.8725313,
+  "addr": "Haznedar Mahallesi, Güngören",
+  "ilce": "Güngören",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "kastamonu|Barutçuoğlu": {
+  "lat": 41.3828314,
+  "lng": 33.7802429,
+  "addr": "Bakımevi Caddesi, Aktekke, Aktekke Mahallesi",
+  "ilce": "Aktekke Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "kirklareli|By Prestige": {
+  "lat": 41.7386105,
+  "lng": 27.2166386,
+  "addr": "İnönü Caddesi, Demirtaş Mahallesi",
+  "ilce": "Demirtaş Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "istanbul|Büyükçekmece Atirus Site": {
+  "lat": 41.0211953,
+  "lng": 28.5837615,
+  "addr": "Atirus AVM Büyükçekmece İstanbul",
+  "ilce": "Büyükçekmece",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall",
+  "adr": 1
+ },
+ "aydin|Nazilli Belediye": {
+  "lat": 37.916768,
+  "lng": 28.3246391,
+  "addr": "Hürriyet Caddesi, Altıntaş, Nazilli",
+  "ilce": "Nazilli",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall"
+ },
+ "kahramanmaras|Arsan Center": {
+  "lat": 37.5631673,
+  "lng": 36.9393412,
+  "addr": "Doğu Çevre Yolu Bulvarı, Yavuz Selim, Dulkadiroğlu",
+  "ilce": "Dulkadiroğlu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/food_court"
+ },
+ "antalya|Elmalı Belediye": {
+  "lat": 36.7425045,
+  "lng": 29.9138278,
+  "addr": "ŞAKİR AKÇA SOK., Karyağdı, Elmalı",
+  "ilce": "Elmalı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall"
+ },
+ "kars|Şehir": {
+  "lat": 40.6003046,
+  "lng": 43.0977626,
+  "addr": "Haydar Aliyev Caddesi, Cumhuriyet Mahallesi, Cumhuriyet Mahallesi",
+  "ilce": "Cumhuriyet Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/stadium"
+ },
+ "izmir|Bornova Batı": {
+  "lat": 38.4365253,
+  "lng": 27.2269576,
+  "addr": "Bornova Caddesi No:12, Karacaoğlan Mahallesi, Bornova",
+  "ilce": "Bornova",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/tyres"
+ },
+ "gumushane|Sema Doğan Park": {
+  "lat": 40.428454,
+  "lng": 39.5186856,
+  "addr": "Akçakale, Akçakale Mahallesi",
+  "ilce": "Akçakale Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "izmir|Univercity Park": {
+  "lat": 38.3694465,
+  "lng": 27.2067405,
+  "addr": "205/61. Sokak No:22, Adatepe Mahallesi, Buca",
+  "ilce": "Buca",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/food_court"
+ },
+ "batman|Batman Kültür Merkezi": {
+  "lat": 37.8992119,
+  "lng": 41.1407959,
+  "addr": "Barış Bulvarı, Belde Mahallesi, Belde Mahallesi",
+  "ilce": "Belde Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "office/government"
+ },
+ "bursa|Mavi Sahne": {
+  "lat": 40.1965202,
+  "lng": 29.059676,
+  "addr": "Erenler Sokak, Santral Garaj, Santral Garaj Mahallesi",
+  "ilce": "Santral Garaj Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/clothes"
+ },
+ "bursa|Aspera Sahne": {
+  "lat": 40.2195753,
+  "lng": 28.9002137,
+  "addr": "Yüzüncüyıl Kavşağı, Yüzüncüyıl, Yüzüncüyıl Mahallesi",
+  "ilce": "Yüzüncüyıl Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "eskisehir|Eskişehir Fuar Kongre Merkezi": {
+  "lat": 39.7529637,
+  "lng": 30.594805,
+  "addr": "Eskişehir Çevre Yolu, 71 Evler, Odunpazarı",
+  "ilce": "Odunpazarı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/conference_centre"
+ },
+ "eskisehir|İzole": {
+  "lat": 39.7792607,
+  "lng": 30.5149984,
+  "addr": "Vural Sokak No:35, Hoşnudiye Mahallesi, Tepebaşı",
+  "ilce": "Tepebaşı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "istanbul|Canopy by Hilton Istanbul": {
+  "lat": 41.0366619,
+  "lng": 28.9801024,
+  "addr": "Tarlabaşı Bulvarı, Şehit Muhtar, Şehit Muhtar Mahallesi",
+  "ilce": "Şehit Muhtar Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Sabancı Gösteri Merkezi": {
+  "lat": 40.8926302,
+  "lng": 29.3750332,
+  "addr": "Anadolu Otoyolu, Orta Mahallesi, Anadolu Mahallesi",
+  "ilce": "Anadolu Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
+ "istanbul|Tiyatro Ak'la Kara": {
+  "lat": 40.9853447,
+  "lng": 29.0275368,
+  "addr": "General Asım Gündüz Caddesi, Caferağa Mahallesi, Caferağa Mahallesi",
+  "ilce": "Caferağa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Duru Tiyatro": {
+  "lat": 40.9968979,
+  "lng": 29.1001297,
+  "addr": "Kızıl Begonya Sokağı No:10, Barbaros Mahallesi, Ataşehir",
+  "ilce": "Ataşehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Ali Emiri Efendi Kültür Merkezi": {
+  "lat": 41.0196282,
+  "lng": 28.9396895,
+  "addr": "Akşemsettin Caddesi No:66, Hırka-i Şerif Mahallesi, Fatih",
+  "ilce": "Fatih",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "istanbul|Kadıköy Sineması": {
+  "lat": 40.9884436,
+  "lng": 29.0288541,
+  "addr": "General Asım Gündüz Caddesi No:25, Kadıköy",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "istanbul|Bülent Ecevit Kültür Merkezi": {
+  "lat": 40.8863445,
+  "lng": 29.1963939,
+  "addr": "Ankara Caddesi No:142, Kordonboyu Mahallesi, Kartal",
+  "ilce": "Kartal",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "istanbul|Moda Kayıkhane": {
+  "lat": 40.9798763,
+  "lng": 29.0245172,
+  "addr": "Ferit Tek Sokağı, Caferağa Mahallesi, Caferağa Mahallesi",
+  "ilce": "Caferağa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "istanbul|Muammer Karaca Tiyatro Salonu": {
+  "lat": 41.0310765,
+  "lng": 28.9764324,
+  "addr": "Muammer Karaca Tiyatro Çıkmazı, Tomtom, Tomtom Mahallesi",
+  "ilce": "Tomtom Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Borusan Contemporary": {
+  "lat": 41.0892526,
+  "lng": 29.0565723,
+  "addr": "Baltalimanı Hisar Caddesi, Rumelihisarı Mahallesi, Sarıyer",
+  "ilce": "Sarıyer",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
+ },
+ "istanbul|Beyoğlu Sahne": {
+  "lat": 41.0348452,
+  "lng": 28.9770233,
+  "addr": "Sahne Sokağı, Hüseyinağa, Hüseyinağa Mahallesi",
+  "ilce": "Hüseyinağa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "istanbul|Ora Arena": {
+  "lat": 41.0419571,
+  "lng": 28.8869235,
+  "addr": "Çitftlik Caddesi, Altıntepsi Mahallesi, Bayrampaşa",
+  "ilce": "Bayrampaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
+ "istanbul|Semaver Kumpanya Çevre Tiyatrosu": {
+  "lat": 41.0067414,
+  "lng": 28.9304091,
+  "addr": "Öksüzce Cami Aralığı Sokağı, Silivrikapı Mahallesi, Fatih",
+  "ilce": "Fatih",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "izmir|Kahve Dünyası · İzmir Alsancak": {
+  "lat": 38.4358543,
+  "lng": 27.1426295,
+  "addr": "Kıbrıs Şehitleri Caddesi No:33, Alsancak Mahallesi, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "izmir|Buckin Coffee": {
+  "lat": 38.3880852,
+  "lng": 27.1649186,
+  "addr": "138. Sokak No:24, Vali Rahmi Bey Mahallesi, Buca",
+  "ilce": "Buca",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "malatya|Malatya Kongre ve Kültür Merkezi": {
+  "lat": 38.3466912,
+  "lng": 38.2872498,
+  "addr": "İnönü Caddesi, İnönü Mahallesi, Yeşilyurt",
+  "ilce": "Yeşilyurt",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
  }
 }
