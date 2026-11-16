@@ -59,6 +59,15 @@ for (const [id, c] of Object.entries(cities)) {
     await mkdir(dir, { recursive: true }); await writeFile(join(dir, "index.html"), html); n++;
   }
 }
+/* Sinema seansları da haritada (kullanıcı, 16.11 11:20): her gün her salonda oynayan her film bir satır; saatleri x[14], film no x[13] (bağlantı film sayfasına) */
+let nf = 0;
+for (const [id] of Object.entries(cities)) {
+  const F = await readJSON(join(ROOT, id === "ankara" ? "data/films.json" : `data/c/${id}-films.json`), null); if (!F?.films) continue;
+  for (const f of F.films) for (const [d, L] of Object.entries(f.s || {})) { if (d < today) continue; const by = new Map();
+    for (const [cid, str] of L) { const tm = String(str).split("|")[0].split(",").map((x) => x.trim()).filter(Boolean); (by.get(cid) || by.set(cid, []).get(cid)).push(...tm); }
+    for (const [cid, tm] of by) { const cn = F.cinemas?.[cid]?.name; if (!cn) continue; const T = [...new Set(tm)].sort(); const vi = hVen(id, cn);
+      HE.push([vi, "", tix(f.title), d, T[0] || "", "sinema", f.img ? iix(f.img) : -1, id, vi < 0 ? cn : "", "", 0, 0, 0, f.id, T.join(" ")]); nf++; } } }
+log(`Harita dizini: ${nf} sinema seansı (film × salon × gün) eklendi`);
 await mkdir(join(ROOT, "idx"), { recursive: true }); await writeFile(join(ROOT, "idx/a.json"), JSON.stringify(AIDX));
 await writeFile(join(ROOT, "idx/harita.json"), JSON.stringify({ d: today, v: HV, t: HT, i: HI, e: HE }));
 log(`Harita dizini: ${HE.length} etkinlik, ${HV.length} mekân (idx/harita.json)`);

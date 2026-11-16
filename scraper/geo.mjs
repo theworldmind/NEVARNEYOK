@@ -25,6 +25,14 @@ const cnt = new Map(); // anahtar → [il, mekân, sayı]
 const add = (city, v) => { const k = TR ? city + "|" + v : v; if (known.has(fold(k))) return; const x = cnt.get(k) || [city, v, 0]; x[2]++; cnt.set(k, x); };
 if (TR) { for (const c of CITIES) { if (c.id === "ankara") continue; const d = await readJSON(join(ROOT, `data/c/${c.id}.json`), { events: [] }); for (const e of d?.events || []) if (e.d >= today && e.venue) add(c.id, e.venue); } }
 else { const data = await readJSON(join(ROOT, "data/events.json"), { events: [] }); for (const e of data.events || []) if (e.d >= today && e.venue) add("ankara", e.venue); }
+/* Sinemalar da haritada (kullanıcı, 16.11 11:20: "bugün bütün Türkiye'de bu kadar mı etkinlik"): vizyondaki filmlerin seansı olan salonlar
+   seans sayısı kadar öncelikli aranır; salonun sinemalar.com'daki açık adresi ad bulunamazsa yedek olarak kullanılır. */
+const caddr = new Map();
+const addC = async (city, file) => { const f = await readJSON(join(ROOT, file), null); if (!f?.cinemas) return; const n = {};
+  for (const fl of f.films || []) for (const [d, L] of Object.entries(fl.s || {})) if (d >= today) for (const r of L) n[r[0]] = (n[r[0]] || 0) + 1;
+  for (const [cid, c] of Object.entries(f.cinemas)) { if (!n[cid] || !c?.name) continue; const k = TR ? city + "|" + c.name : c.name; if (known.has(fold(k))) continue;
+    const x = cnt.get(k) || [city, c.name, 0]; x[2] += n[cid] * 2; cnt.set(k, x); if (c.addr) caddr.set(k, c.addr); } };
+if (TR) { for (const c of CITIES) if (c.id !== "ankara") await addC(c.id, `data/c/${c.id}-films.json`); } else await addC("ankara", "data/films.json");
 const todo = [...cnt].sort((a, b) => b[1][2] - a[1][2]).map(([k, x]) => [k, x[0], x[1]]).filter(([k]) => !(miss[k] && (Date.parse(today) - Date.parse(miss[k])) / 864e5 < 14)).slice(0, MAX);
 
 // "Karagöz Müzesi · Hayali Küçük Ali Sahne" → önce tamamı, sonra ana ad; salon/sahne ekleri atılarak yeniden denenir
@@ -34,7 +42,7 @@ const fl2 = (s) => fold(s).replace(/ı/g, "i");
    anahtarsız Photon (photon.komoot.io) kullanılır; aynı sıkı kurallar (bina/mekân türü, ad tutmalı, doğru il) geçerli. Saniyede en çok 1 istek. */
 let provider = "nom";
 const PT = { street: "road", locality: "suburb", district: "district", city: "city", county: "county", state: "state", house: "house", other: "other" };
-async function search(q, city) {
+async function search(q, city, loose = false) {
   const il = NAME[city] || "Ankara";
   let L;
   if (provider === "nom") {
@@ -55,7 +63,8 @@ async function search(q, city) {
       return { lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0], name: p.name || "", category: p.osm_key, class: p.osm_key, type: p.osm_value, addresstype: PT[p.type] || p.type,
         display_name: [p.name, p.street, p.district, p.city, p.county, p.state].filter(Boolean).join(", "), address: { province: p.state, state: p.state, city: p.city, county: p.county, road: p.street, suburb: p.district, house_number: p.housenumber } }; });
   }
-  const ok = (x) => isPlace(x) && nameOk(want, x);
+  // loose: salon adresiyle arama (ad tutmak zorunda değil; yalnızca il ve mekân/cadde düzeyi)
+  const ok = loose ? (x) => !["boundary", "place", "landuse", "natural"].includes(x.category || x.class) && !["city", "town", "village", "county", "state", "province", "district", "municipality"].includes(x.addresstype) : (x) => isPlace(x) && nameOk(want, x);
   if (!TR) return L.filter((x) => +x.lat > BOX.s && +x.lat < BOX.n && +x.lon > BOX.w && +x.lon < BOX.e && ok(x));
   return L.filter((x) => { const a = x.address || {}; return ok(x) && [a.province, a.state, a.city].some((p) => p && fl2(p).includes(fl2(il))); });
 }
@@ -80,13 +89,15 @@ function nameOk(v, x) {
 let found = 0, tried = 0;
 for (const [key, city, v] of todo) {
   let hit = null;
-  try { want = v; for (const q of variants(v)) { const r = await search(q, city); tried++; if (r.length) { hit = r[0]; break; } } }
+  let byAddr = false;
+  try { want = v; for (const q of variants(v)) { const r = await search(q, city); tried++; if (r.length) { hit = r[0]; break; } }
+    if (!hit && caddr.has(key)) { const ad = caddr.get(key).replace(/\S+@\S+/g, "").replace(/\b(AVM|Alışveriş Merkezi)\b/gi, "$1").replace(/\s+/g, " ").trim(); const r = await search(ad, city, true); tried++; if (r.length) { hit = r[0]; byAddr = true; } } }
   catch (err) { log("geo: durdu,", err.message); break; }
   if (!hit) { miss[key] = today; continue; }
   const a = hit.address || {};
   const ilce = a.city_district || a.district || a.town || a.county || a.suburb || "";
   const addr = [a.road && (a.road + (a.house_number ? " No:" + a.house_number : "")), a.suburb || a.neighbourhood, ilce].filter(Boolean).join(", ");
-  venues[key] = { lat: +(+hit.lat).toFixed(7), lng: +(+hit.lon).toFixed(7), addr, ilce: ilce.replace(/ İlçesi$/i, ""), src: "osm", v: 2, osm: (hit.category || hit.class) + "/" + hit.type };
+  venues[key] = { lat: +(+hit.lat).toFixed(7), lng: +(+hit.lon).toFixed(7), addr: byAddr ? caddr.get(key).replace(/\S+@\S+/g, "").trim() : addr, ilce: ilce.replace(/ İlçesi$/i, ""), src: "osm", v: 2, osm: (hit.category || hit.class) + "/" + hit.type, ...(byAddr ? { adr: 1 } : {}) };
   delete miss[key]; found++;
 }
 /* İğne yolun değil binanın üstünde olsun (kullanıcı, 23:47: "CerModern'de yolu gösteriyor, giriş oradan değil").

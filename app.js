@@ -2115,9 +2115,14 @@ const hIdx = () => HIDX ||= fetch("idx/harita.json", { cache: "no-cache" }).then
 const hmRange = (when) => { const { d: today } = nowIST(), dow = pd(today).getDay(), fri = addD(today, (5 - dow + 7) % 7);
   return { bugun: [today, today], yarin: [addD(today, 1), addD(today, 1)], haftasonu: [dow === 6 || dow === 0 ? today : fri, dow === 0 ? today : addD(fri, 2)], hafta: [today, addD(today, 6)], ay: [today, addD(today, 30)], tumu: [today, "9999"] }[when] || [today, "9999"]; };
 const hmPrice = (x) => x[10] && Date.now() / 36e5 - x[11] <= PRICE_MAX_H ? x[10] : 0; // fiyat kuralı: 36 saatten eski fiyat yok sayılır
+// sinema satırında x[14] bütün seans saatleri: bugün son seansı geçmediyse ve seçilen saatten sonra seansı varsa görünür
+const hmLast = (x) => x[14] ? x[14].slice(-5) : x[4];
 const hmFilter = (IX, F) => { const [a, b] = hmRange(F.when), { d: today, hm } = nowIST();
-  return IX.e.filter((x) => x[3] >= a && x[3] <= b && !(x[3] === today && x[4] && x[4] < hm && timeDiff(x[4], hm) > 120) && (!F.cats.length || F.cats.includes(x[5]))
-    && (!F.from || (x[4] && x[4] >= F.from)) && (!F.tk || x[9] !== "t") && (!F.bud || (F.bud < 0 ? x[12] : hmPrice(x) && hmPrice(x) <= F.bud))); };
+  return IX.e.filter((x) => x[3] >= a && x[3] <= b && !(x[3] === today && x[4] && hmLast(x) < hm && timeDiff(hmLast(x), hm) > (x[14] ? 0 : 120)) && (!F.cats.length || F.cats.includes(x[5]))
+    && (!F.from || (x[4] && hmLast(x) >= F.from)) && (!F.tk || x[9] !== "t") && (!F.bud || (F.bud < 0 ? x[12] : hmPrice(x) && hmPrice(x) <= F.bud))); };
+// etkinlik → etkinlik sayfası; film → o günün seanslarıyla film sayfası
+const hmHref = (x, c) => x[13] ? `#/${x[7] || c}/film/${x[13]}?gun=${x[3]}` : `#/${x[7] || c}/e/${encodeURIComponent(x[1])}`;
+const hmTimes = (x) => { if (!x[14]) return x[4] ? esc(x[4]) + soon(x) : "Saat sitede"; const { d, hm } = nowIST(); const T = x[14].split(" ").filter((t) => x[3] !== d || t >= hm); return (T.length ? T.slice(0, 6).join(" · ") + (T.length > 6 ? " …" : "") : x[14].split(" ").slice(-1)[0]) + " seans"; };
 const HMW = [["tumu", "Tümü"], ["bugun", "Bugün"], ["yarin", "Yarın"], ["haftasonu", "Hafta sonu"], ["hafta", "Bu hafta"], ["ay", "Bu ay"]];
 const HMB = [[0, "Hepsi"], [-1, "Ücretsiz"], [250, "₺250'ye kadar"], [500, "₺500'e kadar"], [1000, "₺1.000'e kadar"]];
 const hmTags = () => [HM.when !== "tumu" && HMW.find((w) => w[0] === HM.when)[1], HM.from && HM.from + " sonrası", HM.bud && HMB.find((b) => b[0] === HM.bud)?.[1], ...HM.cats.map((k) => CATS[k]), HM.tk && "Tükenenler gizli"].filter(Boolean);
@@ -2307,7 +2312,7 @@ function viewHarita(city) {
     const R = []; for (const g of VG) { const d = km(ll, [g.v[0], g.v[1]]); for (const x of g.L) R.push([d, g, x]); } R.sort((p, q) => p[0] - q[0] || p[2][3].localeCompare(q[2][3])); const top = R.slice(0, 40);
     snd.pop?.(); haptic(8);
     sheet(`<div class="pn" role="dialog" aria-label="${esc(name)}"><div class="hd"><span class="rth"><b>${esc(name)}</b><small>${top.length ? `En yakın ${top.length} etkinlik${sub ? " · " + esc(sub) : ""}` : "Yakında etkinlik bulunamadı"}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
-      <div class="bd2"><div class="mpl">${top.map(([d, g, x]) => `<a href="#/${g.v[2]}/e/${encodeURIComponent(x[1])}"><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}"><svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}</span></span><span><b>${esc(x[2])}</b><small><em class="kmb">${kmTxt(d)}</em> · ${rel(x[3])}${x[4] ? " · " + esc(x[4]) : ""} · ${esc(g.v[3])}</small></span></a>`).join("")}</div>
+      <div class="bd2"><div class="mpl">${top.map(([d, g, x]) => `<a href="${hmHref(x, g.v[2])}"><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}"><svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}</span></span><span><b>${esc(x[2])}</b><small><em class="kmb">${kmTxt(d)}</em> · ${rel(x[3])}${x[4] ? " · " + esc(x[4]) : ""} · ${esc(g.v[3])}</small></span></a>`).join("")}</div>
       ${top.length ? "" : `<p class="kmn">Bu filtrelerle yakınında konumu bilinen etkinlik yok. Filtreleri genişletmeyi dene.</p>`}</div></div>`, "mn"); };
   const nearPlace = (ll, name) => { if (!map) return; pinM?.remove(); pinM = new maplibregl.Marker({ element: elOf('<div class="pin"></div>'), anchor: "bottom" }).setLngLat([ll[1], ll[0]]).addTo(map);
     const D = VG.map((g) => km(ll, [g.v[0], g.v[1]])).sort((a, b) => a - b), far = D[Math.min(D.length - 1, 7)] ?? 5;
@@ -2349,7 +2354,7 @@ function viewHarita(city) {
   // Filtreler (Apple gibi tek panel; sayı canlı)
   $("#hmf").addEventListener("click", () => { if (!IX) return; snd.sheet?.(); haptic(6); if (!tc.hidden) { tc.hidden = true; wrap.classList.remove("tco"); }
     const T = JSON.parse(JSON.stringify({ ...HM, cam: undefined }));
-    const cats = Object.keys(CATS).filter((k) => k !== "sinema" && IX.e.some((x) => x[5] === k));
+    const cats = ["sinema", ...Object.keys(CATS).filter((k) => k !== "sinema")].filter((k) => IX.e.some((x) => x[5] === k));
     const sh = sheet(`<div class="pn hmfp" role="dialog" aria-label="Harita filtreleri"><div class="hd"><button type="button" class="hf-rz" id="hf0">Sıfırla</button><span class="rth"><b>Filtreler</b></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
       <div class="bd2"><h4>Saat</h4><div class="hf-c hf-time"><div class="hf-th"><b class="hf-tl" id="hfl"></b><div class="hm-seg" id="hfseg" role="tablist"><i></i><button type="button" data-ta="1">Tüm gün</button><button type="button" data-ta="0">Saat seç</button></div></div>${trHTML()}</div>
       <h4>Ne zaman</h4><div class="hf-w">${HMW.map(([k, l]) => `<button type="button" data-w="${k}">${l}</button>`).join("")}</div>
@@ -2383,7 +2388,7 @@ function viewHarita(city) {
     if (r.k === "p" || r.k === "f") { nearPlace(r.ll, r.l); return; }
     const g = VG.find((g) => g.v[3] === (r.k === "v" ? r.l : r.vn) && g.v[2] === r.c);
     if (r.k === "v") { if (g) { map.flyTo({ center: [g.v[1], g.v[0]], zoom: 16, duration: 1000 }); setTimeout(() => vSheet(g), 1050); } else goCity(r.c); return; }
-    if (r.k === "e") { location.hash = `#/${r.c}/e/${encodeURIComponent(r.slug)}`; } };
+    if (r.k === "e") { location.hash = r.href || `#/${r.c}/e/${encodeURIComponent(r.slug)}`; } };
   const home = () => { const F = favs(), R = recents();
     res.innerHTML = `<div class="hm-fv">${F.map((f, i) => `<button type="button" data-fi="${i}">${favIc(f.n)}<span>${esc(f.n)}</span></button>`).join("")}<button type="button" class="add" data-fa><span class="cgi" style="background:rgba(120,120,128,.36)"><svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span><span>Ekle</span></button></div>
       ${R.length ? `<div class="hm-rh"><b>Son aramalar</b><button type="button" id="hmrc">Temizle</button></div>${R.map((r, i) => `<button type="button" data-ri="${i}">${r.k === "e" ? cgIcon(r.cat) || ico.r : ico[r.k] || ico.r}<span><b>${esc(r.l)}</b><small>${esc(r.s || "")}</small></span></button>`).join("")}` : `<p class="hm-0">Haritada bir yere basılı tutarak “Ev”, “Okul” gibi kendi yerlerini kaydedebilirsin.</p>`}`;
@@ -2406,7 +2411,7 @@ function viewHarita(city) {
     $$("[data-qf]", res).forEach((b) => b.addEventListener("click", () => { const f = F[+b.dataset.qf]; done(); favSheet(f); }));
     $$("[data-qc]", res).forEach((b) => b.addEventListener("click", () => { const c = b.dataset.qc; recAdd({ k: "c", l: N[c], s: "İl", c }); done(); goCity(c); }));
     $$("[data-qv]", res).forEach((b) => b.addEventListener("click", () => { const g = venues[+b.dataset.qv]; recAdd({ k: "v", l: g.v[3], s: "Mekân · " + (N[g.v[2]] || ""), c: g.v[2] }); done(); map.flyTo({ center: [g.v[1], g.v[0]], zoom: 16, duration: 1000 }); setTimeout(() => vSheet(g), 1050); }));
-    $$("[data-qe]", res).forEach((b) => b.addEventListener("click", () => { const x = evs[+b.dataset.qe], v = x[0] >= 0 ? IX.v[x[0]] : null; recAdd({ k: "e", l: x[2], s: `${dShort(x[3])} · ${v ? v[3] : x[8]} · ${N[x[7]] || ""}`, c: x[7], slug: x[1], cat: x[5], vn: v ? v[3] : x[8] }); done();
+    $$("[data-qe]", res).forEach((b) => b.addEventListener("click", () => { const x = evs[+b.dataset.qe], v = x[0] >= 0 ? IX.v[x[0]] : null; recAdd({ k: "e", l: x[2], s: `${dShort(x[3])} · ${v ? v[3] : x[8]} · ${N[x[7]] || ""}`, c: x[7], slug: x[1], href: hmHref(x), cat: x[5], vn: v ? v[3] : x[8] }); done();
       const g = v ? VG.find((g) => g.v === v) : { v: [null, null, x[7], x[8], ""], L: (UG.get(x[7]) || []).filter((z) => z[8] === x[8]) };
       if (v) map.flyTo({ center: [v[1], v[0]], zoom: 16, duration: 1000 }); else if (ILLL[x[7]]) map.flyTo({ center: [ILLL[x[7]][1], ILLL[x[7]][0]], zoom: 11.5, duration: 1000 });
       setTimeout(() => g && vSheet(g), 1050); }));
@@ -2483,7 +2488,7 @@ function viewHarita(city) {
 const hmRows = (L0, c, venue) => { const L = [...L0].sort((a, b) => a[3].localeCompare(b[3]) || (a[4] || "").localeCompare(b[4] || "")); let last = "", out = "";
   for (const x of L) { if (x[3] !== last) { last = x[3]; const r = rel(x[3]); out += `<h5 class="mdh">${esc(r)}${r === "Bugün" || r === "Yarın" ? `<small>${esc(dShort(x[3]))}</small>` : ""}</h5>`; }
     const pr = hmPrice(x), st = x[9] === "t" ? `<em class="mst">Tükendi</em>` : x[9] === "e" ? `<em class="mst">Ertelendi</em>` : "";
-    out += `<a href="#/${x[7] || c}/e/${encodeURIComponent(x[1])}"${x[9] === "t" ? ' class="so"' : ""}><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}"><svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}</span></span><span><b>${esc(x[2])}</b><small>${x[4] ? esc(x[4]) + soon(x) : "Saat sitede"}${venue && x[8] ? " · " + esc(x[8]) : ""}${pr ? " · " + TL(pr) + "'den" : x[12] ? " · Ücretsiz" : ""}</small>${st}</span></a>`; }
+    out += `<a href="${hmHref(x, c)}"${x[9] === "t" ? ' class="so"' : ""}><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}"><svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}</span></span><span><b>${esc(x[2])}</b><small>${hmTimes(x)}${venue && x[8] ? " · " + esc(x[8]) : ""}${pr ? " · " + TL(pr) + "'den" : x[12] ? " · Ücretsiz" : ""}</small>${st}</span></a>`; }
   return out; };
 const soon = (x) => { const { d, hm } = nowIST(); if (x[3] !== d || !x[4]) return ""; const m = timeDiff(hm, x[4]); return m < -15 ? " · başladı" : m <= 0 ? " · şimdi" : m < 60 ? ` · ${m} dk sonra` : m < 360 ? ` · ${Math.round(m / 60)} sa sonra` : ""; };
 const hmWhen = () => HM.when !== "tumu" ? HMW.find((w) => w[0] === HM.when)?.[1] : "";
