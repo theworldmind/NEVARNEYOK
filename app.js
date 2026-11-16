@@ -2682,3 +2682,20 @@ function venueSheetX(g) {
 }
 
 boot().then(() => { offlineBoot(); shortcutBoot(); route(); splashOut(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { splashOut(); V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });
+
+/* Gün içinde bildirim, uygulamanın kendisinden (kullanıcı, 17.11.2026 02:09: "uygulama göndersin; indirince hoş geldin gelmişti, gün içinde de göndersin").
+   Telefonun arka plan uyandırmasına (periodicSync) güvenilemiyor: Chrome yeni uygulamada seyrek, pil tasarrufunda hiç çalıştırmıyor; iPhone'da yok.
+   Bu yüzden bildirim işçisine (sw.js → run) uygulama da "bak" der: açılışta, her 20 dakikada bir açık kaldıkça ve uygulamadan çıkarken (arka plana geçince).
+   İşçi aynı kurallarla karar verir: takip değişiklikleri/hatırlatmalar ve günde üç dilim öneri (sabah 09–12, öğle 12–16 afişli, akşam 16–21:30), her dilimde en çok bir; gece sessiz. */
+(() => {
+  if (!NOTIF) return;
+  let lastPoke = 0;
+  const poke = async (force) => {
+    if (!notifOn() || (!force && Date.now() - lastPoke < 4 * 60e3)) return; lastPoke = Date.now();
+    try { const r = await swUp(); (navigator.serviceWorker.controller || r?.active)?.postMessage("nvny-check"); } catch {}
+  };
+  setTimeout(() => poke(true), 6000);
+  setInterval(() => { if (!document.hidden) poke(); }, 20 * 60e3);
+  document.addEventListener("visibilitychange", () => { if (document.hidden) poke(true); else poke(); });
+  addEventListener("pagehide", () => poke(true));
+})();
