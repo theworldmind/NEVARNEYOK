@@ -986,7 +986,7 @@ async function inviteEv(e, city) {
   const sh = sheet(`<div class="pn ivp" role="dialog" aria-label="Davet et"><div class="hd"><span class="rth"><b>Davet et ✉️</b><small>${esc(e.title)}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2">
     <div class="ivv"><div class="ivi sk" id="ivi"></div></div>
     <h4>Davet cümlen</h4><div class="ivl" id="ivl">${all.map((x, i) => `<button type="button" data-i="${i}" class="${x === cur ? "on" : ""}"><span>${INV_E[i % INV_E.length]}</span>${esc(x)}</button>`).join("")}</div>
-    <h4>Davetiye</h4><div class="seg ivk" id="ivk" style="--n:2;--i:0"><span class="thumb"></span><button type="button" class="on" data-k="0">✉️ Davetiye</button><button type="button" data-k="1">💌 Kalpli mektup</button></div>
+    <div class="seg ivk" id="ivk" style="--n:2;--i:0"><span class="thumb"></span><button type="button" class="on" data-k="0" aria-label="Zarf">✉️</button><button type="button" data-k="1" aria-label="Kalpli zarf">💌</button></div>
     <label class="fvi ivw"><span>✍️</span><input id="ivt" maxlength="70" placeholder="Ya da kendin yaz…" enterkeyhint="done"></label>
     <button type="button" class="ok ivgo" id="ivgo">Davet et ✉️</button>
     <p class="shn">Arkadaşın davetiyeyi açınca afişi, tarihi ve mekânı görür; tek dokunuşla takvimine ekler, biletine ve yol tarifine ulaşır.</p></div></div>`, "mn");
