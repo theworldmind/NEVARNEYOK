@@ -28,6 +28,8 @@ const AIDX = {};
 // { v: [[enlem, boylam, il, mekân, ilçe]], e: [[mekân sırası (-1: konum yok), ad (slug), başlık, gün, saat, kategori, afiş, il, mekân adı (konum yoksa)]] }
 const VA = (await readJSON(join(ROOT, "data/venues.json"), {})) || {}, VT = (await readJSON(join(ROOT, "data/venues-tr.json"), {})) || {};
 const HV = [], HVi = new Map(), HE = [], hLast = (() => { const d = new Date(today + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + 7); return d.toISOString().slice(0, 10); })();
+const HT = [], HTi = new Map(), HI = [], HIi = new Map(); // tekrar eden ad ve afiş adresleri tablo olarak (dosya küçülsün)
+const tix = (t) => { if (!HTi.has(t)) { HTi.set(t, HT.length); HT.push(t); } return HTi.get(t); }, iix = (u) => { if (!HIi.has(u)) { HIi.set(u, HI.length); HI.push(u); } return HIi.get(u); };
 const hVen = (id, name) => { const v = id === "ankara" ? VA[name] : VT[id + "|" + name]; if (!v?.lat) return -1; const k = id + "|" + name; if (!HVi.has(k)) { HVi.set(k, HV.length); HV.push([+(+v.lat).toFixed(5), +(+v.lng).toFixed(5), id, name, v.ilce || ""]); } return HVi.get(k); };
 let n = 0;
 for (const [id, c] of Object.entries(cities)) {
@@ -49,14 +51,14 @@ for (const [id, c] of Object.entries(cities)) {
 <link rel="icon" type="image/png" href="/icons/icon-192.png?v=4"><script>location.replace(${JSON.stringify(app)})</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a10;color:#fff;font:600 16px system-ui,sans-serif;text-align:center}a{color:#c4b5fd}</style>
 </head><body><p><b>${esc(title)}</b><br>${esc(when)} · ${esc(e.venue || "")}<br><br><a href="${esc(app)}">Ne Var Ne Yok'ta aç →</a></p></body></html>`;
-    if (e.d <= hLast && e.status !== "iptal") { const vi = hVen(id, e.venue || ""); HE.push([vi, s, e.title, e.d, e.t || "", e.cat || "", e.img || "", id, vi < 0 ? e.venue || "" : ""]); } // konumu olmayan da girer (il düzeyinde gösterilir)
+    /* bütün tarihler (kullanıcı, 09:09: "bütün Türkiye, bütün etkinlikler haritada") */ if (e.status !== "iptal") { const vi = hVen(id, e.venue || ""); HE.push([vi, s, tix(e.title), e.d, e.t || "", e.cat || "", e.img ? iix(e.img) : -1, id, vi < 0 ? e.venue || "" : ""]); } // konumu olmayan da girer (il düzeyinde gösterilir)
     { const ak = NVK.akey(e.title); if (ak && ak.length >= 3 && e.status !== "iptal") (AIDX[ak] ||= []).push([id, e.d, e.t || "", s, e.venue || ""]); }
     const dir = join(ROOT, "e", id, s);
     await mkdir(dir, { recursive: true }); await writeFile(join(dir, "index.html"), html); n++;
   }
 }
 await mkdir(join(ROOT, "idx"), { recursive: true }); await writeFile(join(ROOT, "idx/a.json"), JSON.stringify(AIDX));
-await writeFile(join(ROOT, "idx/harita.json"), JSON.stringify({ d: today, v: HV, e: HE }));
+await writeFile(join(ROOT, "idx/harita.json"), JSON.stringify({ d: today, v: HV, t: HT, i: HI, e: HE }));
 log(`Harita dizini: ${HE.length} etkinlik, ${HV.length} mekân (idx/harita.json)`);
 log(`Paylaşım sayfaları: ${n} etkinlik (e/<il>/<ad>/)`);
 log(`Yeni tarih dizini: ${Object.keys(AIDX).length} ad (idx/a.json)`);

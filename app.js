@@ -2009,12 +2009,12 @@ function recoRail(city) {
    Seçili il açılır; uzaklaşınca bütün Türkiye'deki etkinlikler görünür. Çok uzakta her il tek cam kabarcık (sayısıyla), il yakınlığında
    mekânlar kategori simgesiyle (konser, tiyatro, stand-up…), daha yakında simgeler dönerek afişe dönüşür. Üstte arama: etkinlik, mekân ya da il
    yaz; sonuca dokununca harita oraya uçar. Veri: idx/harita.json (share-pages.mjs; konumu bilinen mekânlar, 8 gün). */
-const HM = { when: "bugun", cats: [] };
+const HM = { when: "tumu", cats: [] };
 let HIDX = null;
-const hIdx = () => HIDX ||= fetch("idx/harita.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : null).catch(() => { HIDX = null; return null; });
+const hIdx = () => HIDX ||= fetch("idx/harita.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : null).then((j) => { if (j?.t) for (const x of j.e) { x[2] = j.t[x[2]]; x[6] = x[6] >= 0 ? j.i[x[6]] : ""; } return j; }).catch(() => { HIDX = null; return null; });
 function viewHarita(city) {
   setTop(city); document.title = `Harita · Ne Var Ne Yok`;
-  const W = [["bugun", "Bugün"], ["yarin", "Yarın"], ["haftasonu", "Hafta sonu"], ["hafta", "Bu hafta"]];
+  const W = [["tumu", "Tümü"], ["bugun", "Bugün"], ["yarin", "Yarın"], ["haftasonu", "Hafta sonu"], ["hafta", "Bu hafta"], ["ay", "Bu ay"]];
   V.innerHTML = `<div class="hmap"><div class="map" id="hm"></div>
     <div class="hm-top"><form class="hm-q" id="hmq" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><input id="hmi" type="search" placeholder="Etkinlik, mekân ya da il ara" autocomplete="off" enterkeyhint="search"><button type="button" id="hmx" aria-label="Temizle" hidden>✕</button></form>
     <div class="hm-r" id="hmr" hidden></div>
@@ -2024,7 +2024,7 @@ function viewHarita(city) {
     <button type="button" class="hm-me" id="hmme" aria-label="Konumum"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button></div>`;
   const el = $("#hm"), N = CNAME(); let map = null, vLayer = null, cLayer = null, meM = null, IX = null, VG = [], UG = new Map();
   const range = () => { const { d: today } = nowIST(), dow = pd(today).getDay(), fri = addD(today, (5 - dow + 7) % 7);
-    return { bugun: [today, today], yarin: [addD(today, 1), addD(today, 1)], haftasonu: [dow === 6 || dow === 0 ? today : fri, dow === 0 ? today : addD(fri, 2)], hafta: [today, addD(today, 6)] }[HM.when]; };
+    return { bugun: [today, today], yarin: [addD(today, 1), addD(today, 1)], haftasonu: [dow === 6 || dow === 0 ? today : fri, dow === 0 ? today : addD(fri, 2)], hafta: [today, addD(today, 6)], ay: [today, addD(today, 30)], tumu: [today, "9999"] }[HM.when]; };
   const draw = () => {
     if (!map || !IX) return; vLayer?.remove(); cLayer?.remove(); vLayer = window.L.layerGroup(); cLayer = window.L.layerGroup();
     const [a, b] = range(), { hm } = nowIST(), today = nowIST().d;
