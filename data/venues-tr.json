@@ -2128,6 +2128,15 @@
   "v": 2,
   "osm": "leisure/stadium"
  },
+ "istanbul|Fiba Salon İKSV": {
+  "lat": 41.0136532,
+  "lng": 28.9748026,
+  "addr": "Ankara Caddesi, Hobyar Mahallesi, Fatih",
+  "ilce": "Fatih",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bank"
+ },
  "izmir|Bornova Batı": {
   "lat": 38.4365253,
   "lng": 27.2269576,
@@ -2146,14 +2155,50 @@
   "v": 2,
   "osm": "leisure/park"
  },
+ "istanbul|İstanbul Dolphinarium": {
+  "lat": 41.0617559,
+  "lng": 28.9431051,
+  "addr": "Silahtarağa Caddesi No:20, Silahtarağa Mahallesi, Eyüpsultan",
+  "ilce": "Eyüpsultan",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/zoo"
+ },
+ "istanbul|Turkcell Platinum Park": {
+  "lat": 41.1153848,
+  "lng": 28.9941859,
+  "addr": "131. Sokak, Ayazağa Mahallesi, Sarıyer",
+  "ilce": "Sarıyer",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/theme_park"
+ },
  "izmir|Univercity Park": {
   "lat": 38.3694465,
   "lng": 27.2067405,
-  "addr": "205/61. Sokak No:22, Adatepe Mahallesi, Buca",
+  "addr": "DEÜ Merkez Yerleşkesi İç Yolu No:22, Adatepe Mahallesi, Buca",
   "ilce": "Buca",
   "src": "osm",
   "v": 2,
   "osm": "amenity/food_court"
+ },
+ "istanbul|Karaköy İskelesi": {
+  "lat": 41.0214286,
+  "lng": 28.9767318,
+  "addr": "Rıhtım Caddesi, Kemankeş Karamustafa Paşa, Kemankeş Karamustafa Paşa Mahallesi",
+  "ilce": "Kemankeş Karamustafa Paşa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "man_made/pier"
+ },
+ "istanbul|Üsküdar Şehir Hatları İskelesi": {
+  "lat": 41.0178651,
+  "lng": 28.9740261,
+  "addr": "Reşadiye Caddesi, Hobyar Mahallesi, Fatih",
+  "ilce": "Fatih",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/ferry_terminal"
  },
  "batman|Batman Kültür Merkezi": {
   "lat": 37.8992119,
@@ -2165,10 +2210,10 @@
   "osm": "office/government"
  },
  "bursa|Mavi Sahne": {
-  "lat": 40.1965202,
-  "lng": 29.059676,
-  "addr": "Erenler Sokak, Santral Garaj, Santral Garaj Mahallesi",
-  "ilce": "Santral Garaj Mahallesi",
+  "lat": 40.1873587,
+  "lng": 29.0595292,
+  "addr": "18. Okul Sokak, Şehreküstü, Şehreküstü Mahallesi",
+  "ilce": "Şehreküstü Mahallesi",
   "src": "osm",
   "v": 2,
   "osm": "shop/clothes"
@@ -2190,158 +2235,5 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/conference_centre"
- },
- "eskisehir|İzole": {
-  "lat": 39.7792607,
-  "lng": 30.5149984,
-  "addr": "Vural Sokak No:35, Hoşnudiye Mahallesi, Tepebaşı",
-  "ilce": "Tepebaşı",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/bar"
- },
- "istanbul|Canopy by Hilton Istanbul": {
-  "lat": 41.0366619,
-  "lng": 28.9801024,
-  "addr": "Tarlabaşı Bulvarı, Şehit Muhtar, Şehit Muhtar Mahallesi",
-  "ilce": "Şehit Muhtar Mahallesi",
-  "src": "osm",
-  "v": 2,
-  "osm": "tourism/hotel"
- },
- "istanbul|Sabancı Gösteri Merkezi": {
-  "lat": 40.8926302,
-  "lng": 29.3750332,
-  "addr": "Anadolu Otoyolu, Orta Mahallesi, Anadolu Mahallesi",
-  "ilce": "Anadolu Mahallesi",
-  "src": "osm",
-  "v": 2,
-  "osm": "building/yes"
- },
- "istanbul|Tiyatro Ak'la Kara": {
-  "lat": 40.9853447,
-  "lng": 29.0275368,
-  "addr": "General Asım Gündüz Caddesi, Caferağa Mahallesi, Caferağa Mahallesi",
-  "ilce": "Caferağa Mahallesi",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/theatre"
- },
- "istanbul|Duru Tiyatro": {
-  "lat": 40.9968979,
-  "lng": 29.1001297,
-  "addr": "Kızıl Begonya Sokağı No:10, Barbaros Mahallesi, Ataşehir",
-  "ilce": "Ataşehir",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/theatre"
- },
- "istanbul|Ali Emiri Efendi Kültür Merkezi": {
-  "lat": 41.0196282,
-  "lng": 28.9396895,
-  "addr": "Akşemsettin Caddesi No:66, Hırka-i Şerif Mahallesi, Fatih",
-  "ilce": "Fatih",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/community_centre"
- },
- "istanbul|Kadıköy Sineması": {
-  "lat": 40.9884436,
-  "lng": 29.0288541,
-  "addr": "General Asım Gündüz Caddesi No:25, Kadıköy",
-  "ilce": "",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cinema"
- },
- "istanbul|Bülent Ecevit Kültür Merkezi": {
-  "lat": 40.8863445,
-  "lng": 29.1963939,
-  "addr": "Ankara Caddesi No:142, Kordonboyu Mahallesi, Kartal",
-  "ilce": "Kartal",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/arts_centre"
- },
- "istanbul|Moda Kayıkhane": {
-  "lat": 40.9798763,
-  "lng": 29.0245172,
-  "addr": "Ferit Tek Sokağı, Caferağa Mahallesi, Caferağa Mahallesi",
-  "ilce": "Caferağa Mahallesi",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/restaurant"
- },
- "istanbul|Muammer Karaca Tiyatro Salonu": {
-  "lat": 41.0310765,
-  "lng": 28.9764324,
-  "addr": "Muammer Karaca Tiyatro Çıkmazı, Tomtom, Tomtom Mahallesi",
-  "ilce": "Tomtom Mahallesi",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/theatre"
- },
- "istanbul|Borusan Contemporary": {
-  "lat": 41.0892526,
-  "lng": 29.0565723,
-  "addr": "Baltalimanı Hisar Caddesi, Rumelihisarı Mahallesi, Sarıyer",
-  "ilce": "Sarıyer",
-  "src": "osm",
-  "v": 2,
-  "osm": "tourism/museum"
- },
- "istanbul|Beyoğlu Sahne": {
-  "lat": 41.0348452,
-  "lng": 28.9770233,
-  "addr": "Sahne Sokağı, Hüseyinağa, Hüseyinağa Mahallesi",
-  "ilce": "Hüseyinağa Mahallesi",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/restaurant"
- },
- "istanbul|Ora Arena": {
-  "lat": 41.0419571,
-  "lng": 28.8869235,
-  "addr": "Çitftlik Caddesi, Altıntepsi Mahallesi, Bayrampaşa",
-  "ilce": "Bayrampaşa",
-  "src": "osm",
-  "v": 2,
-  "osm": "building/yes"
- },
- "istanbul|Semaver Kumpanya Çevre Tiyatrosu": {
-  "lat": 41.0067414,
-  "lng": 28.9304091,
-  "addr": "Öksüzce Cami Aralığı Sokağı, Silivrikapı Mahallesi, Fatih",
-  "ilce": "Fatih",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/theatre"
- },
- "izmir|Kahve Dünyası · İzmir Alsancak": {
-  "lat": 38.4358543,
-  "lng": 27.1426295,
-  "addr": "Kıbrıs Şehitleri Caddesi No:33, Alsancak Mahallesi, Konak",
-  "ilce": "Konak",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
- },
- "izmir|Buckin Coffee": {
-  "lat": 38.3880852,
-  "lng": 27.1649186,
-  "addr": "138. Sokak No:24, Vali Rahmi Bey Mahallesi, Buca",
-  "ilce": "Buca",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
- },
- "malatya|Malatya Kongre ve Kültür Merkezi": {
-  "lat": 38.3466912,
-  "lng": 38.2872498,
-  "addr": "İnönü Caddesi, İnönü Mahallesi, Yeşilyurt",
-  "ilce": "Yeşilyurt",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/arts_centre"
  }
 }

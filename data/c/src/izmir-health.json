@@ -1,26 +1,31 @@
 {
- "runAt": "2026-11-16T01:06:37.540Z",
+ "runAt": "2026-11-16T08:49:59.395Z",
  "mode": "full",
- "total": 1206,
- "written": true,
+ "total": 582,
+ "written": false,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 400,
-   "prevCount": 1207,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 585,
+   "prevCount": 1179,
    "error": "",
    "notes": [
-    "açık veri: 243 seans, 16 detay sayfası",
+    "açık veri: 246 seans, 17 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/izmir: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/izmir: 36 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/izmir: 36 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/izmir: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/izmir: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 122,
-   "failStreak": 1,
-   "lastOk": "2026-11-15T13:47:42.399Z"
+   "seconds": 192,
+   "failStreak": 0,
+   "lastOk": "2026-11-16T08:49:59.395Z"
   },
   "izmirks": {
    "id": "izmirks",
@@ -29,14 +34,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 27,
-   "prevCount": 28,
+   "prevCount": 27,
    "error": "",
    "notes": [
     "açık veri: 35 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate"
    ],
-   "seconds": 20,
+   "seconds": 31,
    "failStreak": 0,
-   "lastOk": "2026-11-16T01:06:37.540Z"
+   "lastOk": "2026-11-16T08:49:59.395Z"
   }
  }
 }

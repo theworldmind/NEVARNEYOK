@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:06:38.201Z",
+ "runAt": "2026-11-16T08:50:00.509Z",
  "mode": "full",
- "total": 2701,
+ "total": 3216,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,17 +10,70 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 2534,
-   "prevCount": 3563,
+   "count": 3194,
+   "prevCount": 2701,
    "error": "",
    "notes": [
-    "açık veri: 1471 seans, 234 detay sayfası",
+    "açık veri: 1475 seans, 236 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/istanbul: 154 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/istanbul: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/istanbul: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/istanbul: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/istanbul: 73 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 156,
+   "seconds": 521,
    "failStreak": 0,
-   "lastOk": "2026-11-16T01:06:38.201Z"
+   "lastOk": "2026-11-16T08:50:00.509Z"
+  },
+  "iksv": {
+   "id": "iksv",
+   "name": "İKSV",
+   "kind": "kurum",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 39,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 39 seans, alanlar: articleId,category,headline,date,date1,enddate,place,alias,thumb,ticket,flag1,activity,zoneName,zoneGroupName,zoneGroupId,zoneId,zone,endDate,time,dateFormatted,endDateFormatted,files,programs,order,tags,tagIds,section,director,description,day,dayString,monthString,month,year,flag2,flag3,flag4,flag5"
+   ],
+   "seconds": 46,
+   "failStreak": 0,
+   "lastOk": "2026-11-16T08:50:00.509Z"
+  },
+  "zorlupsm": {
+   "id": "zorlupsm",
+   "name": "Zorlu PSM",
+   "kind": "mekan",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 34,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.zorlupsm.com/etkinlikler: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 22,
+   "failStreak": 0,
+   "lastOk": "2026-11-16T08:50:00.509Z"
+  },
+  "ibbst": {
+   "id": "ibbst",
+   "name": "İBB Şehir Tiyatroları",
+   "kind": "kurum",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 10,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "sehirtiyatrolari.ibb.istanbul/oyunlar: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 14,
+   "failStreak": 0,
+   "lastOk": "2026-11-16T08:50:00.509Z"
   }
  }
 }
