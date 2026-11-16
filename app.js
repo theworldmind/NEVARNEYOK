@@ -5,6 +5,16 @@
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const fold = (s) => (s || "").normalize("NFC").toLocaleLowerCase("tr").replace(/̇/g, "").replace(/['’‘`´]/g, "").replace(/ı/g, "i").replace(/ğ/g, "g").replace(/ü/g, "u").replace(/ş/g, "s").replace(/ö/g, "o").replace(/ç/g, "c").replace(/â/g, "a").replace(/[^a-z0-9 ]+/g, " ");
+/* Kategori düzeltmesi (kullanıcı, 16.11.2026 23:47: "Konser" filtresinde Taş Boyama, kil çömlek atölyesi çıkıyordu).
+   Bilet siteleri atölye, oyun ve tadım etkinliklerini de "müzik" bölümünde satabiliyor. Başlıkta müzik sözü yoksa başlık ve mekân
+   etkinliğin gerçek türünü söyler: atölye/kurs/tadım → Atölye, sema → Sahne, tiyatro sahnesindeki oyun → Tiyatro, müze → Atölye. */
+const FC_MUS = /konser|concert|senfoni|orkestra|resital|\bkoro|caz|jazz|rock|metal|tribute|akustik|muzik|muzig|music|sarki|turku|fasil|piyano|keman|gitar|tango|\bdj\b|\brap\b|\bband\b|quartet|quintet|\btrio\b|ensemble|filarmoni|candle|\blive\b|solist|vokal|\bezgi|nagme/;
+const FC_ATL = /boyama|yapimi|comlek|seramik|boncuk|\bkil\b|ebru sanat|ebru atolye|mozaik|origami|^resim\b|resim atolye|tadim|yemekleri|mutfak|lazanya|workshop|\bkurs|egitimi?\b|seminer|webinar|\bseo\b|deneyim|degustasyon|atolye|soylesi|kitap kulubu|sofrasi/;
+const FC_SAH = /\bsema\b|semazen|mevlevi/;
+const FC_VT = /\bdt\b|devlet tiyatro|sehir tiyatro|oda tiyatrosu|kucuk tiyatro|kumpanya/, FC_VT2 = /tiyatro/, FC_VA = /muze|museum|atolye|mutfak|deneyim|flight|tatlari|turlar/;
+const fixCat = (e, F) => { if (e.cat !== "konser" || e.catLocked) return e.cat; const t = F(e.title), v = F(e.venue).trim(); if (/muzikal/.test(t)) return "tiyatro";
+  if (FC_MUS.test(t)) return "konser"; if (FC_ATL.test(t)) return "atolye"; if (FC_SAH.test(t)) return "sahne";
+  if (FC_VT.test(v) || (FC_VT2.test(v) && (e.tickets || []).some((x) => /sanat/i.test(x.site || "")))) return "tiyatro"; if (FC_VA.test(v)) return "atolye"; return "konser"; };
 const slugOf = (e) => e.d + "-" + fold(e.title).trim().replace(/\s+/g, "-").slice(0, 48);
 // Afiş yüklenince görünür olsun (satır içi onload kaçarsa da: yakalama aşamasında genel dinleyici)
 document.addEventListener("load", (ev) => { const t = ev.target; if (t?.tagName === "IMG" && t.classList.contains("p")) t.parentNode?.classList.add("ok"); }, true);
@@ -85,7 +95,7 @@ async function load(city) {
   const cx = DATA.buzz.cx || {}, bzKey = (t) => fold(t).replace(/\s+/g, "");
   const seenSlug = new Map();
   DATA.events = (ev?.events || []).filter((e) => e.d >= today && !(e.d === today && e.t && e.t < hm && timeDiff(e.t, hm) > 120)).map((e) => {
-    const o = { t: "", status: "", ...e };
+    const o = { t: "", status: "", ...e }; o.cat = fixCat(o, fold);
     o.tickets = (e.tickets || []).map((x) => ({ ...x, price: fresh(x) ? x.price : null, checked: x.seen && x.seen !== DATA.base ? x.seen : null }))
       .sort((a, b) => (a.price == null) - (b.price == null) || (a.price || 0) - (b.price || 0));
     const ps = o.tickets.map((x) => x.price).filter(Boolean); o.price = ps.length ? Math.min(...ps) : null;

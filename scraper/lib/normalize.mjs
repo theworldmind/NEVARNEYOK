@@ -63,6 +63,16 @@ const URL_CAT = [
   ["tiyatro", /tiyatro|theatre|theater/], ["festival", /festival/], ["sinema", /sinema|film/], ["konser", /muzik|konser|music|concert/],
   ["parti", /parti|party|gece-?hayati|nightlife/], ["atolye", /atolye|workshop|egitim|soylesi/],
 ];
+/* Kategori düzeltmesi (kullanıcı, 16.11.2026 23:47: "Konser" filtresinde Taş Boyama, kil çömlek atölyesi çıkıyordu).
+   Bilet siteleri atölye, oyun ve tadım etkinliklerini de "müzik" bölümünde satabiliyor. Başlıkta müzik sözü yoksa başlık ve mekân
+   etkinliğin gerçek türünü söyler: atölye/kurs/tadım → Atölye, sema → Sahne, tiyatro sahnesindeki oyun → Tiyatro, müze → Atölye. */
+const FC_MUS = /konser|concert|senfoni|orkestra|resital|\bkoro|caz|jazz|rock|metal|tribute|akustik|muzik|muzig|music|sarki|turku|fasil|piyano|keman|gitar|tango|\bdj\b|\brap\b|\bband\b|quartet|quintet|\btrio\b|ensemble|filarmoni|candle|\blive\b|solist|vokal|\bezgi|nagme/;
+const FC_ATL = /boyama|yapimi|comlek|seramik|boncuk|\bkil\b|ebru sanat|ebru atolye|mozaik|origami|^resim\b|resim atolye|tadim|yemekleri|mutfak|lazanya|workshop|\bkurs|egitimi?\b|seminer|webinar|\bseo\b|deneyim|degustasyon|atolye|soylesi|kitap kulubu|sofrasi/;
+const FC_SAH = /\bsema\b|semazen|mevlevi/;
+const FC_VT = /\bdt\b|devlet tiyatro|sehir tiyatro|oda tiyatrosu|kucuk tiyatro|kumpanya/, FC_VT2 = /tiyatro/, FC_VA = /muze|museum|atolye|mutfak|deneyim|flight|tatlari|turlar/;
+export const fixCat = (e, F = fold) => { if (e.cat !== "konser" || e.catLocked) return e.cat; const t = F(e.title), v = F(e.venue).trim(); if (/muzikal/.test(t)) return "tiyatro";
+  if (FC_MUS.test(t)) return "konser"; if (FC_ATL.test(t)) return "atolye"; if (FC_SAH.test(t)) return "sahne";
+  if (FC_VT.test(v) || (FC_VT2.test(v) && (e.tickets || []).some((x) => /sanat/i.test(x.site || "")))) return "tiyatro"; if (FC_VA.test(v)) return "atolye"; return "konser"; };
 export function guessCat({ title = "", desc = "", url = "", catHint = "", genre = "" }) {
   const t = fold(title + " " + genre);
   for (const [c, re] of CAT_RULES.slice(0, 4)) if (re.test(t)) return c; // başlık en güçlü işaret

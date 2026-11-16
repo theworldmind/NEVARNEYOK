@@ -124,6 +124,10 @@ export async function main() {
   const hist = await readJSON(HIST, []);
   const cur = snapshot(data.events, health, today, await readJSON(join(ROOT, "data/films.json"), null), await readJSON(join(ROOT, "data/buzz.json"), null));
   const gaps = findGaps(cur, hist.filter((h) => h.at !== today), health);
+  // i) kategori (kullanıcı, 16.11.2026 23:47: "Konser" filtresinde atölyeler çıkıyordu): türü düzeltilemeyen şüpheli "konser"ler raporlanır
+  { const BAD = /\b(oyun|oyunu|tiyatro|atolye|boyama|kurs|egitim|tadim|yemek|workshop|seminer|soylesi|sergi|turu|gezisi|deneyimi)\b/;
+    const sus = data.events.filter((e) => e.cat === "konser" && BAD.test(fold(e.title)) && !/konser|muzik|sarki|orkestra/.test(fold(e.title)));
+    if (sus.length) gaps.push({ w: 2, k: "kategori", t: `${sus.length} etkinlik "Konser"de görünüyor ama adı başka türü söylüyor (ör. ${sus.slice(0, 5).map((e) => e.title).join(", ")}); \`normalize.mjs\` → \`fixCat\` kurallarına bakılmalı.` }); }
   const news = process.env.AUDIT_NO_NEWS ? { miss: [], notes: ["haber taraması kapalı"] } : await newsScan(data.events);
   await writeJSON(HIST, [...hist.filter((h) => h.at !== today), cur].slice(-30), false);
 

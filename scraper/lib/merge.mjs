@@ -2,7 +2,7 @@
 //  - aynı etkinlik farklı sitelerde → tek kart, bilet siteleri yan yana
 //  - yeni eklenen (firstSeen), fiyatı değişen (prevPrice), durumu değişen
 //  - bir site bozulduysa o sitenin eski kayıtları korunur (site boşalmaz)
-import { cleanTitle, canonVenue, guessCat, sameEvent, siteNameOf, factsFrom } from "./normalize.mjs";
+import { cleanTitle, canonVenue, guessCat, fixCat, sameEvent, siteNameOf, factsFrom } from "./normalize.mjs";
 import { todayIST } from "./util.mjs";
 
 const KEEP_FIELDS = ["age", "dur", "genre", "org", "door", "note", "img", "imgBy", "imgTried"];
@@ -30,6 +30,7 @@ export function rawToEvent(r, src) {
     tickets: [{ site, url: tUrl, ...(r.price ? { price: r.price, pc: r.pc || 1 } : {}), ...(r.price && r.cats?.length > 1 ? { cats: r.cats.slice(0, 8) } : {}), src: src.id }],
   };
   if (r.desc) { const f = factsFrom(r.desc); if (f.dur && !r.dur) ev.dur = f.dur; if (f.age && !r.age) ev.age = f.age; } // metnin kendisi saklanmaz
+  if (!src.forceCat) ev.cat = fixCat(ev);
   if (r.status) ev.status = r.status;
   if (r.cid) ev.city = r.cid; // il (bütün Türkiye taramasında)
   if (r.org) ev.org = r.org;
