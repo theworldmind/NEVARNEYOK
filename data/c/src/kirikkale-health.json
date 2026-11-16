@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-16T01:06:56.418Z",
+ "runAt": "2026-11-16T12:06:14.863Z",
  "mode": "full",
  "total": 0,
  "written": true,
@@ -16,10 +16,15 @@
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kirikkale",
     "biletinial.com/tr-tr/tiyatro/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 26,
-   "failStreak": 3,
+   "seconds": 73,
+   "failStreak": 4,
    "lastOk": null
   }
  }

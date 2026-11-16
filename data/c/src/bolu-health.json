@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:35.596Z",
+ "runAt": "2026-11-16T11:59:41.907Z",
  "mode": "full",
- "total": 155,
+ "total": 159,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 27,
-   "prevCount": 162,
+   "prevCount": 155,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: bolu",
     "biletinial.com/tr-tr/tiyatro/bolu: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/bolu: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/bolu: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 37,
-   "failStreak": 1,
+   "seconds": 81,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:27:03.156Z"
   }
  }

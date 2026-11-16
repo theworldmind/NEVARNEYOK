@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:11:17.464Z",
+ "runAt": "2026-11-16T12:12:24.115Z",
  "mode": "full",
- "total": 63,
+ "total": 66,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 10,
-   "prevCount": 72,
+   "prevCount": 63,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: yalova",
-    "biletinial.com/tr-tr/tiyatro/yalova: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/yalova: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 1,
+   "seconds": 76,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:35:34.832Z"
   }
  }

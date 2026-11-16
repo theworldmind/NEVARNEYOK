@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:14.454Z",
+ "runAt": "2026-11-16T11:59:41.865Z",
  "mode": "full",
- "total": 117,
+ "total": 119,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 15,
-   "prevCount": 121,
+   "prevCount": 117,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: bartin",
     "biletinial.com/tr-tr/tiyatro/bartin: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/bartin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/bartin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
-   "failStreak": 1,
+   "seconds": 78,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:55.775Z"
   }
  }

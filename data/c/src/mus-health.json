@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:12.238Z",
+ "runAt": "2026-11-16T12:09:09.860Z",
  "mode": "full",
- "total": 17,
+ "total": 18,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 3,
-   "prevCount": 20,
+   "prevCount": 17,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: mus",
     "biletinial.com/tr-tr/tiyatro/mus: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/mus: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/mus: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/mus: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/mus: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/mus: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/mus: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/mus: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 1,
+   "seconds": 79,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:33:27.840Z"
   }
  }

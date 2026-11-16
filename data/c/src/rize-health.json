@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:23.536Z",
+ "runAt": "2026-11-16T12:09:49.673Z",
  "mode": "full",
- "total": 64,
+ "total": 66,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 9,
-   "prevCount": 67,
+   "prevCount": 64,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: rize",
     "biletinial.com/tr-tr/tiyatro/rize: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/rize: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/rize: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/rize: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/rize: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 1,
+   "seconds": 86,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:33:32.312Z"
   }
  }

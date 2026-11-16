@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:27.393Z",
+ "runAt": "2026-11-16T12:03:23.332Z",
  "mode": "full",
- "total": 145,
+ "total": 148,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 7,
-   "prevCount": 150,
+   "count": 9,
+   "prevCount": 145,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: duzce",
     "biletinial.com/tr-tr/tiyatro/duzce: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 1,
+   "seconds": 93,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:29:06.869Z"
   }
  }

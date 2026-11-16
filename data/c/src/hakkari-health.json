@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-16T01:04:58.073Z",
+ "runAt": "2026-11-16T12:03:37.272Z",
  "mode": "full",
  "total": 0,
  "written": true,
@@ -16,10 +16,15 @@
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: hakkari",
     "biletinial.com/tr-tr/tiyatro/hakkari: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/hakkari: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/hakkari: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/hakkari: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/hakkari: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 25,
-   "failStreak": 3,
+   "seconds": 69,
+   "failStreak": 4,
    "lastOk": null
   }
  }

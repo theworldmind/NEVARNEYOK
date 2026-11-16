@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:16.023Z",
+ "runAt": "2026-11-16T11:59:41.583Z",
  "mode": "full",
- "total": 57,
+ "total": 60,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 14,
-   "prevCount": 58,
+   "count": 15,
+   "prevCount": 57,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: batman",
-    "biletinial.com/tr-tr/tiyatro/batman: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/batman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/batman: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/batman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/batman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/batman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 1,
+   "seconds": 72,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:50.823Z"
   }
  }

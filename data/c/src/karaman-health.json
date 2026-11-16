@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:06:56.804Z",
+ "runAt": "2026-11-16T12:06:05.962Z",
  "mode": "full",
- "total": 50,
+ "total": 52,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 8,
-   "prevCount": 51,
+   "prevCount": 50,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: karaman",
     "biletinial.com/tr-tr/tiyatro/karaman: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/karaman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/karaman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/karaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/karaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/karaman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/karaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/karaman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 27,
-   "failStreak": 1,
+   "seconds": 78,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:15.651Z"
   }
  }

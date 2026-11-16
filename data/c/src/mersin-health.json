@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:08:00.870Z",
+ "runAt": "2026-11-16T12:07:30.001Z",
  "mode": "full",
- "total": 414,
+ "total": 444,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 86,
-   "prevCount": 423,
+   "count": 112,
+   "prevCount": 414,
    "error": "",
    "notes": [
-    "açık veri: 1 seans",
+    "açık veri: 2 seans",
     "biletinial.com/tr-tr/tiyatro/mersin: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/mersin: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/mersin: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/mersin: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/mersin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 57,
-   "failStreak": 1,
+   "seconds": 113,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:32:45.278Z"
   }
  }

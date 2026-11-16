@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:40.222Z",
+ "runAt": "2026-11-16T12:02:38.828Z",
  "mode": "full",
- "total": 241,
+ "total": 243,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 37,
-   "prevCount": 252,
+   "count": 39,
+   "prevCount": 241,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: canakkale",
     "biletinial.com/tr-tr/tiyatro/canakkale: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/canakkale: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/canakkale: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 38,
-   "failStreak": 1,
+   "seconds": 89,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:28:56.677Z"
   }
  }

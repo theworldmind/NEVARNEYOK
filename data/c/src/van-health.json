@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:11:26.282Z",
+ "runAt": "2026-11-16T12:12:30.379Z",
  "mode": "full",
- "total": 57,
+ "total": 63,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,17 +10,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 57,
-   "prevCount": 92,
+   "count": 63,
+   "prevCount": 57,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: van",
-    "biletinial.com/tr-tr/tiyatro/van: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/van: 36 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/van: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 40,
+   "seconds": 82,
    "failStreak": 0,
-   "lastOk": "2026-11-16T01:11:26.282Z"
+   "lastOk": "2026-11-16T12:12:30.379Z"
   }
  }
 }

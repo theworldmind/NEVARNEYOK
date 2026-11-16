@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:10:26.654Z",
+ "runAt": "2026-11-16T12:10:57.383Z",
  "mode": "full",
- "total": 494,
+ "total": 498,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 77,
-   "prevCount": 511,
+   "count": 78,
+   "prevCount": 494,
    "error": "",
    "notes": [
-    "açık veri: 14 seans",
-    "biletinial.com/tr-tr/tiyatro/tekirdag: 61 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/tekirdag: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "açık veri: 15 seans",
+    "biletinial.com/tr-tr/tiyatro/tekirdag: 63 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/tekirdag: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/tekirdag: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/tekirdag: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 60,
-   "failStreak": 1,
+   "seconds": 101,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:34:30.216Z"
   }
  }

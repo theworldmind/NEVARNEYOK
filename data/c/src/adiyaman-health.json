@@ -1,26 +1,31 @@
 {
- "runAt": "2026-11-16T01:02:40.275Z",
+ "runAt": "2026-11-16T12:02:37.789Z",
  "mode": "full",
- "total": 20,
+ "total": 8,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
+   "ok": true,
+   "status": "calisiyor",
    "count": 8,
-   "prevCount": 23,
+   "prevCount": 20,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: adiyaman",
     "biletinial.com/tr-tr/tiyatro/adiyaman: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/adiyaman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/adiyaman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/adiyaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/adiyaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/adiyaman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/adiyaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/adiyaman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 31,
-   "failStreak": 1,
-   "lastOk": "2026-11-15T10:26:56.406Z"
+   "seconds": 84,
+   "failStreak": 0,
+   "lastOk": "2026-11-16T12:02:37.789Z"
   }
  }
 }

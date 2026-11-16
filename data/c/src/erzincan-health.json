@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:46.351Z",
+ "runAt": "2026-11-16T12:02:57.327Z",
  "mode": "full",
- "total": 77,
+ "total": 78,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 10,
-   "prevCount": 87,
+   "prevCount": 77,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: erzincan",
     "biletinial.com/tr-tr/tiyatro/erzincan: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 31,
-   "failStreak": 1,
+   "seconds": 79,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:29:01.995Z"
   }
  }

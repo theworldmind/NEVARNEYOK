@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:07:32.865Z",
+ "runAt": "2026-11-16T12:06:31.410Z",
  "mode": "full",
- "total": 539,
+ "total": 556,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 106,
-   "prevCount": 550,
+   "count": 121,
+   "prevCount": 539,
    "error": "",
    "notes": [
     "açık veri: 17 seans",
     "biletinial.com/tr-tr/tiyatro/kocaeli: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kocaeli: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/kocaeli: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kocaeli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/kocaeli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 65,
-   "failStreak": 1,
+   "seconds": 125,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:25.120Z"
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:05:21.697Z",
+ "runAt": "2026-11-16T12:04:08.108Z",
  "mode": "full",
- "total": 24,
+ "total": 25,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 6,
-   "prevCount": 25,
+   "prevCount": 24,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: igdir",
     "biletinial.com/tr-tr/tiyatro/igdir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 26,
-   "failStreak": 1,
+   "seconds": 72,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:29:40.541Z"
   }
  }

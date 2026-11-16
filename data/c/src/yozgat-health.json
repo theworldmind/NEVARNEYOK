@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:11:38.287Z",
+ "runAt": "2026-11-16T12:12:22.990Z",
  "mode": "full",
- "total": 66,
+ "total": 68,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 15,
-   "prevCount": 67,
+   "prevCount": 66,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: yozgat",
     "biletinial.com/tr-tr/tiyatro/yozgat: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/yozgat: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/yozgat: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/yozgat: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/yozgat: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 1,
+   "seconds": 83,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:35:57.526Z"
   }
  }

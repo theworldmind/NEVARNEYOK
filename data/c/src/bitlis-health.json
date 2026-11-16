@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:26.308Z",
+ "runAt": "2026-11-16T11:59:42.961Z",
  "mode": "full",
- "total": 14,
+ "total": 15,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 5,
-   "prevCount": 15,
+   "prevCount": 14,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: bitlis",
     "biletinial.com/tr-tr/tiyatro/bitlis: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/bitlis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/bitlis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/bitlis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/bitlis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 30,
-   "failStreak": 1,
+   "seconds": 80,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:57.284Z"
   }
  }

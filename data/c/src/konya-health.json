@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:07:07.886Z",
+ "runAt": "2026-11-16T12:06:32.014Z",
  "mode": "full",
- "total": 391,
+ "total": 393,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 83,
-   "prevCount": 413,
+   "count": 82,
+   "prevCount": 391,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: konya",
     "biletinial.com/tr-tr/tiyatro/konya: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/konya: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/konya: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 59,
-   "failStreak": 1,
+   "seconds": 97,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:41.568Z"
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:16.151Z",
+ "runAt": "2026-11-16T12:00:00.518Z",
  "mode": "full",
- "total": 132,
+ "total": 134,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 15,
-   "prevCount": 141,
+   "count": 14,
+   "prevCount": 132,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: amasya",
-    "biletinial.com/tr-tr/tiyatro/amasya: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/amasya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/amasya: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/amasya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 1,
+   "seconds": 90,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:53.901Z"
   }
  }

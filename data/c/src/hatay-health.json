@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:05:01.338Z",
+ "runAt": "2026-11-16T12:04:07.697Z",
  "mode": "full",
- "total": 196,
+ "total": 203,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 28,
-   "prevCount": 201,
+   "count": 32,
+   "prevCount": 196,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: hatay",
-    "biletinial.com/tr-tr/tiyatro/hatay: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/hatay: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/hatay: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/hatay: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/hatay: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/hatay: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 36,
-   "failStreak": 1,
+   "seconds": 94,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:29:48.292Z"
   }
  }

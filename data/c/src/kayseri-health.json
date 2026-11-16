@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:07:07.816Z",
+ "runAt": "2026-11-16T12:06:13.129Z",
  "mode": "full",
- "total": 178,
+ "total": 180,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 46,
-   "prevCount": 191,
+   "prevCount": 178,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kayseri",
     "biletinial.com/tr-tr/tiyatro/kayseri: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kayseri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/kayseri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 42,
-   "failStreak": 1,
+   "seconds": 76,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:45.358Z"
   }
  }

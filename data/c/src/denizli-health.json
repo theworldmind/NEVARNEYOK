@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:53.092Z",
+ "runAt": "2026-11-16T12:02:43.561Z",
  "mode": "full",
- "total": 184,
+ "total": 188,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 29,
-   "prevCount": 190,
+   "count": 30,
+   "prevCount": 184,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: denizli",
     "biletinial.com/tr-tr/tiyatro/denizli: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/denizli: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/denizli: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/denizli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/denizli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 38,
-   "failStreak": 1,
+   "seconds": 77,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:29:07.857Z"
   }
  }

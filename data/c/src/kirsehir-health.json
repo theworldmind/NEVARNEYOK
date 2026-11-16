@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:07:08.641Z",
+ "runAt": "2026-11-16T12:06:41.121Z",
  "mode": "full",
- "total": 18,
+ "total": 19,
  "written": true,
  "sources": {
   "biletinial": {
@@ -16,10 +16,15 @@
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kirsehir",
     "biletinial.com/tr-tr/tiyatro/kirsehir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kirsehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/kirsehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/kirsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/kirsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kirsehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/kirsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/kirsehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 26,
-   "failStreak": 1,
+   "seconds": 81,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:28.788Z"
   }
  }

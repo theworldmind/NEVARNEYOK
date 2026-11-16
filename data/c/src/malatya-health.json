@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:07:29.303Z",
+ "runAt": "2026-11-16T12:06:52.980Z",
  "mode": "full",
- "total": 114,
+ "total": 117,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 26,
-   "prevCount": 118,
+   "prevCount": 114,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: malatya",
     "biletinial.com/tr-tr/tiyatro/malatya: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/malatya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/malatya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/malatya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/malatya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 37,
-   "failStreak": 1,
+   "seconds": 90,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:32:18.230Z"
   }
  }

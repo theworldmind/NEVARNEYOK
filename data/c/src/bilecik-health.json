@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-16T01:02:11.358Z",
+ "runAt": "2026-11-16T11:59:40.499Z",
  "mode": "full",
  "total": 0,
  "written": true,
@@ -16,10 +16,15 @@
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: bilecik",
     "biletinial.com/tr-tr/tiyatro/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 26,
-   "failStreak": 3,
+   "seconds": 78,
+   "failStreak": 4,
    "lastOk": null
   }
  }

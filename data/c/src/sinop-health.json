@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:48.985Z",
+ "runAt": "2026-11-16T12:09:54.966Z",
  "mode": "full",
- "total": 83,
+ "total": 86,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 14,
-   "prevCount": 85,
+   "prevCount": 83,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: sinop",
     "biletinial.com/tr-tr/tiyatro/sinop: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/sinop: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/sinop: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/sinop: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/sinop: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 1,
+   "seconds": 83,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:34:03.738Z"
   }
  }

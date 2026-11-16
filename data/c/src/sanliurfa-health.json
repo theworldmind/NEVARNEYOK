@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:55.034Z",
+ "runAt": "2026-11-16T12:10:27.925Z",
  "mode": "full",
- "total": 105,
+ "total": 107,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 13,
-   "prevCount": 116,
+   "prevCount": 105,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: sanliurfa",
     "biletinial.com/tr-tr/tiyatro/sanliurfa: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/sanliurfa: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/sanliurfa: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/sanliurfa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/sanliurfa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 36,
-   "failStreak": 1,
+   "seconds": 85,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:34:05.486Z"
   }
  }

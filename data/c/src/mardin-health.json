@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:07:45.698Z",
+ "runAt": "2026-11-16T12:07:36.862Z",
  "mode": "full",
- "total": 95,
+ "total": 97,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 15,
-   "prevCount": 100,
+   "prevCount": 95,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: mardin",
     "biletinial.com/tr-tr/tiyatro/mardin: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/mardin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/mardin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 30,
-   "failStreak": 1,
+   "seconds": 87,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:32:38.918Z"
   }
  }

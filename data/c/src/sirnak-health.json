@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:10:02.816Z",
+ "runAt": "2026-11-16T12:10:58.867Z",
  "mode": "full",
- "total": 40,
+ "total": 41,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 7,
-   "prevCount": 41,
+   "prevCount": 40,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: sirnak",
     "biletinial.com/tr-tr/tiyatro/sirnak: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 30,
-   "failStreak": 1,
+   "seconds": 88,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:34:17.223Z"
   }
  }

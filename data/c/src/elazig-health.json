@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:47.596Z",
+ "runAt": "2026-11-16T12:03:01.458Z",
  "mode": "full",
- "total": 113,
+ "total": 118,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 30,
-   "prevCount": 121,
+   "count": 33,
+   "prevCount": 113,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: elazig",
-    "biletinial.com/tr-tr/tiyatro/elazig: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/elazig: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/elazig: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/elazig: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 38,
-   "failStreak": 1,
+   "seconds": 93,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:29:06.129Z"
   }
  }

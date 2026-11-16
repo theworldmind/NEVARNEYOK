@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:10:23.023Z",
+ "runAt": "2026-11-16T12:11:19.944Z",
  "mode": "full",
- "total": 177,
+ "total": 180,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 45,
-   "prevCount": 182,
+   "prevCount": 177,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: trabzon",
     "biletinial.com/tr-tr/tiyatro/trabzon: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/trabzon: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/trabzon: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/trabzon: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/trabzon: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 36,
-   "failStreak": 1,
+   "seconds": 84,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:34:46.823Z"
   }
  }

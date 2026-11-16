@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:44.570Z",
+ "runAt": "2026-11-16T12:10:29.138Z",
  "mode": "full",
- "total": 102,
+ "total": 104,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 34,
-   "prevCount": 105,
+   "count": 33,
+   "prevCount": 102,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: sivas",
-    "biletinial.com/tr-tr/tiyatro/sivas: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/sivas: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/sivas: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/sivas: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/sivas: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/sivas: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 34,
-   "failStreak": 1,
+   "seconds": 83,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:34:03.415Z"
   }
  }

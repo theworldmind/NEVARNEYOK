@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:31.899Z",
+ "runAt": "2026-11-16T12:03:07.296Z",
  "mode": "full",
- "total": 228,
+ "total": 230,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 42,
-   "prevCount": 238,
+   "prevCount": 228,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: edirne",
     "biletinial.com/tr-tr/tiyatro/edirne: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/edirne: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/edirne: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/edirne: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/edirne: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 41,
-   "failStreak": 1,
+   "seconds": 96,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:29:05.458Z"
   }
  }

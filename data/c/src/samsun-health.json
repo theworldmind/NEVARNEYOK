@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:32.460Z",
+ "runAt": "2026-11-16T12:09:43.588Z",
  "mode": "full",
- "total": 348,
+ "total": 372,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 50,
-   "prevCount": 357,
+   "count": 69,
+   "prevCount": 348,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: samsun",
     "biletinial.com/tr-tr/tiyatro/samsun: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/samsun: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/samsun: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/samsun: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/samsun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 43,
-   "failStreak": 1,
+   "seconds": 89,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:33:49.507Z"
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:16.955Z",
+ "runAt": "2026-11-16T11:59:47.816Z",
  "mode": "full",
- "total": 439,
+ "total": 442,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 77,
-   "prevCount": 454,
+   "prevCount": 439,
    "error": "",
    "notes": [
     "açık veri: 6 seans",
     "biletinial.com/tr-tr/tiyatro/adana: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/adana: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/adana: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/adana: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/adana: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 59,
-   "failStreak": 1,
+   "seconds": 111,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:56.370Z"
   }
  }

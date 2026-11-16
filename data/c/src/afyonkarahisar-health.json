@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-16T01:02:13.818Z",
+ "runAt": "2026-11-16T12:00:02.976Z",
  "mode": "full",
  "total": 226,
  "written": true,
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 0,
-   "prevCount": 232,
+   "prevCount": 226,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: afyonkarahisar",
-    "biletinial.com/tr-tr/tiyatro/afyonkarahisar: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/afyonkarahisar: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/afyonkarahisar: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/afyonkarahisar: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/afyonkarahisar: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/afyonkarahisar: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 43,
-   "failStreak": 1,
+   "seconds": 108,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:54.753Z"
   }
  }

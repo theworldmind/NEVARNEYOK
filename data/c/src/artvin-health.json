@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:17.878Z",
+ "runAt": "2026-11-16T11:59:46.530Z",
  "mode": "full",
- "total": 21,
+ "total": 22,
  "written": true,
  "sources": {
   "biletinial": {
@@ -16,10 +16,15 @@
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: artvin",
     "biletinial.com/tr-tr/tiyatro/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/artvin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/artvin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
-   "failStreak": 1,
+   "seconds": 71,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:27:03.459Z"
   }
  }

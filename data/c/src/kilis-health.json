@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-16T01:07:06.043Z",
+ "runAt": "2026-11-16T12:06:32.398Z",
  "mode": "full",
  "total": 3,
  "written": true,
@@ -11,16 +11,21 @@
    "ok": true,
    "status": "calisiyor",
    "count": 3,
-   "prevCount": 7,
+   "prevCount": 3,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kilis",
     "biletinial.com/tr-tr/tiyatro/kilis: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kilis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/kilis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kilis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/kilis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
+   "seconds": 73,
    "failStreak": 0,
-   "lastOk": "2026-11-16T01:07:06.043Z"
+   "lastOk": "2026-11-16T12:06:32.398Z"
   }
  }
 }

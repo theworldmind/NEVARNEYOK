@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-16T01:07:01.669Z",
+ "runAt": "2026-11-16T12:06:05.433Z",
  "mode": "full",
  "total": 225,
  "written": true,
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 0,
-   "prevCount": 232,
+   "prevCount": 225,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kahramanmaras",
-    "biletinial.com/tr-tr/tiyatro/kahramanmaras: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kahramanmaras: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/kahramanmaras: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/kahramanmaras: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kahramanmaras: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/kahramanmaras: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 43,
-   "failStreak": 1,
+   "seconds": 109,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:14.099Z"
   }
  }

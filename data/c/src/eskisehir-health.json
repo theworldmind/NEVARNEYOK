@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:57.750Z",
+ "runAt": "2026-11-16T12:03:01.840Z",
  "mode": "full",
- "total": 540,
+ "total": 554,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 152,
-   "prevCount": 557,
+   "count": 163,
+   "prevCount": 540,
    "error": "",
    "notes": [
     "açık veri: 41 seans",
     "biletinial.com/tr-tr/tiyatro/eskisehir: 84 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/eskisehir: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/eskisehir: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/eskisehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/eskisehir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 67,
-   "failStreak": 1,
+   "seconds": 112,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:29:14.816Z"
   }
  }

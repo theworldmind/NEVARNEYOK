@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:06:55.267Z",
+ "runAt": "2026-11-16T12:06:27.178Z",
  "mode": "full",
- "total": 12,
+ "total": 13,
  "written": true,
  "sources": {
   "biletinial": {
@@ -16,10 +16,15 @@
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kars",
     "biletinial.com/tr-tr/tiyatro/kars: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kars: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/kars: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kars: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/kars: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
-   "failStreak": 1,
+   "seconds": 80,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:20.613Z"
   }
  }

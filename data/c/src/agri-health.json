@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:39.847Z",
+ "runAt": "2026-11-16T11:59:40.733Z",
  "mode": "full",
- "total": 24,
+ "total": 25,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 5,
-   "prevCount": 25,
+   "prevCount": 24,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: agri",
     "biletinial.com/tr-tr/tiyatro/agri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/agri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/agri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/agri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/agri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
-   "failStreak": 1,
+   "seconds": 77,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:56.640Z"
   }
  }

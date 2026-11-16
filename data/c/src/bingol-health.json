@@ -1,26 +1,31 @@
 {
- "runAt": "2026-11-16T01:02:12.028Z",
+ "runAt": "2026-11-16T11:59:40.664Z",
  "mode": "full",
- "total": 0,
+ "total": 2,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 2,
    "prevCount": 0,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: bingol",
-    "biletinial.com/tr-tr/tiyatro/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/bingol: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 25,
-   "failStreak": 3,
-   "lastOk": null
+   "seconds": 76,
+   "failStreak": 0,
+   "lastOk": "2026-11-16T11:59:40.664Z"
   }
  }
 }

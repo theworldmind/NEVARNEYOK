@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:05:42.187Z",
+ "runAt": "2026-11-16T12:04:27.733Z",
  "mode": "full",
- "total": 99,
+ "total": 101,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 17,
-   "prevCount": 103,
+   "prevCount": 99,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: isparta",
     "biletinial.com/tr-tr/tiyatro/isparta: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/isparta: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/isparta: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 1,
+   "seconds": 83,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:30:20.889Z"
   }
  }

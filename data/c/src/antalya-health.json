@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:12.161Z",
+ "runAt": "2026-11-16T11:59:55.201Z",
  "mode": "full",
- "total": 853,
+ "total": 878,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 315,
-   "prevCount": 883,
+   "count": 332,
+   "prevCount": 853,
    "error": "",
    "notes": [
     "açık veri: 167 seans, 10 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/antalya: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/antalya: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/antalya: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/antalya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/antalya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
-   "failStreak": 1,
+   "seconds": 148,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:50.458Z"
   }
  }

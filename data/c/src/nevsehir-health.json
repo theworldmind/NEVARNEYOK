@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:02.096Z",
+ "runAt": "2026-11-16T12:09:14.075Z",
  "mode": "full",
- "total": 139,
+ "total": 144,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 16,
-   "prevCount": 140,
+   "count": 18,
+   "prevCount": 139,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: nevsehir",
     "biletinial.com/tr-tr/tiyatro/nevsehir: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/nevsehir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/nevsehir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/nevsehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/nevsehir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 32,
-   "failStreak": 1,
+   "seconds": 86,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:33:45.968Z"
   }
  }

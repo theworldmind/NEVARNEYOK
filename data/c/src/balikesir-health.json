@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:22.408Z",
+ "runAt": "2026-11-16T11:59:52.387Z",
  "mode": "full",
- "total": 435,
+ "total": 437,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 128,
-   "prevCount": 449,
+   "prevCount": 435,
    "error": "",
    "notes": [
     "açık veri: 14 seans",
     "biletinial.com/tr-tr/tiyatro/balikesir: 61 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/balikesir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/balikesir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/balikesir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/balikesir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 54,
-   "failStreak": 1,
+   "seconds": 108,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:27:02.464Z"
   }
  }

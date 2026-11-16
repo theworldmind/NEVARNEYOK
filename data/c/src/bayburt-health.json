@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:14.837Z",
+ "runAt": "2026-11-16T11:59:45.494Z",
  "mode": "full",
- "total": 11,
+ "total": 12,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 2,
-   "prevCount": 12,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: bayburt",
     "biletinial.com/tr-tr/tiyatro/bayburt: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/bayburt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/bayburt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/bayburt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/bayburt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 1,
+   "seconds": 73,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:27:12.789Z"
   }
  }

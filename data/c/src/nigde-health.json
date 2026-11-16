@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:18.976Z",
+ "runAt": "2026-11-16T12:09:15.300Z",
  "mode": "full",
- "total": 108,
+ "total": 110,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 19,
-   "prevCount": 114,
+   "count": 18,
+   "prevCount": 108,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: nigde",
-    "biletinial.com/tr-tr/tiyatro/nigde: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/nigde: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/nigde: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/nigde: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/nigde: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/nigde: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 36,
-   "failStreak": 1,
+   "seconds": 83,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:33:25.988Z"
   }
  }

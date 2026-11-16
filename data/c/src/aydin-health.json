@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:02:14.951Z",
+ "runAt": "2026-11-16T11:59:52.934Z",
  "mode": "full",
- "total": 322,
+ "total": 325,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 57,
-   "prevCount": 333,
+   "prevCount": 322,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: aydin",
-    "biletinial.com/tr-tr/tiyatro/aydin: 42 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/aydin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/tiyatro/aydin: 41 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/aydin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/aydin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/aydin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 40,
-   "failStreak": 1,
+   "seconds": 89,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:26:54.672Z"
   }
  }

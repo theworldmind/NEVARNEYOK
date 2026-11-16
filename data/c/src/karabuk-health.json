@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:07:12.029Z",
+ "runAt": "2026-11-16T12:05:56.060Z",
  "mode": "full",
- "total": 106,
+ "total": 108,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 12,
-   "prevCount": 113,
+   "prevCount": 106,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: karabuk",
     "biletinial.com/tr-tr/tiyatro/karabuk: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/karabuk: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/karabuk: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/karabuk: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/karabuk: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 31,
-   "failStreak": 1,
+   "seconds": 80,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:32.941Z"
   }
  }

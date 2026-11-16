@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:07:31.011Z",
+ "runAt": "2026-11-16T12:07:09.452Z",
  "mode": "full",
- "total": 199,
+ "total": 201,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 38,
-   "prevCount": 204,
+   "prevCount": 199,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: manisa",
     "biletinial.com/tr-tr/tiyatro/manisa: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/manisa: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/manisa: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/manisa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/manisa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/manisa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/manisa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/manisa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 38,
-   "failStreak": 1,
+   "seconds": 94,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:32:01.561Z"
   }
  }

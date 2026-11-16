@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T08:50:00.509Z",
+ "runAt": "2026-11-16T12:05:42.516Z",
  "mode": "full",
- "total": 3216,
+ "total": 3271,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,22 +10,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 3194,
-   "prevCount": 2701,
+   "count": 3249,
+   "prevCount": 3143,
    "error": "",
    "notes": [
-    "açık veri: 1475 seans, 236 detay sayfası",
+    "açık veri: 1475 seans, 235 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/istanbul: 154 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/istanbul: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/istanbul: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/istanbul: 73 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/egitim/istanbul: 94 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 521,
+   "seconds": 518,
    "failStreak": 0,
-   "lastOk": "2026-11-16T08:50:00.509Z"
+   "lastOk": "2026-11-16T12:05:42.516Z"
   },
   "iksv": {
    "id": "iksv",
@@ -34,14 +34,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 39,
-   "prevCount": 0,
+   "prevCount": 39,
    "error": "",
    "notes": [
     "açık veri: 39 seans, alanlar: articleId,category,headline,date,date1,enddate,place,alias,thumb,ticket,flag1,activity,zoneName,zoneGroupName,zoneGroupId,zoneId,zone,endDate,time,dateFormatted,endDateFormatted,files,programs,order,tags,tagIds,section,director,description,day,dayString,monthString,month,year,flag2,flag3,flag4,flag5"
    ],
-   "seconds": 46,
+   "seconds": 44,
    "failStreak": 0,
-   "lastOk": "2026-11-16T08:50:00.509Z"
+   "lastOk": "2026-11-16T12:05:42.516Z"
   },
   "zorlupsm": {
    "id": "zorlupsm",
@@ -50,14 +50,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 34,
-   "prevCount": 0,
+   "prevCount": 32,
    "error": "",
    "notes": [
     "www.zorlupsm.com/etkinlikler: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 22,
+   "seconds": 28,
    "failStreak": 0,
-   "lastOk": "2026-11-16T08:50:00.509Z"
+   "lastOk": "2026-11-16T12:05:42.516Z"
   },
   "ibbst": {
    "id": "ibbst",
@@ -66,14 +66,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 10,
-   "prevCount": 0,
+   "prevCount": 10,
    "error": "",
    "notes": [
     "sehirtiyatrolari.ibb.istanbul/oyunlar: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 14,
+   "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-16T08:50:00.509Z"
+   "lastOk": "2026-11-16T12:05:42.516Z"
   }
  }
 }

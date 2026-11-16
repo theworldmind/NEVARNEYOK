@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-16T01:06:58.531Z",
+ "runAt": "2026-11-16T12:06:16.099Z",
  "mode": "full",
  "total": 38,
  "written": true,
@@ -11,15 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 6,
-   "prevCount": 42,
+   "prevCount": 38,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: kastamonu",
     "biletinial.com/tr-tr/tiyatro/kastamonu: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 30,
-   "failStreak": 1,
+   "seconds": 76,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:31:20.253Z"
   }
  }

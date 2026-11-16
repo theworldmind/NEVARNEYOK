@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:04:57.723Z",
+ "runAt": "2026-11-16T12:03:25.965Z",
  "mode": "full",
- "total": 21,
+ "total": 22,
  "written": true,
  "sources": {
   "biletinial": {
@@ -16,10 +16,15 @@
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: gumushane",
     "biletinial.com/tr-tr/tiyatro/gumushane: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
-   "failStreak": 2,
+   "seconds": 80,
+   "failStreak": 3,
    "lastOk": "2026-11-15T08:46:57.456Z"
   }
  }

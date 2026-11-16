@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:11:37.481Z",
+ "runAt": "2026-11-16T12:12:23.709Z",
  "mode": "full",
- "total": 228,
+ "total": 234,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,16 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 47,
-   "prevCount": 239,
+   "count": 52,
+   "prevCount": 228,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: zonguldak",
     "biletinial.com/tr-tr/tiyatro/zonguldak: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/zonguldak: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/zonguldak: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/zonguldak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/zonguldak: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 37,
-   "failStreak": 1,
+   "seconds": 92,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:35:37.063Z"
   }
  }

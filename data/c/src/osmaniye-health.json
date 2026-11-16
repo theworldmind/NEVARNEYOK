@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T01:09:13.752Z",
+ "runAt": "2026-11-16T12:09:20.171Z",
  "mode": "full",
- "total": 47,
+ "total": 49,
  "written": true,
  "sources": {
   "biletinial": {
@@ -16,10 +16,15 @@
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: osmaniye",
     "biletinial.com/tr-tr/tiyatro/osmaniye: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/osmaniye: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/muzik/osmaniye: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/osmaniye: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/osmaniye: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 27,
-   "failStreak": 1,
+   "seconds": 76,
+   "failStreak": 2,
    "lastOk": "2026-11-15T10:33:34.890Z"
   }
  }
