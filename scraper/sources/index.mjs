@@ -50,8 +50,8 @@ export default [
     link: /iticket\.com\.tr\/(en|tr)\/events\/[a-z-]+\/[a-z0-9-]+/i, render: true, city: "tr" },
   { id: "bugece", name: "BUGECE", kind: "bilet", home: "https://bugece.co",
     // 17.11.2026 keşif: eski /tr/city/ankara 404; il sayfası /tr/browse/ankara/events, etkinlik sayfasında MusicEvent yapısal verisi
-    listings: ["https://bugece.co/tr/browse/ankara/events"], scrolls: 8,
-    link: /bugece\.co\/tr\/event\/[a-z0-9-]+/i, render: true, renderDetail: true, city: "ankara", maxDetail: 160 },
+    // il sayfasının kendi kullandığı liste (api/list; robots izinli) → bütün etkinlikler, sayfa sayfa
+    collect: P.bugeceCollect, cityUrl: "ankara", cityName: "Ankara", listings: [], link: null, city: "ankara" },
   { id: "tiyatrolar", name: "tiyatrolar.com.tr", kind: "bilet", home: "https://tiyatrolar.com.tr",
     listings: ["https://tiyatrolar.com.tr/ankara-tiyatro-oyunlari", "https://tiyatrolar.com.tr/tiyatro-oyunlari?sehir=ankara"],
     link: /tiyatrolar\.com\.tr\/tiyatro(-bilet)?\/[a-z0-9-]+/i, sitemap: true, render: true, city: "tr", defaultCat: "tiyatro" },
@@ -123,8 +123,9 @@ export default [
   /* ===================== TOPLAYICILAR ===================== */
   { id: "radar", name: "Radar Türkiye", kind: "toplayici", home: "https://www.radarturkiye.com",
     // 17.11.2026 keşif: eski /sehir/ankara 404; il sayfaları /<il>-etkinlikleri (+ müzik, tiyatro, hafta sonu); etkinlik sayfasında Event yapısal verisi
-    listings: ["", "-muzik", "-tiyatro", "-hafta-sonu"].map((k) => `https://www.radarturkiye.com/ankara${k}-etkinlikleri`), scrolls: 6,
-    link: /radarturkiye\.com\/etkinlik\/[a-z0-9-]+/i, render: true, city: "ankara", maxDetail: 260 },
+    // tür süzgeçli listeler (sayfadaki /etkinlikler?genre=N&city=ankara bağlantıları) her türün ilk sayfasını ayrı verir; Radar'ın /api yolu robots ile kapalı, kullanılmaz
+    listings: [...["", "-muzik", "-tiyatro", "-hafta-sonu"].map((k) => `https://www.radarturkiye.com/ankara${k}-etkinlikleri`), ...Array.from({ length: 14 }, (_, g) => `https://www.radarturkiye.com/etkinlikler?genre=${g + 1}&city=ankara`)], scrolls: 6,
+    link: /radarturkiye\.com\/etkinlik\/[a-z0-9-]+/i, render: true, city: "ankara", maxDetail: 420 },
   { id: "ra", name: "Resident Advisor", kind: "toplayici", home: "https://ra.co",
     listings: ["https://ra.co/events/tr/ankara"],
     link: /ra\.co\/events\/\d+/i, render: true, renderDetail: true, city: "tr", defaultCat: "parti" },

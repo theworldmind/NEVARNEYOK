@@ -296,3 +296,25 @@ export async function izmirKsCollect({ getPage }) {
   }
   return { raws: out, note: `seans alanları: ${[...keys].slice(0, 30).join(",")}` };
 }
+
+// BUGECE (17.11.2026 keşif): il sayfasının (/tr/browse/<il>/events) kendi kullandığı liste (robots.txt izin veriyor).
+// Yalnızca olgular: ad, tarih/saat (UTC → İstanbul), mekân, il, afiş adresi, etkinlik sayfası. Açıklama alınmaz.
+const ISTF2 = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false });
+const ist = (iso) => { const t = Date.parse(iso || ""); if (!t) return null; const s = ISTF2.format(new Date(t)); return { d: s.slice(0, 10), t: s.slice(11, 16) }; };
+export async function bugeceCollect({ fetchText, src }) {
+  const slug = src.cityUrl || "ankara", out = [], seen = new Set();
+  for (let page = 0; page < 30; page++) {
+    let j; try { j = await getJSON(fetchText, `https://bugece.co/api/list?page=${page}&pageSize=60&indices=events&city=${slug}`); } catch { break; }
+    const L = Array.isArray(j?.data) ? j.data : Array.isArray(j?.data?.hits) ? j.data.hits : Array.isArray(j?.data?.events) ? j.data.events : [];
+    if (!L.length) break; let fresh = 0;
+    for (const x of L) {
+      if (!x?.name || !x.slug || seen.has(x.slug)) continue; seen.add(x.slug); fresh++;
+      const w = ist(x.start_time || x.date); if (!w) continue;
+      const music = (x.music_categories || []).map((m) => String(m.name || "").split("@@")[0]).filter(Boolean);
+      out.push({ title: x.name, d: w.d, t: w.t, venue: x.venue?.name || "", city: x.city?.name || src.cityName || "", url: `https://bugece.co/tr/event/${x.slug}`,
+        image: x.image || "", genre: music.slice(0, 2).join(", "), catHint: /techno|house|electronic|dj|bounce|trance|disco/i.test(music.join(" ")) ? "parti" : "konser" });
+    }
+    if (!fresh) break;
+  }
+  return out;
+}

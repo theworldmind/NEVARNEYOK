@@ -46,10 +46,9 @@ const ONE = [
 // Etkinlik sayfalarında yapısal veri (Event / MusicEvent) var; ilin sayfası başka ili gösteren kaydı runner zaten eler.
 ONE.push(
   { id: "radar", name: "Radar Türkiye", kind: "toplayici", home: "https://www.radarturkiye.com",
-    listings: ["", "-muzik", "-tiyatro", "-hafta-sonu"].map((k) => `https://www.radarturkiye.com/${C.id}${k}-etkinlikleri`), scrolls: 6,
+    listings: [...["", "-muzik", "-tiyatro", "-hafta-sonu"].map((k) => `https://www.radarturkiye.com/${C.id}${k}-etkinlikleri`), ...Array.from({ length: 14 }, (_, g) => `https://www.radarturkiye.com/etkinlikler?genre=${g + 1}&city=${C.id}`)], scrolls: 6,
     link: /radarturkiye\.com\/etkinlik\/[a-z0-9-]+/i, render: true, city: C.id, maxDetail: Math.round(MD * 0.6), budgetMin: Math.round(BM * 0.6) },
-  { id: "bugece", name: "BUGECE", kind: "bilet", home: "https://bugece.co", listings: [`https://bugece.co/tr/browse/${C.id}/events`], scrolls: 8,
-    link: /bugece\.co\/tr\/event\/[a-z0-9-]+/i, render: true, renderDetail: true, city: C.id, maxDetail: Math.round(MD * 0.4), budgetMin: Math.round(BM * 0.4) });
+  { id: "bugece", name: "BUGECE", kind: "bilet", home: "https://bugece.co", collect: P.bugeceCollect, cityUrl: C.id, cityName: C.name, listings: [], link: null, city: C.id });
 
 // İstanbul: kurumların kendi siteleri (kaynak önceliği: kurum → mekân → bilet)
 if (CITY === "istanbul") ONE.push(
