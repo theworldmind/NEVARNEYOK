@@ -31,13 +31,23 @@ const TR = [
     city: "tr", maxDetail: 3200, budgetMin: 165, concurrency: 7 },
 ];
 
+// (16.11.2026, kullanıcı: "bugün bütün Türkiye'de bu kadar mı etkinlik?") büyük illerde daha çok sayfa; tiyatro ve müziğin yanında stand-up, çocuk, opera-bale, festival, eğitim/atölye listeleri de
+const BIG = { istanbul: [1600, 110], izmir: [700, 60], antalya: [500, 45], bursa: [500, 45], kocaeli: [420, 40], eskisehir: [420, 40], adana: [380, 35], konya: [380, 35], mersin: [380, 35], gaziantep: [380, 35] };
+const [MD, BM] = BIG[C.id] || [320, 30];
 const ONE = [
   { id: "biletinial", name: "Biletinial", kind: "bilet", home: "https://biletinial.com", collect: P.biletinialCollect,
     cityUrl: C.id, cityName: C.name,
-    listings: [`https://biletinial.com/tr-tr/tiyatro/${C.id}`, `https://biletinial.com/tr-tr/muzik/${C.id}`],
+    listings: ["tiyatro", "muzik", "stand-up", "cocuk-aktiviteleri", "opera-bale", "festival", "egitim", "etkinlik"].map((k) => `https://biletinial.com/tr-tr/${k}/${C.id}`),
     link: /biletinial\.com\/tr-tr\/(tiyatro|muzik|opera-bale|etkinlik|stand-up|festival|cocuk-aktiviteleri|egitim)\/[a-z0-9-]+/i, render: true,
-    loadMore: ["Daha fazlasını göster", "Daha Fazla"], city: C.id, maxDetail: 320, budgetMin: 30 },
+    loadMore: ["Daha fazlasını göster", "Daha Fazla"], city: C.id, maxDetail: MD, budgetMin: BM },
 ];
+// İstanbul: kurumların kendi siteleri (kaynak önceliği: kurum → mekân → bilet)
+if (CITY === "istanbul") ONE.push(
+  { id: "iksv", name: "İKSV", kind: "kurum", home: "https://www.iksv.org", collect: P.iksvCollect, listings: [], link: null, city: "istanbul" },
+  { id: "zorlupsm", name: "Zorlu PSM", kind: "mekan", home: "https://www.zorlupsm.com", listings: ["https://www.zorlupsm.com/etkinlikler"],
+    link: /zorlupsm\.com\/etkinlikler\/(?!tiyatro$|konser$|muzik$|hediye)[a-z0-9-]+$/i, render: true, scrolls: 6, city: "istanbul", defaultVenue: "Zorlu PSM", maxDetail: 220, budgetMin: 25 },
+  { id: "ibbst", name: "İBB Şehir Tiyatroları", kind: "kurum", home: "https://sehirtiyatrolari.ibb.istanbul", listings: ["https://sehirtiyatrolari.ibb.istanbul/oyunlar"],
+    link: /sehirtiyatrolari\.ibb\.istanbul\/oyun\/[a-z0-9-]+$/i, render: true, scrolls: 4, city: "istanbul", defaultCat: "tiyatro", maxDetail: 160, budgetMin: 25 });
 
 // İle özel resmî kaynaklar (belediyelerin kendi bilet siteleri)
 if (CITY === "izmir") ONE.push({ id: "izmirks", name: "İzmir Kültürsanat", kind: "kurum", home: "https://kultursanat.izmir.bel.tr", collect: P.izmirKsCollect, listings: [], link: null, city: "izmir" });

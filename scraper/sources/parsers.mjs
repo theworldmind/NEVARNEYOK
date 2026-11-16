@@ -257,6 +257,29 @@ export async function biletixCollect({ fetchText, city, today }) {
 // İzmir Büyükşehir Belediyesi Kültürsanat (kultursanat.izmir.bel.tr): belediyenin kendi bilet sitesi; sayfanın kullandığı
 // seans listesi (kultursanatapi.izmir.bel.tr/api/session/list) yakalanır. Ad, tarih, saat, mekân, afiş ve (yazıyorsa) fiyat. Tanıtım metni alınmaz.
 const izSlug = (t) => String(t || "").toLocaleLowerCase("tr").replace(/ı/g, "").replace(/ü/g, "u").replace(/ö/g, "o").replace(/ç/g, "c").replace(/ş/g, "s").replace(/ğ/g, "g").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+// İKSV: sitenin kendi takviminin kullandığı etkinlik listesi (sayfa açılınca tarayıcının yaptığı istek yakalanır; plugins.ashx, plugin=events)
+const IKSV_CAT = [[/caz|jazz/i, "konser"], [/müzik|muzik|music/i, "konser"], [/film/i, "sinema"], [/tiyatro|theatre/i, "tiyatro"], [/dans|bale/i, "sahne"], [/çocuk|cocuk|atölye|atolye/i, "cocuk"]];
+export async function iksvCollect({ getPage }) {
+  const out = [], keys = new Set(), seen = new Set();
+  for (const u of ["https://www.iksv.org/tr", "https://www.iksv.org/tr/etkinlikler"]) {
+    let page; try { page = await getPage(u, { render: true, scrolls: 3 }); } catch { continue; }
+    for (const j of (page.jsons || []).filter((x) => /plugins\.ashx/i.test(x.url))) {
+      const rows = Array.isArray(j.data?.data) ? j.data.data.flatMap((x) => Array.isArray(x?.events) ? x.events : [x]) : [];
+      for (const x of rows) { if (!x?.headline) continue; Object.keys(x).forEach((k) => keys.add(k));
+        const ms = +(String(x.dateFormatted || "").match(/\d{10,}/) || [])[0] || (x.date1 ? Date.parse(x.date1 + "+03:00") : 0); if (!ms) continue;
+        const iso = new Date(ms + 3 * 36e5).toISOString(), d = iso.slice(0, 10), t = x.time || iso.slice(11, 16);
+        const k = (x.articleId || x.headline) + d + t; if (seen.has(k)) continue; seen.add(k);
+        const zone = clean(x.zone || ""), f = (x.files || [])[0] || {}, img = f.url || f.path || f.fileUrl || f.src || "";
+        const href = x.url || x.link || x.seoUrl || x.friendlyUrl || x.detailUrl || "";
+        out.push({ title: clean(x.headline), d, t, venue: clean(x.place || ""), city: "İstanbul",
+          url: href ? (/^https?:/.test(href) ? href : "https://www.iksv.org" + (href.startsWith("/") ? "" : "/tr/etkinlikler/") + href) : "https://www.iksv.org/tr", via: "site", pc: 0,
+          org: "İKSV" + (zone ? " · " + zone : ""), image: img ? (/^https?:/.test(img) ? img : "https://www.iksv.org" + (img.startsWith("/") ? "" : "/") + img) : "",
+          catHint: (IKSV_CAT.find(([r]) => r.test(zone + " " + (x.categoryName || ""))) || [])[1] || "" });
+      }
+    }
+  }
+  return { raws: out, note: `alanlar: ${[...keys].slice(0, 40).join(",")}` };
+}
 export async function izmirKsCollect({ getPage }) {
   const out = [], seen = new Set(), keys = new Set();
   for (const u of ["https://kultursanat.izmir.bel.tr/", "https://kultursanat.izmir.bel.tr/etkinlikler"]) {
