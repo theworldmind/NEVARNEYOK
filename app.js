@@ -1368,13 +1368,14 @@ function routeSheet(e, v, city, gUrl) {
      altta kalan süre, mesafe, varış saati; geçtiğin yol solar; dönüşe yaklaşınca titreşim + kısa ses ve istersen Türkçe sesli yönlendirme (telefonun kendi sesi);
      yoldan saparsan yeniden hesaplanır; ekran kapanmaz (izin verirse). Konum yalnızca yol hesaplamak için yol sunucusuna gider. */
   haptic(6);
-  const sh = sheet(`<div class="pn rtp" role="dialog" aria-label="Yol tarifi"><div class="hd"><button type="button" class="sbk" data-close><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Geri</button><span class="rth"><b>Yol tarifi</b><small>${esc(e.venue || "")}</small></span><span style="width:64px"></span></div>
+  const sh = sheet(`<div class="pn rtp" role="dialog" aria-label="Yol tarifi">
     <div class="rtm map" id="rmap"></div>
+    <div class="rtop" id="rtop"><div class="hd"><button type="button" class="rbk" data-close aria-label="Geri"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="rth"><small>Yol tarifi</small><b>${esc(e.venue || "")}</b></span></div>
+    <div class="rfr" id="rfr" role="tablist" aria-label="Nereden"></div><div class="rctl"><button type="button" id="r3d" aria-label="3B görünüm">3B</button><button type="button" id="rfit" aria-label="Bütün yolu göster"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="rfx" id="rfx" hidden><label class="fvi"><svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><input id="rfi" placeholder="Semt, adres ya da yer adı" enterkeyhint="search" autocomplete="off"></label><div class="rfl" id="rfl"></div></div></div>
     <div class="nvt" id="nvt"><i></i><span><b></b><small></small></span></div>
     <div class="nvb" id="nvb"><span><b id="nvm"></b><small id="nvk"></small></span><button type="button" class="nvv" id="nvv" aria-label="Sesli yönlendirme"></button><button type="button" class="nve" id="nve">Bitir</button></div>
     <button type="button" class="nvc" id="nvc" aria-label="Konumuma dön"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button>
-    <div class="bd2"><div class="rfr" id="rfr" role="tablist" aria-label="Nereden"></div><div class="rfx" id="rfx" hidden><label class="fvi"><svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><input id="rfi" placeholder="Semt, adres ya da yer adı" enterkeyhint="search" autocomplete="off"></label><div class="rfl" id="rfl"></div></div>
-    <div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
+    <div class="bd2 rcd" id="rcd"><button type="button" class="rgr" id="rgr" aria-label="Ayrıntıları aç"></button><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
     <div class="rsum" id="rsum"><span class="sk" style="display:block;height:52px;border-radius:14px"></span></div>
     <ol class="rst" id="rst"></ol>
     <a class="rg" href="${gUrl}" target="_blank" rel="noopener">${I.ext}Google Haritalar'da aç</a>
@@ -1382,6 +1383,22 @@ function routeSheet(e, v, city, gUrl) {
   let map = null, line = null, done = null, me = null, watch = null, mode = null, from = null, R = null, S = [], nav = false, C = [], cum = [], sIdx = [], ni = 0, lastStep = -1, warned = -1, wl = null, follow = true;
   let voice = store.get("nvny-sesli") !== "0";
   const dest = [v.lat, v.lng], seg = sh.querySelector(".rseg"), sum = sh.querySelector("#rsum"), st = sh.querySelector("#rst");
+  /* Yol tarifi doğrudan tam ekran haritada (kullanıcı, 16.11.2026 15:31–15:32: "ayrı panelde küçük kalmayalım, haritada özgürüz; hem yol tarifi hem 3B").
+     Apple Haritalar gibi: üstte cam kart (geri, varış, nereden), altta sürüklenen cam kart (kısa: süre + Başla; açık: adım adım tarif).
+     Harita her yöne serbest: iki parmakla döndür/eğ, "3B" ile eğik bakış, çerçeve düğmesiyle bütün yol. Kart yalnızca transform ile kayar. */
+  const card = $("#rcd", sh), rtop = $("#rtop", sh), wide = () => innerWidth >= 700; let cOpen = false, cTy = 9999, d3 = false;
+  const cMini = () => Math.min(card.offsetHeight, st.offsetTop + 14);
+  const cSet = (open, anim = true) => { cOpen = open; const H = card.offsetHeight; cTy = open || wide() ? 0 : Math.max(0, H - cMini());
+    card.style.transition = anim ? "transform .44s cubic-bezier(.32,.72,0,1)" : "none"; card.style.transform = `translate3d(0,${cTy}px,0)`; card.classList.toggle("open", open || wide());
+    sh.style.setProperty("--cb", (wide() ? 0 : H - cTy) + "px"); };
+  card.style.transform = "translate3d(0,110%,0)"; requestAnimationFrame(() => requestAnimationFrame(() => cSet(false)));
+  { let y0 = 0, dY = 0, dr = false, t0 = 0;
+    card.addEventListener("touchstart", (ev) => { if (wide() || (cOpen && card.scrollTop > 0) || ev.target.closest("input,.rseg,.nvs")) return; dr = true; y0 = ev.touches[0].clientY; dY = 0; t0 = performance.now(); }, { passive: true });
+    card.addEventListener("touchmove", (ev) => { if (!dr) return; dY = ev.touches[0].clientY - y0; if (cOpen && dY < 0) return; if (Math.abs(dY) > 6) { const ty = Math.min(card.offsetHeight - 40, Math.max(0, cTy + dY)); card.style.transition = "none"; card.style.transform = `translate3d(0,${ty}px,0)`; } }, { passive: true });
+    card.addEventListener("touchend", () => { if (!dr) return; dr = false; if (Math.abs(dY) < 7) { cSet(cOpen); return; } const vv = dY / Math.max(1, performance.now() - t0), H = card.offsetHeight;
+      const open = vv < -.35 ? true : vv > .35 ? false : cTy + dY < (H - cMini()) / 2; if (open !== cOpen) { haptic(5); snd.sel?.(); } cSet(open); }, { passive: true }); }
+  $("#rgr", sh).addEventListener("click", () => { haptic(5); snd.sel?.(); cSet(!cOpen); });
+  addEventListener("resize", () => cSet(cOpen, false));
   const oldClose = sh.close; sh.close = () => { if (watch != null) navigator.geolocation.clearWatch(watch); try { wl?.release(); speechSynthesis.cancel(); } catch {} oldClose(); };
   const setMode = (m) => { mode = m; seg.classList.toggle("r", m === "car"); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.m === m)); };
   const say = (t) => { if (!voice || !("speechSynthesis" in window)) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t.replace(/<[^>]+>/g, "")); u.lang = "tr-TR"; u.rate = 1.02; speechSynthesis.speak(u); } catch {} };
@@ -1402,7 +1419,7 @@ function routeSheet(e, v, city, gUrl) {
     st.innerHTML = S.map((s, i) => `<li data-i="${i}"><i>${arrow(s)}</i><span>${stepTxt(s, e.venue || "")}${s.distance >= 5 && s.maneuver.type !== "arrive" ? `<small>${mTxt(s.distance)}</small>` : ""}</span></li>`).join("");
     st.querySelectorAll("li").forEach((li) => li.addEventListener("click", () => { const s = S[+li.dataset.i]; if (map) map.flyTo({ center: s.maneuver.location, zoom: 17, duration: 600 }); haptic(4); }));
     $("#nvs", sum).addEventListener("click", start);
-    rDraw(); if (!nav) fitRoute();
+    cSet(cOpen, false); rDraw(); if (!nav) fitRoute();
     if (nav) update(from, true);
   };
   function update(p, force) { // navigasyon sırasında her konum değişiminde
@@ -1435,7 +1452,11 @@ function routeSheet(e, v, city, gUrl) {
   let mapOk = false; const LL = (c) => [c[1], c[0]], ln = (P) => ({ type: "Feature", geometry: { type: "LineString", coordinates: P.map(LL) }, properties: {} });
   function rSet(D, Lc) { if (!mapOk) return; map.getSource("rt-d")?.setData(ln(D)); map.getSource("rt-l")?.setData(ln(Lc)); }
   function rDraw() { if (!mapOk) return; rSet([], C); map.setLayoutProperty("rt-f", "visibility", mode === "foot" ? "visible" : "none"); map.setLayoutProperty("rt-c", "visibility", mode === "foot" ? "none" : "visible"); }
-  function fitRoute() { if (!mapOk || !C.length) return; const b = C.reduce((b, c) => [[Math.min(b[0][0], c[1]), Math.min(b[0][1], c[0])], [Math.max(b[1][0], c[1]), Math.max(b[1][1], c[0])]], [LL(C[0]), LL(C[0])]); map.fitBounds(b, { padding: 44, pitch: 0, bearing: 0, duration: 700 }); }
+  function fitRoute() { if (!mapOk || !C.length) return; const b = C.reduce((b, c) => [[Math.min(b[0][0], c[1]), Math.min(b[0][1], c[0])], [Math.max(b[1][0], c[1]), Math.max(b[1][1], c[0])]], [LL(C[0]), LL(C[0])]);
+    const pad = wide() ? { top: 60, bottom: 60, left: card.offsetWidth + 70, right: 70 } : { top: rtop.offsetTop + rtop.offsetHeight + 30, bottom: Math.min(innerHeight * .5, card.offsetHeight - (cTy > 2000 ? card.offsetHeight - cMini() : cTy)) + 30, left: 40, right: 72 };
+    map.fitBounds(b, { padding: pad, pitch: d3 ? 55 : 0, bearing: d3 ? map.getBearing() : 0, duration: 700 }); }
+  $("#r3d", sh).addEventListener("click", (ev) => { if (!mapOk) return; d3 = !d3; ev.currentTarget.classList.toggle("on", d3); haptic(6); snd.sel?.(); map.easeTo({ pitch: d3 ? 60 : 0, bearing: d3 ? (map.getBearing() || -18) : 0, duration: 750 }); });
+  $("#rfit", sh).addEventListener("click", () => { haptic(5); snd.sel?.(); follow = false; fitRoute(); });
   Promise.all([mlgl(), mStyle(mTheme())]).then(([, style]) => { const el = sh.querySelector("#rmap"); if (!document.body.contains(el)) return;
     map = new maplibregl.Map({ container: el, style, center: LL(dest), zoom: 15, maxPitch: 70, attributionControl: { compact: true }, fadeDuration: 150 });
     map.on("style.load", () => { const z = { type: "FeatureCollection", features: [] };
@@ -1933,7 +1954,7 @@ const filmGenre = (f) => (/^\d{4}$/.test(String(f.country || "")) ? "" : f.genre
 const filmCountry = (f) => (/^\d{4}$/.test(String(f.country || "")) ? f.genre : f.country) || "";
 /* Alttan açılan panel aşağı çekilince kapanır (iOS sayfası gibi): tutamaçtan ya da panelin üst kısmından, panel en üstteyken */
 function sheetDrag(sh) {
-  const pn = sh.querySelector(".pn"); if (!pn) return; let y0 = 0, dy = 0, on = false, t0 = 0;
+  const pn = sh.querySelector(".pn"); if (!pn || pn.classList.contains("rtp")) return; // yol tarifi tam ekran harita: kendi kartı sürüklenir let y0 = 0, dy = 0, on = false, t0 = 0;
   pn.addEventListener("touchstart", (ev) => { const bd = pn.querySelector(".bd2"); if (bd && bd.scrollTop > 0 && !ev.target.closest(".hd")) return; on = true; y0 = ev.touches[0].clientY; dy = 0; t0 = performance.now(); }, { passive: true });
   pn.addEventListener("touchmove", (ev) => { if (!on) return; dy = Math.max(0, ev.touches[0].clientY - y0); if (dy > 4) { pn.style.transition = "none"; pn.style.transform = `translate3d(0,${dy}px,0)`; } }, { passive: true });
   pn.addEventListener("touchend", () => { if (!on) return; on = false; const v = dy / Math.max(1, performance.now() - t0); pn.style.transition = "transform .32s cubic-bezier(.32,.72,0,1)";
