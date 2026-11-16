@@ -2139,7 +2139,7 @@ const trHH = (i) => `${String(Math.floor(i * TR_STEP / 60)).padStart(2, "0")}:${
 /* (kullanıcı, 11:00: "yana doğru kaydırılan bir dairesellik, tık tık, buzlu cam") Yatay silindir: çeyrek saatler bir dairenin çevresine dizili,
    sağa-sola kaydırınca dönen bir halka gibi akar (rotateY); ortaya gelen saat büyür ve beyazlaşır, buzlu cam kapsülün içinde durur,
    kenara gidenler dönerek yatar, küçülür ve solar. Her yeni saatte metalik tık + titreşim. Yalnızca transform/opacity. */
-const DW_W = 66, DW_N = 96;
+const DW_W = 62, DW_N = 96;
 const dwT = (i) => `${String(Math.floor(i / 4)).padStart(2, "0")}:${String(i % 4 * 15).padStart(2, "0")}`;
 const trHTML = () => `<div class="hf-rl"><div class="hw2"><span class="hw2-hl"></span><div class="hw2-c"><i class="hw2-sp"></i>${Array.from({ length: DW_N }, (_, i) => `<b class="${i % 4 ? "" : "h"}">${dwT(i)}</b>`).join("")}<i class="hw2-sp"></i></div></div></div>`;
 const trNext = () => { const n = nowIST().hm, m = Math.ceil((+n.slice(0, 2) * 60 + +n.slice(3, 5)) / 60) * 60 % 1440; return `${String(m / 60).padStart(2, "0")}:00`; };
@@ -2147,7 +2147,9 @@ function trBind(root, get, set) {
   const c = root.querySelector(".hw2-c"), B = [...c.querySelectorAll("b")]; let last = -1, raf = 0;
   const paint = () => { raf = 0; const sl = c.scrollLeft;
     for (let i = 0; i < B.length; i++) { const b = B[i], d = (i * DW_W - sl) / DW_W, a = Math.abs(d); if (a > 4.5) { if (b.style.opacity !== "0") b.style.opacity = 0; continue; }
-      b.style.transform = `rotateY(${Math.max(-78, Math.min(78, d * 24))}deg) scale(${1 + Math.max(0, 1 - a) * .32})`; b.style.opacity = a < .5 ? 1 : Math.max(.1, .66 - a * .13); b.classList.toggle("on", a < .5); } };
+      // kadran: saatler büyük bir dairenin üst yayı üzerinde; kaydırınca daire döner, ortaya gelen büyür, kenara gidenler yay boyunca aşağı iner, küçülür, solar
+      const t = d * .27, R = 250; b.style.transform = `translate(${(R * Math.sin(t) - d * DW_W).toFixed(1)}px,${(R * (1 - Math.cos(t))).toFixed(1)}px) rotate(${(t * 57.3).toFixed(1)}deg) scale(${(a < 1 ? 1.5 - a * .5 : Math.max(.7, 1.08 - a * .12)).toFixed(3)})`;
+      b.style.opacity = a < .5 ? 1 : Math.max(.08, .78 - a * .17); b.classList.toggle("on", a < .5); } };
   const to = (t, smooth) => { const i = Math.round((+t.slice(0, 2) * 60 + +t.slice(3, 5)) / 15); last = i; c.scrollTo({ left: i * DW_W, behavior: smooth ? "smooth" : "auto" }); paint(); };
   c.addEventListener("scroll", () => { raf ||= requestAnimationFrame(paint); const i = Math.max(0, Math.min(DW_N - 1, Math.round(c.scrollLeft / DW_W))); if (i === last) return; last = i; if (!get()) return; tick(); set(dwT(i)); }, { passive: true });
   B.forEach((b, i) => b.addEventListener("click", () => { if (!get()) set(dwT(i)); c.scrollTo({ left: i * DW_W, behavior: "smooth" }); }));
