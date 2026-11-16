@@ -25,7 +25,7 @@ await rm(join(ROOT, "e"), { recursive: true, force: true });
 const NVK = new Function(await readFile(join(ROOT, "takip.js"), "utf8") + ";return NV")();
 const AIDX = {};
 // Harita sekmesi bütün Türkiye (kullanıcı isteği, 16.11.2026): konumu bilinen mekânlardaki önümüzdeki 8 günün etkinlikleri → idx/harita.json
-// { v: [[enlem, boylam, il, mekân, ilçe]], e: [[mekân sırası, ad (slug), başlık, gün, saat, kategori, afiş]] }
+// { v: [[enlem, boylam, il, mekân, ilçe]], e: [[mekân sırası (-1: konum yok), ad (slug), başlık, gün, saat, kategori, afiş, il, mekân adı (konum yoksa)]] }
 const VA = (await readJSON(join(ROOT, "data/venues.json"), {})) || {}, VT = (await readJSON(join(ROOT, "data/venues-tr.json"), {})) || {};
 const HV = [], HVi = new Map(), HE = [], hLast = (() => { const d = new Date(today + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + 7); return d.toISOString().slice(0, 10); })();
 const hVen = (id, name) => { const v = id === "ankara" ? VA[name] : VT[id + "|" + name]; if (!v?.lat) return -1; const k = id + "|" + name; if (!HVi.has(k)) { HVi.set(k, HV.length); HV.push([+(+v.lat).toFixed(5), +(+v.lng).toFixed(5), id, name, v.ilce || ""]); } return HVi.get(k); };
@@ -49,7 +49,7 @@ for (const [id, c] of Object.entries(cities)) {
 <link rel="icon" type="image/png" href="/icons/icon-192.png?v=4"><script>location.replace(${JSON.stringify(app)})</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a10;color:#fff;font:600 16px system-ui,sans-serif;text-align:center}a{color:#c4b5fd}</style>
 </head><body><p><b>${esc(title)}</b><br>${esc(when)} · ${esc(e.venue || "")}<br><br><a href="${esc(app)}">Ne Var Ne Yok'ta aç →</a></p></body></html>`;
-    if (e.d <= hLast && e.status !== "iptal") { const vi = hVen(id, e.venue || ""); if (vi >= 0) HE.push([vi, s, e.title, e.d, e.t || "", e.cat || "", e.img || ""]); }
+    if (e.d <= hLast && e.status !== "iptal") { const vi = hVen(id, e.venue || ""); HE.push([vi, s, e.title, e.d, e.t || "", e.cat || "", e.img || "", id, vi < 0 ? e.venue || "" : ""]); } // konumu olmayan da girer (il düzeyinde gösterilir)
     { const ak = NVK.akey(e.title); if (ak && ak.length >= 3 && e.status !== "iptal") (AIDX[ak] ||= []).push([id, e.d, e.t || "", s, e.venue || ""]); }
     const dir = join(ROOT, "e", id, s);
     await mkdir(dir, { recursive: true }); await writeFile(join(dir, "index.html"), html); n++;

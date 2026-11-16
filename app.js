@@ -2022,15 +2022,17 @@ function viewHarita(city) {
     <div class="hm-c">${Object.keys(CATS).filter((k) => k !== "sinema").map((k) => `<button type="button" data-c="${k}" class="${HM.cats.includes(k) ? "on" : ""}">${cgIcon(k)}<span>${esc(CATS[k])}</span></button>`).join("")}</div></div>
     <div class="hm-n" id="hmn"><span class="sk" style="display:inline-block;width:150px;height:14px;border-radius:7px"></span></div>
     <button type="button" class="hm-me" id="hmme" aria-label="Konumum"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button></div>`;
-  const el = $("#hm"), N = CNAME(); let map = null, vLayer = null, cLayer = null, meM = null, IX = null, VG = [];
+  const el = $("#hm"), N = CNAME(); let map = null, vLayer = null, cLayer = null, meM = null, IX = null, VG = [], UG = new Map();
   const range = () => { const { d: today } = nowIST(), dow = pd(today).getDay(), fri = addD(today, (5 - dow + 7) % 7);
     return { bugun: [today, today], yarin: [addD(today, 1), addD(today, 1)], haftasonu: [dow === 6 || dow === 0 ? today : fri, dow === 0 ? today : addD(fri, 2)], hafta: [today, addD(today, 6)] }[HM.when]; };
   const draw = () => {
     if (!map || !IX) return; vLayer?.remove(); cLayer?.remove(); vLayer = window.L.layerGroup(); cLayer = window.L.layerGroup();
     const [a, b] = range(), { hm } = nowIST(), today = nowIST().d;
     const E = IX.e.filter((x) => x[3] >= a && x[3] <= b && !(x[3] === today && x[4] && x[4] < hm && timeDiff(x[4], hm) > 120) && (!HM.cats.length || HM.cats.includes(x[5])));
-    const byV = new Map(); for (const x of E) (byV.get(x[0]) || byV.set(x[0], []).get(x[0])).push(x);
+    // konumu bilinen mekânlar haritada kendi yerinde; konumu henüz bulunmayanlar o ilin içinde tek bir "diğer etkinlikler" kabarcığında (uydurma iğne yok)
+    const byV = new Map(), un = new Map(); for (const x of E) { if (x[0] >= 0) (byV.get(x[0]) || byV.set(x[0], []).get(x[0])).push(x); else (un.get(x[7]) || un.set(x[7], []).get(x[7])).push(x); }
     VG = [...byV].map(([vi, L]) => ({ v: IX.v[vi], L }));
+    UG = un;
     const byC = new Map();
     for (const g of VG) {
       const [lat, lng, c] = g.v, cc = {}; for (const x of g.L) cc[x[5]] = (cc[x[5]] || 0) + 1; const top = Object.entries(cc).sort((p, q) => q[1] - p[1])[0][0], x0 = g.L.find((x) => x[6]) || g.L[0];
@@ -2038,10 +2040,13 @@ function viewHarita(city) {
       window.L.marker([lat, lng], { icon: window.L.divIcon({ className: "", html, iconSize: [46, 62], iconAnchor: [23, 31] }), riseOnHover: true }).addTo(vLayer).on("click", () => venueSheetX(g));
       const k = byC.get(c) || byC.set(c, { n: 0, la: 0, lo: 0, m: 0 }).get(c); k.n += g.L.length; k.la += lat; k.lo += lng; k.m++;
     }
+    for (const [c, L] of un) { const k = byC.get(c) || byC.set(c, { n: 0, la: 0, lo: 0, m: 0 }).get(c); k.n += L.length;
+      const ll = ILLL[c]; if (!ll) continue;
+      window.L.marker(ll, { icon: window.L.divIcon({ className: "", html: `<div class="ub"><b>${L.length}</b><span>etkinlik daha</span></div>`, iconSize: [92, 40], iconAnchor: [46, -26] }), zIndexOffset: 2000 }).addTo(vLayer).on("click", () => unSheet(c, L)); }
     for (const [c, k] of byC) { const ll = ILLL[c] || [k.la / k.m, k.lo / k.m];
       window.L.marker(ll, { icon: window.L.divIcon({ className: "", html: `<div class="cb${c === city ? " me" : ""}"><b>${k.n}</b><span>${esc(N[c] || c)}</span></div>`, iconSize: [96, 44], iconAnchor: [48, 22] }) }).addTo(cLayer)
-        .on("click", () => { haptic(6); snd.push?.(); const pts = VG.filter((g) => g.v[2] === c).map((g) => [g.v[0], g.v[1]]); if (pts.length > 1) map.flyToBounds(pts, { padding: [60, 60], maxZoom: 13, duration: .9 }); else map.flyTo(ll, 13, { duration: .9 }); }); }
-    $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik · <b>${VG.length}</b> mekân · <b>${byC.size}</b> il`;
+        .on("click", () => { haptic(6); snd.push?.(); const pts = VG.filter((g) => g.v[2] === c).map((g) => [g.v[0], g.v[1]]).concat(UG.has(c) ? [ll] : []); if (pts.length > 1) map.flyToBounds(pts, { padding: [70, 70], maxZoom: 13, duration: .9 }); else map.flyTo(ll, 12, { duration: .9 }); }); }
+    $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik · <b>${byC.size}</b> il`;
     lod(true);
   };
   let lastLod = "";
@@ -2066,6 +2071,7 @@ function viewHarita(city) {
     const cities = CITIES.filter((c) => hit(c.name)).slice(0, 3), seenV = new Set(), venues = [], evs = [];
     for (const g of VG) if (hit(g.v[3]) && !seenV.has(g.v[3] + g.v[2])) { seenV.add(g.v[3] + g.v[2]); venues.push(g); if (venues.length >= 4) break; }
     for (const g of VG) for (const x of g.L) if (hit(x[2]) && evs.length < 8 && !evs.some((y) => fold(y[1][2]) === fold(x[2]) && y[0].v[2] === g.v[2])) evs.push([g, x]);
+    for (const [c, L] of UG) for (const x of L) if ((hit(x[2]) || hit(x[8])) && evs.length < 10 && !evs.some((y) => fold(y[1][2]) === fold(x[2]) && y[0].v[2] === c)) evs.push([{ v: [null, null, c, x[8], ""], L: L.filter((z) => z[8] === x[8]) }, x]);
     if (!cities.length && !venues.length && !evs.length) { res.innerHTML = `<p class="hm-0">“${esc(inp.value)}” için bu tarihlerde sonuç yok.</p>`; res.hidden = false; return; }
     res.innerHTML = `${cities.map((c) => `<button type="button" data-qc="${c.id}"><span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#0a84ff"/></svg></span><span><b>${esc(c.name)}</b><small>İl</small></span></button>`).join("")}
       ${venues.map((g, i) => `<button type="button" data-qv="${i}"><span class="cgi" style="background:#8e8e93"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10h-5v-6H9v6z" fill="#fff"/></svg></span><span><b>${esc(g.v[3])}</b><small>Mekân · ${esc(N[g.v[2]] || "")} · ${g.L.length} etkinlik</small></span></button>`).join("")}
@@ -2073,7 +2079,7 @@ function viewHarita(city) {
     res.hidden = false;
     $$("[data-qc]", res).forEach((b) => b.addEventListener("click", () => { const c = b.dataset.qc, pts = VG.filter((g) => g.v[2] === c).map((g) => [g.v[0], g.v[1]]); done(); if (pts.length > 1) map.flyToBounds(pts, { padding: [60, 60], maxZoom: 13, duration: 1 }); else map.flyTo(ILLL[c] || pts[0], 12, { duration: 1 }); }));
     $$("[data-qv]", res).forEach((b) => b.addEventListener("click", () => { const g = venues[+b.dataset.qv]; done(); map.flyTo([g.v[0], g.v[1]], 16, { duration: 1 }); setTimeout(() => venueSheetX(g), 1050); }));
-    $$("[data-qe]", res).forEach((b) => b.addEventListener("click", () => { const [g] = evs[+b.dataset.qe]; done(); map.flyTo([g.v[0], g.v[1]], 16, { duration: 1 }); setTimeout(() => venueSheetX(g), 1050); }));
+    $$("[data-qe]", res).forEach((b) => b.addEventListener("click", () => { const [g] = evs[+b.dataset.qe]; done(); const ll = g.v[0] != null ? [g.v[0], g.v[1]] : ILLL[g.v[2]]; if (ll) map.flyTo(ll, g.v[0] != null ? 16 : 12, { duration: 1 }); setTimeout(() => venueSheetX(g), 1050); }));
   };
   const done = () => { inp.blur(); res.hidden = true; haptic(6); snd.push?.(); };
   let qt = null; inp.addEventListener("input", () => { clearTimeout(qt); qt = setTimeout(search, 120); });
@@ -2085,15 +2091,21 @@ function viewHarita(city) {
   $$("[data-c]").forEach((b) => b.addEventListener("click", () => { const k = b.dataset.c; HM.cats = HM.cats.includes(k) ? HM.cats.filter((x) => x !== k) : [...HM.cats, k]; b.classList.toggle("on"); snd.sel?.(); haptic(4); draw(); }));
   $("#hmme").addEventListener("click", () => { haptic(6); whereAmI(true).then((p) => { if (!map) return; meM?.remove(); meM = window.L.marker(p, { icon: window.L.divIcon({ className: "", html: '<div class="me"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(map); map.flyTo(p, 15, { duration: .8 }); }).catch((err) => geoHelp(city, err?.code)); });
 }
+// konumu henüz bulunmayan mekânların etkinlikleri (il içinde tek liste, mekân mekân)
+function unSheet(c, L0) {
+  snd.pop?.(); haptic(8); const N = CNAME(), L = [...L0].sort((a, b) => a[3].localeCompare(b[3]) || (a[4] || "").localeCompare(b[4] || ""));
+  sheet(`<div class="pn" role="dialog" aria-label="${esc(N[c] || c)}"><div class="hd"><span class="rth"><b>${esc(N[c] || c)}</b><small>${L.length} etkinlik · mekân konumları henüz haritada yok</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+    <div class="bd2"><div class="mpl">${L.map((x) => `<a href="#/${c}/e/${encodeURIComponent(x[1])}"><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}">${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy">` : `<svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>`}</span></span><span><b>${esc(x[2])}</b><small>${rel(x[3])}${x[4] ? " · " + esc(x[4]) : ""} · ${esc(x[8])}</small></span></a>`).join("")}</div></div></div>`, "mn");
+}
 // haritadaki mekân: etkinlikleri (her ilden), yol tarifi
 function venueSheetX(g) {
   snd.pop?.(); haptic(8);
-  const [lat, lng, c, name, ilce] = g.v, N = CNAME(), d = DATA.me && !DATA.me.c ? km(DATA.me.p, [lat, lng]) : null;
+  const [lat, lng, c, name, ilce] = g.v, N = CNAME(), d = lat != null && DATA.me && !DATA.me.c ? km(DATA.me.p, [lat, lng]) : null;
   const L = [...g.L].sort((a, b) => a[3].localeCompare(b[3]) || (a[4] || "").localeCompare(b[4] || ""));
   const sh = sheet(`<div class="pn" role="dialog" aria-label="${esc(name)}"><div class="hd"><span class="rth"><b>${esc(name)}</b><small>${esc([ilce, N[c]].filter(Boolean).join(", "))} · ${L.length} etkinlik${d != null ? " · " + kmTxt(d) : ""}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
     <div class="bd2"><div class="mpl">${L.map((x) => `<a href="#/${c}/e/${encodeURIComponent(x[1])}"><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}">${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy">` : `<svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>`}</span></span><span><b>${esc(x[2])}</b><small>${rel(x[3])}${x[4] ? " · " + esc(x[4]) : ""}</small></span></a>`).join("")}</div>
-    <div class="vsb"><button type="button" class="ok" data-r>${I.dir}Yol tarifi</button></div></div></div>`, "mn");
-  sh.querySelector("[data-r]").addEventListener("click", () => { sh.close(); const v = { lat, lng, ilce }; setTimeout(() => routeSheet({ title: L[0][2], venue: name, d: L[0][3], t: L[0][4] }, v, c, `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(name + ", " + (N[c] || ""))}`), 280); });
+    ${lat != null ? `<div class="vsb"><button type="button" class="ok" data-r>${I.dir}Yol tarifi</button></div>` : `<p class="kmn" style="margin:12px 2px 0">Bu mekânın haritadaki yeri henüz bulunmadı; bulununca kendi yerinde görünecek.</p>`}</div></div>`, "mn");
+  sh.querySelector("[data-r]")?.addEventListener("click", () => { sh.close(); const v = { lat, lng, ilce }; setTimeout(() => routeSheet({ title: L[0][2], venue: name, d: L[0][3], t: L[0][4] }, v, c, `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(name + ", " + (N[c] || ""))}`), 280); });
 }
 
 boot().then(() => { offlineBoot(); shortcutBoot(); route(); splashOut(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { splashOut(); V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });
