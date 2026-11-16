@@ -1154,17 +1154,19 @@ button.hm-n{color:#fff}
 .hmap.lt .dw-hl{background:rgba(0,0,0,.07)}.hmap.lt .dw-c b{color:rgba(28,28,30,.9)}.hmap.lt .dw-c b.on{color:#000}.hmap.lt .dw-u{color:rgba(60,60,67,.6)}
 .hm-tc .hf-rl{padding:4px 0 6px}
 
-/* saat kadranı: yatay kaydırılan daire (yay), ortada buzlu cam kapsül; ortaya gelen büyür */
-.hw2{position:relative;height:118px;margin:6px -14px 0;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
-.hw2::before{content:"";position:absolute;left:50%;top:50px;width:520px;height:520px;margin-left:-260px;border-radius:50%;border:1.5px solid rgba(255,255,255,.13);box-shadow:inset 0 14px 30px rgba(139,92,246,.12);pointer-events:none}
-.hw2-hl{position:absolute;left:50%;top:6px;width:96px;height:52px;margin-left:-48px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.07));-webkit-backdrop-filter:blur(12px) saturate(1.7);backdrop-filter:blur(12px) saturate(1.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 0 0 .5px rgba(255,255,255,.28),0 10px 24px rgba(0,0,0,.35),0 0 30px rgba(139,92,246,.3);pointer-events:none;z-index:2}
-.hw2-c{position:relative;z-index:3;display:flex;align-items:flex-start;height:100%;padding-top:17px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior:contain;touch-action:pan-x}.hw2-c::-webkit-scrollbar{display:none}
-.hw2-sp{flex:none;width:calc(50% - 31px)}
-.hw2-c b{flex:none;width:62px;text-align:center;scroll-snap-align:center;font:500 15px/30px -apple-system,"Inter Tight",sans-serif;font-variant-numeric:tabular-nums;color:rgba(235,235,245,.8);transform-origin:50% 50%;will-change:transform,opacity;cursor:pointer}
-.hw2-c b::after{content:"";display:block;width:1.5px;height:7px;margin:2px auto 0;border-radius:1px;background:rgba(235,235,245,.35)}
-.hw2-c b.h{font-weight:700;color:#fff}.hw2-c b.h::after{height:12px;width:2px;background:rgba(235,235,245,.7)}
-.hw2-c b.on{font-weight:800;color:#fff}.hw2-c b.on::after{background:#a78bfa;height:12px;width:2.5px;box-shadow:0 0 8px #a78bfa}
-.hmap.lt .hw2::before{border-color:rgba(0,0,0,.1)}.hmap.lt .hw2-hl{background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.65));box-shadow:inset 0 1px 0 #fff,0 0 0 .5px rgba(0,0,0,.08),0 8px 20px rgba(0,0,0,.14)}.hmap.lt .hw2-c b{color:rgba(28,28,30,.7)}.hmap.lt .hw2-c b.h,.hmap.lt .hw2-c b.on{color:#000}.hmap.lt .hw2-c b::after{background:rgba(60,60,67,.4)}
+/* saat seçici: düz yatay şerit, ortada buzlu cam kapsül; parmakla doğrudan sürülür (titreme yok) */
+.hw2{position:relative;height:76px;margin:6px -14px 0;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);mask:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent)}
+.hw2-hl{position:absolute;left:50%;top:50%;width:100px;height:50px;margin:-28px 0 0 -50px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.07));-webkit-backdrop-filter:blur(12px) saturate(1.7);backdrop-filter:blur(12px) saturate(1.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 0 0 .5px rgba(255,255,255,.28),0 10px 24px rgba(0,0,0,.32);pointer-events:none}
+.hw2-c{position:absolute;inset:0;z-index:2;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.hw2-c b{position:absolute;left:50%;top:50%;width:76px;height:30px;margin:-21px 0 0 -38px;text-align:center;font:500 15px/30px -apple-system,"Inter Tight",sans-serif;font-variant-numeric:tabular-nums;color:rgba(235,235,245,.78);opacity:0;will-change:transform,opacity;backface-visibility:hidden}
+.hw2-c b::after{content:"";position:absolute;left:50%;top:34px;width:1.5px;height:7px;margin-left:-.75px;border-radius:1px;background:rgba(235,235,245,.32)}
+.hw2-c b.h{font-weight:700;color:#fff}.hw2-c b.h::after{height:10px;width:2px;background:rgba(235,235,245,.6)}
+.hw2-c b.on{font-weight:800;color:#fff}.hw2-c b.on::after{display:none}
+.hmap.lt .hw2-hl{background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.65));box-shadow:inset 0 1px 0 #fff,0 0 0 .5px rgba(0,0,0,.08),0 8px 20px rgba(0,0,0,.14)}.hmap.lt .hw2-c b{color:rgba(28,28,30,.7)}.hmap.lt .hw2-c b.h,.hmap.lt .hw2-c b.on{color:#000}.hmap.lt .hw2-c b::after{background:rgba(60,60,67,.4)}
+.lvm{pointer-events:none}.hmap:not(.z9) .lvm{display:none}
+.lvp{display:block;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.55),rgba(167,139,250,0) 70%);animation:lvp 1.8s cubic-bezier(.2,.6,.3,1) infinite;will-change:transform,opacity}
+@keyframes lvp{from{transform:scale(.6);opacity:.95}to{transform:scale(2.1);opacity:0}}
+@media (prefers-reduced-motion:reduce){.lvp{animation:none;opacity:.5}}
 </style>
 </head>
 <body>

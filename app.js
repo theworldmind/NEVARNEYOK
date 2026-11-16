@@ -253,14 +253,14 @@ const buzz = (ms) => haptic(ms); // Android titreşim, iPhone 18+ sistem tıkı 
    Uyumsuz (metal gibi) üst tonlar 3,2–9,6 kHz'de birkaç milisaniyede söner + dar bantlı çok kısa çıtırtı + neredeyse duyulmayan alçak gövde.
    Her dişte perde çok az değişir (gerçek mekanizma gibi), art arda hızlı çevirince ses biraz kısılır (kulağı yormaz). */
 let tickN = 0;
-function tick() { const now = performance.now(); if (now - lastTick < 26) return; const fast = now - lastTick < 90; lastTick = now; buzz(3);
+// (11:08) Apple çarkındaki gibi: çok kısa, temiz, hafif tahta-metal "tık" — keskin bir çıt (2 ms) + kısa tınlayan gövde (≈1,9 kHz, 7 ms); sert tiz yok
+function tick() { const now = performance.now(); if (now - lastTick < 34) return; const fast = now - lastTick < 90; lastTick = now; buzz(3);
   if (!sesOn() || !acted) return;
-  try { const A = ac(), t = A.currentTime, out = A.createGain(), j = 1 + ((tickN++ % 3) - 1) * .012; out.gain.value = fast ? .075 : .1; out.connect(A.destination);
+  try { const A = ac(), t = A.currentTime, out = A.createGain(), j = 1 + ((tickN++ % 3) - 1) * .008; out.gain.value = fast ? .09 : .13; out.connect(A.destination);
     if (!NOISE) { const n = Math.round(A.sampleRate * .004); NOISE = A.createBuffer(1, n, A.sampleRate); const d = NOISE.getChannelData(0); for (let k = 0; k < n; k++) d[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / n, 4); }
-    const ns = A.createBufferSource(), bp = A.createBiquadFilter(), ng = A.createGain(); ns.buffer = NOISE; bp.type = "bandpass"; bp.frequency.value = 6200 * j; bp.Q.value = 2.2; ng.gain.value = 1.1; ns.connect(bp).connect(ng).connect(out); ns.start(t);
-    for (const [f, a, d] of [[3170, 1, .011], [4790, .6, .008], [6930, .38, .006], [9580, .2, .004]]) { const o = A.createOscillator(), g = A.createGain(); o.type = "sine"; o.frequency.value = f * j;
-      g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(a, t + .0004); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.connect(g).connect(out); o.start(t); o.stop(t + d + .005); }
-    const b = A.createOscillator(), bg = A.createGain(); b.type = "sine"; b.frequency.value = 240; bg.gain.setValueAtTime(.0001, t); bg.gain.linearRampToValueAtTime(.35, t + .0005); bg.gain.exponentialRampToValueAtTime(.0001, t + .005); b.connect(bg).connect(out); b.start(t); b.stop(t + .01);
+    const ns = A.createBufferSource(), bp = A.createBiquadFilter(), ng = A.createGain(); ns.buffer = NOISE; bp.type = "bandpass"; bp.frequency.value = 3400 * j; bp.Q.value = .9; ng.gain.setValueAtTime(.9, t); ng.gain.exponentialRampToValueAtTime(.001, t + .0022); ns.connect(bp).connect(ng).connect(out); ns.start(t); ns.stop(t + .004);
+    for (const [f, a, d] of [[1900, 1, .007], [3800, .32, .0035], [5600, .12, .002]]) { const o = A.createOscillator(), g = A.createGain(); o.type = "sine"; o.frequency.setValueAtTime(f * j * 1.04, t); o.frequency.exponentialRampToValueAtTime(f * j, t + d);
+      g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(a, t + .0003); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.connect(g).connect(out); o.start(t); o.stop(t + d + .004); }
   } catch {} }
 const snd = {
   on() { blip({ f: 1650, f2: 1500, body: 820, vol: .09, dur: .022, noise: .35, hp: 2200 }); buzz(5); },
@@ -366,12 +366,7 @@ function viewCity(city) {
   ${notifAsk(city)}
   ${prefs() ? rail("Senin için", "İlgi alanlarına göre bu hafta", uniq([...weekL.filter((e) => e.img)].sort((a, b) => pscore(b) - pscore(a)), 16), city, k("sira=sen&t=hafta")) : ""}
   ${rail("Bu akşam", `${dLong(today)} · ${tonight.length} etkinlik`, uniq(tonight.filter((e) => e.img).sort((a, b) => (a.t || "").localeCompare(b.t || "")), 16), city, k("t=bugun"))}
-  ${filmRail(city)}
-  ${rail("Hafta sonu", wkend.length + " etkinlik", pick(wkend.filter((e) => e.img), 16), city, k("t=haftasonu"))}
-  ${(() => { const L = E.filter((e) => e.img && live(e) && e.tickets.filter((x) => x.price).length > 1).map((e) => { const p = e.tickets.filter((x) => x.price).map((x) => x.price); return [e, Math.max(...p) - Math.min(...p)]; }).filter(([, d]) => d > 0).sort((a, b) => b[1] - a[1]).map(([e]) => e);
-     return L.length >= 3 ? rail("Fiyatları karşılaştır", "Siteler arasında fiyatı farklı olanlar", uniq(L, 16), city, k("cok=1&sira=fiyat")) : ""; })()}
-  ${(() => { const L = E.filter((e) => e.drop && e.img).sort((a, b) => b.drop - a.drop); return L.length >= 3 ? rail("Fiyatı düşenler", "Son 7 günde doğrulanmış fiyatı düşenler", uniq(L, 16), city, k("dus=1")) : ""; })()}
-  ${(() => { const L = E.filter((e) => e.free && e.img && e.d <= addD(today, 13)); return L.length >= 3 ? rail("Ücretsiz", "Önümüzdeki iki hafta", uniq(L, 16), city, k("ucr=1")) : ""; })()}
+  <div id="mid"></div>
   <div id="kac"></div>
   <div id="later"></div>${footer()}`;
   const fav = prefs()?.cats || [], order = ["konser", "tiyatro", "standup", "cocuk", "sahne", "atolye"].sort((a, b) => fav.includes(b) - fav.includes(a));
@@ -379,10 +374,16 @@ function viewCity(city) {
   ${rail("Festival", "Yaklaşan", pick(E.filter((e) => e.cat === "festival" && e.img), 12), city, k("k=festival"))}
   ${rail("Yeni eklenenler", "Son 3 günde", uniq(E.filter((e) => e.isNew && e.img).sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || "")), 16), city, k("yeni=1"))}`;
   { const lt = $("#later"), idle = window.requestIdleCallback || ((f) => setTimeout(f, 120));
+    // (11:08 akıcılık) ilk ekranda görünmeyen raflar açılıştan sonra, tarayıcı boşaldıkça teker teker eklenir (açılışta tek büyük iş olmasın)
+    const md = $("#mid"), mids = [() => filmRail(city), () => rail("Hafta sonu", wkend.length + " etkinlik", pick(wkend.filter((e) => e.img), 16), city, k("t=haftasonu")),
+      () => { const L = E.filter((e) => e.img && live(e) && e.tickets.filter((x) => x.price).length > 1).map((e) => { const p = e.tickets.filter((x) => x.price).map((x) => x.price); return [e, Math.max(...p) - Math.min(...p)]; }).filter(([, d]) => d > 0).sort((a, b) => b[1] - a[1]).map(([e]) => e);
+        return L.length >= 3 ? rail("Fiyatları karşılaştır", "Siteler arasında fiyatı farklı olanlar", uniq(L, 16), city, k("cok=1&sira=fiyat")) : ""; },
+      () => { const L = E.filter((e) => e.drop && e.img).sort((a, b) => b.drop - a.drop); return L.length >= 3 ? rail("Fiyatı düşenler", "Son 7 günde doğrulanmış fiyatı düşenler", uniq(L, 16), city, k("dus=1")) : ""; },
+      () => { const L = E.filter((e) => e.free && e.img && e.d <= addD(today, 13)); return L.length >= 3 ? rail("Ücretsiz", "Önümüzdeki iki hafta", uniq(L, 16), city, k("ucr=1")) : ""; }];
     const parts = [...order.map((c) => () => rail(CATS[c], "Bu hafta", byCat(c), city, k("k=" + c))),
       () => rail("Festival", "Yaklaşan", pick(E.filter((e) => e.cat === "festival" && e.img), 12), city, k("k=festival")),
       () => rail("Yeni eklenenler", "Son 3 günde", uniq(E.filter((e) => e.isNew && e.img).sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || "")), 16), city, k("yeni=1"))];
-    const step = () => { if (!document.body.contains(lt) || !parts.length) return; lt.insertAdjacentHTML("beforebegin", parts.shift()()); idle(step, { timeout: 600 }); };
+    const step = () => { if (!document.body.contains(lt)) return; if (mids.length) { md.insertAdjacentHTML("beforebegin", mids.shift()()); return idle(step, { timeout: 400 }); } if (!parts.length) return; lt.insertAdjacentHTML("beforebegin", parts.shift()()); idle(step, { timeout: 600 }); };
     idle(step, { timeout: 600 }); }
   $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); $("#q").blur(); searchGo(city, $("#q").value.trim()); });
   $("#pz").addEventListener("click", () => openPrefs(city, () => viewCity(city)));
@@ -2136,24 +2137,40 @@ const trHH = (i) => `${String(Math.floor(i * TR_STEP / 60)).padStart(2, "0")}:${
 /* (kullanıcı, 10:57: "dairesel, Apple usulü; o an gelen saat büyüsün, sonra normale dönsün, tık tık") iPhone'un saat/alarm çarkı gibi iki sütunlu silindir:
    saat (00–23) ve dakika (00·15·30·45). Kaydırınca sayılar silindirin yüzeyinde döner (rotateX), ortaya gelen büyür ve beyazlaşır, uzaklaşanlar
    yatıp küçülür ve solar; ortadaki cam şerit seçimi gösterir; her yeni sayıda metalik tık + titreşim. Yalnızca transform/opacity. */
-/* (kullanıcı, 11:00: "yana doğru kaydırılan bir dairesellik, tık tık, buzlu cam") Yatay silindir: çeyrek saatler bir dairenin çevresine dizili,
-   sağa-sola kaydırınca dönen bir halka gibi akar (rotateY); ortaya gelen saat büyür ve beyazlaşır, buzlu cam kapsülün içinde durur,
-   kenara gidenler dönerek yatar, küçülür ve solar. Her yeni saatte metalik tık + titreşim. Yalnızca transform/opacity. */
-const DW_W = 62, DW_N = 96;
+/* Saat seçici (kullanıcı, 11:08: "sallanmasın, düzgün olsun; gelen büyüsün; tık tık Apple gibi"):
+   tarayıcının kaydırmasını kullanmaz (telefonda kaydırma ile çizim arasındaki gecikme sayıları titretiyordu); parmak doğrudan izlenir,
+   bütün sayılar aynı karede tek hesapla yerleşir. Düz yatay şerit; ortaya gelen yumuşakça ×1,55 büyür, beyazlaşır ve buzlu cam kapsülde durur,
+   uzaklaşanlar küçülüp solar. Bırakınca hızına göre kayar ve en yakın çeyrek saate yaylanarak oturur (Apple gibi). Her yeni saatte tık + titreşim.
+   Harita ancak çark durunca yenilenir (çevirirken takılma olmasın). Yalnızca transform/opacity. */
+const DW_W = 76, DW_N = 96;
 const dwT = (i) => `${String(Math.floor(i / 4)).padStart(2, "0")}:${String(i % 4 * 15).padStart(2, "0")}`;
-const trHTML = () => `<div class="hf-rl"><div class="hw2"><span class="hw2-hl"></span><div class="hw2-c"><i class="hw2-sp"></i>${Array.from({ length: DW_N }, (_, i) => `<b class="${i % 4 ? "" : "h"}">${dwT(i)}</b>`).join("")}<i class="hw2-sp"></i></div></div></div>`;
+const trHTML = () => `<div class="hf-rl"><div class="hw2"><span class="hw2-hl"></span><div class="hw2-c">${Array.from({ length: DW_N }, (_, i) => `<b class="${i % 4 ? "" : "h"}">${dwT(i)}</b>`).join("")}</div></div></div>`;
 const trNext = () => { const n = nowIST().hm, m = Math.ceil((+n.slice(0, 2) * 60 + +n.slice(3, 5)) / 60) * 60 % 1440; return `${String(m / 60).padStart(2, "0")}:00`; };
 function trBind(root, get, set) {
-  const c = root.querySelector(".hw2-c"), B = [...c.querySelectorAll("b")]; let last = -1, raf = 0;
-  const paint = () => { raf = 0; const sl = c.scrollLeft;
-    for (let i = 0; i < B.length; i++) { const b = B[i], d = (i * DW_W - sl) / DW_W, a = Math.abs(d); if (a > 4.5) { if (b.style.opacity !== "0") b.style.opacity = 0; continue; }
-      // kadran: saatler büyük bir dairenin üst yayı üzerinde; kaydırınca daire döner, ortaya gelen büyür, kenara gidenler yay boyunca aşağı iner, küçülür, solar
-      const t = d * .27, R = 250; b.style.transform = `translate(${(R * Math.sin(t) - d * DW_W).toFixed(1)}px,${(R * (1 - Math.cos(t))).toFixed(1)}px) rotate(${(t * 57.3).toFixed(1)}deg) scale(${(a < 1 ? 1.5 - a * .5 : Math.max(.7, 1.08 - a * .12)).toFixed(3)})`;
-      b.style.opacity = a < .5 ? 1 : Math.max(.08, .78 - a * .17); b.classList.toggle("on", a < .5); } };
-  const to = (t, smooth) => { const i = Math.round((+t.slice(0, 2) * 60 + +t.slice(3, 5)) / 15); last = i; c.scrollTo({ left: i * DW_W, behavior: smooth ? "smooth" : "auto" }); paint(); };
-  c.addEventListener("scroll", () => { raf ||= requestAnimationFrame(paint); const i = Math.max(0, Math.min(DW_N - 1, Math.round(c.scrollLeft / DW_W))); if (i === last) return; last = i; if (!get()) return; tick(); set(dwT(i)); }, { passive: true });
-  B.forEach((b, i) => b.addEventListener("click", () => { if (!get()) set(dwT(i)); c.scrollTo({ left: i * DW_W, behavior: "smooth" }); }));
-  return { to, sync: () => { root.querySelector(".hf-rl").classList.toggle("off", !get()); requestAnimationFrame(() => to(get() || "19:00", false)); } };
+  const c = root.querySelector(".hw2-c"), B = [...c.querySelectorAll("b")], max = DW_N - 1;
+  let p = 0, last = -1, anim = 0, drag = null, vis = new Set();
+  const idxOf = (t) => Math.round((+t.slice(0, 2) * 60 + +t.slice(3, 5)) / 15);
+  const paint = () => { const lo = Math.max(0, Math.floor(p) - 6), hi = Math.min(max, Math.ceil(p) + 6), now = new Set();
+    for (let i = lo; i <= hi; i++) { const b = B[i], d = i - p, a = Math.abs(d), k = Math.max(0, 1 - a); now.add(i);
+      b.style.transform = `translate3d(${(d * DW_W).toFixed(2)}px,0,0) scale(${(1 + .45 * k * k * (3 - 2 * k)).toFixed(3)})`; b.style.opacity = (a < 1 ? 1 - a * .35 : Math.max(0, .65 - (a - 1) * .14)).toFixed(3); b.classList.toggle("on", a < .5); }
+    for (const i of vis) if (!now.has(i)) B[i].style.opacity = 0; vis = now;
+    const r = Math.round(p); if (r !== last) { const first = last < 0; last = r; if (!first && get()) { tick(); set(dwT(r), false); } } };
+  const settle = () => { if (get()) set(dwT(Math.round(p)), true); };
+  // yay benzeri oturma (Apple'ın kaydırma eğrisi gibi: hızlı başlar, yumuşakça durur)
+  const go = (target, ms = 380) => { cancelAnimationFrame(anim); const from = p, t0 = performance.now(), T = Math.max(220, Math.min(900, ms));
+    const f = (t) => { const x = Math.min(1, (t - t0) / T), e = 1 - Math.pow(1 - x, 3); p = from + (target - from) * e; paint(); if (x < 1) anim = requestAnimationFrame(f); else { p = target; paint(); settle(); } }; anim = requestAnimationFrame(f); };
+  c.addEventListener("pointerdown", (ev) => { if (!get()) return; cancelAnimationFrame(anim); drag = { x: ev.clientX, y: ev.clientY, p, v: 0, t: performance.now(), lx: ev.clientX, on: false, id: ev.pointerId }; });
+  c.addEventListener("pointermove", (ev) => { if (!drag || ev.pointerId !== drag.id) return; const dx = ev.clientX - drag.x;
+    if (!drag.on) { if (Math.abs(dx) < 6) return; if (Math.abs(ev.clientY - drag.y) > Math.abs(dx)) { drag = null; return; } drag.on = true; try { c.setPointerCapture(ev.pointerId); } catch {} }
+    const now = performance.now(), dt = Math.max(1, now - drag.t); drag.v = .8 * ((drag.lx - ev.clientX) / DW_W / dt) + .2 * drag.v; drag.t = now; drag.lx = ev.clientX;
+    let np = drag.p - dx / DW_W; if (np < 0) np = -Math.pow(-np, .6) * .5; if (np > max) np = max + Math.pow(np - max, .6) * .5; p = np; paint(); });
+  const up = (ev) => { if (!drag) return; const d = drag; drag = null; if (!d.on) return; const target = Math.max(0, Math.min(max, Math.round(p + d.v * 260)));
+    go(target, 260 + Math.abs(target - p) * 45); };
+  c.addEventListener("pointerup", up); c.addEventListener("pointercancel", up);
+  let wt = 0; c.addEventListener("wheel", (ev) => { if (!get()) return; ev.preventDefault(); cancelAnimationFrame(anim); p = Math.max(0, Math.min(max, p + (Math.abs(ev.deltaX) > Math.abs(ev.deltaY) ? ev.deltaX : ev.deltaY) / DW_W)); paint(); clearTimeout(wt); wt = setTimeout(() => go(Math.round(p), 220), 120); }, { passive: false });
+  B.forEach((b, i) => b.addEventListener("click", () => { if (!get()) { set(dwT(i), true); } go(i, 260 + Math.abs(i - p) * 40); }));
+  const to = (t, smooth) => { const i = idxOf(t); if (smooth) go(i); else { cancelAnimationFrame(anim); p = i; last = i; paint(); } };
+  return { to, sync: () => { root.querySelector(".hf-rl").classList.toggle("off", !get()); to(get() || "19:00", false); } };
 }
 function viewHarita(city) {
   setTop(city); document.title = `Harita · Ne Var Ne Yok`;
@@ -2174,7 +2191,7 @@ function viewHarita(city) {
     const byV = new Map(); UG = new Map(); for (const x of E) { if (x[0] >= 0) (byV.get(x[0]) || byV.set(x[0], []).get(x[0])).push(x); else (UG.get(x[7]) || UG.set(x[7], []).get(x[7])).push(x); }
     VG = [...byV].map(([vi, L]) => ({ v: IX.v[vi], L, vi })); const byC = new Map(); live = 0;
     const vf = VG.map((g, i) => { const cc = {}; for (const x of g.L) cc[x[5]] = (cc[x[5]] || 0) + 1; const top = Object.entries(cc).sort((p, q) => q[1] - p[1])[0][0];
-      const lv = g.L.some((x) => x[3] === today && x[4] && (() => { const m = +x[4].slice(0, 2) * 60 + +x[4].slice(3, 5) - now; return m <= 180 && m >= -60; })()); if (lv) live++;
+      const lv = g.L.some((x) => x[3] === today && x[4] && (() => { const m = +x[4].slice(0, 2) * 60 + +x[4].slice(3, 5) - now; return m <= 180 && m >= -60; })()); if (lv) live++; g.lv = lv;
       byC.set(g.v[2], (byC.get(g.v[2]) || 0) + g.L.length);
       return { type: "Feature", geometry: { type: "Point", coordinates: [g.v[1], g.v[0]] }, properties: { i, n: g.L.length, ic: CG[top] ? "c-" + top : "c-diger", so: g.L.every((x) => x[9] === "t") ? 1 : 0, lv: lv ? 1 : 0, nm: g.v[3] } }; });
     for (const [c, L] of UG) byC.set(c, (byC.get(c) || 0) + L.length);
@@ -2197,7 +2214,7 @@ function viewHarita(city) {
   // haritanın üstündeki saat kartı (kullanıcı, 10:45: "saat seçme daha görünür olsun"): Tüm gün / Saat seç + çark; değişiklik anında haritada
   const tc = $("#hmtc"), tcSeg = $(".hm-seg", tc); let tcT = 0;
   const tcUI = () => { $("#hmtl").textContent = HM.from ? `${HM.from} ve sonrası` : "Bütün saatler"; tcSeg.classList.toggle("r", !!HM.from); tcSeg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", (b.dataset.ta === "1") === !HM.from)); };
-  const tcR = trBind(tc, () => HM.from, (v) => { HM.from = v; hmSave(); tcUI(); clearTimeout(tcT); tcT = setTimeout(setData, 140); });
+  const tcR = trBind(tc, () => HM.from, (v, fin) => { HM.from = v; tcUI(); if (fin) { hmSave(); clearTimeout(tcT); tcT = setTimeout(setData, 30); } });
   const tcOpen = () => { if (!tc.hidden) return tcClose(); tc.hidden = false; wrap.classList.add("tco"); snd.sheet?.(); haptic(6); tcUI(); tcR.sync(); };
   const tcClose = () => { tc.hidden = true; wrap.classList.remove("tco"); snd.close?.(); haptic(4); };
   $(".hm-tcx", tc).addEventListener("click", tcClose);
@@ -2221,7 +2238,6 @@ function viewHarita(city) {
       "heatmap-opacity": ["interpolate", ["linear"], ["zoom"], 8.5, .9, 10.5, .35, 11.8, 0] } });
     map.addLayer({ id: "ring-f", type: "fill", source: "ring", paint: { "fill-color": "#0a84ff", "fill-opacity": .1 } });
     map.addLayer({ id: "ring-l", type: "line", source: "ring", paint: { "line-color": "#0a84ff", "line-width": 2, "line-dasharray": [2, 2], "line-opacity": .8 } });
-    map.addLayer({ id: "live", type: "circle", source: "hv", minzoom: 8.5, filter: ["==", ["get", "lv"], 1], paint: { "circle-color": "#a78bfa", "circle-radius": 16, "circle-opacity": .35, "circle-stroke-width": 0 } });
     map.addLayer({ id: "ven", type: "symbol", source: "hv", minzoom: 8.5, layout: {
       "icon-image": ["get", "ic"], "icon-size": ["interpolate", ["linear"], ["zoom"], 8.5, .55, 12, .85, 15, 1], "icon-allow-overlap": true, "icon-ignore-placement": true, "symbol-sort-key": ["-", 0, ["get", "n"]],
       "text-field": ["case", [">", ["get", "n"], 1], ["to-string", ["get", "n"]], ""], "text-font": font, "text-size": 10.5, "text-offset": [1.15, -1.05], "text-allow-overlap": true, "text-ignore-placement": true },
@@ -2259,9 +2275,10 @@ function viewHarita(city) {
         posters.set(i, new maplibregl.Marker({ element: e, anchor: "bottom", offset: [0, 4] }).setLngLat([g.v[1], g.v[0]]).addTo(map)); } }
     for (const [i, mk] of posters) if (!want.has(i)) { mk.remove(); posters.delete(i); } };
   // "canlı" mekânlar: başlamasına 3 saatten az kalan (ya da yeni başlamış) etkinliği olanlar yumuşakça nabız gibi atar
-  const pulse = () => { cancelAnimationFrame(raf); if (!live || matchMedia("(prefers-reduced-motion: reduce)").matches) return; let t0 = 0;
-    const f = (t) => { if (!alive() || !map) return; raf = requestAnimationFrame(f); if (t - t0 < 40 || map.getZoom() < 8.5 || !map.getLayer("live")) return; t0 = t; const ph = (t % 1800) / 1800;
-      map.setPaintProperty("live", "circle-radius", 13 + ph * 17); map.setPaintProperty("live", "circle-opacity", .5 * (1 - ph)); }; raf = requestAnimationFrame(f); };
+  // (11:08 akıcılık) nabız artık haritayı her karede yeniden çizdirmez: canlı mekânlarda küçük HTML halkalar, CSS ile (yalnızca transform/opacity, ekran kartında)
+  let lvM = [];
+  const pulse = () => { lvM.forEach((m) => m.remove()); lvM = []; if (!map) return;
+    for (const g of VG) if (g.lv && lvM.length < 60) lvM.push(new maplibregl.Marker({ element: elOf('<i class="lvp"></i>'), className: "lvm" }).setLngLat([g.v[1], g.v[0]]).addTo(map)); };
   // haritayı kur; en son kaldığı yer (aynı il seçiliyse) yoksa seçili il
   const cam = HM.cam && HM.cam.city === city ? HM.cam : null;
   Promise.all([mlgl(), hIdx(), mStyle(mTheme())]).then(([, ix, style]) => { if (!alive()) return; IX = ix || { v: [], e: [] };
@@ -2269,9 +2286,9 @@ function viewHarita(city) {
       minZoom: 4.6, maxZoom: 18.5, maxPitch: 70, maxBounds: [[19, 32], [51, 46]], attributionControl: { compact: true }, dragRotate: true, pitchWithRotate: true, fadeDuration: 180 });
     window.__hm = map; map.touchZoomRotate.enableRotation();
     map.on("style.load", () => { addLayers(); });
-    map.once("load", () => { if (!cam) goCity(city); drawFavs(); if (DATA.me && !DATA.me.c) meDot(DATA.me.p); if (HM.q) { inp.value = HM.q; clr.hidden = false; } });
+    map.once("load", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); if (!cam) goCity(city); drawFavs(); if (DATA.me && !DATA.me.c) meDot(DATA.me.p); if (HM.q) { inp.value = HM.q; clr.hidden = false; } });
     map.on("moveend", () => { HM.cam = { c: map.getCenter().toArray().map((v) => +v.toFixed(5)), z: +map.getZoom().toFixed(2), p: Math.round(map.getPitch()), b: Math.round(map.getBearing()), city }; hmSave(); near(); });
-    map.on("zoom", () => { const z = map.getZoom(), m = z < 9.4 ? "far" : z >= 14 ? "near" : "mid"; if (m !== lastLod) near(); });
+    map.on("zoom", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); const z = map.getZoom(), m = z < 9.4 ? "far" : z >= 14 ? "near" : "mid"; if (m !== lastLod) near(); });
     map.on("rotate", cmp); map.on("pitch", cmp); cmp();
     longPress();
   }).catch(() => { el.innerHTML = `<div class="hm-err"><b>Harita şu an açılamadı</b><small>İnternet bağlantını kontrol edip tekrar dene.</small><button type="button" class="ok" id="hmre">Tekrar dene</button></div>`; $("#hmre")?.addEventListener("click", () => viewHarita(city)); });
@@ -2341,7 +2358,7 @@ function viewHarita(city) {
       <h4>Diğer</h4><div class="grp lst hf-c"><label class="tg2"><span>Tükenenleri gizle</span><input type="checkbox" id="hft"></label></div>
       <button type="button" class="ok hf-go" id="hfg"></button></div></div>`, "mn hmfs");
     const lab = $("#hfl", sh), seg = $("#hfseg", sh), go = $("#hfg", sh); let cnt = 0;
-    const R = trBind($(".hf-time", sh), () => T.from, (v) => { T.from = v; lab.textContent = `${v} ve sonrası`; clearTimeout(cnt); cnt = setTimeout(count, 120); });
+    const R = trBind($(".hf-time", sh), () => T.from, (v, fin) => { T.from = v; lab.textContent = `${v} ve sonrası`; if (fin) { clearTimeout(cnt); cnt = setTimeout(count, 30); } });
     const ui = () => { $$("[data-w]", sh).forEach((b) => b.classList.toggle("on", b.dataset.w === T.when)); $$("[data-b]", sh).forEach((b) => b.classList.toggle("on", +b.dataset.b === T.bud));
       $$("[data-k]", sh).forEach((b) => b.classList.toggle("on", T.cats.includes(b.dataset.k))); $("#hft", sh).checked = T.tk;
       seg.classList.toggle("r", !!T.from); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", (b.dataset.ta === "1") === !T.from));
