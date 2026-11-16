@@ -25,16 +25,18 @@ await rm(join(ROOT, "e"), { recursive: true, force: true });
 const NVK = new Function(await readFile(join(ROOT, "takip.js"), "utf8") + ";return NV")();
 const AIDX = {};
 // Harita sekmesi bütün Türkiye (kullanıcı isteği, 16.11.2026): konumu bilinen mekânlardaki önümüzdeki 8 günün etkinlikleri → idx/harita.json
-// { v: [[enlem, boylam, il, mekân, ilçe]], e: [[mekân sırası (-1: konum yok), ad (slug), başlık, gün, saat, kategori, afiş, il, mekân adı (konum yoksa)]] }
+// { v: [[enlem, boylam, il, mekân, ilçe]], e: [[mekân sırası (-1: konum yok), ad (slug), başlık, gün, saat, kategori, afiş, il, mekân adı (konum yoksa), durum (t: tükendi, e: ertelendi), doğrulanmış en düşük fiyat, doğrulandığı saat, ücretsiz]] }
 const VA = (await readJSON(join(ROOT, "data/venues.json"), {})) || {}, VT = (await readJSON(join(ROOT, "data/venues-tr.json"), {})) || {};
 const HV = [], HVi = new Map(), HE = [], hLast = (() => { const d = new Date(today + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + 7); return d.toISOString().slice(0, 10); })();
 const HT = [], HTi = new Map(), HI = [], HIi = new Map(); // tekrar eden ad ve afiş adresleri tablo olarak (dosya küçülsün)
 const tix = (t) => { if (!HTi.has(t)) { HTi.set(t, HT.length); HT.push(t); } return HTi.get(t); }, iix = (u) => { if (!HIi.has(u)) { HIi.set(u, HI.length); HI.push(u); } return HIi.get(u); };
 const hVen = (id, name) => { const v = id === "ankara" ? VA[name] : VT[id + "|" + name]; if (!v?.lat) return -1; const k = id + "|" + name; if (!HVi.has(k)) { HVi.set(k, HV.length); HV.push([+(+v.lat).toFixed(5), +(+v.lng).toFixed(5), id, name, v.ilce || ""]); } return HVi.get(k); };
+/* haritadaki bütçe filtresi için fiyat (fiyat kuralı): yalnızca satış sitesinde doğrulanmış fiyat ve doğrulandığı saat; uygulama 36 saati aşanı göstermez → [fiyat, saat (epoch/36e5)] */
+const hPrice = (e, base) => { let p = 0, h = 0; for (const x of e.tickets || []) if (x.price && !x.est && x.seen && x.seen !== base && (!p || x.price < p)) { p = x.price; h = Math.round(Date.parse(x.seen) / 36e5); } return [p, h]; };
 let n = 0;
 for (const [id, c] of Object.entries(cities)) {
   const file = id === "ankara" ? "data/events.json" : `data/c/${id}.json`;
-  const ev = ((await readJSON(join(ROOT, file), { events: [] })) || {}).events || [];
+  const EVF = (await readJSON(join(ROOT, file), { events: [] })) || {}, ev = EVF.events || [], base = EVF.baseline;
   const seen = new Map();
   for (const e of ev.filter((x) => x.d >= today)) { // dosya sırası, uygulamadaki gibi
     let s = slugOf(e); const k = (seen.get(s) || 0) + 1; seen.set(s, k); if (k > 1) s += "-" + k;
@@ -51,7 +53,7 @@ for (const [id, c] of Object.entries(cities)) {
 <link rel="icon" type="image/png" href="/icons/icon-192.png?v=4"><script>location.replace(${JSON.stringify(app)})</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a10;color:#fff;font:600 16px system-ui,sans-serif;text-align:center}a{color:#c4b5fd}</style>
 </head><body><p><b>${esc(title)}</b><br>${esc(when)} · ${esc(e.venue || "")}<br><br><a href="${esc(app)}">Ne Var Ne Yok'ta aç →</a></p></body></html>`;
-    /* bütün tarihler (kullanıcı, 09:09: "bütün Türkiye, bütün etkinlikler haritada") */ if (e.status !== "iptal") { const vi = hVen(id, e.venue || ""); HE.push([vi, s, tix(e.title), e.d, e.t || "", e.cat || "", e.img ? iix(e.img) : -1, id, vi < 0 ? e.venue || "" : ""]); } // konumu olmayan da girer (il düzeyinde gösterilir)
+    /* bütün tarihler (kullanıcı, 09:09: "bütün Türkiye, bütün etkinlikler haritada") */ if (e.status !== "iptal") { const vi = hVen(id, e.venue || ""); const pf = hPrice(e, base); HE.push([vi, s, tix(e.title), e.d, e.t || "", e.cat || "", e.img ? iix(e.img) : -1, id, vi < 0 ? e.venue || "" : "", e.status === "tukendi" ? "t" : e.status === "ertelendi" ? "e" : "", pf[0], pf[1], /ücretsiz/i.test(e.note || "") ? 1 : 0]); } // konumu olmayan da girer (il düzeyinde gösterilir)
     { const ak = NVK.akey(e.title); if (ak && ak.length >= 3 && e.status !== "iptal") (AIDX[ak] ||= []).push([id, e.d, e.t || "", s, e.venue || ""]); }
     const dir = join(ROOT, "e", id, s);
     await mkdir(dir, { recursive: true }); await writeFile(join(dir, "index.html"), html); n++;
