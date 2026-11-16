@@ -2133,13 +2133,24 @@ const ICO = {
    Haritanın üstündeki "Saat" düğmesinden ve filtre panelinden aynı çark açılır. */
 const TR_STEP = 15, TR_N = 24 * 60 / TR_STEP;
 const trHH = (i) => `${String(Math.floor(i * TR_STEP / 60)).padStart(2, "0")}:${String(i * TR_STEP % 60).padStart(2, "0")}`;
-const trHTML = () => `<div class="hf-rl"><div class="hf-rs"><div class="hf-tk">${Array.from({ length: TR_N }, (_, i) => `<i class="${i % 4 ? "" : "M"}">${i % 4 ? "" : `<em>${String(i / 4).padStart(2, "0")}</em>`}</i>`).join("")}</div></div><span class="hf-nd"></span></div>`;
-const trNext = () => { const n = nowIST().hm; return trHH(Math.ceil((+n.slice(0, 2) * 60 + +n.slice(3, 5)) / 60) * 4 % TR_N); };
-function trBind(root, get, set) { const rs = root.querySelector(".hf-rs"); let idx = -1;
-  const to = (t, smooth) => { const i = Math.round((+t.slice(0, 2) * 60 + +t.slice(3, 5)) / TR_STEP); idx = i; rs.scrollTo({ left: i * 12, behavior: smooth ? "smooth" : "auto" }); };
-  rs.addEventListener("scroll", () => { if (!get()) return; const i = Math.max(0, Math.min(TR_N - 1, Math.round(rs.scrollLeft / 12))); if (i === idx) return; idx = i; tick(); set(trHH(i)); }, { passive: true });
-  root.querySelectorAll(".hf-tk i").forEach((t, i) => t.addEventListener("click", () => { if (!get()) set(trHH(i)); to(trHH(i), true); }));
-  return { to, sync: () => { root.querySelector(".hf-rl").classList.toggle("off", !get()); requestAnimationFrame(() => to(get() || "18:00", false)); } }; }
+/* (kullanıcı, 10:57: "dairesel, Apple usulü; o an gelen saat büyüsün, sonra normale dönsün, tık tık") iPhone'un saat/alarm çarkı gibi iki sütunlu silindir:
+   saat (00–23) ve dakika (00·15·30·45). Kaydırınca sayılar silindirin yüzeyinde döner (rotateX), ortaya gelen büyür ve beyazlaşır, uzaklaşanlar
+   yatıp küçülür ve solar; ortadaki cam şerit seçimi gösterir; her yeni sayıda metalik tık + titreşim. Yalnızca transform/opacity. */
+const DW_H = 36, DW_M = [0, 15, 30, 45];
+const trHTML = () => { const col = (k, A) => `<div class="dw-c" data-c="${k}"><i class="dw-sp"></i>${A.map((v) => `<b>${String(v).padStart(2, "0")}</b>`).join("")}<i class="dw-sp"></i></div>`;
+  return `<div class="hf-rl"><div class="dw"><span class="dw-hl"></span>${col("h", [...Array(24).keys()])}<span class="dw-s">:</span>${col("m", DW_M)}<span class="dw-u">ve<br>sonrası</span></div></div>`; };
+const trNext = () => { const n = nowIST().hm, m = Math.ceil((+n.slice(0, 2) * 60 + +n.slice(3, 5)) / 60) * 60 % 1440; return `${String(m / 60).padStart(2, "0")}:00`; };
+function trBind(root, get, set) {
+  const C = [...root.querySelectorAll(".dw-c")], last = C.map(() => -1); let raf = 0;
+  const val = () => { const h = Math.round(C[0].scrollTop / DW_H), m = Math.round(C[1].scrollTop / DW_H); return `${String(Math.max(0, Math.min(23, h))).padStart(2, "0")}:${String(DW_M[Math.max(0, Math.min(3, m))]).padStart(2, "0")}`; };
+  const paint = () => { raf = 0; for (const c of C) { const st = c.scrollTop, B = c.querySelectorAll("b");
+    B.forEach((b, i) => { const d = (i * DW_H - st) / DW_H, a = Math.abs(d); if (a > 4) { b.style.opacity = 0; return; }
+      b.style.transform = `rotateX(${Math.max(-80, Math.min(80, -d * 21))}deg) scale(${1 + Math.max(0, 1 - a) * .2})`; b.style.opacity = a < .5 ? 1 : Math.max(.12, .62 - a * .14); b.classList.toggle("on", a < .5); }); } };
+  const to = (t, smooth) => { const h = +t.slice(0, 2), m = Math.max(0, DW_M.indexOf(+t.slice(3, 5))); last[0] = h; last[1] = m; C[0].scrollTo({ top: h * DW_H, behavior: smooth ? "smooth" : "auto" }); C[1].scrollTo({ top: m * DW_H, behavior: smooth ? "smooth" : "auto" }); paint(); };
+  C.forEach((c, k) => { c.addEventListener("scroll", () => { raf ||= requestAnimationFrame(paint); const i = Math.round(c.scrollTop / DW_H); if (i === last[k]) return; last[k] = i; if (!get()) return; tick(); set(val()); }, { passive: true });
+    c.querySelectorAll("b").forEach((b, i) => b.addEventListener("click", () => { c.scrollTo({ top: i * DW_H, behavior: "smooth" }); if (!get()) setTimeout(() => set(val()), 380); })); });
+  return { to, sync: () => { root.querySelector(".hf-rl").classList.toggle("off", !get()); requestAnimationFrame(() => to(get() || "19:00", false)); } };
+}
 function viewHarita(city) {
   setTop(city); document.title = `Harita · Ne Var Ne Yok`;
   V.innerHTML = `<div class="hmap${mTheme() === "acik" ? " lt" : ""}" id="hmw"><div class="map" id="hm"></div>
@@ -2147,7 +2158,7 @@ function viewHarita(city) {
     <div class="hm-r" id="hmr" hidden></div><div class="hm-t" id="hmt"></div></div>
     <div class="hm-ctl"><button type="button" id="hm3" aria-label="3B görünüm">${ICO.d3}</button><button type="button" id="hmth" aria-label="Açık ya da koyu harita">${mTheme() === "acik" ? ICO.moon : ICO.sun}</button><button type="button" id="hmme" class="bl" aria-label="Etrafımda ne var">${ICO.me}</button></div>
     <button type="button" class="hm-cmp" id="hmc" aria-label="Kuzeye çevir" hidden>${ICO.cmp}</button>
-    <div class="hm-tc" id="hmtc" hidden><div class="hm-tch"><span><b id="hmtl"></b><small>Etkinliğin başlama saati</small></span><div class="hm-seg" role="tablist"><i></i><button type="button" data-ta="1">Tüm gün</button><button type="button" data-ta="0">Saat seç</button></div><button type="button" class="hm-tcx" aria-label="Kapat">✕</button></div><div id="hmtr">${trHTML()}</div></div>
+    <div class="hm-tc" id="hmtc" hidden><div class="hm-tch"><span><b>Başlama saati</b><small id="hmtl"></small></span><div class="hm-seg" role="tablist"><i></i><button type="button" data-ta="1">Tüm gün</button><button type="button" data-ta="0">Saat seç</button></div><button type="button" class="hm-tcx" aria-label="Kapat">✕</button></div><div id="hmtr">${trHTML()}</div></div>
     <button type="button" class="hm-n" id="hmn"><span class="sk" style="display:inline-block;width:150px;height:14px;border-radius:7px"></span></button></div>`;
   const el = $("#hm"), wrap = $("#hmw"), N = CNAME(); let map = null, IX = null, VG = [], UG = new Map(), E = [], pinM = null, meM = null, live = 0, posters = new Map(), favM = [], raf = 0;
   const alive = () => document.body.contains(el);
