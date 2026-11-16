@@ -31,15 +31,15 @@ const ogMeta = (t, d, u, img, alt) => `<meta property="og:site_name" content="Ne
    bağlantıyı açan arkadaş davetiyeyi görür: davet cümlesi (gönderenin seçtiği, bağlantıdaki ?s=), afiş, ad, tarih, mekân;
    "Varım 🙌" takvimine ekler, "Bilet al" satış sitesine, "Yol tarifi" haritaya, "Ne Var Ne Yok'ta aç" uygulamadaki etkinliğe götürür. */
 const invitePage = (o) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
-<title>💌 Beraber gidelim mi? · ${esc(o.title)}</title><meta name="description" content="${esc(o.desc)}">${ogMeta("💌 Beraber gidelim mi? · " + o.title, o.desc, o.url, o.og, o.title + " davetiyesi")}${FONT}
+<title>✉️ Beraber gidelim mi? · ${esc(o.title)}</title><meta name="description" content="${esc(o.desc)}">${ogMeta("✉️ Beraber gidelim mi? · " + o.title, o.desc, o.url, o.og, o.title + " davetiyesi")}${FONT}
 <link rel="stylesheet" href="/davet.css?v=1"></head><body><div class="bg" ${o.img ? `style="background-image:url('${esc(o.img)}')"` : ""}></div><main>
 <a class="lg" href="/" aria-label="Ne Var Ne Yok"><img src="/brand/logo-cam.png" alt="Ne Var Ne Yok"></a>
-<div class="inv" id="inv">💌 Beraber gidelim mi?</div>
+<div class="inv" id="inv">✉️ Beraber gidelim mi?</div>
 ${o.img ? `<div class="ps"><img src="${esc(o.img)}" alt="${esc(o.title)} afişi" referrerpolicy="no-referrer" onerror="this.parentNode.remove();document.querySelector('.cr')?.remove()"></div>${o.by ? `<p class="cr">Görsel: ${esc(o.by)}</p>` : ""}` : ""}
 <h1>${esc(o.title)}</h1><div class="mt"><b>📅 ${esc(o.when)}</b><span>📍 ${esc(o.place)}</span></div>
 <div class="bt"><button type="button" class="p" id="var">Varım 🙌</button><div class="rw">${o.tix ? `<a href="${esc(o.tix)}" target="_blank" rel="noopener">🎟️ Bilet al</a>` : ""}<a href="${esc(o.maps)}" target="_blank" rel="noopener"${o.tix ? "" : ' style="grid-column:span 2"'}>🧭 Yol tarifi</a></div><a href="${esc(o.app)}">🔍 Ne Var Ne Yok'ta aç</a></div>
 <p class="ft">Bu davetiye <a href="/">Ne Var Ne Yok</a> ile hazırlandı · nevarneyok.net.tr</p></main>
-<script type="application/json" id="E">${JSON.stringify({ t: o.title, d: o.d, h: o.t, p: o.place }).replace(/</g, "\\u003c")}</script><script src="/davet.js?v=1" defer></script></body></html>`;
+<script type="application/json" id="E">${JSON.stringify({ t: o.title, d: o.d, h: o.t, p: o.place }).replace(/</g, "\\u003c")}</script><script src="/davet.js?v=2" defer></script></body></html>`;
 // Yeni tarihlerini takip et (takip.js → NV.akey): 81 ilin dizini idx/a.json — anahtar → [[il, gün, saat, ad, mekân]]
 const NVK = new Function(await readFile(join(ROOT, "takip.js"), "utf8") + ";return NV")();
 const AIDX = {};
