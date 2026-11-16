@@ -1,8 +1,8 @@
 /* NE VAR NE YOK · bildirim service worker'ı (yalnızca bildirim için; sayfaları önbelleğe almaz, çevrimdışı çalışma yok).
    Android'de kurulan uygulamada telefon arada bir (günde aşağı yukarı bir kez) "nvny-takip" ile uyandırır:
    güncel etkinlik listesini indirir, takip edilenlerdeki değişiklikleri ve hatırlatmaları (1 hafta, 3 gün, 1 gün önce, o gün, az kaldı, ertesi gün) bildirir;
-   değişiklik yoksa gün içinde öneri gönderir (NV.digest: sabah, öğle, akşam; her dilimde en çok bir). Telefon uyandırma sıklığına kendisi karar verir. */
-importScripts("takip.js?v=11");
+   değişiklik yoksa gün içinde öneri gönderir (NV.digest: sabah, kuşluk, öğle, akşam, gece; her dilimde en çok bir). Telefon uyandırma sıklığına kendisi karar verir. */
+importScripts("takip.js?v=12");
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 
@@ -26,7 +26,8 @@ async function run() {
   const cfg = await NV.get("ncfg"); msgs = msgs.filter((m) => NV.allow(m, cfg));
   for (const m of msgs.slice(0, 4)) await self.registration.showNotification(m.title, { body: m.body, tag: m.tag, icon: "icons/icon-192.png", badge: "icons/icon-192.png", data: { url: m.url } });
   // gün içinde öneri: sabah, öğle (afişli), akşam — her dilimde en çok bir (NV.digest)
-  const last = await NV.get("dgSlots"), dg = mine && NV.digest(mine, prefs, last, city, cityName);
+  const fm = await fetch(city === "ankara" ? "data/films.json" : `data/c/${city}-films.json`, { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => j?.films || []).catch(() => []);
+  const last = await NV.get("dgSlots"), dg = mine && NV.digest(mine, prefs, last, city, cityName, fm);
   if (dg && !msgs.length && NV.allow(dg, cfg)) { await self.registration.showNotification(dg.title, { body: dg.body, tag: dg.tag + "-" + dg.slot, icon: "icons/icon-192.png", badge: "icons/icon-192.png", ...(dg.image ? { image: dg.image } : {}), vibrate: [40, 60, 40], data: { url: dg.url } });
     const t = NV.today(); await NV.set("dgSlots", { d: t, s: [...(last && last.d === t ? last.s || [] : []), dg.slot] }); }
 }
