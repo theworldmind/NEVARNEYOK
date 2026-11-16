@@ -1362,7 +1362,7 @@ const arrow = (s) => { const m = s.maneuver || {}, r = m.type === "arrive" ? nul
 const RCACHE = new Map();
 async function routeOf(mode, a, b) {
   const k = mode + a.map((x) => x.toFixed(4)) + b; if (RCACHE.has(k)) return RCACHE.get(k);
-  const u = `https://routing.openstreetmap.de/routed-${mode === "car" ? "car" : "foot"}/route/v1/driving/${a[1]},${a[0]};${b[1]},${b[0]}?overview=full&geometries=geojson&steps=true&alternatives=false`;
+  const u = `https://routing.openstreetmap.de/routed-${mode === "car" ? "car" : mode === "bike" ? "bike" : "foot"}/route/v1/driving/${a[1]},${a[0]};${b[1]},${b[0]}?overview=full&geometries=geojson&steps=true&alternatives=false`;
   const r = await fetch(u); if (!r.ok) throw new Error("rota " + r.status); const j = await r.json(); if (j.code !== "Ok" || !j.routes?.length) throw new Error("rota yok");
   RCACHE.set(k, j.routes[0]); return j.routes[0];
 }
@@ -1374,16 +1374,16 @@ function routeSheet(e, v, city, gUrl) {
   haptic(6);
   const sh = sheet(`<div class="pn rtp" role="dialog" aria-label="Yol tarifi">
     <div class="rtm map" id="rmap"></div>
-    <div class="rtop" id="rtop"><div class="hd"><button type="button" class="rbk" data-close aria-label="Geri"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="rth"><small>Yol tarifi</small><b>${esc(e.venue || "")}</b></span></div>
+    <div class="rtop" id="rtop"><div class="hd"><button type="button" class="rbk" data-close aria-label="Geri"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="rth"><small id="rtk">Yol tarifi</small><b id="rtn">${esc(e.venue || "")}</b></span><button type="button" class="rsw" id="rsw" aria-label="Yönü değiştir"><svg viewBox="0 0 24 24"><path d="M8 4v15M4.5 7.5 8 4l3.5 3.5M16 20V5M12.5 16.5 16 20l3.5-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
     <div class="rfr" id="rfr" role="tablist" aria-label="Nereden"></div><div class="rctl"><button type="button" id="r3d" aria-label="3B görünüm">3B</button><button type="button" id="rfit" aria-label="Bütün yolu göster"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="rfx" id="rfx" hidden><label class="fvi"><svg viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><input id="rfi" placeholder="Semt, adres ya da yer adı" enterkeyhint="search" autocomplete="off"></label><div class="rfl" id="rfl"></div></div></div>
     <div class="nvt" id="nvt"><i></i><span><b></b><small></small></span></div>
     <div class="nvb" id="nvb"><span><b id="nvm"></b><small id="nvk"></small></span><button type="button" class="nvv" id="nvv" aria-label="Sesli yönlendirme"></button><button type="button" class="nve" id="nve">Bitir</button></div>
     <button type="button" class="nvc" id="nvc" aria-label="Konumuma dön"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button>
-    <div class="bd2 rcd" id="rcd"><button type="button" class="rgr" id="rgr" aria-label="Ayrıntıları aç"></button><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
+    <div class="bd2 rcd" id="rcd"><button type="button" class="rgr" id="rgr" aria-label="Ayrıntıları aç"></button><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="bike" role="tab">Bisikletle</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
     <div class="rsum" id="rsum"><span class="sk" style="display:block;height:52px;border-radius:14px"></span></div>
     <ol class="rst" id="rst"></ol>
-    <a class="rg" href="${gUrl}" target="_blank" rel="noopener">${I.ext}Google Haritalar'da aç</a>
-    <p class="rnote">Yol OpenStreetMap verisiyle hesaplanır; trafik hesaba katılmaz. Toplu taşıma için Google Haritalar. Bunun için yalnızca başlangıç ve varış noktası OpenStreetMap'in yol sunucusuna gider, bizde saklanmaz.</p></div></div>`, "mn rt");
+    <div class="rgx"><a class="rg" id="rgt" href="${gUrl}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="5" y="3.5" width="14" height="14" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11h14M8.5 21l1.5-3.5M15.5 21 14 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8.8" cy="14.3" r="1" fill="currentColor"/><circle cx="15.2" cy="14.3" r="1" fill="currentColor"/></svg>Toplu taşımayla ↗</a><a class="rg" id="rgg" href="${gUrl}" target="_blank" rel="noopener">${I.ext}Google Haritalar'da aç</a></div>
+    <p class="rnote">Yol OpenStreetMap verisiyle hesaplanır; trafik hesaba katılmaz. Otobüs ve metro tarifi için "Toplu taşımayla" Google Haritalar'ı açar. Bunun için yalnızca başlangıç ve varış noktası OpenStreetMap'in yol sunucusuna gider, bizde saklanmaz.</p></div></div>`, "mn rt");
   let map = null, line = null, done = null, me = null, watch = null, mode = null, from = null, R = null, S = [], nav = false, C = [], cum = [], sIdx = [], ni = 0, lastStep = -1, warned = -1, wl = null, follow = true;
   let voice = store.get("nvny-sesli") !== "0";
   const dest = [v.lat, v.lng], seg = sh.querySelector(".rseg"), sum = sh.querySelector("#rsum"), st = sh.querySelector("#rst");
@@ -1404,7 +1404,13 @@ function routeSheet(e, v, city, gUrl) {
   $("#rgr", sh).addEventListener("click", () => { haptic(5); snd.sel?.(); cSet(!cOpen); });
   addEventListener("resize", () => cSet(cOpen, false));
   const oldClose = sh.close; sh.close = () => { if (watch != null) navigator.geolocation.clearWatch(watch); try { wl?.release(); speechSynthesis.cancel(); } catch {} oldClose(); };
-  const setMode = (m) => { mode = m; seg.classList.toggle("r", m === "car"); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.m === m)); };
+  const setMode = (m) => { mode = m; seg.style.setProperty("--i", ["foot", "bike", "car"].indexOf(m)); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.m === m)); };
+  /* Yönü değiştir (kullanıcı, 16.11.2026 20:02: "haritada istediğim her yere yol tarifi"): ⇅ ile gidiş ↔ dönüş. Ters yönde "Başla" yok (canlı yol gösterme yalnızca konumundan çıkarken). */
+  let rev = false; const srcName = () => src === "me" ? "Konumun" : src === "x" ? xPlace?.n || "Seçilen yer" : F.find((x) => x.id === src)?.n || "";
+  const toName = () => rev ? srcName() : e.venue || "";
+  const hdr = () => { $("#rtk", sh).textContent = rev ? `${e.venue || ""} → ` : "Yol tarifi"; $("#rtn", sh).textContent = toName(); sh.classList.toggle("fixed", src !== "me" || rev); sh.classList.toggle("rev", rev); };
+  const gLinks = (A, B) => { const q = (p) => p.map((x) => x.toFixed(6)).join(","), u = (tm) => `https://www.google.com/maps/dir/?api=1&origin=${q(A)}&destination=${q(B)}&travelmode=${tm}`;
+    $("#rgt", sh).href = u("transit"); $("#rgg", sh).href = u(mode === "car" ? "driving" : mode === "bike" ? "bicycling" : "walking"); };
   const say = (t) => { if (!voice || !("speechSynthesis" in window)) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t.replace(/<[^>]+>/g, "")); u.lang = "tr-TR"; u.rate = 1.02; speechSynthesis.speak(u); } catch {} };
   const vIcon = () => { $("#nvv", sh).innerHTML = voice ? '<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z" fill="currentColor"/><path d="M16 9.5l5 5M21 9.5l-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>'; };
   const prep = () => { // yol noktaları, birikimli mesafe, her adımın yol üzerindeki yeri
@@ -1414,13 +1420,14 @@ function routeSheet(e, v, city, gUrl) {
   };
   const paint = async () => {
     sum.innerHTML = `<span class="sk" style="display:block;height:52px;border-radius:14px"></span>`; st.innerHTML = "";
-    try { R = await routeOf(mode, from, dest); }
-    catch { sum.innerHTML = `<div class="rerr">Yol şu an hesaplanamadı. Kuş uçuşu ${kmTxt(km(from, dest))}. <a href="${gUrl}" target="_blank" rel="noopener">Google Haritalar'da aç ↗</a></div>`; return; }
+    const A = rev ? dest : from, B = rev ? from : dest; gLinks(A, B); hdr();
+    try { R = await routeOf(mode, A, B); }
+    catch { sum.innerHTML = `<div class="rerr">Yol şu an hesaplanamadı. Kuş uçuşu ${kmTxt(km(from, dest))}. <a href="${$("#rgg", sh).href}" target="_blank" rel="noopener">Google Haritalar'da aç ↗</a></div>`; return; }
     S = R.legs[0].steps.filter((s, i, a) => !(s.maneuver.type === "new name" && s.distance < 15 && i < a.length - 1)); prep();
     const min = Math.max(1, Math.round(R.duration / 60)), at = new Date(Date.now() + R.duration * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
-    const late = e.t && e.d === nowIST().d ? (() => { const [h, mm] = e.t.split(":").map(Number), leave = h * 60 + mm - min - 10, n = nowIST().hm.split(":").map(Number), now = n[0] * 60 + n[1]; return leave >= now ? `<small class="go">Tam yetişmek için en geç <b>${String(Math.floor(leave / 60)).padStart(2, "0")}:${String(leave % 60).padStart(2, "0")}</b>'da çık</small>` : now < h * 60 + mm ? `<small class="go late">Başlamasına ${h * 60 + mm - now} dk var, hemen çıkmalısın</small>` : ""; })() : "";
+    const late = !rev && e.t && e.d === nowIST().d ? (() => { const [h, mm] = e.t.split(":").map(Number), leave = h * 60 + mm - min - 10, n = nowIST().hm.split(":").map(Number), now = n[0] * 60 + n[1]; return leave >= now ? `<small class="go">Tam yetişmek için en geç <b>${String(Math.floor(leave / 60)).padStart(2, "0")}:${String(leave % 60).padStart(2, "0")}</b>'da çık</small>` : now < h * 60 + mm ? `<small class="go late">Başlamasına ${h * 60 + mm - now} dk var, hemen çıkmalısın</small>` : ""; })() : "";
     sum.innerHTML = `<div class="rs1"><b>${durTxt(min)}</b><span>${mTxt(R.distance)} · varış ${at}</span><button type="button" class="nvs" id="nvs">Başla</button></div>${late}`;
-    st.innerHTML = S.map((s, i) => `<li data-i="${i}"><i>${arrow(s)}</i><span>${stepTxt(s, e.venue || "")}${s.distance >= 5 && s.maneuver.type !== "arrive" ? `<small>${mTxt(s.distance)}</small>` : ""}</span></li>`).join("");
+    st.innerHTML = S.map((s, i) => `<li data-i="${i}"><i>${arrow(s)}</i><span>${stepTxt(s, toName())}${s.distance >= 5 && s.maneuver.type !== "arrive" ? `<small>${mTxt(s.distance)}</small>` : ""}</span></li>`).join("");
     st.querySelectorAll("li").forEach((li) => li.addEventListener("click", () => { const s = S[+li.dataset.i]; if (map) map.flyTo({ center: s.maneuver.location, zoom: 17, duration: 600 }); haptic(4); }));
     $("#nvs", sum).addEventListener("click", start);
     cSet(cOpen, false); rDraw(); if (!nav) fitRoute();
@@ -1431,19 +1438,19 @@ function routeSheet(e, v, city, gUrl) {
     let b = ni, bd = 1e9; for (let i = Math.max(0, ni - 5); i < Math.min(C.length, ni + 60); i++) { const d = km(p, C[i]); if (d < bd) { bd = d; b = i; } }
     if (b >= ni || force) ni = b;
     const left = Math.max(0, cum[cum.length - 1] - cum[ni] + bd * 1000), k = sIdx.findIndex((x, i) => i > 0 && x > ni), step = k < 0 ? S.length - 1 : k, toTurn = Math.max(0, cum[sIdx[step]] - cum[ni]);
-    const s = S[step], tx = stepTxt(s, e.venue || "");
+    const s = S[step], tx = stepTxt(s, toName());
     const T = $("#nvt", sh); T.querySelector("i").innerHTML = arrow(s); T.querySelector("b").textContent = s.maneuver.type === "arrive" ? "Varış" : mTxt(toTurn); T.querySelector("small").innerHTML = tx;
     const min = Math.max(1, Math.round(R.duration * (left / Math.max(1, R.distance)) / 60)), at = new Date(Date.now() + min * 60e3).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
     $("#nvm", sh).textContent = durTxt(min); $("#nvk", sh).textContent = `${mTxt(left)} · varış ${at}`;
     rSet(C.slice(0, ni + 1).concat([p]), [p].concat(C.slice(ni + 1)));
     if (step !== lastStep) { lastStep = step; T.classList.remove("pop"); void T.offsetWidth; T.classList.add("pop"); if (!force) { snd.sel?.(); haptic(8); } say(`${mTxt(toTurn)} sonra, ${tx}`); }
-    if (toTurn < (mode === "car" ? 120 : 35) && warned !== step && s.maneuver.type !== "arrive") { warned = step; haptic(25); snd.ok(); say(tx); }
+    if (toTurn < (mode === "car" ? 120 : mode === "bike" ? 60 : 35) && warned !== step && s.maneuver.type !== "arrive") { warned = step; haptic(25); snd.ok(); say(tx); }
     if (left < 25) { T.querySelector("b").textContent = "Vardın 🎉"; T.querySelector("small").innerHTML = esc(e.venue || ""); if (warned !== -2) { warned = -2; snd.ok(); haptic(40); say("Vardın. İyi eğlenceler!"); } }
     // 3B navigasyon (kullanıcı, 09:22): Apple Haritalar gibi eğik bakış, harita gidiş yönüne döner
-    if (follow && mapOk) map.easeTo({ center: [p[1], p[0]], zoom: Math.max(map.getZoom(), mode === "car" ? 16.6 : 17.6), pitch: 58, bearing: brg(p, C[Math.min(C.length - 1, ni + 4)]), duration: 900 });
+    if (follow && mapOk) map.easeTo({ center: [p[1], p[0]], zoom: Math.max(map.getZoom(), mode === "car" ? 16.6 : mode === "bike" ? 17 : 17.6), pitch: 58, bearing: brg(p, C[Math.min(C.length - 1, ni + 4)]), duration: 900 });
   }
   async function start() {
-    if (!R) return; nav = true; follow = true; sh.classList.add("nav"); snd.push?.(); haptic(12); vIcon();
+    if (!R || rev || src !== "me") return; nav = true; follow = true; sh.classList.add("nav"); snd.push?.(); haptic(12); vIcon();
     try { wl = await navigator.wakeLock?.request("screen"); } catch {}
     setTimeout(() => { map?.resize(); update(from, true); }, 360);
   }
@@ -1451,7 +1458,7 @@ function routeSheet(e, v, city, gUrl) {
   $("#nve", sh).addEventListener("click", stop);
   $("#nvv", sh).addEventListener("click", () => { voice = !voice; store.set("nvny-sesli", voice ? "1" : "0"); vIcon(); snd.sel?.(); if (!voice) try { speechSynthesis.cancel(); } catch {} });
   $("#nvc", sh).addEventListener("click", () => { follow = true; sh.classList.remove("free"); if (from && mapOk) { if (nav) update(from, true); else map.easeTo({ center: [from[1], from[0]], zoom: 17, duration: 700 }); } haptic(5); });
-  seg.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { if (b.dataset.m === mode || !from) return; snd.sel?.(); haptic(4); setMode(b.dataset.m); paint(); }));
+  seg.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { if (b.dataset.m === mode || !from) return; snd.sel?.(); haptic(4); setMode(b.dataset.m); store.set("nvny-rota-mod", b.dataset.m); paint(); }));
   // harita (MapLibre; 3B binalar, açık/koyu tema haritadaki seçimle aynı)
   let mapOk = false; const LL = (c) => [c[1], c[0]], ln = (P) => ({ type: "Feature", geometry: { type: "LineString", coordinates: P.map(LL) }, properties: {} });
   function rSet(D, Lc) { if (!mapOk) return; map.getSource("rt-d")?.setData(ln(D)); map.getSource("rt-l")?.setData(ln(Lc)); }
@@ -1485,17 +1492,19 @@ function routeSheet(e, v, city, gUrl) {
   const chips = () => { rfr.innerHTML = `<button type="button" data-s="me" class="${src === "me" ? "on" : ""}"><span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span>Konumum</button>`
       + F.map((f) => `<button type="button" data-s="${f.id}" class="${src === f.id ? "on" : ""}">${favIc(f.n)}${esc(f.n)}</button>`).join("")
       + `<button type="button" data-s="x" class="${src === "x" ? "on" : ""}"><span class="cgi" style="background:rgba(120,120,128,.4)"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="#fff" stroke-width="2.2"/><path d="m15.5 15.5 4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>${src === "x" && xPlace ? esc(xPlace.n) : "Başka yer"}</button>`;
+    rfr.insertAdjacentHTML("afterbegin", `<span class="rfk">${rev ? "Nereye" : "Nereden"}</span>`);
     rfr.querySelectorAll("[data-s]").forEach((b) => b.addEventListener("click", () => { snd.sel?.(); haptic(4); pick(b.dataset.s, true); })); };
-  const go = (p) => { from = p; if (!mode) setMode(km(p, dest) < 2.5 ? "foot" : "car"); paint(); };
+  $("#rsw", sh).addEventListener("click", (ev) => { if (nav) return; rev = !rev; const b = ev.currentTarget; b.classList.remove("spin"); void b.offsetWidth; b.classList.add("spin"); snd.sel?.(); haptic(8); chips(); hdr(); if (from) paint(); });
+  const go = (p) => { from = p; if (!mode) setMode(km(p, dest) < 2.5 ? "foot" : km(p, dest) < 6 && store.get("nvny-rota-mod") === "bike" ? "bike" : "car"); paint(); };
   const startWatch = () => { if (watching || !navigator.geolocation?.watchPosition) return; watching = true;
     watch = navigator.geolocation.watchPosition((q) => { const np = [q.coords.latitude, q.coords.longitude]; meP = np; DATA.me = { p: np, t: Date.now() }; locSave(np);
       if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([np[1], np[0]]).addTo(map); me?.setLngLat([np[1], np[0]]);
-      if (src !== "me") return;
+      if (src !== "me" || rev) return;
       if (R && C.length) { let off = 1e9; for (let i = Math.max(0, ni - 3); i < Math.min(C.length, ni + 40); i++) off = Math.min(off, km(np, C[i])); if (off > .06) { from = np; paint(); return; } }
       from = np; if (nav) update(np);
     }, () => {}, { enableHighAccuracy: true, maximumAge: 2000, timeout: 30000 }); };
   function pick(s, user) {
-    if (nav && s !== "me") return; src = s; store.set("nvny-rota-kaynak", s === "x" ? "me" : s); chips(); rfx.hidden = s !== "x" || !!(xPlace && !user); sh.classList.toggle("fixed", s !== "me");
+    if (nav && s !== "me") return; src = s; store.set("nvny-rota-kaynak", s === "x" ? "me" : s); chips(); rfx.hidden = s !== "x" || !!(xPlace && !user); sh.classList.toggle("fixed", s !== "me" || rev);
     if (s === "me") { pin(null); if (meP) { go(meP); return; }
       sum.innerHTML = `<span class="sk" style="display:block;height:52px;border-radius:14px"></span>`;
       whereAmI(true).then((p) => { meP = p; if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([p[1], p[0]]).addTo(map); if (src === "me") go(p); startWatch(); })
@@ -2246,6 +2255,7 @@ const ICO = {
   moon: '<svg viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z" fill="currentColor"/></svg>',
   sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
   me: '<svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg>',
+  car: '<svg viewBox="0 0 24 24"><path d="M12 3.5 21 12l-9 8.5L3 12z" fill="currentColor"/><path d="M9 14.5V12a1.5 1.5 0 0 1 1.5-1.5H15m-2-2 2 2-2 2" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   flt: '<svg viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="15" cy="7" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="17" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
   cmp: '<svg viewBox="0 0 24 24"><path d="M12 3.5 15 12h-6z" fill="#ff453a"/><path d="M12 20.5 9 12h6z" fill="currentColor" opacity=".55"/></svg>',
 };
@@ -2432,9 +2442,9 @@ function viewHarita(city) {
     sheet(`<div class="pn" role="dialog" aria-label="${esc(name)}"><div class="hd"><span class="rth"><b>${esc(name)}</b><small>${top.length ? `En yakın ${top.length} etkinlik${sub ? " · " + esc(sub) : ""}` : "Yakında etkinlik bulunamadı"}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
       <div class="bd2"><div class="mpl">${top.map(([d, g, x]) => `<a href="${hmHref(x, g.v[2])}"><span class="mpi"><span class="mpx" style="--c:${CG[x[5]]?.[0] || "#8b5cf6"}"><svg viewBox="0 0 24 24">${CG[x[5]]?.[1] || ""}</svg>${x[6] ? `<img src="${esc(x[6])}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}</span></span><span><b>${esc(x[2])}</b><small><em class="kmb">${kmTxt(d)}</em> · ${rel(x[3])}${x[4] ? " · " + esc(x[4]) : ""} · ${esc(g.v[3])}</small></span></a>`).join("")}</div>
       ${top.length ? "" : `<p class="kmn">Bu filtrelerle yakınında konumu bilinen etkinlik yok. Filtreleri genişletmeyi dene.</p>`}</div></div>`, "mn"); };
-  const nearPlace = (ll, name) => { if (!map) return; pinM?.remove(); pinM = new maplibregl.Marker({ element: elOf('<div class="pin"></div>'), anchor: "bottom" }).setLngLat([ll[1], ll[0]]).addTo(map);
-    const D = VG.map((g) => km(ll, [g.v[0], g.v[1]])).sort((a, b) => a - b), far = D[Math.min(D.length - 1, 7)] ?? 5;
-    map.flyTo({ center: [ll[1], ll[0]], zoom: far < 1.5 ? 15 : far < 4 ? 14 : far < 10 ? 13 : 11.5, duration: 1000 }); setTimeout(() => nearList(ll, name + " yakınında"), 1050); };
+  // aranan yer: harita oraya gider, Apple gibi yer kartı açılır (Yol tarifi, Kaydet, Yakındaki etkinlikler)
+  const nearPlace = (ll, name, sub) => { if (!map) return; pinM?.remove(); pinM = new maplibregl.Marker({ element: elOf('<div class="pin drop"></div>'), anchor: "bottom" }).setLngLat([ll[1], ll[0]]).addTo(map);
+    map.flyTo({ center: [ll[1], ll[0]], zoom: Math.max(map.getZoom(), 15.5), duration: 1000 }); setTimeout(() => placeCard(ll, { n: name, s: sub || "", keep: true }), 1000); };
   /* Kayıtlı yerler (kullanıcı, 09:22: "GTA gibi; bir yeri seçip okul ya da ev yazabilmeli, değiştirene kadar kalmalı"): haritada bir yere basılı tut → ad ver.
      Haritada kendi simgesiyle durur, aramanın en üstünde çıkar; dokununca yakındaki etkinlikler, adını değiştir, sil. */
   const drawFavs = () => { favM.forEach((m) => m.remove()); favM = []; if (!map) return;
@@ -2442,9 +2452,9 @@ function viewHarita(city) {
     for (const f of favs()) { const e = elOf(`<button type="button" class="fv${f.id === newFav ? " new" : ""}" aria-label="${esc(f.n)}"><span class="fvp">${favIc(f.n)}</span><b>${esc(f.n)}</b></button>`); e.addEventListener("click", (ev) => { ev.stopPropagation(); favSheet(f); });
       favM.push(new maplibregl.Marker({ element: e, anchor: "bottom", offset: [0, 22], className: "fvm" }).setLngLat([f.ll[1], f.ll[0]]).addTo(map)); } newFav = ""; };
   let newFav = "";
-  const favEdit = (ll, f) => { snd.pop?.(); haptic(14);
+  const favEdit = (ll, f, pre = "") => { snd.pop?.(); haptic(14);
     const sh = sheet(`<div class="pn fve" role="dialog" aria-label="Yeri kaydet"><div class="hd"><span class="rth"><b>${f ? "Adını değiştir" : "Bu yeri kaydet"}</b><small>${f ? esc(f.n) : "Haritada hep burada durur; değiştirene kadar."}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
-      <div class="bd2"><label class="fvi">${favIc(f?.n || "")}<input id="fvn" maxlength="28" placeholder="Ev, okul, iş, spor salonu…" value="${esc(f?.n || "")}" enterkeyhint="done"></label>
+      <div class="bd2"><label class="fvi">${favIc(f?.n || "")}<input id="fvn" maxlength="28" placeholder="Ev, okul, iş, spor salonu…" value="${esc(f?.n || pre)}" enterkeyhint="done"></label>
       <div class="fvq">${["Ev", "Okul", "İş", "Spor salonu", "Annemler"].map((q) => `<button type="button" data-q="${q}">${favIc(q)}${q}</button>`).join("")}</div>
       <button type="button" class="ok fvs" id="fvs" disabled>Kaydet</button>${f ? "" : `<button type="button" class="fvy" id="fvy">Yakınındaki etkinlikler</button>`}</div></div>`, "mn");
     const inp2 = $("#fvn", sh), ok = $("#fvs", sh), ic = () => { sh.querySelector(".fvi .cgi").outerHTML = favIc(inp2.value.trim()); ok.disabled = !inp2.value.trim(); };
@@ -2455,20 +2465,51 @@ function viewHarita(city) {
     ok.addEventListener("click", save); inp2.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); save(); } });
     $("#fvy", sh)?.addEventListener("click", () => { sh.close(); setTimeout(() => nearList(ll, "Bu noktanın yakınında"), 280); }); };
   const favSheet = (f) => { snd.pop?.(); haptic(8);
-    const sh = sheet(`<div class="pn" role="dialog" aria-label="${esc(f.n)}"><div class="hd"><span class="rth" style="display:flex;align-items:center;gap:10px">${favIc(f.n)}<span><b>${esc(f.n)}</b><small>Kayıtlı yer${DATA.me && !DATA.me.c ? " · " + kmTxt(km(DATA.me.p, f.ll)) : ""}</small></span></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
-      <div class="bd2"><div class="fvl"><button type="button" data-a="y">Yakınındaki etkinlikler</button><button type="button" data-a="g">Haritada göster</button><button type="button" data-a="r">Adını değiştir</button><button type="button" data-a="s" class="red">Sil</button></div></div></div>`, "mn");
+    const sh = sheet(`<div class="pn" role="dialog" aria-label="${esc(f.n)}"><div class="hd"><span class="rth" style="display:flex;flex-direction:row;align-items:center;gap:10px;text-align:left">${favIc(f.n)}<span><b>${esc(f.n)}</b><small>Kayıtlı yer${DATA.me && !DATA.me.c ? " · " + kmTxt(km(DATA.me.p, f.ll)) : ""}</small></span></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+      <div class="bd2"><button type="button" class="pcr" data-a="t">${ICO.car}<span><b>Yol tarifi</b><small>${esc(f.n)} için</small></span></button><div class="fvl"><button type="button" data-a="y">Yakınındaki etkinlikler</button><button type="button" data-a="g">Haritada göster</button><button type="button" data-a="r">Adını değiştir</button><button type="button" data-a="s" class="red">Sil</button></div></div></div>`, "mn");
     sh.querySelector("[data-a=y]").addEventListener("click", () => { sh.close(); setTimeout(() => { map?.flyTo({ center: [f.ll[1], f.ll[0]], zoom: 14, duration: 900 }); setTimeout(() => nearList(f.ll, f.n + " yakınında"), 950); }, 260); });
     sh.querySelector("[data-a=g]").addEventListener("click", () => { sh.close(); map?.flyTo({ center: [f.ll[1], f.ll[0]], zoom: 15.5, duration: 900 }); });
+    sh.querySelector("[data-a=t]").addEventListener("click", () => { sh.close(); setTimeout(() => routeTo(f.ll, f.n), 260); });
     sh.querySelector("[data-a=r]").addEventListener("click", () => { sh.close(); setTimeout(() => favEdit(f.ll, f), 280); });
     sh.querySelector("[data-a=s]").addEventListener("click", () => { favSave(favs().filter((x) => x.id !== f.id)); snd.close?.(); haptic(10); sh.close(); drawFavs(); }); };
+  /* Her yere yol tarifi (kullanıcı, 16.11.2026 20:02: "haritalardan istediğim her yere yol tarifi yapılabilsin"). Apple Haritalar'daki yer kartı:
+     basılı tutulan nokta, haritadaki hazır yerler (kafe, okul, durak…), arama sonuçları ve kayıtlı yerler aynı kartla açılır:
+     ad + tür/adres + uzaklık, büyük "Yol tarifi" (konumun biliniyorsa tahmini süreyle), Kaydet, Yakındaki etkinlikler, Google Haritalar.
+     Adresi olmayan nokta için adres Photon'dan (anahtarsız) sorulur; gönderilen yalnızca noktanın koordinatıdır. */
+  const routeTo = (ll, n) => routeSheet({ title: n, venue: n }, { lat: ll[0], lng: ll[1] }, city, `https://www.google.com/maps/dir/?api=1&destination=${ll[0].toFixed(6)},${ll[1].toFixed(6)}`);
+  const revGeo = (ll) => fetch(`https://photon.komoot.io/reverse?lat=${ll[0]}&lon=${ll[1]}&limit=1`).then((r) => r.ok ? r.json() : null).then((j) => { const p = j?.features?.[0]?.properties; if (!p) return null;
+    const st2 = [p.street, p.housenumber].filter(Boolean).join(" "); return { n: p.name || st2 || p.district || p.locality || "", s: [p.name ? st2 : "", p.district || p.locality, p.city || p.county, p.state].filter((x, i, a) => x && a.indexOf(x) === i).join(" · ") }; }).catch(() => null);
+  const placeCard = (ll, o = {}) => { snd.pop?.(); haptic(8);
+    if (!o.keep) { pinM?.remove(); pinM = map ? new maplibregl.Marker({ element: elOf('<div class="pin drop"></div>'), anchor: "bottom" }).setLngLat([ll[1], ll[0]]).addTo(map) : null; }
+    const me2 = DATA.me && !DATA.me.c ? DATA.me.p : null, dist = me2 ? km(me2, ll) : null, nm = o.n || "Seçilen yer";
+    const sh = sheet(`<div class="pn plc" role="dialog" aria-label="${esc(nm)}"><div class="hd"><span class="rth" style="display:flex;flex-direction:row;align-items:center;gap:11px;text-align:left">${o.ic || '<span class="cgi" style="background:#ff3b30"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#ff3b30"/></svg></span>'}<span><b id="pcn">${esc(nm)}</b><small id="pcs">${esc(o.s || (o.n ? "" : "Adres bulunuyor…"))}${dist != null ? `${o.s ? " · " : ""}${kmTxt(dist)}` : ""}</small></span></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
+      <div class="bd2"><button type="button" class="pcr" data-a="t">${ICO.car}<span><b>Yol tarifi</b><small id="pct">${dist != null ? "Süre hesaplanıyor…" : "Nereden gideceğini sen seç"}</small></span></button>
+      <div class="pcb"><button type="button" data-a="k">${favIc("")}<span>Kaydet</span></button><button type="button" data-a="y"><span class="cgi" style="background:#8b5cf6"><svg viewBox="0 0 24 24"><path d="M5 9.5h14M5 9.5V18a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 18V9.5M5 9.5V7a1.5 1.5 0 0 1 1.5-1.5h11A1.5 1.5 0 0 1 19 7v2.5M9 3.5v4M15 3.5v4" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/></svg></span><span>Yakındaki etkinlikler</span></button><a data-a="g" href="https://www.google.com/maps/search/?api=1&query=${ll[0].toFixed(6)},${ll[1].toFixed(6)}" target="_blank" rel="noopener"><span class="cgi" style="background:#34c759"><svg viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-8 8M17 14v4a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 5 18V8.5A1.5 1.5 0 0 1 6.5 7H10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Google Haritalar</span></a></div></div></div>`, "mn");
+    let cur = { n: o.n || "", s: o.s || "" }; const name = () => cur.n || "Seçilen yer";
+    if (!o.n) revGeo(ll).then((r) => { if (!r || !document.body.contains(sh)) { $("#pcs", sh) && ($("#pcs", sh).textContent = `${ll[0].toFixed(5)}, ${ll[1].toFixed(5)}${dist != null ? " · " + kmTxt(dist) : ""}`); return; }
+      cur = r; $("#pcn", sh).textContent = name(); $("#pcs", sh).textContent = [r.s, dist != null ? kmTxt(dist) : ""].filter(Boolean).join(" · "); });
+    // Apple gibi düğmede tahmini süre: konum biliniyorsa en uygun yolla (2,5 km'ye kadar yürüyerek)
+    if (me2) { const m = dist < 2.5 ? "foot" : "car"; routeOf(m, me2, ll).then((R) => { const el2 = $("#pct", sh); if (el2) el2.textContent = `${m === "foot" ? "Yürüyerek" : "Arabayla"} ${durTxt(Math.max(1, Math.round(R.duration / 60)))} · ${mTxt(R.distance)}`; }).catch(() => { const el2 = $("#pct", sh); if (el2) el2.textContent = kmTxt(dist) + " uzaklıkta"; }); }
+    const oc = sh.close; let keepPin = false; sh.close = () => { if (!keepPin && o.temp !== false) pinM?.remove(); oc(); };
+    $("[data-a=t]", sh).addEventListener("click", () => { snd.push?.(); haptic(10); sh.close(); setTimeout(() => routeTo(ll, name()), 240); });
+    $("[data-a=k]", sh).addEventListener("click", () => { keepPin = true; sh.close(); setTimeout(() => favEdit(ll, null, cur.n && !/^\d/.test(cur.n) ? cur.n : ""), 260); });
+    $("[data-a=y]", sh).addEventListener("click", () => { sh.close(); setTimeout(() => nearList(ll, name() + " yakınında"), 260); }); };
+  // haritadaki hazır yerler (OpenStreetMap: kafe, okul, park, durak…): dokununca yer kartı
+  const POIK = { cafe: "Kafe", restaurant: "Restoran", fast_food: "Yemek", bar: "Bar", beer: "Bar", pub: "Bar", ice_cream: "Dondurma", bakery: "Fırın", park: "Park", garden: "Bahçe", playground: "Oyun alanı", school: "Okul", kindergarten: "Anaokulu", college: "Okul", university: "Üniversite", hospital: "Hastane", doctors: "Sağlık", dentist: "Diş hekimi", pharmacy: "Eczane", bus: "Durak", railway: "İstasyon", subway: "Metro", tram: "Tramvay", ferry_terminal: "İskele", aerialway: "Teleferik", airport: "Havalimanı", shop: "Mağaza", grocery: "Market", supermarket: "Market", clothing_store: "Giyim", mall: "AVM", place_of_worship: "İbadet yeri", museum: "Müze", art_gallery: "Galeri", theatre: "Tiyatro", cinema: "Sinema", music: "Müzik", library: "Kütüphane", lodging: "Konaklama", hotel: "Otel", attraction: "Gezilecek yer", monument: "Anıt", castle: "Kale", stadium: "Stadyum", sports: "Spor", swimming: "Havuz", pitch: "Saha", town_hall: "Belediye", police: "Polis", fire_station: "İtfaiye", fuel: "Akaryakıt", parking: "Otopark", bank: "Banka", atm: "ATM", post: "Postane", zoo: "Hayvanat bahçesi", campsite: "Kamp", information: "Bilgi", toilets: "Tuvalet" };
+  const poiTap = (ev) => { if (wrap.classList.contains("picking")) return; const b = [[ev.point.x - 10, ev.point.y - 10], [ev.point.x + 10, ev.point.y + 10]], F2 = map.queryRenderedFeatures(b);
+    if (F2.some((f) => ["ven", "ven-n", "un", "city"].includes(f.layer.id))) return;
+    const f = F2.find((f) => ["poi", "aerodrome_label"].includes(f.sourceLayer) && (f.properties["name:tr"] || f.properties.name)); if (!f) return;
+    const P = f.properties, n = P["name:tr"] || P.name, k = POIK[P.subclass] || POIK[P.class] || "Yer", c = f.geometry.coordinates;
+    placeCard([c[1], c[0]], { n, s: k }); };
   const longPress = () => { let t = null, p0 = null; const cv = map.getCanvasContainer();
     const cancel = () => { clearTimeout(t); t = null; };
     let fired = false;
     cv.addEventListener("touchstart", (ev) => { fired = false; if (ev.touches.length !== 1) return cancel(); const r = el.getBoundingClientRect(); p0 = [ev.touches[0].clientX - r.left, ev.touches[0].clientY - r.top]; cancel();
-      t = setTimeout(() => { t = null; fired = true; const ll = map.unproject(p0); pinM?.remove(); pinM = new maplibregl.Marker({ element: elOf('<div class="pin"></div>'), anchor: "bottom" }).setLngLat(ll).addTo(map); favEdit([ll.lat, ll.lng]); }, 560); }, { passive: true });
+      t = setTimeout(() => { t = null; fired = true; const ll = map.unproject(p0); placeCard([ll.lat, ll.lng]); }, 560); }, { passive: true });
     cv.addEventListener("touchmove", (ev) => { if (!t) return; const r = el.getBoundingClientRect(), q = ev.touches[0]; if (ev.touches.length > 1 || Math.hypot(q.clientX - r.left - p0[0], q.clientY - r.top - p0[1]) > 8) cancel(); }, { passive: true });
     cv.addEventListener("touchend", (ev) => { cancel(); if (fired) { fired = false; ev.preventDefault(); } }); // parmak kalkınca açılan paneli kapatan tıklama olmasın cv.addEventListener("touchcancel", cancel); map.on("movestart", cancel);
-    map.on("contextmenu", (ev) => { if (matchMedia("(pointer:coarse)").matches) return; pinM?.remove(); pinM = new maplibregl.Marker({ element: elOf('<div class="pin"></div>'), anchor: "bottom" }).setLngLat(ev.lngLat).addTo(map); favEdit([ev.lngLat.lat, ev.lngLat.lng]); }); };
+    map.on("contextmenu", (ev) => { if (matchMedia("(pointer:coarse)").matches) return; placeCard([ev.lngLat.lat, ev.lngLat.lng]); });
+    map.on("click", poiTap); };
   // Filtreler (Apple gibi tek panel; sayı canlı)
   $("#hmf").addEventListener("click", () => { if (!IX) return; snd.sheet?.(); haptic(6); if (!tc.hidden) { tc.hidden = true; wrap.classList.remove("tco"); }
     const T = JSON.parse(JSON.stringify({ ...HM, cam: undefined }));
@@ -2503,7 +2544,8 @@ function viewHarita(city) {
   const ico = { c: '<span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#0a84ff"/></svg></span>', v: '<span class="cgi" style="background:#8e8e93"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10h-5v-6H9v6z" fill="#fff"/></svg></span>', p: '<span class="cgi" style="background:#ff453a"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#ff453a"/></svg></span>', r: '<span class="cgi" style="background:rgba(120,120,128,.36)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M12 8v4.3l2.8 1.8" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>' };
   const runRec = (r) => { if (!map) return; done(false);
     if (r.k === "c") { goCity(r.c); return; }
-    if (r.k === "p" || r.k === "f") { nearPlace(r.ll, r.l); return; }
+    if (r.k === "f") { const f = favs().find((x) => x.n === r.l); if (f) { map.flyTo({ center: [f.ll[1], f.ll[0]], zoom: Math.max(map.getZoom(), 15), duration: 900 }); setTimeout(() => favSheet(f), 950); } else nearPlace(r.ll, r.l, r.s); return; }
+    if (r.k === "p") { nearPlace(r.ll, r.l, r.s); return; }
     const g = VG.find((g) => g.v[3] === (r.k === "v" ? r.l : r.vn) && g.v[2] === r.c);
     if (r.k === "v") { if (g) { map.flyTo({ center: [g.v[1], g.v[0]], zoom: 16, duration: 1000 }); setTimeout(() => vSheet(g), 1050); } else goCity(r.c); return; }
     if (r.k === "e") { location.hash = r.href || `#/${r.c}/e/${encodeURIComponent(r.slug)}`; } };
@@ -2572,7 +2614,7 @@ function viewHarita(city) {
         + R.map((x, i) => `<button type="button" data-qp="${i}">${ico.p}<span><b>${esc(x.n)}</b><small>${esc(x.s)} · yakındaki etkinlikler</small></span></button>`).join("")
         + (exact ? "" : `<button type="button" data-qd>${ico.r.replace("rgba(120,120,128,.36)", "#5e5ce6")}<span><b>“${esc(q)}” için daha derin ara</b><small>OpenStreetMap'te ikinci bir aramayla</small></span></button>
         <a class="hm-g" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(raw)}" target="_blank" rel="noopener"><span class="cgi" style="background:#34c759"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#34c759"/></svg></span><span><b>Google Haritalar'da bak ↗</b><small>Bulursan buraya dön, haritada o noktaya basılı tutup kaydet</small></span></a>`);
-      $$("[data-qp]", box).forEach((b) => b.addEventListener("click", () => { const x = R[+b.dataset.qp]; recAdd({ k: "p", l: x.n, s: x.s, ll: x.ll }); done(); nearPlace(x.ll, x.n); }));
+      $$("[data-qp]", box).forEach((b) => b.addEventListener("click", () => { const x = R[+b.dataset.qp]; recAdd({ k: "p", l: x.n, s: x.s, ll: x.ll }); done(); nearPlace(x.ll, x.n, x.s); }));
       $("[data-qa]", box)?.addEventListener("click", () => pick(q, pickAt));
       $("[data-qd]", box)?.addEventListener("click", (ev) => { const bt = ev.currentTarget; bt.querySelector("small").textContent = "Aranıyor…"; haptic(4);
         const c = map ? map.getCenter() : { lat: 39.93, lng: 32.86 };
