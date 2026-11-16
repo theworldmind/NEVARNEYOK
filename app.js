@@ -2098,7 +2098,7 @@ const favs = () => jsGet("nvny-yerler", []), favSave = (L) => store.set("nvny-ye
 const recents = () => jsGet("nvny-hson", []), recAdd = (r) => { const L = recents().filter((x) => x.k !== r.k || x.l !== r.l); L.unshift(r); store.set("nvny-hson", JSON.stringify(L.slice(0, 8))); };
 // kayıtlı yer simgeleri (Apple Haritalar'daki gibi renkli daire, beyaz çizim): yazdığın ada göre kendiliğinden seçilir
 const FAVI = [[/^(ev|evim|home)\b|^ev$/, "#0a84ff", '<path d="M4 11.5 12 5l8 6.5V20h-5.5v-5h-5v5H4z" fill="#fff"/>'],
-  [/okul|üni|kampüs|fakülte|lise|kurs|dershane|yurt/, "#ff9f0a", '<path d="M2.5 9.5 12 5l9.5 4.5L12 14z" fill="#fff"/><path d="M6.5 11.8V16c3.2 2.4 7.8 2.4 11 0v-4.2L12 14.5z" fill="#fff"/>'],
+  [/okul|üni|kampüs|fakülte|lise|kurs|dershane|yurt|yurd/, "#ff9f0a", '<path d="M2.5 9.5 12 5l9.5 4.5L12 14z" fill="#fff"/><path d="M6.5 11.8V16c3.2 2.4 7.8 2.4 11 0v-4.2L12 14.5z" fill="#fff"/>'],
   [/(^|\s)iş(yeri|im)?(\s|$)|ofis|büro|şirket|work|plaza/, "#a2845e", '<rect x="4" y="8" width="16" height="11" rx="2.2" fill="#fff"/><path d="M9 8V6.3c0-.7.6-1.3 1.3-1.3h3.4c.7 0 1.3.6 1.3 1.3V8" fill="none" stroke="#fff" stroke-width="1.9"/>'],
   [/spor|gym|fitness|havuz|halı ?saha|antrenman/, "#ff375f", '<path d="M3 10v4M6 8v8M18 8v8M21 10v4M6 12h12" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>'],
   [/kafe|cafe|kahve|starbucks|çay/, "#ac8e68", '<path d="M5 9h11v5a4.5 4.5 0 0 1-4.5 4.5h-2A4.5 4.5 0 0 1 5 14z" fill="#fff"/><path d="M16 10.5h1.5a2.3 2.3 0 0 1 0 4.6H16" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M8.5 4.5v2M11.5 4.5v2" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>'],
@@ -2129,6 +2129,17 @@ const ICO = {
   flt: '<svg viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="15" cy="7" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="17" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
   cmp: '<svg viewBox="0 0 24 24"><path d="M12 3.5 15 12h-6z" fill="#ff453a"/><path d="M12 20.5 9 12h6z" fill="currentColor" opacity=".55"/></svg>',
 };
+/* Saat çarkı (Apple saat/zamanlayıcı gibi yatay cetvel): çeyrek saatte bir metalik tık + hafif titreşim; büyük saat yazısı.
+   Haritanın üstündeki "Saat" düğmesinden ve filtre panelinden aynı çark açılır. */
+const TR_STEP = 15, TR_N = 24 * 60 / TR_STEP;
+const trHH = (i) => `${String(Math.floor(i * TR_STEP / 60)).padStart(2, "0")}:${String(i * TR_STEP % 60).padStart(2, "0")}`;
+const trHTML = () => `<div class="hf-rl"><div class="hf-rs"><div class="hf-tk">${Array.from({ length: TR_N }, (_, i) => `<i class="${i % 4 ? "" : "M"}">${i % 4 ? "" : `<em>${String(i / 4).padStart(2, "0")}</em>`}</i>`).join("")}</div></div><span class="hf-nd"></span></div>`;
+const trNext = () => { const n = nowIST().hm; return trHH(Math.ceil((+n.slice(0, 2) * 60 + +n.slice(3, 5)) / 60) * 4 % TR_N); };
+function trBind(root, get, set) { const rs = root.querySelector(".hf-rs"); let idx = -1;
+  const to = (t, smooth) => { const i = Math.round((+t.slice(0, 2) * 60 + +t.slice(3, 5)) / TR_STEP); idx = i; rs.scrollTo({ left: i * 12, behavior: smooth ? "smooth" : "auto" }); };
+  rs.addEventListener("scroll", () => { if (!get()) return; const i = Math.max(0, Math.min(TR_N - 1, Math.round(rs.scrollLeft / 12))); if (i === idx) return; idx = i; tick(); set(trHH(i)); }, { passive: true });
+  root.querySelectorAll(".hf-tk i").forEach((t, i) => t.addEventListener("click", () => { if (!get()) set(trHH(i)); to(trHH(i), true); }));
+  return { to, sync: () => { root.querySelector(".hf-rl").classList.toggle("off", !get()); requestAnimationFrame(() => to(get() || "18:00", false)); } }; }
 function viewHarita(city) {
   setTop(city); document.title = `Harita · Ne Var Ne Yok`;
   V.innerHTML = `<div class="hmap${mTheme() === "acik" ? " lt" : ""}" id="hmw"><div class="map" id="hm"></div>
@@ -2136,6 +2147,7 @@ function viewHarita(city) {
     <div class="hm-r" id="hmr" hidden></div><div class="hm-t" id="hmt"></div></div>
     <div class="hm-ctl"><button type="button" id="hm3" aria-label="3B görünüm">${ICO.d3}</button><button type="button" id="hmth" aria-label="Açık ya da koyu harita">${mTheme() === "acik" ? ICO.moon : ICO.sun}</button><button type="button" id="hmme" class="bl" aria-label="Etrafımda ne var">${ICO.me}</button></div>
     <button type="button" class="hm-cmp" id="hmc" aria-label="Kuzeye çevir" hidden>${ICO.cmp}</button>
+    <div class="hm-tc" id="hmtc" hidden><div class="hm-tch"><span><b id="hmtl"></b><small>Etkinliğin başlama saati</small></span><div class="hm-seg" role="tablist"><i></i><button type="button" data-ta="1">Tüm gün</button><button type="button" data-ta="0">Saat seç</button></div><button type="button" class="hm-tcx" aria-label="Kapat">✕</button></div><div id="hmtr">${trHTML()}</div></div>
     <button type="button" class="hm-n" id="hmn"><span class="sk" style="display:inline-block;width:150px;height:14px;border-radius:7px"></span></button></div>`;
   const el = $("#hm"), wrap = $("#hmw"), N = CNAME(); let map = null, IX = null, VG = [], UG = new Map(), E = [], pinM = null, meM = null, live = 0, posters = new Map(), favM = [], raf = 0;
   const alive = () => document.body.contains(el);
@@ -2160,12 +2172,21 @@ function viewHarita(city) {
     $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik${HM.when === "tumu" ? "" : " · " + HMW.find((w) => w[0] === HM.when)[1].toLowerCase()}<small> · ${VG.length} mekân</small>`;
     // haritanın üstünde her zaman: Tümü · Bugün · Yarın · Hafta sonu… (Apple Haritalar'daki hızlı seçimler gibi) + seçili diğer filtreler
     const tg = hmTags(), ot = tg.filter((t) => t !== hmWhen()), row = $("#hmt"); $("#hmfn").textContent = tg.length || "";
-    row.innerHTML = HMW.map(([k, l]) => `<button type="button" class="hw${HM.when === k ? " on" : ""}" data-hw="${k}">${l}</button>`).join("") + (ot.length ? `<i class="hsep"></i>${ot.map((t) => `<span>${esc(t)}</span>`).join("")}<button type="button" id="hmt0">Sıfırla</button>` : "");
-    const on = row.querySelector(".hw.on"); if (on) row.scrollLeft = on.offsetLeft - row.clientWidth / 2 + on.offsetWidth / 2;
+    row.innerHTML = `<button type="button" class="hw hcl${HM.from ? " on" : ""}" data-hclk><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${HM.from ? HM.from + "+" : "Saat"}</button><i class="hsep"></i>` + HMW.map(([k, l]) => `<button type="button" class="hw${HM.when === k ? " on" : ""}" data-hw="${k}">${l}</button>`).join("") + (ot.filter((t) => !/ sonrası$/.test(t)).length ? `<i class="hsep"></i>${ot.filter((t) => !/ sonrası$/.test(t)).map((t) => `<span>${esc(t)}</span>`).join("")}<button type="button" id="hmt0">Sıfırla</button>` : "");
+    $("[data-hclk]", row).addEventListener("click", () => tcOpen());
+    const on = row.querySelector(".hw.on:not(.hcl)"); if (on) row.scrollLeft = on.offsetLeft - row.clientWidth / 2 + on.offsetWidth / 2;
     $$("[data-hw]", row).forEach((b) => b.addEventListener("click", () => { if (HM.when === b.dataset.hw) return; HM.when = b.dataset.hw; hmSave(); snd.sel?.(); haptic(5); setData(); }));
     $$("#hmt span", row).forEach((x) => x.addEventListener("click", () => $("#hmf").click()));
     $("#hmt0")?.addEventListener("click", () => { Object.assign(HM, { ...HM0, when: HM.when, cats: [] }); hmSave(); snd.sel?.(); haptic(5); setData(); });
     posters.forEach((m) => m.remove()); posters.clear(); near(); pulse(); };
+  // haritanın üstündeki saat kartı (kullanıcı, 10:45: "saat seçme daha görünür olsun"): Tüm gün / Saat seç + çark; değişiklik anında haritada
+  const tc = $("#hmtc"), tcSeg = $(".hm-seg", tc); let tcT = 0;
+  const tcUI = () => { $("#hmtl").textContent = HM.from ? `${HM.from} ve sonrası` : "Bütün saatler"; tcSeg.classList.toggle("r", !!HM.from); tcSeg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", (b.dataset.ta === "1") === !HM.from)); };
+  const tcR = trBind(tc, () => HM.from, (v) => { HM.from = v; hmSave(); tcUI(); clearTimeout(tcT); tcT = setTimeout(setData, 140); });
+  const tcOpen = () => { if (!tc.hidden) return tcClose(); tc.hidden = false; wrap.classList.add("tco"); snd.sheet?.(); haptic(6); tcUI(); tcR.sync(); };
+  const tcClose = () => { tc.hidden = true; wrap.classList.remove("tco"); snd.close?.(); haptic(4); };
+  $(".hm-tcx", tc).addEventListener("click", tcClose);
+  tcSeg.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { const all = b.dataset.ta === "1"; if (all === !HM.from) return; HM.from = all ? "" : trNext(); hmSave(); snd.sel?.(); haptic(5); tcUI(); tcR.sync(); setData(); }));
   // katmanlar (stil her değiştiğinde yeniden eklenir)
   let IMG = null;
   const addLayers = async () => {
@@ -2294,37 +2315,33 @@ function viewHarita(city) {
     cv.addEventListener("touchend", (ev) => { cancel(); if (fired) { fired = false; ev.preventDefault(); } }); // parmak kalkınca açılan paneli kapatan tıklama olmasın cv.addEventListener("touchcancel", cancel); map.on("movestart", cancel);
     map.on("contextmenu", (ev) => { if (matchMedia("(pointer:coarse)").matches) return; pinM?.remove(); pinM = new maplibregl.Marker({ element: elOf('<div class="pin"></div>'), anchor: "bottom" }).setLngLat(ev.lngLat).addTo(map); favEdit([ev.lngLat.lat, ev.lngLat.lng]); }); };
   // Filtreler (Apple gibi tek panel; sayı canlı)
-  $("#hmf").addEventListener("click", () => { if (!IX) return; snd.sheet?.(); haptic(6);
-    const T = JSON.parse(JSON.stringify({ ...HM, cam: undefined })), STEP = 15, NS = 24 * 60 / STEP;
+  $("#hmf").addEventListener("click", () => { if (!IX) return; snd.sheet?.(); haptic(6); if (!tc.hidden) { tc.hidden = true; wrap.classList.remove("tco"); }
+    const T = JSON.parse(JSON.stringify({ ...HM, cam: undefined }));
     const cats = Object.keys(CATS).filter((k) => k !== "sinema" && IX.e.some((x) => x[5] === k));
     const sh = sheet(`<div class="pn hmfp" role="dialog" aria-label="Harita filtreleri"><div class="hd"><button type="button" class="hf-rz" id="hf0">Sıfırla</button><span class="rth"><b>Filtreler</b></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
-      <div class="bd2"><h4>Ne zaman</h4><div class="hf-w">${HMW.map(([k, l]) => `<button type="button" data-w="${k}">${l}</button>`).join("")}</div>
-      <h4>Saat</h4><div class="grp lst hf-c"><label class="tg2"><span>Tüm gün<small>Kapatınca çarkı çevirip başlama saatini seç</small></span><input type="checkbox" id="hfa"></label>
-        <div class="hf-rl" id="hfr"><b class="hf-tl" id="hfl"></b><div class="hf-rs" id="hfs"><div class="hf-tk">${Array.from({ length: NS }, (_, i) => `<i class="${i % 4 ? "" : "M"}">${i % 4 ? "" : `<em>${String(i / 4).padStart(2, "0")}</em>`}</i>`).join("")}</div></div><span class="hf-nd"></span></div></div>
+      <div class="bd2"><h4>Saat</h4><div class="hf-c hf-time"><div class="hf-th"><b class="hf-tl" id="hfl"></b><div class="hm-seg" id="hfseg" role="tablist"><i></i><button type="button" data-ta="1">Tüm gün</button><button type="button" data-ta="0">Saat seç</button></div></div>${trHTML()}</div>
+      <h4>Ne zaman</h4><div class="hf-w">${HMW.map(([k, l]) => `<button type="button" data-w="${k}">${l}</button>`).join("")}</div>
       <h4>Bütçe</h4><div class="hf-w">${HMB.map(([k, l]) => `<button type="button" data-b="${k}">${l}</button>`).join("")}</div><p class="hf-n">Yalnızca fiyatı satış sitesinde son 36 saatte doğrulanmış etkinlikler.</p>
       <h4>Kategori</h4><div class="hf-k">${cats.map((k) => `<button type="button" data-k="${k}">${cgIcon(k)}<span>${esc(CATS[k])}</span><small data-kn="${k}"></small></button>`).join("")}</div>
       <h4>Diğer</h4><div class="grp lst hf-c"><label class="tg2"><span>Tükenenleri gizle</span><input type="checkbox" id="hft"></label></div>
       <button type="button" class="ok hf-go" id="hfg"></button></div></div>`, "mn hmfs");
-    const rs = $("#hfs", sh), lab = $("#hfl", sh), all = $("#hfa", sh), go = $("#hfg", sh); let idx = -1, cnt = 0;
-    const hhmm = (i) => `${String(Math.floor(i * STEP / 60)).padStart(2, "0")}:${String(i * STEP % 60).padStart(2, "0")}`;
+    const lab = $("#hfl", sh), seg = $("#hfseg", sh), go = $("#hfg", sh); let cnt = 0;
+    const R = trBind($(".hf-time", sh), () => T.from, (v) => { T.from = v; lab.textContent = `${v} ve sonrası`; clearTimeout(cnt); cnt = setTimeout(count, 120); });
     const ui = () => { $$("[data-w]", sh).forEach((b) => b.classList.toggle("on", b.dataset.w === T.when)); $$("[data-b]", sh).forEach((b) => b.classList.toggle("on", +b.dataset.b === T.bud));
-      $$("[data-k]", sh).forEach((b) => b.classList.toggle("on", T.cats.includes(b.dataset.k))); all.checked = !T.from; $("#hft", sh).checked = T.tk; $("#hfr", sh).classList.toggle("off", !T.from);
+      $$("[data-k]", sh).forEach((b) => b.classList.toggle("on", T.cats.includes(b.dataset.k))); $("#hft", sh).checked = T.tk;
+      seg.classList.toggle("r", !!T.from); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", (b.dataset.ta === "1") === !T.from));
       lab.textContent = T.from ? `${T.from} ve sonrası` : "Bütün saatler"; clearTimeout(cnt); cnt = setTimeout(count, 60); };
     // her değişiklik haritaya hemen yansır (Apple gibi; kapatınca da kalır), düğme yalnızca paneli kapatır
-    const count = () => { Object.assign(HM, { when: T.when, cats: [...T.cats], from: T.from, bud: T.bud, tk: T.tk }); hmSave(); setData(); const L = E; go.textContent = `${L.length.toLocaleString("tr-TR")} etkinliği göster`; go.disabled = !L.length;
+    const count = () => { Object.assign(HM, { when: T.when, cats: [...T.cats], from: T.from, bud: T.bud, tk: T.tk }); hmSave(); setData(); go.textContent = `${E.length.toLocaleString("tr-TR")} etkinliği göster`; go.disabled = !E.length;
       const K = {}; for (const x of hmFilter(IX, { ...T, cats: [] })) K[x[5]] = (K[x[5]] || 0) + 1; $$("[data-kn]", sh).forEach((s) => { s.textContent = K[s.dataset.kn] || ""; }); };
-    const setRuler = (t, smooth) => { const i = Math.round((+t.slice(0, 2) * 60 + +t.slice(3, 5)) / STEP); idx = i; rs.scrollTo({ left: i * 12, behavior: smooth ? "smooth" : "auto" }); };
-    // saat çarkı: Apple saatindeki gibi her çeyrek saatte tık sesi ve hafif titreşim
-    rs.addEventListener("scroll", () => { if (!T.from) return; const i = Math.max(0, Math.min(NS - 1, Math.round(rs.scrollLeft / 12))); if (i === idx) return; idx = i; tick(); haptic(3); T.from = hhmm(i); lab.textContent = `${T.from} ve sonrası`; clearTimeout(cnt); cnt = setTimeout(count, 90); }, { passive: true });
-    $$(".hf-tk i", sh).forEach((t, i) => t.addEventListener("click", () => { if (!T.from) { T.from = hhmm(i); ui(); } setRuler(hhmm(i), true); }));
-    all.addEventListener("change", () => { T.from = all.checked ? "" : (() => { const n = nowIST().hm; return hhmm(Math.ceil((+n.slice(0, 2) * 60 + +n.slice(3, 5)) / 60) * 4 % NS); })(); haptic(5); ui(); if (T.from) requestAnimationFrame(() => setRuler(T.from, true)); });
+    seg.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { const all = b.dataset.ta === "1"; if (all === !T.from) return; T.from = all ? "" : trNext(); snd.sel?.(); haptic(5); ui(); R.sync(); }));
     $("#hft", sh).addEventListener("change", (ev) => { T.tk = ev.target.checked; haptic(5); ui(); });
     $$("[data-w]", sh).forEach((b) => b.addEventListener("click", () => { T.when = b.dataset.w; snd.sel?.(); haptic(4); ui(); }));
     $$("[data-b]", sh).forEach((b) => b.addEventListener("click", () => { T.bud = +b.dataset.b; snd.sel?.(); haptic(4); ui(); }));
     $$("[data-k]", sh).forEach((b) => b.addEventListener("click", () => { const k = b.dataset.k; T.cats = T.cats.includes(k) ? T.cats.filter((x) => x !== k) : [...T.cats, k]; snd.sel?.(); haptic(4); ui(); }));
-    $("#hf0", sh).addEventListener("click", () => { Object.assign(T, { ...HM0, cats: [] }); snd.sel?.(); haptic(5); ui(); });
+    $("#hf0", sh).addEventListener("click", () => { Object.assign(T, { ...HM0, cats: [] }); snd.sel?.(); haptic(5); ui(); R.sync(); });
     go.addEventListener("click", () => { snd.ok(); haptic(10); sh.close(); });
-    ui(); requestAnimationFrame(() => setRuler(T.from || "18:00", false)); });
+    ui(); R.sync(); });
   $("#hmn").addEventListener("click", () => $("#hmf").click());
   // arama: kayıtlı yerler, son aramalar, il, mekân, etkinlik ve herhangi bir yer adı
   const inp = $("#hmi"), res = $("#hmr"), clr = $("#hmx");
@@ -2365,7 +2382,7 @@ function viewHarita(city) {
   const done = (snd2 = true) => { inp.blur(); res.hidden = true; if (snd2) { haptic(6); snd.push?.(); } };
   /* Yer araması (kullanıcı, 16.11.2026 09:07): semt, mahalle, ilçe, cadde ya da herhangi bir yer adı OpenStreetMap'te aranır (Photon, anahtarsız);
      seçince harita oraya gider ve en yakın etkinlikler uzaklığa göre sıralanır. Gönderilen yalnızca yazılan yer adıdır. */
-  let pq = 0;
+  let pq = 0, pickAt = null, autoDeep = false;
   const PTY = { city: "İl / şehir", district: "İlçe / semt", locality: "Mahalle", street: "Cadde / sokak", house: "Adres", county: "İlçe", state: "İl", other: "Yer" };
   /* (16.11.2026 09:59, kullanıcı: "Sıhhiye Erkek Öğrenci Yurdu bizde görünmüyor, her yer görünmeli")
      - yazılan il adı sorgudan çıkarılır, arama o ile (yoksa haritanın baktığı yere) yönlendirilir; sonuçlar önce adı tam tutanlar, sonra yakınlık
@@ -2382,30 +2399,50 @@ function viewHarita(city) {
     if (cityHit && ILLL[cityHit.id]) ll = ILLL[cityHit.id]; const q = W.join(" ") || raw, sig = W.map((w) => fold(w).trim()).filter((w) => w.length > 1);
     const key = W.filter((w) => { const f = fold(w).trim(); return f.length > 1 && !GEN.has(f); });
     const full = (n) => { const f = fold(n); return sig.every((w) => f.includes(w)); };
+    // ad farklı yazılmış olabilir ("Özel Sıhhiye Öğrenci Yurdu" gibi): tam sorgu + çekirdek sorgu ("Sıhhiye Yurdu") + semt aynı anda aranır, kelime örtüşmesine göre sıralanır
+    const gen = W.filter((w) => GEN.has(fold(w).trim())), core = key.length && gen.length ? [...key, gen[gen.length - 1]].join(" ") : "";
+    const ov = (n) => { const f = fold(n); return sig.filter((w) => f.includes(w)).length / Math.max(1, sig.length); };
     setTimeout(async () => { if (my !== pq) return;
-      let L = await photon(q, ll); if (my !== pq || res.hidden) return;
-      const rank = (A) => A.filter((x) => x.n).map((x) => [x, (full(x.n) ? 0 : 1e4) + km(ll, x.ll)]).sort((a, b) => a[1] - b[1]).map((x) => x[0]);
-      L = rank(L); const exact = L.some((x) => full(x.n));
-      let area = [];
-      if (!exact && key.length && key.length < sig.length) { area = (await photon(key.join(" "), ll, 4)).filter((x) => ["district", "locality", "city", "county", "street", "other"].includes(x.tp) || full(x.n)).slice(0, 1); if (my !== pq || res.hidden) return; }
-      const seen = new Set(), R = [...area, ...L].filter((x) => { const k = fold(x.n) + x.ll.map((v) => v.toFixed(3)); if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 6);
-      draw(R, exact, q);
+      const [L0, L1, A0] = await Promise.all([photon(q, ll), core && core !== q ? photon(core, ll, 8) : [], key.length && key.length < sig.length ? photon(key.join(" "), ll, 4) : []]); if (my !== pq || res.hidden) return;
+      const seen = new Set(), L = [...L0, ...L1].filter((x) => { if (!x.n) return false; const k = fold(x.n) + x.ll.map((v) => v.toFixed(3)); if (seen.has(k)) return false; seen.add(k); return true; })
+        .map((x) => [x, (full(x.n) ? 0 : (1 - ov(x.n)) * 1e4) + km(ll, x.ll)]).sort((a, b) => a[1] - b[1]).map((x) => x[0]);
+      const exact = L.some((x) => full(x.n)), area = exact ? [] : A0.filter((x) => ["district", "locality", "city", "county", "street", "other"].includes(x.tp)).slice(0, 1);
+      pickAt = area[0]?.ll || (cityHit && ILLL[cityHit.id]) || ll;
+      draw([...L.filter((x) => full(x.n)), ...area, ...L.filter((x) => !full(x.n))].slice(0, 7), exact, q);
+      if (!exact && autoDeep) $("[data-qd]", res)?.click(); autoDeep = false;
     }, 300);
     const draw = (R, exact, q) => { const box = $("#hmpl", res); if (!box) return; $("#hm0", res)?.remove();
-      box.innerHTML = R.map((x, i) => `<button type="button" data-qp="${i}">${ico.p}<span><b>${esc(x.n)}</b><small>${esc(x.s)} · yakındaki etkinlikler</small></span></button>`).join("")
+      // tam eşleşme yoksa en üstte: "haritaya ekle" (iğneyi kendin tam yerine koyarsın, hep haritada kalır)
+      box.innerHTML = (exact ? "" : `<button type="button" class="hm-add" data-qa>${favIc(q)}<span><b>“${esc(q)}”i haritaya ekle</b><small>İğneyi tam yerine koy, hep haritada kalsın</small></span><svg class="chv" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`)
+        + R.map((x, i) => `<button type="button" data-qp="${i}">${ico.p}<span><b>${esc(x.n)}</b><small>${esc(x.s)} · yakındaki etkinlikler</small></span></button>`).join("")
         + (exact ? "" : `<button type="button" data-qd>${ico.r.replace("rgba(120,120,128,.36)", "#5e5ce6")}<span><b>“${esc(q)}” için daha derin ara</b><small>OpenStreetMap'te ikinci bir aramayla</small></span></button>
         <a class="hm-g" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(raw)}" target="_blank" rel="noopener"><span class="cgi" style="background:#34c759"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#34c759"/></svg></span><span><b>Google Haritalar'da bak ↗</b><small>Bulursan buraya dön, haritada o noktaya basılı tutup kaydet</small></span></a>`);
       $$("[data-qp]", box).forEach((b) => b.addEventListener("click", () => { const x = R[+b.dataset.qp]; recAdd({ k: "p", l: x.n, s: x.s, ll: x.ll }); done(); nearPlace(x.ll, x.n); }));
+      $("[data-qa]", box)?.addEventListener("click", () => pick(q, pickAt));
       $("[data-qd]", box)?.addEventListener("click", (ev) => { const bt = ev.currentTarget; bt.querySelector("small").textContent = "Aranıyor…"; haptic(4);
         const c = map ? map.getCenter() : { lat: 39.93, lng: 32.86 };
         fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&countrycodes=tr&accept-language=tr&limit=8&viewbox=${c.lng - .7},${c.lat + .5},${c.lng + .7},${c.lat - .5}&q=${encodeURIComponent(raw)}`).then((r) => r.ok ? r.json() : []).then((j) => {
           const N2 = (j || []).map((f) => pNorm(f, "n")).filter((x) => x.n && !R.some((y) => km(y.ll, x.ll) < .05));
-          if (!N2.length) { bt.querySelector("b").textContent = "Başka sonuç bulunamadı"; bt.querySelector("small").textContent = "Haritada yerine basılı tutup kendin kaydedebilirsin"; bt.disabled = true; return; }
-          const A = [...N2, ...R]; draw([...A.filter((x) => full(x.n)), ...A.filter((x) => !full(x.n))].slice(0, 10), true, q); snd.sel?.(); }).catch(() => { bt.querySelector("small").textContent = "Şu an aranamadı, tekrar dene"; }); });
+          if (!N2.length) { bt.querySelector("b").textContent = "OpenStreetMap'te başka sonuç yok"; bt.querySelector("small").textContent = "En üstten “haritaya ekle” ile kendin işaretleyebilirsin"; bt.disabled = true; return; }
+          const A = [...N2, ...R], ex = A.some((x) => full(x.n)); draw([...A.filter((x) => full(x.n)), ...A.filter((x) => !full(x.n))].slice(0, 10), ex, q); snd.sel?.(); }).catch(() => { bt.querySelector("small").textContent = "Şu an aranamadı, tekrar dene"; }); });
     }; };
   let qt = null; inp.addEventListener("input", () => { clearTimeout(qt); qt = setTimeout(search, 120); });
   inp.addEventListener("focus", () => search());
-  $("#hmq").addEventListener("submit", (ev) => { ev.preventDefault(); search(); res.querySelector("button[data-qf],button[data-qc],button[data-qv],button[data-qe],button[data-qp]")?.click(); });
+  // Enter: önce bizdeki eşleşme; yoksa yer araması derinleşir (Nominatim yalnızca bu bilinçli aramada çağrılır)
+  $("#hmq").addEventListener("submit", (ev) => { ev.preventDefault(); const b = res.querySelector("button[data-qf],button[data-qc],button[data-qv],button[data-qe]"); if (b && !res.hidden) return b.click(); autoDeep = true; search(); });
+  /* "Haritaya ekle" (kullanıcı, 10:45: "haritada çıkması lazım yerin"): OpenStreetMap'te olmayan yeri kişi kendisi koyar. Harita semte gider,
+     ortada Apple Haritalar'daki gibi iğne durur; harita kaydırılır (iğne kalkar, bırakınca oturur), ad düzenlenebilir, "Buraya kaydet" → kayıtlı yer olarak hep haritada. */
+  const pick = (name, ll) => { done(false); pinM?.remove(); $(".hm-pk", wrap)?.remove(); if (!map) return;
+    map.flyTo({ center: [ll[1], ll[0]], zoom: 16.4, duration: 1000 }); wrap.classList.add("picking"); snd.pop?.(); haptic(10);
+    const ov = elOf(`<div class="hm-pk"><span class="hm-pkp fv"><span class="fvp">${favIc(name)}</span></span><i class="hm-pks"></i>
+      <div class="hm-pkc"><b>Nerede?</b><small>Haritayı kaydırıp iğneyi tam yerine getir</small><label class="fvi">${favIc(name)}<input maxlength="28" value="${esc(name)}" aria-label="Yerin adı"></label><div class="hm-pkb"><button type="button" data-x>Vazgeç</button><button type="button" class="ok" data-s>Buraya kaydet</button></div></div></div>`);
+    wrap.append(ov); const inp3 = $("input", ov), up = () => { ov.classList.add("mv"); }, dn = () => { if (ov.classList.contains("mv")) { ov.classList.remove("mv"); tick(); } };
+    map.on("dragstart", up); map.on("moveend", dn);
+    inp3.addEventListener("input", () => { const ic = favIc(inp3.value.trim()); $(".hm-pkp .fvp", ov).innerHTML = ic; $(".fvi .cgi", ov).outerHTML = ic; });
+    const end = () => { map.off("dragstart", up); map.off("moveend", dn); ov.classList.add("out"); wrap.classList.remove("picking"); setTimeout(() => ov.remove(), 260); };
+    $("[data-x]", ov).addEventListener("click", () => { snd.close?.(); haptic(5); end(); });
+    $("[data-s]", ov).addEventListener("click", () => { const n = inp3.value.trim() || name, c = map.getCenter(), L = favs(); newFav = Date.now().toString(36); L.push({ id: newFav, n, ll: [+c.lat.toFixed(6), +c.lng.toFixed(6)] }); favSave(L);
+      recAdd({ k: "f", l: n, s: "Kayıtlı yer", ll: [c.lat, c.lng] }); snd.ok(); haptic(14); end(); drawFavs(); }); };
   clr.addEventListener("click", () => { inp.value = ""; search(); inp.focus(); });
   el.addEventListener("pointerdown", () => { if (!res.hidden) { res.hidden = true; inp.blur(); } });
 }

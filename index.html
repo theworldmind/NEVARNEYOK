@@ -1110,6 +1110,36 @@ button.hm-n{color:#fff}
 .mpl a.so{opacity:.55}.mst{display:inline-block;margin-top:3px;padding:1px 7px;border-radius:6px;background:rgba(255,69,58,.18);color:#ff6961;font:700 11px var(--f);font-style:normal}
 .mwl{display:flex;align-items:center;gap:8px;margin:2px 0 4px;font:600 13px var(--f);color:var(--t3)}.mwl span{padding:3px 10px;border-radius:999px;background:#fff;color:#0a0a10;font-weight:800}
 .mmore{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;height:46px;margin-top:10px;border-radius:14px;background:rgba(255,255,255,.07);font:700 14.5px var(--f);color:#c4b5fd}.mmore svg{width:18px;height:18px}
+
+/* saat: haritada "Saat" düğmesi + cam kart; iOS bölümlü düğme (kayan başparmak) */
+.hm-t .hcl{display:flex;align-items:center;gap:5px;padding:0 12px 0 9px}.hm-t .hcl svg{width:16px;height:16px}.hm-t .hcl.on{background:#8b5cf6;color:#fff;box-shadow:0 4px 16px rgba(139,92,246,.5)}
+.hm-tc{position:absolute;left:10px;right:10px;bottom:calc(100px + env(safe-area-inset-bottom));z-index:520;padding:14px 14px 4px;border-radius:24px;background:rgba(26,24,38,.78);-webkit-backdrop-filter:saturate(1.8) blur(26px);backdrop-filter:saturate(1.8) blur(26px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 .5px rgba(255,255,255,.12),0 18px 44px rgba(0,0,0,.45);animation:tcIn .38s cubic-bezier(.32,.72,0,1)}
+@keyframes tcIn{from{transform:translateY(24px) scale(.97);opacity:0}}
+.hm-tc[hidden]{display:none}.hmap.tco .hm-n{opacity:0;pointer-events:none}
+.hm-tch{display:flex;align-items:center;gap:10px}.hm-tch>span{flex:1;min-width:0}.hm-tch b{display:block;font:800 22px/1.1 -apple-system,"Inter Tight",sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.hm-tch small{display:block;margin-top:2px;font-size:12px;color:var(--t3)}
+.hm-tcx{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:13px}
+.hm-seg{position:relative;flex:none;display:flex;padding:2px;border-radius:10px;background:rgba(118,118,128,.28)}
+.hm-seg i{position:absolute;top:2px;left:2px;bottom:2px;width:calc(50% - 2px);border-radius:8px;background:rgba(255,255,255,.92);box-shadow:0 3px 8px rgba(0,0,0,.25);transition:transform .32s cubic-bezier(.32,.72,0,1)}.hm-seg.r i{transform:translateX(100%)}
+.hm-seg button{position:relative;z-index:1;height:30px;padding:0 11px;font:700 13px var(--f);color:rgba(235,235,245,.85);transition:color .25s}.hm-seg button[aria-selected="true"]{color:#0a0a10}
+.hm-tc .hf-rl{padding:10px 0 8px}.hm-tc .hf-rs{margin:0 -14px}
+.hf-time{padding:14px 14px 4px}.hf-th{display:flex;align-items:center;justify-content:space-between;gap:10px}.hf-th .hf-tl{margin:0;text-align:left;font-size:24px}
+.hf-time .hf-rl{padding-top:10px}
+.hmap.lt .hm-tc{background:rgba(255,255,255,.82);color:#1c1c1e}.hmap.lt .hm-tc .hf-tk i::before{background:rgba(60,60,67,.35)}.hmap.lt .hm-tc .hf-tk i.M::before{background:rgba(28,28,30,.85)}.hmap.lt .hm-tc .hf-tk em{color:rgba(60,60,67,.6)}.hmap.lt .hm-tcx{background:rgba(0,0,0,.08);color:#1c1c1e}.hmap.lt .hm-seg button{color:#1c1c1e}
+/* aramada "haritaya ekle" */
+.hm-r .hm-add{background:rgba(139,92,246,.16)}.hm-r .hm-add b{color:#e9e3ff}.hm-add .cgi{border-radius:50%}.hm-add .chv{flex:none;width:18px;height:18px;margin-left:auto;color:rgba(235,235,245,.5)}
+.hmap.lt .hm-r .hm-add b{color:#4c1d95}
+/* yer işaretleme: ortada iğne (kaydırırken kalkar, bırakınca oturur) + altta cam kart */
+.hm-pk{position:absolute;inset:0;z-index:530;pointer-events:none}
+.hm-pkp{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);margin-top:-6px;transition:transform .25s cubic-bezier(.32,.72,0,1);animation:fvdrop .6s cubic-bezier(.3,1.4,.5,1) both}
+.hm-pk.mv .hm-pkp{transform:translate(-50%,calc(-100% - 16px))}
+.hm-pks{position:absolute;left:50%;top:50%;width:10px;height:5px;margin:-2px 0 0 -5px;border-radius:50%;background:rgba(0,0,0,.45);transition:transform .25s,opacity .25s}.hm-pk.mv .hm-pks{transform:scale(1.6);opacity:.5}
+.hm-pkc{position:absolute;left:10px;right:10px;bottom:calc(100px + env(safe-area-inset-bottom));pointer-events:auto;padding:16px;border-radius:24px;background:rgba(26,24,38,.82);-webkit-backdrop-filter:saturate(1.8) blur(26px);backdrop-filter:saturate(1.8) blur(26px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 .5px rgba(255,255,255,.12),0 18px 44px rgba(0,0,0,.45);animation:tcIn .4s cubic-bezier(.32,.72,0,1)}
+.hm-pkc>b{display:block;font:800 20px var(--f)}.hm-pkc>small{display:block;color:var(--t3);font-size:13px;margin:2px 0 10px}
+.hm-pkb{display:flex;gap:10px;margin-top:12px}.hm-pkb button{flex:1;height:48px;border-radius:14px;font:700 15.5px var(--f);background:rgba(255,255,255,.1);color:#fff}.hm-pkb .ok{background:#fff;color:#0a0a10}
+.hm-pk.out{opacity:0;transition:opacity .25s}
+.hmap.picking .hm-top,.hmap.picking .hm-ctl,.hmap.picking .hm-n,.hmap.picking .hm-cmp{opacity:0;pointer-events:none;transition:opacity .2s}
+.hmap.lt .hm-pkc{background:rgba(255,255,255,.86);color:#1c1c1e}.hmap.lt .hm-pkc .fvi{background:rgba(0,0,0,.06)}.hmap.lt .hm-pkc .fvi input{color:#1c1c1e}.hmap.lt .hm-pkb button{background:rgba(0,0,0,.07);color:#1c1c1e}.hmap.lt .hm-pkb .ok{background:#1c1c1e;color:#fff}
+.hm-tch b,.hf-th .hf-tl{white-space:nowrap;font-size:20px}.hf-th .hf-tl{font-size:21px}
 </style>
 </head>
 <body>
