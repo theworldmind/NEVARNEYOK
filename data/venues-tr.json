@@ -4494,5 +4494,482 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/university"
+ },
+ "istanbul|Akmerkez · Teras": {
+  "lat": 41.0768194,
+  "lng": 29.02692,
+  "addr": "Nisbetiye Caddesi, Kültür Mahallesi, Beşiktaş",
+  "ilce": "Beşiktaş",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "mersin|Yenişehir Belediyesi Atatürk Kültür Merkezi": {
+  "lat": 36.8044253,
+  "lng": 34.5874332,
+  "addr": "13. Cadde, Limonluk Mahallesi, Yenişehir",
+  "ilce": "Yenişehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/public"
+ },
+ "mugla|Bahçeşehir Koleji": {
+  "lat": 36.8283856,
+  "lng": 28.787933,
+  "addr": "907. Sokak, Bahçelievler, Ortaca",
+  "ilce": "Ortaca",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
+ },
+ "aksaray|Aksaray Kültür Merkezi": {
+  "lat": 38.3802354,
+  "lng": 33.9984484,
+  "addr": "Ankara - Adana Yolu, Küçük Bölcek, Küçük Bölcek Mahallesi",
+  "ilce": "Küçük Bölcek Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "antalya|Antalya Aquarium": {
+  "lat": 36.8790125,
+  "lng": 30.6603261,
+  "addr": "Roman track, Arapsuyu Mahallesi, Konyaaltı",
+  "ilce": "Konyaaltı",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/aquarium"
+ },
+ "antalya|DİNOPARK · Dino Lezzet Park": {
+  "lat": 36.6742531,
+  "lng": 30.5582885,
+  "addr": "Kemer",
+  "ilce": "Kemer",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "antalya|NEKROPOL MÜZESİ": {
+  "lat": 36.8869679,
+  "lng": 30.7133111,
+  "addr": "Ali Çetinkaya Caddesi No:35/D, Kızıltoprak Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
+ },
+ "antalya|Kaleiçi": {
+  "lat": 36.8840816,
+  "lng": 30.707878,
+  "addr": "Kocatepe Sokak No:25, Barbaros Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
+ },
+ "antalya|Antalya Açıkhava": {
+  "lat": 36.8817392,
+  "lng": 30.6666639,
+  "addr": "Cinema Alley, Meltem Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "antalya|Yalıhan Sahne": {
+  "lat": 36.6181339,
+  "lng": 31.770195,
+  "addr": "D400 No:84, Avsallar, Alanya",
+  "ilce": "Alanya",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/hotel"
+ },
+ "antalya|Spor": {
+  "lat": 36.8991639,
+  "lng": 30.7303011,
+  "addr": "1110/1 Sokak, Gebizli Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/sports_centre"
+ },
+ "antalya|Büyükşehir Belediyesi Gazipaşa Kültür Merkezi": {
+  "lat": 36.2692713,
+  "lng": 32.3171063,
+  "addr": "Rasih Kaplan Caddesi, Pazarcı, Pazarcı",
+  "ilce": "Pazarcı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/concert_hall"
+ },
+ "antalya|Konyaaltı Belediyesi Feslikan Salonu": {
+  "lat": 36.8653426,
+  "lng": 30.6416304,
+  "addr": "Belediye Caddesi No:77, Kuşkavağı, Kuşkavağı",
+  "ilce": "Kuşkavağı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall"
+ },
+ "antalya|Antalya Muratpaşa": {
+  "lat": 36.8914594,
+  "lng": 30.7026025,
+  "addr": "Milli Egemenlik Caddesi, Kızılsaray, Kızılsaray",
+  "ilce": "Kızılsaray",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/place_of_worship"
+ },
+ "antalya|Renex SPA": {
+  "lat": 36.889898,
+  "lng": 30.695188,
+  "addr": "Güllük Caddesi No:63, Deniz, Deniz",
+  "ilce": "Deniz",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "antalya|Mimar Sinan Kongre Merkezi": {
+  "lat": 36.9172612,
+  "lng": 30.6766972,
+  "addr": "Halide Edip Caddesi, Kanal, Kanal",
+  "ilce": "Kanal",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "antalya|Kepez Mimar Sinan Kongre Merkezi": {
+  "lat": 36.9172612,
+  "lng": 30.6766972,
+  "addr": "Halide Edip Caddesi, Kanal, Kanal",
+  "ilce": "Kanal",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "antalya|Aydinbey Queen's Palace & SPA": {
+  "lat": 36.807193,
+  "lng": 31.3433211,
+  "addr": "Promenade",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "antalya|Orange County Hotel, Kemer, Antalya": {
+  "lat": 36.6089739,
+  "lng": 30.5596624,
+  "addr": "Ataturk Bulvarı, Yeni, Yeni",
+  "ilce": "Yeni",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "artvin|Artvin Nihat Gökyiğit Kongre Merkezi": {
+  "lat": 41.1841767,
+  "lng": 41.8347005,
+  "addr": "Artvin Çoruh Üniversitesi, Çayağzı, Çayağzı",
+  "ilce": "Çayağzı",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/university"
+ },
+ "artvin|Nihat Gökyiğit Kongre ve KM": {
+  "lat": 41.1841767,
+  "lng": 41.8347005,
+  "addr": "Artvin Çoruh Üniversitesi, Çayağzı, Çayağzı",
+  "ilce": "Çayağzı",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/university"
+ },
+ "aydin|ra cafe & bar": {
+  "lat": 37.8711946,
+  "lng": 27.2639199,
+  "addr": "Kuşadası sahil kısa bisiklet yolu, Türkmen, Türkmen",
+  "ilce": "Türkmen",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "aydin|Kadıköy Entropi Sahne": {
+  "lat": 37.7688851,
+  "lng": 27.39296,
+  "addr": "Mehmet Semerci Caddesi, Yenikent, Yenikent",
+  "ilce": "Yenikent",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "aydin|Mabolla Center": {
+  "lat": 37.8590353,
+  "lng": 27.2584814,
+  "addr": "Sağlık Caddesi, Camikebir, Camikebir",
+  "ilce": "Camikebir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "aydin|İMİ Koleji Sahnesi": {
+  "lat": 37.8602003,
+  "lng": 27.8124409,
+  "addr": "Mimar Sinan Bulvarı, Mimar Sinan, Mimar Sinan",
+  "ilce": "Mimar Sinan",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/school"
+ },
+ "balikesir|Kadıköy Barış Manço Kültür Merkezi": {
+  "lat": 40.3536579,
+  "lng": 27.9698503,
+  "addr": "Cumhuriyet Caddesi No:12, Haydar Çavuş, Haydar Çavuş",
+  "ilce": "Haydar Çavuş",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "balikesir|Barış Manço Kültür Merkezi Bandirma Belediyesi": {
+  "lat": 40.3536579,
+  "lng": 27.9698503,
+  "addr": "Cumhuriyet Caddesi No:12, Haydar Çavuş, Haydar Çavuş",
+  "ilce": "Haydar Çavuş",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "balikesir|Şehit Turgut Solak Spor Salonu": {
+  "lat": 39.7334647,
+  "lng": 27.9669892,
+  "addr": "Tavşantepe Sokak No:16/A, İbirler, İbirler",
+  "ilce": "İbirler",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
+ },
+ "balikesir|Kadıköy Belediyesi Barış Manço Kültür Merkezi": {
+  "lat": 40.3536579,
+  "lng": 27.9698503,
+  "addr": "Cumhuriyet Caddesi No:12, Haydar Çavuş, Haydar Çavuş",
+  "ilce": "Haydar Çavuş",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "balikesir|Atilla KM, Doktor Hidayet Sayın Salonu": {
+  "lat": 40.3522442,
+  "lng": 27.9695385,
+  "addr": "Sunullah Caddesi No:8/A, Dere, Dere",
+  "ilce": "Dere",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/shoes"
+ },
+ "balikesir|Yılmaz Güney Sahnesi": {
+  "lat": 40.3552571,
+  "lng": 27.9749525,
+  "addr": "11033 Sokak No:53/B, Günaydın, Günaydın",
+  "ilce": "Günaydın",
+  "src": "osm",
+  "v": 2,
+  "osm": "craft/plumber"
+ },
+ "balikesir|Bandirma Barış Manço Kültür Merkezi": {
+  "lat": 40.3536579,
+  "lng": 27.9698503,
+  "addr": "Cumhuriyet Caddesi No:12, Haydar Çavuş, Haydar Çavuş",
+  "ilce": "Haydar Çavuş",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "balikesir|Deli Lounge": {
+  "lat": 40.3408187,
+  "lng": 27.9371655,
+  "addr": "21002 Sokak No:3/B, Yeni, Yeni",
+  "ilce": "Yeni",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "bartin|Grand Palace Hotel Bartın": {
+  "lat": 41.6150305,
+  "lng": 32.3225505,
+  "addr": "Bartın-Zonguldak yolu, Cumhuriyet, Cumhuriyet",
+  "ilce": "Cumhuriyet",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "batman|Hatice Nasıroğlu Konferans": {
+  "lat": 37.9085463,
+  "lng": 41.1292156,
+  "addr": "Kapalı Otopark, Gültepe, Gültepe",
+  "ilce": "Gültepe",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
+ "batman|Şaneşin Performans": {
+  "lat": 37.8986726,
+  "lng": 41.1322911,
+  "addr": "Şehit Fethi Sekin Sokak No:20, Gap, Gap",
+  "ilce": "Gap",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/clothes"
+ },
+ "batman|Batman İl Kültür Merkezi": {
+  "lat": 37.8992119,
+  "lng": 41.1407959,
+  "addr": "Barış Bulvarı, Belde, Belde",
+  "ilce": "Belde",
+  "src": "osm",
+  "v": 2,
+  "osm": "office/government"
+ },
+ "batman|19 Mayıs Kapalı Spor Salonu": {
+  "lat": 37.8824324,
+  "lng": 41.1105783,
+  "addr": "923. Sokak, 19 Mayıs, 19 Mayıs",
+  "ilce": "19 Mayıs",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/pitch"
+ },
+ "bitlis|Bitlis Eren Üniversitesi": {
+  "lat": 38.4814015,
+  "lng": 42.1582309,
+  "addr": "Ahmet Eren Bulvarı, Koruk Köyü, Koruk Köyü",
+  "ilce": "Koruk Köyü",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "bolu|Hampton by Hilton Bolu": {
+  "lat": 40.7312097,
+  "lng": 31.5684774,
+  "addr": "Eski Istanbul Caddesi No:73, Paşaköy, Paşaköy",
+  "ilce": "Paşaköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "bursa|tayyare kültür merkezi": {
+  "lat": 40.1835789,
+  "lng": 29.0650602,
+  "addr": "6. Uçak Sokak, Orhanbey, Orhanbey",
+  "ilce": "Orhanbey",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "bursa|şükran yemişçioğlu kültür merkezi · Bursa": {
+  "lat": 40.2165625,
+  "lng": 28.3595242,
+  "addr": "Panayır Cad., Runguşpaşa, Runguşpaşa",
+  "ilce": "Runguşpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/public"
+ },
+ "bursa|Gold Majesty Hotel": {
+  "lat": 40.2065748,
+  "lng": 28.9915218,
+  "addr": "Nilüfer - Orhaneli - Keles - Büyükorhan - Harmancık Yolu, Çamlıca, Çamlıca",
+  "ilce": "Çamlıca",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "bursa|Swissotel Uludağ": {
+  "lat": 40.238967,
+  "lng": 28.8697527,
+  "addr": "Uludağ Üniversitesi, Görükle Mahallesi, Görükle Mahallesi",
+  "ilce": "Görükle Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "bursa|Yıldırım Barış Manço Kültür Merkezi": {
+  "lat": 40.1828048,
+  "lng": 29.1251789,
+  "addr": "Emniyet Caddesi, Mimar Sinan, Mimar Sinan",
+  "ilce": "Mimar Sinan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "bursa|Podyum Sanat Mahal.": {
+  "lat": 40.2250841,
+  "lng": 28.97089,
+  "addr": "Nilüfer Hatun Cd. No:114, Cumhuriyet, Cumhuriyet",
+  "ilce": "Cumhuriyet",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/food_court"
+ },
+ "bursa|Merinos Atatürk Kültür Merkezi Orhangazi Salonu": {
+  "lat": 40.1995269,
+  "lng": 29.0505837,
+  "addr": "Merinos Caddesi, Santral Garaj, Santral Garaj",
+  "ilce": "Santral Garaj",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
+ "bursa|Bursa Tayyare Kültür Merkezi-gncl": {
+  "lat": 40.1835789,
+  "lng": 29.0650602,
+  "addr": "6. Uçak Sokak, Orhanbey, Orhanbey",
+  "ilce": "Orhanbey",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "bursa|Oksijen Zone Hotels Uludağ": {
+  "lat": 40.102051,
+  "lng": 29.1309696,
+  "addr": "Uludağ Caddesi, Bursa, Bursa",
+  "ilce": "Bursa",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "bursa|Merinos Atatürk Kongre ve Kültür Merkezi Osmangazi Salonu": {
+  "lat": 40.1995269,
+  "lng": 29.0505837,
+  "addr": "Merinos Caddesi, Santral Garaj, Santral Garaj",
+  "ilce": "Santral Garaj",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
+ "bursa|Bursa Akademik Odalar Birliği Oditoryum": {
+  "lat": 40.2071209,
+  "lng": 28.9973502,
+  "addr": "Akademi Caddesi, Odunluk, Odunluk",
+  "ilce": "Odunluk",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
+ "canakkale|Kepez Belediyesi Turhan Mildon Kültür ve Sanat Mer": {
+  "lat": 40.0989091,
+  "lng": 26.3865522,
+  "addr": "Sahil Yolu Caddesi, Cumhuriyet, Cumhuriyet",
+  "ilce": "Cumhuriyet",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "canakkale|Kepez Turhan Mildon Kültür Merkezi": {
+  "lat": 40.0989091,
+  "lng": 26.3865522,
+  "addr": "Sahil Yolu Caddesi, Cumhuriyet, Cumhuriyet",
+  "ilce": "Cumhuriyet",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
  }
 }

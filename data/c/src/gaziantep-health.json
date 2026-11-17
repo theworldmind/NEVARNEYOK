@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-17T00:53:40.677Z",
+ "runAt": "2026-11-17T11:51:26.224Z",
  "mode": "full",
- "total": 337,
+ "total": 339,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,20 +11,20 @@
    "ok": false,
    "status": "dustu",
    "count": 50,
-   "prevCount": 300,
+   "prevCount": 298,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: gaziantep",
-    "biletinial.com/tr-tr/tiyatro/gaziantep: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/gaziantep: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/gaziantep: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/gaziantep: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/festival/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "liste açılmadı: https://biletinial.com/tr-tr/festival/gaziantep (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/festival/gaziantep\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/festival/gaziantep\", waiting until \"domcontentloaded\"\n)",
     "biletinial.com/tr-tr/egitim/gaziantep: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
-   "failStreak": 3,
+   "seconds": 112,
+   "failStreak": 4,
    "lastOk": "2026-11-15T10:29:18.218Z"
   },
   "radar": {
@@ -33,8 +33,8 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 26,
-   "prevCount": 0,
+   "count": 27,
+   "prevCount": 26,
    "error": "",
    "notes": [
     "www.radarturkiye.com/gaziantep-etkinlikleri: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 203,
+   "seconds": 254,
    "failStreak": 0,
-   "lastOk": "2026-11-17T00:53:40.677Z"
+   "lastOk": "2026-11-17T11:51:26.224Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "allevents": {
@@ -73,21 +73,21 @@
    "ok": true,
    "status": "calisiyor",
    "count": 42,
-   "prevCount": 0,
+   "prevCount": 23,
    "error": "",
    "notes": [
     "allevents.in/gaziantep: 19 bağlantı, 19 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/gaziantep/all: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/gaziantep/concerts: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/gaziantep/all: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/gaziantep/concerts: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/parties: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/comedy: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/performances: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 186,
+   "seconds": 216,
    "failStreak": 0,
-   "lastOk": "2026-11-17T00:53:40.677Z"
+   "lastOk": "2026-11-17T11:51:26.224Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 1,
+   "seconds": 7,
+   "failStreak": 2,
    "lastOk": null
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-17T00:47:33.320Z",
+ "runAt": "2026-11-17T11:45:13.720Z",
  "mode": "full",
- "total": 122,
+ "total": 124,
  "written": true,
  "sources": {
   "biletinial": {
@@ -24,7 +24,7 @@
     "biletinial.com/tr-tr/egitim/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 85,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": "2026-11-15T10:26:55.775Z"
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 145,
-   "failStreak": 1,
+   "seconds": 150,
+   "failStreak": 2,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/bartin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "biletimgo": {
@@ -96,14 +96,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 3,
-   "prevCount": 0,
+   "prevCount": 3,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bartin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 13,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-17T00:47:33.320Z"
+   "lastOk": "2026-11-17T11:45:13.720Z"
   }
  }
 }

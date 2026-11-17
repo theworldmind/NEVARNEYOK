@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-17T00:52:59.265Z",
+ "runAt": "2026-11-17T11:44:54.803Z",
  "mode": "full",
  "total": 5,
  "written": true,
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/ardahan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/ardahan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 75,
-   "failStreak": 5,
+   "seconds": 74,
+   "failStreak": 6,
    "lastOk": null
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 5,
-   "prevCount": 0,
+   "prevCount": 5,
    "error": "",
    "notes": [
     "www.radarturkiye.com/ardahan-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=ardahan: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=ardahan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
+   "seconds": 320,
    "failStreak": 0,
-   "lastOk": "2026-11-17T00:52:59.265Z"
+   "lastOk": "2026-11-17T11:44:54.803Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/ardahan/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/ardahan/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 1,
+   "seconds": 156,
+   "failStreak": 2,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/ardahan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   }
  }

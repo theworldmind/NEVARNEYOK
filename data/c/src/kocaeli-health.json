@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-17T00:59:35.283Z",
+ "runAt": "2026-11-17T12:04:25.735Z",
  "mode": "full",
- "total": 612,
+ "total": 615,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,10 +11,10 @@
    "ok": false,
    "status": "dustu",
    "count": 119,
-   "prevCount": 556,
+   "prevCount": 551,
    "error": "",
    "notes": [
-    "açık veri: 14 seans",
+    "açık veri: 15 seans",
     "biletinial.com/tr-tr/tiyatro/kocaeli: 64 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kocaeli: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kocaeli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 129,
-   "failStreak": 3,
+   "seconds": 121,
+   "failStreak": 4,
    "lastOk": "2026-11-15T10:31:25.120Z"
   },
   "radar": {
@@ -33,11 +33,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 61,
-   "prevCount": 0,
+   "count": 62,
+   "prevCount": 54,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/kocaeli-etkinlikleri: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kocaeli-etkinlikleri: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kocaeli-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/kocaeli-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/kocaeli-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kocaeli: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 248,
+   "seconds": 835,
    "failStreak": 0,
-   "lastOk": "2026-11-17T00:59:35.283Z"
+   "lastOk": "2026-11-17T12:04:25.735Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "allevents": {
@@ -73,21 +73,21 @@
    "ok": true,
    "status": "calisiyor",
    "count": 10,
-   "prevCount": 0,
+   "prevCount": 6,
    "error": "",
    "notes": [
     "allevents.in/kocaeli: 6 bağlantı, 5 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/all: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/concerts: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kocaeli/all: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kocaeli/concerts: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kocaeli/parties: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kocaeli/comedy: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/performances: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/workshops: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/kids: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/kocaeli/performances: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kocaeli/workshops: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kocaeli/kids: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
+   "seconds": 181,
    "failStreak": 0,
-   "lastOk": "2026-11-17T00:59:35.283Z"
+   "lastOk": "2026-11-17T12:04:25.735Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -96,14 +96,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 3,
-   "prevCount": 0,
+   "prevCount": 3,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kocaeli: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-17T00:59:35.283Z"
+   "lastOk": "2026-11-17T12:04:25.735Z"
   }
  }
 }

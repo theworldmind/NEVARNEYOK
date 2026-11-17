@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-17T01:11:10.481Z",
+ "runAt": "2026-11-17T12:19:00.932Z",
  "mode": "full",
  "total": 89,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 10,
-   "prevCount": 66,
+   "prevCount": 65,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: yalova",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 74,
-   "failStreak": 3,
+   "seconds": 84,
+   "failStreak": 4,
    "lastOk": "2026-11-15T10:35:34.832Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 24,
-   "prevCount": 0,
+   "prevCount": 24,
    "error": "",
    "notes": [
     "www.radarturkiye.com/yalova-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yalova: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
+   "seconds": 772,
    "failStreak": 0,
-   "lastOk": "2026-11-17T01:11:10.481Z"
+   "lastOk": "2026-11-17T12:19:00.932Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/yalova/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/yalova/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 1,
+   "seconds": 158,
+   "failStreak": 2,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
-   "failStreak": 1,
+   "seconds": 28,
+   "failStreak": 2,
    "lastOk": null
   }
  }

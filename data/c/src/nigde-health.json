@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-17T01:05:38.021Z",
+ "runAt": "2026-11-17T12:07:48.444Z",
  "mode": "full",
- "total": 139,
+ "total": 149,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 18,
-   "prevCount": 110,
+   "prevCount": 107,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: nigde",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/nigde: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
-   "failStreak": 3,
+   "seconds": 82,
+   "failStreak": 4,
    "lastOk": "2026-11-15T10:33:25.988Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 2,
-   "prevCount": 0,
+   "prevCount": 2,
    "error": "",
    "notes": [
     "www.radarturkiye.com/nigde-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 175,
+   "seconds": 164,
    "failStreak": 0,
-   "lastOk": "2026-11-17T01:05:38.021Z"
+   "lastOk": "2026-11-17T12:07:48.444Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "allevents": {
@@ -72,8 +72,8 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 32,
-   "prevCount": 0,
+   "count": 48,
+   "prevCount": 30,
    "error": "",
    "notes": [
     "allevents.in/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +85,9 @@
     "allevents.in/nigde/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/nigde/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 170,
+   "seconds": 177,
    "failStreak": 0,
-   "lastOk": "2026-11-17T01:05:38.021Z"
+   "lastOk": "2026-11-17T12:07:48.444Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 1,
+   "seconds": 6,
+   "failStreak": 2,
    "lastOk": null
   }
  }

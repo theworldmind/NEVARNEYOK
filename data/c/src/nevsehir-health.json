@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-17T01:05:14.877Z",
+ "runAt": "2026-11-17T12:07:52.787Z",
  "mode": "full",
- "total": 175,
+ "total": 185,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 19,
-   "prevCount": 144,
+   "count": 27,
+   "prevCount": 145,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: nevsehir",
@@ -21,10 +21,10 @@
     "biletinial.com/tr-tr/cocuk-aktiviteleri/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/nevsehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/nevsehir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/egitim/nevsehir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
-   "failStreak": 3,
+   "seconds": 81,
+   "failStreak": 4,
    "lastOk": "2026-11-15T10:33:45.968Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 30,
-   "prevCount": 0,
+   "prevCount": 30,
    "error": "",
    "notes": [
     "www.radarturkiye.com/nevsehir-etkinlikleri: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=nevsehir: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 209,
+   "seconds": 694,
    "failStreak": 0,
-   "lastOk": "2026-11-17T01:05:14.877Z"
+   "lastOk": "2026-11-17T12:07:52.787Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/nevsehir/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/nevsehir/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 1,
+   "seconds": 157,
+   "failStreak": 2,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   }
  }
