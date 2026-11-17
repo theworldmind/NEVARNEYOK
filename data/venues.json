@@ -945,5 +945,68 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/arts_centre"
+ },
+ "ODTÜ Kültür ve Kongre Merkezi": {
+  "lat": 39.894123,
+  "lng": 32.7860894,
+  "addr": "4. Yol, Üniversiteler, Üniversiteler Mahallesi",
+  "ilce": "Üniversiteler Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "Central Bar Ankara": {
+  "lat": 39.8995455,
+  "lng": 32.7733392,
+  "addr": "2. Yol, Üniversiteler, Üniversiteler Mahallesi",
+  "ilce": "Üniversiteler Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "InterContinental Grand Ankara": {
+  "lat": 39.9106656,
+  "lng": 32.8565052,
+  "addr": "Atatürk Bulvarı No:183, Kavaklıdere Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "Ankara Forum AVM": {
+  "lat": 40.0174051,
+  "lng": 32.823503,
+  "addr": "Yozgat Bulvarı No:99, Ovacık Mahallesi, Keçiören",
+  "ilce": "Keçiören",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "El Paso Bestekar": {
+  "lat": 39.9081212,
+  "lng": 32.8596676,
+  "addr": "Bestekar Caddesi, Remzi Oğuz Arık Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "Berlin Cafe & Bar": {
+  "lat": 39.9162322,
+  "lng": 32.8584009,
+  "addr": "Selanik Caddesi No:67/A, Kocatepe Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "Persona Ankara": {
+  "lat": 39.8847683,
+  "lng": 32.8550026,
+  "addr": "Yunus Nadi Sokağı, Güzeltepe Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/nightclub"
  }
 }
