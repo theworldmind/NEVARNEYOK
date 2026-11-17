@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T12:03:25.965Z",
+ "runAt": "2026-11-17T00:53:52.131Z",
  "mode": "full",
- "total": 22,
+ "total": 23,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 2,
-   "prevCount": 21,
+   "prevCount": 22,
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: gumushane",
@@ -23,9 +23,87 @@
     "biletinial.com/tr-tr/festival/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
-   "failStreak": 3,
+   "seconds": 81,
+   "failStreak": 4,
    "lastOk": "2026-11-15T08:46:57.456Z"
+  },
+  "radar": {
+   "id": "radar",
+   "name": "Radar Türkiye",
+   "kind": "toplayici",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.radarturkiye.com/gumushane-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/gumushane-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/gumushane-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/gumushane-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/etkinlikler?genre=1&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=4&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 147,
+   "failStreak": 1,
+   "lastOk": null
+  },
+  "bugece": {
+   "id": "bugece",
+   "name": "BUGECE",
+   "kind": "bilet",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 0 seans"
+   ],
+   "seconds": 1,
+   "failStreak": 1,
+   "lastOk": null
+  },
+  "allevents": {
+   "id": "allevents",
+   "name": "AllEvents",
+   "kind": "toplayici",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "allevents.in/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/gumushane/all: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/gumushane/concerts: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/gumushane/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/gumushane/comedy: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/gumushane/performances: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/gumushane/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/gumushane/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
+   ],
+   "seconds": 158,
+   "failStreak": 1,
+   "lastOk": null
+  },
+  "biletimgo": {
+   "id": "biletimgo",
+   "name": "biletimGO",
+   "kind": "bilet",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 1,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletimgo.com/sehir-etkinlikleri/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 10,
+   "failStreak": 0,
+   "lastOk": "2026-11-17T00:53:52.131Z"
   }
  }
 }

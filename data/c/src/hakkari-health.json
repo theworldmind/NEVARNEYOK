@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-16T12:03:37.272Z",
+ "runAt": "2026-11-17T00:54:06.555Z",
  "mode": "full",
  "total": 0,
  "written": true,
@@ -23,8 +23,86 @@
     "biletinial.com/tr-tr/festival/hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/hakkari: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 69,
-   "failStreak": 4,
+   "seconds": 71,
+   "failStreak": 5,
+   "lastOk": null
+  },
+  "radar": {
+   "id": "radar",
+   "name": "Radar Türkiye",
+   "kind": "toplayici",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.radarturkiye.com/hakkari-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/hakkari-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/hakkari-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/hakkari-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/etkinlikler?genre=1&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=4&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 128,
+   "failStreak": 1,
+   "lastOk": null
+  },
+  "bugece": {
+   "id": "bugece",
+   "name": "BUGECE",
+   "kind": "bilet",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 0 seans"
+   ],
+   "seconds": 1,
+   "failStreak": 1,
+   "lastOk": null
+  },
+  "allevents": {
+   "id": "allevents",
+   "name": "AllEvents",
+   "kind": "toplayici",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "allevents.in/hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/hakkari/all: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/hakkari/concerts: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/hakkari/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/hakkari/comedy: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/hakkari/performances: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/hakkari/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "allevents.in/hakkari/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
+   ],
+   "seconds": 155,
+   "failStreak": 1,
+   "lastOk": null
+  },
+  "biletimgo": {
+   "id": "biletimgo",
+   "name": "biletimGO",
+   "kind": "bilet",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletimgo.com/sehir-etkinlikleri/hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 6,
+   "failStreak": 1,
    "lastOk": null
   }
  }

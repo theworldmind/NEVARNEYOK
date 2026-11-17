@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-16T12:06:05.433Z",
+ "runAt": "2026-11-17T00:58:57.897Z",
  "mode": "full",
- "total": 225,
+ "total": 226,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,9 +23,87 @@
     "biletinial.com/tr-tr/festival/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kahramanmaras: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 109,
-   "failStreak": 2,
+   "seconds": 104,
+   "failStreak": 3,
    "lastOk": "2026-11-15T10:31:14.099Z"
+  },
+  "radar": {
+   "id": "radar",
+   "name": "Radar Türkiye",
+   "kind": "toplayici",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 4,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.radarturkiye.com/kahramanmaras-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kahramanmaras-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/kahramanmaras-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/kahramanmaras-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/etkinlikler?genre=1&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=4&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 181,
+   "failStreak": 0,
+   "lastOk": "2026-11-17T00:58:57.897Z"
+  },
+  "bugece": {
+   "id": "bugece",
+   "name": "BUGECE",
+   "kind": "bilet",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "açık veri: 0 seans"
+   ],
+   "seconds": 1,
+   "failStreak": 1,
+   "lastOk": null
+  },
+  "allevents": {
+   "id": "allevents",
+   "name": "AllEvents",
+   "kind": "toplayici",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 3,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "allevents.in/kahramanmaras: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kahramanmaras/all: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kahramanmaras/concerts: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kahramanmaras/parties: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kahramanmaras/comedy: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kahramanmaras/performances: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kahramanmaras/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kahramanmaras/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 169,
+   "failStreak": 0,
+   "lastOk": "2026-11-17T00:58:57.897Z"
+  },
+  "biletimgo": {
+   "id": "biletimgo",
+   "name": "biletimGO",
+   "kind": "bilet",
+   "ok": false,
+   "status": "bos",
+   "count": 0,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "www.biletimgo.com/sehir-etkinlikleri/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+   ],
+   "seconds": 7,
+   "failStreak": 1,
+   "lastOk": null
   }
  }
 }
