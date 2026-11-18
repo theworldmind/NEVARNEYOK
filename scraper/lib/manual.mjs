@@ -1,5 +1,5 @@
 // Elle eklenen etkinlikler: Google Sheets (CSV olarak yayınlanmış) veya data/manual.csv
-// Sütunlar: tarih, saat, baslik, mekan, kategori, aciklama, bilet_sitesi, bilet_linki, fiyat, durum, yas, sure, tur, not
+// Sütunlar: tarih, saat, baslik, mekan, kategori, aciklama, bilet_sitesi, bilet_linki, fiyat, durum, yas, sure, tur, not, gorsel (afiş/tanıtım görselinin adresi; yalnızca adres), gorsel_kaynak, bitis (son gün, YYYY-AA-GG)
 // durum: boş | tukendi | ertelendi | iptal | gizle (yanlış toplanan bir etkinliği siteden kaldırır)
 import { parsePrice, parseTrDate, fold } from "./util.mjs";
 
@@ -31,6 +31,7 @@ export function parseManualCsv(text) {
       url: col(r, "bilet_linki", "bilet_url", "link", "url"), price: parsePrice(col(r, "fiyat", "price")),
       status: /gizle|sil|kaldir/.test(durum) ? "gizle" : /tukendi/.test(durum) ? "tukendi" : /ertelendi/.test(durum) ? "ertelendi" : /iptal/.test(durum) ? "iptal" : "",
       age: col(r, "yas", "yas_siniri", "age"), dur: col(r, "sure", "duration"), genre: col(r, "tur", "genre"), org: col(r, "organizator", "organizasyon"), note: col(r, "not", "note"),
+      img: /^https:\/\//.test(col(r, "gorsel", "afis", "image")) ? col(r, "gorsel", "afis", "image") : "", imgBy: col(r, "gorsel_kaynak", "afis_kaynak"), until: /^\d{4}-\d{2}-\d{2}$/.test(col(r, "bitis", "until")) ? col(r, "bitis", "until") : "",
     };
   }).filter((x) => x.d && x.title);
 }

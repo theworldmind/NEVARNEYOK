@@ -162,12 +162,12 @@ export function applyManual(events, rows, now) {
       cat: r.cat || guessCat({ title: r.title, desc: r.desc }), manual: true, catLocked: !!r.cat,
       tickets: r.url ? [{ site: r.site || siteNameOf(r.url, "Bilet"), url: r.url, ...(r.price ? { price: r.price } : {}), src: "elle", seen: now }] : [],
     };
-    for (const k of ["desc", "age", "dur", "genre", "org", "note", "status"]) if (r[k]) ev[k] = r[k];
+    for (const k of ["desc", "age", "dur", "genre", "org", "note", "status", "img", "imgBy", "until"]) if (r[k]) ev[k] = r[k];
     const i = out.findIndex((x) => sameEvent(x, ev));
     if (r.status === "gizle") { if (i >= 0) out.splice(i, 1); continue; }
     if (i >= 0) {
       const x = out[i];
-      for (const k of ["title", "venue", "t", "desc", "age", "dur", "genre", "org", "note", "status"]) if (r[k === "title" ? "title" : k]) x[k] = ev[k];
+      for (const k of ["title", "venue", "t", "desc", "age", "dur", "genre", "org", "note", "status", "img", "imgBy", "until"]) if (r[k === "title" ? "title" : k]) x[k] = ev[k];
       if (r.cat) { x.cat = r.cat; x.catLocked = true; }
       for (const tk of ev.tickets) { const j = x.tickets.findIndex((y) => y.site === tk.site); if (j >= 0) x.tickets[j] = tk; else x.tickets.push(tk); }
     } else {
