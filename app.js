@@ -1015,7 +1015,7 @@ function ogCanvas(e, city, line) { // davet/paylaşım görseli: afiş telefonda
 }
 /* ---------- Beraber: haritadaki her yere "beraber gidelim mi?" daveti (18.11.2026). Sunucu yok: bilgi bağlantının # kısmında gider; gönderilenler ve cevaplar yalnızca telefonda ---------- */
 let NVBp = null, YGp = null;
-const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=12", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
+const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=13", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
 const ygIdx = () => YGp ||= jget("/idx/yg.json").then((x) => x || []);
 const bdL = () => jsGet("nvny-davetler", []), bdS = (L) => store.set("nvny-davetler", JSON.stringify(L.slice(0, 40)));
 const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" · ");
@@ -1583,7 +1583,7 @@ function routeSheet(e, v, city) {
   $("#r3d", sh).addEventListener("click", (ev) => { if (!mapOk) return; d3 = !d3; ev.currentTarget.classList.toggle("on", d3); haptic(6); snd.sel?.(); map.easeTo({ pitch: d3 ? 60 : 0, bearing: d3 ? (map.getBearing() || -18) : 0, duration: 750 }); });
   $("#rfit", sh).addEventListener("click", () => { haptic(5); snd.sel?.(); follow = false; fitRoute(); });
   Promise.all([mlgl(), mStyle(mTheme())]).then(([, style]) => { const el = sh.querySelector("#rmap"); if (!document.body.contains(el)) return;
-    map = new maplibregl.Map({ container: el, style, center: LL(dest), zoom: 15, maxPitch: 70, attributionControl: { compact: true }, fadeDuration: 150 });
+    map = new maplibregl.Map({ container: el, style, center: LL(dest), zoom: 15, maxPitch: 70, attributionControl: { compact: true }, fadeDuration: 150 }); mNvb(map);
     map.on("style.load", () => { const z = { type: "FeatureCollection", features: [] };
       map.addSource("rt-d", { type: "geojson", data: z }); map.addSource("rt-l", { type: "geojson", data: z });
       map.addLayer({ id: "rt-dl", type: "line", source: "rt-d", layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-color": "#8e8e93", "line-width": 6, "line-opacity": .7 } });
@@ -2288,6 +2288,7 @@ const MAP_URL = window.NVNY_MAPSTYLE || "https://tiles.openfreemap.org/styles/li
 const mTheme = () => store.get("nvny-harita-tema") || "koyu";
 let MSJ = null; const MST = {};
 const mBina = () => Promise.race([mlgl().then(bjs).then((B) => B.bina(maplibregl)).catch(() => false), new Promise((r) => setTimeout(() => r(false), 1300))]);
+const mNvb = (map) => { const up = () => bjs().then((B) => B.bina(maplibregl).then((ok) => { if (ok && map.getStyle?.()) B.liveB(map); })).catch(() => {}); map.on("style.load", up); up(); };
 const mStyle = (th) => MST[th] ||= Promise.all([MSJ ||= jget(MAP_URL).then((j) => { if (!j) throw new Error("style"); return j; }).catch((e) => { MSJ = null; throw e; }), mBina()])
   .then(([j, ok]) => { const s = JSON.parse(JSON.stringify(j)); if (th === "koyu") darkStyle(s); build3d(s, th); if (ok) window.NVB.useB(s); trNames(s); skyOf(s, th); return s; }).catch((e) => { delete MST[th]; throw e; });
 const cvx = document.createElement("canvas").getContext("2d");
@@ -2557,7 +2558,7 @@ function viewHarita(city, Q = {}) {
       setTimeout(retry, 1500); addEventListener("online", retry); document.addEventListener("visibilitychange", () => { if (!document.hidden) retry(); }); retryIx = retry; }
     map = new maplibregl.Map({ container: el, style, center: cam ? cam.c : [(ILLL[city] || [39.93, 32.86])[1], (ILLL[city] || [39.93, 32.86])[0]], zoom: cam ? cam.z : 10.5, pitch: cam?.p || 0, bearing: cam?.b || 0,
       minZoom: 4.6, maxZoom: 18.5, maxPitch: 70, maxBounds: [[19, 32], [51, 46]], attributionControl: { compact: true }, dragRotate: true, pitchWithRotate: true, fadeDuration: 180 });
-    window.__hm = map; map.touchZoomRotate.enableRotation();
+    window.__hm = map; mNvb(map); map.touchZoomRotate.enableRotation();
     map.on("style.load", () => { addLayers(); });
     map.once("load", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); if (!cam) goCity(city); drawFavs(); if (DATA.me && !DATA.me.c) meDot(DATA.me.p); if (HM.q) { inp.value = HM.q; clr.hidden = false; } deep(); });
     map.on("moveend", () => { HM.cam = { c: map.getCenter().toArray().map((v) => +v.toFixed(5)), z: +map.getZoom().toFixed(2), p: Math.round(map.getPitch()), b: Math.round(map.getBearing()), city }; hmSave(); near(); yvSync(); });

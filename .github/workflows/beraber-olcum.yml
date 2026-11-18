@@ -47,7 +47,7 @@ jobs:
   ada:
     if: github.event.inputs.is == 'ada'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     env: { OUT: /tmp/ada }
     steps:
       - uses: actions/checkout@v4
@@ -57,6 +57,7 @@ jobs:
         run: |
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
+          node beraber/harita-ornek.mjs || true
           node beraber/ada-ornek.mjs
       - if: always()
         run: cd /tmp/ada && git init -q -b beraber-ada && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Ada" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-ada
