@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T01:07:35.055Z",
+ "runAt": "2026-11-18T08:33:44.244Z",
  "mode": "full",
- "total": 26,
+ "total": 27,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 6,
+   "count": 7,
    "prevCount": 26,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: igdir",
+    "açık veri: 5 seans",
     "biletinial.com/tr-tr/tiyatro/igdir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
-   "failStreak": 5,
+   "seconds": 82,
+   "failStreak": 6,
    "lastOk": "2026-11-15T10:29:40.541Z"
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 142,
-   "failStreak": 3,
+   "seconds": 133,
+   "failStreak": 4,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/igdir/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/igdir/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 3,
+   "seconds": 155,
+   "failStreak": 4,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   }
  }

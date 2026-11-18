@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-18T00:55:49.800Z",
+ "runAt": "2026-11-18T08:17:45.244Z",
  "mode": "full",
- "total": 79,
+ "total": 71,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 4,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 12,
    "prevCount": 22,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: artvin",
+    "açık veri: 10 seans",
     "biletinial.com/tr-tr/tiyatro/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/artvin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
-   "failStreak": 5,
-   "lastOk": "2026-11-15T10:27:03.459Z"
+   "seconds": 78,
+   "failStreak": 0,
+   "lastOk": "2026-11-18T08:17:45.244Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 142,
-   "failStreak": 3,
+   "seconds": 131,
+   "failStreak": 4,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -72,8 +72,8 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 63,
-   "prevCount": 58,
+   "count": 66,
+   "prevCount": 56,
    "error": "",
    "notes": [
     "allevents.in/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +85,9 @@
     "allevents.in/artvin/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
+   "seconds": 196,
    "failStreak": 0,
-   "lastOk": "2026-11-18T00:55:49.800Z"
+   "lastOk": "2026-11-18T08:17:45.244Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 13,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-18T00:55:49.800Z"
+   "lastOk": "2026-11-18T08:17:45.244Z"
   }
  }
 }

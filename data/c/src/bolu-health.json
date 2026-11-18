@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T00:55:51.817Z",
+ "runAt": "2026-11-18T08:17:33.985Z",
  "mode": "full",
- "total": 154,
+ "total": 181,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 28,
-   "prevCount": 160,
+   "count": 56,
+   "prevCount": 153,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: bolu",
+    "açık veri: 47 seans",
     "biletinial.com/tr-tr/tiyatro/bolu: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bolu: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
-   "failStreak": 5,
+   "seconds": 91,
+   "failStreak": 6,
    "lastOk": "2026-11-15T10:27:03.156Z"
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 138,
-   "failStreak": 3,
+   "seconds": 135,
+   "failStreak": 4,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/bolu/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bolu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 3,
+   "seconds": 156,
+   "failStreak": 4,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-18T00:55:51.817Z"
+   "lastOk": "2026-11-18T08:17:33.985Z"
   }
  }
 }

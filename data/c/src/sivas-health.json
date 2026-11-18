@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T01:21:20.912Z",
+ "runAt": "2026-11-18T08:56:06.201Z",
  "mode": "full",
- "total": 110,
+ "total": 111,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,10 +11,10 @@
    "ok": false,
    "status": "dustu",
    "count": 33,
-   "prevCount": 106,
+   "prevCount": 104,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: sivas",
+    "açık veri: 29 seans",
     "biletinial.com/tr-tr/tiyatro/sivas: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sivas: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sivas: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
-   "failStreak": 5,
+   "seconds": 90,
+   "failStreak": 6,
    "lastOk": "2026-11-15T10:34:03.415Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 7,
-   "prevCount": 0,
+   "prevCount": 7,
    "error": "",
    "notes": [
     "www.radarturkiye.com/sivas-etkinlikleri: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
+   "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:21:20.912Z"
+   "lastOk": "2026-11-18T08:56:06.201Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/sivas/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
-   "failStreak": 3,
+   "seconds": 6,
+   "failStreak": 4,
    "lastOk": null
   }
  }

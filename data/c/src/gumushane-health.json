@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-18T01:06:46.775Z",
+ "runAt": "2026-11-18T08:30:14.116Z",
  "mode": "full",
- "total": 21,
+ "total": 9,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 2,
-   "prevCount": 22,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 8,
+   "prevCount": 20,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: gumushane",
+    "açık veri: 6 seans",
     "biletinial.com/tr-tr/tiyatro/gumushane: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 77,
-   "failStreak": 6,
-   "lastOk": "2026-11-15T08:46:57.456Z"
+   "seconds": 89,
+   "failStreak": 0,
+   "lastOk": "2026-11-18T08:30:14.116Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 142,
-   "failStreak": 3,
+   "seconds": 147,
+   "failStreak": 4,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/gumushane/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/gumushane/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 3,
+   "seconds": 156,
+   "failStreak": 4,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:06:46.775Z"
+   "lastOk": "2026-11-18T08:30:14.116Z"
   }
  }
 }

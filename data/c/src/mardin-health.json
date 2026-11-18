@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-18T01:15:39.547Z",
+ "runAt": "2026-11-18T08:45:28.332Z",
  "mode": "full",
- "total": 91,
- "written": true,
+ "total": 43,
+ "written": false,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 14,
-   "prevCount": 94,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 41,
+   "prevCount": 89,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: mardin",
+    "açık veri: 37 seans",
     "biletinial.com/tr-tr/tiyatro/mardin: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mardin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
-   "failStreak": 5,
-   "lastOk": "2026-11-15T10:32:38.918Z"
+   "seconds": 88,
+   "failStreak": 0,
+   "lastOk": "2026-11-18T08:45:28.332Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 146,
-   "failStreak": 3,
+   "seconds": 135,
+   "failStreak": 4,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/mardin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/mardin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 17,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:15:39.547Z"
+   "lastOk": "2026-11-18T08:45:28.332Z"
   }
  }
 }

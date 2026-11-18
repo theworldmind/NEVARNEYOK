@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T01:11:00.001Z",
+ "runAt": "2026-11-18T08:39:41.896Z",
  "mode": "full",
  "total": 2,
  "written": true,
@@ -14,7 +14,7 @@
    "prevCount": 0,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: kirikkale",
+    "açık veri: 0 seans",
     "biletinial.com/tr-tr/tiyatro/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 68,
-   "failStreak": 7,
+   "seconds": 90,
+   "failStreak": 8,
    "lastOk": null
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 159,
-   "failStreak": 3,
+   "seconds": 139,
+   "failStreak": 4,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kirikkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kirikkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 3,
+   "seconds": 157,
+   "failStreak": 4,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:11:00.001Z"
+   "lastOk": "2026-11-18T08:39:41.896Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T01:20:09.354Z",
+ "runAt": "2026-11-18T08:52:17.644Z",
  "mode": "full",
- "total": 644,
+ "total": 669,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 94,
-   "prevCount": 559,
+   "count": 120,
+   "prevCount": 536,
    "error": "",
    "notes": [
-    "açık veri: 28 seans",
+    "açık veri: 114 seans",
     "biletinial.com/tr-tr/tiyatro/sakarya: 72 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sakarya: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sakarya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 108,
-   "failStreak": 5,
+   "seconds": 112,
+   "failStreak": 6,
    "lastOk": "2026-11-15T10:33:36.635Z"
   },
   "radar": {
@@ -34,10 +34,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 106,
-   "prevCount": 41,
+   "prevCount": 106,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/sakarya-etkinlikleri: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/sakarya-etkinlikleri: 38 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/sakarya-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/sakarya-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/sakarya-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sakarya: 84 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 293,
+   "seconds": 1068,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:20:09.354Z"
+   "lastOk": "2026-11-18T08:52:17.644Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/sakarya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sakarya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 3,
+   "seconds": 156,
+   "failStreak": 4,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:20:09.354Z"
+   "lastOk": "2026-11-18T08:52:17.644Z"
   }
  }
 }

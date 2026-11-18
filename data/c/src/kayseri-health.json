@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-18T01:10:39.470Z",
+ "runAt": "2026-11-18T08:45:59.631Z",
  "mode": "full",
- "total": 200,
+ "total": 118,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 48,
-   "prevCount": 180,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 93,
+   "prevCount": 177,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: kayseri",
+    "açık veri: 88 seans",
     "biletinial.com/tr-tr/tiyatro/kayseri: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kayseri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
-   "failStreak": 5,
-   "lastOk": "2026-11-15T10:31:45.358Z"
+   "seconds": 99,
+   "failStreak": 0,
+   "lastOk": "2026-11-18T08:45:59.631Z"
   },
   "radar": {
    "id": "radar",
@@ -33,8 +33,8 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 11,
-   "prevCount": 0,
+   "count": 12,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "www.radarturkiye.com/kayseri-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 170,
+   "seconds": 196,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:10:39.470Z"
+   "lastOk": "2026-11-18T08:45:59.631Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -73,7 +73,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 20,
-   "prevCount": 13,
+   "prevCount": 14,
    "error": "",
    "notes": [
     "allevents.in/kayseri: 10 bağlantı, 7 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +85,9 @@
     "allevents.in/kayseri/workshops: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/kids: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 170,
+   "seconds": 172,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:10:39.470Z"
+   "lastOk": "2026-11-18T08:45:59.631Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 16,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:10:39.470Z"
+   "lastOk": "2026-11-18T08:45:59.631Z"
   }
  }
 }

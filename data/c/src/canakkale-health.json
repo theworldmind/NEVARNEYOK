@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T01:01:11.147Z",
+ "runAt": "2026-11-18T08:23:24.705Z",
  "mode": "full",
- "total": 262,
+ "total": 268,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 41,
+   "count": 46,
    "prevCount": 243,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: canakkale",
+    "açık veri: 41 seans",
     "biletinial.com/tr-tr/tiyatro/canakkale: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/canakkale: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
-   "failStreak": 5,
+   "seconds": 90,
+   "failStreak": 6,
    "lastOk": "2026-11-15T10:28:56.677Z"
   },
   "radar": {
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 210,
+   "seconds": 204,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:01:11.147Z"
+   "lastOk": "2026-11-18T08:23:24.705Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/canakkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/canakkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 162,
-   "failStreak": 3,
+   "seconds": 183,
+   "failStreak": 4,
    "lastOk": null
   },
   "biletimgo": {
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 9,
+   "count": 10,
    "prevCount": 9,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/canakkale: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/canakkale: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 24,
+   "seconds": 25,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:01:11.147Z"
+   "lastOk": "2026-11-18T08:23:24.705Z"
   }
  }
 }

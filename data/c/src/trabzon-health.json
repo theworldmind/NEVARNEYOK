@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-18T01:23:52.250Z",
+ "runAt": "2026-11-18T08:59:37.026Z",
  "mode": "full",
- "total": 225,
+ "total": 136,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 44,
-   "prevCount": 178,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 85,
+   "prevCount": 174,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: trabzon",
+    "açık veri: 80 seans",
     "biletinial.com/tr-tr/tiyatro/trabzon: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/trabzon: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/trabzon: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
-   "failStreak": 5,
-   "lastOk": "2026-11-15T10:34:46.823Z"
+   "seconds": 84,
+   "failStreak": 0,
+   "lastOk": "2026-11-18T08:59:37.026Z"
   },
   "radar": {
    "id": "radar",
@@ -34,10 +34,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 43,
-   "prevCount": 27,
+   "prevCount": 43,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/trabzon-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/trabzon-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/trabzon-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/trabzon-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/trabzon-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=trabzon: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 560,
+   "seconds": 1024,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:23:52.250Z"
+   "lastOk": "2026-11-18T08:59:37.026Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/trabzon/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 179,
+   "seconds": 197,
    "failStreak": 0,
-   "lastOk": "2026-11-18T01:23:52.250Z"
+   "lastOk": "2026-11-18T08:59:37.026Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": null
   }
  }

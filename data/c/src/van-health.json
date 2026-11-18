@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T07:49:43.711Z",
+ "runAt": "2026-11-18T09:00:15.104Z",
  "mode": "full",
  "total": 104,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 103,
-   "prevCount": 62,
+   "prevCount": 103,
    "error": "",
    "notes": [
     "açık veri: 89 seans, 3 detay sayfası",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 97,
    "failStreak": 0,
-   "lastOk": "2026-11-18T07:49:43.711Z"
+   "lastOk": "2026-11-18T09:00:15.104Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 134,
-   "failStreak": 5,
+   "seconds": 135,
+   "failStreak": 6,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 5,
+   "failStreak": 6,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/van/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/van/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 5,
+   "seconds": 156,
+   "failStreak": 6,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T07:49:43.711Z"
+   "lastOk": "2026-11-18T09:00:15.104Z"
   }
  }
 }
