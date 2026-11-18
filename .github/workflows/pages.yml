@@ -56,6 +56,14 @@ jobs:
         run: |
           mkdir -p _site
           rsync -a --exclude '.git' --exclude '.github' --exclude 'scraper' --exclude '_site' --exclude 'README.md' --exclude 'CLAUDE.md' --exclude 'data/coverage.json' ./ _site/
+      - name: Harita motorunu siteye koy
+        continue-on-error: true
+        run: |
+          V=$(sed -n 's/.*const ML_V = "\([^"]*\)".*/\1/p' app.js | head -1)
+          mkdir -p _site/vendor/maplibre
+          for f in maplibre-gl.js maplibre-gl.css; do curl -fsSL --retry 3 -o "_site/vendor/maplibre/$f" "https://unpkg.com/maplibre-gl@$V/dist/$f"; done
+      - name: Yayından önce denetim (eksikse yayınlama)
+        run: node scraper/site-check.mjs _site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -70,3 +78,9 @@ jobs:
       - id: deployment
         if: steps.deploy1.outcome == 'failure'
         uses: actions/deploy-pages@v4
+      - name: Yayından sonra canlı denetim
+        run: |
+          for u in / /app.js /data/cities.json /idx/harita.json; do
+            ok=0; for i in 1 2 3 4 5 6 7 8; do curl -fsS -o /dev/null --max-time 40 "https://nevarneyok.net.tr$u" && { ok=1; break; }; sleep 20; done
+            [ $ok = 1 ] || { echo "::error::Canlı sitede açılmıyor: $u"; exit 1; }
+          done

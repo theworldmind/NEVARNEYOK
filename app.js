@@ -71,9 +71,23 @@ const I = {
 /* ---------- Veri ---------- */
 const DATA = { events: [], venues: {}, films: null, buzz: {}, base: null, ready: false };
 const gcEv = (p, t) => { const f = () => { try { window.goatcounter?.count?.({ path: p, title: t || p, event: true }); } catch {} }; window.goatcounter?.count ? f() : setTimeout(f, 3000); };
-const jget = (u) => fetch(u, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+/* Ağ dayanıklılığı (18.11.2026, kullanıcı: "uygulama bazen açılmıyor; haritada hata veriyor; bir daha olur mu korkuyorum"):
+   her istek süre sınırlı (asılı kalan bağlantı uygulamayı açılışta bekletmez), kısa aralıkla yeniden denenir; olmazsa telefonun son indirdiği kopya kullanılır. */
+window.NV_JS = 1;
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+const getTO = (u, opt, ms) => { const c = new AbortController(), t = setTimeout(() => c.abort(), ms); return fetch(u, { ...opt, signal: c.signal }).finally(() => clearTimeout(t)); };
+const stale = (u, ms = 2500) => getTO(u, { cache: "force-cache" }, ms).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+async function netJ(u, tries = 3, first = 8000) { for (let i = 0; i < tries; i++) { try { const r = await getTO(u, { cache: "no-cache" }, i ? 12000 : first); if (r.ok) return await r.json(); if (r.status === 404) return null; } catch {} if (i < tries - 1) await wait(i ? 1500 : 500); } return null; }
+const jget = (u) => netJ(u).then((v) => v ?? stale(u));
+// açılış ağı beklemez: 2,5 sn içinde gelmezse son kopyayla açılır; hiç kopya yoksa en çok 5 sn beklenir, il listesi arkadan tamamlanır
+const quick = (u) => { const n = netJ(u, 1, 5000).then((v) => v ?? stale(u, 1500)); return Promise.race([n, wait(2500).then(() => stale(u, 1500)).then((v) => v ?? n)]); };
+const appUp = () => { window.NV_UP = 1; clearTimeout(window.NV_WD); document.getElementById("nvfail")?.remove(); };
+const citiesLater = async () => { const c = await jget("data/cities.json"); if (c?.cities) { CIX = c.cities; if (!DATA.ready) route(); } else setTimeout(citiesLater, 8000); };
+function loadFail(city) { const h = location.hash; V.innerHTML = `<div class="empty lfail"><b>Şu an ulaşamadık</b><small>Bağlantı gelince kendiliğinden açılacak.</small><button type="button" class="lcb">Tekrar dene</button></div>`; $(".lcb", V).addEventListener("click", () => route());
+  const go = () => { removeEventListener("online", go); clearTimeout(t); if (location.hash === h && $(".lfail", V)) route(); }, t = setTimeout(go, 6000); addEventListener("online", go); }
 async function boot() {
-  const [cx, top] = await Promise.all([jget("data/cities.json"), jget("data/one-cikan.json")]);
+  const [cx, top] = await Promise.all([quick("data/cities.json"), quick("data/one-cikan.json")]);
+  if (!cx?.cities) setTimeout(citiesLater, 1200);
   if (cx?.cities) CIX = cx.cities; DATA.top = top?.events || []; DATA.boot = true; DATA.venues = DATA.venues || {};
   // Açılışta yalnızca il listesi ve öne çıkanlar; mekân konumları ve il verisi gerektiğinde (il açılınca) iner — açılış takılmasın.
   const sv = store.get("nvny-city"), first = (standalone && !store.get("nvny-app-ilk")) || !store.get("nvny-intro");
@@ -88,7 +102,7 @@ let venP = null;
 async function load(city) {
   const ank = city === "ankara";
   if (ank) venP ||= jget("data/venues.json").then((vn) => { if (vn) DATA.venues = vn.venues || vn; }); else venueTr();
-  prefetch(city); const [ev, fl, bz] = await pre[city]; delete pre[city];
+  prefetch(city); const [ev, fl, bz] = await pre[city]; delete pre[city]; if (!ev) throw new Error("veri"); // boş liste göstermek yerine yeniden denenir
   DATA.base = ev?.baseline; DATA.updated = ev?.updated; DATA.films = fl; DATA.buzz = bz || {};
   const fresh = (x) => !!(x.price && !x.est && x.seen && x.seen !== DATA.base && (Date.now() - Date.parse(x.seen)) / 36e5 <= PRICE_MAX_H);
   const { d: today, hm } = nowIST();
@@ -842,7 +856,7 @@ function route() {
   if (!DATA.boot) return;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
     const need = P0 && P0 !== "bilgi" && CITIES.find((c) => c.id === P0 && c.live) && DATA.city !== P0;
-    if (need) { const nm = CITIES.find((c) => c.id === P0)?.name || ""; V.innerHTML = `<section class="city sk"><h1 style="--L:${[...nm].length}">${esc(nm)}</h1><div class="st"><span class="skl" style="width:120px"></span><span class="skl" style="width:90px"></span></div></section><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div>`; setTop(P0); loadCity(P0).then(() => { cityLoads[P0] = null; route(); followBoot(); }).catch(() => { V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; }); return; } }
+    if (need) { const nm = CITIES.find((c) => c.id === P0)?.name || ""; V.innerHTML = `<section class="city sk"><h1 style="--L:${[...nm].length}">${esc(nm)}</h1><div class="st"><span class="skl" style="width:120px"></span><span class="skl" style="width:90px"></span></div></section><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div>`; setTop(P0); loadCity(P0).then(() => { cityLoads[P0] = null; route(); followBoot(); }).catch(() => loadFail(P0)); return; } }
   scrollMem.set(lastHash, scrollY);
   $$(".sh").forEach((x) => x.remove()); document.body.style.overflow = "";
   const h = location.hash.replace(/^#/, "") || "/", [path, qs] = h.split("?"), P = path.split("/").filter(Boolean), Q = Object.fromEntries(new URLSearchParams(qs || ""));
@@ -2189,11 +2203,13 @@ function recoRail(city) {
    3B binalar stilin kendi bina katmanından (yüksekliği OpenStreetMap'teki kat bilgisi). */
 const ML_V = "4.7.1";
 let mlP = null;
-const mlgl = () => mlP ||= window.maplibregl ? Promise.resolve() : new Promise((res, rej) => { const c = document.createElement("link"); c.rel = "stylesheet"; c.href = `https://unpkg.com/maplibre-gl@${ML_V}/dist/maplibre-gl.css`; document.head.append(c); const s = document.createElement("script"); s.src = `https://unpkg.com/maplibre-gl@${ML_V}/dist/maplibre-gl.js`; s.onload = res; s.onerror = () => { mlP = null; rej(new Error("maplibre")); }; document.head.append(s); });
+const loadJS = (src, ms) => new Promise((res, rej) => { const s = document.createElement("script"), t = setTimeout(() => { s.remove(); rej(new Error("süre")); }, ms); s.src = src; s.onload = () => { clearTimeout(t); res(); }; s.onerror = () => { clearTimeout(t); s.remove(); rej(new Error("js")); }; document.head.append(s); });
+// harita motoru önce kendi sitemizden (pages.yml vendor/ klasörüne koyar), olmazsa iki ayrı dağıtım ağından: biri kapalıysa harita yine açılır
+const mlgl = () => mlP ||= window.maplibregl ? Promise.resolve() : (async () => { for (const b of ["/vendor/maplibre/", `https://unpkg.com/maplibre-gl@${ML_V}/dist/`, `https://cdn.jsdelivr.net/npm/maplibre-gl@${ML_V}/dist/`]) { try { await loadJS(b + "maplibre-gl.js", 15000); if (!window.maplibregl) continue; const c = document.createElement("link"); c.rel = "stylesheet"; c.href = b + "maplibre-gl.css"; document.head.append(c); return; } catch {} } mlP = null; throw new Error("maplibre"); })();
 const MAP_URL = window.NVNY_MAPSTYLE || "https://tiles.openfreemap.org/styles/liberty";
 const mTheme = () => store.get("nvny-harita-tema") || "koyu";
 let MSJ = null; const MST = {};
-const mStyle = (th) => MST[th] ||= (MSJ ||= fetch(MAP_URL).then((r) => { if (!r.ok) throw new Error("style"); return r.json(); }).catch((e) => { MSJ = null; throw e; }))
+const mStyle = (th) => MST[th] ||= (MSJ ||= jget(MAP_URL).then((j) => { if (!j) throw new Error("style"); return j; }).catch((e) => { MSJ = null; throw e; }))
   .then((j) => { const s = JSON.parse(JSON.stringify(j)); if (th === "koyu") darkStyle(s); build3d(s, th); trNames(s); skyOf(s, th); return s; }).catch((e) => { delete MST[th]; throw e; });
 const cvx = document.createElement("canvas").getContext("2d");
 const rgbOf = (c) => { if (typeof c !== "string" || c.length > 40) return null; cvx.fillStyle = "#010203"; cvx.fillStyle = c; const v = cvx.fillStyle; if (v === "#010203" && !/^#010203$/i.test(c)) return null;
@@ -2268,7 +2284,7 @@ const favIc = (n) => { n = String(n || "").toLocaleLowerCase("tr"); const m = FA
 let HIDX = null;
 // Harita dizini. İnemezse (zayıf çekim, uygulama arkada beklerken bağlantı kopması) sonuç önbelleğe "boş" diye yazılmaz: bir sonraki çağrı yeniden dener.
 // (16.11.2026 19:54, kullanıcı ekranı: "0 etkinlik · 0 mekân" — başarısız indirme boş liste gibi gösteriliyordu.)
-const hIdx = () => HIDX ||= fetch("/idx/harita.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+const hIdx = () => HIDX ||= getTO("/idx/harita.json", { cache: "no-cache" }, 30000).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => stale("/idx/harita.json", 8000))
   .then((j) => { if (!Array.isArray(j?.e) || !j.e.length) throw new Error("bos"); if (j.t) for (const x of j.e) { x[2] = j.t[x[2]]; x[6] = x[6] >= 0 ? j.i[x[6]] : ""; } return j; })
   .catch(() => { HIDX = null; return null; });
 const hmRange = (when) => { const { d: today } = nowIST(), dow = pd(today).getDay(), fri = addD(today, (5 - dow + 7) % 7);
@@ -2449,7 +2465,7 @@ function viewHarita(city) {
   const cam = HM.cam && HM.cam.city === city ? HM.cam : null;
   Promise.all([mlgl(), hIdx(), mStyle(mTheme())]).then(([, ix, style]) => { if (!alive()) return; IX = ix || { v: [], e: [] };
     // dizin inmediyse sessizce yeniden dene (1,5 / 4 / 10 / 20 sn, bağlantı gelince ve uygulamaya dönünce); gelince harita yerinde dolar
-    if (!ix) { let n = 0, busy = false; const retry = () => { if (busy || !alive() || IX.e.length) return; busy = true; hIdx().then((j) => { busy = false; if (j && alive()) { IX = j; setData(); } else if (alive() && n < 4) setTimeout(retry, [1500, 4000, 10000, 20000][n++]); }); };
+    if (!ix) { let n = 0, busy = false; const retry = () => { if (busy || !alive() || IX.e.length) return; busy = true; hIdx().then((j) => { busy = false; if (j && alive()) { IX = j; setData(); } else if (alive()) setTimeout(retry, [1500, 4000, 10000, 20000, 30000][Math.min(n++, 4)]); }); };
       setTimeout(retry, 1500); addEventListener("online", retry); document.addEventListener("visibilitychange", () => { if (!document.hidden) retry(); }); retryIx = retry; }
     map = new maplibregl.Map({ container: el, style, center: cam ? cam.c : [(ILLL[city] || [39.93, 32.86])[1], (ILLL[city] || [39.93, 32.86])[0]], zoom: cam ? cam.z : 10.5, pitch: cam?.p || 0, bearing: cam?.b || 0,
       minZoom: 4.6, maxZoom: 18.5, maxPitch: 70, maxBounds: [[19, 32], [51, 46]], attributionControl: { compact: true }, dragRotate: true, pitchWithRotate: true, fadeDuration: 180 });
@@ -2719,7 +2735,7 @@ function venueSheetX(g) {
   sh.querySelector("[data-r]")?.addEventListener("click", () => { sh.close(); const v = { lat, lng, ilce }; setTimeout(() => routeSheet({ title: L[0][2], venue: name, d: L[0][3], t: L[0][4] }, v, c, `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(name + ", " + (N[c] || ""))}`), 280); });
 }
 
-boot().then(() => { offlineBoot(); shortcutBoot(); route(); splashOut(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { splashOut(); V.innerHTML = `<div class="empty">Veriler yüklenemedi. Sayfayı yenile.</div>`; console.error(err); });
+boot().then(() => { offlineBoot(); shortcutBoot(); route(); appUp(); splashOut(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { appUp(); splashOut(); loadFail(); console.error(err); });
 
 /* Gün içinde bildirim, uygulamanın kendisinden (kullanıcı, 17.11.2026 02:09: "uygulama göndersin; indirince hoş geldin gelmişti, gün içinde de göndersin").
    Telefonun arka plan uyandırmasına (periodicSync) güvenilemiyor: Chrome yeni uygulamada seyrek, pil tasarrufunda hiç çalıştırmıyor; iPhone'da yok.
