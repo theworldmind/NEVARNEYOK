@@ -1015,7 +1015,7 @@ function ogCanvas(e, city, line) { // davet/paylaşım görseli: afiş telefonda
 }
 /* ---------- Beraber: haritadaki her yere "beraber gidelim mi?" daveti (18.11.2026). Sunucu yok: bilgi bağlantının # kısmında gider; gönderilenler ve cevaplar yalnızca telefonda ---------- */
 let NVBp = null, YGp = null;
-const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=3", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
+const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=4", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
 const ygIdx = () => YGp ||= jget("/idx/yg.json").then((x) => x || []);
 const bdL = () => jsGet("nvny-davetler", []), bdS = (L) => store.set("nvny-davetler", JSON.stringify(L.slice(0, 40)));
 const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" · ");
@@ -1574,7 +1574,7 @@ function routeSheet(e, v, city) {
   function fitRoute() { if (!mapOk || !C.length) return; const b = C.reduce((b, c) => [[Math.min(b[0][0], c[1]), Math.min(b[0][1], c[0])], [Math.max(b[1][0], c[1]), Math.max(b[1][1], c[0])]], [LL(C[0]), LL(C[0])]);
     const pad = wide() ? { top: 60, bottom: 60, left: card.offsetWidth + 70, right: 70 } : { top: rtop.offsetTop + rtop.offsetHeight + 30, bottom: Math.min(innerHeight * .5, card.offsetHeight - (cTy > 2000 ? card.offsetHeight - cMini() : cTy)) + 30, left: 40, right: 72 };
     map.fitBounds(b, { padding: pad, pitch: d3 ? 55 : 0, bearing: d3 ? map.getBearing() : 0, duration: 700 }); }
-  $("#r3d", sh).addEventListener("click", (ev) => { if (!mapOk) return; d3 = !d3; ev.currentTarget.classList.toggle("on", d3); haptic(6); snd.sel?.(); NVB.terrain(map, d3 && !NVB.lite()); map.easeTo({ pitch: d3 ? 60 : 0, bearing: d3 ? (map.getBearing() || -18) : 0, duration: 750 }); });
+  $("#r3d", sh).addEventListener("click", (ev) => { if (!mapOk) return; d3 = !d3; ev.currentTarget.classList.toggle("on", d3); haptic(6); snd.sel?.(); const on3 = d3; map.once("moveend", () => setTimeout(() => { if (map && d3 === on3) NVB.terrain(map, on3 && !NVB.lite()); }, 350)); map.easeTo({ pitch: d3 ? 60 : 0, bearing: d3 ? (map.getBearing() || -18) : 0, duration: 750 }); });
   $("#rfit", sh).addEventListener("click", () => { haptic(5); snd.sel?.(); follow = false; fitRoute(); });
   Promise.all([mlgl(), mStyle(mTheme())]).then(([, style]) => { const el = sh.querySelector("#rmap"); if (!document.body.contains(el)) return;
     map = new maplibregl.Map({ container: el, style, center: LL(dest), zoom: 15, maxPitch: 70, attributionControl: { compact: true }, fadeDuration: 150 }); NVB.attach(map); NVB.live(map, () => mTheme() === "koyu" ? "karanlik" : "gercek");
@@ -2561,7 +2561,7 @@ function viewHarita(city, Q = {}) {
   // pusula (döndürünce ya da eğince görünür; dokununca kuzeye ve düze döner) ve 3B
   const cmp = () => { if (!map) return; const b = map.getBearing(), p = map.getPitch(), c = $("#hmc"); c.hidden = Math.abs(b) < 1 && p < 1; c.querySelector("svg").style.transform = `rotate(${-b}deg)`; $("#hm3").innerHTML = p > 10 ? ICO.d2 : ICO.d3; $("#hm3").classList.toggle("on", p > 10); };
   $("#hmc").addEventListener("click", () => { if (!map) return; snd.sel?.(); haptic(5); map.easeTo({ bearing: 0, pitch: 0, duration: 600 }); });
-  $("#hm3").addEventListener("click", () => { if (!map) return; snd.sel?.(); haptic(6); const on = map.getPitch() > 10; NVB.terrain(map, !on && !NVB.lite()); map.easeTo({ pitch: on ? 0 : 60, bearing: on ? 0 : map.getBearing() || -18, zoom: on ? map.getZoom() : Math.max(map.getZoom(), 15.5), duration: 900 }); });
+  $("#hm3").addEventListener("click", () => { if (!map) return; snd.sel?.(); haptic(6); const on = map.getPitch() > 10; map.once("moveend", () => setTimeout(() => { if (map && (map.getPitch() > 10) === !on) NVB.terrain(map, !on && !NVB.lite()); }, 350)); map.easeTo({ pitch: on ? 0 : 60, bearing: on ? 0 : map.getBearing() || -18, zoom: on ? map.getZoom() : Math.max(map.getZoom(), 15.5), duration: 900 }); });
   $("#hmth").addEventListener("click", () => { if (!map) return; const th = lt() ? "koyu" : "acik"; store.set("nvny-harita-tema", th); snd.sel?.(); haptic(6); wrap.classList.toggle("lt", th === "acik"); $("#hmth").innerHTML = th === "acik" ? ICO.moon : ICO.sun;
     mStyle(th).then((s) => { if (map) map.setStyle(s, { diff: false }); }).catch(() => {}); });
   // benim konumum (mavi nokta) ve "Etrafımda ne var": 15 dakikalık yürüme halkası + en yakın etkinlikler
