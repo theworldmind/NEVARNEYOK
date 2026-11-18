@@ -1556,5 +1556,31 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/school"
+ },
+ "Yakın Sahne": {
+  "lat": 39.9203207,
+  "lng": 32.8461325,
+  "addr": "Yakın Sahne, Maltepe, Necatibey Cd. No:102/A, 06570 &#199;ankaya/Ankara T&#252;rkiye",
+  "ilce": "&#199;ankaya",
+  "src": "biletinial",
+  "v": 2
+ },
+ "bo.essences & workshop studio": {
+  "lat": 39.9903589,
+  "lng": 32.7082148,
+  "addr": "Akkent 6 Twins Trade AVM, Turgut &#214;zal, 2167. Sokak 3C C Blok No: 19, 06370 Yenimahalle/Ankara",
+  "ilce": "Yenimahalle",
+  "src": "biletinial",
+  "v": 2
+ },
+ "Ankara Kült Sahne": {
+  "lat": 39.9047664,
+  "lng": 32.860862,
+  "addr": "Tunalı Hilmi Cd. No:105, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
  }
 }
