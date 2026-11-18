@@ -1022,7 +1022,7 @@ const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" ·
 const bText = (x, url) => `${x.k ? "💌" : "✉️"} *${x.c}*\n*${x.n}*${bWhen(x.w, x.h) ? " · " + bWhen(x.w, x.h) : ""}\n${url}`;
 /* Beraber önizlemesi (18.11.2026): telefon yerin 3B görselini o an çizer, gönderirken Cloudflare'daki küçük depoya koyar; WhatsApp davete özel sayfadan adı ve görseli okur. Özel yerler hiç yüklenmez, hata olursa genel davet bağlantısı kullanılır. */
 const PVW = "https://nvny-yer.berkaytoruntga.workers.dev", pvQ = (v) => new URLSearchParams({ lat: (+v.a + .0018).toFixed(4), lng: v.o, t: v.t, n: v.n }).toString(), pvWait = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(r, ms))]);
-const adaJ = () => window.NVA ? Promise.resolve() : loadJS("/ada.js?v=30", 20000);
+const adaJ = () => window.NVA ? Promise.resolve() : loadJS("/ada.js?v=31", 20000);
 /* Haritadaki "Önizle": seçilen yer ve çevresi haritadan kopup yükselir; Kapat ile yerine oturur */
 let adaOn = null;
 const adaYv = async (c) => { const cs = new Set(); for (const a of [-.008, .008]) for (const o of [-.01, .01]) cs.add(`${Math.floor((c[1] + a) * 10)}_${Math.floor((c[0] + o) * 10)}`); return (await Promise.all([...cs].map((k) => fetch(`/yv/${k}.json`).then((r) => r.ok ? r.json() : []).catch(() => [])))).flat(); };
