@@ -1092,12 +1092,18 @@ button.hm-n{color:#fff}
 .fv b{display:block;height:20px;margin-top:2px;padding:0 2px;font:800 12.5px/20px -apple-system,"Inter Tight",sans-serif;color:#fff;white-space:nowrap;text-shadow:0 0 3px #0b0b12,0 0 3px #0b0b12,0 1px 6px rgba(0,0,0,.8)}
 .hmap.lt .fv b{color:#1c1c1e;text-shadow:0 0 3px #fff,0 0 3px #fff,0 1px 6px rgba(255,255,255,.9)}
 .fv:active .fvp{transform:scale(.92)}
+.fv.fvm{pointer-events:none}.fv.fvm .fvp{pointer-events:auto;transform:scale(var(--s,1));transform-origin:50% 100%}.fv.fvm:active .fvp{transform:scale(calc(var(--s,1)*.92))}
+.fv.fvm .fvp::before{content:"";position:absolute;inset:calc(-8px/var(--s,1));border-radius:50%}.fv.fvm b{opacity:var(--l,1)}
+.fv.arr .cgi{animation:fvarr .55s cubic-bezier(.3,1.5,.5,1)}@keyframes fvarr{from{transform:scale(.7)}}
+.hm-t .hfv{flex:none;display:flex;align-items:center;gap:6px}.hm-t .hfv:empty{display:none}
+.hm-t .hfb,.hmap.lt .hm-t .hfb{position:relative;width:30px;height:30px;padding:0;border-radius:50%;background:none;box-shadow:none;transition:transform .18s cubic-bezier(.32,.72,0,1)}.hm-t .hfb:active{transform:scale(.86)}
+.hm-t .hfb .cgi{display:grid;place-items:center;width:30px;height:30px;padding:0;border-radius:50%;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 0 0 .5px rgba(255,255,255,.28),0 3px 10px rgba(0,0,0,.3)}.hm-t .hfb .cgi svg{width:18px;height:18px}
 .fv.new .fvp{animation:fvdrop .6s cubic-bezier(.3,1.4,.5,1) both}.fv.new b{animation:fvb .35s .35s both}
 @keyframes fvdrop{from{transform:translateY(-46px) scale(.7);opacity:0}60%{opacity:1}}@keyframes fvb{from{opacity:0;transform:translateY(-4px)}}
 /* benim konumum: Apple gibi nefes alan mavi nokta */
 .me::after{content:"";position:absolute;inset:-3px;border-radius:50%;box-shadow:0 0 0 3px rgba(59,130,246,.55);animation:mepl 2.2s ease-out infinite;pointer-events:none}
 @keyframes mepl{from{transform:scale(1);opacity:.9}to{transform:scale(3.2);opacity:0}}
-@media (prefers-reduced-motion:reduce){.me::after,.fv.new .fvp{animation:none}}
+@media (prefers-reduced-motion:reduce){.me::after,.fv.new .fvp,.fv.arr .cgi{animation:none}}
 /* açık haritada arama paneli de açık cam */
 .hmap.lt .hm-r{background:rgba(255,255,255,.9);color:#1c1c1e;box-shadow:inset 0 1px 0 #fff,0 0 0 .5px rgba(0,0,0,.08),0 16px 40px rgba(0,0,0,.18)}
 .hmap.lt .hm-r small,.hmap.lt .hm-rh b,.hmap.lt .hm-0{color:rgba(60,60,67,.6)}.hmap.lt .hm-r button{border-color:rgba(0,0,0,.07)}.hmap.lt .hm-fv{border-color:rgba(0,0,0,.07)}.hmap.lt .hm-r .hm-fv button{color:#1c1c1e}

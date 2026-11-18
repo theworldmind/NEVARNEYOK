@@ -2344,11 +2344,11 @@ function viewHarita(city) {
     $("#hmn").classList.remove("err"); $("#hmn").innerHTML = `<b>${E.length.toLocaleString("tr-TR")}</b> etkinlik${HM.when === "tumu" ? "" : " · " + HMW.find((w) => w[0] === HM.when)[1].toLowerCase()}<small> · ${VG.length} mekân</small>`;
     // haritanın üstünde her zaman: Tümü · Bugün · Yarın · Hafta sonu… (Apple Haritalar'daki hızlı seçimler gibi) + seçili diğer filtreler
     const tg = hmTags(), ot = tg.filter((t) => t !== hmWhen()), row = $("#hmt"); $("#hmfn").textContent = tg.length || "";
-    row.innerHTML = `<button type="button" class="hw hcl${HM.from ? " on" : ""}" data-hclk><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${HM.from ? HM.from + "+" : "Saat"}</button><i class="hsep"></i>` + HMW.map(([k, l]) => `<button type="button" class="hw${HM.when === k ? " on" : ""}" data-hw="${k}">${l}</button>`).join("") + (ot.filter((t) => !/ sonrası$/.test(t)).length ? `<i class="hsep"></i>${ot.filter((t) => !/ sonrası$/.test(t)).map((t) => `<span>${esc(t)}</span>`).join("")}<button type="button" id="hmt0">Sıfırla</button>` : "");
-    $("[data-hclk]", row).addEventListener("click", () => tcOpen());
+    row.innerHTML = `<button type="button" class="hw hcl${HM.from ? " on" : ""}" data-hclk><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${HM.from ? HM.from + "+" : "Saat"}</button><i class="hsep"></i><div class="hfv" id="hmfv"></div>` + HMW.map(([k, l]) => `<button type="button" class="hw${HM.when === k ? " on" : ""}" data-hw="${k}">${l}</button>`).join("") + (ot.filter((t) => !/ sonrası$/.test(t)).length ? `<i class="hsep"></i>${ot.filter((t) => !/ sonrası$/.test(t)).map((t) => `<span>${esc(t)}</span>`).join("")}<button type="button" id="hmt0">Sıfırla</button>` : "");
+    $("[data-hclk]", row).addEventListener("click", () => tcOpen()); favBar();
     const on = row.querySelector(".hw.on:not(.hcl)"); if (on) row.scrollLeft = on.offsetLeft - row.clientWidth / 2 + on.offsetWidth / 2;
     $$("[data-hw]", row).forEach((b) => b.addEventListener("click", () => { if (HM.when === b.dataset.hw) return; HM.when = b.dataset.hw; hmSave(); snd.sel?.(); haptic(5); setData(); }));
-    $$("#hmt span", row).forEach((x) => x.addEventListener("click", () => $("#hmf").click()));
+    $$(":scope > span", row).forEach((x) => x.addEventListener("click", () => $("#hmf").click()));
     $("#hmt0")?.addEventListener("click", () => { Object.assign(HM, { ...HM0, when: HM.when, cats: [] }); hmSave(); snd.sel?.(); haptic(5); setData(); });
     posters.forEach((m) => m.remove()); posters.clear(); near(); pulse(); };
   // haritanın üstündeki saat kartı (kullanıcı, 10:45: "saat seçme daha görünür olsun"): Tüm gün / Saat seç + çark; değişiklik anında haritada
@@ -2431,7 +2431,7 @@ function viewHarita(city) {
     map.on("style.load", () => { addLayers(); });
     map.once("load", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); if (!cam) goCity(city); drawFavs(); if (DATA.me && !DATA.me.c) meDot(DATA.me.p); if (HM.q) { inp.value = HM.q; clr.hidden = false; } });
     map.on("moveend", () => { HM.cam = { c: map.getCenter().toArray().map((v) => +v.toFixed(5)), z: +map.getZoom().toFixed(2), p: Math.round(map.getPitch()), b: Math.round(map.getBearing()), city }; hmSave(); near(); });
-    map.on("zoom", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); const z = map.getZoom(), m = z < 9.4 ? "far" : z >= 14 ? "near" : "mid"; if (m !== lastLod) near(); });
+    map.on("zoom", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); favZoom(); const z = map.getZoom(), m = z < 9.4 ? "far" : z >= 14 ? "near" : "mid"; if (m !== lastLod) near(); });
     map.on("rotate", cmp); map.on("pitch", cmp); cmp();
     longPress();
   }).catch(() => { el.innerHTML = `<div class="hm-err"><b>Harita şu an açılamadı</b><small>İnternet bağlantını kontrol edip tekrar dene.</small><button type="button" class="ok" id="hmre">Tekrar dene</button></div>`; $("#hmre")?.addEventListener("click", () => viewHarita(city)); });
@@ -2458,10 +2458,22 @@ function viewHarita(city) {
   /* Kayıtlı yerler (kullanıcı, 09:22: "GTA gibi; bir yeri seçip okul ya da ev yazabilmeli, değiştirene kadar kalmalı"): haritada bir yere basılı tut → ad ver.
      Haritada kendi simgesiyle durur, aramanın en üstünde çıkar; dokununca yakındaki etkinlikler, adını değiştir, sil. */
   const drawFavs = () => { favM.forEach((m) => m.remove()); favM = []; if (!map) return;
-    // Apple Haritalar'daki gibi: renkli daire + uç (tam o noktayı gösterir) + altında adı; her yakınlıkta ve afişlerin üstünde durur
-    for (const f of favs()) { const e = elOf(`<button type="button" class="fv${f.id === newFav ? " new" : ""}" aria-label="${esc(f.n)}"><span class="fvp">${favIc(f.n)}</span><b>${esc(f.n)}</b></button>`); e.addEventListener("click", (ev) => { ev.stopPropagation(); favSheet(f); });
-      favM.push(new maplibregl.Marker({ element: e, anchor: "bottom", offset: [0, 22], className: "fvm" }).setLngLat([f.ll[1], f.ll[0]]).addTo(map)); } newFav = ""; };
-  let newFav = "";
+    // Apple Haritalar'daki gibi: renkli daire + uç (tam o noktayı gösterir) + altında adı; uzaklaştıkça küçülüp noktaya döner (favZoom)
+    for (const f of favs()) { const e = elOf(`<button type="button" data-fid="${esc(f.id)}" class="fv${f.id === newFav ? " new" : ""}" aria-label="${esc(f.n)}"><span class="fvp">${favIc(f.n)}</span><b>${esc(f.n)}</b></button>`); e.addEventListener("click", (ev) => { ev.stopPropagation(); favSheet(f); });
+      favM.push(new maplibregl.Marker({ element: e, anchor: "bottom", offset: [0, 22], className: "fvm" }).setLngLat([f.ll[1], f.ll[0]]).addTo(map)); } newFav = ""; favS = favL = -1; favZoom(); favBar(); };
+  let newFav = "", favS = -1, favL = -1;
+  /* (18.11.2026, kullanıcı: "kayıtlı yerler sürekli en büyük görünmesin, küçülsün; üstteki sırada sembol olsun, tıklayınca gidilsin")
+     Boy yakınlıkla akar: 7'de 12 px nokta, 14'te tam boy; ad 12,5–13,5 arasında belirir. Yalnızca transform/opacity, birkaç işaretin kendi değişkeni. */
+  const favZoom = () => { if (!map) return; const z = map.getZoom(), t = Math.min(1, Math.max(0, (z - 7) / 7)), s = +(.3 + .7 * t * t * (3 - 2 * t)).toFixed(3), l = +Math.min(1, Math.max(0, z - 12.5)).toFixed(2);
+    if (s === favS && l === favL) return; favS = s; favL = l; for (const m of favM) { const st = m.getElement().style; st.setProperty("--s", s); st.setProperty("--l", l); } };
+  // üst sıradaki simgeler: dokununca oraya uçar, varınca işaret hafifçe yaylanır; zaten oradaysan yerin kartı açılır
+  const favGo = (f) => { if (!map) return; snd.sel?.(); haptic(6); const c = map.getCenter();
+    if (map.getZoom() >= 14.5 && km([c.lat, c.lng], f.ll) < .06) return favSheet(f);
+    map.flyTo({ center: [f.ll[1], f.ll[0]], zoom: Math.max(map.getZoom(), 15), duration: 1100 });
+    map.once("moveend", () => { const e = favM.map((m) => m.getElement()).find((x) => x.dataset.fid === String(f.id)); if (!e) return; e.classList.remove("arr"); void e.offsetWidth; e.classList.add("arr"); setTimeout(() => e.classList.remove("arr"), 600); }); };
+  const favBar = () => { const b = $("#hmfv"); if (!b) return; const F = favs();
+    b.innerHTML = F.length ? F.map((f) => `<button type="button" class="hfb" data-fv="${esc(f.id)}" aria-label="${esc(f.n)}" title="${esc(f.n)}">${favIc(f.n)}</button>`).join("") + '<i class="hsep"></i>' : "";
+    $$("[data-fv]", b).forEach((x) => x.addEventListener("click", () => { const f = F.find((y) => String(y.id) === x.dataset.fv); if (f) favGo(f); })); };
   const favEdit = (ll, f, pre = "") => { snd.pop?.(); haptic(14);
     const sh = sheet(`<div class="pn fve" role="dialog" aria-label="Yeri kaydet"><div class="hd"><span class="rth"><b>${f ? "Adını değiştir" : "Bu yeri kaydet"}</b><small>${f ? esc(f.n) : "Haritada hep burada durur; değiştirene kadar."}</small></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
       <div class="bd2"><label class="fvi">${favIc(f?.n || "")}<input id="fvn" maxlength="28" placeholder="Ev, okul, iş, spor salonu…" value="${esc(f?.n || pre)}" enterkeyhint="done"></label>
