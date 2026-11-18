@@ -1015,7 +1015,7 @@ function ogCanvas(e, city, line) { // davet/paylaşım görseli: afiş telefonda
 }
 /* ---------- Beraber: haritadaki her yere "beraber gidelim mi?" daveti (18.11.2026). Sunucu yok: bilgi bağlantının # kısmında gider; gönderilenler ve cevaplar yalnızca telefonda ---------- */
 let NVBp = null, YGp = null;
-const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=4", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
+const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=5", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
 const ygIdx = () => YGp ||= jget("/idx/yg.json").then((x) => x || []);
 const bdL = () => jsGet("nvny-davetler", []), bdS = (L) => store.set("nvny-davetler", JSON.stringify(L.slice(0, 40)));
 const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" · ");
@@ -2491,7 +2491,7 @@ function viewHarita(city, Q = {}) {
     const font = ["Noto Sans Bold"];
     if (!map.getSource("yv")) map.addSource("yv", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
     map.addLayer({ id: "yv-d", type: "circle", source: "yv", minzoom: 15, paint: { "circle-radius": ["interpolate", ["linear"], ["zoom"], 15, 3, 18, 6], "circle-color": ["get", "c"], "circle-stroke-color": lt() ? "#fff" : "#0a0a10", "circle-stroke-width": 1.2 } });
-    map.addLayer({ id: "yv-t", type: "symbol", source: "yv", minzoom: 15.4, layout: { "text-field": ["get", "n"], "text-font": ["Noto Sans Regular"], "text-size": 11.5, "text-offset": [0, .75], "text-anchor": "top", "text-max-width": 8, "text-optional": true }, paint: { "text-color": lt() ? "#333" : "#d8d8e4", "text-halo-color": lt() ? "#fff" : "#0a0a10", "text-halo-width": 1.3 } });
+    map.addLayer({ id: "yv-t", type: "symbol", source: "yv", minzoom: 15.4, layout: { "text-field": ["get", "n"], "text-font": ["Noto Sans Regular"], "text-size": 11.5, "text-offset": [0, .75], "text-anchor": "top", "text-max-width": 8, "text-optional": true, "text-padding": 9, "text-allow-overlap": false, "text-ignore-placement": false }, paint: { "text-color": lt() ? "#333" : "#d8d8e4", "text-halo-color": lt() ? "#fff" : "#0a0a10", "text-halo-width": 1.3 } });
     yvSync();
     map.addLayer({ id: "heat", type: "heatmap", source: "hh", maxzoom: 12.5, paint: {
       "heatmap-weight": ["interpolate", ["linear"], ["get", "n"], 1, .6, 10, 1, 60, 1.8, 400, 3],
