@@ -379,7 +379,7 @@ function viewCities() {
 }
 
 function viewCity(city) {
-  setTop(city); const cname = CITIES.find((c) => c.id === city)?.name || city; document.title = `${cname} · Ne Var Ne Yok`;
+  turAt("ana"); setTop(city); const cname = CITIES.find((c) => c.id === city)?.name || city; document.title = `${cname} · Ne Var Ne Yok`;
   const { d: today, hm } = nowIST(), E = DATA.events.filter(live), wk = addD(today, 6);
   const todayL = E.filter((e) => e.d === today), weekL = E.filter((e) => e.d <= wk);
   const tonight = todayL.filter((e) => !e.t || e.t >= "17:00");
@@ -674,7 +674,7 @@ function mapInit(lat, lng) {
 
 /* ---------- Sinema ---------- */
 function viewSinema(city, day) {
-  setTop(city); document.title = `Sinema · ${CITIES.find((c) => c.id === city)?.name} · Ne Var Ne Yok`;
+  turAt("sinema"); setTop(city); document.title = `Sinema · ${CITIES.find((c) => c.id === city)?.name} · Ne Var Ne Yok`;
   const F = DATA.films?.films || [], today = nowIST().d, days = [...Array(7)].map((_, i) => addD(today, i)), d = days.includes(day) ? day : today;
   const L = F.filter((f) => f.s && f.s[d]?.length).sort((a, b) => (b.s[d]?.length || 0) - (a.s[d]?.length || 0));
   V.innerHTML = `<div class="kh"><h1>Vizyonda</h1><p>${L.length} film · ${dLong(d)}</p></div>
@@ -1015,7 +1015,7 @@ function ogCanvas(e, city, line) { // davet/paylaşım görseli: afiş telefonda
 }
 /* ---------- Beraber: haritadaki her yere "beraber gidelim mi?" daveti (18.11.2026). Sunucu yok: bilgi bağlantının # kısmında gider; gönderilenler ve cevaplar yalnızca telefonda ---------- */
 let NVBp = null, YGp = null;
-const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=13", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
+const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=14", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
 const ygIdx = () => YGp ||= jget("/idx/yg.json").then((x) => x || []);
 const bdL = () => jsGet("nvny-davetler", []), bdS = (L) => store.set("nvny-davetler", JSON.stringify(L.slice(0, 40)));
 const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" · ");
@@ -1371,6 +1371,45 @@ function intro(force) {
   sc.addEventListener("scroll", () => { const i = Math.round(sc.scrollLeft / sc.clientWidth); if (i !== cur) { cur = i; dots.forEach((d, k) => d.classList.toggle("on", k === i)); go.textContent = i === S.length - 1 ? "Şehrimi seçeyim" : "Devam"; tick(); } }, { passive: true });
   go.addEventListener("click", () => { haptic(6); if (cur >= S.length - 1) return done(); sc.scrollTo({ left: (cur + 1) * sc.clientWidth, behavior: "smooth" }); });
   $(".in-x", o).addEventListener("click", done);
+}
+
+/* ---------- Bölüm tanıtımları: kurulu uygulamada her bölümün ilk açılışında bir kez ---------- */
+const TURV = {
+  af: (L) => `<div class="tv tvp">${L.slice(0, 3).map((u, i) => `<img class="p${i}" src="${esc(u)}" alt="" referrerpolicy="no-referrer">`).join("")}</div>`,
+  btn: (L) => `<div class="tv tvc">${L.map(([e, t, on]) => `<div class="tvb${on ? " on" : ""}"><span>${e}</span><b>${t}</b></div>`).join("")}</div>`,
+  msg: (t, s) => `<div class="tv tvm"><div class="tvg"><i></i><b>✉️ ${t}</b><small>${s}</small><u>Bağlantıya dokun, gör</u></div></div>`,
+  chip: (L) => `<div class="tv tvh">${L.map(([t, on]) => `<span class="${on ? "on" : ""}">${t}</span>`).join("")}</div>`,
+  map: (L) => `<div class="tv tvn"><svg viewBox="0 0 300 150" aria-hidden="true"><path d="M-5 112 90 74 170 96 305 34M70-5l26 80 22 80M196-5l-22 100 30 60" fill="none" stroke="#4b4a58" stroke-width="7" stroke-linecap="round"/></svg>${L.map(([c, t, x, y]) => `<span style="left:${x}%;top:${y}%"><i style="background:${c}"></i>${t}</span>`).join("")}</div>`,
+  pin: () => `<div class="tv tvn tvq"><svg viewBox="0 0 300 150" aria-hidden="true"><path d="M-5 112 90 74 170 96 305 34M196-5l-22 100 30 60" fill="none" stroke="#4b4a58" stroke-width="7" stroke-linecap="round"/></svg><em></em><div class="tvf"><span>🏠</span><b>Ev</b></div></div>`,
+};
+const TUR = {
+  ana: () => { const P = [...new Set((DATA.top || []).map((e) => e.img).filter(Boolean))]; return [
+    ["Ana sayfa", "Şehrinde<br><em>ne var ne yok.</em>", "Bugünün, bu akşamın ve hafta sonunun etkinlikleri burada. Filtrelerle gün, tür ve bütçeni seç.", TURV.af(P)],
+    ["Etkinlik", "Dokun,<br><em>her şeyi gör.</em>", "Tarih, mekân, doğrulanmış fiyatlar ve bilet bağlantısı tek sayfada. Takip edersen Planım'a girer.", TURV.btn([["🎟️", "Bilet al"], ["🔔", "Takip et"], ["✉️", "Davet et", 1]])],
+    ["Davet", "Arkadaşını<br><em>yanına çağır.</em>", "Etkinliği ve seansını aç, Davet et'e dokun, cümleni seç, gönder. Tarih ve yer davete kendiliğinden yazılır.", TURV.msg("Beraber gidelim mi?", "Seçtiğin etkinlik · tarih · mekân")],
+  ]; },
+  sinema: () => { const P = [...new Set((DATA.films?.films || []).map((f) => f.img).filter(Boolean))]; return [
+    ["Sinema", "Vizyondakiler<br><em>tek yerde.</em>", "Filmleri gör, günü seç. Şehrindeki salonlar ve seans saatleri karşında.", TURV.af(P)],
+    ["Seans", "Saatine<br><em>dokun.</em>", "Filmi aç, salonu bul, saate dokun. Seansı takip edebilir, takvimine ekleyebilir, biletine gidebilirsin.", TURV.chip([["14:30"], ["17:15"], ["19:45", 1], ["22:00"]])],
+    ["Davet", "O seansa<br><em>birlikte gidin.</em>", "Saate dokunduktan sonra Beraber gidelim mi?'yi seç. Film, salon ve seans arkadaşına hazır gider.", TURV.msg("Beraber gidelim mi?", "Film · salon · seans saati")],
+  ]; },
+  harita: () => [
+    ["Harita", "Her yer<br><em>haritada.</em>", "Etkinlikler, mekânlar, kafeler, kütüphaneler, parklar ve daha fazlası. Yaklaştıkça adları görünür.", TURV.map([["#8b5cf6", "Etkinlik", 8, 16], ["#f97316", "Kafe", 62, 12], ["#38bdf8", "Kütüphane", 50, 62], ["#34c58a", "Park", 10, 68]])],
+    ["Zaman", "Ne zaman<br><em>çıkıyorsun?</em>", "Üstten Bugün, Yarın ya da Hafta sonu'nu, Saat'ten saatini seç. Harita hemen ona göre değişir.", TURV.chip([["Saat"], ["Bugün", 1], ["Yarın"], ["Hafta sonu"]])],
+    ["Yer kartı", "Bir yere<br><em>dokun.</em>", "Yol tarifi al, Önizle ile orasını çevresiyle canlı gör, arkadaşını çağır.", TURV.btn([["🧭", "Yol tarifi"], ["✨", "Önizle"], ["✉️", "Beraber gidelim mi?", 1]])],
+    ["Davet", "Bir yere<br><em>davet et.</em>", "Kafe, kütüphane, park; neresi olursa. Arkadaşın mesajda orayı görür, gelip gelmeyeceğini söyler.", TURV.msg("Beraber gidelim mi?", "Seçtiğin yerin adı ve görüntüsü")],
+    ["Yerlerin", "Kendi yerini<br><em>işaretle.</em>", "Haritada bir noktaya basılı tut, Kaydet'e dokun, Ev ya da Okul gibi bir ad ver. Yerlerin telefonunda kalır.", TURV.pin()],
+  ],
+};
+function turAt(k) { const test = new URLSearchParams(location.search).get("tur") === "1"; if (!test && (!standalone || store.get("nvny-tur-" + k))) return; const go = () => setTimeout(() => { if (!test && store.get("nvny-tur-" + k)) return; if ($(".intro")) { addEventListener("nvny-intro-done", go, { once: true }); return; } tour(k); }, 650); go(); }
+function tour(k) {
+  const S = TUR[k](), o = document.createElement("div"); o.className = "intro tur"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", "Tanıtım");
+  o.innerHTML = `<button type="button" class="in-x">Geç</button><div class="in-s">${S.map((s) => `<section><div class="in-c">${s[3]}<small>${s[0]}</small><h2>${s[1]}</h2><p>${s[2]}</p></div></section>`).join("")}</div><div class="in-f"><div class="in-d">${S.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div><button type="button" class="in-go">${S.length > 1 ? "Devam et" : "Başla"}</button></div>`;
+  document.body.append(o); document.body.style.overflow = "hidden"; requestAnimationFrame(() => o.classList.add("on"));
+  const sc = $(".in-s", o), dots = $$(".in-d i", o), btn = $(".in-go", o); let cur = 0;
+  const done = () => { store.set("nvny-tur-" + k, "1"); o.classList.remove("on"); document.body.style.overflow = ""; setTimeout(() => o.remove(), 400); };
+  sc.addEventListener("scroll", () => { const i = Math.round(sc.scrollLeft / sc.clientWidth); if (i !== cur) { cur = i; dots.forEach((d, n) => d.classList.toggle("on", n === i)); btn.textContent = i === S.length - 1 ? "Başla" : "Devam et"; tick(); } }, { passive: true });
+  btn.addEventListener("click", () => { haptic(6); if (cur >= S.length - 1) return done(); sc.scrollTo({ left: (cur + 1) * sc.clientWidth, behavior: "smooth" }); }); $(".in-x", o).addEventListener("click", done);
 }
 
 /* ---------- Planım: takip ettiklerin kendi takvimimiz gibi (gün gün), mekânlarım ---------- */
@@ -2434,7 +2473,7 @@ function trBind(root, get, set) {
   return { to, sync: () => { root.querySelector(".hf-rl").classList.toggle("off", !get()); to(get() || "19:00", false); } };
 }
 function viewHarita(city, Q = {}) {
-  setTop(city); document.title = `Harita · Ne Var Ne Yok`;
+  turAt("harita"); setTop(city); document.title = `Harita · Ne Var Ne Yok`;
   V.innerHTML = `<div class="hmap${mTheme() === "acik" ? " lt" : ""}" id="hmw"><div class="map" id="hm"></div>
     <div class="hm-top"><form class="hm-q" id="hmq" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><input id="hmi" type="search" placeholder="Etkinlik, mekân, il ya da yer ara" autocomplete="off" enterkeyhint="search"><button type="button" class="hm-x" id="hmx" aria-label="Temizle" hidden>✕</button><button type="button" class="hm-f" id="hmf" aria-label="Filtreler">${ICO.flt}<i id="hmfn"></i></button></form>
     <div class="hm-r" id="hmr" hidden></div><div class="hm-t" id="hmt"></div></div>
