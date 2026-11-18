@@ -1015,7 +1015,7 @@ function ogCanvas(e, city, line) { // davet/paylaşım görseli: afiş telefonda
 }
 /* ---------- Beraber: haritadaki her yere "beraber gidelim mi?" daveti (18.11.2026). Sunucu yok: bilgi bağlantının # kısmında gider; gönderilenler ve cevaplar yalnızca telefonda ---------- */
 let NVBp = null, YGp = null;
-const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=5", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
+const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=6", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
 const ygIdx = () => YGp ||= jget("/idx/yg.json").then((x) => x || []);
 const bdL = () => jsGet("nvny-davetler", []), bdS = (L) => store.set("nvny-davetler", JSON.stringify(L.slice(0, 40)));
 const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" · ");
@@ -2282,7 +2282,7 @@ const MAP_URL = window.NVNY_MAPSTYLE || "https://tiles.openfreemap.org/styles/li
 const mTheme = () => store.get("nvny-harita-tema") || "acik"; // acik = Gerçekçi 3B, koyu = Karanlık 3B
 let MSJ = null; const MST = {};
 const mStyle = (th) => MST[th] ||= bjs().then(() => MSJ ||= jget(MAP_URL).then((j) => { if (!j) throw new Error("style"); return j; }).catch((e) => { MSJ = null; throw e; }))
-  .then((j) => { const s = JSON.parse(JSON.stringify(j)); if (th === "koyu") darkStyle(s); NVB.world(s, th === "koyu" ? "karanlik" : "gercek", { labels: true, lite: NVB.lite() }); trNames(s); skyOf(s, th); return s; }).catch((e) => { delete MST[th]; throw e; });
+  .then((j) => { const s = JSON.parse(JSON.stringify(j)); if (th === "koyu") darkStyle(s); NVB.world(s, th === "koyu" ? "karanlik" : "gercek", { labels: true, lite: true }); trNames(s); skyOf(s, th); return s; }).catch((e) => { delete MST[th]; throw e; });
 const cvx = document.createElement("canvas").getContext("2d");
 const rgbOf = (c) => { if (typeof c !== "string" || c.length > 40) return null; cvx.fillStyle = "#010203"; cvx.fillStyle = c; const v = cvx.fillStyle; if (v === "#010203" && !/^#010203$/i.test(c)) return null;
   if (v[0] === "#") return [parseInt(v.slice(1, 3), 16), parseInt(v.slice(3, 5), 16), parseInt(v.slice(5, 7), 16), 1]; const m = v.match(/[\d.]+/g); return m ? [+m[0], +m[1], +m[2], m[3] != null ? +m[3] : 1] : null; };

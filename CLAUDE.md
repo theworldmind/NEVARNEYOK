@@ -64,6 +64,8 @@ Kullanıcıyla her zaman Türkçe konuş.
 
 - **Yer daveti önizlemesi o an üretilir (18.11.2026, kullanıcı: "her yere kendi önizlemesi, galeriye inmesin"):** Cloudflare Worker `nvny-yer.berkaytoruntga.workers.dev` + KV (`YER`), kod `cloudflare/worker.js`; kullanıcı panelden yapıştırdı (GitHub'dan otomatik kurulmuyor; kod değişirse panelde yeniden yapıştırılır). `app.js`: `pvDraw` telefonda 720×900 Gerçekçi 3B JPEG çizer, `pvMake`/`pvPut`, yükleme yalnızca "Davet et"te; bağlantı `<worker>/y/<kod>#<paket>` adı ve görseli verir, açan kişiyi `/y/t/<tür>/#<paket>`'e geçirir. Ücretsiz sınır: günde ~1.000 yeni yer, 1 GB, 60 gün; hata/kota olursa statik bağlantı. Özel/kayıtlı yer yüklenmez. Hazır görseli olan önemli yerler (`yg/`) yüklenmez. Deneme: `beraber-olcum.yml` → `is=davet` (`beraber-canli` dalı).
 
+- **Harita önce akıcı (18.11.2026, kullanıcı: "eski hali hiç donmuyordu, o yüzden güzeldi"):** uygulama haritasında arazi, tepe gölgesi ve karo dokulu binalar yok (`world(..., {lite:true})`); renk/ağaç ayrıntısı yalnızca harita durunca az sayıda eklenir (`NVB.live`). Ağır görünüm yalnızca önizleme görseli ve davet sayfasında. 3B geçişini ağırlaştıran bir şey ekleme.
+
 ## Açık işler (18.11.2026 devir; bitince sil)
 - **Beraber yer daveti: gerçek telefonda denenecek** (WhatsApp içi tarayıcıda konum/paylaşım, iPhone'da Safari ile uygulamanın ayrı verisi). Sonraki fikirler: etkinlik + yer, oylama, ortada buluşma, yer rafları.
 - Yeni kaynakların (AllEvents, biletimGO, Radar, BUGECE) ilk sonuçları ve kalitesi `data/health.json` ile kontrol edilmedi.
