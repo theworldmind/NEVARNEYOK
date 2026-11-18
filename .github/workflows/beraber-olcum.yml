@@ -28,6 +28,22 @@ jobs:
           node beraber/canli.mjs
       - if: always()
         run: cd /tmp/canli && git init -q -b beraber-canli && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Canlı deneme" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-canli
+  davet:
+    if: github.event.inputs.is == 'davet'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env: { OUT: /tmp/canli }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node beraber/davet.mjs
+      - if: always()
+        run: cd /tmp/canli && git init -q -b beraber-canli && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Davet denemesi" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-canli
   ornek:
     if: github.event.inputs.is == 'ornek' || github.event.inputs.is == 'ikisi'
     runs-on: ubuntu-latest
