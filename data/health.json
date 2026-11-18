@@ -1,6 +1,6 @@
 {
- "runAt": "2026-11-18T22:53:49.461Z",
- "mode": "refresh",
+ "runAt": "2026-11-18T23:08:34.794Z",
+ "mode": "full",
  "total": 2507,
  "written": true,
  "sources": {
@@ -13,9 +13,11 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [],
-   "seconds": 0,
-   "failStreak": 1,
+   "notes": [
+    "akanselegitimdanismanlik.com/seminerler.aspx: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 0 takvim satırı, durum 200"
+   ],
+   "seconds": 9,
+   "failStreak": 2,
    "lastOk": null
   }
  }
