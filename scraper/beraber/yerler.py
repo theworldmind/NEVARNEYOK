@@ -44,8 +44,8 @@ for line in open("/tmp/poi.seq", encoding="utf8"):
 print("OSM", len(P), len(imp))
 con = duckdb.connect(); cols = {r[0] for r in con.execute("DESCRIBE SELECT * FROM '/tmp/ov.parquet'").fetchall()}; cat = "categories.primary" if "categories" in cols else "taxonomy.primary"
 nov = 0
-for n, a, o, c in con.execute(f"""SELECT names."primary", bbox.ymin, bbox.xmin, {cat} FROM '/tmp/ov.parquet' WHERE addresses[1].country='TR' AND names."primary" IS NOT NULL AND (coalesce(confidence,0)>=.6 OR coalesce({cat},'') ILIKE '%librar%' OR names."primary" ILIKE '%tüphane%' OR names."primary" ILIKE '%tuphane%') AND coalesce(sources[1].dataset,'')<>'Foursquare' AND coalesce(operating_status,'open')='open'""").fetchall():
-    t = next((b for r, b in OV if c and r.search(c)), None); n = re.sub(r"\s+", " ", n).strip(); t = "kutuphane" if LIB.search(n) else t
+for n, a, o, c, cf in con.execute(f"""SELECT names."primary", bbox.ymin, bbox.xmin, {cat}, coalesce(confidence,0) FROM '/tmp/ov.parquet' WHERE addresses[1].country='TR' AND names."primary" IS NOT NULL AND (coalesce(confidence,0)>=.6 OR coalesce({cat},'') ILIKE '%librar%' OR names."primary" ILIKE '%tüphane%' OR names."primary" ILIKE '%tuphane%') AND coalesce(sources[1].dataset,'')<>'Foursquare' AND coalesce(operating_status,'open')='open'""").fetchall():
+    t = next((b for r, b in OV if c and r.search(c)), None); n = re.sub(r"\s+", " ", n).strip(); t = "kutuphane" if LIB.search(n) else (None if t == "kutuphane" and cf < .8 else t)
     if t and good(n): P.append((n, a, o, t, 1)); nov += 1
 print("Overture", nov)
 # yakın ve aynı adlı kayıtlar teke iner; OSM önce
