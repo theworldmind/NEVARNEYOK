@@ -53,7 +53,10 @@ const homeOf = (e) => { const t = cityOfText(e.venue || ""); if (t) return t; co
 /* Mekânın adında başka il yazıyorsa etkinlik o ilindir (18.11.2026: İstanbul listesinde "Jolly Joker Ankara", Bolu'da "Tekirdağ … Kültür Merkezi"): doğru ilin listesine taşınır.
    Cadde/sokak adları ve "Van Gogh" gibi adlar sayılmaz; Ankara kendi taramasıyla geldiği için oraya gidecek kayıt yalnızca bu listeden çıkar. */
 const NAMES = CITIES.map((c) => [c.id, new RegExp("(^|[^a-z0-9])" + fold(c.name) + "($|[^a-z0-9])")]);
-const venueCity = (e, cid) => { const v = fold(e.venue || ""); if (!v || /cadde|caddesi|sokak|sokagi|bulvar|mahalle|van gogh/.test(v)) return ""; const hit = NAMES.filter(([, r]) => r.test(v)).map(([id]) => id); return hit.length && !hit.includes(cid) ? hit[0] : ""; };
+const venueCity0 = (e, cid) => { const v = fold(e.venue || ""); if (!v || /cadde|caddesi|sokak|sokagi|bulvar|mahalle|van gogh/.test(v)) return ""; const hit = NAMES.filter(([, r]) => r.test(v)).map(([id]) => id); return hit.length && !hit.includes(cid) ? hit[0] : ""; };
+/* konum işinin bulduğu doğru il: mekân başka ilde tek yerde kayıtlıysa ya da adının başı/sonu başka ilin ilçesiyse ("Watergarden Ataşehir", "Kadıköy … Merkezi") */
+const VIL = (await readJSON(join(ROOT, "data/c/_vil.json"), {})) || {}, ILC = (await readJSON(join(ROOT, "data/c/_ilce.json"), {})) || {}, ILNO = new Set("bahce kale kent mavi sahne yildiz merkez cumhuriyet gazi".split(" "));
+const venueCity = (e, cid) => { const a = venueCity0(e, cid); if (a) return a; const k = VIL[cid + "|" + e.venue]; if (k) return k; const W = fold(e.venue || "").replace(/[^a-z0-9]+/g, " ").trim().split(" "); for (const w of [W[0], W[W.length - 1]]) { const c = ILC[w]; if (c && c !== cid && !ILNO.has(w)) return c; } return ""; };
 const moved = {}; let relocated = 0;
 for (const C of CITIES) { if (C.id === "ankara") continue; SRC[C.id] = SRC[C.id].filter((e) => { const h = e.d >= today && venueCity(e, C.id); if (!h) return true; relocated++; if (h !== "ankara") (moved[h] ||= []).push(e); return false; }); }
 let dropped = 0;

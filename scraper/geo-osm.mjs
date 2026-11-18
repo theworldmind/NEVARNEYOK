@@ -40,7 +40,7 @@ const AM = "theatre|cinema|arts_centre|community_centre|conference_centre|events
 const query = (id) => `[out:json][timeout:240];area["ISO3166-2"="${iso(id)}"]["boundary"="administrative"]->.a;(nwr(area.a)["name"]["amenity"~"^(${AM})$"];nwr(area.a)["name"]["tourism"~"^(museum|gallery|hotel|attraction|theme_park|zoo|aquarium|resort)$"];nwr(area.a)["name"]["leisure"~"^(stadium|sports_centre|sports_hall|park|marina|water_park|dance|bowling_alley|ice_rink|garden)$"];nwr(area.a)["name"]["shop"="mall"];nwr(area.a)["name"]["building"~"^(civic|public|theatre|cinema|university|stadium|sports_hall|hotel|commercial)$"];nwr(area.a)["name"]["historic"~"^(castle|monument|ruins|archaeological_site|building)$"];);out center tags;`;
 /* Türkiye'nin OpenStreetMap kopyası (Geofabrik, konum.yml süzüp GEO_SEQ dosyasına yazar) varsa sunucuya hiç sorulmaz; il, noktanın il sınırı içinde kalmasından bulunur.
    Yalnızca aradığımız mekânların sözcüklerini içeren yerler tutulur. Dosya yoksa Overpass'a il il sorulur. */
-const SEQ = process.env.GEO_SEQ || "/tmp/tr.geojsonseq";
+const SEQ = process.env.GEO_SEQ || "/tmp/tr.geojsonseq", OVT = process.env.GEO_OV || "/tmp/ov.tsv", ILS = process.env.GEO_ILCE || "/tmp/ilce.seq", ILCE = {}, NAT = new Map(), VIL = {};
 let byIl = null;
 async function loadSeq() { if (!existsSync(SEQ)) return; const need = new Set(); for (const W of want.values()) for (const v of W.keys()) for (const q of variants(v)) for (const w of toks(q)) if (w.length > 2 && !GEN.has(w)) need.add(w);
   const areas = [], P = []; const idOf = (i) => PLATE[+i.slice(3) - 1];
@@ -50,6 +50,10 @@ async function loadSeq() { if (!existsSync(SEQ)) return; const need = new Set();
     let lon, lat; if (g.type === "Point") [lon, lat] = g.coordinates; else { let w = 99, e = 0, s = 99, n = 0; const walk = (a) => { if (typeof a[0] === "number") { w = Math.min(w, a[0]); e = Math.max(e, a[0]); s = Math.min(s, a[1]); n = Math.max(n, a[1]); } else a.forEach(walk); }; walk(g.coordinates); lon = (w + e) / 2; lat = (s + n) / 2; }
     P.push({ center: { lat, lon }, tags: t }); }
   const inside = (r, x, y) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [a, b] = r[i], [d, e] = r[j]; if ((b > y) !== (e > y) && x < (d - a) * (y - b) / (e - b) + a) c = !c; } return c; };
+  /* Overture Places (açık veri, anahtarsız; 18.11.2026, kullanıcı: "her etkinliğin mekânı haritada olacak"): OSM'de olmayan mekânlar için. Yalnızca etkinlik mekânı olabilecek türler; ad aynı kurallarla eşleşir. Foursquare kayıtları alınmaz (ov-yerler.py). */
+  if (existsSync(OVT)) { let ov = 0; for await (const l of createInterface({ input: createReadStream(OVT), crlfDelay: Infinity })) { const [name, la, lo, kind, addr, loc] = l.split("\t"); if (!name || !kind || !toks(name).some((w) => need.has(w))) continue; const [k, v] = kind.split("/"); P.push({ center: { lat: +la, lon: +lo }, tags: { name, [k]: v, "nvny:addr": addr || "", "addr:district": loc || "" }, ov: 1 }); ov++; } log(`geo-osm: Overture: ${ov} ilgili yer`); }
+  /* ilçe → il: "Watergarden Ataşehir" Afyon listesine düşmesin diye (sehirler-birlestir.mjs kullanır). Birden çok ilde geçen ilçe adı alınmaz */
+  if (existsSync(ILS)) { const seen = {}; for await (const raw of createInterface({ input: createReadStream(ILS), crlfDelay: Infinity })) { let f; try { f = JSON.parse(raw.replace(/^\x1e/, "")); } catch { continue; } const n = fold(f.properties?.name || "").replace(/ ilcesi$/, "").trim(), g = f.geometry; if (!n || n.includes(" ") || n.length < 4 || !g) continue; const R0 = (g.type === "Polygon" ? g.coordinates : g.coordinates[0])[0], x = R0.reduce((a, q) => a + q[0], 0) / R0.length, y = R0.reduce((a, q) => a + q[1], 0) / R0.length, A = areas.find((a) => x >= a.w && x <= a.e && y >= a.s && y <= a.n && a.rings.some((r) => inside(r, x, y))); if (A) (seen[n] ||= new Set()).add(A.id); } for (const [n, S] of Object.entries(seen)) if (S.size === 1) ILCE[n] = [...S][0]; log(`geo-osm: ${Object.keys(ILCE).length} ilçe adı`); }
   byIl = {}; let lost = 0; for (const p of P) { const { lat: y, lon: x } = p.center, A = areas.find((a) => x >= a.w && x <= a.e && y >= a.s && y <= a.n && a.rings.some((r) => inside(r, x, y))); if (A) (byIl[A.id] ||= []).push(p); else lost++; }
   log(`geo-osm: OSM kopyası: ${areas.length} il sınırı, ${P.length} ilgili yer (${lost} tanesi il dışında kaldı)`); if (areas.length < 75) byIl = null; }
 let ei = 0;
@@ -78,7 +82,7 @@ const variants = (v0) => { const v = expand(v0), a = (toks(v).some((w) => BRAND.
 function index(els, il) { const L = [], by = new Map(), ilT = new Set(toks(il));
   for (const e of els) { const t = e.tags || {}, ll = e.center ? [e.center.lat, e.center.lon] : e.lat ? [e.lat, e.lon] : null; if (!ll) continue; const kind = kindOf(t);
     for (const n of new Set([t.name, t["name:tr"], t.alt_name, t.official_name, t.short_name, t.old_name].filter(Boolean).flatMap((s) => s.split(";")))) { const all = toks(n), P = new Set(all.filter((w) => !ilT.has(w))); if (!all.length) continue;
-      const x = { n: t.name, ll, kind, t, all: new Set(all), P }; const i = L.push(x) - 1; for (const w of new Set(all)) (by.get(w) || by.set(w, []).get(w)).push(i); } }
+      const x = { n: t.name, ll, kind, t, ov: e.ov, all: new Set(all), P }; const i = L.push(x) - 1; for (const w of new Set(all)) (by.get(w) || by.set(w, []).get(w)).push(i); } }
   return { L, by, ilT }; }
 function score(Vall, V0, x) { const P0 = x.P, V = new Set([...V0].filter((w) => !BRAND.has(w))), P = new Set([...P0].filter((w) => !BRAND.has(w))); let c = 0; for (const w of V) if (P.has(w)) c++;
   if (Vall.size === x.all.size && [...Vall].every((w) => x.all.has(w))) return 3; // adın tamamı aynı
@@ -125,11 +129,14 @@ const known = (c) => Object.entries(c === "ankara" ? VA : Object.fromEntries(Obj
 const TSV = []; let tot = 0, hit = 0, evT = 0, evH = 0, fail = 0; const rep = [];
 for (const c of CITIES) { const W = want.get(c.id); if (!W?.size) continue;
   let els = await pois(c.id); await sleep(2500); if (!els) { fail++; rep.push(`${c.id}:YOK`); els = []; }
-  const I = index([...known(c.id), ...els], c.name); let h = 0;
+  const I = index([...known(c.id), ...els], c.name); let h = 0; for (const x of I.L) { const k = [...x.all].sort().join(" "); if (x.kind) (NAT.get(k) || NAT.set(k, new Set()).get(k)).add(c.id); }
   for (const [v, n] of [...W]) { tot++; evT += n; const x0 = match(v, I), x = x0 && kindOk(v, x0.kind) ? x0 : null; TSV.push([c.id, n, v, x ? x.n : "", x ? x.kind : ""].join("\t")); if (!x) continue; hit++; h++; evH += n; const t = x.t;
     const addr = t["nvny:addr"] || [t["addr:street"] && (t["addr:street"] + (t["addr:housenumber"] ? " No:" + t["addr:housenumber"] : "")), t["addr:neighbourhood"] || t["addr:suburb"], t["addr:district"]].filter(Boolean).join(", ");
-    put(c.id, v, { lat: +x.ll[0].toFixed(7), lng: +x.ll[1].toFixed(7), addr, ilce: t["addr:district"] || "", src: "osm", v: 2, osm: x.kind, m: "ov" }); }
+    put(c.id, v, { lat: +x.ll[0].toFixed(7), lng: +x.ll[1].toFixed(7), addr, ilce: t["addr:district"] || "", src: x.t["nvny:addr"] !== undefined && x.ov ? "overture" : "osm", v: 2, osm: x.kind, m: "ov" }); }
   rep.push(`${c.id}:${h}/${W.size + h}(${els.length})`); log(`geo-osm: ${c.name}: ${els.length} OSM yeri, ${h} mekân eşleşti, ${W.size} kaldı`); }
+/* mekân başka ilde tek bir yerde bulunuyorsa etkinlik yanlış ilin listesine düşmüştür: sehirler-birlestir.mjs doğru ile taşır */
+for (const [c, W] of want) for (const v of W.keys()) for (const q of variants(v)) { const T = toks(q); if (!T.some((w) => w.length > 3 && !GEN.has(w) && !BRAND.has(w))) continue; const S = NAT.get([...new Set(T)].sort().join(" ")); if (S?.size === 1 && !S.has(c)) { VIL[c + "|" + v] = [...S][0]; break; } }
+if (!DRY) { await writeJSON(join(ROOT, "data/c/_ilce.json"), ILCE, false); await writeJSON(join(ROOT, "data/c/_vil.json"), VIL, false); } log(`geo-osm: yanlış ilde görünen mekân: ${Object.keys(VIL).length}`);
 await writeFile(join(ROOT, "scraper/out/geo-osm.tsv"), TSV.join("\n"));
 if (DRY) { const H = TSV.map((l) => l.split("\t")); console.log("--- eşleşenler\n" + H.filter((x) => x[3]).slice(0, 120).map((x) => `${x[0]} | ${x[2]} => ${x[3]} [${x[4]}]`).join("\n")); console.log("--- kalanlar\n" + H.filter((x) => !x[3]).sort((a, b) => b[1] - a[1]).slice(0, 80).map((x) => `${x[0]} | ${x[1]} | ${x[2]}`).join("\n")); }
 // sinema salonları adresleriyle yeniden denensin diye (geo.mjs) eski "bulunamadı" kayıtları silinir

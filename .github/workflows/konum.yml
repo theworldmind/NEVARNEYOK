@@ -43,6 +43,18 @@ jobs:
           osmium tags-filter /tmp/tr.pbf nwr/amenity=theatre,cinema,arts_centre,community_centre,conference_centre,events_venue,exhibition_centre,music_venue,planetarium,stage,nightclub,bar,pub,biergarten,cafe,restaurant,library,social_centre,university,college,townhall nwr/tourism=museum,gallery,hotel,attraction,theme_park,zoo,aquarium,resort nwr/leisure=stadium,sports_centre,sports_hall,park,marina,water_park,dance,bowling_alley,ice_rink,garden nwr/shop=mall nwr/building=civic,public,theatre,cinema,university,stadium,sports_hall,hotel,commercial nwr/historic=castle,monument,ruins,archaeological_site,building r/admin_level=4 -o /tmp/f.pbf --overwrite
           osmium export /tmp/f.pbf -f geojsonseq -o /tmp/tr.geojsonseq --overwrite
           ls -la /tmp/tr.pbf /tmp/f.pbf /tmp/tr.geojsonseq
+      - name: İlçe sınırları (mekân adındaki ilçeden doğru il)
+        continue-on-error: true
+        run: |
+          osmium tags-filter /tmp/tr.pbf r/admin_level=6 -o /tmp/a6.pbf --overwrite
+          osmium export /tmp/a6.pbf -f geojsonseq -o /tmp/ilce.seq --overwrite --geometry-types=polygon
+      - name: Overture yerleri (adı bilinen mekânlar, anahtarsız açık veri)
+        continue-on-error: true
+        timeout-minutes: 30
+        run: |
+          pip install -q --break-system-packages overturemaps duckdb
+          python3 -m overturemaps.cli download --bbox=25.6,35.8,44.9,42.2 -f geoparquet --type=place -o /tmp/ov.parquet || overturemaps download --bbox=25.6,35.8,44.9,42.2 -f geoparquet --type=place -o /tmp/ov.parquet
+          python3 scraper/ov-yerler.py /tmp/ov.parquet /tmp/ov.tsv
       - name: Eşleştir
         working-directory: scraper
         env:
@@ -58,6 +70,10 @@ jobs:
           GEO_SCOPE: tr
           GEO_MAX: "1500"
         run: node geo.mjs
+      - name: Yanlış ildeki etkinlikleri doğru ile taşı
+        if: github.event.inputs.deneme != 'true'
+        continue-on-error: true
+        run: node scraper/sehirler-birlestir.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -72,7 +88,7 @@ jobs:
         run: |
           git config user.name "nevarneyok-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/venues.json data/venues-tr.json data/geo-miss.json data/geo-miss-tr.json
+          git add data/venues.json data/venues-tr.json data/geo-miss.json data/geo-miss-tr.json data/c data/cities.json data/one-cikan.json
           if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
           git commit -qm "Mekân konumları: $(date '+%d.%m.%Y %H:%M')"
           for i in 1 2 3 4; do git pull -q --rebase --autostash -X theirs && git push -q && break; sleep 8; done
