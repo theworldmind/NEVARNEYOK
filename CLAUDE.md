@@ -55,6 +55,12 @@ Kullanıcıyla her zaman Türkçe konuş.
 - Bilgi sayfaları: `#/bilgi/hakkinda|kaynaklar|gizlilik|kosullar|iletisim`. Eski bağlantılar (`#e/<slug>`, `#gizlilik` …) yeni adreslere yönlenir (Google sayfaları `../../#e/<slug>` kullanır).
 - **Logo ve tema (son hali, kullanıcı 15.11.2026 11:49–11:51):** kullanıcının logosu **birebir** kullanılır: `brand/nevarneyok-logo.png` → `brand/logo.png` (saydam), uygulama simgesi **yalnızca büyüteç** `brand/nevarneyok-simge.png` → `icons/` (`brand/make-assets.py`). **Logoyu yeniden çizme, yazı tipini değiştirme** (kullanıcı isteği). Düz tasarım: zemin #0a0a10, büyüteçte düz mor #8b5cf6, ışıma/hale yok. Logo dışındaki yazılar güçlü: başlıklar Archivo 900 dar büyük harf, kart adları Archivo 800.
 
+## Açık işler (18.11.2026 devir; bitince sil)
+- **Harita "Etkinlikler yüklenemedi"** (kullanıcı ekranı 17.11 15:24): `idx/harita.json` ~3,7 MB / ~22 bin satır telefonda inmiyor ya da çözülemiyor. Önce `hIdx`'e hata türünü gösteren iz ekle; çözüm önerisi: il başına dizin (`idx/harita/<il>.json`) + Türkiye görünümü için küçük özet.
+- Yeni kaynakların (AllEvents, biletimGO, Radar, BUGECE) ilk sonuçları ve kalitesi `data/health.json` ile kontrol edilmedi.
+- CSO Ada çocuk etkinlikleri ("Ağustos Böceği ile Karınca", "Şeker Sincap") Konser'de; "Çocuk'a taşıyalım mı?" sorusu yanıtsız.
+- Gerçek saatli bildirim için ücretsiz Web Push (Cloudflare Workers) önerildi; kullanıcı şimdilik "uygulama göndersin" dedi.
+
 ## 2. Sistem nasıl çalışır (korunacak)
 | Parça | Görev |
 |---|---|
