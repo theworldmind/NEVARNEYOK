@@ -447,6 +447,8 @@ function applyF(f) {
     && (!f.c || (f.c === "cocuk" ? e.cat === "cocuk" || (ageN(e) != null && ageN(e) <= 8) : ageN(e) >= 18)) && (!f.yeni || e.isNew) && (!f.cok || e.tickets.filter((x) => x.price).length > 1)
     && (!f.tk || e.status !== "tukendi") && (!f.dus || e.drop) && (!f.ucr || e.free) && q.every((w) => e.q.includes(w)));
   DATA.events.forEach((e) => { e._km = null; });
+  // Aranan sözcükle BAŞLAYAN adlar önce ("atların" → Atların Dansı, "Tatların…" sonra)
+  if (q.length && !f.sira) { const pre = (e) => q.every((w) => (" " + e.q).includes(" " + w)) ? 0 : 1; L = [...L].sort((a, b) => pre(a) - pre(b)); }
   if (f.sira === "yakin" && DATA.me) { const me = DATA.me.p; L.forEach((e) => { const v = vOf(e.venue); e._km = v?.lat ? km(me, [v.lat, v.lng]) : null; }); L = [...L].sort((a, b) => (a._km ?? 1e9) - (b._km ?? 1e9) || a.d.localeCompare(b.d)); }
   else if (f.sira === "populer") L = [...L].sort((a, b) => b.score - a.score); else if (f.sira === "fiyat") L = [...L].sort((a, b) => (a.price ?? 1e9) - (b.price ?? 1e9)); else if (f.sira === "sen") L = [...L].sort((a, b) => pscore(b) - pscore(a) || a.d.localeCompare(b.d)); else if (f.dus) L = [...L].sort((a, b) => b.drop - a.drop);
   return L;
