@@ -330,13 +330,15 @@ export async function bugeceCollect({ fetchText, src }) {
 export function akanselList(html, url) {
   const out = [], AY = "Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık";
   const nice = (t) => { const L = t.replace(/[^\p{L}]/gu, ""), U = L.replace(/[^\p{Lu}]/gu, ""); return L && U.length / L.length > .55 ? t.toLocaleLowerCase("tr").replace(/(^|\s)(\p{L})/gu, (m, a, b) => a + b.toLocaleUpperCase("tr")).replace(/ (İle|Ve) /g, (m) => m.toLocaleLowerCase("tr")) : t; };
+  const seen = new Set();
   for (const c of html.split(/<article\b[^>]*class="[^"]*ak-card/i).slice(1)) {
-    const leaf = c.split(/<[^>]+>/).map((x) => txt(x)).filter(Boolean), slug = (c.match(/seminerdetay\.aspx\?seminer=([^"#&]+)/i) || [])[1]; if (!slug) continue;
-    const w = leaf.map((x) => x.match(new RegExp(`^(\\d{1,2} (?:${AY}) 20\\d\\d),\\s*(\\d{1,2}:\\d{2})\\s*(.*)$`, "i"))).find(Boolean), n = leaf.map((x) => x.match(new RegExp(`^\\d{1,2} (?:${AY}) 20\\d\\d\\s+(?!,)(.+)$`, "i"))).find(Boolean);
-    if (!w || !n || !w[3] || /online|çevrim/i.test(w[3])) continue;
-    const D = parseTrDate(w[1]), city = cityOfText(n[1]) || cityOfText(slug.replace(/-/g, " ")) || cityOfText(w[3]); if (!D?.d || !city) continue;
-    const C = _cById(city), title = nice(n[1].replace(new RegExp(`(^|\\s)${C.name}(?=\\s|$)`, "iu"), " ").replace(/\s+/g, " ").trim()), img = (c.match(/<img[^>]+src="([^"]+)"/i) || [])[1];
-    out.push({ title, d: D.d, t: w[2].padStart(5, "0"), venue: nice(w[3]), city: C.name, url: abs("seminerdetay.aspx?seminer=" + slug, url), image: img ? abs(img, url) : "", via: "site", pc: 0, genre: "Söyleşi", catHint: "atolye" });
+    const slug = (c.match(/seminerdetay\.aspx\?seminer=([^"#&]+)/i) || [])[1], meta = [...((c.match(/class="ak-card__meta"[^>]*>([\s\S]*?)<\/div>/i) || [])[1] || "").matchAll(/<span[^>]*>([\s\S]*?)<\/span>/gi)].map((m) => txt(m[1])), head = txt((c.match(/class="ak-card__title"[^>]*>([\s\S]*?)<\/h3>/i) || [])[1]);
+    if (!slug || meta.length < 2 || !head) continue;
+    const w = meta[0].match(new RegExp(`^(\\d{1,2} (?:${AY}) 20\\d\\d),?\\s*(\\d{1,2}:\\d{2})?`, "i")), venue = meta[1]; if (!w || !venue || /online|çevrim/i.test(venue)) continue;
+    const name = head.replace(new RegExp(`^\\d{1,2}(?:/\\d{1,2})? (?:${AY}) 20\\d\\d\\s*`, "i"), ""), D = parseTrDate(w[1]), city = cityOfText(name) || cityOfText(slug.replace(/-/g, " ")) || cityOfText(venue); if (!D?.d || !city || !name) continue;
+    const C = _cById(city), title = nice(name.replace(new RegExp(`(^|\\s)${C.name}(?=\\s|$)`, "iu"), " ").replace(/\s+/g, " ").trim()), k = D.d + "|" + city + "|" + title.toLocaleLowerCase("tr"); if (seen.has(k)) continue; seen.add(k);
+    const img = (c.match(/<img[^>]+src="([^"]+)"/i) || [])[1], pr = (txt((c.match(/class="ak-card__price"[^>]*>([\s\S]*?)<\/div>/i) || [])[1]).match(/([\d.]+)(?:,\d+)?\s*TL/i) || [])[1];
+    out.push({ title, d: D.d, t: (w[2] || "").padStart(w[2] ? 5 : 0, "0"), venue: nice(venue), city: C.name, url: abs("seminerdetay.aspx?seminer=" + slug, url), image: img ? abs(img.replace(/ /g, "%20"), url) : "", via: "site", pc: pr ? +pr.replace(/\./g, "") : 0, genre: "Söyleşi", catHint: "atolye" });
   }
   return out;
 }
