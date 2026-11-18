@@ -917,15 +917,6 @@
   "v": 2,
   "osm": "amenity/arts_centre"
  },
- "eskisehir|Adalar Sahne": {
-  "lat": 39.7855363,
-  "lng": 30.5095862,
-  "addr": "Silistre Sokak, Yenibağlar, Yenibağlar",
-  "ilce": "Yenibağlar",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
- },
  "istanbul|İBB Adem Baştürk Kültür Merkezi": {
   "lat": 41.040171,
   "lng": 28.8839783,
@@ -1547,15 +1538,6 @@
   "v": 2,
   "osm": "shop/mall"
  },
- "denizli|Beyaz Sahne": {
-  "lat": 37.7523273,
-  "lng": 29.0854692,
-  "addr": "Çamlık Bulvarı, Mehmetçik Mahallesi, Pamukkale",
-  "ilce": "Pamukkale",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
- },
  "izmir|Paribu Cineverse (Mavibahçe)": {
   "lat": 38.4746178,
   "lng": 27.0748585,
@@ -2002,15 +1984,6 @@
   "v": 2,
   "osm": "tourism/museum"
  },
- "istanbul|Beyoğlu Sahne": {
-  "lat": 41.0348452,
-  "lng": 28.9770233,
-  "addr": "Sahne Sokağı, Hüseyinağa, Hüseyinağa Mahallesi",
-  "ilce": "Hüseyinağa Mahallesi",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/restaurant"
- },
  "istanbul|Semaver Kumpanya Çevre Tiyatrosu": {
   "lat": 41.0067414,
   "lng": 28.9304091,
@@ -2109,15 +2082,6 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/community_centre"
- },
- "afyonkarahisar|Samsun Ata Sahne": {
-  "lat": 39.0201796,
-  "lng": 31.1560657,
-  "addr": "Girne Caddesi",
-  "ilce": "",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/restaurant"
  },
  "antalya|Gazi M K Atatürk Yıldız Kenter Salonu": {
   "lat": 36.8572015,
@@ -2470,15 +2434,6 @@
   "v": 2,
   "osm": "amenity/bar"
  },
- "istanbul|Feriye Cam Salon": {
-  "lat": 41.0471328,
-  "lng": 29.0244571,
-  "addr": "Çırağan Caddesi No:44, Yıldız, Yıldız",
-  "ilce": "Yıldız",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/restaurant"
- },
  "istanbul|Kadıköy Entropi Sahne": {
   "lat": 40.9903414,
   "lng": 29.0277978,
@@ -2604,15 +2559,6 @@
   "src": "osm",
   "v": 2,
   "osm": "leisure/nature_reserve"
- },
- "izmir|HOP Sahne": {
-  "lat": 38.464,
-  "lng": 27.1995159,
-  "addr": "238. SK. No:NO: 3/A, Manavkuyu, Manavkuyu",
-  "ilce": "Manavkuyu",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
  },
  "izmir|Avlu Urla": {
   "lat": 39.1216173,
@@ -3306,15 +3252,6 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/community_centre"
- },
- "izmir|bi'kahve bi'sahne": {
-  "lat": 38.4256204,
-  "lng": 27.2010123,
-  "addr": "Kemalpaşa Caddesi, Birlik, Birlik",
-  "ilce": "Birlik",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
  },
  "izmir|Scarlet Alsancak": {
   "lat": 38.4386375,
@@ -4063,15 +4000,6 @@
   "v": 2,
   "osm": "amenity/cafe"
  },
- "aydin|Kadıköy Entropi Sahne": {
-  "lat": 37.7688851,
-  "lng": 27.39296,
-  "addr": "Mehmet Semerci Caddesi, Yenikent, Yenikent",
-  "ilce": "Yenikent",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
- },
  "aydin|Mabolla Center": {
   "lat": 37.8590353,
   "lng": 27.2584814,
@@ -4395,15 +4323,6 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/pub"
- },
- "eskisehir|Teras Sahne": {
-  "lat": 39.7636841,
-  "lng": 30.5236145,
-  "addr": "Kurşunlu Cami Sokak, Paşa Mahallesi, Odunpazarı",
-  "ilce": "Odunpazarı",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
  },
  "eskisehir|TASİGO Eskişehir": {
   "lat": 39.7578366,
@@ -5079,15 +4998,6 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/community_centre"
- },
- "konya|Yache Sahne": {
-  "lat": 37.8708288,
-  "lng": 32.4839758,
-  "addr": "Kazım Karabekir Caddesi, İhsaniye Mahallesi, Selçuklu",
-  "ilce": "Selçuklu",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
  },
  "konya|Selçuklu Kongre Merkezi · Konya Oditoryum": {
   "lat": 37.9363451,
@@ -9872,33 +9782,6 @@
   "src": "osm",
   "v": 2,
   "osm": "shop/craft"
- },
- "istanbul|Masal Sahne": {
-  "lat": 41.0082304,
-  "lng": 28.9765667,
-  "addr": "Inçili Çavuş Sokağı, Alemdar Mahallesi, Fatih",
-  "ilce": "Fatih",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/restaurant"
- },
- "antalya|Panda Sahne": {
-  "lat": 36.493001,
-  "lng": 30.4375221,
-  "addr": "Likya Yolu / Beycik - Fırıncık, Laodikea LW 11.11, K14 ve Mavi Göl K18, Aşağı Beycik, Kemer",
-  "ilce": "Kemer",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/restaurant"
- },
- "istanbul|Babil Sahne": {
-  "lat": 40.9887281,
-  "lng": 29.0278998,
-  "addr": "Piri Çavuş Sokağı, Kadıköy",
-  "ilce": "",
-  "src": "osm",
-  "v": 2,
-  "osm": "amenity/cafe"
  },
  "antalya|Alanya Kültür Merkezi A Salonu": {
   "lat": 36.5499017,
