@@ -140,7 +140,7 @@ function descOf(e) {
 function poster(e, { badge = true, lazy = true } = {}) {
   const st = e.status === "tukendi" ? "Tükendi" : e.status === "iptal" ? "İptal edildi" : e.status === "ertelendi" ? "Ertelendi" : "";
   const img = e.img ? `<img class="p" src="${esc(e.img)}" alt="${esc(e.title)} afişi" referrerpolicy="no-referrer" ${lazy ? 'loading="lazy"' : ""} decoding="async" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: ${esc(e.imgBy || "kaynak site")}</span>` : "";
-  return `<div class="ph${e.img ? "" : " no"}" data-c="${esc(e.cat || "")}">${img}<div class="tp" lang="tr"><small>${esc(CATS[e.cat] || "Etkinlik")}</small><b>${esc(e.title)}</b><span class="tw"><small>${esc(dShort(e.d))}${e.t ? " · " + esc(e.t) : ""}</small><small>${esc(e.venue || "")}</small><i class="tl2">nevarneyok</i></span></div>${badge && st ? `<span class="bd${e.status === "tukendi" ? "" : " x"}">${st}</span>` : ""}</div>`;
+  return `<div class="ph${e.img ? "" : " no"}" data-c="${esc(e.cat || "")}">${img}<div class="tp" lang="tr"><small>${esc(CATS[e.cat] || "Etkinlik")}</small><b>${esc(e.title)}</b><span class="tpw"><small>${esc(dShort(e.d))}${e.t ? " · " + esc(e.t) : ""}</small><small>${esc(e.venue || "")}</small><i class="tl2">nevarneyok</i></span></div>${badge && st ? `<span class="bd${e.status === "tukendi" ? "" : " x"}">${st}</span>` : ""}</div>`;
 }
 /* FİYAT KARŞILAŞTIRMASI (kullanıcı isteği, 15.11.2026: "olabildiğince iyi fiyat karşılaştırması"): aynı etkinliği satan siteler alt alta;
    en düşük yeşil "En düşük" etiketiyle, diğerlerinde fark (₺ ve %), fiyat çubuğu, sitenin kendi fiyat kategorileri; yalnızca doğrulanmış (≤36 sa) fiyatlar. */
@@ -168,10 +168,12 @@ function pcmpHTML(e) {
   return `<section class="pcx">${head}${T.map(row).join("")}${why}</section>`;
 }
 
+// "…'a kadar" süren etkinlik (haber keşfi, `until`): "30 Kasım'a kadar" (Türkçe ek, ayın son harfine göre)
+const kadarTxt = (d) => { const [, m, g] = d.split("-").map(Number), ay = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][m - 1]; return `${g} ${ay}'${/[aıou][^aeıioöuü]*$/.test(ay) ? "a" : "e"} kadar`; };
 function card(e, city) {
   const np = e.tickets.filter((x) => x.price).length;
   const pr = e.price ? `<div class="pr">${TL(e.price)}'den${e.drop ? `<i class="dn">↓ %${e.drop}</i>` : np > 1 ? `<i>${np} sitede</i>` : ""}</div>` : e.free ? `<div class="pr">Ücretsiz</div>` : "";
-  return `<a class="cd${live(e) ? "" : " off"}" href="#/${city}/e/${encodeURIComponent(e.slug)}">${poster(e)}${e._km != null ? `<span class="km">${I.pin}${kmTxt(e._km)}</span>` : ""}<div class="t">${esc(e.title)}</div><div class="m">${rel(e.d)}${e.t ? " · " + esc(e.t) : ""}</div><div class="m2">${esc(e.venue || "")}</div>${pr}</a>`;
+  return `<a class="cd${live(e) ? "" : " off"}" href="#/${city}/e/${encodeURIComponent(e.slug)}">${poster(e)}${e._km != null ? `<span class="km">${I.pin}${kmTxt(e._km)}</span>` : ""}<div class="t">${esc(e.title)}</div><div class="m">${e.until && e.until > e.d ? kadarTxt(e.until) : rel(e.d)}${e.t ? " · " + esc(e.t) : ""}</div><div class="m2">${esc(e.venue || "")}</div>${pr}</a>`;
 }
 function rail(title, sub, list, city, more) {
   if (!list.length) return "";
@@ -624,11 +626,11 @@ function viewEvent(city, slug) {
   <div class="dg"><div class="dp">${poster(e, { badge: false, lazy: false })}</div><div>
     <div class="tags"><span>${esc(CATS[e.cat] || "Etkinlik")}</span>${e.genre && e.genre !== CATS[e.cat] ? `<span>${esc(e.genre)}</span>` : ""}${e.age ? `<span>${esc(String(e.age))}</span>` : ""}</div>
     <h1>${esc(e.title)}</h1>
-    <div class="meta"><div>${I.cal}<span>${dLong(e.d)}${e.t ? " · " + esc(e.t) : ""}${e.dur ? `<small>Süre ${esc(e.dur)}${e.door ? " · kapı " + esc(e.door) : ""}</small>` : e.door ? `<small>Kapı ${esc(e.door)}</small>` : ""}</span></div>
+    <div class="meta"><div>${I.cal}<span>${e.until && e.until > e.d ? kadarTxt(e.until) : dLong(e.d)}${e.t ? " · " + esc(e.t) : ""}${e.dur ? `<small>Süre ${esc(e.dur)}${e.door ? " · kapı " + esc(e.door) : ""}</small>` : e.door ? `<small>Kapı ${esc(e.door)}</small>` : ""}</span></div>
     <div>${I.pin}<span>${esc(e.venue || "")}${v?.addr ? `<small>${esc(v.addr)}</small>` : ""}${v?.lat && mesafeOn() ? `<small class="dst" id="dst"></small>` : ""}</span></div>
     ${e.price ? `<div>${I.tag}<span>${TL(e.price)}'den başlayan fiyatlarla<small>${T.filter((x) => x.price).length > 1 ? T.filter((x) => x.price).length + " sitede satışta" : "Satış sitesinde doğrulandı"}</small></span></div>` : ""}</div>
     ${st ? `<div class="stb">${st}.${e.stNews ? " Haberlere göre: " + e.stNews.slice(0, 2).map((x) => `<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc((DATA.buzz.names || {})[x[0]] || x[0])} haberi ↗</a>`).join(" ") + " · Bilet sitesinden de kontrol edin." : ""}</div>` : ""}
-    ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">Bilet al · ${esc((best || T[0]).site)}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
+    ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">${(best || T[0]).src === "haber" ? "Haberi oku" : "Bilet al"} · ${esc((best || T[0]).site.replace(/ haberi$/, ""))}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
     ${T.length ? `${tix}<p class="chk">${checked ? `Fiyatlar satış sitelerinde ${ago(checked)} kontrol edildi. ` : ""}Hizmet bedeli ve son fiyat siteye göre değişebilir; satın alma ve iade bileti satan sitenin kurallarına tabidir.</p>` : ""}
     <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}Takvime ekle</button><button type="button" id="inv" class="invb">✉️ Davet et</button><button type="button" id="shr">${I.share}Paylaş</button></div>
     ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl">${cgIcon("standup")}<span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>

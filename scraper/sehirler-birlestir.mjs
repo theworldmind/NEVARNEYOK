@@ -8,6 +8,8 @@ import { readdir } from "node:fs/promises";
 import { ROOT, log, readJSON, writeJSON, todayIST, fold } from "./lib/util.mjs";
 import { CITIES, cityOfText } from "./lib/cities.mjs";
 import { vlocAdd, vlocFinal } from "./lib/vloc.mjs";
+import { haberEvents } from "./haber-kesif.mjs";
+
 
 const today = todayIST();
 const key = (e) => fold(e.title).replace(/[^a-z0-9]+/g, "") + "|" + e.d + "|" + (e.t || "");
@@ -25,6 +27,7 @@ function same(a, b) {
   return (n >= 2 && n / small >= .8) || jac >= .6 || (small === 1 && n === 1 && a.t && a.t === b.t && fold(a.venue).slice(0, 6) === fold(b.venue).slice(0, 6));
 }
 const tr = (await readJSON(join(ROOT, "data/c/_tr.json"), { events: [] })).events || [];
+const HABER = (await readJSON(join(ROOT, "data/haber.json"), { items: [] })).items || []; // haber-kesif.mjs
 const have = new Set(await readdir(join(ROOT, "data/c")).catch(() => []));
 const index = { updated: new Date().toISOString(), cities: {} };
 const pool7 = []; // girişteki kayan sayfalar için: her ilin önümüzdeki 7 gündeki afişli etkinlikleri
@@ -39,6 +42,7 @@ const sk = (e) => key(e) + "|" + vk(e);
 const SRC = {}, vTitles = new Map(), sCities = new Map();
 for (const C of CITIES) {
   const L = C.id === "ankara" ? ((await readJSON(join(ROOT, "data/events.json"), { events: [] })).events || []) : [...tr.filter((x) => x.city === C.id), ...(((await readJSON(join(ROOT, `data/c/src/${C.id}.json`), { events: [] })).events) || [])];
+  if (C.id !== "ankara") L.push(...haberEvents(HABER, C.id)); // haberden keşfedilenler en sonda: aynı etkinlik bilet sitesinde varsa onunla birleşir
   SRC[C.id] = L;
   for (const e of L) { if (e.d < today || !e.venue) continue; const v = vk(e);
     const m = vTitles.get(v) || vTitles.set(v, new Map()).get(v); (m.get(C.id) || m.set(C.id, new Set()).get(C.id)).add(fold(e.title));

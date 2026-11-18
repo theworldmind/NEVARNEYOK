@@ -10,6 +10,8 @@ import { runSource, isJunk } from "./lib/runner.mjs";
 import { rawToEvent, dedupe, mergeWithPrevious, applyManual } from "./lib/merge.mjs";
 import { closeBrowser, fetchText } from "./lib/net.mjs";
 import { parseManualCsv } from "./lib/manual.mjs";
+import { haberEvents } from "./haber-kesif.mjs";
+import { sameEvent } from "./lib/normalize.mjs";
 
 const args = process.argv.slice(2);
 const MODE = args.includes("--refresh") ? "refresh" : "full";
@@ -97,6 +99,13 @@ for (const csv of [process.env.SHEET_CSV_URL ? await fetchText(process.env.SHEET
   if (csv) manualRows.push(...parseManualCsv(csv));
 }
 if (manualRows.length && (process.env.CITY || "ankara") === "ankara") { /* elle eklenenler şimdilik Ankara'nın */ events = applyManual(events, manualRows, now); log(`Elle eklenen/düzenlenen satır: ${manualRows.length}`); }
+/* Haberden keşfedilen etkinlikler (haber-kesif.mjs → data/haber.json; kullanıcı 18.11.2026: "benim uyarıma gerek kalmadan her şeyi bulundur"):
+   bilet sitelerinde olmayan ücretsiz/başvurulu gösteriler, belediye etkinlikleri, uzatılan sergiler. Zaten olan etkinlik eklenmez (bilet sitesi kaydı önce gelir). */
+if ((process.env.CITY || "ankara") === "ankara") {
+  const H = haberEvents((await readJSON(join(ROOT, "data/haber.json"), { items: [] })).items, "ankara");
+  let nh = 0; for (const h of H) { if (events.some((e) => sameEvent(e, h) || (e.d === h.d && fold(e.title).includes(fold(h.title))))) continue; events.push(h); nh++; }
+  if (H.length) log(`Haberden: ${nh} etkinlik eklendi (${H.length - nh} zaten vardı)`);
+}
 events = events.filter((e) => e.d >= todayIST());
 
 /* ---------- 4b) Engel listesi: kaldırılmasını isteyen hak sahipleri (data/blocklist.txt) ---------- */
@@ -132,15 +141,26 @@ const sourcesMeta = SOURCES.map((s) => ({ id: s.id, name: s.name, kind: s.kind, 
   const BOT = /bubilet|passo|biletino|mobilet/i, today = todayIST(), week = Date.now() - 7 * 864e5;
   const need = events.filter((e) => !e.img && e.d >= today && !(e.imgTried && Date.parse(e.imgTried) > week));
   const byUrl = new Map();
-  for (const e of need) { const t = (e.tickets || []).find((x) => x.url && !BOT.test(x.url) && !BOT.test(x.site || "")); if (t) (byUrl.get(t.url) || byUrl.set(t.url, { site: t.site, evs: [] }).get(t.url)).evs.push(e); }
-  const urls = [...byUrl.keys()].slice(0, MODE === "full" ? 400 : 120); let got = 0;
+  // Her etkinliğin BÜTÜN satış/kaynak sayfaları sırayla denenir (ilkinde görsel yoksa ikincisi…); yaklaşanlar önce.
+  need.sort((a, b) => a.d.localeCompare(b.d));
+  const ok = (x) => x.url && x.src !== "haber" && !BOT.test(x.url) && !BOT.test(x.site || "");
+  for (const e of need) for (const t of (e.tickets || []).filter(ok).slice(0, 3)) (byUrl.get(t.url) || byUrl.set(t.url, { site: t.site, evs: [] }).get(t.url)).evs.push(e);
+  const urls = [...byUrl.keys()].slice(0, MODE === "full" ? 2500 : 600); let got = 0;
+  const nt = (t) => fold(t).replace(/\s+/g, " ").trim(), until = Date.now() + (MODE === "full" ? (process.env.CITY && process.env.CITY !== "ankara" ? 8 : 14) : 6) * 60e3;   // süre sınırı: tarama uzamasın
   const OG = (h) => h && (h.match(/<meta[^>]+(?:property|name)=["'](?:og:image|twitter:image)["'][^>]+content=["']([^"']+)["']/i) || h.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["'](?:og:image|twitter:image)["']/i));
-  await pool(urls, 4, async (u) => {
+  await pool(urls, 6, async (u) => {
+    if (Date.now() > until || byUrl.get(u).evs.every((e) => e.img)) return;
     const r = await withTimeout(fetchText(u, { retries: 0 }), 20000).catch(() => null), m = OG(r?.text), it = byUrl.get(u);
     let img = ""; try { img = m ? new URL(m[1].replace(/&amp;/g, "&"), u).href : ""; } catch {}
-    if (img && /\.(jpe?g|png|webp)(\?|$)/i.test(img) && !/logo|favicon|default|placeholder|share[-_]?image/i.test(img)) { for (const e of it.evs) { e.img = img; e.imgBy = it.site; } got++; }
-    else for (const e of it.evs) e.imgTried = new Date().toISOString();
+    if (img && /^https:/.test(img) && !/\.(svg|gif|ico)(\?|$)/i.test(img) && !/logo|favicon|default|placeholder|no[-_]?image|share[-_]?image|sprite/i.test(img)) { for (const e of it.evs) if (!e.img) { e.img = img; e.imgBy = it.site; } got++; }
   });
+  for (const e of need) if (!e.img) e.imgTried = new Date().toISOString();
+  // Son çare: aynı etkinliği anlatan haberin tanıtım görseli (data/haber.json; yalnızca adres, "Görsel: <haber sitesi>")
+  const H = (await readJSON(join(ROOT, "data/haber.json"), { items: [] }).catch(() => ({ items: [] }))).items || [];
+  let hg = 0;
+  for (const e of events) if (!e.img && e.d >= today) { const k = nt(e.title); if (k.length < 6) continue;
+    const h = H.find((x) => x.img && (nt(x.title) === k || (nt(x.title).length >= 10 && (k.includes(nt(x.title)) || nt(x.title).includes(k))))); if (h) { e.img = h.img; e.imgBy = h.imgBy || h.site; hg++; } }
+  if (hg) log(`Afiş: ${hg} etkinliğe haberin tanıtım görseli`);
   // aynı görsel çok etkinlikte geçiyorsa site görselidir: yine düşer
   const use = {}; for (const e of events) if (e.img) (use[e.img] ||= new Set()).add(e.title.toLocaleLowerCase("tr"));
   for (const e of events) if (e.img && use[e.img].size > 4) { delete e.img; delete e.imgBy; }
