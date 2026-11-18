@@ -92,7 +92,7 @@ h1 em{font-style:normal;color:#8b5cf6}
 .os{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:18px;color:#fff}
 .os span{font:300 16px Poppins;opacity:.6}.os svg{width:24px;height:24px;fill:#fff}.os em{font:300 20px/1 Poppins;font-style:normal}.os em b{font-weight:800}
 /* uygulama tanıtımı */
-.hero{flex:1;position:relative;display:grid;place-items:center;margin:10px 0}
+.hero{flex:1;position:relative;display:grid;place-items:center;margin:34px 0 10px}
 .fan{position:absolute;width:300px;aspect-ratio:830/1200;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 20px 40px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.12)}
 .fan img{width:100%;height:100%;object-fit:cover}
 .big{position:relative;z-index:3;display:block;width:330px;height:330px;border-radius:76px;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1.5px rgba(255,255,255,.14)}
@@ -147,7 +147,7 @@ const bugun = (cols, ph) => `<div class="pg" style="--ph:${ph}px">${head("Bugün
 const hafta = (cols, ph) => `<div class="pg" style="--ph:${ph}px">${head("Bu hafta Ankara'da<br><em>neler var?</em>", `${range} · ${weekAll} ETKİNLİK`)}<div class="grid" style="grid-template-columns:repeat(${cols},1fr)">${weekSorted.map((x) => card({ ...x.e, t: "" }, x.day + (x.e.t ? " · " + x.e.t : ""))).join("")}</div>${CTA}</div>`;
 const fanEv = pick(ev.filter((e) => e.d <= addDaysISO(today, 3)), 8);
 const uyg = (story) => `<div class="pg">${head("Ankara'da ne var<br><em>ne yok?</em>", "KONSER · TİYATRO · SİNEMA · ÇOCUK · STAND-UP")}
-<div class="hero"><div class="fans">${fanEv.map((e, i) => `<div class="fan c" style="transform:translate(${[-250, 250, -170, 170, 0][i % 5]}px,${[30, 30, -60, -60, -120][i % 5]}px) rotate(${[-12, 12, -5, 5, 0][i % 5]}deg);z-index:${i < 2 ? 1 : 0}"><img class="po" src="${src(e)}" referrerpolicy="no-referrer" alt=""></div>`).join("")}</div><img class="big" src="${ICON}" alt="Ne Var Ne Yok"></div>
+<div class="hero"><div class="fans">${fanEv.map((e, i) => `<div class="fan c" style="transform:translate(${[-250, 250, -170, 170, 0][i % 5]}px,${[60, 60, -20, -20, -70][i % 5]}px) rotate(${[-12, 12, -5, 5, 0][i % 5]}deg);z-index:${i < 2 ? 1 : 0}"><img class="po" src="${src(e)}" referrerpolicy="no-referrer" alt=""></div>`).join("")}</div><img class="big" src="${ICON}" alt="Ne Var Ne Yok"></div>
 <div class="feat"><span>Bilet siteleri yan yana</span><span>Sinema seansları</span><span>İptal ve ertelemeler</span><span>Her gün güncel</span>${story ? "<span>Harita ve yol tarifi</span><span>Ücretsiz</span>" : ""}</div>${CTA}
 <div style="position:absolute;left:0;right:0;bottom:-34px;text-align:center;font:600 11px 'JetBrains Mono',monospace;color:rgba(255,255,255,.4)">Afişler etkinliklerin kendi sayfalarından; görseller sahiplerine aittir.</div></div>`;
 
