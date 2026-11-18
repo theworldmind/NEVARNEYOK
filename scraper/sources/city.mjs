@@ -71,4 +71,10 @@ if (CITY === "izmir") ONE.push({ id: "izmirks", name: "İzmir Kültürsanat", ki
 if (CITY === "istanbul") ONE.push({ id: "kulturistanbul", name: "Kültür AŞ", kind: "kurum", home: "https://kultur.istanbul", listings: ["https://kultur.istanbul/etkinlikler/"], link: /kultur\.istanbul\/etkinlik\/(?!\d+\/?$)[a-z0-9-]+\/?$/i, render: true, scrolls: 5, city: "istanbul", maxDetail: 180, budgetMin: 20 });
 if (CITY === "kayseri") ONE.push({ id: "kayseribld", name: "Kayseri Büyükşehir", kind: "kurum", home: "https://www.kayseri.bel.tr", listings: ["https://www.kayseri.bel.tr/etkinlikler"], link: /kayseri\.bel\.tr\/etkinlikler\/(?!kultur-yayinlari|[0-9-]*kis-kurslari)[a-z0-9-]+$/i, render: true, scrolls: 3, city: "kayseri", maxDetail: 70, budgetMin: 12 });
 
-export default CITY === "tr" ? TR : ONE;
+// Yalnızca o ilin mekân ve belediye siteleri (19.11.2026, kullanıcı: "ne varsa ne yoksa hepsi"; keşifte etkinlik sayfaları görülenler)
+const L = (id, name, home, listing, link, x = {}) => ({ id, name, kind: "mekan", home, listings: [listing], link, render: true, city: C.id, maxDetail: 120, concurrency: 3, budgetMin: 12, ...x });
+const LOCAL = {
+  antalya: [L("antalya-bel", "Antalya Büyükşehir", "https://www.antalya.bel.tr", "https://www.antalya.bel.tr/tr/etkinlikler", /antalya\.bel\.tr\/tr\/etkinlik-detay\/[a-z0-9-]+/i, { kind: "kurum" })],
+  eskisehir: [L("efkm", "Eskişehir Fuar ve Kongre Merkezi", "https://www.efkm.com.tr", "https://www.efkm.com.tr/etkinlikler", /efkm\.com\.tr\/etkinlikler\/[a-z0-9-]+-\d+/i)],
+};
+export default CITY === "tr" ? TR : [...ONE, ...(LOCAL[C.id] || [])];
