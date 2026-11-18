@@ -4,11 +4,12 @@
 // gösterilir, kopyalanmaz). Sayfayı açan kişi anında uygulamadaki etkinlik sayfasına geçer. Arama motorlarına kapalıdır (noindex);
 // arama için Ankara'nın etkinlik/ sayfaları vardır.
 // Ad (slug) uygulamadaki slugOf ile birebir aynı kurulur; aynı gün aynı adlı ikinci etkinliğe "-2" eklenir.
-import { readdir, rm, mkdir, writeFile, readFile } from "node:fs/promises";
+import { readdir, rm, mkdir, writeFile, readFile, access } from "node:fs/promises";
 import { join } from "node:path";
 import { ROOT, readJSON, todayIST, log } from "./lib/util.mjs";
 
 const BASE = "https://nevarneyok.net.tr";
+const exists = (f) => access(f).then(() => true, () => false);
 const today = todayIST();
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 // app.js'deki fold/slugOf'un aynısı
@@ -32,15 +33,32 @@ const ogMeta = (t, d, u, img, alt) => `<meta property="og:site_name" content="Ne
    "Varım 🙌" takvimine ekler, "Bilet al" satış sitesine, "Yol tarifi" haritaya, "Ne Var Ne Yok'ta aç" uygulamadaki etkinliğe götürür. */
 const invitePage = (o) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">
 <title>✉️ Beraber gidelim mi? · ${esc(o.title)}</title><meta name="description" content="${esc(o.desc)}">${ogMeta("✉️ Beraber gidelim mi? · " + o.title, o.desc, o.url, o.og, o.title + " davetiyesi")}${FONT}
-<link rel="stylesheet" href="/davet.css?v=1"></head><body><div class="bg" ${o.img ? `style="background-image:url('${esc(o.img)}')"` : ""}></div><main>
+<link rel="stylesheet" href="/davet.css?v=2"></head><body><div class="bg" ${o.img ? `style="background-image:url('${esc(o.img)}')"` : ""}></div><main>
 <a class="lg" href="/" aria-label="Ne Var Ne Yok"><img src="/brand/logo-cam.png" alt="Ne Var Ne Yok"></a>
-<div class="inv" id="inv">✉️ Beraber gidelim mi?</div>
+${o.note ? `<div class="st ${o.ended ? "end" : ""}">${esc(o.note)}${o.next ? ` <a href="${esc(o.next)}">Yeni tarihe bak →</a>` : ""}</div>` : ""}<div class="inv" id="inv">✉️ Beraber gidelim mi?</div>
 ${o.img ? `<div class="ps"><img src="${esc(o.img)}" alt="${esc(o.title)} afişi" referrerpolicy="no-referrer" onerror="this.parentNode.remove();document.querySelector('.cr')?.remove()"></div>${o.by ? `<p class="cr">Görsel: ${esc(o.by)}</p>` : ""}` : ""}
 <h1>${esc(o.title)}</h1><div class="mt"><b>📅 ${esc(o.when)}</b><span>📍 ${esc(o.place)}</span></div>
-<div class="bt"><button type="button" class="p" id="var">Varım 🙌</button><div class="rw">${o.tix ? `<a href="${esc(o.tix)}" target="_blank" rel="noopener">🎟️ Bilet al</a>` : ""}<a href="${esc(o.maps)}"${o.tix ? "" : ' style="grid-column:span 2"'}>🧭 Yol tarifi</a></div><a href="${esc(o.app)}">🔍 Ne Var Ne Yok'ta aç</a></div>
+<div class="bt">${o.ended ? "" : '<button type="button" class="p" id="var">Varım 🙌</button>'}<div class="rw">${o.tix ? `<a href="${esc(o.tix)}" target="_blank" rel="noopener">🎟️ Bilet al</a>` : ""}<a href="${esc(o.maps)}"${o.tix ? "" : ' style="grid-column:span 2"'}>🧭 Yol tarifi</a></div><a href="${esc(o.app)}">🔍 Ne Var Ne Yok'ta aç</a></div>
 <p class="ft">Bu davetiye <a href="/">Ne Var Ne Yok</a> ile hazırlandı · nevarneyok.net.tr</p></main>
-<script type="application/json" id="E">${JSON.stringify({ t: o.title, d: o.d, h: o.t, p: o.place }).replace(/</g, "\\u003c")}</script><script src="/davet.js?v=3" defer></script></body></html>`;
+<script type="application/json" id="E">${JSON.stringify({ t: o.title, d: o.d, h: o.t, p: o.place }).replace(/</g, "\\u003c")}</script><script src="/davet.js?v=4" defer></script></body></html>`;
 // Yeni tarihlerini takip et (takip.js → NV.akey): 81 ilin dizini idx/a.json — anahtar → [[il, gün, saat, ad, mekân]]
+/* Beraber: yer davet sayfaları. Önizleme hazır sayfadan okunur; yerin adı ve zamanı bağlantının # kısmından gelir */
+const yerHtml = (o) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><title>${esc(o.title)}</title><meta name="description" content="${esc(o.desc)}">${ogMeta(o.title, o.desc, o.url, o.og, o.title)}${FONT}<link rel="stylesheet" href="/yer.css?v=1"></head><body>
+<div id="map"></div><img id="shot" alt=""><div class="tp"><a class="lg" href="/" aria-label="Ne Var Ne Yok"><img src="/brand/logo-cam.png" alt="Ne Var Ne Yok"></a><button type="button" class="rc" id="rc" aria-label="Yere dön" hidden><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button></div>
+<section class="sh" id="sh"><button type="button" class="gr" id="gr" aria-label="Kartı aç ya da kapat"></button><div class="inv" id="inv"></div><h1 id="nm"></h1><p class="sb" id="sb"></p><div class="wh" id="wh"></div><p class="ls" id="ls"></p><p class="nt" id="nt" hidden></p>
+<div class="bt"><button type="button" class="b p" id="yes">Varım 🙌</button><button type="button" class="b" id="alt">Başka zaman?</button><button type="button" class="b" id="no">Bu sefer olmaz</button><a class="b r" id="rt">Yol tarifi</a><button type="button" class="b" id="cal" hidden style="grid-column:1/-1">Takvimime ekle</button><a class="b" id="op" style="grid-column:1/-1">Ne Var Ne Yok'ta aç</a></div><p class="ft">${esc(o.cr || "© OpenStreetMap katkıcıları · OpenMapTiles")}</p></section>
+<div class="dl" id="dl" hidden><div class="dc"><h2 id="dt"></h2><small id="ds"></small><div id="dz" hidden><div class="ch" id="dc"></div><input id="dh" type="time" aria-label="Saat"></div><input id="dn" maxlength="24" placeholder="Adın (isteğe bağlı)" autocomplete="given-name"><div class="bt"><button type="button" class="b" id="dx">Vazgeç</button><button type="button" class="b" id="ds2" style="background:#fff;color:#0a0a10">Gönder</button></div></div></div>
+<script type="application/json" id="E">${JSON.stringify(o.E).replace(/</g, "\\u003c")}</script><script src="/beraber.js?v=1"></script><script src="/yer.js?v=1"></script></body></html>`;
+const BJS = await readFile(join(ROOT, "beraber.js"), "utf8");
+async function yerPages() { const NVB = (() => { const g = {}; new Function("globalThis", "window", BJS)(g, g); return g.NVB; })(), base = `${BASE}/yg`; let nk = 0;
+  const wr = async (d, h) => { const dir = join(ROOT, d); await mkdir(dir, { recursive: true }); await writeFile(join(dir, "index.html"), h); };
+  for (const [k, t] of Object.entries(NVB.T)) { const has = await exists(join(ROOT, `yg/t/${k}.jpg`)); await wr(`y/t/${k}`, yerHtml({ title: `✉️ Beraber gidelim mi? · ${t.p === "Beraber gidelim mi?" ? t.l : t.p}`, desc: "Yerin adı ve zamanı mesajda, tam nokta davet sayfasında 📍", url: `${BASE}/y/t/${k}`, og: has ? `${base}/t/${k}.jpg` : `${BASE}/icons/og.png`, E: { t: k, img: "" } })); }
+  await mkdir(join(ROOT, "y/c"), { recursive: true }); await writeFile(join(ROOT, "y/c/index.html"), `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><title>Davet cevabı · Ne Var Ne Yok</title><meta property="og:title" content="Davet cevabı geldi ✉️"><meta property="og:description" content="Cevabı görmek için dokun"><meta property="og:image" content="${BASE}/icons/og.png">${FONT}<link rel="stylesheet" href="/yer.css?v=1"></head><body><main class="cc"><img src="/brand/logo-cam.png" alt="" style="height:38px;margin-bottom:12px"><h1 id="ct"></h1><p class="sb" id="cs"></p><p class="nt" id="cn" hidden>Bu daveti bu tarayıcıdan göndermemişsin. Uygulamadaki Davetlerim'den "Cevabı ekle"ye bu bağlantıyı yapıştırabilirsin.</p><a class="b p" id="cg">Davetlerim</a></main><script type="application/json" id="E">{"mode":"cevap"}</script><script src="/beraber.js?v=1"></script><script src="/yer.js?v=1"></script></body></html>`);
+  const Y = (await readJSON(join(ROOT, "yg/index.json"), {})) || {}, idx = [];
+  for (const [kod, x] of Object.entries(Y)) { const E = { n: x.n, s: x.s || "", a: x.a, o: x.o, t: x.t, il: x.il || "", g: x.g || null, img: `/yg/${kod}.jpg` }, og = `${base}/${kod}.jpg`, cr = x.cr || "";
+    await wr(`y/${kod}`, yerHtml({ title: `✉️ Beraber gidelim mi? · ${x.n}`, desc: `${x.s || ""} · Ne Var Ne Yok'ta aç 📍`, url: `${BASE}/y/${kod}`, og, cr, E }));
+    await wr(`y/${kod}/n`, yerHtml({ title: `✉️ Beraber gidelim mi? · ${x.n} yakınında`, desc: "Tam nokta davet sayfasında 📍", url: `${BASE}/y/${kod}/n`, og, cr, E: { ...E, near: 1, g: null } })); idx.push([kod, x.a, x.o, x.n, x.t]); nk++; }
+  await mkdir(join(ROOT, "idx"), { recursive: true }); await writeFile(join(ROOT, "idx/yg.json"), JSON.stringify(idx)); log(`Beraber: ${nk} hazır yer sayfası`); }
 const NVK = new Function(await readFile(join(ROOT, "takip.js"), "utf8") + ";return NV")();
 const AIDX = {};
 // Harita sekmesi bütün Türkiye (kullanıcı isteği, 16.11.2026): konumu bilinen mekânlardaki önümüzdeki 8 günün etkinlikleri → idx/harita.json
@@ -53,6 +71,9 @@ const hVen = (id, name) => { const v = id === "ankara" ? VA[name] : VT[id + "|" 
 /* haritadaki bütçe filtresi için fiyat (fiyat kuralı): yalnızca satış sitesinde doğrulanmış fiyat ve doğrulandığı saat; uygulama 36 saati aşanı göstermez → [fiyat, saat (epoch/36e5)] */
 const hPrice = (e, base) => { let p = 0, h = 0; for (const x of e.tickets || []) if (x.price && !x.est && x.seen && x.seen !== base && (!p || x.price < p)) { p = x.price; h = Math.round(Date.parse(x.seen) / 36e5); } return [p, h]; };
 let n = 0;
+/* Davet bağlantısı ölmez (18.11.2026): yayınlanan her etkinlik s/arsiv.json'da (önbellekle yayından yayına kalır) 60 gün tutulur; etkinlik geçince, kalkınca ya da adı/tarihi değişince sayfa açıklamayla yerinde durur */
+const ARCH = (await readJSON(join(ROOT, "s/arsiv.json"), {})) || {}, GEN = new Set();
+const maps0 = (id, e, vv) => vv?.lat ? `/#/${id}/harita?yer=${vv.lat},${vv.lng}&ad=${encodeURIComponent(e.venue || "")}&rota=1` : `/#/${id}/harita?ara=${encodeURIComponent(e.venue || "")}`;
 for (const [id, c] of Object.entries(cities)) {
   const file = id === "ankara" ? "data/events.json" : `data/c/${id}.json`;
   const EVF = (await readJSON(join(ROOT, file), { events: [] })) || {}, ev = EVF.events || [], base = EVF.baseline;
@@ -71,12 +92,14 @@ for (const [id, c] of Object.entries(cities)) {
 <script>location.replace(${JSON.stringify(app)})</script>
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a10;color:#fff;font:600 16px system-ui,sans-serif;text-align:center}a{color:#c4b5fd}</style>
 </head><body><p><b>${esc(title)}</b><br>${esc(when)} · ${esc(place)}<br><br><a href="${esc(app)}">Ne Var Ne Yok'ta aç →</a></p></body></html>`;
-    if (e.status !== "iptal") {
-      const tk = (e.tickets || []).find((x) => x.url), maps = vv?.lat ? `/#/${id}/harita?yer=${vv.lat},${vv.lng}&ad=${encodeURIComponent(e.venue || "")}&rota=1` : `/#/${id}/harita?ara=${encodeURIComponent(e.venue || "")}`;
+    GEN.add(code); ARCH[code] = { t: title, d: e.d, h: e.t || "", w: when, p: place, il: id, img: e.img || "", by: e.imgBy || "", og: img, maps: "", s };
+    {
+      const tk = (e.tickets || []).find((x) => x.url), maps = maps0(id, e, vv);
       const dsc = `${when} · ${place}. Biletine ve yol tarifine Ne Var Ne Yok'tan ulaş 🔍`;
-      for (const [dir0, body] of [[join(ROOT, "e", code), html], [join(ROOT, "d", code), invitePage({ title, desc: dsc, url: `${BASE}/d/${code}`, og: img, img: e.img || "", by: e.imgBy || "", when, place, tix: tk?.url || "", maps, app, d: e.d, t: e.t || "" })]]) { await mkdir(dir0, { recursive: true }); await writeFile(join(dir0, "index.html"), body); }
+      for (const [dir0, body] of [[join(ROOT, "e", code), html], [join(ROOT, "d", code), invitePage({ title, desc: dsc, url: `${BASE}/d/${code}`, og: img, img: e.img || "", by: e.imgBy || "", when, place, tix: e.status === "iptal" ? "" : tk?.url || "", maps, app, d: e.d, t: e.t || "", ended: e.status === "iptal", note: { iptal: "Bu etkinlik iptal edildi.", ertelendi: "Bu etkinlik ertelendi, yeni tarihi bilet sitesinden kontrol et.", tukendi: "Biletler tükenmiş görünüyor." }[e.status] || "" })]]) { await mkdir(dir0, { recursive: true }); await writeFile(join(dir0, "index.html"), body); }
     }
     /* bütün tarihler (kullanıcı, 09:09: "bütün Türkiye, bütün etkinlikler haritada") */ if (e.status !== "iptal" && !(/\bsinemaları$/i.test(e.venue || "") && e.cat === "sinema")) { const vi = hVen(id, e.venue || ""); const pf = hPrice(e, base); HE.push([vi, s, tix(e.title), e.d, e.t || "", e.cat || "", e.img ? iix(e.img) : -1, id, vi < 0 ? e.venue || "" : "", e.status === "tukendi" ? "t" : e.status === "ertelendi" ? "e" : "", pf[0], pf[1], /ücretsiz/i.test(e.note || "") ? 1 : 0]); } // konumu olmayan da girer (il düzeyinde gösterilir)
+    ARCH[code].maps = maps0(id, e, vv);
     { const ak = NVK.akey(e.title); if (ak && ak.length >= 3 && e.status !== "iptal") (AIDX[ak] ||= []).push([id, e.d, e.t || "", s, e.venue || ""]); }
     const dir = join(ROOT, "e", id, s);
     await mkdir(dir, { recursive: true }); await writeFile(join(dir, "index.html"), html); n++;
@@ -91,6 +114,14 @@ for (const [id] of Object.entries(cities)) {
     for (const [cid, tm] of by) { const cn = F.cinemas?.[cid]?.name; if (!cn) continue; const T = [...new Set(tm)].sort(); const vi = hVen(id, cn);
       HE.push([vi, "", tix(f.title), d, T[0] || "", "sinema", f.img ? iix(f.img) : -1, id, vi < 0 ? cn : "", "", 0, 0, 0, f.id, T.join(" ")]); nf++; } } }
 log(`Harita dizini: ${nf} sinema seansı (film × salon × gün) eklendi`);
+/* arşivdeki davet ve paylaşım sayfaları */
+{ const lim = (() => { const d = new Date(today + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() - 60); return d.toISOString().slice(0, 10); })(); let na = 0;
+  for (const [code, x] of Object.entries(ARCH)) { if (GEN.has(code)) continue; if (x.d < lim) { delete ARCH[code]; continue; }
+    const nx = (AIDX[NVK.akey(x.t)] || []).find((r) => r[0] === x.il && r[1] >= today), past = x.d < today, next = nx ? `/d/${NVK.scode(nx[0], nx[3])}` : "", note = nx ? (past ? "Bu tarih geçti, etkinliğin yeni bir tarihi var." : "Bu etkinliğin tarihi değişmiş olabilir.") : past ? "Bu etkinliğin tarihi geçti." : "Bu etkinlik artık listemizde yok, son durumu bilet sitesinden kontrol et.";
+    const body = invitePage({ title: x.t, desc: `${x.w} · ${x.p}`, url: `${BASE}/d/${code}`, og: x.og || `${BASE}/icons/og.png`, img: x.img, by: x.by, when: x.w, place: x.p, tix: "", maps: x.maps || `/#/${x.il}`, app: `/#/${x.il}`, d: x.d, t: x.h, ended: true, note, next });
+    for (const top of ["d", "e"]) { const dir0 = join(ROOT, top, code); await mkdir(dir0, { recursive: true }); await writeFile(join(dir0, "index.html"), body); } na++; }
+  await mkdir(join(ROOT, "s"), { recursive: true }); await writeFile(join(ROOT, "s/arsiv.json"), JSON.stringify(ARCH)); log(`Davet arşivi: ${Object.keys(ARCH).length} kayıt, ${na} eski bağlantı açık tutuldu`); }
+await yerPages();
 await mkdir(join(ROOT, "idx"), { recursive: true }); await writeFile(join(ROOT, "idx/a.json"), JSON.stringify(AIDX));
 await writeFile(join(ROOT, "idx/harita.json"), JSON.stringify({ d: today, v: HV, t: HT, i: HI, e: HE }));
 log(`Harita dizini: ${HE.length} etkinlik, ${HV.length} mekân (idx/harita.json)`);
