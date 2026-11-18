@@ -1022,7 +1022,7 @@ const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" ·
 const bText = (x, url) => `${x.k ? "💌" : "✉️"} *${x.c}*\n*${x.n}*${bWhen(x.w, x.h) ? " · " + bWhen(x.w, x.h) : ""}\n${url}`;
 /* Beraber önizlemesi (18.11.2026): telefon yerin 3B görselini o an çizer, gönderirken Cloudflare'daki küçük depoya koyar; WhatsApp davete özel sayfadan adı ve görseli okur. Özel yerler hiç yüklenmez, hata olursa genel davet bağlantısı kullanılır. */
 const PVW = "https://nvny-yer.berkaytoruntga.workers.dev", pvQ = (v) => new URLSearchParams({ lat: (+v.a + .0018).toFixed(4), lng: v.o, t: v.t, n: v.n }).toString(), pvWait = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(r, ms))]);
-const adaJ = () => window.NVA ? Promise.resolve() : loadJS("/ada.js?v=27", 20000);
+const adaJ = () => window.NVA ? Promise.resolve() : loadJS("/ada.js?v=28", 20000);
 /* Haritadaki "Önizle": seçilen yer ve çevresi haritadan kopup yükselir; Kapat ile yerine oturur */
 let adaOn = null;
 const adaYv = async (c) => { const cs = new Set(); for (const a of [-.008, .008]) for (const o of [-.01, .01]) cs.add(`${Math.floor((c[1] + a) * 10)}_${Math.floor((c[0] + o) * 10)}`); return (await Promise.all([...cs].map((k) => fetch(`/yv/${k}.json`).then((r) => r.ok ? r.json() : []).catch(() => [])))).flat(); };
@@ -1547,6 +1547,7 @@ function routeSheet(e, v, city) {
   let lw = null, map = null, line = null, done = null, me = null, watch = null, mode = null, from = null, R = null, S = [], nav = false, C = [], cum = [], sIdx = [], ni = 0, lastStep = -1, warned = -1, wl = null, follow = true;
   let voice = store.get("nvny-sesli") !== "0";
   const dest = [v.lat, v.lng], seg = sh.querySelector(".rseg"), sum = sh.querySelector("#rsum"), st = sh.querySelector("#rst");
+  let fl = null; sum.addEventListener("click", async (ev) => { if (!ev.target.closest("#rfm") || fl || !map || C.length < 2) return; haptic(8); snd.sel?.(); await adaJ(); if (fl || !document.body.contains(sh)) return; follow = false; sh.classList.add("film"); map.resize(); fl = window.NVA.film(map, maplibregl, { C, S: S.map((s, i) => ({ at: cum[sIdx[i]] || 0, a: arrow(s), t: stepTxt(s, toName()) })), name: toName(), root: sh.querySelector(".rtp"), lite: (navigator.hardwareConcurrency || 8) < 5 || (navigator.deviceMemory || 8) < 4, tick: () => tick(), onEnd: () => { fl = null; sh.classList.remove("film"); map.resize(); fitRoute(); } }); if (!fl) { sh.classList.remove("film"); map.resize(); toast("Bu yol film için çok kısa.", 2200); } });
   /* Yol tarifi doğrudan tam ekran haritada (kullanıcı, 16.11.2026 15:31–15:32: "ayrı panelde küçük kalmayalım, haritada özgürüz; hem yol tarifi hem 3B").
      Apple Haritalar gibi: üstte cam kart (geri, varış, nereden), altta sürüklenen cam kart (kısa: süre + Başla; açık: adım adım tarif).
      Harita her yöne serbest: iki parmakla döndür/eğ, "3B" ile eğik bakış, çerçeve düğmesiyle bütün yol. Kart yalnızca transform ile kayar. */
@@ -1563,7 +1564,7 @@ function routeSheet(e, v, city) {
       const open = vv < -.35 ? true : vv > .35 ? false : cTy + dY < (H - cMini()) / 2; if (open !== cOpen) { haptic(5); snd.sel?.(); } cSet(open); }, { passive: true }); }
   $("#rgr", sh).addEventListener("click", () => { haptic(5); snd.sel?.(); cSet(!cOpen); });
   addEventListener("resize", () => cSet(cOpen, false));
-  const oldClose = sh.close; sh.close = () => { lw?.stop(); if (watch != null) navigator.geolocation.clearWatch(watch); try { wl?.release(); speechSynthesis.cancel(); } catch {} oldClose(); };
+  const oldClose = sh.close; sh.close = () => { fl?.stop(); lw?.stop(); if (watch != null) navigator.geolocation.clearWatch(watch); try { wl?.release(); speechSynthesis.cancel(); } catch {} oldClose(); };
   const setMode = (m) => { mode = m; seg.style.setProperty("--i", ["foot", "bike", "car"].indexOf(m)); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.m === m)); };
   /* Yönü değiştir (kullanıcı, 16.11.2026 20:02: "haritada istediğim her yere yol tarifi"): ⇅ ile gidiş ↔ dönüş. Ters yönde "Başla" yok (canlı yol gösterme yalnızca konumundan çıkarken). */
   let rev = false; const srcName = () => src === "me" ? "Konumun" : src === "x" ? xPlace?.n || "Seçilen yer" : F.find((x) => x.id === src)?.n || "";
@@ -1584,7 +1585,7 @@ function routeSheet(e, v, city) {
     S = R.legs[0].steps.filter((s, i, a) => !(s.maneuver.type === "new name" && s.distance < 15 && i < a.length - 1)); prep();
     const min = Math.max(1, Math.round(R.duration / 60)), at = new Date(Date.now() + R.duration * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
     const late = !rev && e.t && e.d === nowIST().d ? (() => { const [h, mm] = e.t.split(":").map(Number), leave = h * 60 + mm - min - 10, n = nowIST().hm.split(":").map(Number), now = n[0] * 60 + n[1]; return leave >= now ? `<small class="go">Tam yetişmek için en geç <b>${String(Math.floor(leave / 60)).padStart(2, "0")}:${String(leave % 60).padStart(2, "0")}</b>'da çık</small>` : now < h * 60 + mm ? `<small class="go late">Başlamasına ${h * 60 + mm - now} dk var, hemen çıkmalısın</small>` : ""; })() : "";
-    sum.innerHTML = `<div class="rs1"><b>${durTxt(min)}</b><span>${mTxt(R.distance)} · varış ${at}</span><button type="button" class="nvs" id="nvs">Başla</button></div>${late}`;
+    sum.innerHTML = `<div class="rs1"><b>${durTxt(min)}</b><span>${mTxt(R.distance)} · varış ${at}</span><button type="button" class="nvs" id="nvs">Başla</button></div>${late}<button type="button" class="rfm" id="rfm"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>Yolu izle</button>`;
     st.innerHTML = S.map((s, i) => `<li data-i="${i}"><i>${arrow(s)}</i><span>${stepTxt(s, toName())}${s.distance >= 5 && s.maneuver.type !== "arrive" ? `<small>${mTxt(s.distance)}</small>` : ""}</span></li>`).join("");
     st.querySelectorAll("li").forEach((li) => li.addEventListener("click", () => { const s = S[+li.dataset.i]; if (map) map.flyTo({ center: s.maneuver.location, zoom: 17, duration: 600 }); haptic(4); }));
     $("#nvs", sum).addEventListener("click", start);

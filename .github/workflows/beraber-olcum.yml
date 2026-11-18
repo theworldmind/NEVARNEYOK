@@ -61,6 +61,22 @@ jobs:
           node davet-reklam.mjs
       - if: always()
         run: cd /tmp/reklam && git init -q -b beraber-reklam && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Reklam" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-reklam
+  film:
+    if: github.event.inputs.is == 'film'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env: { OUT: /tmp/film }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node beraber/film-ornek.mjs
+      - if: always()
+        run: cd /tmp/film && git init -q -b beraber-film && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Film" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-film
   harita:
     if: github.event.inputs.is == 'harita'
     runs-on: ubuntu-latest
