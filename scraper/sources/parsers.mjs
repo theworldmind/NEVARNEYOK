@@ -338,7 +338,7 @@ export function akanselList(html, url) {
     const name = head.replace(new RegExp(`^\\d{1,2}(?:/\\d{1,2})? (?:${AY}) 20\\d\\d\\s*`, "i"), ""), D = parseTrDate(w[1]), city = cityOfText(name) || cityOfText(slug.replace(/-/g, " ")) || cityOfText(venue); if (!D?.d || !city || !name) continue;
     const C = _cById(city), title = nice(name.replace(new RegExp(`(^|\\s)${C.name}(?=\\s|$)`, "iu"), " ").replace(/\s+/g, " ").trim()), k = D.d + "|" + city + "|" + title.toLocaleLowerCase("tr"); if (seen.has(k)) continue; seen.add(k);
     const img = (c.match(/<img[^>]+src="([^"]+)"/i) || [])[1], pr = (txt((c.match(/class="ak-card__price"[^>]*>([\s\S]*?)<\/div>/i) || [])[1]).match(/([\d.]+)(?:,\d+)?\s*TL/i) || [])[1];
-    out.push({ title, d: D.d, t: (w[2] || "").padStart(w[2] ? 5 : 0, "0"), venue: nice(venue), city: C.name, url: abs("seminerdetay.aspx?seminer=" + slug, url), image: img ? abs(img.replace(/ /g, "%20"), url) : "", via: "site", pc: pr ? +pr.replace(/\./g, "") : 0, genre: "Söyleşi", catHint: "atolye" });
+    out.push({ title, d: D.d, t: (w[2] || "").padStart(w[2] ? 5 : 0, "0"), venue: nice(venue), city: C.name, url: abs("seminerdetay.aspx?seminer=" + slug, url), image: img ? abs(img.replace(/ /g, "%20"), url) : "", via: "site", ...(pr ? { price: +pr.replace(/\./g, ""), pc: 3 } : { pc: 0 }), genre: "Söyleşi", catHint: "atolye" });
   }
   return out;
 }
