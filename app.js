@@ -617,10 +617,8 @@ function viewEvent(city, slug) {
   const checked = T.map((x) => x.checked).filter(Boolean).sort().pop();
   const same = uniq(DATA.events.filter((x) => x.venue === e.venue && x !== e && live(x)), 12);
   const sim = pick(DATA.events.filter((x) => x.cat === e.cat && x !== e && x.venue !== e.venue && live(x) && x.d <= addD(e.d, 7) && x.d >= addD(e.d, -3)), 12);
-  const gq = encodeURIComponent(`${e.venue} ${CITIES.find((c) => c.id === city)?.name || ""}`);
-  // Yol tarifi koordinata değil mekânın kendisine (kullanıcı, 23:47: CerModern'de yolun kenarına götürüyordu); Google mekân kaydıyla girişe götürür
-  const dirU = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent([e.venue, v?.addr, CITIES.find((c) => c.id === city)?.name].filter(Boolean).join(", "))}${v?.place ? "&destination_place_id=" + v.place : ""}`;
-  const mapU = v?.place ? `https://www.google.com/maps/search/?api=1&query=${gq}&query_place_id=${v.place}` : `https://www.google.com/maps/search/?api=1&query=${gq}`;
+  // Haritalar uygulamaya yönlendirme yok (kullanıcı, 18.11.2026: "her şey bizim yerimizden"): konum bilinen mekân kendi haritamızda açılır, bilinmeyen haritamızda aranır
+  const hereU = v?.lat ? `#/${city}/harita?yer=${v.lat},${v.lng}&ad=${encodeURIComponent(e.venue || "")}&alt=${encodeURIComponent(v.addr || v.ilce || "")}` : `#/${city}/harita?ara=${encodeURIComponent(e.venue || "")}`;
   V.innerHTML = `<article class="dt">${e.img ? `<div class="bk"><img src="${esc(e.img)}" alt="" referrerpolicy="no-referrer"></div>` : ""}<div class="in">
   <a class="back" href="javascript:history.length>1?history.back():location.assign('#/${city}')">${I.back}Geri</a>
   <div class="dg"><div class="dp">${poster(e, { badge: false, lazy: false })}</div><div>
@@ -637,7 +635,7 @@ function viewEvent(city, slug) {
     ${live(e) ? `<p class="flh">Takip edersen fiyatı düştüğünde, iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
     <section class="sec"><h3>Bu etkinlik hakkında</h3>${infoBlock(e, city)}<a class="wrong" href="${wrongMail(e, city)}">Bir yanlış mı var? Bize yaz →</a></section>
     <div id="wxb"></div>
-    <section class="sec"><h3>Konum</h3><div class="mapc">${v?.lat ? `<div class="map" id="map"></div>` : ""}<div class="ad">${I.pin}<span><b>${esc(e.venue || "")}</b><small>${esc(v?.addr || (v?.ilce ? v.ilce + ", " : "") + (CITIES.find((c) => c.id === city)?.name || ""))}</small></span><button type="button" id="vfl" class="vfl${vfol()[vkey(city, e.venue)] ? " on" : ""}">${vfol()[vkey(city, e.venue)] ? I.bellOn + "Mekân takipte" : I.pin + "Mekânı takip et"}</button></div><div class="bt">${v?.lat ? `<button type="button" class="p" id="rte">${I.dir}Yol tarifi</button>` : `<a class="p" href="${dirU}" target="_blank" rel="noopener">${I.dir}Yol tarifi</a>`}<a href="${mapU}" target="_blank" rel="noopener">${I.ext}Haritada aç</a></div></div></section>
+    <section class="sec"><h3>Konum</h3><div class="mapc">${v?.lat ? `<div class="map" id="map"></div>` : ""}<div class="ad">${I.pin}<span><b>${esc(e.venue || "")}</b><small>${esc(v?.addr || (v?.ilce ? v.ilce + ", " : "") + (CITIES.find((c) => c.id === city)?.name || ""))}</small></span><button type="button" id="vfl" class="vfl${vfol()[vkey(city, e.venue)] ? " on" : ""}">${vfol()[vkey(city, e.venue)] ? I.bellOn + "Mekân takipte" : I.pin + "Mekânı takip et"}</button></div><div class="bt">${v?.lat ? `<button type="button" class="p" id="rte">${I.dir}Yol tarifi</button>` : `<a class="p" href="${hereU}">${I.dir}Yol tarifi</a>`}<a href="${hereU}">${I.pin}Haritada aç</a></div></div></section>
   </div></div></div></article>
   ${same.length ? rail("Aynı mekânda", e.venue, same, city, `#/${city}/kesfet?m=${encodeURIComponent(e.venue)}`) : ""}
   ${sim.length ? rail("Bunlar da ilgini çekebilir", CATS[e.cat] || "", sim, city, `#/${city}/kesfet?k=${e.cat}`) : ""}
@@ -650,7 +648,7 @@ function viewEvent(city, slug) {
   $("#afl")?.addEventListener("click", (ev) => toggleArtist(e, city, ev.currentTarget));
   otherCities(e, city);
   wxCard(e, city, $("#wxb"));
-  if (v?.lat) { mapInit(v.lat, v.lng); $("#rte").addEventListener("click", () => routeSheet(e, v, city, dirU)); const d = $("#dst"); if (d) distFill(v, d); }
+  if (v?.lat) { mapInit(v.lat, v.lng); $("#rte").addEventListener("click", () => routeSheet(e, v, city)); const d = $("#dst"); if (d) distFill(v, d); }
 }
 let leafletP = null;
 const leaflet = () => leafletP ||= window.L ? Promise.resolve() : new Promise((res, rej) => { const c = document.createElement("link"); c.rel = "stylesheet"; c.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"; document.head.append(c); const s = document.createElement("script"); s.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"; s.onload = res; s.onerror = rej; document.head.append(s); });
@@ -815,8 +813,8 @@ function followBoot() {
 const C = window.NVNY_SITE?.contact || "";
 const PAGES = {
   hakkinda: ["Hakkında", `<p><b>Ne Var Ne Yok</b>, şehrinde yapılacak konser, tiyatro, stand-up, opera, bale, çocuk etkinliği, festival, parti ve atölyeleri bir arada gösteren bağımsız bir etkinlik rehberidir.</p><p>Bilet satmıyoruz. Her etkinlikte, bileti satan sitelerin hepsi fiyatlarıyla yan yana gösterilir; “Bilet al” düğmesi seni doğrudan o sitenin satış sayfasına götürür. Satın alma, iade ve değişiklik işlemleri ilgili bilet sitesinin kurallarına tabidir.</p><p>Reklam almıyoruz, komisyon almıyoruz, kimseden ücret almıyoruz. Bir etkinliğin listede yer alması ya da öne çıkması için ödeme yapılmaz.</p><p>Şu an Ankara açık; diğer şehirler yakında.</p>`],
-  kaynaklar: ["Veri kaynakları", `<p>Etkinlikler bilet sitelerinin, kurumların, mekânların ve belediyelerin herkese açık sayfalarından toplanır.</p><p>Hava durumu: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0). Harita: © OpenStreetMap katkıcıları. Uygulama içi yol tarifi: OpenStreetMap verisiyle FOSSGIS yol sunucusu.</p><p>Toplama her sabah yeniden yapılır; öğleden sonra da bilinen etkinliklerin fiyat ve satış durumu bir kez daha kontrol edilir. Bir site o gün okunamazsa son doğrulanmış bilgisi korunur. Tarihi geçen etkinlikler kendiliğinden kaldırılır. Elle eklenen etkinlikler de aynı listeye katılır.</p><p>Gösterilen fiyat, o sitede listelenen en uygun kategoridir. Fiyat, seans ve satış durumu satış sitesinde değişebilir; satın almadan önce bilet sayfasını kontrol et.</p><p>Etkinlik sayfasındaki harita OpenStreetMap'ten gelir (© OpenStreetMap katkıcıları); mekân konumları OpenStreetMap Nominatim ile bulunur. Yol tarifi ve "Haritada aç" Google Haritalar'a bağlanır.</p>`],
-  gizlilik: ["Gizlilik", `<p>Bu site hesap açtırmaz, form doldurtmaz ve kişisel veri toplamaz. Çerez ya da reklam takibi kullanmaz.</p><p>Kaç kişinin siteye girdiğini görmek için çerezsiz bir sayaç (GoatCounter) kullanılır: kimliğin, IP adresin ya da cihaz kimliğin saklanmaz; yalnızca girilen sayfa, gelinen site ve tarayıcı türü gibi kimseyi tanımlamayan toplam sayılar tutulur. Uygulamayı indirme, takip etme, bildirimleri açma ve "Bilet al" düğmelerine kaç kez basıldığı da aynı şekilde yalnızca sayı olarak tutulur.</p><p>Seçtiğin şehir, ilgi alanların (Kişiselleştir) ve takip ettiğin etkinlikler yalnızca kendi telefonunda ya da tarayıcında saklanır; sunucuya gönderilmez. Tarayıcı verilerini silerek bunları kaldırabilirsin.</p><p>Bildirimler isteğe bağlıdır ve yalnızca sen izin verirsen açılır. Bildirimler telefonun kendisinde, sitemizin herkese açık etkinlik listesiyle karşılaştırılarak oluşturulur; hiçbir bildirim sunucusu ya da kimlik kullanılmaz, kimin neyi takip ettiğini biz bilmeyiz. Bildirimleri tarayıcı ya da telefon ayarlarından istediğin an kapatabilirsin.</p><p>Etkinlik sayfasındaki harita için tarayıcın OpenStreetMap'ten harita parçalarını indirir; senin konumun gönderilmez. Uzaklık ("Senden 3,4 km") yalnızca telefonunda hesaplanır. Hava durumu için Open-Meteo'ya yalnızca ilin ya da mekânın koordinatı gönderilir, senin konumun değil. Haritada bir yer adı aradığında (ör. "Yenimahalle") yalnızca yazdığın ad OpenStreetMap tabanlı Photon arama servisine gönderilir. Uygulama içinde yol tarifi istersen, yolu hesaplamak için yalnızca başlangıç ve varış noktası OpenStreetMap topluluğunun (FOSSGIS) yol sunucusuna gönderilir; biz saklamayız. Bilet sitelerine ve Google Haritalar'a gittiğinde o sitelerin kendi gizlilik kuralları geçerlidir.</p>`],
+  kaynaklar: ["Veri kaynakları", `<p>Etkinlikler bilet sitelerinin, kurumların, mekânların ve belediyelerin herkese açık sayfalarından toplanır.</p><p>Hava durumu: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0). Harita: © OpenStreetMap katkıcıları. Uygulama içi yol tarifi: OpenStreetMap verisiyle FOSSGIS yol sunucusu.</p><p>Toplama her sabah yeniden yapılır; öğleden sonra da bilinen etkinliklerin fiyat ve satış durumu bir kez daha kontrol edilir. Bir site o gün okunamazsa son doğrulanmış bilgisi korunur. Tarihi geçen etkinlikler kendiliğinden kaldırılır. Elle eklenen etkinlikler de aynı listeye katılır.</p><p>Gösterilen fiyat, o sitede listelenen en uygun kategoridir. Fiyat, seans ve satış durumu satış sitesinde değişebilir; satın almadan önce bilet sayfasını kontrol et.</p><p>Etkinlik sayfasındaki harita OpenStreetMap'ten gelir (© OpenStreetMap katkıcıları); mekân konumları OpenStreetMap Nominatim ile bulunur. Yol tarifi ve harita uygulamanın içinde açılır.</p>`],
+  gizlilik: ["Gizlilik", `<p>Bu site hesap açtırmaz, form doldurtmaz ve kişisel veri toplamaz. Çerez ya da reklam takibi kullanmaz.</p><p>Kaç kişinin siteye girdiğini görmek için çerezsiz bir sayaç (GoatCounter) kullanılır: kimliğin, IP adresin ya da cihaz kimliğin saklanmaz; yalnızca girilen sayfa, gelinen site ve tarayıcı türü gibi kimseyi tanımlamayan toplam sayılar tutulur. Uygulamayı indirme, takip etme, bildirimleri açma ve "Bilet al" düğmelerine kaç kez basıldığı da aynı şekilde yalnızca sayı olarak tutulur.</p><p>Seçtiğin şehir, ilgi alanların (Kişiselleştir) ve takip ettiğin etkinlikler yalnızca kendi telefonunda ya da tarayıcında saklanır; sunucuya gönderilmez. Tarayıcı verilerini silerek bunları kaldırabilirsin.</p><p>Bildirimler isteğe bağlıdır ve yalnızca sen izin verirsen açılır. Bildirimler telefonun kendisinde, sitemizin herkese açık etkinlik listesiyle karşılaştırılarak oluşturulur; hiçbir bildirim sunucusu ya da kimlik kullanılmaz, kimin neyi takip ettiğini biz bilmeyiz. Bildirimleri tarayıcı ya da telefon ayarlarından istediğin an kapatabilirsin.</p><p>Etkinlik sayfasındaki harita için tarayıcın OpenStreetMap'ten harita parçalarını indirir; senin konumun gönderilmez. Uzaklık ("Senden 3,4 km") yalnızca telefonunda hesaplanır. Hava durumu için Open-Meteo'ya yalnızca ilin ya da mekânın koordinatı gönderilir, senin konumun değil. Haritada bir yer adı aradığında (ör. "Yenimahalle") yalnızca yazdığın ad OpenStreetMap tabanlı Photon arama servisine gönderilir. Uygulama içinde yol tarifi istersen, yolu hesaplamak için yalnızca başlangıç ve varış noktası OpenStreetMap topluluğunun (FOSSGIS) yol sunucusuna gönderilir; biz saklamayız. Bilet sitelerine gittiğinde o sitelerin kendi gizlilik kuralları geçerlidir.</p>`],
   kosullar: ["Kullanım koşulları", `<p>Bu site bilgilendirme amaçlıdır. Etkinlik bilgileri (ad, tarih, saat, mekân, fiyat, satış durumu) herkese açık sayfalardan otomatik toplanır; tanıtım metinleri kopyalanmaz. Afişler kopyalanmaz ve sunucumuzda saklanmaz: yalnızca yayımlandıkları kaynak adresten, değiştirilmeden gösterilir (gömülür) ve her afişin üzerinde kaynağı yazar. Kaynak afişi kaldırdığında bizde de görünmez. Etkinlik tanımları bu bilgilerden site tarafından yazılır. Toplayıcı kendini <i>NeVarNeYokBot</i> olarak tanıtır ve sitelerin robots.txt kurallarına uyar.</p><p>Hak sahipleri bir içeriğin kaldırılmasını <a href="mailto:${C}?subject=Kald%C4%B1rma%20talebi">${C}</a> adresinden isteyebilir; talep en geç 48 saat içinde, afişlerde 24 saat içinde yerine getirilir.</p><p>Etkinlik bilgileri; doğruluğu için özen gösterilir ama tarih, saat, fiyat ve satış durumunda değişiklik olabilir. Kesin bilgi her zaman etkinliğin satıldığı sitededir.</p><p>Bilet satın alma işlemleri bu sitede değil, bağlantı verilen bilet sitelerinde yapılır; o işlemlerden ilgili site sorumludur. Etkinlik adları, afişler ve markalar sahiplerine aittir. Afişi olmayan etkinliklerde görülen görseller site tarafından çizilmiş temsili çizimlerdir.</p>`],
   iletisim: ["İletişim", `<p>Soru, öneri, etkinlik ekleme ya da kaldırma talebi için: <a href="mailto:${C}">${C}</a></p><p>Organizatörsen etkinliğini bize yazabilirsin; tanıtım metnin olduğu gibi gösterilebilir.</p>`],
 };
@@ -886,7 +884,7 @@ function route() {
     else if (P[1] === "takip") viewPlan(city, !!Q.m);
     else if (P[1] === "ayarlar") viewAyarlar(city, P[2]);
     else if (P[1] === "yilim") viewYil(city);
-    else if (P[1] === "harita") viewHarita(city);
+    else if (P[1] === "harita") viewHarita(city, Q);
     else viewCity(city);
   }
   V.dataset.h = location.hash;
@@ -1368,7 +1366,7 @@ function shortcutBoot() {
    "Senden 3,4 km · yürüyerek ~40 dk": konum izni zaten verildiyse kendiliğinden, verilmediyse "Ne kadar uzak?" ile (durduk yere izin sorulmaz).
    Yol tarifi uygulamadan çıkmadan: yürüme ve araba yolu haritamıza çizilir, süre, varış saati ve adım adım tarif; sayfa açıkken mavi nokta seninle ilerler.
    Yol, OpenStreetMap topluluğunun (FOSSGIS) anahtarsız yol sunucusundan hesaplanır; bunun için yalnızca başlangıç ve varış noktası oraya gider, bizde saklanmaz.
-   Toplu taşıma, trafik ve sesli navigasyon için "Google Haritalar'da aç" kalır. */
+   Başka harita uygulamasına yönlendirme yok. */
 const mesafeOn = () => store.get("nvny-mesafe") !== "0";
 const walkMin = (k) => Math.max(1, Math.round(k * 1.25 / 4.8 * 60));
 const carMin = (k) => Math.max(2, Math.round(k * 1.35 / 28 * 60 + 2));
@@ -1412,7 +1410,7 @@ async function routeOf(mode, a, b) {
   const r = await fetch(u); if (!r.ok) throw new Error("rota " + r.status); const j = await r.json(); if (j.code !== "Ok" || !j.routes?.length) throw new Error("rota yok");
   RCACHE.set(k, j.routes[0]); return j.routes[0];
 }
-function routeSheet(e, v, city, gUrl) {
+function routeSheet(e, v, city) {
   /* Yol tarifi + navigasyon (kullanıcı isteği, 16.11.2026 02:17: "kişi yürüdükçe orada da ilerlesin; araçla ya da yaya; güzel yapalım").
      Önce özet: süre, mesafe, varış, adım adım tarif. "Başla" ile navigasyon: harita tam ekran, seni izler; üstte sıradaki dönüş ve kalan metre,
      altta kalan süre, mesafe, varış saati; geçtiğin yol solar; dönüşe yaklaşınca titreşim + kısa ses ve istersen Türkçe sesli yönlendirme (telefonun kendi sesi);
@@ -1428,8 +1426,7 @@ function routeSheet(e, v, city, gUrl) {
     <div class="bd2 rcd" id="rcd"><button type="button" class="rgr" id="rgr" aria-label="Ayrıntıları aç"></button><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="bike" role="tab">Bisikletle</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
     <div class="rsum" id="rsum"><span class="sk" style="display:block;height:52px;border-radius:14px"></span></div>
     <ol class="rst" id="rst"></ol>
-    <div class="rgx"><a class="rg" id="rgt" href="${gUrl}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="5" y="3.5" width="14" height="14" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11h14M8.5 21l1.5-3.5M15.5 21 14 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8.8" cy="14.3" r="1" fill="currentColor"/><circle cx="15.2" cy="14.3" r="1" fill="currentColor"/></svg>Toplu taşımayla ↗</a><a class="rg" id="rgg" href="${gUrl}" target="_blank" rel="noopener">${I.ext}Google Haritalar'da aç</a></div>
-    <p class="rnote">Yol OpenStreetMap verisiyle hesaplanır; trafik hesaba katılmaz. Otobüs ve metro tarifi için "Toplu taşımayla" Google Haritalar'ı açar. Bunun için yalnızca başlangıç ve varış noktası OpenStreetMap'in yol sunucusuna gider, bizde saklanmaz.</p></div></div>`, "mn rt");
+    <p class="rnote">Yol OpenStreetMap verisiyle hesaplanır; trafik hesaba katılmaz. Bunun için yalnızca başlangıç ve varış noktası OpenStreetMap'in yol sunucusuna gider, bizde saklanmaz.</p></div></div>`, "mn rt");
   let lw = null, map = null, line = null, done = null, me = null, watch = null, mode = null, from = null, R = null, S = [], nav = false, C = [], cum = [], sIdx = [], ni = 0, lastStep = -1, warned = -1, wl = null, follow = true;
   let voice = store.get("nvny-sesli") !== "0";
   const dest = [v.lat, v.lng], seg = sh.querySelector(".rseg"), sum = sh.querySelector("#rsum"), st = sh.querySelector("#rst");
@@ -1455,8 +1452,6 @@ function routeSheet(e, v, city, gUrl) {
   let rev = false; const srcName = () => src === "me" ? "Konumun" : src === "x" ? xPlace?.n || "Seçilen yer" : F.find((x) => x.id === src)?.n || "";
   const toName = () => rev ? srcName() : e.venue || "";
   const hdr = () => { $("#rtk", sh).textContent = rev ? `${e.venue || ""} → ` : "Yol tarifi"; $("#rtn", sh).textContent = toName(); sh.classList.toggle("fixed", src !== "me" || rev); sh.classList.toggle("rev", rev); };
-  const gLinks = (A, B) => { const q = (p) => p.map((x) => x.toFixed(6)).join(","), u = (tm) => `https://www.google.com/maps/dir/?api=1&origin=${q(A)}&destination=${q(B)}&travelmode=${tm}`;
-    $("#rgt", sh).href = u("transit"); $("#rgg", sh).href = u(mode === "car" ? "driving" : mode === "bike" ? "bicycling" : "walking"); };
   const say = (t) => { if (!voice || !("speechSynthesis" in window)) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t.replace(/<[^>]+>/g, "")); u.lang = "tr-TR"; u.rate = 1.02; speechSynthesis.speak(u); } catch {} };
   const vIcon = () => { $("#nvv", sh).innerHTML = voice ? '<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z" fill="currentColor"/><path d="M16 9.5l5 5M21 9.5l-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>'; };
   const prep = () => { // yol noktaları, birikimli mesafe, her adımın yol üzerindeki yeri
@@ -1466,9 +1461,9 @@ function routeSheet(e, v, city, gUrl) {
   };
   const paint = async () => {
     sum.innerHTML = `<span class="sk" style="display:block;height:52px;border-radius:14px"></span>`; st.innerHTML = "";
-    const A = rev ? dest : from, B = rev ? from : dest; gLinks(A, B); hdr();
+    const A = rev ? dest : from, B = rev ? from : dest; hdr();
     try { R = await routeOf(mode, A, B); }
-    catch { sum.innerHTML = `<div class="rerr">Yol şu an hesaplanamadı. Kuş uçuşu ${kmTxt(km(from, dest))}. <a href="${$("#rgg", sh).href}" target="_blank" rel="noopener">Google Haritalar'da aç ↗</a></div>`; return; }
+    catch { sum.innerHTML = `<div class="rerr">Yol şu an hesaplanamadı. Kuş uçuşu ${kmTxt(km(from, dest))}. <button type="button" class="rerb">Tekrar dene</button></div>`; $(".rerb", sum).addEventListener("click", paint); return; }
     S = R.legs[0].steps.filter((s, i, a) => !(s.maneuver.type === "new name" && s.distance < 15 && i < a.length - 1)); prep();
     const min = Math.max(1, Math.round(R.duration / 60)), at = new Date(Date.now() + R.duration * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
     const late = !rev && e.t && e.d === nowIST().d ? (() => { const [h, mm] = e.t.split(":").map(Number), leave = h * 60 + mm - min - 10, n = nowIST().hm.split(":").map(Number), now = n[0] * 60 + n[1]; return leave >= now ? `<small class="go">Tam yetişmek için en geç <b>${String(Math.floor(leave / 60)).padStart(2, "0")}:${String(leave % 60).padStart(2, "0")}</b>'da çık</small>` : now < h * 60 + mm ? `<small class="go late">Başlamasına ${h * 60 + mm - now} dk var, hemen çıkmalısın</small>` : ""; })() : "";
@@ -2353,7 +2348,7 @@ function trBind(root, get, set) {
   const to = (t, smooth) => { const i = idxOf(t); if (smooth) go(i); else { cancelAnimationFrame(anim); p = i; last = i; paint(); } };
   return { to, sync: () => { root.querySelector(".hf-rl").classList.toggle("off", !get()); to(get() || "19:00", false); } };
 }
-function viewHarita(city) {
+function viewHarita(city, Q = {}) {
   setTop(city); document.title = `Harita · Ne Var Ne Yok`;
   V.innerHTML = `<div class="hmap${mTheme() === "acik" ? " lt" : ""}" id="hmw"><div class="map" id="hm"></div>
     <div class="hm-top"><form class="hm-q" id="hmq" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><input id="hmi" type="search" placeholder="Etkinlik, mekân, il ya da yer ara" autocomplete="off" enterkeyhint="search"><button type="button" class="hm-x" id="hmx" aria-label="Temizle" hidden>✕</button><button type="button" class="hm-f" id="hmf" aria-label="Filtreler">${ICO.flt}<i id="hmfn"></i></button></form>
@@ -2471,7 +2466,7 @@ function viewHarita(city) {
       minZoom: 4.6, maxZoom: 18.5, maxPitch: 70, maxBounds: [[19, 32], [51, 46]], attributionControl: { compact: true }, dragRotate: true, pitchWithRotate: true, fadeDuration: 180 });
     window.__hm = map; map.touchZoomRotate.enableRotation();
     map.on("style.load", () => { addLayers(); });
-    map.once("load", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); if (!cam) goCity(city); drawFavs(); if (DATA.me && !DATA.me.c) meDot(DATA.me.p); if (HM.q) { inp.value = HM.q; clr.hidden = false; } });
+    map.once("load", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); if (!cam) goCity(city); drawFavs(); if (DATA.me && !DATA.me.c) meDot(DATA.me.p); if (HM.q) { inp.value = HM.q; clr.hidden = false; } deep(); });
     map.on("moveend", () => { HM.cam = { c: map.getCenter().toArray().map((v) => +v.toFixed(5)), z: +map.getZoom().toFixed(2), p: Math.round(map.getPitch()), b: Math.round(map.getBearing()), city }; hmSave(); near(); });
     map.on("zoom", () => { wrap.classList.toggle("z9", map.getZoom() >= 8.5); favZoom(); const z = map.getZoom(), m = z < 9.4 ? "far" : z >= 14 ? "near" : "mid"; if (m !== lastLod) near(); });
     map.on("rotate", cmp); map.on("pitch", cmp); cmp();
@@ -2538,9 +2533,9 @@ function viewHarita(city) {
     sh.querySelector("[data-a=s]").addEventListener("click", () => { favSave(favs().filter((x) => x.id !== f.id)); snd.close?.(); haptic(10); sh.close(); drawFavs(); }); };
   /* Her yere yol tarifi (kullanıcı, 16.11.2026 20:02: "haritalardan istediğim her yere yol tarifi yapılabilsin"). Apple Haritalar'daki yer kartı:
      basılı tutulan nokta, haritadaki hazır yerler (kafe, okul, durak…), arama sonuçları ve kayıtlı yerler aynı kartla açılır:
-     ad + tür/adres + uzaklık, büyük "Yol tarifi" (konumun biliniyorsa tahmini süreyle), Kaydet, Yakındaki etkinlikler, Google Haritalar.
+     ad + tür/adres + uzaklık, büyük "Yol tarifi" (konumun biliniyorsa tahmini süreyle), Kaydet, Yakındaki etkinlikler.
      Adresi olmayan nokta için adres Photon'dan (anahtarsız) sorulur; gönderilen yalnızca noktanın koordinatıdır. */
-  const routeTo = (ll, n) => routeSheet({ title: n, venue: n }, { lat: ll[0], lng: ll[1] }, city, `https://www.google.com/maps/dir/?api=1&destination=${ll[0].toFixed(6)},${ll[1].toFixed(6)}`);
+  const routeTo = (ll, n) => routeSheet({ title: n, venue: n }, { lat: ll[0], lng: ll[1] }, city);
   const revGeo = (ll) => fetch(`https://photon.komoot.io/reverse?lat=${ll[0]}&lon=${ll[1]}&limit=1`).then((r) => r.ok ? r.json() : null).then((j) => { const p = j?.features?.[0]?.properties; if (!p) return null;
     const st2 = [p.street, p.housenumber].filter(Boolean).join(" "); return { n: p.name || st2 || p.district || p.locality || "", s: [p.name ? st2 : "", p.district || p.locality, p.city || p.county, p.state].filter((x, i, a) => x && a.indexOf(x) === i).join(" · ") }; }).catch(() => null);
   const placeCard = (ll, o = {}) => { snd.pop?.(); haptic(8);
@@ -2548,7 +2543,7 @@ function viewHarita(city) {
     const me2 = DATA.me && !DATA.me.c ? DATA.me.p : null, dist = me2 ? km(me2, ll) : null, nm = o.n || "Seçilen yer";
     const sh = sheet(`<div class="pn plc" role="dialog" aria-label="${esc(nm)}"><div class="hd"><span class="rth" style="display:flex;flex-direction:row;align-items:center;gap:11px;text-align:left">${o.ic || '<span class="cgi" style="background:#ff3b30"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#ff3b30"/></svg></span>'}<span><b id="pcn">${esc(nm)}</b><small id="pcs">${esc(o.s || (o.n ? "" : "Adres bulunuyor…"))}${dist != null ? `${o.s ? " · " : ""}${kmTxt(dist)}` : ""}</small></span></span><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
       <div class="bd2"><button type="button" class="pcr" data-a="t">${ICO.car}<span><b>Yol tarifi</b><small id="pct">${dist != null ? "Süre hesaplanıyor…" : "Nereden gideceğini sen seç"}</small></span></button>
-      <div class="pcb"><button type="button" data-a="k">${favIc("")}<span>Kaydet</span></button><button type="button" data-a="y"><span class="cgi" style="background:#8b5cf6"><svg viewBox="0 0 24 24"><path d="M5 9.5h14M5 9.5V18a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 18V9.5M5 9.5V7a1.5 1.5 0 0 1 1.5-1.5h11A1.5 1.5 0 0 1 19 7v2.5M9 3.5v4M15 3.5v4" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/></svg></span><span>Yakındaki etkinlikler</span></button><a data-a="g" href="https://www.google.com/maps/search/?api=1&query=${ll[0].toFixed(6)},${ll[1].toFixed(6)}" target="_blank" rel="noopener"><span class="cgi" style="background:#34c759"><svg viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-8 8M17 14v4a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 5 18V8.5A1.5 1.5 0 0 1 6.5 7H10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Google Haritalar</span></a></div></div></div>`, "mn");
+      <div class="pcb"><button type="button" data-a="k">${favIc("")}<span>Kaydet</span></button><button type="button" data-a="y"><span class="cgi" style="background:#8b5cf6"><svg viewBox="0 0 24 24"><path d="M5 9.5h14M5 9.5V18a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 18V9.5M5 9.5V7a1.5 1.5 0 0 1 1.5-1.5h11A1.5 1.5 0 0 1 19 7v2.5M9 3.5v4M15 3.5v4" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/></svg></span><span>Yakındaki etkinlikler</span></button></div></div></div>`, "mn");
     let cur = { n: o.n || "", s: o.s || "" }; const name = () => cur.n || "Seçilen yer";
     if (!o.n) revGeo(ll).then((r) => { if (!r || !document.body.contains(sh)) { $("#pcs", sh) && ($("#pcs", sh).textContent = `${ll[0].toFixed(5)}, ${ll[1].toFixed(5)}${dist != null ? " · " + kmTxt(dist) : ""}`); return; }
       cur = r; $("#pcn", sh).textContent = name(); $("#pcs", sh).textContent = [r.s, dist != null ? kmTxt(dist) : ""].filter(Boolean).join(" · "); });
@@ -2649,7 +2644,7 @@ function viewHarita(city) {
      - yazılan il adı sorgudan çıkarılır, arama o ile (yoksa haritanın baktığı yere) yönlendirilir; sonuçlar önce adı tam tutanlar, sonra yakınlık
      - tam eşleşme yoksa yerin semti/mahallesi de çıkar (ör. "Sıhhiye"), yakındaki etkinlikler oradan
      - "Daha derin ara": OpenStreetMap'in ikinci arama servisi (Nominatim; kuralı gereği yazarken değil, yalnızca dokununca)
-     - yine yoksa: Google Haritalar'da bak ya da haritada basılı tutup kendin kaydet */
+     - yine yoksa: haritaya ekle ya da haritada basılı tutup kendin kaydet */
   const GEN = new Set(["yurdu", "yurt", "yurtlari", "ogrenci", "erkek", "kiz", "ozel", "devlet", "okulu", "okul", "lisesi", "universitesi", "fakultesi", "hastanesi", "camii", "cami", "parki", "park", "merkezi", "sitesi", "apartmani", "mahallesi", "mah", "caddesi", "cad", "sokak", "sokagi", "sk", "binasi", "kampusu", "ve", "ile", "subesi", "magazasi", "restoran", "kafe", "cafe", "otel", "oteli", "salonu", "spor", "kurs", "kursu", "dershanesi", "anaokulu", "ilkokulu", "ortaokulu"]);
   const pNorm = (f, src) => { if (src === "n") { const ad = f.address || {}; return { n: f.name || f.display_name.split(",")[0], s: ["Yer", ad.suburb || ad.neighbourhood || ad.quarter, ad.town || ad.city_district || ad.county, ad.province || ad.state].filter(Boolean).join(" · "), ll: [+f.lat, +f.lon] }; }
     const p = f.properties || {}; return { n: p.name || p.street || "", s: [PTY[p.type] || "Yer", p.district || p.locality, p.city !== p.name ? p.city : "", p.state].filter(Boolean).join(" · "), ll: [f.geometry.coordinates[1], f.geometry.coordinates[0]], tp: p.type }; };
@@ -2676,9 +2671,8 @@ function viewHarita(city) {
       // tam eşleşme yoksa en üstte: "haritaya ekle" (iğneyi kendin tam yerine koyarsın, hep haritada kalır)
       box.innerHTML = (exact ? "" : `<button type="button" class="hm-add" data-qa>${favIc(q)}<span><b>“${esc(q)}”i haritaya ekle</b><small>İğneyi tam yerine koy, hep haritada kalsın</small></span><svg class="chv" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`)
         + R.map((x, i) => `<button type="button" data-qp="${i}">${ico.p}<span><b>${esc(x.n)}</b><small>${esc(x.s)} · yakındaki etkinlikler</small></span></button>`).join("")
-        + (exact ? "" : `<button type="button" data-qd>${ico.r.replace("rgba(120,120,128,.36)", "#5e5ce6")}<span><b>“${esc(q)}” için daha derin ara</b><small>OpenStreetMap'te ikinci bir aramayla</small></span></button>
-        <a class="hm-g" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(raw)}" target="_blank" rel="noopener"><span class="cgi" style="background:#34c759"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" fill="#fff"/><circle cx="12" cy="10" r="2.3" fill="#34c759"/></svg></span><span><b>Google Haritalar'da bak ↗</b><small>Bulursan buraya dön, haritada o noktaya basılı tutup kaydet</small></span></a>`);
-      $$("[data-qp]", box).forEach((b) => b.addEventListener("click", () => { const x = R[+b.dataset.qp]; recAdd({ k: "p", l: x.n, s: x.s, ll: x.ll }); done(); nearPlace(x.ll, x.n, x.s); }));
+        + (exact ? "" : `<button type="button" data-qd>${ico.r.replace("rgba(120,120,128,.36)", "#5e5ce6")}<span><b>“${esc(q)}” için daha derin ara</b><small>OpenStreetMap'te ikinci bir aramayla</small></span></button>`);
+      $$("[data-qp]", box).forEach((b) => b.addEventListener("click", () => { const x = R[+b.dataset.qp]; recAdd({ k: "p", l: x.n, s: x.s, ll: x.ll }); done(); if (Q.ara) { map?.flyTo({ center: [x.ll[1], x.ll[0]], zoom: 16, duration: 900 }); placeCard(x.ll, { n: x.n, s: x.s }); } else nearPlace(x.ll, x.n, x.s); }));
       $("[data-qa]", box)?.addEventListener("click", () => pick(q, pickAt));
       $("[data-qd]", box)?.addEventListener("click", (ev) => { const bt = ev.currentTarget; bt.querySelector("small").textContent = "Aranıyor…"; haptic(4);
         const c = map ? map.getCenter() : { lat: 39.93, lng: 32.86 };
@@ -2704,6 +2698,8 @@ function viewHarita(city) {
     $("[data-x]", ov).addEventListener("click", () => { snd.close?.(); haptic(5); end(); });
     $("[data-s]", ov).addEventListener("click", () => { const n = inp3.value.trim() || name, c = map.getCenter(), L = favs(); newFav = Date.now().toString(36); L.push({ id: newFav, n, ll: [+c.lat.toFixed(6), +c.lng.toFixed(6)] }); favSave(L);
       recAdd({ k: "f", l: n, s: "Kayıtlı yer", ll: [c.lat, c.lng] }); snd.ok(); haptic(14); end(); drawFavs(); }); };
+  // uygulama içi bağlantılar: ?yer=enlem,boylam&ad=… (yer kartı; &rota=1 doğrudan yol tarifi), ?ara=… (haritada arama)
+  const deep = () => { const y = String(Q.yer || "").split(",").map(Number); if (y.length === 2 && y.every(Number.isFinite)) { map.flyTo({ center: [y[1], y[0]], zoom: 16.2, duration: 900 }); setTimeout(() => { if (!alive()) return; if (Q.rota) routeTo(y, Q.ad || "Seçilen yer"); else placeCard(y, { n: Q.ad || "", s: Q.alt || "" }); }, 950); } else if (Q.ara) { inp.value = Q.ara; autoDeep = true; search(); } };
   clr.addEventListener("click", () => { inp.value = ""; search(); inp.focus(); });
   el.addEventListener("pointerdown", () => { if (!res.hidden) { res.hidden = true; inp.blur(); } });
 }
@@ -2732,7 +2728,7 @@ function venueSheetX(g) {
     ${lat != null ? `<div class="vsb"><button type="button" class="ok" data-r>${I.dir}Yol tarifi</button></div>` : `<p class="kmn" style="margin:12px 2px 0">Bu mekânın haritadaki yeri henüz bulunmadı; bulununca kendi yerinde görünecek.</p>`}</div></div>`, "mn");
   sh.querySelector("[data-m]")?.addEventListener("click", (ev) => { const m = sh.querySelector("[data-mm]"); m.innerHTML = hmRows(more, c); m.hidden = false; ev.currentTarget.remove(); snd.sel?.(); haptic(5); });
   const L = [...g.L, ...more].sort((a, b) => a[3].localeCompare(b[3]));
-  sh.querySelector("[data-r]")?.addEventListener("click", () => { sh.close(); const v = { lat, lng, ilce }; setTimeout(() => routeSheet({ title: L[0][2], venue: name, d: L[0][3], t: L[0][4] }, v, c, `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(name + ", " + (N[c] || ""))}`), 280); });
+  sh.querySelector("[data-r]")?.addEventListener("click", () => { sh.close(); const v = { lat, lng, ilce }; setTimeout(() => routeSheet({ title: L[0][2], venue: name, d: L[0][3], t: L[0][4] }, v, c), 280); });
 }
 
 boot().then(() => { offlineBoot(); shortcutBoot(); route(); appUp(); splashOut(); if (DATA.ready) followBoot(); welcomeApp(); }).catch((err) => { appUp(); splashOut(); loadFail(); console.error(err); });

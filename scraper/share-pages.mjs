@@ -37,7 +37,7 @@ const invitePage = (o) => `<!doctype html><html lang="tr"><head><meta charset="u
 <div class="inv" id="inv">✉️ Beraber gidelim mi?</div>
 ${o.img ? `<div class="ps"><img src="${esc(o.img)}" alt="${esc(o.title)} afişi" referrerpolicy="no-referrer" onerror="this.parentNode.remove();document.querySelector('.cr')?.remove()"></div>${o.by ? `<p class="cr">Görsel: ${esc(o.by)}</p>` : ""}` : ""}
 <h1>${esc(o.title)}</h1><div class="mt"><b>📅 ${esc(o.when)}</b><span>📍 ${esc(o.place)}</span></div>
-<div class="bt"><button type="button" class="p" id="var">Varım 🙌</button><div class="rw">${o.tix ? `<a href="${esc(o.tix)}" target="_blank" rel="noopener">🎟️ Bilet al</a>` : ""}<a href="${esc(o.maps)}" target="_blank" rel="noopener"${o.tix ? "" : ' style="grid-column:span 2"'}>🧭 Yol tarifi</a></div><a href="${esc(o.app)}">🔍 Ne Var Ne Yok'ta aç</a></div>
+<div class="bt"><button type="button" class="p" id="var">Varım 🙌</button><div class="rw">${o.tix ? `<a href="${esc(o.tix)}" target="_blank" rel="noopener">🎟️ Bilet al</a>` : ""}<a href="${esc(o.maps)}"${o.tix ? "" : ' style="grid-column:span 2"'}>🧭 Yol tarifi</a></div><a href="${esc(o.app)}">🔍 Ne Var Ne Yok'ta aç</a></div>
 <p class="ft">Bu davetiye <a href="/">Ne Var Ne Yok</a> ile hazırlandı · nevarneyok.net.tr</p></main>
 <script type="application/json" id="E">${JSON.stringify({ t: o.title, d: o.d, h: o.t, p: o.place }).replace(/</g, "\\u003c")}</script><script src="/davet.js?v=3" defer></script></body></html>`;
 // Yeni tarihlerini takip et (takip.js → NV.akey): 81 ilin dizini idx/a.json — anahtar → [[il, gün, saat, ad, mekân]]
@@ -72,7 +72,7 @@ for (const [id, c] of Object.entries(cities)) {
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a10;color:#fff;font:600 16px system-ui,sans-serif;text-align:center}a{color:#c4b5fd}</style>
 </head><body><p><b>${esc(title)}</b><br>${esc(when)} · ${esc(place)}<br><br><a href="${esc(app)}">Ne Var Ne Yok'ta aç →</a></p></body></html>`;
     if (e.status !== "iptal") {
-      const tk = (e.tickets || []).find((x) => x.url), maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([e.venue, vv?.addr || vv?.ilce, c.name].filter(Boolean).join(", "))}`;
+      const tk = (e.tickets || []).find((x) => x.url), maps = vv?.lat ? `/#/${id}/harita?yer=${vv.lat},${vv.lng}&ad=${encodeURIComponent(e.venue || "")}&rota=1` : `/#/${id}/harita?ara=${encodeURIComponent(e.venue || "")}`;
       const dsc = `${when} · ${place}. Biletine ve yol tarifine Ne Var Ne Yok'tan ulaş 🔍`;
       for (const [dir0, body] of [[join(ROOT, "e", code), html], [join(ROOT, "d", code), invitePage({ title, desc: dsc, url: `${BASE}/d/${code}`, og: img, img: e.img || "", by: e.imgBy || "", when, place, tix: tk?.url || "", maps, app, d: e.d, t: e.t || "" })]]) { await mkdir(dir0, { recursive: true }); await writeFile(join(dir0, "index.html"), body); }
     }
