@@ -91,9 +91,21 @@ export function venueOf(text) {
 }
 
 /* Etkinliğin adı: başlıktaki tırnaklı ad ya da "X gösterisi/sergisi/festivali…" öbeği (audit.mjs → candidatesFrom) */
+// Ad: tırnak artıkları temizlenir; büyük harf ya da rakamla başlamalı ("ta açılan" gibi kırpıntı olmaz);
+// tek sözcüklü ad yalnızca başlıkta tırnak içindeyse ("Seramik" sergisi gibi genel sözcükler etkinlik adı sayılmaz).
+const cleanName = (x) => String(x || "").replace(/^[\s“”"‘’'«»]+|[\s“”"‘’'«»:,.]+$/g, "").trim();
 function nameOf(title) {
-  const c = candidatesFrom(title).filter((x) => x.split(/\s+/).length >= 2 || /^[“"‘'«]/.test(x) || x.length >= 6);
+  const c = candidatesFrom(title).map(cleanName).filter((x) => /^[A-ZÇĞİÖŞÜ0-9]/.test(x) && (x.split(/\s+/).length >= 2 || new RegExp(`[“"‘'«]${x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[”"’'»]`).test(title)));
   return c.sort((a, b) => b.length - a.length)[0] || "";
+}
+// Yurt dışında yapılan etkinlik (haber Türkçe ama yer başka ülke) alınmaz
+const FOREIGN = /selanik|atina|berlin|cannes|venedik|londra|paris|viyana|new york|los angeles|sundance|toronto|busan|rotterdam|karlovy|saraybosna|bak[uü]\b|tiflis|amsterdam|roma\b|milano|madrid|barselona|tokyo|dubai|kahire|moskova|kiev|sofya|üsküp|priştine|lefkoşa|girne|magosa/i;
+// Kayıt denetimi (her çalışmada eski kayıtlara da uygulanır): ad geçerli, yer yurt dışı değil, mekân başka ili gösteriyorsa il mekândan
+export function fixItem(x) {
+  const title = cleanName(x.title);
+  if (!/^[A-ZÇĞİÖŞÜ0-9]/.test(title) || title.split(/\s+/).length < 2 || FOREIGN.test(title)) return null;   // tek sözcük ("Seramik") genel ad olabilir
+  const vc = x.venue ? cityOfText(x.venue) : "";
+  return { ...x, title, city: vc && vc !== x.city ? vc : x.city };
 }
 const catOf = (name, title) => {
   const t = fold(title + " " + name);
@@ -114,7 +126,7 @@ async function main() {
     for (const it of parseFeed(r.text)) {
       if (!it.title || !it.link || seen.has(it.link)) continue; seen.add(it.link);
       if (it.date && Date.parse(it.date) < Date.now() - DAYS * 864e5) continue;
-      if (!EVW.test(it.title) || NOT.test(it.title)) continue;
+      if (!EVW.test(it.title) || NOT.test(it.title) || FOREIGN.test(it.title)) continue;
       const name = nameOf(it.title); if (!name) continue;
       cands.push({ name, head: it.title, url: it.link, site: f.name, teaser: it.text || "" }); n++;
     }
@@ -143,7 +155,7 @@ async function main() {
   for (const x of items) { const m = byId.get(x.id); if (!m) { byId.set(x.id, { ...x, days: [...(x.days || [])] }); continue; }
     m.days = [...new Set([...m.days, ...(x.days || [])])].sort(); if ((x.until || "") > (m.until || "")) m.until = x.until; if (!m.venue && x.venue) m.venue = x.venue; if (!m.img && x.img) { m.img = x.img; m.imgBy = x.site; } if (!m.t && x.t) m.t = x.t;
     if (x.seen > m.seen) { m.url = x.url; m.site = x.site; m.seen = x.seen; } m.free ||= x.free; m.soldout ||= x.soldout; }
-  const out = [...byId.values()].filter((x) => (x.until || x.days.at(-1) || "") >= today).map((x) => ({ ...x, days: x.days.filter((d) => d >= today) }));
+  const out = [...byId.values()].map(fixItem).filter(Boolean).filter((x) => (x.until || x.days.at(-1) || "") >= today).map((x) => ({ ...x, days: x.days.filter((d) => d >= today) }));
   await writeJSON(OUT, { updated: now, notes, items: out }, true);
   const per = {}; for (const x of out) per[x.city] = (per[x.city] || 0) + 1;
   log(`Haber keşfi: ${read} haber okundu, ${out.length} etkinlik (${Object.entries(per).map(([k, v]) => k + " " + v).join(", ")})`);
