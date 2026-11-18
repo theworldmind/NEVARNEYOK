@@ -102,12 +102,12 @@ var NV = (function () {
     var dn = Math.round(Date.parse(t0 + "T12:00:00Z") / 864e5), say = function (A) { return A[(dn + slot.length * 3) % A.length]; }, il = cityName || "şehrin", sen = mT ? "&sira=sen" : "";
     var ev = function (e) { return e.title + (e.t ? " · " + e.t : "") + (e.venue ? " · " + e.venue : ""); };
     if (slot === "sabah") { if (!T.length && !FT) return null;
-      var G = say([["Günaydın ☀️", "Uykunu alabildin mi? Bugün kendine güzel bir şey ayır, gerisini birlikte buluruz."], ["Günaydın, kahven hazır mı? ☕", "Sen güne başla, akşam için fikir lazım olursa biz buradayız."], ["Yeni bir gün, günaydın 🌤️", "Dün nasıl geçtiyse geçti, bugün sayfa temiz. Hadi güzel bir gün olsun."], ["Günaydın 👋", "Bugün " + il + " hareketli. Akşama bir kaçamak iyi gitmez mi?"], ["Hadi kalk, gün başladı 😄", "Biraz keyif, biraz kahve. Akşamı da biz düşünürüz."]]);
+      var G = say([["Günaydın ☀️", "Uykunu alabildin mi? Bugün kendine güzel bir şey ayır, gerisini birlikte buluruz."], ["Günaydın 🌿", "Bugün sana iyi gelecek bir şey olsun. Akşam için fikir lazım olursa biz buradayız."], ["Yeni bir gün, günaydın 🌤️", "Dün nasıl geçtiyse geçti, bugün sayfa temiz. Hadi güzel bir gün olsun."], ["Günaydın 👋", "Bugün " + il + " hareketli. Akşama bir kaçamak iyi gitmez mi?"], ["Güzel bir gün olsun 😊", "Sen gününe bak, akşamı biz düşünürüz."]]);
       return out({ title: G[0], body: G[1], url: base + "?t=bugun" + sen }); }
     if (slot === "kusluk") { // son iki günde eklenenlerden biri; yoksa film önerisi
       var Nw = range(t0, addD(t0, 30)).filter(function (e) { return e.firstSeen && e.firstSeen.slice(0, 10) >= addD(t0, -2); });
       if (Nw.length) { var Nm = cats ? Nw.filter(function (e) { return cats.indexOf(e.cat) >= 0; }) : [], Np = (Nm.length ? Nm : Nw).filter(function (e) { return e.img; }), f1 = Np.length ? Np[dn % Np.length] : (Nm[0] || Nw[0]);
-        var K = say([["Günün nasıl geçiyor? 😊", "Bu arada şunu gördük, hoşuna gidebilir: "], ["Kahve molası mı? ☕", "Molada bir bak derim: "], ["Sana bir şey göstereceğiz 👀", "Yeni düştü, bir bak derim: "]]);
+        var K = say([["Günün nasıl geçiyor? 😊", "Bu arada şunu gördük, hoşuna gidebilir: "], ["Küçük bir mola ver 🌤️", "Gözüne çarpsın istedik: "], ["Sana bir şey göstereceğiz 👀", "Yeni düştü, bir bak derim: "]]);
         return out({ title: K[0], body: K[1] + f1.title + " · " + dLong(f1.d), image: f1.img || undefined, url: base + "?yeni=1" }); }
       if (FT) { var KF = say([["Günün nasıl geçiyor? 🍿", "Yorulduysan akşama bir film iyi gelir. Mısır bizden değil ama fikir bizden."], ["Akşama film? 🎬", "Bazen en iyi plan karanlık bir salon ve büyük bir ekrandır."]]); return out({ title: KF[0], body: KF[1], url: "/#/" + (city || "ankara") + "/sinema" }); }
       return null; }
