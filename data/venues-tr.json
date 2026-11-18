@@ -5961,5 +5961,374 @@
   "src": "osm",
   "v": 2,
   "osm": "tourism/museum"
+ },
+ "mersin|Mersin Yenişehir Kültür Merkezi Barış Salonu": {
+  "lat": 36.8044253,
+  "lng": 34.5874332,
+  "addr": "13. Cadde, Limonluk, Limonluk",
+  "ilce": "Limonluk",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/public"
+ },
+ "mugla|Muğla Belediyesi Gazi Mustafa Kemal Atatürk Kültür": {
+  "lat": 37.2116135,
+  "lng": 28.376387,
+  "addr": "Zihni Derin Caddesi, Orhaniye, Orhaniye",
+  "ilce": "Orhaniye",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "mugla|Cabaretto Bodrum": {
+  "lat": 37.0317673,
+  "lng": 27.4291029,
+  "addr": "Müftü Yakup Önes Caddesi, Çarşı, Çarşı",
+  "ilce": "Çarşı",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/attraction"
+ },
+ "mugla|Metreküp Bodrum-Muğla": {
+  "lat": 37.0574698,
+  "lng": 27.3565087,
+  "addr": "Kapuz Caddesi, Yakaköy, Yakaköy",
+  "ilce": "Yakaköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "mugla|Metrekup Bodrum": {
+  "lat": 37.0574698,
+  "lng": 27.3565087,
+  "addr": "Kapuz Caddesi, Yakaköy, Yakaköy",
+  "ilce": "Yakaköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "mugla|mabolla saloon · Muğla": {
+  "lat": 37.2181506,
+  "lng": 28.365007,
+  "addr": "Mustafa Muğlalı Sokak, Şeyh, Şeyh",
+  "ilce": "Şeyh",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "mugla|Nazım Hikmet KM · Yıldız Kenter Sahnesi": {
+  "lat": 37.2196684,
+  "lng": 28.348352,
+  "addr": "Muslihittin, Muslihittin",
+  "ilce": "Muslihittin",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "mugla|Fethiye Belediyesi Özer Olgun Kültür Merkezi": {
+  "lat": 36.6227799,
+  "lng": 29.1127169,
+  "addr": "502. Sokak, Cumhuriyet Mah., Cumhuriyet Mah.",
+  "ilce": "Cumhuriyet Mah.",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/events_venue"
+ },
+ "mugla|Dalaman Bahcesehir Koleji": {
+  "lat": 36.8283856,
+  "lng": 28.787933,
+  "addr": "955. Sokak, Bahçelievler, Bahçelievler",
+  "ilce": "Bahçelievler",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
+ },
+ "mugla|Sıtkı Koçman Üniversitesi": {
+  "lat": 37.0318028,
+  "lng": 27.3556364,
+  "addr": "Universite Caddesi, Müskebi, Müskebi",
+  "ilce": "Müskebi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "mugla|Muğla Sıtkı Koçman Ünv. AKM Küçük Salon": {
+  "lat": 37.1670905,
+  "lng": 28.3744845,
+  "addr": "259, Kötekli, Kötekli",
+  "ilce": "Kötekli",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "mugla|Fethiye Belediyesi Özer Olgun Kültür Merkezi.": {
+  "lat": 36.6227799,
+  "lng": 29.1127169,
+  "addr": "502. Sokak, Cumhuriyet Mah., Cumhuriyet Mah.",
+  "ilce": "Cumhuriyet Mah.",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/events_venue"
+ },
+ "mugla|Yenice vadi": {
+  "lat": 36.937803,
+  "lng": 28.8097825,
+  "addr": "AKYAKA SOKAK No:NO:148/A, Pınar, Pınar",
+  "ilce": "Pınar",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "mus|Muş Öğretmenevi Konferans Salonu": {
+  "lat": 38.737914,
+  "lng": 41.4933287,
+  "addr": "Atatürk Bulvarı, Hürriyet, Hürriyet",
+  "ilce": "Hürriyet",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/guest_house"
+ },
+ "nevsehir|Gorgoli · Bezirhane": {
+  "lat": 38.5821807,
+  "lng": 34.898537,
+  "addr": "Yılmaz Sokak No:10, Mustafapaşa Beldesi, Mustafapaşa Beldesi",
+  "ilce": "Mustafapaşa Beldesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "samsun|Atölye yedikafa": {
+  "lat": 41.2197523,
+  "lng": 36.4744527,
+  "addr": "Meslek Lisesi Caddesi, Selyeri, Selyeri",
+  "ilce": "Selyeri",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/social_facility"
+ },
+ "samsun|Samsun Atakum": {
+  "lat": 41.3297078,
+  "lng": 36.2851751,
+  "addr": "Belediye Caddesi, Mimar Sinan, Mimar Sinan",
+  "ilce": "Mimar Sinan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
+ },
+ "samsun|Kadıköy Entropi Sahne": {
+  "lat": 41.2854213,
+  "lng": 36.3229838,
+  "addr": "Sel Sokak, Reşadiye, Reşadiye",
+  "ilce": "Reşadiye",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/place_of_worship"
+ },
+ "samsun|Samsun Canik Kültür Merkezi": {
+  "lat": 41.262713,
+  "lng": 36.351867,
+  "addr": "Şehit Mesut Birinci Caddesi, Teknepınar, Teknepınar",
+  "ilce": "Teknepınar",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "samsun|Samsun Büyükşehir Belediyesi Atakum Sanat Merkezi Küçük Salon": {
+  "lat": 41.3306525,
+  "lng": 36.2922045,
+  "addr": "Adnan Menderes Bulvarı 1. Kısım, Denizevleri, Denizevleri",
+  "ilce": "Denizevleri",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "samsun|Samsun Büyükşehir Belediyesi Atakum SM Küçük Salon": {
+  "lat": 41.3306525,
+  "lng": 36.2922045,
+  "addr": "Adnan Menderes Bulvarı 1. Kısım, Denizevleri, Denizevleri",
+  "ilce": "Denizevleri",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "sinop|Sinop Sebahattin Ali Kültür Merkezi": {
+  "lat": 42.024292,
+  "lng": 35.1467996,
+  "addr": "Çalıkuşu Sk., Gelincik, Gelincik",
+  "ilce": "Gelincik",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
+ },
+ "sivas|Fidan Yazıcıoğlu Kültür Merkezi": {
+  "lat": 39.7454113,
+  "lng": 37.0092275,
+  "addr": "Taşlı Sokak, Halil Rıfat Paşa, Halil Rıfat Paşa",
+  "ilce": "Halil Rıfat Paşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "sivas|TED Sivas Koleji": {
+  "lat": 39.7733495,
+  "lng": 37.0353796,
+  "addr": "43-25. Sokak, Orhangazi, Orhangazi",
+  "ilce": "Orhangazi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
+ },
+ "tekirdag|Çorlu Halk Eğitim Merkezi Müdürlüğü": {
+  "lat": 41.1473219,
+  "lng": 27.8013172,
+  "addr": "Bisiklet Yolu, Çobançeşme, Çobançeşme",
+  "ilce": "Çobançeşme",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "tekirdag|tekirdağ yahya kemal beyatlı kültür merkezi": {
+  "lat": 40.9790482,
+  "lng": 27.5296971,
+  "addr": "Avni Anıl Sokak, Cumhuriyet, Cumhuriyet",
+  "ilce": "Cumhuriyet",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/civic"
+ },
+ "tekirdag|Nazım Hikmet KM · Yıldız Kenter Sahnesi": {
+  "lat": 41.1589295,
+  "lng": 27.8428708,
+  "addr": "Erim Sokak, Hürriyet, Hürriyet",
+  "ilce": "Hürriyet",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "tekirdag|Kadıköy Eğitim Sahnesi": {
+  "lat": 40.9750527,
+  "lng": 27.5003078,
+  "addr": "İnci Sokak No:17.19/1, 100. Yıl, 100. Yıl",
+  "ilce": "100. Yıl",
+  "src": "osm",
+  "v": 2,
+  "osm": "office/educational_institution"
+ },
+ "tekirdag|Çerkezköy Halk Eğitim Merkezi": {
+  "lat": 41.2803511,
+  "lng": 28.0086078,
+  "addr": "Hükümet Caddesi, İstasyon, İstasyon",
+  "ilce": "İstasyon",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
+ },
+ "tekirdag|Cherry Mood Tekirdağ": {
+  "lat": 41.2942909,
+  "lng": 27.99675,
+  "addr": "Akbaba Sokak, Gazi Osman Paşa, Gazi Osman Paşa",
+  "ilce": "Gazi Osman Paşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "tokat|Dedeman Otel Tokat": {
+  "lat": 40.3376541,
+  "lng": 36.5446548,
+  "addr": "Vali Zekai Gümüşdiş Bulvarı, Yeşilırmak, Yeşilırmak",
+  "ilce": "Yeşilırmak",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "trabzon|Trabzon Net Koleji Sahnesi": {
+  "lat": 40.9826609,
+  "lng": 39.817914,
+  "addr": "İstiklal Caddesi, Yalıncak, Yalıncak",
+  "ilce": "Yalıncak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
+ },
+ "trabzon|Karadeniz Teknik Üniversitesi": {
+  "lat": 40.9936415,
+  "lng": 39.7740298,
+  "addr": "Hastane Caddesi, Üniversite, Üniversite",
+  "ilce": "Üniversite",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "trabzon|DoubleTree by Hilton Trabzon": {
+  "lat": 41.0117927,
+  "lng": 39.6149338,
+  "addr": "Söğütlü Mahallesi, Barbaros Hayrettin Paşa Sokak No:43, Söğütlü, Söğütlü",
+  "ilce": "Söğütlü",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "van|Van Kent Tiyatrosu": {
+  "lat": 38.4997722,
+  "lng": 43.3783997,
+  "addr": "Hafiziye Mah., Hafiziye Mah.",
+  "ilce": "Hafiziye Mah.",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "van|Niçe Cafe & Bar": {
+  "lat": 38.4983348,
+  "lng": 43.3932498,
+  "addr": "bahçivan mahallesi, Karim karabekir blv.3 No:67, Bahçıvan Mah., Bahçıvan Mah.",
+  "ilce": "Bahçıvan Mah.",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "van|DoubleTree by Hilton Van": {
+  "lat": 38.4446359,
+  "lng": 43.3241611,
+  "addr": "Ipek Yolu Caddesi 8.km, Süphan, Süphan",
+  "ilce": "Süphan",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "van|Van DoubleTree by Hilton": {
+  "lat": 38.4446359,
+  "lng": 43.3241611,
+  "addr": "Ipek Yolu Caddesi 8.km, Süphan, Süphan",
+  "ilce": "Süphan",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "zonguldak|Sezai Karakoç Kültür Merkezi": {
+  "lat": 41.4517151,
+  "lng": 31.7613082,
+  "addr": "Zonguldak Bülent Ecevit Üniversitesi Yolu, İncivez, İncivez",
+  "ilce": "İncivez",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/university"
+ },
+ "zonguldak|Ereğli Büyük Anadolu Otel Zonguldak": {
+  "lat": 41.2531927,
+  "lng": 31.4238923,
+  "addr": "Sahil Bulvarı No:2, Dağlar, Dağlar",
+  "ilce": "Dağlar",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/hotel"
+ },
+ "zonguldak|Büyük Anadolu Ereğli Hotel": {
+  "lat": 41.2531927,
+  "lng": 31.4238923,
+  "addr": "Sahil Bulvarı No:2, Dağlar, Dağlar",
+  "ilce": "Dağlar",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/hotel"
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T06:56:26.625Z",
+ "runAt": "2026-11-18T07:49:43.711Z",
  "mode": "full",
- "total": 63,
+ "total": 104,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 62,
+   "count": 103,
    "prevCount": 62,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, okunamayan: stand-up:500, cocuk-aktiviteleri:500, festival:500",
+    "açık veri: 89 seans, 3 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/van: 36 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 112,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-18T06:56:26.625Z"
+   "lastOk": "2026-11-18T07:49:43.711Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 145,
-   "failStreak": 4,
+   "seconds": 134,
+   "failStreak": 5,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/van/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/van/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 4,
+   "seconds": 155,
+   "failStreak": 5,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/van: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T06:56:26.625Z"
+   "lastOk": "2026-11-18T07:49:43.711Z"
   }
  }
 }
