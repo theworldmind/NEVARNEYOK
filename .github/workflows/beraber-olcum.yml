@@ -1,0 +1,64 @@
+# Beraber daveti, Aşama 0: ölçüm ve örnek görseller. Siteye hiçbir şey yazmaz; çıktılar ayrı dallara gider.
+name: Beraber olcum
+
+on:
+  workflow_dispatch:
+    inputs:
+      is:
+        description: "ornek, olcum ya da ikisi"
+        default: ikisi
+
+permissions:
+  contents: write
+
+jobs:
+  ornek:
+    if: github.event.inputs.is != 'olcum'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env: { TZ: Europe/Istanbul, OUT: /tmp/ornek }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Tarayıcı
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Örnekleri üret
+        working-directory: scraper
+        run: node beraber/ornek.mjs
+      - name: Dala yaz
+        if: always()
+        run: |
+          cd /tmp/ornek && git init -q -b beraber-ornek && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Örnek görseller" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-ornek
+  olcum:
+    if: github.event.inputs.is != 'ornek'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env: { TZ: Europe/Istanbul, OUT: /tmp/olcum }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Araçlar
+        run: |
+          pip install -q overturemaps duckdb
+          sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+      - name: Overture yerleri (Türkiye çerçevesi)
+        run: overturemaps download --bbox=25.6,35.8,44.9,42.2 -f geoparquet --type=place -o /tmp/ov.parquet && ls -la /tmp/ov.parquet
+      - name: OpenStreetMap kopyası
+        run: |
+          curl -fsSL --retry 3 -o /tmp/tr.pbf https://download.geofabrik.de/europe/turkey-latest.osm.pbf
+          osmium tags-filter /tmp/tr.pbf nwr/amenity,tourism,leisure,shop,historic,office,craft -o /tmp/p.pbf --overwrite
+          osmium export /tmp/p.pbf -f geojsonseq -o /tmp/poi.seq --overwrite
+          osmium tags-filter /tmp/tr.pbf w/building -o /tmp/b.pbf --overwrite
+          osmium tags-filter /tmp/b.pbf w/height w/building:levels -o /tmp/h.pbf --overwrite
+          B=$(osmium fileinfo -e -g data.count.ways /tmp/b.pbf); Y=$(osmium fileinfo -e -g data.count.ways /tmp/h.pbf); echo "{\"bina\":$B,\"yukseklik_bilgili\":$Y}" > /tmp/bina.json; cat /tmp/bina.json
+      - name: Ölç
+        run: python scraper/beraber/olcum.py
+      - name: Dala yaz
+        if: always()
+        run: |
+          cd /tmp/olcum && git init -q -b beraber-olcum && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Ölçüm" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-olcum
