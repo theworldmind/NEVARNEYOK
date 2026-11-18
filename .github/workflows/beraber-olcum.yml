@@ -44,6 +44,23 @@ jobs:
           node beraber/davet.mjs
       - if: always()
         run: cd /tmp/canli && git init -q -b beraber-canli && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Davet denemesi" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-canli
+  reklam:
+    if: github.event.inputs.is == 'reklam'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env: { OUT: /tmp/reklam, SRC: /tmp/src }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: git fetch -q origin +refs/heads/beraber-canli:refs/remotes/origin/beraber-canli && mkdir -p /tmp/src && git archive origin/beraber-canli | tar -x -C /tmp/src
+      - working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node davet-reklam.mjs
+      - if: always()
+        run: cd /tmp/reklam && git init -q -b beraber-reklam && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Reklam" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-reklam
   harita:
     if: github.event.inputs.is == 'harita'
     runs-on: ubuntu-latest
