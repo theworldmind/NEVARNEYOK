@@ -611,35 +611,50 @@
   "lat": 39.907571,
   "lng": 32.862675,
   "addr": "Büklüm Cd. No:71, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18"
  },
  "Altı Üstü Bar": {
   "place": "ChIJtSlAVKpP0xQRW6I7vHrpfnA",
-  "lat": 39.9172672,
-  "lng": 32.8563191,
+  "lat": 39.9172932,
+  "lng": 32.8564496,
   "addr": "Konur Sk. No:26, Kızılay, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18",
+  "gp": [
+   39.9172672,
+   32.8563191
+  ],
+  "osm": "amenity/bar"
  },
  "Erimtan Arkeoloji ve Sanat Müzesi": {
   "place": "ChIJVWVakmdO0xQRnEaxWENl_IU",
-  "lat": 39.9378624,
-  "lng": 32.8629962,
+  "lat": 39.9378019,
+  "lng": 32.8630019,
   "addr": "Gözcü Sk. No:10, Kale, Altındağ",
-  "ilce": "Altındağ"
+  "ilce": "Altındağ",
+  "chk": "2026-11-18",
+  "gp": [
+   39.9378624,
+   32.8629962
+  ],
+  "osm": "tourism/museum"
  },
  "Ve Sahne Panora & Kulis Sanat Tiyatrosu": {
   "place": "ChIJu4VusElE0xQRLrNPg_xvzxk",
   "lat": 39.8480407,
   "lng": 32.8334828,
   "addr": "Panora AVM, Kudüs Cd. No:3, Oran, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18"
  },
  "Ve Sahne Panora": {
   "place": "ChIJu4VusElE0xQRLrNPg_xvzxk",
   "lat": 39.8480407,
   "lng": 32.8334828,
   "addr": "Panora AVM, Kudüs Cd. No:3, Oran, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18"
  },
  "Kulis Sanat Tiyatrosu Panora": {
   "place": "ChIJu4VusElE0xQRLrNPg_xvzxk",
@@ -650,126 +665,174 @@
   "aliases": [
    "Ve Sahne Panora & Kulis Sanat Tiyatrosu",
    "Kulis Sanat Tiyatrosu"
-  ]
+  ],
+  "chk": "2026-11-18"
  },
  "MEB Şura Salonu": {
   "place": "ChIJRXT6-NtO0xQR-lyPCU77vgA",
-  "lat": 39.9360228,
-  "lng": 32.8251797,
+  "lat": 39.9360409,
+  "lng": 32.8251625,
   "addr": "MEB Beşevler Kampüsü, Yenimahalle",
-  "ilce": "Yenimahalle"
+  "ilce": "Yenimahalle",
+  "chk": "2026-11-18",
+  "gp": [
+   39.9360228,
+   32.8251797
+  ],
+  "osm": "building/yes"
  },
  "One Tower Business Club": {
   "place": "ChIJe1bB3cNF0xQRmii1AnWSjjI",
   "lat": 39.8494543,
   "lng": 32.8357972,
   "addr": "Kudüs Cd. 6/1, Oran, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18"
  },
  "One Tower Business Club · The Hall": {
   "place": "ChIJe1bB3cNF0xQRmii1AnWSjjI",
   "lat": 39.8494543,
   "lng": 32.8357972,
   "addr": "Kudüs Cd. 6/1, Oran, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18"
  },
  "CerModern": {
   "place": "ChIJtXHx6_lO0xQRrPnb4V4RjX8",
-  "lat": 39.9318309,
-  "lng": 32.8491314,
+  "lat": 39.9317598,
+  "lng": 32.8502112,
   "addr": "Altınsoy Cd. No:3, Sıhhiye, Altındağ",
-  "ilce": "Altındağ"
+  "ilce": "Altındağ",
+  "chk": "2026-11-18",
+  "gp": [
+   39.9318309,
+   32.8491314
+  ],
+  "osm": "building/public"
  },
  "CafeModern": {
   "place": "ChIJtXHx6_lO0xQRrPnb4V4RjX8",
-  "lat": 39.9318309,
-  "lng": 32.8491314,
+  "lat": 39.9317639,
+  "lng": 32.8493139,
   "addr": "Altınsoy Cd. No:3, Sıhhiye, Altındağ",
-  "ilce": "Altındağ"
+  "ilce": "Altındağ",
+  "chk": "2026-11-18",
+  "gp": [
+   39.9318309,
+   32.8491314
+  ],
+  "osm": "amenity/cafe"
  },
  "İktisadi Bağımsızlık Müzesi": {
   "place": "ChIJoy3tx9BP0xQRLEwHfrDalcw",
-  "lat": 39.9427619,
-  "lng": 32.8548669,
+  "lat": 39.9427472,
+  "lng": 32.8548935,
   "addr": "Çam Sk. No:3, Ulus, Altındağ",
-  "ilce": "Altındağ"
+  "ilce": "Altındağ",
+  "chk": "2026-11-18",
+  "gp": [
+   39.9427619,
+   32.8548669
+  ],
+  "osm": "tourism/museum"
  },
  "Günay Restaurant Ankara": {
   "place": "ChIJT23Pb5E_0xQRCOLOktBj-iw",
   "lat": 39.8090246,
   "lng": 32.7031905,
   "addr": "Turgut Özal Blv. No:34, İncek, Gölbaşı",
-  "ilce": "Gölbaşı"
+  "ilce": "Gölbaşı",
+  "chk": "2026-11-18"
  },
  "JW Marriott Hotel Ankara": {
   "place": "ChIJo_hfm7JI0xQR5ruP-qkeQt8",
-  "lat": 39.9095966,
-  "lng": 32.8066268,
+  "lat": 39.9096118,
+  "lng": 32.806565,
   "addr": "Muhsin Yazıcıoğlu Cd. No:1, Söğütözü, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18",
+  "gp": [
+   39.9095966,
+   32.8066268
+  ],
+  "osm": "tourism/hotel"
  },
  "Quito Coffee": {
   "place": "ChIJJbJWmWVP0xQRMS_O6OHtWb8",
-  "lat": 39.916025,
-  "lng": 32.858319,
+  "lat": 39.9161365,
+  "lng": 32.8582327,
   "addr": "Selanik Cd. No:82, Kızılay, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18",
+  "gp": [
+   39.916025,
+   32.858319
+  ],
+  "osm": "amenity/cafe"
  },
  "Göksu Sahne No:5 · Çankaya": {
   "place": "ChIJueZVZABP0xQR3uvUDSJraHs",
   "lat": 39.9045866,
   "lng": 32.8676139,
   "addr": "Nenehatun Cd., 100. Yıl, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18"
  },
  "Etimesgut 100. Cumhuriyet Yılı KSM": {
   "place": "ChIJm_0ygd5O0xQRiPOf-SNF2HI",
   "lat": 39.9769143,
   "lng": 32.6386826,
   "addr": "Ertuğrulbey Cd. No:1, Altay, Etimesgut",
-  "ilce": "Etimesgut"
+  "ilce": "Etimesgut",
+  "chk": "2026-11-18"
  },
  "4 Mevsim Tiyatro Salonu": {
   "place": "ChIJ6RK8VXpP0xQR9WXYuIUQNWE",
   "lat": 39.961913,
   "lng": 32.80948,
   "addr": "İvedik Cd. No:35, Gayret, Yenimahalle",
-  "ilce": "Yenimahalle"
+  "ilce": "Yenimahalle",
+  "chk": "2026-11-18"
  },
  "Yenimahalle Dört Mevsim Tiyatro Sahnesi": {
   "place": "ChIJ6RK8VXpP0xQR9WXYuIUQNWE",
   "lat": 39.961913,
   "lng": 32.80948,
   "addr": "İvedik Cd. No:35, Gayret, Yenimahalle",
-  "ilce": "Yenimahalle"
+  "ilce": "Yenimahalle",
+  "chk": "2026-11-18"
  },
  "AKM Sahne Kızılay": {
   "place": "ChIJdVioksBP0xQR8iHKtyosoDI",
   "lat": 39.9231283,
   "lng": 32.8523387,
   "addr": "Menekşe-1 Sk. No:8, Kızılay, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18"
  },
  "Başkent Sanat Merkezi · Nata Vega": {
   "place": "ChIJN4j0SwBR0xQR6VgELlDnMHM",
   "lat": 39.8873596,
   "lng": 32.9341392,
   "addr": "Nata Vega Outlet, Akşemsettin, Mamak",
-  "ilce": "Mamak"
+  "ilce": "Mamak",
+  "chk": "2026-11-18"
  },
  "Başkent Sanat Merkezi · Küçük Salon": {
   "place": "ChIJN4j0SwBR0xQR6VgELlDnMHM",
   "lat": 39.8873596,
   "lng": 32.9341392,
   "addr": "Nata Vega Outlet, Akşemsettin, Mamak",
-  "ilce": "Mamak"
+  "ilce": "Mamak",
+  "chk": "2026-11-18"
  },
  "Anadolu Müzik Kültürleri Derneği Sanat Evi": {
   "place": "ChIJj9aMn4FP0xQRsCoQWjs4UBM",
   "lat": 39.922626,
   "lng": 32.855641,
   "addr": "İnkılap Sk. No:4, Kızılay, Çankaya",
-  "ilce": "Çankaya"
+  "ilce": "Çankaya",
+  "chk": "2026-11-18"
  },
  "Hall EV.ankara": {
   "place": "ChIJQbRNvgZP0xQRBIOUalzgHJc",
