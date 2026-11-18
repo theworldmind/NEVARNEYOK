@@ -1,0 +1,72 @@
+# Beraber: yer verisi (haftalık) ve 3B önizleme görselleri (günde 4 kez parça parça). Çıktılar ayrı dallarda; siteyi "Siteyi yayınla" birleştirir.
+name: Beraber veri
+
+on:
+  workflow_dispatch:
+    inputs:
+      is: { description: "veri, gorsel ya da ikisi", default: ikisi }
+      adet: { description: "bu çalışmada en çok görsel", default: "350" }
+  schedule:
+    - cron: "25 1,7,13,19 * * *"
+    - cron: "40 2 * * 1"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: beraber-veri
+  cancel-in-progress: false
+
+jobs:
+  veri:
+    if: github.event.inputs.is == 'veri' || github.event.inputs.is == 'ikisi' || github.event.schedule == '40 2 * * 1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env: { TZ: Europe/Istanbul, OUT: /tmp/veri }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Veriyi indir
+        run: |
+          pip install -q overturemaps duckdb
+          sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+          overturemaps download --bbox=25.6,35.8,44.9,42.2 -f geoparquet --type=place -o /tmp/ov.parquet
+          curl -fsSL --retry 3 -o /tmp/tr.pbf https://download.geofabrik.de/europe/turkey-latest.osm.pbf
+          osmium tags-filter /tmp/tr.pbf nwr/amenity,tourism,leisure,shop,historic -o /tmp/p.pbf --overwrite
+          osmium export /tmp/p.pbf -f geojsonseq -o /tmp/poi.seq --overwrite
+      - run: python scraper/beraber/yerler.py
+      - name: Dala yaz
+        run: |
+          cd /tmp/veri && cp yv/ozet.json . && mv yv/* . && rmdir yv && git init -q -b beraber-veri && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Yer verisi" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-veri
+  gorsel:
+    needs: [veri]
+    if: always() && github.event.schedule != '40 2 * * 1' && github.event.inputs.is != 'veri'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env: { TZ: Europe/Istanbul, OUT: /tmp/yg, ONEM: /tmp/v/onem.json, GORSEL_MAX: "${{ github.event.inputs.adet || '350' }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Önceki görseller ve liste
+        run: |
+          U="https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}"
+          git clone -q --depth 1 -b beraber-veri "$U" /tmp/v
+          git clone -q --depth 1 -b beraber-gorsel "$U" /tmp/yg || mkdir -p /tmp/yg
+          rm -rf /tmp/yg/.git
+      - name: Tarayıcı
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Görselleri üret
+        working-directory: scraper
+        run: node beraber/gorsel.mjs
+      - name: Dala yaz ve yayınla
+        if: always()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          cd /tmp/yg && [ -f index.json ] && git init -q -b beraber-gorsel && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Beraber görselleri" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-gorsel
+          cd "$GITHUB_WORKSPACE" && gh workflow run pages.yml --ref main

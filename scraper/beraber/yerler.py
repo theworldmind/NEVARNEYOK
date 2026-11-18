@@ -1,0 +1,68 @@
+# Beraber: Türkiye yer verisi (Overture + OpenStreetMap). Haritadaki adlar ve davet için yv/<hücre>.json, görsel üretimi için onem.json.
+# Foursquare kayıtları alınmaz. Yalnızca ad, konum ve tür tutulur.
+import duckdb, json, re, os, math, collections
+OUT = os.environ.get("OUT", "/tmp/veri"); os.makedirs(OUT + "/yv", exist_ok=True)
+TY = ["kafe", "yemek", "bar", "park", "muze", "sahne", "avm", "gezi", "spor", "sinema", "yer"]; TI = {t: i for i, t in enumerate(TY)}
+TL = {"kafe": "Kafe", "yemek": "Restoran", "bar": "Mekân", "park": "Park", "muze": "Müze", "sahne": "Sahne", "avm": "AVM", "gezi": "Gezilecek yer", "spor": "Spor", "sinema": "Sinema", "yer": "Yer"}
+OV = [(r"movie|cinema", "sinema"), (r"theat|performing_arts|opera|ballet|comedy_club|music_venue|concert|cultural_center|arts_center|arts_and_entertainment", "sahne"), (r"museum|art_gallery", "muze"), (r"shopping_(mall|center)", "avm"), (r"night_?club|\bpub\b|\bbar\b|cocktail|wine_bar", "bar"), (r"cafe|coffee|tea_room|bakery|dessert|ice_cream|patisserie", "kafe"), (r"restaurant|bistro|food|kebab|pizza|burger", "yemek"), (r"historic|landmark|monument|tourist_attraction|castle", "gezi"), (r"\bpark\b|garden|national_park", "park"), (r"stadium|gym|fitness|sports", "spor"), (r"hotel|resort|university|college|library|hospital", "yer")]; OV = [(re.compile(a, re.I), b) for a, b in OV]
+OM = {"amenity": {"cafe": "kafe", "ice_cream": "kafe", "restaurant": "yemek", "fast_food": "yemek", "bar": "bar", "pub": "bar", "nightclub": "bar", "theatre": "sahne", "arts_centre": "sahne", "cinema": "sinema", "library": "yer", "university": "yer", "college": "yer", "school": "yer", "hospital": "yer", "townhall": "yer", "conference_centre": "sahne", "events_venue": "sahne", "community_centre": "sahne", "ferry_terminal": "yer"}, "tourism": {"museum": "muze", "gallery": "muze", "attraction": "gezi", "viewpoint": "gezi", "hotel": "yer", "zoo": "gezi", "aquarium": "gezi", "theme_park": "gezi"}, "leisure": {"park": "park", "garden": "park", "nature_reserve": "park", "stadium": "spor", "sports_centre": "spor", "fitness_centre": "spor", "marina": "gezi"}, "shop": {"mall": "avm", "bakery": "kafe", "pastry": "kafe", "coffee": "kafe", "department_store": "avm"}, "historic": {"monument": "gezi", "castle": "gezi", "memorial": "gezi", "ruins": "gezi", "archaeological_site": "gezi", "mosque": "gezi"}, "amenity_w": {"place_of_worship": "gezi"}}
+TM = str.maketrans("çğıöşüâîûİI", "cgiosuaiuii")
+fold = lambda s: re.sub(r"[^a-z0-9 ]+", " ", (s or "").lower().translate(TM).replace("̇", "")).strip()
+BAD = set("coffee shop|cafe|kafe|restaurant|restoran|bar|pub|park|parki|lokanta|kahve|kahvehane|cay bahcesi|market|bakkal|otopark|wc|tuvalet|cocuk parki|oyun parki".split("|"))
+def good(n):
+    f = fold(n)
+    return 3 <= len(n) <= 60 and len(f) >= 3 and f not in BAD and not n.startswith(("_", "@", "#")) and "http" not in n.lower() and not re.search(r"\d{6,}|[_]{1}\w+_", n)
+def bbox(g):
+    w, e, s, n = 99, 0, 99, 0
+    def go(a):
+        nonlocal w, e, s, n
+        if isinstance(a[0], (int, float)): w, e, s, n = min(w, a[0]), max(e, a[0]), min(s, a[1]), max(n, a[1])
+        else:
+            for x in a: go(x)
+    go(g["coordinates"]); return w, e, s, n
+def simp(g):
+    if g["type"] == "MultiPolygon": g = {"type": "Polygon", "coordinates": max(g["coordinates"], key=lambda p: len(p[0]))}
+    if g["type"] != "Polygon": return None
+    R = g["coordinates"][0]; k = max(1, len(R) // 48); Q = R[::k]; Q = Q + [Q[0]] if Q[-1] != Q[0] else Q
+    return {"type": "Polygon", "coordinates": [[[round(x, 6), round(y, 6)] for x, y in Q]]}
+P, imp = [], []
+for line in open("/tmp/poi.seq", encoding="utf8"):
+    try: f = json.loads(line.lstrip("\x1e"))
+    except Exception: continue
+    p = f.get("properties") or {}; g = f.get("geometry"); n = (p.get("name:tr") or p.get("name") or "").strip()
+    if not n or not g or not good(n): continue
+    t, kd = None, ""
+    for k, m in OM.items():
+        if p.get(k) in m: t, kd = m[p[k]], k + "/" + p[k]; break
+    if not t: continue
+    w, e, s, nn = bbox(g); a, o = (s + nn) / 2, (w + e) / 2; P.append((n, a, o, t, 3)); area = (nn - s) * (e - w) * 9.4e9
+    sc = (40 if p.get("wikidata") else 0) + (30 if p.get("wikimedia_commons") or p.get("image") else 0) + {"avm": 28, "muze": 30, "sahne": 26, "sinema": 18, "gezi": 22, "park": 12, "spor": 8}.get(t, 0) + (min(20, math.log10(area + 1) * 4) if g["type"] != "Point" else 0)
+    if t in ("kafe", "yemek", "bar") and not p.get("wikidata"): sc -= 8
+    if sc >= 18: imp.append({"n": n, "a": round(a, 6), "o": round(o, 6), "t": t, "s": " · ".join(x for x in [TL[t], p.get("addr:district") or p.get("addr:city") or ""] if x), "g": simp(g), "wd": p.get("wikidata") or "", "cm": p.get("wikimedia_commons") or "", "sc": round(sc, 1)})
+print("OSM", len(P), len(imp))
+con = duckdb.connect(); cols = {r[0] for r in con.execute("DESCRIBE SELECT * FROM '/tmp/ov.parquet'").fetchall()}; cat = "categories.primary" if "categories" in cols else "taxonomy.primary"
+nov = 0
+for n, a, o, c in con.execute(f"""SELECT names."primary", bbox.ymin, bbox.xmin, {cat} FROM '/tmp/ov.parquet' WHERE addresses[1].country='TR' AND names."primary" IS NOT NULL AND coalesce(confidence,0)>=.6 AND coalesce(sources[1].dataset,'')<>'Foursquare' AND coalesce(operating_status,'open')='open'""").fetchall():
+    t = next((b for r, b in OV if c and r.search(c)), None); n = re.sub(r"\s+", " ", n).strip()
+    if t and good(n): P.append((n, a, o, t, 1)); nov += 1
+print("Overture", nov)
+# yakın ve aynı adlı kayıtlar teke iner; OSM önce
+P.sort(key=lambda x: -x[4]); seen = {}; out = collections.defaultdict(list); nk = 0
+for n, a, o, t, s in P:
+    k = (fold(n), round(a * 700), round(o * 550))
+    if k in seen: continue
+    seen[k] = 1; out[f"{math.floor(a * 10)}_{math.floor(o * 10)}"].append([n, round(a, 5), round(o, 5), TI[t]]); nk += 1
+tot = 0
+for c, L in out.items():
+    b = json.dumps(L, ensure_ascii=False, separators=(",", ":")); tot += len(b.encode()); open(f"{OUT}/yv/{c}.json", "w", encoding="utf8").write(b)
+# bizim mekânlar görsel listesinin başına
+V = []
+for f, tr in (("data/venues-tr.json", 1), ("data/venues.json", 0)):
+    for k, x in json.load(open(f, encoding="utf8")).items():
+        if isinstance(x, dict) and x.get("lat"): il, n = k.split("|", 1) if tr else ("ankara", k); V.append({"n": n, "a": x["lat"], "o": x["lng"], "t": "sahne", "il": il, "s": " · ".join(y for y in ["Sahne", x.get("ilce") or ""] if y), "g": None, "wd": "", "cm": "", "sc": 60})
+imp.sort(key=lambda x: -x["sc"]); L = V + imp; L2, S = [], set()
+for x in L:
+    k = (fold(x["n"]), round(x["a"] * 500), round(x["o"] * 400))
+    if k not in S: S.add(k); L2.append(x)
+json.dump(L2[:9000], open(f"{OUT}/onem.json", "w", encoding="utf8"), ensure_ascii=False, separators=(",", ":"))
+json.dump({"tipler": TY, "etiket": TL, "yer": nk, "hucre": len(out), "mb": round(tot / 1e6, 1), "onem": len(L2)}, open(f"{OUT}/yv/ozet.json", "w", encoding="utf8"), ensure_ascii=False); print(nk, len(out), round(tot / 1e6, 1), len(L2))
