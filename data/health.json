@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T04:22:56.840Z",
+ "runAt": "2026-11-18T08:17:40.582Z",
  "mode": "full",
- "total": 2313,
+ "total": 2629,
  "written": true,
  "sources": {
   "biletix": {
@@ -10,15 +10,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 653,
-   "prevCount": 424,
+   "count": 651,
+   "prevCount": 415,
    "error": "",
    "notes": [
-    "açık veri: 398 seans, 392 detay sayfası, dizinde 3482 kayıt"
+    "açık veri: 396 seans, 390 detay sayfası, dizinde 3486 kayıt"
    ],
-   "seconds": 497,
+   "seconds": 448,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "biletinial": {
    "id": "biletinial",
@@ -26,19 +26,19 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1351,
-   "prevCount": 1438,
+   "count": 1720,
+   "prevCount": 1422,
    "error": "",
    "notes": [
-    "açık veri: 824 seans, 88 detay sayfası",
+    "açık veri: 1245 seans, 107 detay sayfası",
     "biletinial.com/tr-tr/sehrineozel/ankara: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/tiyatro/ankara: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/ankara: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/ankara: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 159,
+   "seconds": 161,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "sanatcepte": {
    "id": "sanatcepte",
@@ -47,15 +47,15 @@
    "ok": true,
    "status": "calisiyor",
    "count": 288,
-   "prevCount": 297,
+   "prevCount": 288,
    "error": "",
    "notes": [
     "www.sanatcepte.gov.tr/etkinlik/etkinlikler?search=ankara: 144 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 354 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 104,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "bubilet": {
    "id": "bubilet",
@@ -69,8 +69,8 @@
    "notes": [
     "www.bubilet.com.tr/ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 23,
-   "failStreak": 23,
+   "seconds": 20,
+   "failStreak": 24,
    "lastOk": null
   },
   "passo": {
@@ -80,14 +80,14 @@
    "ok": false,
    "status": "dustu",
    "count": 1,
-   "prevCount": 40,
+   "prevCount": 39,
    "error": "",
    "notes": [
-    "www.passo.com.tr/tr/kategori/konser/4615: 11 bağlantı, 0 yapısal, 24 JSON kaydı, durum 200",
-    "www.passo.com.tr/tr/arama?city=Ankara: 14 bağlantı, 0 yapısal, 69 JSON kaydı, durum 200, daha fazla düğmesi sınıra ulaştı (liste kesilmiş olabilir)"
+    "www.passo.com.tr/tr/kategori/konser/4615: 12 bağlantı, 0 yapısal, 25 JSON kaydı, durum 200",
+    "www.passo.com.tr/tr/arama?city=Ankara: 14 bağlantı, 0 yapısal, 71 JSON kaydı, durum 200, daha fazla düğmesi sınıra ulaştı (liste kesilmiş olabilir)"
    ],
-   "seconds": 206,
-   "failStreak": 1,
+   "seconds": 210,
+   "failStreak": 2,
    "lastOk": "2026-11-17T14:07:48.406Z"
   },
   "mobilet": {
@@ -102,8 +102,8 @@
    "notes": [
     "www.mobilet.com/tr/search/?city=ankara: 20 bağlantı, 0 yapısal, 20 JSON kaydı, durum 200"
    ],
-   "seconds": 78,
-   "failStreak": 23,
+   "seconds": 79,
+   "failStreak": 24,
    "lastOk": null
   },
   "iticket": {
@@ -113,15 +113,15 @@
    "ok": true,
    "status": "calisiyor",
    "count": 12,
-   "prevCount": 13,
+   "prevCount": 12,
    "error": "",
    "notes": [
     "iticket.com.tr/tr/events: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "iticket.com.tr/en/events/music: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 41,
+   "seconds": 36,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "bugece": {
    "id": "bugece",
@@ -137,7 +137,7 @@
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "tiyatrolar": {
    "id": "tiyatrolar",
@@ -153,8 +153,8 @@
     "tiyatrolar.com.tr/tiyatro-oyunlari?sehir=ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "site haritası: 2000 adres"
    ],
-   "seconds": 99,
-   "failStreak": 1,
+   "seconds": 109,
+   "failStreak": 2,
    "lastOk": "2026-11-17T14:07:48.406Z"
   },
   "bilkent": {
@@ -169,9 +169,9 @@
    "notes": [
     "ticket.bilkent.edu.tr/: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
+   "seconds": 8,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "biletino": {
    "id": "biletino",
@@ -185,8 +185,8 @@
    "notes": [
     "biletino.com/tr/ankara/: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
-   "failStreak": 23,
+   "seconds": 13,
+   "failStreak": 24,
    "lastOk": null
   },
   "dob": {
@@ -201,9 +201,9 @@
    "notes": [
     "açık veri: 36 seans"
    ],
-   "seconds": 20,
+   "seconds": 22,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "cso": {
    "id": "cso",
@@ -217,8 +217,8 @@
    "notes": [
     "liste açılmadı: https://www.cso.gov.tr/tr/konserler (page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://www.cso.gov.tr/tr/konserler\nCall log:\n  - navigating to \"https://www.cso.gov.tr/tr/konserler\", waiting until \"domcontentloaded\"\n)"
    ],
-   "seconds": 1,
-   "failStreak": 23,
+   "seconds": 2,
+   "failStreak": 24,
    "lastOk": null
   },
   "abb-tiyatro": {
@@ -233,8 +233,8 @@
    "notes": [
     "www.ankara.bel.tr/sehir-tiyatrolari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
-   "failStreak": 23,
+   "seconds": 8,
+   "failStreak": 24,
    "lastOk": null
   },
   "abb-kultur": {
@@ -249,8 +249,8 @@
    "notes": [
     "www.ankara.bel.tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 20 takvim satırı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 23,
+   "seconds": 6,
+   "failStreak": 24,
    "lastOk": null
   },
   "cankaya": {
@@ -265,8 +265,8 @@
    "notes": [
     "www.cankaya.bel.tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 23,
+   "seconds": 6,
+   "failStreak": 24,
    "lastOk": null
   },
   "yenimahalle": {
@@ -282,7 +282,7 @@
     "www.yenimahalle.bel.tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 9,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null
   },
   "kecioren": {
@@ -297,8 +297,8 @@
    "notes": [
     "www.kecioren.bel.tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 7,
-   "failStreak": 23,
+   "seconds": 6,
+   "failStreak": 24,
    "lastOk": null
   },
   "etimesgut": {
@@ -313,9 +313,9 @@
    "notes": [
     "www.etimesgut.bel.tr/etkinlikler: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 15,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "mamak": {
    "id": "mamak",
@@ -330,7 +330,7 @@
     "açık veri: 6 seans"
    ],
    "seconds": 8,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": "2026-11-15T13:44:26.805Z"
   },
   "odtu-kkm": {
@@ -346,7 +346,7 @@
     "kkm.metu.edu.tr/tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 10,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null
   },
   "cermodern": {
@@ -356,14 +356,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 8,
-   "prevCount": 12,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "www.cermodern.org/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 8 takvim satırı, durum 200"
    ],
    "seconds": 7,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "erimtan": {
    "id": "erimtan",
@@ -372,16 +372,16 @@
    "ok": true,
    "status": "calisiyor",
    "count": 11,
-   "prevCount": 12,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "erimtanmuseum.org/tr/takvim?&month=11&year=2026: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 19 takvim satırı, durum 200",
     "erimtanmuseum.org/tr/takvim?&month=12&year=2026: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 3 takvim satırı, durum 200",
     "afiş: 11/11 etkinlik sayfasından"
    ],
-   "seconds": 26,
+   "seconds": 25,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "radar": {
    "id": "radar",
@@ -389,22 +389,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 285,
-   "prevCount": 177,
+   "count": 265,
+   "prevCount": 296,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/ankara-etkinlikleri: 65 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/ankara-etkinlikleri: 64 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/ankara-muzik-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/ankara-tiyatro-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/ankara-hafta-sonu-etkinlikleri: 75 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=ankara: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=ankara: 120 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=ankara: 100 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 687,
+   "seconds": 681,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "allevents": {
    "id": "allevents",
@@ -412,22 +412,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 175,
-   "prevCount": 95,
+   "count": 173,
+   "prevCount": 103,
    "error": "",
    "notes": [
-    "allevents.in/ankara: 127 bağlantı, 48 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/all: 65 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/concerts: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/music: 41 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/parties: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/comedy: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/performances: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ankara: 125 bağlantı, 44 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ankara/all: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ankara/concerts: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ankara/music: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ankara/parties: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ankara/comedy: 41 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ankara/performances: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ankara/theatre: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 457,
+   "seconds": 481,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -436,14 +436,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 141,
-   "prevCount": 148,
+   "prevCount": 141,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/ankara: 142 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 244,
+   "seconds": 230,
    "failStreak": 0,
-   "lastOk": "2026-11-18T04:22:56.840Z"
+   "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "ra": {
    "id": "ra",
@@ -457,8 +457,8 @@
    "notes": [
     "ra.co/events/tr/ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 6,
-   "failStreak": 23,
+   "seconds": 5,
+   "failStreak": 24,
    "lastOk": null
   }
  }
