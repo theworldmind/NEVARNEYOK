@@ -8,6 +8,7 @@ import { join } from "node:path";
 import { ROOT, log, readJSON, writeJSON, writeText, fold, todayIST } from "./lib/util.mjs";
 import { fetchText } from "./lib/net.mjs";
 import { FEEDS, parseFeed, nk } from "./buzz.mjs";
+import { speakerIn } from "./lib/konusmaci.mjs";
 
 const HIST = join(ROOT, "data/coverage.json");
 // Google Haberler robots.txt ile otomatik okumaya kapalı; kullanılmaz. Okunamayan akış raporda not edilir.
@@ -95,6 +96,9 @@ export function candidatesFrom(title) {
   for (const m of t.matchAll(/[“"‘'«]([^”"’'»]{3,60})[”"’'»]/g)) c.add(m[1].trim());
   for (const m of t.matchAll(/((?:\d+\.\s*)?(?:[A-ZÇĞİÖŞÜ][\wçğıöşü'’]*\s+){0,4}(?:Festivali|Bienali|Haftası|Günleri|Şenliği|Konseri|Galası))/g)) c.add(m[1].trim());
   for (const m of t.matchAll(/((?:[A-ZÇĞİÖŞÜ][\wçğıöşü'’:]*\s+){1,4})(?:gösterisi|sergisi|oyunu|konseri|festivali|müzikali)/g)) c.add(m[1].trim()); // "Atların Dansı gösterisi"
+  // söyleşi, seminer, konferans: "Ayşe Yılmaz söyleşisi", "Prof. Dr. Ayşe Yılmaz Ankara'da konferans verecek" (kullanıcı, 19.11.2026)
+  for (const m of t.matchAll(/((?:[A-ZÇĞİÖŞÜ][\wçğıöşü'’:]*\s+){1,5})(söyleşisi|semineri|konferansı|paneli|imza günü)/g)) c.add((m[1] + m[2]).trim());
+  { const m = t.match(/(?:Prof\.?\s*Dr\.?\s+|Doç\.?\s*Dr\.?\s+|Dr\.?\s+)([A-ZÇĞİÖŞÜ][a-zçğıöşü]+\s+[A-ZÇĞİÖŞÜ][a-zçğıöşü]+)[^.:]{0,50}(söyleşi|konferans|seminer|konuşacak|imza gün)/); if (m) c.add(m[1] + " söyleşisi"); }
   return [...c].filter((x) => x.length >= 4);
 }
 export function known(cand, events) {
@@ -103,13 +107,14 @@ export function known(cand, events) {
   return events.some((e) => { const h = " " + fold([e.title, e.genre, e.venue, e.org].filter(Boolean).join(" ")) + " "; return words.every((w) => h.includes(w)); });
 }
 async function newsScan(events) {
-  const seen = new Set(), miss = [], notes = [];
+  const seen = new Set(), miss = [], notes = [], speakers = new Map();
   for (const url of NEWS) {
     const r = await fetchText(url, { retries: 1 });
     if (!r.text || r.status !== 200) { notes.push(`${new URL(url).host}: ${r.robots ? "robots.txt izin vermiyor" : r.status || r.error}`); continue; }
     let n = 0;
     for (const it of parseFeed(r.text)) {
       const title = it.title, link = it.link, when = it.date ? Date.parse(it.date) : NaN;
+      { const sp = title && (!when || Date.now() - when < 30 * 864e5) && /söyleşi|seminer|konferans|panel|imza|konuş|geliyor|gelecek|buluş|konuk/i.test(title) ? speakerIn(title) : ""; if (sp && !speakers.has(sp)) speakers.set(sp, { title: title.slice(0, 140), link }); }
       if (!title || !EVENT_WORDS.test(title)) continue;
       if (when && Date.now() - when > 10 * 864e5) continue; // yalnızca son 10 günün haberleri
       if (!ANK.test(title) && !/vizyon/i.test(title) && !/ankara/i.test(url)) continue;   // başlıkta Ankara (ya da tanınan bir yeri) geçmeli, ya da Ankara'nın yerel haber akışı
@@ -121,7 +126,7 @@ async function newsScan(events) {
     }
     notes.push(`${new URL(url).host}: ${n} ilgili haber`);
   }
-  return { miss: miss.slice(0, 25), notes };
+  return { miss: miss.slice(0, 25), notes, speakers };
 }
 
 export async function main() {
@@ -136,6 +141,10 @@ export async function main() {
     const sus = data.events.filter((e) => e.cat === "konser" && BAD.test(fold(e.title)) && !/konser|muzik|sarki|orkestra/.test(fold(e.title)));
     if (sus.length) gaps.push({ w: 2, k: "kategori", t: `${sus.length} etkinlik "Konser"de görünüyor ama adı başka türü söylüyor (ör. ${sus.slice(0, 5).map((e) => e.title).join(", ")}); \`normalize.mjs\` → \`fixCat\` kurallarına bakılmalı.` }); }
   const news = process.env.AUDIT_NO_NEWS ? { miss: [], notes: ["haber taraması kapalı"] } : await newsScan(data.events);
+  // j) tanınmış konuşmacı (kullanıcı, 19.11.2026: Celal Şengör'ün Ankara etkinliği yoktu): haberde etkinliğiyle geçiyor, bizde yok
+  if (news.speakers?.size) { const { readdir } = await import("node:fs/promises"); let all = [...data.events]; for (const f of await readdir(join(ROOT, "data/c")).catch(() => [])) if (/^[a-z]+\.json$/.test(f)) all = all.concat((await readJSON(join(ROOT, "data/c", f), {})).events || []);
+    const hay = all.map((e) => fold(e.title + " " + (e.org || ""))).join(" | ");
+    for (const [sp, n] of news.speakers) if (!hay.includes(fold(sp))) gaps.push({ w: 2, k: "konusmaci", t: `${sp} haberde etkinlikle geçiyor, bizde kaydı yok: [${n.title}](${n.link})` }); }
   await writeJSON(HIST, [...hist.filter((h) => h.at !== today), cur].slice(-30), false);
 
   const probeIds = gaps.filter((g) => g.probe).map((g) => g.probe).slice(0, 4);

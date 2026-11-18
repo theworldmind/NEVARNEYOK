@@ -12,6 +12,7 @@ import { parseFeed, FEEDS as BUZZ_FEEDS } from "./buzz.mjs";
 import { candidatesFrom } from "./audit.mjs";
 import { CITIES, cityOfText } from "./lib/cities.mjs";
 import { guessCat, fixCat } from "./lib/normalize.mjs";
+import { speakerIn } from "./lib/konusmaci.mjs";
 
 const OUT = join(ROOT, "data/haber.json");
 const MAX_ART = +process.env.HABER_MAX || 450;   // çalışma başına en çok bu kadar haber sayfası okunur
@@ -81,7 +82,7 @@ function MORE() {
   return out;
 }
 
-const EVW = /festival|şenli[gğ]|konser|gösteri|sergi|tiyatro|oyun(u|unu)? sahnelen|sahnelenecek|sahne alacak|dinleti|resital|gala|fuar|panayır|söyleşi|atölye|etkinli[gğ]|kutlama|anma töreni|yarışma|turnuva|maraton|uzatıldı|ek gösterim|biletler tükendi|ücretsiz/i;
+const EVW = /festival|şenli[gğ]|konser|gösteri|sergi|tiyatro|oyun(u|unu)? sahnelen|sahnelenecek|sahne alacak|dinleti|resital|gala|fuar|panayır|söyleşi|seminer|konferans|panel|imza gün|konuşmacı|konuşacak|konuk olacak|buluşacak|buluşuyor|atölye|etkinli[gğ]|kutlama|anma töreni|yarışma|turnuva|maraton|uzatıldı|ek gösterim|biletler tükendi|ücretsiz/i;
 const NOT = /deprem|kaza|cinayet|gözaltı|tutuklan|yaralı|öldü|hayatını kaybet|operasyon|seçim|mahkeme|dolandır|yangın|sel |fırtına|trafik kazası|maç sonucu|transfer|borsa|dolar|enflasyon/i;
 const AY = ["ocak", "subat", "mart", "nisan", "mayis", "haziran", "temmuz", "agustos", "eylul", "ekim", "kasim", "aralik"];
 const AYR = "(ocak|şubat|subat|mart|nisan|mayıs|mayis|haziran|temmuz|ağustos|agustos|eylül|eylul|ekim|kasım|kasim|aralık|aralik)";
@@ -158,7 +159,7 @@ export function fixItem(x) {
 const catOf = (name, title) => {
   const t = fold(title + " " + name);
   const hint = /sergi/.test(t) ? "atolye" : /festival|senlik|fuar|panayir/.test(t) ? "festival" : /tiyatro|oyun|sahnelen/.test(t) ? "tiyatro" : /konser|dinleti|resital/.test(t) ? "konser"
-    : /gosteri|dans|bale|opera|sema/.test(t) ? "sahne" : /cocuk|aile/.test(t) ? "cocuk" : /soylesi|atolye|panel/.test(t) ? "atolye" : "";
+    : /gosteri|dans|bale|opera|sema/.test(t) ? "sahne" : /cocuk|aile/.test(t) ? "cocuk" : /soylesi|seminer|konferans|imza gun|atolye|panel/.test(t) ? "atolye" : "";
   return hint || fixCat({ cat: guessCat({ title: name + " " + title }), title: name, venue: "" });
 };
 
@@ -178,8 +179,9 @@ async function main() {
     for (const it of parseFeed(r.text)) {
       if (!it.title || !it.link || seen.has(it.link)) continue; seen.add(it.link);
       if (it.date && Date.parse(it.date) < Date.now() - DAYS * 864e5) continue;
-      if (!EVW.test(it.title) || NOT.test(it.title) || FOREIGN.test(it.title)) continue;
-      const name = nameOf(it.title); if (!name) continue;
+      const sp = speakerIn(it.title);                              // tanınmış konuşmacı: "… Ankara'ya geliyor" gibi başlıklar da okunur
+      if ((!EVW.test(it.title) && !(sp && /geliyor|gelecek|konuş|söyleş|buluş|konuk/i.test(it.title))) || NOT.test(it.title) || FOREIGN.test(it.title)) continue;
+      const name = nameOf(it.title) || (sp ? sp + " söyleşisi" : ""); if (!name) continue;
       cands.push({ name, head: it.title, url: it.link, site: f.name, teaser: it.text || "" }); n++;
     }
     notes.push(`${f.id}: ${n} aday`);
