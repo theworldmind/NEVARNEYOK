@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T23:08:34.794Z",
+ "runAt": "2026-11-18T23:14:32.142Z",
  "mode": "full",
  "total": 2507,
  "written": true,
@@ -8,17 +8,17 @@
    "id": "akansel",
    "name": "Akansel",
    "kind": "mekan",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 2,
    "prevCount": 0,
    "error": "",
    "notes": [
-    "akanselegitimdanismanlik.com/seminerler.aspx: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 0 takvim satırı, durum 200"
+    "akanselegitimdanismanlik.com/seminerler.aspx: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 7 takvim satırı, durum 200"
    ],
-   "seconds": 9,
-   "failStreak": 2,
-   "lastOk": null
+   "seconds": 8,
+   "failStreak": 0,
+   "lastOk": "2026-11-18T23:14:32.142Z"
   }
  }
 }
