@@ -206,7 +206,13 @@ async function main() {
   for (const x of items) { const m = byId.get(x.id); if (!m) { byId.set(x.id, { ...x, days: [...(x.days || [])] }); continue; }
     m.days = [...new Set([...m.days, ...(x.days || [])])].sort(); if ((x.until || "") > (m.until || "")) m.until = x.until; if (!m.venue && x.venue) m.venue = x.venue; if (!m.img && x.img) { m.img = x.img; m.imgBy = x.site; } if (!m.t && x.t) m.t = x.t;
     if (x.seen > m.seen) { m.url = x.url; m.site = x.site; m.seen = x.seen; } m.free ||= x.free; m.soldout ||= x.soldout; }
-  const out = [...byId.values()].map(fixItem).filter(Boolean).filter((x) => (x.until || x.days.at(-1) || "") >= today).map((x) => ({ ...x, days: x.days.filter((d) => d >= today) }));
+  // aynı ildeki aynı etkinliğin kısa/uzun adı ("Ankara Caz Festivali" ↔ "30. Uluslararası Ankara Caz Festivali"): uzun ad kalır, tarihler birleşir
+  const V = [...byId.values()].map(fixItem).filter(Boolean), nf = (t) => fold(t).replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  V.sort((a, b) => b.title.length - a.title.length);
+  const keep = [];
+  for (const x of V) { const k = nf(x.title), m = keep.find((y) => y.city === x.city && k.length >= 10 && nf(y.title).includes(k));
+    if (!m) { keep.push(x); continue; } m.days = [...new Set([...(m.days || []), ...(x.days || [])])].sort(); if ((x.until || "") > (m.until || "")) m.until = x.until; if (!m.img && x.img) { m.img = x.img; m.imgBy = x.imgBy || x.site; } if (!m.venue && x.venue) m.venue = x.venue; }
+  const out = keep.filter((x) => (x.until || x.days.at(-1) || "") >= today).map((x) => ({ ...x, days: x.days.filter((d) => d >= today) }));
   await writeJSON(OUT, { updated: now, notes, items: out }, true);
   const per = {}; for (const x of out) per[x.city] = (per[x.city] || 0) + 1;
   log(`Haber keşfi: ${read} haber okundu, ${out.length} etkinlik (${Object.entries(per).map(([k, v]) => k + " " + v).join(", ")})`);
