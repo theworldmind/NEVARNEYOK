@@ -98,40 +98,41 @@ var NV = (function () {
     var T = range(t0, t0).filter(function (e) { return !e.t || e.t >= hm; }), mT = mineOf(T);
     // bugün seansı olan filmler (sinema da etkinlik: "52 etkinlik ve 38 film")
     var FT = (films || []).filter(function (f) { return f && f.s && (f.s[t0] || []).some(function (x) { return String(x && x[1] || "").split("|")[0].split(",").some(function (h) { return h >= hm; }); }); }).length;
-    var fTxt = FT ? " ve " + n(FT) + " filmin seansı" : "";
+    /* (18.11.2026, kullanıcı: "şu kadar etkinlik var, şu kadar geldi değil; daha insancıl: günaydın, günün nasıl geçiyor gibi; umutsuz olma, cart curt") Sayı yazılmaz; bir arkadaş yazıyormuş gibi kısa cümleler. Her gün başka cümle. */
+    var dn = Math.round(Date.parse(t0 + "T12:00:00Z") / 864e5), say = function (A) { return A[(dn + slot.length * 3) % A.length]; }, il = cityName || "şehrin", sen = mT ? "&sira=sen" : "";
+    var ev = function (e) { return e.title + (e.t ? " · " + e.t : "") + (e.venue ? " · " + e.venue : ""); };
     if (slot === "sabah") { if (!T.length && !FT) return null;
-      var G = ["Günaydın ☀️", "Güne güzel başla ☕", "Bugün neler var? 👀"][d % 3];
-      return out({ title: G, body: nm + " bugün " + n(T.length) + " etkinlik" + fTxt + " var" + (mT ? "; " + mT + " tanesi tam senin tarzın 😍" : ". Akşama bir plan yapalım mı?"), url: base + "?t=bugun" + (mT ? "&sira=sen" : "") }); }
-    if (slot === "kusluk") { // son iki günde eklenenler; yoksa hafta sonu ya da sinema
-      var Nw = range(t0, addD(t0, 30)).filter(function (e) { return e.firstSeen && e.firstSeen.slice(0, 10) >= addD(t0, -2); }), mN = mineOf(Nw);
-      if (Nw.length >= 3) { var f1 = Nw.filter(function (e) { return e.img; })[0] || Nw[0];
-        return out({ title: "Yeni eklendi ✨", body: n(Nw.length) + " yeni etkinlik geldi" + (mN ? ", " + mN + " tanesi senin tarzın" : "") + ". Mesela: " + f1.title + " · " + dLong(f1.d), image: f1.img || undefined, url: base + "?yeni=1" }); }
-      if (FT) return out({ title: "Bugün sinemada 🍿", body: nm + " bugün " + n(FT) + " filmin seansı var. Akşama bir film nasıl olur?", url: "/#/" + (city || "ankara") + "/sinema" });
+      var G = say([["Günaydın ☀️", "Uykunu alabildin mi? Bugün kendine güzel bir şey ayır, gerisini birlikte buluruz."], ["Günaydın, kahven hazır mı? ☕", "Sen güne başla, akşam için fikir lazım olursa biz buradayız."], ["Yeni bir gün, günaydın 🌤️", "Dün nasıl geçtiyse geçti, bugün sayfa temiz. Hadi güzel bir gün olsun."], ["Günaydın 👋", "Bugün " + il + " hareketli. Akşama bir kaçamak iyi gitmez mi?"], ["Hadi kalk, gün başladı 😄", "Biraz keyif, biraz kahve. Akşamı da biz düşünürüz."]]);
+      return out({ title: G[0], body: G[1], url: base + "?t=bugun" + sen }); }
+    if (slot === "kusluk") { // son iki günde eklenenlerden biri; yoksa film önerisi
+      var Nw = range(t0, addD(t0, 30)).filter(function (e) { return e.firstSeen && e.firstSeen.slice(0, 10) >= addD(t0, -2); });
+      if (Nw.length) { var Nm = cats ? Nw.filter(function (e) { return cats.indexOf(e.cat) >= 0; }) : [], Np = (Nm.length ? Nm : Nw).filter(function (e) { return e.img; }), f1 = Np.length ? Np[dn % Np.length] : (Nm[0] || Nw[0]);
+        var K = say([["Günün nasıl geçiyor? 😊", "Bu arada şunu gördük, hoşuna gidebilir: "], ["Kahve molası mı? ☕", "Molada bir bak derim: "], ["Sana bir şey göstereceğiz 👀", "Yeni düştü, bir bak derim: "]]);
+        return out({ title: K[0], body: K[1] + f1.title + " · " + dLong(f1.d), image: f1.img || undefined, url: base + "?yeni=1" }); }
+      if (FT) { var KF = say([["Günün nasıl geçiyor? 🍿", "Yorulduysan akşama bir film iyi gelir. Mısır bizden değil ama fikir bizden."], ["Akşama film? 🎬", "Bazen en iyi plan karanlık bir salon ve büyük bir ekrandır."]]); return out({ title: KF[0], body: KF[1], url: "/#/" + (city || "ankara") + "/sinema" }); }
       return null; }
     if (slot === "gece") { // başlamak üzere; yoksa yarın
       var hm2 = (function () { var p = hm.split(":"), m = +p[0] * 60 + +p[1] + 120; return String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"); })();
       var S2 = T.filter(function (e) { return e.t && e.t >= hm && e.t <= hm2 && e.status !== "tukendi"; });
-      if (S2.length) { var s1 = S2.filter(function (e) { return e.img; })[0] || S2[0];
-        return out({ title: "Başlamak üzere ⏰", body: nm + " önümüzdeki 2 saatte " + n(S2.length) + " etkinlik başlıyor. Mesela " + s1.title + " · " + s1.t + (s1.venue ? " · " + s1.venue : ""), image: s1.img || undefined, url: base + "?t=bugun" }); }
-      var Y2 = range(addD(t0, 1), addD(t0, 1)); if (!Y2.length) return null;
-      return out({ title: "Yarın ne var? 🌙", body: nm + " yarın " + n(Y2.length) + " etkinlik var. Şimdiden bir göz at, planını yap 💜", url: base + "?t=yarin" }); }
+      if (S2.length) { var S3 = S2.filter(function (e) { return e.img; }), s1 = S3.length ? S3[dn % S3.length] : S2[0], Gx = say([["Hâlâ yetişirsin 🏃", "Evde sıkıldıysan: "], ["Akşam daha bitmedi 🌆", "Canın çıkmak isterse: "]]);
+        return out({ title: Gx[0], body: Gx[1] + ev(s1), image: s1.img || undefined, url: base + "?t=bugun" }); }
+      if (!range(addD(t0, 1), addD(t0, 1)).length) return null; var Gy = say([["Günün nasıl geçti? 🌙", "Umarım güzeldi. Değilse de yarın yeni bir gün, küçük bir plan yapalım mı?"], ["İyi akşamlar 🌙", "Bugünü bırak gitsin. Yarına güzel bir şey koyalım mı?"]]);
+      return out({ title: Gy[0], body: Gy[1], url: base + "?t=yarin" }); }
     if (slot === "ogle") { // bu akşam için tek, afişli öneri (ilgi alanı önce; aynı etkinliği iki kez önerme)
       var C = T.filter(function (e) { return e.img && (!e.t || e.t >= "17:00") && e.status !== "tukendi"; });
       var pref = C.filter(function (e) { return cats && cats.indexOf(e.cat) >= 0; }), pool = pref.length ? pref : C; if (!pool.length) return null;
-      var pick = pool[(d * 7 + t0.charCodeAt(9)) % pool.length];
-      return out({ title: "Bu akşam bunu kaçırma 🎟️", body: pick.title + (pick.t ? " · " + pick.t : "") + (pick.venue ? " · " + pick.venue : ""), image: pick.img, url: base + "?t=bugun&q=" + encodeURIComponent(pick.title) }); }
-    // akşam: günün tadında not
-    if (d === 1) { var W = range(t0, addD(t0, 6)), m1 = mineOf(W); if (!W.length) return null;
-      return out({ title: "Yeni hafta, yeni planlar 🗓️", body: nm + " bu hafta " + n(W.length) + " etkinlik var" + (m1 ? "; " + m1 + " tanesi tam senin tarzın 😍" : ". Takvimini şimdiden doldur!"), url: base + "?t=hafta" + (m1 ? "&sira=sen" : "") }); }
-    if (d === 4 || d === 5) { var fri = addD(t0, (5 - d + 7) % 7), H = range(fri, addD(fri, 2)), m5 = mineOf(H); if (!H.length) return null;
-      return out({ title: "Hafta sonu planın hazır mı? 🌟", body: nm + " bu hafta sonu " + n(H.length) + " etkinlik var" + (m5 ? "; " + m5 + " tanesi tam sana göre ✨" : ". Bir göz atmak için dokun."), url: base + "?t=haftasonu" + (m5 ? "&sira=sen" : "") }); }
-    if (!T.length) { var Y = range(addD(t0, 1), addD(t0, 1)); if (!Y.length) return null; return out({ title: "Yarına plan yapalım mı? 🌙", body: nm + " yarın " + n(Y.length) + " etkinlik var. Şimdiden seç, keyfini çıkar 💜", url: base + "?t=yarin" }); }
-    var tt = [["Bu akşam ne yapıyoruz? 🌙", "Bu akşam " + nm + " hâlâ " + n(T.length) + " etkinlik var" + (mT ? ", " + mT + " tanesi sana göre" : "") + ". Evde kalmak yok! ✨"],
-      ["Hafta ortası molası ☕", "Bu akşam " + nm + " " + n(T.length) + " etkinlik var. Haftanın yorgunluğunu atmaya ne dersin? 🎶"],
-      ["Akşam planı 🎭", nm + " bu akşam " + n(T.length) + " etkinlik seni bekliyor" + (mT ? "; " + mT + " tanesi tam senlik 🎯" : "") + "."]][d % 3];
-    if (d === 6) tt = ["Cumartesi akşamı 🎉", nm + " bu akşam " + n(T.length) + " etkinlik var" + (mT ? ", " + mT + " tanesi tam senlik 🎯" : "") + ". Hadi bir bak!"];
-    if (d === 0) tt = ["Pazar keyfi 🎈", nm + " bu akşam " + n(T.length) + " etkinlik var. Haftayı güzel kapat 💜"];
-    return out({ title: tt[0], body: tt[1], url: base + "?t=bugun" + (mT ? "&sira=sen" : "") });
+      var pick = pool[dn % pool.length], O = say([["Akşama planın var mı? 🎟️", "Yoksa bir fikrimiz var: "], ["Öğlen arası bir fikir 💡", "Bu akşam buna ne dersin: "], ["Bugün biraz çıkalım mı? 🙌", "Şuna bir bak derim: "]]);
+      return out({ title: O[0], body: O[1] + ev(pick), image: pick.img, url: base + "?t=bugun&q=" + encodeURIComponent(pick.title) }); }
+    // akşam: günün tadında bir not
+    if (d === 1) { var W = range(t0, addD(t0, 6)); if (!W.length) return null;
+      return out({ title: "Pazartesiyi atlattın sayılır 💪", body: "Umutsuz olma, hafta daha yeni başlıyor. Kendine güzel bir şey ayarlayalım mı?", url: base + "?t=hafta" + (mineOf(W) ? "&sira=sen" : "") }); }
+    if (d === 4 || d === 5) { var fri = addD(t0, (5 - d + 7) % 7), H = range(fri, addD(fri, 2)); if (!H.length) return null; var Hx = d === 5 ? ["Hafta bitti sayılır 🎉", "Bu haftayı da devirdin. Hafta sonu ne yapıyoruz?"] : ["Hafta sonu kokusu geldi 🌟", "Az kaldı, dayan. Şimdiden bir plan yapalım mı?"];
+      return out({ title: Hx[0], body: Hx[1], url: base + "?t=haftasonu" + (mineOf(H) ? "&sira=sen" : "") }); }
+    if (!T.length) { if (!range(addD(t0, 1), addD(t0, 1)).length) return null; return out({ title: "Günün nasıl geçti? 🌙", body: "Bu akşam dinlen, yarına güzel bir şey bulalım.", url: base + "?t=yarin" }); }
+    var tt = say([["Yorucu bir gün müydü? 😌", "Umutsuz olma, akşam hâlâ senin. Biraz kafa dağıtalım mı?"], ["Günün nasıl geçiyor? 🌆", "İşler bitince kendine küçük bir ödül ver, hak ettin."], ["Evde oturma bence 😄", "Hava nasılsa, " + il + " bu akşam sıkıcı değil. Bir bak istersen."]]);
+    if (d === 6) tt = ["Cumartesi akşamı bu 🎉", "Evde kalmak olmaz. Hadi, nereye gidiyoruz?"];
+    if (d === 0) tt = ["Pazar bitmeden 🎈", "Yarın düşünülür. Haftayı güzel bir şeyle kapatalım mı?"];
+    return out({ title: tt[0], body: tt[1], url: base + "?t=bugun" + sen });
   }
   /* Yeni tarihlerini takip et (sanatçı, oyun, gösteri; kullanıcı isteği, 15.11.2026): etkinliğin adından anahtar ("Duman Konseri" → "duman",
      "Cem Eren Öztürk - Erte" → "cem eren ozturk"). 81 ilin dizini idx/a.json (share-pages.mjs): anahtar → [[il, gün, saat, ad, mekân]].
