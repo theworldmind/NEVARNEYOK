@@ -11045,6 +11045,16 @@
   "src": "jsonld",
   "v": 2
  },
+ "adana|Ramazanoğlu Kültür Merkezi": {
+  "lat": 36.978054,
+  "lng": 35.337776,
+  "addr": "Yüreğir",
+  "ilce": "Yüreğir",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
  "adana|Hayat ve Sahne Performans Kulübü": {
   "lat": 37.0425279,
   "lng": 35.8183022,
@@ -11065,6 +11075,186 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "adana|Akustik Kültür": {
+  "lat": 36.995216,
+  "lng": 35.32906,
+  "addr": "62010. Sk. No:32",
+  "ilce": "Seyhan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "adiyaman|Urfa City AVM": {
+  "lat": 37.757179,
+  "lng": 38.247543,
+  "addr": "Adıyaman",
+  "ilce": "Adıyaman",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "aksaray|Youth Club Sahne": {
+  "lat": 38.367424,
+  "lng": 34.017006,
+  "addr": "Ebulfeyz Elçibey Cd. No:26",
+  "ilce": "Aksaray",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "amasya|Akif Gülle Kültür Merkezi-Amasya": {
+  "lat": 40.874588,
+  "lng": 35.463665,
+  "addr": "Merzifon",
+  "ilce": "Merzifon",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "amasya|Akif Gülle Kültür Merkezi": {
+  "lat": 40.874588,
+  "lng": 35.463665,
+  "addr": "Merzifon",
+  "ilce": "Merzifon",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "amasya|Grand Ottoman Salonları": {
+  "lat": 40.674294,
+  "lng": 35.828144,
+  "addr": "Amasya",
+  "ilce": "Amasya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "antalya|Manavgat Belediyesi Atatürk Kültür Merkezi": {
+  "lat": 36.78894,
+  "lng": 31.453321,
+  "addr": "Manavgat",
+  "ilce": "Manavgat",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "antalya|antalya tiyatro özgün sahnesi": {
+  "lat": 36.923397,
+  "lng": 30.707439,
+  "addr": "Yenimahalle Kültür Merkezi Kepez",
+  "ilce": "Kepez",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "antalya|Özgün Sahne": {
+  "lat": 36.923397,
+  "lng": 30.707439,
+  "addr": "Yenimahalle Kültür Merkezi Kepez",
+  "ilce": "Kepez",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "antalya|Delicious Bekir Lara": {
+  "lat": 36.85014,
+  "lng": 30.761877,
+  "addr": "Fener Cd. ERDOĞAN İŞ MERKEZİ NO 12 C",
+  "ilce": "Muratpaşa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "antalya|Cinetime ÖzdilekPark Antalya": {
+  "lat": 37.199097,
+  "lng": 31.765842,
+  "addr": "Akseki",
+  "ilce": "Akseki",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "antalya|dada tiyatro": {
+  "lat": 36.87635,
+  "lng": 30.708664,
+  "addr": "Fevzi Çakmak Cd. GÜNAY APT NO:57/A",
+  "ilce": "Muratpaşa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "antalya|Dada Tiyatro": {
+  "lat": 36.87635,
+  "lng": 30.708664,
+  "addr": "Fevzi Çakmak Cd. GÜNAY APT NO:57/A",
+  "ilce": "Muratpaşa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "antalya|Kabare Sahnesi": {
+  "lat": 36.553635,
+  "lng": 31.989811,
+  "addr": "Halk Pazarı, Spor Cd. No:6 D:21",
+  "ilce": "Alanya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "antalya|Baküs Sahne": {
+  "lat": 36.885975,
+  "lng": 30.688173,
+  "addr": "Kardeşler Apartmanı, Pamir Cd. 22-A",
+  "ilce": "Muratpaşa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "antalya|The Sponge Performance": {
+  "lat": 36.865253,
+  "lng": 30.643311,
+  "addr": "Akdeniz Blv. no:158",
+  "ilce": "Konyaaltı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "antalya|SUNA & İNAN KIRAÇ KALEİÇİ MÜZESİ": {
+  "lat": 36.884205,
+  "lng": 30.707499,
+  "addr": "Barbaros Mah. Kocatepe Sok, Kaleiçi No: 25",
+  "ilce": "Muratpaşa",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/museum",
+  "m": "ov"
+ },
+ "antalya|Lui Beach & Lounge": {
+  "lat": 36.5434,
+  "lng": 32.013527,
+  "addr": "Ahmet Tokuş Blv. No:55",
+  "ilce": "Alanya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
  "antalya|Antalya Muratpaşa": {
   "lat": 36.8522205,
   "lng": 30.759839,
@@ -11073,6 +11263,46 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/townhall",
+  "m": "ov"
+ },
+ "antalya|Paribu Cineverse (Migros)": {
+  "lat": 36.889359,
+  "lng": 30.687366,
+  "addr": "Migros 3",
+  "ilce": "Konyaaltı",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "antalya|Manavgat Kültür Merkezi": {
+  "lat": 36.787918,
+  "lng": 31.45039,
+  "addr": "İbrahim Sözen Caddesi 13",
+  "ilce": "Manavgat",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "artvin|Çarmıklı Sineması": {
+  "lat": 41.180763,
+  "lng": 41.819653,
+  "addr": "Belediye Binası Zemin Kat",
+  "ilce": "Artvin",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "artvin|Arhavi Çarmıklı": {
+  "lat": 41.180763,
+  "lng": 41.819653,
+  "addr": "Belediye Binası Zemin Kat",
+  "ilce": "Artvin",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
   "m": "ov"
  },
  "aydin|aydın atilla koç kültür merkezi hidayet sayın sahnesi": {
@@ -11085,6 +11315,16 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "aydin|Novada Outlet Söke Cinemarine": {
+  "lat": 37.76722,
+  "lng": 27.426281,
+  "addr": "Atatürk Mh Aydın Yolu",
+  "ilce": "Söke",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
  "aydin|Atilla Koç Kültür Merkezi Hidayet Sayın Sahnesi": {
   "lat": 37.8529757,
   "lng": 28.0516832,
@@ -11093,6 +11333,36 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "aydin|söke efes kültür merkezi (efes sineması)": {
+  "lat": 37.758678,
+  "lng": 27.41918,
+  "addr": "Söke",
+  "ilce": "Söke",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "aydin|Söke Efes Kültür Merkezi": {
+  "lat": 37.758678,
+  "lng": 27.41918,
+  "addr": "Söke",
+  "ilce": "Söke",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "aydin|Aydın Hidayet Sayın Kültür Merkezi": {
+  "lat": 37.850872,
+  "lng": 27.837429,
+  "addr": "Efeler",
+  "ilce": "Efeler",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
   "m": "ov"
  },
  "aydin|Nazilli Kültür Merkezi": {
@@ -11105,6 +11375,56 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "aydin|Söke Novada AVM Cinemarine": {
+  "lat": 37.766525,
+  "lng": 27.426956,
+  "addr": "Söke",
+  "ilce": "Söke",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "balikesir|Balıkesir Avlu Kongre Merkezi · Ertuğrul Salonu": {
+  "lat": 39.652504,
+  "lng": 27.901638,
+  "addr": "Altıeylül",
+  "ilce": "Altıeylül",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "balikesir|Avlu Kongre ve Kültür Merkezi": {
+  "lat": 39.652504,
+  "lng": 27.901638,
+  "addr": "Altıeylül",
+  "ilce": "Altıeylül",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "balikesir|Holly Stone Performance Hall": {
+  "lat": 39.685413,
+  "lng": 27.942001,
+  "addr": "Yeni Mahalle 25500 Sk. No:17",
+  "ilce": "Altıeylül",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "balikesir|Avlu Kongre ve Kültür M. · Ertuğrul": {
+  "lat": 39.652504,
+  "lng": 27.901638,
+  "addr": "Altıeylül",
+  "ilce": "Altıeylül",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
  "balikesir|Şükrü Tunar Kültür Merkezi": {
   "lat": 39.591931,
   "lng": 27.017877,
@@ -11113,6 +11433,36 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "balikesir|Edremit Novada AVM Cinemarine": {
+  "lat": 39.598736,
+  "lng": 26.999992,
+  "addr": "Edremit",
+  "ilce": "Edremit",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "batman|Worldmar Cinegold": {
+  "lat": 37.895042,
+  "lng": 41.130325,
+  "addr": "Turgut Özal Bulvarı 259",
+  "ilce": "Batman",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "bayburt|Ata": {
+  "lat": 40.247826,
+  "lng": 40.230511,
+  "addr": "Bayburt Üniversitesi Baberti külliyesi  Kültür Merkezi Kat:2",
+  "ilce": "Bayburt",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
   "m": "ov"
  },
  "bolu|Bolu Necip Fazıl Kültür Merkezi": {
@@ -11135,6 +11485,16 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "bursa|pablo artisan coffee · özlüce": {
+  "lat": 40.223228,
+  "lng": 28.914286,
+  "addr": "Özlüce Blv Kent Park A Blok No:23 C",
+  "ilce": "Nilüfer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
  "bursa|Kadıköy Barış Manço Kültür Merkezi": {
   "lat": 40.1828048,
   "lng": 29.1251789,
@@ -11155,6 +11515,96 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "bursa|Gemlik Venüs": {
+  "lat": 40.430302,
+  "lng": 29.156462,
+  "addr": "Gemlik",
+  "ilce": "Gemlik",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "bursa|Kent Meydan Avşar": {
+  "lat": 40.265068,
+  "lng": 29.052908,
+  "addr": "Bursa'da",
+  "ilce": "Osmangazi",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "bursa|As Outlet Venüs": {
+  "lat": 40.255322,
+  "lng": 29.0625,
+  "addr": "Demirtaş Dumlupınar Mahallesi İstanbul Caddesi As Outlet AVM",
+  "ilce": "Osmangazi",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "canakkale|hol. Çanakkale": {
+  "lat": 40.149185,
+  "lng": 26.401165,
+  "addr": "Matbaa Sk. No:5/A",
+  "ilce": "Çanakkale",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "canakkale|Big Lounge Çanakkale": {
+  "lat": 40.115658,
+  "lng": 26.408924,
+  "addr": "Atatürk Cd. No:346",
+  "ilce": "Çanakkale",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "cankiri|Sinemax": {
+  "lat": 40.598721,
+  "lng": 33.621655,
+  "addr": "Çarşamba Pazarı Cd. Yunus Çankırı No:4",
+  "ilce": "Çankırı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "denizli|Nihat Zeybekçi KM · Fatma Yıldız S": {
+  "lat": 37.758656,
+  "lng": 29.096132,
+  "addr": "3397. Sk. No:10",
+  "ilce": "Pamukkale",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "diyarbakir|asabistro cafe bar": {
+  "lat": 37.947521,
+  "lng": 40.178024,
+  "addr": "258. Sk. No:10",
+  "ilce": "Kayapınar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "diyarbakir|Dicle Üniversitesi 15 Temmuz Kültür ve Kongre Merkezi": {
+  "lat": 37.917912,
+  "lng": 40.278572,
+  "addr": "Sur",
+  "ilce": "Sur",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
  "duzce|Düzce K.M. Celil Yağız Sahnesi-güncel": {
   "lat": 40.8250356,
   "lng": 31.1928218,
@@ -11163,6 +11613,66 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "edirne|kadıköy kafası irish pub edirne": {
+  "lat": 41.666756,
+  "lng": 26.576088,
+  "addr": "28. Sokak 4",
+  "ilce": "Edirne",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "edirne|Edirne Oda Sahnesi": {
+  "lat": 41.6628,
+  "lng": 26.567888,
+  "addr": "Günal Apartmanı, Hacı Arif Sk. D:78",
+  "ilce": "Edirne",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "edirne|Buvons Bistro & Cafe": {
+  "lat": 40.85321,
+  "lng": 26.633186,
+  "addr": "Paşa Yiğit Cd. NO:21 KAT/3",
+  "ilce": "Keşan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "edirne|Keşan Cine Bendis": {
+  "lat": 40.837379,
+  "lng": 26.625807,
+  "addr": "Bendis",
+  "ilce": "Keşan",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "erzincan|Cinebest Erzincan": {
+  "lat": 39.747871,
+  "lng": 39.466724,
+  "addr": "Mimar Sinan, Halit Paşa Cd. No:151",
+  "ilce": "Erzincan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "erzincan|Cinebest": {
+  "lat": 39.747871,
+  "lng": 39.466724,
+  "addr": "Mimar Sinan, Halit Paşa Cd. No:151",
+  "ilce": "Erzincan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
   "m": "ov"
  },
  "erzurum|atatürk üniversitesi 15 temmuz milli irade salonu": {
@@ -11175,14 +11685,174 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
- "eskisehir|F/Stop Salon": {
-  "lat": 39.783869,
-  "lng": 30.4998132,
-  "addr": "Hoşnudiye M. Şahin C. 748. S, 26100 Tepebaşı/Eskişehir",
-  "ilce": "Tepebaşı",
-  "src": "osm",
+ "erzurum|Necip Fazıl Kısakürek Kültür Merkezi": {
+  "lat": 39.890358,
+  "lng": 41.267376,
+  "addr": "Palandöken",
+  "ilce": "Palandöken",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "erzurum|Necip Fazıl Kısakürek K.M.": {
+  "lat": 39.890358,
+  "lng": 41.267376,
+  "addr": "Palandöken",
+  "ilce": "Palandöken",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "erzurum|Erzurum Necip Fazıl Kısakürek KM Büyük Salon": {
+  "lat": 39.890358,
+  "lng": 41.267376,
+  "addr": "Palandöken",
+  "ilce": "Palandöken",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "erzurum|Oda Tiyatrosu": {
+  "lat": 39.903038,
+  "lng": 41.269363,
+  "addr": "Cagrı İş Merkezi",
+  "ilce": "Yakutiye",
+  "src": "overture",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "erzurum|Dedeman Palandöken Ski Lodge": {
+  "lat": 39.860096,
+  "lng": 41.274689,
+  "addr": "Palandöken Yolu",
+  "ilce": "Palandöken",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "erzurum|Coffe Time MNG AVM": {
+  "lat": 39.911148,
+  "lng": 41.25182,
+  "addr": "LALAPAŞA.MNG AVM.25100 YAKUTİYE ERZURUM",
+  "ilce": "Yakutiye",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "erzurum|Erzurum Necip Fazıl Kısakürek Kültür Merkezi": {
+  "lat": 39.890358,
+  "lng": 41.267376,
+  "addr": "Palandöken",
+  "ilce": "Palandöken",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "erzurum|Necip Fazıl Kısakürek Kültür Merkezi Erzurum": {
+  "lat": 39.890358,
+  "lng": 41.267376,
+  "addr": "Palandöken",
+  "ilce": "Palandöken",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "erzurum|Paribu Cineverse (MNG Mall)": {
+  "lat": 39.911606,
+  "lng": 41.251694,
+  "addr": "Terminal Caddesi",
+  "ilce": "Yakutiye",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "eskisehir|La Boheme Cafe": {
+  "lat": 39.77795,
+  "lng": 30.512505,
+  "addr": "kızılcıklı Mahmut Pehlivan Sokak N:17/A",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "eskisehir|Social Casual": {
+  "lat": 39.782917,
+  "lng": 30.509893,
+  "addr": "Fabrikalar Sk No:1/D",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "eskisehir|F/Stop Salon": {
+  "lat": 39.783615,
+  "lng": 30.499695,
+  "addr": "Hoşnudiye M. Şahin C. 748. S",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "eskisehir|Holly Stone Performance Hall": {
+  "lat": 39.782551,
+  "lng": 30.506639,
+  "addr": "Cassaba Modern AVM, 748. Sok No: 3/A, Hoşnudiye\\n\\n",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "eskisehir|Livia Coffee & Bakery": {
+  "lat": 39.77763,
+  "lng": 30.514275,
+  "addr": "Porsuk Blv no:39 D:c",
+  "ilce": "Odunpazarı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "eskisehir|spr pub": {
+  "lat": 39.780903,
+  "lng": 30.513269,
+  "addr": "Vural Sokak 27",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "eskisehir|Dario Fo Eskişehir": {
+  "lat": 39.783348,
+  "lng": 30.5123,
+  "addr": "Darıo Fo, Kumlubel Sokak 8",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "eskisehir|Metin Sürel Kültür Ve Sanat Merkezi": {
+  "lat": 39.830997,
+  "lng": 30.423845,
+  "addr": "Söğüt-Uludere Yolu NO:564",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
   "m": "ov"
  },
  "eskisehir|Rampa Sahne": {
@@ -11195,14 +11865,54 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
- "eskisehir|F Stop Salon": {
-  "lat": 39.783869,
-  "lng": 30.4998132,
-  "addr": "Hoşnudiye M. Şahin C. 748. S, 26100 Tepebaşı/Eskişehir",
+ "eskisehir|Eskişehir Kültür ve Sanat Sarayı": {
+  "lat": 39.781631,
+  "lng": 30.52717,
+  "addr": "İsmail Gaspıralı Cd. No:1",
   "ilce": "Tepebaşı",
-  "src": "osm",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "eskisehir|Büyükşehir Sanat Merkezi Ergin Orbey Sahnesi": {
+  "lat": 39.774593,
+  "lng": 30.517576,
+  "addr": "Çınar Sk. No:1/2",
+  "ilce": "Odunpazarı",
+  "src": "overture",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "eskisehir|F Stop Salon": {
+  "lat": 39.783615,
+  "lng": 30.499695,
+  "addr": "Hoşnudiye M. Şahin C. 748. S",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "eskisehir|ORFE Rock Bar": {
+  "lat": 39.778492,
+  "lng": 30.515985,
+  "addr": "Vural Sk. No:15",
+  "ilce": "Tepebaşı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "gaziantep|Gaziantep Sanko Park Avşar": {
+  "lat": 37.063007,
+  "lng": 37.360264,
+  "addr": "Mareşal Fevzi Çakmak Bulvarı 23",
+  "ilce": "Şehitkamil",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
   "m": "ov"
  },
  "gaziantep|Bir Başka Tiyatro": {
@@ -11215,12 +11925,252 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "gaziantep|Sanko Park Avşar": {
+  "lat": 37.063007,
+  "lng": 37.360264,
+  "addr": "Mareşal Fevzi Çakmak Bulvarı 23",
+  "ilce": "Şehitkamil",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "gaziantep|Prestige (Prime Mall)": {
+  "lat": 37.013474,
+  "lng": 37.342674,
+  "addr": "Şahinbey",
+  "ilce": "Şahinbey",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "giresun|Giresun Cinemas": {
+  "lat": 40.908268,
+  "lng": 38.370514,
+  "addr": "İnönü Cd. No:112",
+  "ilce": "Giresun",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "giresun|Hayal Kahvesi Giresun": {
+  "lat": 40.912296,
+  "lng": 38.373253,
+  "addr": "Atatürk Blv. Cumhuriyet Parkı No : 4/3",
+  "ilce": "Giresun",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "giresun|Vahit Sütlaş Sahnesi": {
+  "lat": 40.917206,
+  "lng": 38.394211,
+  "addr": "Fevzi Paşa Cd. No:70",
+  "ilce": "Giresun",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "giresun|Cinemas": {
+  "lat": 40.908268,
+  "lng": 38.370514,
+  "addr": "İnönü Cd. No:112",
+  "ilce": "Giresun",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "hatay|İskenderun Primemall Prestige": {
+  "lat": 36.582981,
+  "lng": 36.170212,
+  "addr": "İskenderun",
+  "ilce": "İskenderun",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "hatay|Hatay Şark Sineması": {
+  "lat": 36.086823,
+  "lng": 35.979931,
+  "addr": "Kumsal Sk. No: 4E",
+  "ilce": "Samandağ",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "hatay|hatay kalyon live · Hatay": {
+  "lat": 36.166401,
+  "lng": 36.1395,
+  "addr": "Defne",
+  "ilce": "Defne",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "hatay|Samandağ Şark": {
+  "lat": 36.084667,
+  "lng": 35.974606,
+  "addr": "şehitler cadesii",
+  "ilce": "Samandağ",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "isparta|Kontrbus Coffee Co. Isparta": {
+  "lat": 37.783798,
+  "lng": 30.544037,
+  "addr": "4504/1. Sokak 29",
+  "ilce": "Isparta",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "isparta|Holly Stone Performance Hall": {
+  "lat": 37.78022,
+  "lng": 30.546684,
+  "addr": "Süleyman Demirel Cd. No:81",
+  "ilce": "Isparta",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "isparta|Beygir Performance Hall": {
+  "lat": 37.78204,
+  "lng": 30.540756,
+  "addr": "4504. Sokak 8",
+  "ilce": "Isparta",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "isparta|Tulûat Sahne": {
+  "lat": 37.824699,
+  "lng": 30.544216,
+  "addr": "275. Cadde 34",
+  "ilce": "Isparta",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "isparta|Saraç Avşar": {
+  "lat": 37.760784,
+  "lng": 30.556368,
+  "addr": "Gazi Kemal mh, 1306. Sk. No: 33 D:23",
+  "ilce": "Isparta",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "istanbul|Pendik Bahçelievler Eğitim Merkezi": {
+  "lat": 40.888535,
+  "lng": 29.230001,
+  "addr": "Plevne Cad, Zişan Sokağı No:4 Kat:2/3",
+  "ilce": "Pendik",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "istanbul|Demokrasi Ve Özgürlükler Adası": {
+  "lat": 40.864887,
+  "lng": 28.993046,
+  "addr": "Heybeliada Mahallesi",
+  "ilce": "Heybeliada Mahallesi",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/museum",
+  "m": "ov"
+ },
+ "istanbul|Museum of Illusions · İstanbul İstiklal": {
+  "lat": 41.029213,
+  "lng": 28.974859,
+  "addr": "İstiklal Cd. No:180 D:4B",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/museum",
+  "m": "ov"
+ },
+ "istanbul|İBB Kültür AŞ Dijital Deneyim Merkezi": {
+  "lat": 41.057903,
+  "lng": 28.949499,
+  "addr": "Örnektepe Mah, İmrahor Cd. No:7",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/museum",
+  "m": "ov"
+ },
+ "istanbul|Kadıköy Barış Manço Kültür Merkezi": {
+  "lat": 40.988613,
+  "lng": 29.025669,
+  "addr": "Moda Caddesi 37",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
  "istanbul|Mall Of İstanbul Moi Sahne": {
   "lat": 41.0620997,
   "lng": 28.8073303,
   "addr": "Mahmutbey Batı Kavşağı, Ziya Gökalp, Ziya Gökalp",
   "ilce": "Ziya Gökalp",
   "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Akasya Kültür Sanat": {
+  "lat": 41.001499,
+  "lng": 29.054049,
+  "addr": "Çeçen Sok. No:2",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Four Seasons Hotel Bosphorus": {
+  "lat": 40.992348,
+  "lng": 29.100834,
+  "addr": "Ataşehir",
+  "ilce": "Ataşehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "istanbul|Arche Art Studio & Coffee": {
+  "lat": 41.023983,
+  "lng": 29.020262,
+  "addr": "Selamiali Efendi Caddesi 67A",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Bakırköy Butik Sahne": {
+  "lat": 40.97897,
+  "lng": 28.876076,
+  "addr": "İzzet Molla Sk. No:12",
+  "ilce": "Bakırköy",
+  "src": "overture",
   "v": 2,
   "osm": "amenity/theatre",
   "m": "ov"
@@ -11245,6 +12195,66 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "istanbul|Bahçe Galata": {
+  "lat": 41.026482,
+  "lng": 28.97505,
+  "addr": "Serdar-ı Ekrem Cd. No: 5 Kat: 1",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Hayal Kahvesi Aqua Florya": {
+  "lat": 40.966156,
+  "lng": 28.796408,
+  "addr": "Yeşilköy Halkalı Caddesi 93",
+  "ilce": "Bakırköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Akasya Kültür Sanat · 3. Kat": {
+  "lat": 41.001499,
+  "lng": 29.054049,
+  "addr": "Çeçen Sok. No:2",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Hayal Kahvesi Bahçeşehir": {
+  "lat": 41.062565,
+  "lng": 28.69912,
+  "addr": "Bahçeşehir 1. Kısım Mahallesi Doğa Parkı Caddesi No:13",
+  "ilce": "İstanbul",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Mecidiyeköy Büyük Sahnesi": {
+  "lat": 41.066326,
+  "lng": 29.003027,
+  "addr": "Büyükdere Caddesi Beyazıt Han No: 86/1",
+  "ilce": "İstanbul Avrupa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|Üsküdar Kerem Yılmazer Sahnesi": {
+  "lat": 41.016979,
+  "lng": 29.023653,
+  "addr": "Dr. Fahri Atabey Cd. No:79",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
  "istanbul|Infiniti Comedy Club": {
   "lat": 40.986447,
   "lng": 29.026709,
@@ -11255,12 +12265,132 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "istanbul|Sahne Hane Üsküdar": {
+  "lat": 41.025131,
+  "lng": 29.019299,
+  "addr": "Selmani Pak Cd. No:48 2 D:1",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
  "istanbul|Koma Sahnesi": {
-  "lat": 40.9919626,
-  "lng": 29.0342334,
-  "addr": "Hasanpaşa, Derici Zeynel Sk. No:15A, 34722 Kadık&#246;y/İstanbul",
-  "ilce": "Kadık&#246;y",
-  "src": "osm",
+  "lat": 40.991959,
+  "lng": 29.034266,
+  "addr": "Derici Zeynel Sk. No:15A",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Türk Telekom Opera Salonu": {
+  "lat": 41.036701,
+  "lng": 28.987751,
+  "addr": "Mete Cd. No: 2",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Joanna": {
+  "lat": 41.067215,
+  "lng": 29.042919,
+  "addr": "Bebek Arnavutköy Cd No:32",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|Acik alan": {
+  "lat": 40.994995,
+  "lng": 29.026949,
+  "addr": "Uzun Hafız Sk. No:42-44",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "istanbul|The Cube": {
+  "lat": 41.025139,
+  "lng": 29.043295,
+  "addr": "Oymacı Sk. No:20",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "istanbul|Ses – 1885 Ortaoyuncular Tiyatrosu": {
+  "lat": 41.034649,
+  "lng": 28.978741,
+  "addr": "Halep Pasajı, İstiklal Caddesi 62",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Kadıköy BBS Sahne": {
+  "lat": 40.985321,
+  "lng": 29.028015,
+  "addr": "İleri Sk. No:1/D",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Avalon Kadıköy": {
+  "lat": 40.989761,
+  "lng": 29.028416,
+  "addr": "Mimar Çk Müjdat Gezen Sanat Pasajı No : 11",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "istanbul|Dunia Kadıköy": {
+  "lat": 40.986668,
+  "lng": 29.026691,
+  "addr": "Kadife Sokak 19",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "istanbul|Nossa Costa": {
+  "lat": 40.972008,
+  "lng": 28.879078,
+  "addr": "Kazlıçeşme Mah Kennedy Caddesi, Ataköy Marina",
+  "ilce": "Bakırköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|CKM A Salonu": {
+  "lat": 40.991959,
+  "lng": 28.782646,
+  "addr": "Küçükçekmece",
+  "ilce": "Küçükçekmece",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Altı Üstü Kabare": {
+  "lat": 40.992699,
+  "lng": 29.125141,
+  "addr": "Ataşehir Blv. Ata çarşı No:16/25 Kat:2",
+  "ilce": "Ataşehir",
+  "src": "overture",
   "v": 2,
   "osm": "amenity/theatre",
   "m": "ov"
@@ -11275,12 +12405,162 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
- "istanbul|Şekerci Cafer Erol": {
-  "lat": 41.026343,
-  "lng": 28.9838825,
-  "addr": "",
-  "ilce": "",
-  "src": "osm",
+ "istanbul|Gürcü Kültür Merkezi": {
+  "lat": 41.031162,
+  "lng": 28.980797,
+  "addr": "Hüseyin Ağa Bahçe Sokak 16",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Frankhan by Selectist": {
+  "lat": 41.024918,
+  "lng": 28.981165,
+  "addr": "Kemankeş Cd. No:73",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Mask Beach": {
+  "lat": 40.963074,
+  "lng": 28.652056,
+  "addr": "Hazan Sk.",
+  "ilce": "Beylikdüzü",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "istanbul|Mahsus Sahne": {
+  "lat": 41.115162,
+  "lng": 28.999813,
+  "addr": "Huzur mahallesi, Hadım Koruyolu Cd. No:12",
+  "ilce": "Sarıyer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Suma Han": {
+  "lat": 41.025043,
+  "lng": 28.971556,
+  "addr": "SUMA HAN, Yanık Kapı Sok. No:3",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "istanbul|Temple İstanbul Club": {
+  "lat": 41.036045,
+  "lng": 28.981565,
+  "addr": "Mis Sokak 15",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "istanbul|Istanbul, Turkey": {
+  "lat": 41.03046,
+  "lng": 28.973915,
+  "addr": "Beyoğlu",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|Demokrasi ve Özgürlükler Adası": {
+  "lat": 40.864887,
+  "lng": 28.993046,
+  "addr": "Heybeliada Mahallesi",
+  "ilce": "Heybeliada Mahallesi",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/museum",
+  "m": "ov"
+ },
+ "istanbul|Cheerz Caddebostan": {
+  "lat": 40.96698,
+  "lng": 29.063271,
+  "addr": "Caddebostan Plajyolu Sok. No:15-19",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "istanbul|Şamdan Pera": {
+  "lat": 41.034718,
+  "lng": 28.97757,
+  "addr": "Nevizade Sk. No:4",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|Arsen Lupen Taksim": {
+  "lat": 41.036022,
+  "lng": 28.981588,
+  "addr": "Mis Sk. no:15/4",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "istanbul|Frankhan Selectist": {
+  "lat": 41.024918,
+  "lng": 28.981165,
+  "addr": "Kemankeş Cd. No:73",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Akasya Kültür Sanat Sahnesi- Akasya AVM": {
+  "lat": 41.001499,
+  "lng": 29.054049,
+  "addr": "Çeçen Sok. No:2",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Radisson Collection Hotel": {
+  "lat": 41.10854,
+  "lng": 28.986712,
+  "addr": "Cendere Cad. No.109A",
+  "ilce": "Sarıyer",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "istanbul|İstanbul Tiyatrosu Ataşehir": {
+  "lat": 40.99826,
+  "lng": 29.105297,
+  "addr": "Ataşehir",
+  "ilce": "Ataşehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Bahane Kültür Atölye": {
+  "lat": 40.992058,
+  "lng": 29.032566,
+  "addr": "Elmalıçeşme Sok. 46A",
+  "ilce": "Kadıköy",
+  "src": "overture",
   "v": 2,
   "osm": "amenity/cafe",
   "m": "ov"
@@ -11295,14 +12575,144 @@
   "osm": "leisure/sports_centre",
   "m": "ov"
  },
+ "istanbul|Fakülte Teras": {
+  "lat": 41.036282,
+  "lng": 28.982555,
+  "addr": "Fitaş Pasajı, İstiklal Cd. No:12 D:5. kat",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
  "istanbul|Moda Sahnesi Büyük Sahne": {
-  "lat": 40.9872163,
-  "lng": 29.0286082,
-  "addr": "Osmanağa, Halil Ethem Sokak, Gen. Asım G&#252;nd&#252;z Cd., 34714 Kadık&#246;y/İstanbul",
-  "ilce": "Kadık&#246;y",
-  "src": "osm",
+  "lat": 40.980373,
+  "lng": 29.023449,
+  "addr": "Nenehatun Sokak 5A",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Zorlu Performans Sanatları Merkezi (Zorlu Center, Istanbul, Istanbul Province, Turkey)": {
+  "lat": 41.302277,
+  "lng": 28.538315,
+  "addr": "",
+  "ilce": "",
+  "src": "overture",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Swissôtel The Bosphorus": {
+  "lat": 41.041183,
+  "lng": 28.997604,
+  "addr": "Acısu Sokak 19",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "istanbul|FLUX": {
+  "lat": 41.113415,
+  "lng": 29.020346,
+  "addr": "Ahi Evran Cd. No: 6",
+  "ilce": "Sarıyer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "istanbul|Zeytinburnu Kültür ve Sanat Merkezi": {
+  "lat": 40.995956,
+  "lng": 28.903296,
+  "addr": "Temmuz Meydanı, Semiha Şakir Cd. No:15",
+  "ilce": "Zeytinburnu",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "istanbul|M Lounge": {
+  "lat": 41.032753,
+  "lng": 28.822981,
+  "addr": "15 Temmuz Mah, Fevzi Çakmak Cd 15/F",
+  "ilce": "Bağcılar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Üsküdar Sahne Hane": {
+  "lat": 41.025131,
+  "lng": 29.019299,
+  "addr": "Selmani Pak Cd. No:48 2 D:1",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Vohu Cafe": {
+  "lat": 40.990242,
+  "lng": 29.026455,
+  "addr": "Kırtasiyeci Sk. n0:2 a",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Beşiktaş JK Müzesi": {
+  "lat": 41.03857,
+  "lng": 28.995623,
+  "addr": "Dolmabahçe Caddesi 1",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/museum",
+  "m": "ov"
+ },
+ "istanbul|sahneport": {
+  "lat": 41.07518,
+  "lng": 29.017982,
+  "addr": "Nisbetiye Cd No:24 D:17",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Boop Kuruçeşme": {
+  "lat": 41.060604,
+  "lng": 29.036173,
+  "addr": "İstanbul Yat, Akıncılar Bayırı Sokak 7",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "istanbul|Villa Hall Club İstanbul": {
+  "lat": 41.035362,
+  "lng": 28.979511,
+  "addr": "Yeşilçam Sokak 6",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "istanbul|CKM · Caddebostan Kültür Merkezi A Salonu": {
+  "lat": 40.991959,
+  "lng": 28.782646,
+  "addr": "Küçükçekmece",
+  "ilce": "Küçükçekmece",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
   "m": "ov"
  },
  "istanbul|Taksim Meydanı": {
@@ -11313,6 +12723,16 @@
   "src": "osm",
   "v": 2,
   "osm": "tourism/attraction",
+  "m": "ov"
+ },
+ "istanbul|Bahçeşehir Hayal Kahvesi": {
+  "lat": 41.062565,
+  "lng": 28.69912,
+  "addr": "Bahçeşehir 1. Kısım Mahallesi Doğa Parkı Caddesi No:13",
+  "ilce": "İstanbul",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
   "m": "ov"
  },
  "istanbul|Bostancı Sahne": {
@@ -11335,6 +12755,66 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "istanbul|MKM Attila İlhan S.": {
+  "lat": 41.092365,
+  "lng": 29.027987,
+  "addr": "Uğur Mumcu Cd. No 8 D:5",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|ALTA Nişantaşı": {
+  "lat": 41.050426,
+  "lng": 28.989077,
+  "addr": "Süleyman Nazif Sk. No:5/2",
+  "ilce": "Şişli",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|İstanbul Turkey": {
+  "lat": 41.03046,
+  "lng": 28.973915,
+  "addr": "Beyoğlu",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|Pendik Yunus Emre Kültür Merkezi": {
+  "lat": 41.012722,
+  "lng": 28.838169,
+  "addr": "Bahçelievler",
+  "ilce": "Bahçelievler",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "istanbul|Resim ve Heykel Müzesi Konser Salonu": {
+  "lat": 41.0397,
+  "lng": 29.002991,
+  "addr": "\"Dolmabahçe Cad, Beşiktaş Merkez, Beşiktaş, İstanbul\"",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/museum",
+  "m": "ov"
+ },
+ "istanbul|Galata, Istanbul, Turkey": {
+  "lat": 41.029152,
+  "lng": 29.032499,
+  "addr": "Üsküdar",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
  "istanbul|Acıbadem Acu Sahne": {
   "lat": 40.9784186,
   "lng": 29.1104657,
@@ -11343,6 +12823,106 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Life Park": {
+  "lat": 40.939659,
+  "lng": 29.316364,
+  "addr": "Pendik",
+  "ilce": "Pendik",
+  "src": "overture",
+  "v": 2,
+  "osm": "leisure/park",
+  "m": "ov"
+ },
+ "istanbul|Paribu Vadi Açıkhava": {
+  "lat": 41.109554,
+  "lng": 28.987598,
+  "addr": "Cendere Caddesi 109/c",
+  "ilce": "Sarıyer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Beyoğlu CineMajestic": {
+  "lat": 41.034237,
+  "lng": 28.980013,
+  "addr": "İstiklal Cad, Ayhan Işık Sk. No:10",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "istanbul|Levent Paribu Cineverse (Kanyon)": {
+  "lat": 41.08012,
+  "lng": 29.011003,
+  "addr": "Kağıthane",
+  "ilce": "Kağıthane",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "istanbul|Maltepe Paribu Cineverse (Piazza)": {
+  "lat": 40.919052,
+  "lng": 29.16754,
+  "addr": "Maltepe",
+  "ilce": "Maltepe",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "istanbul|Bahçeşehir Paribu Cineverse (Akbatı)": {
+  "lat": 41.005829,
+  "lng": 28.812597,
+  "addr": "Bahçelievler",
+  "ilce": "Bahçelievler",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "istanbul|Kağıthane Paribu Cineverse (Axis)": {
+  "lat": 41.086414,
+  "lng": 28.98246,
+  "addr": "Merkez Cendere Caddesi No:28 Kat:3 No:120 Kağıthane, AXİS AVM",
+  "ilce": "Kağıthane",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "istanbul|Acıbadem Paribu Cineverse (Akasya)": {
+  "lat": 41.00127,
+  "lng": 29.055372,
+  "addr": "Üsküdar",
+  "ilce": "Üsküdar",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "istanbul|Eyüp Paribu Cineverse (Axis İstanbul)": {
+  "lat": 41.036266,
+  "lng": 28.920227,
+  "addr": "Estasyon, Osmangazi Caddesi 1",
+  "ilce": "Eyüpsultan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "istanbul|Küçükyalı Paribu Cineverse (Hilltown)": {
+  "lat": 40.952297,
+  "lng": 29.121773,
+  "addr": "Kaptan Rıfat Sk Küçükyalı",
+  "ilce": "Maltepe",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
   "m": "ov"
  },
  "izmir|tiyatro durağı kültür ve sanat merkezi": {
@@ -11355,14 +12935,204 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
- "izmir|M.K. Atatürk Karşıyaka Spor Salonu": {
-  "lat": 38.4744215,
-  "lng": 27.0767436,
-  "addr": "",
-  "ilce": "",
-  "src": "osm",
+ "izmir|leonart atölye-İzmir": {
+  "lat": 38.409599,
+  "lng": 27.116837,
+  "addr": "Mustafa Kemal Sahil Blv. No:147",
+  "ilce": "Konak",
+  "src": "overture",
   "v": 2,
-  "osm": "leisure/sports_centre",
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "izmir|gili ege perla": {
+  "lat": 38.44733,
+  "lng": 27.173985,
+  "addr": "Ege Perla AVM, Ozan Abay Cd. No: 8 Z: 12",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "izmir|Ünal Gürel Sahnesi": {
+  "lat": 38.4398,
+  "lng": 27.143574,
+  "addr": "1479. Sk. 10 B",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|old pal pub": {
+  "lat": 38.44688,
+  "lng": 27.185493,
+  "addr": "296. Sk. No:6",
+  "ilce": "Bayraklı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "izmir|Karşıyaka Ragıp Haykır Sahnesi": {
+  "lat": 38.457314,
+  "lng": 27.118513,
+  "addr": "Tiyatro Sk. No:43",
+  "ilce": "Karşıyaka",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|Pony İzmir": {
+  "lat": 38.44894,
+  "lng": 27.185398,
+  "addr": "296. Sk. No:8 H",
+  "ilce": "Bornova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "izmir|Qm İzmir": {
+  "lat": 38.448864,
+  "lng": 27.185806,
+  "addr": "Kazım Dirik Caddesi 56",
+  "ilce": "Güzelbahçe",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "izmir|Konak Metro Sanat Galerisi": {
+  "lat": 38.417637,
+  "lng": 27.128262,
+  "addr": "Mithatpaşa Cd. No:2/1",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "izmir|İzmir Tiyatro Durağı": {
+  "lat": 38.419315,
+  "lng": 27.132072,
+  "addr": "865. Sk. 25/A",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|ooze venue": {
+  "lat": 38.464588,
+  "lng": 27.221661,
+  "addr": "Kazım Karabekir Caddesi 46",
+  "ilce": "Bornova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "izmir|Black Wolf İzmir": {
+  "lat": 38.379601,
+  "lng": 27.185005,
+  "addr": "Erdem Cd. No:3",
+  "ilce": "Buca",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "izmir|URLADAM · İzmir": {
+  "lat": 38.317513,
+  "lng": 26.767424,
+  "addr": "Mimoza Sk. No:13/A",
+  "ilce": "Urla",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "izmir|Buckin Coffee Lozan": {
+  "lat": 38.430092,
+  "lng": 27.141296,
+  "addr": "Vasıf Çınar Blv 29/D",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "izmir|M.K. Atatürk Karşıyaka Spor Salonu": {
+  "lat": 38.474117,
+  "lng": 27.076189,
+  "addr": "Caher Dudayev Bulvarı 42",
+  "ilce": "Karşıyaka",
+  "src": "overture",
+  "v": 2,
+  "osm": "leisure/stadium",
+  "m": "ov"
+ },
+ "izmir|Pub Manje": {
+  "lat": 38.457436,
+  "lng": 27.097021,
+  "addr": "Cemal Bülbül Sokak 24A",
+  "ilce": "Karşıyaka",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "izmir|The Corner İzmir": {
+  "lat": 38.460003,
+  "lng": 27.211607,
+  "addr": "Küçükpark, Süvari Cd. 74 F",
+  "ilce": "Bornova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "izmir|Urla Belediyesi Atatürk Kültür": {
+  "lat": 38.321655,
+  "lng": 26.76392,
+  "addr": "Urla",
+  "ilce": "Urla",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "izmir|Babil Bira Bahçesi": {
+  "lat": 38.409702,
+  "lng": 27.033939,
+  "addr": "İnciraltı Cd. No:49",
+  "ilce": "Balçova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "izmir|A. Adnan Saygun AKM Salonu (Ege Üniversitesi)": {
+  "lat": 38.415771,
+  "lng": 27.125797,
+  "addr": "İTO İş Merkezi, Atatürk Caddesi 190",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "izmir|Ooze Venue": {
+  "lat": 38.464588,
+  "lng": 27.221661,
+  "addr": "Kazım Karabekir Caddesi 46",
+  "ilce": "Bornova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
   "m": "ov"
  },
  "izmir|PENGUEN Kültür Sanat · İzmir": {
@@ -11375,6 +13145,36 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "izmir|Çakabey Kültür Merkezi": {
+  "lat": 38.328743,
+  "lng": 26.315474,
+  "addr": "3004. Sokak",
+  "ilce": "Çeşme",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "izmir|Korto İzmir": {
+  "lat": 38.44799,
+  "lng": 27.178772,
+  "addr": "Ankara Cd. No:15 D:1L",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "izmir|Tire Şehir": {
+  "lat": 38.094559,
+  "lng": 27.725578,
+  "addr": "ali okan caddesi",
+  "ilce": "Tire",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
  "izmir|Bornova Batı": {
   "lat": 38.4365253,
   "lng": 27.2269576,
@@ -11385,12 +13185,152 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
- "izmir|Menemen Kültür Merkezi": {
-  "lat": 38.6087121,
-  "lng": 27.0642543,
-  "addr": "",
-  "ilce": "",
-  "src": "osm",
+ "karabuk|Karabük 100.Yıl Kültür Merkezi": {
+  "lat": 41.224339,
+  "lng": 32.668396,
+  "addr": "Safranbolu",
+  "ilce": "Safranbolu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "karabuk|Leyla Dizdar Kültür Merkezi": {
+  "lat": 41.259048,
+  "lng": 32.673969,
+  "addr": "Safranbolu",
+  "ilce": "Safranbolu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "karaman|karaman piri reis kültür merkezi": {
+  "lat": 37.169659,
+  "lng": 33.226212,
+  "addr": "861. Sk. No:28",
+  "ilce": "Karaman",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "karaman|Karaman Piri Reis Kültür Merkezi": {
+  "lat": 37.169659,
+  "lng": 33.226212,
+  "addr": "861. Sk. No:28",
+  "ilce": "Karaman",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "karaman|Piri Reis Kültür Merkezi": {
+  "lat": 37.169659,
+  "lng": 33.226212,
+  "addr": "861. Sk. No:28",
+  "ilce": "Karaman",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "karaman|Sinenas": {
+  "lat": 37.184978,
+  "lng": 33.215736,
+  "addr": "Kemal Kaynaş Cd. No:57",
+  "ilce": "Karaman",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "kayseri|Kayseri Onay Cinelux Sineması": {
+  "lat": 38.731907,
+  "lng": 35.525719,
+  "addr": "İpeksaray, Sivas Bulvarı 182",
+  "ilce": "Melikgazi",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "kayseri|jj pub kayseri": {
+  "lat": 38.723209,
+  "lng": 35.485317,
+  "addr": "Grand Otel İçi, Gevher Nesibe Mah. İstasyon Cad. No:3 Wyndham",
+  "ilce": "Kocasinan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "kayseri|Paribu Cineverse (Kayseri Park)": {
+  "lat": 38.819656,
+  "lng": 35.548347,
+  "addr": "Melikgazi",
+  "ilce": "Kocasinan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "kayseri|Onay Cinelux": {
+  "lat": 38.731907,
+  "lng": 35.525719,
+  "addr": "İpeksaray, Sivas Bulvarı 182",
+  "ilce": "Melikgazi",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "kocaeli|İzmit Symbol AVM Cinemarine": {
+  "lat": 40.762009,
+  "lng": 29.936214,
+  "addr": "İzmit",
+  "ilce": "İzmit",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "kocaeli|Karamürsel Belediye Sineması": {
+  "lat": 40.693314,
+  "lng": 29.614607,
+  "addr": "Cumhuriyet Cad, Kent Meydanı",
+  "ilce": "Karamürsel",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "kocaeli|Kolibri Coffee · Yahyakaptan": {
+  "lat": 40.771637,
+  "lng": 29.969933,
+  "addr": "Şht. Ergün Köncü Sk. No:53 B",
+  "ilce": "İzmit",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "kocaeli|saraka sahne izmit · Kocaeli": {
+  "lat": 40.765438,
+  "lng": 29.93354,
+  "addr": "İskete Sk. No:9/A",
+  "ilce": "İzmit",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "kocaeli|Oda Tiyatrosu": {
+  "lat": 40.765766,
+  "lng": 29.975882,
+  "addr": "İzmit",
+  "ilce": "İzmit",
+  "src": "overture",
   "v": 2,
   "osm": "amenity/theatre",
   "m": "ov"
@@ -11405,12 +13345,212 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
- "konya|konya bergüzar gösteri merkezi": {
-  "lat": 37.876249,
-  "lng": 32.48492,
-  "addr": "Nişantaş Mah. Metehan Cad. Esnaf Sarayı Sitesi No:4 Kat:2 Selçuklu/Konya Türkiye, Konya, Konya",
-  "ilce": "",
-  "src": "osm",
+ "kocaeli|Karamürsel Belediye": {
+  "lat": 40.693314,
+  "lng": 29.614607,
+  "addr": "Cumhuriyet Cad, Kent Meydanı",
+  "ilce": "Karamürsel",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "konya|Konya Kule Site Avşar": {
+  "lat": 37.68734,
+  "lng": 31.728062,
+  "addr": "Beyşehir",
+  "ilce": "Beyşehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "konya|Konya · 24 Ağustos Sineması": {
+  "lat": 38.356289,
+  "lng": 31.415777,
+  "addr": "32501. Sokak",
+  "ilce": "Akşehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "konya|Düşişleri Sahne": {
+  "lat": 37.891781,
+  "lng": 32.499447,
+  "addr": "Gazi Ahmet Değerli Sk. No: 46/C",
+  "ilce": "Selçuklu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "konya|Club Inferno Konya": {
+  "lat": 38.005489,
+  "lng": 32.517071,
+  "addr": "Grand Hotel, Yeni İstanbul Cd. 231/A",
+  "ilce": "Selçuklu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "konya|Kule Site Avşar": {
+  "lat": 37.68734,
+  "lng": 31.728062,
+  "addr": "Beyşehir",
+  "ilce": "Beyşehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "kutahya|Cinetech Sera Kütahya": {
+  "lat": 39.436386,
+  "lng": 29.994991,
+  "addr": "Kütahya",
+  "ilce": "Kütahya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "kutahya|Kütahya Hezar Dinari Kültür Merkezi": {
+  "lat": 39.394653,
+  "lng": 30.033878,
+  "addr": "Tatlıdil Sokak 9",
+  "ilce": "Kütahya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "kutahya|Hezar Dinari Kültür Merkezi": {
+  "lat": 39.394653,
+  "lng": 30.033878,
+  "addr": "Tatlıdil Sokak 9",
+  "ilce": "Kütahya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "kutahya|Cinetech Sera": {
+  "lat": 39.436386,
+  "lng": 29.994991,
+  "addr": "Kütahya",
+  "ilce": "Kütahya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "malatya|Malatya Fuar Alanı": {
+  "lat": 38.349594,
+  "lng": 38.294365,
+  "addr": "Yeşilyurt",
+  "ilce": "Yeşilyurt",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "manisa|Salihli Zafer Keskiner Şehir Tiyatrosu": {
+  "lat": 38.486774,
+  "lng": 28.139704,
+  "addr": "Belediye Cd. No:103",
+  "ilce": "Salihli",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "manisa|Z. Keskiner Şehir Tiyatrosu-Salihli": {
+  "lat": 38.486774,
+  "lng": 28.139704,
+  "addr": "Belediye Cd. No:103",
+  "ilce": "Salihli",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "manisa|sir winston pub salihli · Manisa": {
+  "lat": 38.482616,
+  "lng": 28.125099,
+  "addr": "Park Cd. No:63 iç kapı no B25",
+  "ilce": "Salihli",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "manisa|Holly Stone Performance Hall": {
+  "lat": 38.626858,
+  "lng": 27.437778,
+  "addr": "2. Anafartalar Mahallesi 1, Mimar Sinan Blv. No:24/B",
+  "ilce": "Şehzadeler",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "manisa|akhisar park içi kültür merkezi · Manisa": {
+  "lat": 38.918995,
+  "lng": 27.840084,
+  "addr": "Akhisar",
+  "ilce": "Akhisar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "manisa|Akhisar Park İçi Kültür Merkezi": {
+  "lat": 38.918995,
+  "lng": 27.840084,
+  "addr": "Akhisar",
+  "ilce": "Akhisar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "manisa|Bavul Sahne": {
+  "lat": 38.615971,
+  "lng": 27.384502,
+  "addr": "5355. Sk. No:16 D:C",
+  "ilce": "Yunusemre",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "manisa|Turgutlu Cinepoll": {
+  "lat": 38.498486,
+  "lng": 27.706308,
+  "addr": "Turgutlu",
+  "ilce": "Turgutlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "manisa|Salihli Luna AVM Cinens": {
+  "lat": 38.48283,
+  "lng": 28.124807,
+  "addr": "ŞEHİTLER MAH. PARK CAD. NO:63 İÇ KAPI:103 SALİHLİ/MANİSA",
+  "ilce": "Manisa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "mardin|Mardin Brecht Sahne": {
+  "lat": 37.323647,
+  "lng": 40.717274,
+  "addr": "Yenişehir, Akasya 3 Sokak No:9, 47200 Artuklu/Mardin",
+  "ilce": "Artuklu",
+  "src": "overture",
   "v": 2,
   "osm": "amenity/theatre",
   "m": "ov"
@@ -11435,6 +13575,16 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "mersin|Oda Tiyatrosu": {
+  "lat": 36.939938,
+  "lng": 34.88073,
+  "addr": "Ömer Nazmi Caddesi 52B",
+  "ilce": "Tarsus",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
  "mersin|Silifke Prof.Dr. Doğan Cüceloğlu Kültür Merkezi": {
   "lat": 36.36604,
   "lng": 33.946035,
@@ -11443,6 +13593,46 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mersin|Anamur": {
+  "lat": 36.068878,
+  "lng": 32.863964,
+  "addr": "Adnan Menderes Cd. No:11",
+  "ilce": "Anamur",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "mugla|Köyceğiz Cinemarine Sineması": {
+  "lat": 36.956802,
+  "lng": 28.68623,
+  "addr": "Atatürk Kordonu No:8/1",
+  "ilce": "Köyceğiz",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "mugla|inspera bodrum kültür sanat": {
+  "lat": 37.046429,
+  "lng": 27.34738,
+  "addr": "Müskebi Caddesi 16",
+  "ilce": "Bodrum",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "mugla|ODA Pub Sahne Sokak": {
+  "lat": 36.621239,
+  "lng": 29.109409,
+  "addr": "96. Sokak",
+  "ilce": "Fethiye",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
   "m": "ov"
  },
  "mugla|Bodrum Bld. Nurol Kültür M.": {
@@ -11455,14 +13645,24 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
- "mugla|Armutalan Kültür Merkezi": {
-  "lat": 36.982428,
-  "lng": 28.247956,
-  "addr": "Marmaris Belediyesi Armutalan Kültür Merkezi, Armutalan, 48706 Marmaris/Muğla, Muğla, Muğla",
-  "ilce": "",
-  "src": "osm",
+ "mugla|Bodrum Herodot Kültür Merkezi": {
+  "lat": 37.050644,
+  "lng": 27.396078,
+  "addr": "Mimar Sinan Caddesi 47",
+  "ilce": "Bodrum",
+  "src": "overture",
   "v": 2,
-  "osm": "amenity/theatre",
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "mugla|Armutalan Kültür Merkezi": {
+  "lat": 36.856369,
+  "lng": 28.237782,
+  "addr": "Marmaris",
+  "ilce": "Marmaris",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
   "m": "ov"
  },
  "mugla|Bodrum Belediyesi Nurol Kültür Merkezi": {
@@ -11475,6 +13675,206 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "mugla|Bodrum Paribu Cineverse (Midtown)": {
+  "lat": 37.058178,
+  "lng": 27.357304,
+  "addr": "Cumhuriyet Cad. Kemer Mevkii Midtown AVM Ortakent Midtown Alışveriş Merkezi",
+  "ilce": "Bodrum",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "mugla|Sinema Datça": {
+  "lat": 36.729023,
+  "lng": 27.686155,
+  "addr": "İskele Mahallesi. Ahmet Taner Kışlalı Bulvarı No:9, Ahmet Taner Kışlalı Cd No:9",
+  "ilce": "Datça",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "mus|Muş Sineport Sineması": {
+  "lat": 38.735569,
+  "lng": 41.491589,
+  "addr": "İstasyon Cad. Ceylan Eğlence Merkezi",
+  "ilce": "Muş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "mus|Sineport": {
+  "lat": 38.735569,
+  "lng": 41.491589,
+  "addr": "İstasyon Cad. Ceylan Eğlence Merkezi",
+  "ilce": "Muş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "nevsehir|Nevşehir Nissara Cinefora": {
+  "lat": 38.624722,
+  "lng": 34.715645,
+  "addr": "Lale Caddesi 29",
+  "ilce": "Nevşehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "nevsehir|Nissara Cinefora": {
+  "lat": 38.624722,
+  "lng": 34.715645,
+  "addr": "Lale Caddesi 29",
+  "ilce": "Nevşehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "ordu|Ordu Öğretmenevi Atatürk Kültür Merkezi": {
+  "lat": 40.986645,
+  "lng": 37.877373,
+  "addr": "Yenigün Sk. No:3",
+  "ilce": "Altınordu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "ordu|Ordu Büyükşehir Belediyesi Karadeniz Tiyatrosu": {
+  "lat": 40.986858,
+  "lng": 37.875614,
+  "addr": "Varlık Sk.",
+  "ilce": "Altınordu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "rize|Cinegalaxy Rize": {
+  "lat": 41.02417,
+  "lng": 40.532497,
+  "addr": "Atatürk Cd.",
+  "ilce": "Rize",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "rize|Rize Pembe Köşk Sineması": {
+  "lat": 41.189381,
+  "lng": 40.973324,
+  "addr": "Ardeşen",
+  "ilce": "Ardeşen",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "rize|Rize İsmail Kahraman Kültür Merkezi": {
+  "lat": 41.025333,
+  "lng": 40.525021,
+  "addr": "Cumhuriyet caddesi",
+  "ilce": "Rize",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "rize|Rize İsmail Kahraman KM": {
+  "lat": 41.025333,
+  "lng": 40.525021,
+  "addr": "Cumhuriyet caddesi",
+  "ilce": "Rize",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "rize|Pembe Köşk": {
+  "lat": 41.189381,
+  "lng": 40.973324,
+  "addr": "Ardeşen",
+  "ilce": "Ardeşen",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "sakarya|Adapazarı Cine1can": {
+  "lat": 40.74609,
+  "lng": 30.413773,
+  "addr": "Sakarya Caddesi 324",
+  "ilce": "Erenler",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "sakarya|Adapazarı Cadde 54 Sineması": {
+  "lat": 40.775288,
+  "lng": 30.364239,
+  "addr": "ARABACI ALANI MAH. 54. CAD. CADDE 54 NO:3/BE",
+  "ilce": "Sakarya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "sakarya|AKM Sahne Kızılay": {
+  "lat": 40.777313,
+  "lng": 30.401371,
+  "addr": "Atatürk Blv. No:7",
+  "ilce": "Adapazarı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "samsun|Garage Street Food Bar": {
+  "lat": 41.358269,
+  "lng": 36.231037,
+  "addr": "korfez mahallesi, Atakum",
+  "ilce": "Atakum",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "samsun|Samsun Atakum": {
+  "lat": 41.335434,
+  "lng": 36.247593,
+  "addr": "Atakum",
+  "ilce": "Atakum",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "samsun|AKM Sahne Kızılay": {
+  "lat": 41.29472,
+  "lng": 36.334221,
+  "addr": "İlkadım",
+  "ilce": "İlkadım",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "samsun|Samsun Küçükeller Sahne": {
+  "lat": 41.32407,
+  "lng": 36.299355,
+  "addr": "396. Sk. No:9",
+  "ilce": "Atakum",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
  "samsun|ZEHRA YILDIZ SALONU": {
   "lat": 41.29462,
   "lng": 36.334803,
@@ -11483,6 +13883,26 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "sinop|Akçaağaç Koru Lounge & Event": {
+  "lat": 41.986813,
+  "lng": 35.084911,
+  "addr": "Akçaağaç Küme Evleri No:22/1",
+  "ilce": "Sinop",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "sivas|Sivas Büyük Otel": {
+  "lat": 39.352898,
+  "lng": 36.420994,
+  "addr": "İstasyon Cad",
+  "ilce": "Şarkışla",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
   "m": "ov"
  },
  "sivas|4 Eylül K.M. · Keykavus Salonu": {
@@ -11505,6 +13925,46 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "sanliurfa|Cinereal": {
+  "lat": 37.228218,
+  "lng": 39.759113,
+  "addr": "Viranşehir",
+  "ilce": "Viranşehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "sanliurfa|Cinepink (Urfa City)": {
+  "lat": 37.182026,
+  "lng": 38.807247,
+  "addr": "Urfacity Avm",
+  "ilce": "Haliliye",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "sanliurfa|Paribu Cineverse (Piazza)": {
+  "lat": 37.393177,
+  "lng": 38.743717,
+  "addr": "11 Nisan Fuar Cd.",
+  "ilce": "Sanlıurfa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "tekirdag|Orion Avm Çorlu Cinemarine": {
+  "lat": 41.150547,
+  "lng": 27.834452,
+  "addr": "Omurtak Cad Orion Avm Kat:1 No:130",
+  "ilce": "Çorlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
  "tekirdag|çorlu memduh şevket esendal sahnesi": {
   "lat": 41.160654,
   "lng": 27.80046,
@@ -11515,6 +13975,16 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "tekirdag|Çerkezköy Center Sinema": {
+  "lat": 41.296257,
+  "lng": 28.00095,
+  "addr": "Kadife Sk No:1",
+  "ilce": "Çerkezköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
  "tekirdag|Yahya Kemal Beyatlı K.M.Büyük Salon": {
   "lat": 40.9790482,
   "lng": 27.5296971,
@@ -11523,6 +13993,16 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "tekirdag|Kütük Kültür Cafe": {
+  "lat": 40.985363,
+  "lng": 27.579678,
+  "addr": "Gülşah Sokak 3A",
+  "ilce": "Süleymanpaşa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
   "m": "ov"
  },
  "tekirdag|Çorlu Memduh Şevket": {
@@ -11545,6 +14025,86 @@
   "osm": "amenity/theatre",
   "m": "ov"
  },
+ "tekirdag|Çorlu Orion Cinemarine": {
+  "lat": 41.150547,
+  "lng": 27.834452,
+  "addr": "Omurtak Cad Orion Avm Kat:1 No:130",
+  "ilce": "Çorlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "tekirdag|Çerkezköy Lemar": {
+  "lat": 41.27916,
+  "lng": 28.003069,
+  "addr": "H, Uğraş Sk. No:6",
+  "ilce": "Çerkezköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "tekirdag|Paribu Cineverse (Tekira)": {
+  "lat": 41.197712,
+  "lng": 27.514589,
+  "addr": "Aydoğdu Mah.",
+  "ilce": "Muratlı",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "tokat|Tokat Karizma Sineması": {
+  "lat": 40.320415,
+  "lng": 36.551689,
+  "addr": "Gaziosmanpaşa Blv. No:56",
+  "ilce": "Tokat",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "tokat|Erbaa Ahmet Yenihan Kültür Merkezi": {
+  "lat": 40.672329,
+  "lng": 36.568062,
+  "addr": "Istiklal Cad",
+  "ilce": "Erbaa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "tokat|Erbaa Aile": {
+  "lat": 40.671196,
+  "lng": 36.567806,
+  "addr": "İsmet Paşa Mah.",
+  "ilce": "Erbaa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "trabzon|Cinegalaxy Trabzon": {
+  "lat": 41.005352,
+  "lng": 39.716396,
+  "addr": "Varlıbaş Alışveriş Merkezi, İnönü Caddesi 8",
+  "ilce": "Ortahisar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "usak|Cinetime Özdilek Uşak": {
+  "lat": 38.671745,
+  "lng": 29.425243,
+  "addr": "Halil Kaya Gedik Bulvarı 2",
+  "ilce": "Uşak",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
  "usak|Uşak Belediyesi Atatürk Kültür Merkezi": {
   "lat": 38.6685923,
   "lng": 29.4008776,
@@ -11553,6 +14113,26 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/community_centre",
+  "m": "ov"
+ },
+ "usak|Özdilek Cinetime": {
+  "lat": 38.671745,
+  "lng": 29.425243,
+  "addr": "Halil Kaya Gedik Bulvarı 2",
+  "ilce": "Uşak",
+  "src": "overture",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "van|Atakan Çelik Kültür Merkezi": {
+  "lat": 39.001049,
+  "lng": 43.406296,
+  "addr": "1 Nisan Caddesi No:2",
+  "ilce": "Erciş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
   "m": "ov"
  }
 }
