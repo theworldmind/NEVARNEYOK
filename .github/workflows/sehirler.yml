@@ -170,7 +170,9 @@ jobs:
         run: |
           git config user.name "nevarneyok-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data/c data/cities.json data/venues-tr.json data/geo-miss-tr.json
+          # konum dosyaları yalnızca "Mekan konumlari" işinden gelir; bu iş eski kopyasıyla üzerine yazmasın (18.11.2026: 500 konum silinmişti)
+          git checkout -- data/venues-tr.json data/geo-miss-tr.json data/c/_vil.json data/c/_ilce.json 2>/dev/null || true
+          git add -A data/c data/cities.json
           if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
           git commit -qm "Şehirler güncellendi: $(date '+%d.%m.%Y %H:%M')"
           for i in 1 2 3 4; do git pull -q --rebase --autostash -X theirs && git push -q && break; sleep 8; done
