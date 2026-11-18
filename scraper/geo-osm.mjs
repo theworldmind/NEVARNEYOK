@@ -6,7 +6,8 @@
 import { join } from "node:path";
 import { mkdir, writeFile } from "node:fs/promises";
 import { ROOT, readJSON, writeJSON, sleep, log, todayIST } from "./lib/util.mjs";
-import { CITIES, fold } from "./lib/cities.mjs";
+import { CITIES, fold, cityOfText } from "./lib/cities.mjs";
+import { fetchText } from "./lib/net.mjs";
 
 const DRY = /^(1|true)$/.test(process.env.GEO_DRY || ""), ONLY = (process.env.GEO_ILLER || "").split(/\s+/).filter(Boolean);
 const UA = "NeVarNeYokBot/1.0 (+https://nevarneyok.net.tr; contact.openmind.vision@gmail.com)";
@@ -20,15 +21,16 @@ const MT = (await readJSON(join(ROOT, "data/geo-miss-tr.json"), {})) || {}, MA =
 const has = (c, v) => c === "ankara" ? VA[v]?.lat : VT[c + "|" + v]?.lat;
 const NOPE = /^(tüm mekanlar|tum mekanlar|online|çevrimiçi|çeşitli mekânlar|belirtilmedi)$|\bsinemaları$/i;
 
-// Her ilin konumu olmayan mekânları (etkinlik + sinema salonu), etkinlik sayısıyla
-const want = new Map();
-const add = (c, v, n = 1) => { v = String(v || "").trim(); if (!v || NOPE.test(v) || has(c, v)) return; const m = want.get(c) || want.set(c, new Map()).get(c); m.set(v, (m.get(v) || 0) + n); };
+// Her ilin konumu olmayan mekânları (etkinlik + sinema salonu), etkinlik sayısıyla; Biletinial bağlantısı olanların etkinlik sayfası da tutulur
+const want = new Map(), biUrl = new Map(), cinema = new Set();
+const add = (c, v, n = 1, e) => { v = String(v || "").trim(); if (!v || NOPE.test(v) || has(c, v)) return; const m = want.get(c) || want.set(c, new Map()).get(c); m.set(v, (m.get(v) || 0) + n);
+  const u = (e?.tickets || []).find((t) => /biletinial\.com\/tr-tr\//.test(t.url || ""))?.url; if (u && !biUrl.has(c + "|" + v)) biUrl.set(c + "|" + v, u); };
 for (const c of CITIES) {
   if (ONLY.length && !ONLY.includes(c.id)) continue;
   const ev = (await readJSON(join(ROOT, c.id === "ankara" ? "data/events.json" : `data/c/${c.id}.json`), { events: [] }))?.events || [];
-  for (const e of ev) if (e.d >= today && e.status !== "iptal") add(c.id, e.venue);
+  for (const e of ev) if (e.d >= today && e.status !== "iptal") add(c.id, e.venue, 1, e);
   const F = await readJSON(join(ROOT, c.id === "ankara" ? "data/films.json" : `data/c/${c.id}-films.json`), null);
-  for (const x of Object.values(F?.cinemas || {})) add(c.id, x?.name, 2);
+  for (const x of Object.values(F?.cinemas || {})) { add(c.id, x?.name, 2); if (x?.name) cinema.add(c.id + "|" + x.name); }
 }
 
 const AM = "theatre|cinema|arts_centre|community_centre|conference_centre|events_venue|exhibition_centre|music_venue|planetarium|stage|nightclub|bar|pub|biergarten|cafe|restaurant|library|social_centre|university|college|townhall";
@@ -51,7 +53,9 @@ const LOOSE = /^(amenity\/(cafe|restaurant|bar|pub|biergarten)|tourism\/hotel|le
 const toks = (s) => fold(s).replace(/[^a-z0-9]+/g, " ").split(" ").filter((w) => w.length > 1);
 const dist = (a, b) => { const r = Math.PI / 180, x = Math.sin((b[0] - a[0]) * r / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin((b[1] - a[1]) * r / 2) ** 2; return 12742e3 * Math.asin(Math.sqrt(x)); };
 const kindOf = (t) => { for (const k of ["amenity", "shop", "tourism", "leisure", "historic", "building"]) if (t[k]) return k + "/" + t[k]; return ""; };
-const variants = (v) => { const a = v.replace(/\([^)]*\)/g, " ").replace(/\s+/g, " ").trim(), first = a.split(/ · | - | – |,|\/|:/)[0].trim(), tail = (s) => s.replace(/\b((büyük|küçük|kırmızı|mor|mavi|yeşil|ana|çok amaçlı|[a-c0-9])\s+)?(sahne(si)?|salon(u)?)\b.*$/i, "").trim();
+const ALIAS = [[/\bK\.\s?M\.?(?=\s|$)|\bKM\b/gi, "Kültür Merkezi"], [/\bKSM\b/gi, "Kültür Sanat Merkezi"], [/\bB\.\s?B\.?(?=\s|$)|\bBld\b\.?|\bBel\.(?=\s|$)/gi, "Belediyesi"], [/\bDT\b/g, "Devlet Tiyatrosu"], [/\bSanat Merk\.?(?=\s|$)/gi, "Sanat Merkezi"], [/\bÜniv?\.(?=\s|$)/gi, "Üniversitesi"]];
+const expand = (v) => ALIAS.reduce((s, [r, b]) => s.replace(r, b), v);
+const variants = (v0) => { const v = expand(v0), a = v.replace(/\([^)]*\)/g, " ").replace(/\s+/g, " ").trim(), first = a.split(/ · | - | – |,|\/|:/)[0].trim(), tail = (s) => s.replace(/\b((büyük|küçük|kırmızı|mor|mavi|yeşil|ana|çok amaçlı|[a-c0-9])\s+)?(sahne(si)?|salon(u)?)\b.*$/i, "").trim();
   return [...new Set([a, first, tail(a), tail(first)].filter((x) => x.length > 2))]; };
 
 function index(els, il) { const L = [], by = new Map(), ilT = new Set(toks(il));
@@ -76,16 +80,38 @@ function match(v, I) { let best = null;
     best = x; break; }
   return best; }
 
+const put = (c, v, rec) => { if (c === "ankara") { VA[v] = rec; delete MA[v]; } else { VT[c + "|" + v] = rec; delete MT[c + "|" + v]; } want.get(c)?.delete(v); };
+const clean = (s) => String(s || "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+const inTR = (a, o) => a > 35.7 && a < 42.3 && o > 25.5 && o < 44.9;
+
+/* 1) Biletinial'in kendi mekân sayfaları (18.11.2026): etkinlik sayfasında mekâna bağlantı (/tr-tr/mekan/<ad>), mekân sayfasında adres ve haritanın koordinatı var.
+   Aynı adlı mekân birçok ilde olabilir ("Atatürk Sanat Merkezi" 47 ilde): sayfadaki adres ilimizi göstermiyorsa alınmaz. Yalnızca olgu (adres, koordinat) saklanır. */
+const BI_MAX = +(process.env.GEO_BI_MAX || 6000), slugs = new Map(), pages = new Map(); let biReq = 0, biHit = 0;
+const nk = (s) => toks(expand(s)).join(" ");
+async function biPage(slug) { if (pages.has(slug)) return pages.get(slug); biReq++; const r = await fetchText(`https://biletinial.com/tr-tr/mekan/${slug}`, { retries: 1 }), h = r.text || "";
+  const m = h.match(/maps\.google\.com\/maps\?q=(-?\d+\.\d+)\s*(?:,|%2C)\s*(-?\d+\.\d+)/i), ad = clean((h.match(/<h3>\s*Adres\s*<\/h3>\s*<p>([\s\S]*?)<\/p>/i) || [])[1]);
+  const p = m && inTR(+m[1], +m[2]) ? { lat: +m[1], lng: +m[2], addr: ad } : ad ? { addr: ad } : null; pages.set(slug, p); return p; }
+const biTodo = [...biUrl].filter(([k]) => { const i = k.indexOf("|"); return want.get(k.slice(0, i))?.has(k.slice(i + 1)); }), seenU = new Set();
+for (const [k, u] of biTodo) { if (biReq >= BI_MAX) break; const i = k.indexOf("|"), c = k.slice(0, i), v = k.slice(i + 1); if (!want.get(c)?.has(v)) continue;
+  if (!seenU.has(u)) { seenU.add(u); biReq++; const r = await fetchText(u, { retries: 1 }); for (const m of (r.text || "").matchAll(/href="\/tr-tr\/mekan\/([a-z0-9-]+)"[^>]*>([^<]{2,120})</gi)) { const n = nk(clean(m[2])); (slugs.get(n) || slugs.set(n, new Set()).get(n)).add(m[1]); } }
+  for (const s of slugs.get(nk(v)) || []) { const p = await biPage(s); if (!p?.lat) continue; const il = cityOfText(p.addr); if (il !== c) continue;
+    put(c, v, { lat: +p.lat.toFixed(7), lng: +p.lng.toFixed(7), addr: p.addr, ilce: (p.addr.match(/([^\s,\/]+)\s*\/\s*[^\/]+$/) || [])[1] || "", src: "biletinial", v: 2 }); biHit++; break; } }
+log(`geo-osm: Biletinial mekân sayfaları: ${biHit} mekân bulundu (${biReq} istek, ${slugs.size} mekân adı)`);
+
+// 2) Kalanlar: OpenStreetMap yerleri + aynı ildeki konumu bilinen mekânlar ("AYDIN GÜN SALONU" = "Aydın Gün Salonu", "Ata Sahne" = "Atakum Belediyesi Ata Sahne")
 await mkdir(join(ROOT, "scraper/out"), { recursive: true });
+const known = (c) => Object.entries(c === "ankara" ? VA : Object.fromEntries(Object.entries(VT).filter(([k]) => k.startsWith(c + "|")).map(([k, x]) => [k.slice(c.length + 1), x]))).filter(([, x]) => x?.lat).map(([n, x]) => ({ type: "known", center: { lat: x.lat, lon: x.lng }, tags: { name: expand(n), amenity: "theatre", "nvny:addr": x.addr || "", "addr:district": x.ilce || "" } }));
 const TSV = []; let tot = 0, hit = 0, evT = 0, evH = 0, fail = 0; const rep = [];
 for (const c of CITIES) { const W = want.get(c.id); if (!W?.size) continue;
-  const els = await pois(c.id); await sleep(2500); if (!els) { fail++; rep.push(`${c.id}:YOK`); continue; }
-  const I = index(els, c.name); let h = 0;
-  for (const [v, n] of W) { tot++; evT += n; const x = match(v, I); TSV.push([c.id, n, v, x ? x.n : "", x ? x.kind : ""].join("\t")); if (!x) continue; hit++; h++; evH += n; const t = x.t;
-    const addr = [t["addr:street"] && (t["addr:street"] + (t["addr:housenumber"] ? " No:" + t["addr:housenumber"] : "")), t["addr:neighbourhood"] || t["addr:suburb"], t["addr:district"]].filter(Boolean).join(", ");
-    const rec = { lat: +x.ll[0].toFixed(7), lng: +x.ll[1].toFixed(7), addr, ilce: t["addr:district"] || "", src: "osm", v: 2, osm: x.kind, m: "ov" };
-    if (c.id === "ankara") { VA[v] = rec; delete MA[v]; } else { VT[c.id + "|" + v] = rec; delete MT[c.id + "|" + v]; } }
-  rep.push(`${c.id}:${h}/${W.size}(${els.length})`); log(`geo-osm: ${c.name}: ${els.length} OSM yeri, ${h}/${W.size} mekân eşleşti`); }
+  let els = await pois(c.id); await sleep(2500); if (!els) { fail++; rep.push(`${c.id}:YOK`); els = []; }
+  const I = index([...known(c.id), ...els], c.name); let h = 0;
+  for (const [v, n] of [...W]) { tot++; evT += n; const x = match(v, I); TSV.push([c.id, n, v, x ? x.n : "", x ? x.kind : ""].join("\t")); if (!x) continue; hit++; h++; evH += n; const t = x.t;
+    const addr = t["nvny:addr"] || [t["addr:street"] && (t["addr:street"] + (t["addr:housenumber"] ? " No:" + t["addr:housenumber"] : "")), t["addr:neighbourhood"] || t["addr:suburb"], t["addr:district"]].filter(Boolean).join(", ");
+    put(c.id, v, { lat: +x.ll[0].toFixed(7), lng: +x.ll[1].toFixed(7), addr, ilce: t["addr:district"] || "", src: "osm", v: 2, osm: x.kind, m: "ov" }); }
+  rep.push(`${c.id}:${h}/${W.size + h}(${els.length})`); log(`geo-osm: ${c.name}: ${els.length} OSM yeri, ${h} mekân eşleşti, ${W.size} kaldı`); }
 await writeFile(join(ROOT, "scraper/out/geo-osm.tsv"), TSV.join("\n"));
+if (DRY) { const H = TSV.map((l) => l.split("\t")); console.log("--- eşleşenler\n" + H.filter((x) => x[3]).slice(0, 120).map((x) => `${x[0]} | ${x[2]} => ${x[3]} [${x[4]}]`).join("\n")); console.log("--- kalanlar\n" + H.filter((x) => !x[3]).sort((a, b) => b[1] - a[1]).slice(0, 80).map((x) => `${x[0]} | ${x[1]} | ${x[2]}`).join("\n")); }
+// sinema salonları adresleriyle yeniden denensin diye (geo.mjs) eski "bulunamadı" kayıtları silinir
+for (const k of cinema) if (MT[k] && (Date.parse(today) - Date.parse(MT[k])) / 864e5 >= 2) delete MT[k];
 if (!DRY) { await writeJSON(join(ROOT, "data/venues-tr.json"), VT, true); await writeJSON(join(ROOT, "data/venues.json"), VA, true); await writeJSON(join(ROOT, "data/geo-miss-tr.json"), MT, true); await writeJSON(join(ROOT, "data/geo-miss.json"), MA, true); }
-log(`geo-osm${DRY ? " (deneme)" : ""}: ${hit}/${tot} mekân bulundu (etkinlik ağırlığı ${evH}/${evT}); alınamayan il ${fail}`); log(rep.join(" "));
+log(`geo-osm${DRY ? " (deneme)" : ""}: Biletinial ${biHit}, OSM + aynı il ${hit}/${tot} (etkinlik ağırlığı ${evH}/${evT}); alınamayan il ${fail}`); log(rep.join(" "));

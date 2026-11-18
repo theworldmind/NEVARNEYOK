@@ -25,19 +25,31 @@ concurrency:
 jobs:
   konum:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 300
     env:
       TZ: Europe/Istanbul
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - name: Bağımlılıkları kur
+        working-directory: scraper
+        run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --no-audit --no-fund
       - name: Eşleştir
         working-directory: scraper
         env:
           GEO_DRY: ${{ github.event.inputs.deneme }}
           GEO_ILLER: ${{ github.event.inputs.iller }}
         run: node geo-osm.mjs
+      - name: Kalan mekânlar ve sinema salonları adresleriyle
+        if: github.event.inputs.deneme != 'true'
+        continue-on-error: true
+        timeout-minutes: 45
+        working-directory: scraper
+        env:
+          GEO_SCOPE: tr
+          GEO_MAX: "1500"
+        run: node geo.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
