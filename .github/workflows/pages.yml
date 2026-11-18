@@ -37,7 +37,7 @@ jobs:
         continue-on-error: true
         run: |
           U="https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}"
-          for p in "beraber-gorsel yg" "beraber-veri yv"; do set -- $p; rm -rf "/tmp/$2" "$2"; if git clone -q --depth 1 -b "$1" "$U" "/tmp/$2" 2>/dev/null; then rm -rf "/tmp/$2/.git"; mv "/tmp/$2" "$2"; fi; done
+          for p in "beraber-gorsel yg" "beraber-veri yv" "beraber-yukseklik yh"; do set -- $p; rm -rf "/tmp/$2" "$2"; if git clone -q --depth 1 -b "$1" "$U" "/tmp/$2" 2>/dev/null; then rm -rf "/tmp/$2/.git"; mv "/tmp/$2" "$2"; fi; done
       - uses: actions/cache@v4
         with:
           path: s
