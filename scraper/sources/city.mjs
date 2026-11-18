@@ -14,6 +14,7 @@ const TR = [
     listings: ["https://www.sanatcepte.gov.tr/etkinlik/etkinlikler"],
     link: /sanatcepte\.gov\.tr\/etkinlik\/etkinlik-detay\/[a-z0-9-]+/i, render: true, loadMore: ["Daha fazla"], city: "tr", maxDetail: 1600, concurrency: 5,
     parse: P.sanatcepte, heuristics: false, budgetMin: 150 },
+  { id: "akansel", name: "Akansel", kind: "mekan", home: "https://akanselegitimdanismanlik.com", listings: ["https://akanselegitimdanismanlik.com/seminerler.aspx"], parseList: P.akanselList, link: null, render: true, city: "tr", defaultCat: "atolye" },
   { id: "dob", name: "DOB", kind: "kurum", home: "https://www.operabale.gov.tr",
     collect: P.dobCollect, listings: [], link: null, city: "tr", defaultCat: "sahne" },
   // Bütün Türkiye'yi listeleyen bilet siteleri (15.11.2026, kullanıcı: "daha çok siteden veri al"): kayıt mekân/adresinden iline dağıtılır

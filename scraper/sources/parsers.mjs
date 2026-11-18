@@ -1,3 +1,4 @@
+import { cityOfText, cityById as _cById } from "../lib/cities.mjs";
 // Siteye özel detay sayfası okuyucuları.
 // Genel yöntemler (JSON-LD, metin) bu sitelerde yanlış/eksik sonuç verdiği için sayfanın kendi yapısından okunur.
 // Her biri [] (etkinlik yok), dizi (bulunanlar) ya da null (tanımadım → genel yönteme bırak) döner.
@@ -320,6 +321,22 @@ export async function bugeceCollect({ fetchText, src }) {
         image: x.image || "", genre: music.slice(0, 2).join(", "), catHint: /techno|house|electronic|dj|bounce|trance|disco/i.test(music.join(" ")) ? "parti" : "konser" });
     }
     if (!fresh) break;
+  }
+  return out;
+}
+
+
+// Akansel Eğitim Danışmanlık: söyleşi ve seminerlerin düzenleyeni (kullanıcı, 19.11.2026: Celal Şengör etkinliği kaçmıştı). Kart: tarih+saat+mekân, tarih+ad. Online olanlar alınmaz.
+export function akanselList(html, url) {
+  const out = [], AY = "Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık";
+  const nice = (t) => { const L = t.replace(/[^\p{L}]/gu, ""), U = L.replace(/[^\p{Lu}]/gu, ""); return L && U.length / L.length > .55 ? t.toLocaleLowerCase("tr").replace(/(^|\s)(\p{L})/gu, (m, a, b) => a + b.toLocaleUpperCase("tr")).replace(/ (İle|Ve) /g, (m) => m.toLocaleLowerCase("tr")) : t; };
+  for (const c of html.split(/<article\b[^>]*class="[^"]*ak-card/i).slice(1)) {
+    const leaf = c.split(/<[^>]+>/).map((x) => txt(x)).filter(Boolean), slug = (c.match(/seminerdetay\.aspx\?seminer=([^"#&]+)/i) || [])[1]; if (!slug) continue;
+    const w = leaf.map((x) => x.match(new RegExp(`^(\\d{1,2} (?:${AY}) 20\\d\\d),\\s*(\\d{1,2}:\\d{2})\\s*(.*)$`, "i"))).find(Boolean), n = leaf.map((x) => x.match(new RegExp(`^\\d{1,2} (?:${AY}) 20\\d\\d\\s+(?!,)(.+)$`, "i"))).find(Boolean);
+    if (!w || !n || !w[3] || /online|çevrim/i.test(w[3])) continue;
+    const D = parseTrDate(w[1]), city = cityOfText(n[1]) || cityOfText(slug.replace(/-/g, " ")) || cityOfText(w[3]); if (!D?.d || !city) continue;
+    const C = _cById(city), title = nice(n[1].replace(new RegExp(`(^|\\s)${C.name}(?=\\s|$)`, "iu"), " ").replace(/\s+/g, " ").trim()), img = (c.match(/<img[^>]+src="([^"]+)"/i) || [])[1];
+    out.push({ title, d: D.d, t: w[2].padStart(5, "0"), venue: nice(w[3]), city: C.name, url: abs("seminerdetay.aspx?seminer=" + slug, url), image: img ? abs(img, url) : "", via: "site", pc: 0, genre: "Söyleşi", catHint: "atolye" });
   }
   return out;
 }

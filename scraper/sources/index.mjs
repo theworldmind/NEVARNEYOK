@@ -97,6 +97,7 @@ export default [
   { id: "odtu-kkm", name: "ODTÜ KKM", kind: "mekan", home: "https://kkm.metu.edu.tr",
     listings: ["https://kkm.metu.edu.tr/tr/etkinlikler"],
     link: /kkm\.metu\.edu\.tr\/(tr\/)?(etkinlik|event)[^?#]*/i, render: true, city: "ankara", defaultVenue: "ODTÜ Kültür ve Kongre Merkezi" },
+  { id: "akansel", name: "Akansel", kind: "mekan", home: "https://akanselegitimdanismanlik.com", listings: ["https://akanselegitimdanismanlik.com/seminerler.aspx"], parseList: P.akanselList, link: null, render: true, city: "ankara", defaultCat: "atolye" },
   { id: "cermodern", name: "CerModern", kind: "mekan", home: "https://cermodern.org",
     listings: ["https://www.cermodern.org/etkinlikler"], parseList: P.cermodernList, link: null,
     render: true, city: "ankara", defaultVenue: "CerModern", defaultCat: "atolye" },
