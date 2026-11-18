@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T13:18:44.674Z",
+ "runAt": "2026-11-18T14:12:32.324Z",
  "mode": "refresh",
- "total": 2677,
+ "total": 2705,
  "written": true,
  "sources": {
   "biletix": {
@@ -11,14 +11,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 543,
-   "prevCount": 415,
+   "prevCount": 416,
    "error": "",
    "notes": [
-    "açık veri: 395 seans, 389 detay sayfası, dizinde 3509 kayıt"
+    "açık veri: 395 seans, 389 detay sayfası, dizinde 3511 kayıt"
    ],
-   "seconds": 266,
+   "seconds": 265,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "biletinial": {
    "id": "biletinial",
@@ -26,15 +26,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1682,
-   "prevCount": 1781,
+   "count": 1696,
+   "prevCount": 1778,
    "error": "",
    "notes": [
-    "açık veri: 1243 seans, 106 detay sayfası"
+    "açık veri: 1253 seans, 107 detay sayfası"
    ],
    "seconds": 71,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "sanatcepte": {
    "id": "sanatcepte",
@@ -48,7 +48,7 @@
    "notes": [],
    "seconds": 33,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "bubilet": {
    "id": "bubilet",
@@ -61,7 +61,7 @@
    "error": "",
    "notes": [],
    "seconds": 14,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "passo": {
@@ -74,9 +74,9 @@
    "prevCount": 39,
    "error": "",
    "notes": [],
-   "seconds": 48,
+   "seconds": 47,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "mobilet": {
    "id": "mobilet",
@@ -89,7 +89,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "iticket": {
@@ -102,9 +102,9 @@
    "prevCount": 12,
    "error": "",
    "notes": [],
-   "seconds": 7,
+   "seconds": 57,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "bugece": {
    "id": "bugece",
@@ -112,15 +112,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 10,
+   "count": 11,
    "prevCount": 19,
    "error": "",
    "notes": [
-    "açık veri: 10 seans"
+    "açık veri: 11 seans"
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "tiyatrolar": {
    "id": "tiyatrolar",
@@ -132,9 +132,9 @@
    "prevCount": 1,
    "error": "",
    "notes": [],
-   "seconds": 8,
+   "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "bilkent": {
    "id": "bilkent",
@@ -146,9 +146,9 @@
    "prevCount": 13,
    "error": "",
    "notes": [],
-   "seconds": 6,
+   "seconds": 7,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "biletino": {
    "id": "biletino",
@@ -161,7 +161,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "dob": {
@@ -176,9 +176,9 @@
    "notes": [
     "açık veri: 36 seans"
    ],
-   "seconds": 30,
+   "seconds": 23,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "cso": {
    "id": "cso",
@@ -191,7 +191,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "abb-tiyatro": {
@@ -205,7 +205,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "abb-kultur": {
@@ -219,7 +219,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "cankaya": {
@@ -233,7 +233,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "yenimahalle": {
@@ -247,7 +247,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "kecioren": {
@@ -261,7 +261,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "etimesgut": {
@@ -276,7 +276,7 @@
    "notes": [],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "mamak": {
    "id": "mamak",
@@ -291,7 +291,7 @@
     "açık veri: 6 seans"
    ],
    "seconds": 9,
-   "failStreak": 11,
+   "failStreak": 12,
    "lastOk": "2026-11-15T13:44:26.805Z"
   },
   "odtu-kkm": {
@@ -305,7 +305,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   },
   "cermodern": {
@@ -319,7 +319,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "erimtan": {
@@ -333,7 +333,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "radar": {
@@ -348,9 +348,9 @@
    "notes": [
     "süre doldu: 94 detay sayfası bu tur atlandı"
    ],
-   "seconds": 722,
+   "seconds": 719,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "allevents": {
    "id": "allevents",
@@ -364,7 +364,7 @@
    "notes": [],
    "seconds": 33,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -378,7 +378,7 @@
    "notes": [],
    "seconds": 215,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:18:44.674Z"
+   "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "ra": {
    "id": "ra",
@@ -391,7 +391,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 27,
+   "failStreak": 28,
    "lastOk": null
   }
  }

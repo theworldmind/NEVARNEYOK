@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T13:17:39.473Z",
+ "updated": "2026-11-18T14:11:04.084Z",
  "notes": [
   "trt: 0 aday",
   "aa: 2 aday",
@@ -18,7 +18,7 @@
   "cumhuriyet-turkiye: 1 aday",
   "mansetankara: 0 aday",
   "mansetankara2: 404",
-  "ankarahaber: fetch failed",
+  "ankarahaber: işlem 25 sn içinde bitmedi",
   "iha: akış değil",
   "dha: 404",
   "ntv-sanat: 301",
@@ -33,9 +33,9 @@
   "duvar: 403",
   "karar: 410",
   "star: 0 aday",
-  "haberler-kultur: 10 aday",
+  "haberler-kultur: 11 aday",
   "haberler-yasam: 0 aday",
-  "haber7-kultur: 2 aday",
+  "haber7-kultur: 1 aday",
   "iha-kultur: 404",
   "aa-yasam: 0 aday",
   "trt-yasam: 0 aday",
@@ -53,7 +53,7 @@
   "baskentgazete: 1 aday",
   "yeniasir: akış değil",
   "yeniasir-1: 0 aday",
-  "egedesonsoz: 0 aday",
+  "egedesonsoz: 1 aday",
   "egedesonsoz-1: 1 aday",
   "egetelgraf: 0 aday",
   "egetelgraf-1: 403",
@@ -68,7 +68,7 @@
   "antalyasondakika: fetch failed",
   "akdenizgazetesi: fetch failed",
   "yeniadana: 404",
-  "adanamedya: 0 aday",
+  "adanamedya: işlem 25 sn içinde bitmedi",
   "konyayenigun: 0 aday",
   "yenikonya: 0 aday",
   "esanadolugazetesi: fetch failed",
@@ -79,7 +79,7 @@
   "olaygazetesi: fetch failed",
   "samsunhaber: 0 aday",
   "takagazete: 1 aday",
-  "mersinhaber: 0 aday",
+  "mersinhaber: işlem 25 sn içinde bitmedi",
   "hataygazetesi: fetch failed",
   "denizlihaber: 403",
   "muglahaber: 0 aday",
@@ -104,7 +104,7 @@
   "boluolay: 403",
   "duzcehaber: akış değil",
   "orduolay: 403",
-  "giresunhaber: 429",
+  "giresunhaber: 404",
   "rizehaber: fetch failed",
   "kastamonuhaber: 404",
   "urfanatik: 0 aday",
@@ -122,6 +122,23 @@
  ],
  "items": [
   {
+   "id": "muradiye-mevlevihanesinde-anadolu-evliyalari-edirne",
+   "city": "edirne",
+   "title": "Muradiye Mevlevihanesi'nde Anadolu Evliyaları",
+   "cat": "konser",
+   "venue": "Muradiye Mevlevihanesi",
+   "days": [
+    "2026-11-20"
+   ],
+   "until": "",
+   "from": "",
+   "t": "20:00",
+   "free": true,
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/guncel/edirne-de-muradiye-mevlevihanesi-nde-anadolu-20438765-haberi/",
+   "seen": "2026-11-18T13:17:39.473Z"
+  },
+  {
    "id": "30-uluslararasi-ankara-caz-festivali-ankara",
    "city": "ankara",
    "title": "30. Uluslararası Ankara Caz Festivali",
@@ -135,6 +152,129 @@
    "site": "AA",
    "url": "https://www.aa.com.tr/tr/kultur/30-uluslararasi-ankara-caz-festivali-caz-evrenseldir-temasiyla-basladi/4127908",
    "seen": "2026-11-18T12:40:21.322Z"
+  },
+  {
+   "id": "artvin-borckada-halklarin-turkuleri-artvin",
+   "city": "artvin",
+   "title": "Artvin Borçka'da Halkların Türküleri",
+   "cat": "konser",
+   "venue": "",
+   "days": [
+    "2026-11-27"
+   ],
+   "until": "",
+   "from": "",
+   "t": "20:00",
+   "img": "https://media.cumhuriyet.com.tr/Archive//48dacaaf-c5fd-4858-9ae5-a7bfe6d79898.jpg",
+   "site": "Cumhuriyet",
+   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/artvin-borcka-da-halklarin-turkuleri-konseri-duzenlenecek-2557248",
+   "seen": "2026-11-18T13:17:39.473Z"
+  },
+  {
+   "id": "italyan-ezgileriyle-bir-aksam-mersin",
+   "city": "mersin",
+   "title": "İtalyan Ezgileriyle Bir Akşam",
+   "cat": "konser",
+   "venue": "Mersin Kültür Merkezi",
+   "days": [
+    "2026-11-19"
+   ],
+   "until": "",
+   "from": "",
+   "t": "20:00",
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/kultur-sanat/mdob-italyan-ezgileriyle-bir-aksam-konserini-19-20435059-haberi/",
+   "seen": "2026-11-18T13:17:39.473Z"
+  },
+  {
+   "id": "altin-taka-film-festivali-trabzon",
+   "city": "trabzon",
+   "title": "Altın Taka Film Festivali",
+   "cat": "festival",
+   "venue": "",
+   "days": [
+    "2026-12-15",
+    "2026-12-16",
+    "2026-12-17",
+    "2026-12-18",
+    "2026-12-19",
+    "2026-12-20"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "img": "https://im.haberturk.com/l/2026/11/15/ver1794753445/3927518/jpg/1200x628",
+   "site": "Habertürk",
+   "url": "https://www.haberturk.com/kultur-sanat/trabzon-altin-taka-film-festivali-nde-56-film-yarisacak-3927518",
+   "seen": "2026-11-18T12:40:21.322Z"
+  },
+  {
+   "id": "sanat-lezzetli-resimler-antalya",
+   "city": "ankara",
+   "title": "Sanat: Lezzetli Resimler",
+   "cat": "atolye",
+   "venue": "İktisadi Bağımsızlık Müzesi Ankara Sanat Galerisi",
+   "days": [],
+   "until": "2027-01-10",
+   "from": "",
+   "t": "",
+   "img": "https://im.haberturk.com/l/2026/11/16/ver1794825219/3927682/jpg/1200x628",
+   "site": "Habertürk",
+   "url": "https://www.haberturk.com/kultur-sanat/tat-ve-sanat-lezzetli-resimler-sergisi-antalya-kultur-sanatta-ziyarete-acildi-3927682",
+   "seen": "2026-11-18T12:40:21.322Z"
+  },
+  {
+   "id": "muglada-tiyatro-gunleri-mugla",
+   "city": "mugla",
+   "title": "Muğla'da Tiyatro Günleri",
+   "cat": "tiyatro",
+   "venue": "Marmaris Armutalan Kültür Merkezi",
+   "days": [
+    "2026-11-20",
+    "2026-11-21",
+    "2026-12-04",
+    "2026-12-19",
+    "2027-01-14"
+   ],
+   "until": "",
+   "from": "",
+   "t": "14:00",
+   "free": true,
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/kultur-sanat/mugla-da-tiyatro-gunleri-6-ilcede-6-oyunla-20436466-haberi/",
+   "seen": "2026-11-18T13:17:39.473Z"
+  },
+  {
+   "id": "tipografi-festivali-eskisehir",
+   "city": "eskisehir",
+   "title": "Tipografi Festivali",
+   "cat": "festival",
+   "venue": "Tipografi Festivali GSF Dekanlık Konferans Salonun",
+   "days": [],
+   "until": "2026-12-11",
+   "from": "",
+   "t": "",
+   "img": "https://foto.haberler.com/haber/2026/11/17/eskisehir-de-18-anadolu-kaligrafi-ve-tipograf-20434899_amp.jpg",
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/kultur-sanat/eskisehir-de-18-anadolu-kaligrafi-ve-tipografi-20434899-haberi/",
+   "seen": "2026-11-18T13:17:39.473Z"
+  },
+  {
+   "id": "ara-tatil-senligi-erzurum",
+   "city": "erzurum",
+   "title": "Ara Tatil Şenliği",
+   "cat": "tiyatro",
+   "venue": "",
+   "days": [
+    "2026-11-23"
+   ],
+   "until": "2026-11-23",
+   "from": "2026-11-14",
+   "t": "",
+   "img": "https://i12.haber7.net//haber/haber7/photos/2026/47/uZgAu_1794991057_018.jpg",
+   "site": "Haber7",
+   "url": "https://www.haber7.com/istanbul/3677841-bagcilarda-ara-tatil-senligi-coskusu-tiyatro-ile-bulustu",
+   "seen": "2026-11-18T13:17:39.473Z"
   },
   {
    "id": "2-aile-arasinda-istanbul",
@@ -152,6 +292,23 @@
    "img": "https://image.hurimg.com/i/hurriyet/90/0x0/6afd2a393516f14679cc9bab.jpg",
    "site": "Hürriyet",
    "url": "https://www.hurriyet.com.tr/kelebek/televizyon/2-aile-arasindanin-gala-biletleri-tukendi-43381916",
+   "seen": "2026-11-18T12:40:21.322Z"
+  },
+  {
+   "id": "romeo-ve-juliet-istanbul",
+   "city": "istanbul",
+   "title": "Romeo ve Juliet",
+   "cat": "tiyatro",
+   "venue": "Türk Telekom Opera Salonu",
+   "days": [
+    "2026-12-05"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "img": "https://media.cumhuriyet.com.tr/Archive/4ca5dffc-e818-45c7-973a-9d6ca1c69f11.jpg",
+   "site": "Cumhuriyet",
+   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/shakespeare-in-olumsuz-eseri-romeo-ve-juliet-sahnelenecek-2553709",
    "seen": "2026-11-18T12:40:21.322Z"
   },
   {
@@ -180,43 +337,6 @@
    "seen": "2026-11-18T12:40:21.322Z"
   },
   {
-   "id": "sanat-lezzetli-resimler-antalya",
-   "city": "ankara",
-   "title": "Sanat: Lezzetli Resimler",
-   "cat": "atolye",
-   "venue": "İktisadi Bağımsızlık Müzesi Ankara Sanat Galerisi",
-   "days": [],
-   "until": "2027-01-10",
-   "from": "",
-   "t": "",
-   "img": "https://im.haberturk.com/l/2026/11/16/ver1794825219/3927682/jpg/1200x628",
-   "site": "Habertürk",
-   "url": "https://www.haberturk.com/kultur-sanat/tat-ve-sanat-lezzetli-resimler-sergisi-antalya-kultur-sanatta-ziyarete-acildi-3927682",
-   "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
-   "id": "altin-taka-film-festivali-trabzon",
-   "city": "trabzon",
-   "title": "Altın Taka Film Festivali",
-   "cat": "festival",
-   "venue": "",
-   "days": [
-    "2026-12-15",
-    "2026-12-16",
-    "2026-12-17",
-    "2026-12-18",
-    "2026-12-19",
-    "2026-12-20"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://im.haberturk.com/l/2026/11/15/ver1794753445/3927518/jpg/1200x628",
-   "site": "Habertürk",
-   "url": "https://www.haberturk.com/kultur-sanat/trabzon-altin-taka-film-festivali-nde-56-film-yarisacak-3927518",
-   "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
    "id": "sehrin-nabzi-istanbul",
    "city": "istanbul",
    "title": "Şehrin Nabzı",
@@ -229,21 +349,6 @@
    "img": "https://media.cumhuriyet.com.tr/Archive/da12ba99-1643-4eae-a88c-cc610da1fb71.jpg",
    "site": "Cumhuriyet",
    "url": "https://www.cumhuriyet.com.tr/kultur-sanat/elde-edilecek-tum-gelir-tegv-e-bagislanacak-sehrin-nabzi-sergisi-cocuklara-destek-olacak-2556442",
-   "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
-   "id": "dus-izi-ankara",
-   "city": "trabzon",
-   "title": "Düş İzi",
-   "cat": "atolye",
-   "venue": "Trabzon Akçaabat Güzel Sanatlar Lisesi",
-   "days": [],
-   "until": "2026-11-28",
-   "from": "",
-   "t": "18:00",
-   "img": "https://media.cumhuriyet.com.tr/Archive/ed1f3bdd-f504-4cda-9e8d-17a37d685f12.jpg",
-   "site": "Cumhuriyet",
-   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/mumin-candas-in-dus-izi-sergisi-ankara-da-sanatseverlerle-bulusuyor-2555881",
    "seen": "2026-11-18T12:40:21.322Z"
   },
   {
@@ -284,139 +389,19 @@
    "seen": "2026-11-18T12:40:21.322Z"
   },
   {
-   "id": "romeo-ve-juliet-istanbul",
-   "city": "istanbul",
-   "title": "Romeo ve Juliet",
-   "cat": "tiyatro",
-   "venue": "Türk Telekom Opera Salonu",
-   "days": [
-    "2026-12-05"
-   ],
-   "until": "",
+   "id": "dus-izi-ankara",
+   "city": "trabzon",
+   "title": "Düş İzi",
+   "cat": "atolye",
+   "venue": "Trabzon Akçaabat Güzel Sanatlar Lisesi",
+   "days": [],
+   "until": "2026-11-28",
    "from": "",
-   "t": "",
-   "img": "https://media.cumhuriyet.com.tr/Archive/4ca5dffc-e818-45c7-973a-9d6ca1c69f11.jpg",
+   "t": "18:00",
+   "img": "https://media.cumhuriyet.com.tr/Archive/ed1f3bdd-f504-4cda-9e8d-17a37d685f12.jpg",
    "site": "Cumhuriyet",
-   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/shakespeare-in-olumsuz-eseri-romeo-ve-juliet-sahnelenecek-2553709",
+   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/mumin-candas-in-dus-izi-sergisi-ankara-da-sanatseverlerle-bulusuyor-2555881",
    "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
-   "id": "artvin-borckada-halklarin-turkuleri-artvin",
-   "city": "artvin",
-   "title": "Artvin Borçka'da Halkların Türküleri",
-   "cat": "konser",
-   "venue": "",
-   "days": [
-    "2026-11-27"
-   ],
-   "until": "",
-   "from": "",
-   "t": "20:00",
-   "img": "https://media.cumhuriyet.com.tr/Archive//48dacaaf-c5fd-4858-9ae5-a7bfe6d79898.jpg",
-   "site": "Cumhuriyet",
-   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/artvin-borcka-da-halklarin-turkuleri-konseri-duzenlenecek-2557248",
-   "seen": "2026-11-18T13:17:39.473Z"
-  },
-  {
-   "id": "tipografi-festivali-eskisehir",
-   "city": "eskisehir",
-   "title": "Tipografi Festivali",
-   "cat": "festival",
-   "venue": "Tipografi Festivali GSF Dekanlık Konferans Salonun",
-   "days": [],
-   "until": "2026-12-11",
-   "from": "",
-   "t": "",
-   "img": "https://foto.haberler.com/haber/2026/11/17/eskisehir-de-18-anadolu-kaligrafi-ve-tipograf-20434899_amp.jpg",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/kultur-sanat/eskisehir-de-18-anadolu-kaligrafi-ve-tipografi-20434899-haberi/",
-   "seen": "2026-11-18T13:17:39.473Z"
-  },
-  {
-   "id": "ankara-caz-festivali-ankara",
-   "city": "ankara",
-   "title": "Ankara Caz Festivali",
-   "cat": "festival",
-   "venue": "",
-   "days": [],
-   "until": "2026-11-30",
-   "from": "",
-   "t": "",
-   "img": "https://foto.haberler.com/haber/2026/11/17/ankara-caz-festivali-30-yilinda-serkan-alagok-20436388_amp.jpg",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/guncel/ankara-caz-festivali-30-yilinda-serkan-alagok-20436388-haberi/",
-   "seen": "2026-11-18T13:17:39.473Z"
-  },
-  {
-   "id": "muradiye-mevlevihanesinde-anadolu-evliyalari-edirne",
-   "city": "edirne",
-   "title": "Muradiye Mevlevihanesi'nde Anadolu Evliyaları",
-   "cat": "konser",
-   "venue": "Muradiye Mevlevihanesi",
-   "days": [
-    "2026-11-20"
-   ],
-   "until": "",
-   "from": "",
-   "t": "20:00",
-   "free": true,
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/guncel/edirne-de-muradiye-mevlevihanesi-nde-anadolu-20438765-haberi/",
-   "seen": "2026-11-18T13:17:39.473Z"
-  },
-  {
-   "id": "italyan-ezgileriyle-bir-aksam-mersin",
-   "city": "mersin",
-   "title": "İtalyan Ezgileriyle Bir Akşam",
-   "cat": "konser",
-   "venue": "Mersin Kültür Merkezi",
-   "days": [
-    "2026-11-19"
-   ],
-   "until": "",
-   "from": "",
-   "t": "20:00",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/kultur-sanat/mdob-italyan-ezgileriyle-bir-aksam-konserini-19-20435059-haberi/",
-   "seen": "2026-11-18T13:17:39.473Z"
-  },
-  {
-   "id": "muglada-tiyatro-gunleri-mugla",
-   "city": "mugla",
-   "title": "Muğla'da Tiyatro Günleri",
-   "cat": "tiyatro",
-   "venue": "Marmaris Armutalan Kültür Merkezi",
-   "days": [
-    "2026-11-20",
-    "2026-11-21",
-    "2026-12-04",
-    "2026-12-19",
-    "2027-01-14"
-   ],
-   "until": "",
-   "from": "",
-   "t": "14:00",
-   "free": true,
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/kultur-sanat/mugla-da-tiyatro-gunleri-6-ilcede-6-oyunla-20436466-haberi/",
-   "seen": "2026-11-18T13:17:39.473Z"
-  },
-  {
-   "id": "ara-tatil-senligi-erzurum",
-   "city": "erzurum",
-   "title": "Ara Tatil Şenliği",
-   "cat": "tiyatro",
-   "venue": "",
-   "days": [
-    "2026-11-23"
-   ],
-   "until": "2026-11-23",
-   "from": "2026-11-14",
-   "t": "",
-   "img": "https://i12.haber7.net//haber/haber7/photos/2026/47/uZgAu_1794991057_018.jpg",
-   "site": "Haber7",
-   "url": "https://www.haber7.com/istanbul/3677841-bagcilarda-ara-tatil-senligi-coskusu-tiyatro-ile-bulustu",
-   "seen": "2026-11-18T13:17:39.473Z"
   }
  ]
 }
