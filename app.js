@@ -1551,8 +1551,17 @@ function routeSheet(e, v, city) {
   // konum yoksa yol tarifi kapanmaz, başka yere de atlamaz: burada açmasını ister, gelir gelmez yolu çizer
   const locCard = (k, fast) => { from = null; st.innerHTML = ""; const no = k === "off2"; // kullanıcı (13:27): "millete yol gösterme, basınca açılsın": tek cümle, tek düğme
     if (no && fast && /android/i.test(navigator.userAgent)) { try { location.href = "intent:#Intent;action=android.settings.LOCATION_SOURCE_SETTINGS;end"; } catch {} }
-    sum.innerHTML = `<div class="lcd"><span class="lci"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span><span class="lct"><b>${no ? "Konum açılmadı" : "Konumun kapalı"}</b><small>${no ? "Açıldığı an yolu burada çizeriz." : "Aç, yolu hemen çizelim."}</small></span></div><button type="button" class="lcb">Konumunu aç</button>`;
-    $(".lcb", sum).addEventListener("click", (ev) => { ev.currentTarget.classList.add("w"); lw?.retry(); snd.sel?.(); haptic(6); }); };
+    sum.innerHTML = `<div class="lcd"><span class="lci"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span><span class="lct"><b>${no ? "Konum açılmadı" : "Konumun kapalı"}</b><small id="lch">${no ? "Açıldığı an yolu burada çizeriz." : "Aç, yolu hemen çizelim."}</small></span></div><button type="button" class="lcb">Konumunu aç</button>`;
+    // 18.11.2026 16:13 (kullanıcı: "konumu aç'a tıkladım, bir şey olmadı"): Chromebook, bilgisayar ve iPhone'da tarayıcı sitenin konumu açmasına izin vermez,
+    // bu yüzden düğme hemen reddedildiğinde "bir şey olmuyor" gibi kalıyordu. Yalnızca o durumda, tek satırla cihazın kendi anahtarının yeri yazılır (Android'de ayar ekranı doğrudan açılır).
+    if (no && fast && !/android/i.test(navigator.userAgent)) (navigator.permissions?.query ? navigator.permissions.query({ name: "geolocation" }).then((q) => q.state, () => "") : Promise.resolve("")).then((ps) => {
+      const ua = navigator.userAgent, den = ps === "denied", h = $("#lch", sum); if (!h) return;
+      h.innerHTML = isIOS ? "<b>Ayarlar › Gizlilik › Konum Servisleri</b>'ni aç, sonra tekrar dokun."
+        : /CrOS/.test(ua) ? (den ? (standalone ? "Pencerenin <b>⋮</b> menüsü › <b>Uygulama bilgileri</b> › <b>Konum</b>'u aç." : "Adres çubuğundaki <b>simgeye</b> dokun › <b>Konum</b>'u aç.") : "<b>Ayarlar › Güvenlik ve gizlilik › Konum erişimi</b>'ni aç.")
+        : den ? (standalone ? "Pencerenin <b>⋮</b> menüsü › <b>Uygulama bilgileri</b> › <b>Konum</b>'u aç." : "Adres çubuğundaki <b>simgeye</b> tıkla › <b>Konum</b>'u aç.")
+        : /Mac/.test(ua) ? "<b>Sistem Ayarları › Gizlilik ve Güvenlik › Konum Servisleri</b>'nde tarayıcını aç." : /Windows/.test(ua) ? "<b>Ayarlar › Gizlilik ve güvenlik › Konum</b>'u aç." : "Cihazının konum anahtarını aç.";
+      h.insertAdjacentHTML("beforeend", " Açtığın an yolu çizeriz."); });
+    $(".lcb", sum).addEventListener("click", (ev) => { const b = ev.currentTarget; b.classList.add("w"); b.textContent = "Konum aranıyor…"; lw?.retry(); snd.sel?.(); haptic(6); }); };
   function pick(s, user) {
     if (nav && s !== "me") return; if (s !== "me") { lw?.stop(); lw = null; } src = s; store.set("nvny-rota-kaynak", s === "x" ? "me" : s); chips(); rfx.hidden = s !== "x" || !!(xPlace && !user); sh.classList.toggle("fixed", s !== "me" || rev);
     if (s === "me") { pin(null); if (meP) { go(meP); return; }
