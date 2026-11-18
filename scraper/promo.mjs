@@ -2,7 +2,7 @@
 //   reklam-bugun     "Bugün Ankara'da neler var?"   bugünün afişleri (gönderi 4:5 + hikâye 9:16)
 //   reklam-hafta     "Bu hafta Ankara'da neler var?" 7 günün öne çıkanları, gün etiketiyle
 //   reklam-uygulama  "Ankara'nın etkinlikleri artık cebinde" uygulama tanıtımı
-// Hepsinin altında "Uygulamamızı indirin · nevarneyok.net.tr/indir" çağrısı ve "by oneside".
+// Hepsinin altında indirme çağrısı YOK (kullanıcı, 18.11.2026): genel bir "web sitesinden ya da uygulamadan" şeridi (uygulama simgesi + nevarneyok.net.tr) ve "by oneside".
 // Afişler etkinliklerin herkese açık afişleridir: değiştirilmeden (kırpılmadan, sığdırılarak), altında "Görsel: <kaynak>".
 // Afişi yüklenmeyen etkinlik görselden çıkarılır; yeterli afiş yoksa o görsel üretilmez. Fiyat yazılmaz.
 import { join } from "node:path";
@@ -42,11 +42,15 @@ function pick(list, n) {
 }
 
 let lid = 0;
-// Logo: kullanıcının dosyası birebir (brand/logo.png); sayfa setContent ile açıldığı için gömülü
-const LOGO = "data:image/png;base64," + (await import("node:fs")).readFileSync(new URL("../brand/logo.png", import.meta.url)).toString("base64");
+// Logo: uygulamadaki logo birebir (brand/logo-cam.png: kullanıcının harfleri + cam mercek; kullanıcı 18.11.2026: "uygulamada kullandığımız o logo");
+// uygulama simgesi icons/icon-512.png. Sayfa setContent ile açıldığı için gömülü.
+const fsx = await import("node:fs");
+const LOGO = "data:image/png;base64," + fsx.readFileSync(new URL("../brand/logo-cam.png", import.meta.url)).toString("base64");
+const ICON = "data:image/png;base64," + fsx.readFileSync(new URL("../icons/icon-512.png", import.meta.url)).toString("base64");
 const WORD = (cls = "") => `<div class="wm ${cls}"><img src="${LOGO}" alt="Ne Var Ne Yok"></div>`;
 const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg>`;
-const CTA = `<div class="cta"><div class="tile">${WORD("sm")}</div><div class="ct"><b>Uygulamamızı indirin</b><span>nevarneyok.net.tr/indir</span><i>Android · iPhone · ücretsiz</i></div><div class="go">İNDİR<svg viewBox="0 0 24 24"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+// Kapanış şeridi: indirme çağrısı değil, genel erişim bilgisi (web sitesi ya da uygulama)
+const CTA = `<div class="cta"><img class="ico" src="${ICON}" alt=""><div class="ct"><b>Hepsi tek yerde</b><span>nevarneyok.net.tr</span><i>Web sitesinden ya da uygulamadan bak</i></div><div class="ways"><em><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5s-1.2 6.1-3.8 8.5c-2.6-2.4-3.8-5.2-3.8-8.5S9.4 5.9 12 3.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Web</em><em><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Uygulama</em></div></div>
 <div class="os"><span>by</span>${OS}<em>one<b>side</b></em></div>`;
 
 const CSS = `@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap");
@@ -73,11 +77,15 @@ h1 em{font-style:normal;color:#8b5cf6}
 .c b{margin-top:10px;font:700 19px/1.15 "Inter Tight";white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .c small{margin-top:3px;font:600 14px "Inter Tight";color:rgba(255,255,255,.66);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .c u{margin-top:2px;text-decoration:none;font:600 11px "JetBrains Mono",monospace;color:rgba(255,255,255,.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cta{display:flex;align-items:center;gap:22px;padding:20px 22px;border-radius:28px;background:linear-gradient(160deg,rgba(30,32,78,.96),rgba(14,15,38,.96));box-shadow:0 0 0 2px rgba(139,92,246,.65),0 20px 44px rgba(0,0,0,.5)}
+.cta{display:flex;align-items:center;gap:22px;padding:20px 24px;border-radius:30px;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.12),0 20px 44px rgba(0,0,0,.45)}
+.cta .ico{flex:none;width:104px;height:104px;border-radius:24px;box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.12)}
+.ways{display:flex;flex-direction:column;gap:8px;flex:none}
+.ways em{display:flex;align-items:center;gap:8px;padding:9px 15px;border-radius:999px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);font:700 17px "Inter Tight";font-style:normal}
+.ways svg{width:20px;height:20px;color:#c4b5fd}
 .tile{display:grid;place-items:center;flex:none;width:104px;height:104px;border-radius:24px;background:#0a0a10;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16),0 10px 22px rgba(0,0,0,.45)}
 .ct{flex:1;display:flex;flex-direction:column;min-width:0}
-.ct b{font:800 40px/1 Archivo;font-variation-settings:"wdth" 86;letter-spacing:-.02em}
-.ct span{margin-top:8px;font:700 21px "JetBrains Mono",monospace;color:#b9a3fb}
+.ct b{font:800 36px/1 Archivo;font-variation-settings:"wdth" 86;letter-spacing:-.02em}
+.ct span{margin-top:8px;font:700 24px "JetBrains Mono",monospace;color:#c4b5fd}
 .ct i{margin-top:6px;font:600 14px "JetBrains Mono",monospace;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .go{display:flex;align-items:center;gap:8px;flex:none;padding:18px 22px;border-radius:18px;background:linear-gradient(115deg,#8b5cf6,#7c3aed);font:800 22px Archivo;letter-spacing:.04em;box-shadow:0 10px 24px rgba(139,92,246,.35)}
 .go svg{width:26px;height:26px}
@@ -87,7 +95,7 @@ h1 em{font-style:normal;color:#8b5cf6}
 .hero{flex:1;position:relative;display:grid;place-items:center;margin:10px 0}
 .fan{position:absolute;width:300px;aspect-ratio:830/1200;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 20px 40px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.12)}
 .fan img{width:100%;height:100%;object-fit:cover}
-.big{position:relative;z-index:3;display:grid;place-items:center;width:330px;height:330px;border-radius:76px;background:#0a0a10;box-shadow:inset 0 0 0 3px rgba(255,255,255,.16),0 30px 70px rgba(0,0,0,.6),0 0 90px rgba(124,92,255,.45)}
+.big{position:relative;z-index:3;display:block;width:330px;height:330px;border-radius:76px;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1.5px rgba(255,255,255,.14)}
 .big .wm{font-size:74px}
 .feat{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:26px}
 .feat span{padding:12px 18px;border-radius:999px;background:rgba(255,255,255,.09);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);font:700 20px "Inter Tight"}
@@ -138,9 +146,9 @@ const head = (h1, sub) => `<div class="top">${WORD()}<span class="pill">ANKARA</
 const bugun = (cols, ph) => `<div class="pg" style="--ph:${ph}px">${head("Bugün Ankara'da<br><em>neler var?</em>", `${dateLine} · ${todayAll} ETKİNLİK`)}<div class="grid" style="grid-template-columns:repeat(${cols},1fr)">${todayEv.map((e) => card(e)).join("")}</div>${CTA}</div>`;
 const hafta = (cols, ph) => `<div class="pg" style="--ph:${ph}px">${head("Bu hafta Ankara'da<br><em>neler var?</em>", `${range} · ${weekAll} ETKİNLİK`)}<div class="grid" style="grid-template-columns:repeat(${cols},1fr)">${weekSorted.map((x) => card({ ...x.e, t: "" }, x.day + (x.e.t ? " · " + x.e.t : ""))).join("")}</div>${CTA}</div>`;
 const fanEv = pick(ev.filter((e) => e.d <= addDaysISO(today, 3)), 8);
-const uyg = (story) => `<div class="pg">${head("Ankara'nın etkinlikleri<br><em>artık cebinde.</em>", "KONSER · TİYATRO · SİNEMA · ÇOCUK · STAND-UP")}
-<div class="hero"><div class="fans">${fanEv.map((e, i) => `<div class="fan c" style="transform:translate(${[-250, 250, -170, 170, 0][i % 5]}px,${[30, 30, -60, -60, -120][i % 5]}px) rotate(${[-12, 12, -5, 5, 0][i % 5]}deg);z-index:${i < 2 ? 1 : 0}"><img class="po" src="${src(e)}" referrerpolicy="no-referrer" alt=""></div>`).join("")}</div><div class="big">${WORD()}</div></div>
-<div class="feat"><span>Bilet siteleri yan yana</span><span>Sinema seansları</span><span>İptal ve ertelemeler</span><span>Her gün güncel</span>${story ? "<span>Afiş duvarı</span><span>Ücretsiz</span>" : ""}</div>${CTA}
+const uyg = (story) => `<div class="pg">${head("Ankara'da ne var<br><em>ne yok?</em>", "KONSER · TİYATRO · SİNEMA · ÇOCUK · STAND-UP")}
+<div class="hero"><div class="fans">${fanEv.map((e, i) => `<div class="fan c" style="transform:translate(${[-250, 250, -170, 170, 0][i % 5]}px,${[30, 30, -60, -60, -120][i % 5]}px) rotate(${[-12, 12, -5, 5, 0][i % 5]}deg);z-index:${i < 2 ? 1 : 0}"><img class="po" src="${src(e)}" referrerpolicy="no-referrer" alt=""></div>`).join("")}</div><img class="big" src="${ICON}" alt="Ne Var Ne Yok"></div>
+<div class="feat"><span>Bilet siteleri yan yana</span><span>Sinema seansları</span><span>İptal ve ertelemeler</span><span>Her gün güncel</span>${story ? "<span>Harita ve yol tarifi</span><span>Ücretsiz</span>" : ""}</div>${CTA}
 <div style="position:absolute;left:0;right:0;bottom:-34px;text-align:center;font:600 11px 'JetBrains Mono',monospace;color:rgba(255,255,255,.4)">Afişler etkinliklerin kendi sayfalarından; görseller sahiplerine aittir.</div></div>`;
 
 try {
@@ -158,9 +166,9 @@ try {
 } finally { if (browser) await browser.close(); }
 
 const CAP = {
-  bugun: `Bugün Ankara'da neler var? 👀 ${fmtDate(today)} ${dayName(today)}\n\nKonser, tiyatro, sinema, çocuk etkinlikleri ve daha fazlası tek yerde. Saatler, mekânlar ve bilet siteleri yan yana.\n\n📲 Uygulamamızı indirin: nevarneyok.net.tr/indir\n🔗 Bağlantı profilde\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankaraetkinlik #ankaradabugün #neyapsam #başkent`,
-  hafta: `Bu hafta Ankara'da neler var? 🗓️ ${range.toLocaleLowerCase("tr")}\n\nHaftanın öne çıkan etkinlikleri. Gün gün bütün etkinlikler, sinema seansları ve bilet siteleri: nevarneyok.net.tr\n\n📲 Uygulamamızı indirin: nevarneyok.net.tr/indir\n🔗 Bağlantı profilde\n📌 Kaydet, hafta boyunca lazım olur.\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankaraetkinlik #buhafta #neyapsam #başkent`,
-  uygulama: `Ne Var Ne Yok artık telefonunda 📲\n\nAnkara'nın konserleri, tiyatroları, sinema seansları ve çocuk etkinlikleri; bilet siteleri yan yana, iptal ve ertelemeler işaretli, her gün güncel.\n\nÜcretsiz indir: nevarneyok.net.tr/indir\n🔗 Bağlantı profilde\n\n#ankara #ankaraetkinlik #uygulama #neyapsam #başkent`,
+  bugun: `Bugün Ankara'da neler var? 👀 ${fmtDate(today)} ${dayName(today)}\n\nKonser, tiyatro, sinema, çocuk etkinlikleri ve daha fazlası tek yerde. Saatler, mekânlar ve bilet siteleri yan yana.\n\n🌐 Hepsi nevarneyok.net.tr'de: web sitesinden ya da uygulamadan bak\n🔗 Bağlantı profilde\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankaraetkinlik #ankaradabugün #neyapsam #başkent`,
+  hafta: `Bu hafta Ankara'da neler var? 🗓️ ${range.toLocaleLowerCase("tr")}\n\nHaftanın öne çıkan etkinlikleri. Gün gün bütün etkinlikler, sinema seansları ve bilet siteleri: nevarneyok.net.tr\n\n🌐 Hepsi nevarneyok.net.tr'de: web sitesinden ya da uygulamadan bak\n🔗 Bağlantı profilde\n📌 Kaydet, hafta boyunca lazım olur.\n\nAfişler etkinliklerin kendi sayfalarından alınmıştır; görseller sahiplerine aittir.\n\n#ankara #ankaraetkinlik #buhafta #neyapsam #başkent`,
+  uygulama: `Ankara'da ne var ne yok? 👀\n\nKonserler, tiyatrolar, sinema seansları ve çocuk etkinlikleri; bilet siteleri yan yana, iptal ve ertelemeler işaretli, her gün güncel.\n\n🌐 Hepsi nevarneyok.net.tr'de: web sitesinden ya da uygulamadan bak\n🔗 Bağlantı profilde\n\n#ankara #ankaraetkinlik #neyapsam #başkent`,
 };
 await writeJSON(join(OUT, "reklam.json"), { date: today, files: out, captions: CAP }, true);
 log(`reklam: ${out.length} görsel → ${out.join(", ")}`);
