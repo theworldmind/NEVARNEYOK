@@ -1,0 +1,59 @@
+# Mekân konumları (81 il): OpenStreetMap'teki yerler il il alınır, bizim mekân adlarıyla eşleştirilir (scraper/geo-osm.mjs).
+name: Mekan konumlari
+
+on:
+  schedule:
+    - cron: "30 2 * * *"   # 05:30 Türkiye saati (gece il taramasından sonra)
+  workflow_dispatch:
+    inputs:
+      deneme:
+        description: "Yalnızca dene, kaydetme"
+        type: boolean
+        default: false
+      iller:
+        description: "Yalnızca bu iller (boşlukla; boş = hepsi)"
+        required: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: konum
+  cancel-in-progress: false
+
+jobs:
+  konum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      TZ: Europe/Istanbul
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Eşleştir
+        working-directory: scraper
+        env:
+          GEO_DRY: ${{ github.event.inputs.deneme }}
+          GEO_ILLER: ${{ github.event.inputs.iller }}
+        run: node geo-osm.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: geo-osm
+          path: scraper/out/geo-osm.tsv
+          if-no-files-found: ignore
+          retention-days: 3
+      - name: Kaydet ve yayınla
+        if: github.event.inputs.deneme != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "nevarneyok-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/venues.json data/venues-tr.json data/geo-miss.json data/geo-miss-tr.json
+          if git diff --cached --quiet; then echo "Değişiklik yok"; exit 0; fi
+          git commit -qm "Mekân konumları: $(date '+%d.%m.%Y %H:%M')"
+          for i in 1 2 3 4; do git pull -q --rebase --autostash -X theirs && git push -q && break; sleep 8; done
+          gh workflow run pages.yml --ref main

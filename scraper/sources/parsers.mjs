@@ -180,14 +180,18 @@ export function abbList(html, url) {
  * Tek salonlu kayıtlar doğrudan seanslara açılır; birden çok salonlu tiyatro ve konserler detay sayfasından okunur.
  * Stand-up ve çocuk oyunları tiyatro listesinin içinde (ayrı kategori adresleri 404/500).
  * Sinema: festival gösterimlerinin her seansı; vizyondaki filmlerin önümüzdeki 5 günde günde bir seansı (en erken). */
-const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["etkinlik", ""], ["sinema", "sinema"]];
+const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["stand-up", "standup"], ["cocuk-aktiviteleri", "cocuk"], ["festival", "festival"], ["egitim", "atolye"], ["etkinlik", ""], ["sinema", "sinema"]];
 export async function biletinialCollect({ fetchText, getPage, today, src, city }) {
   const out = [], detail = new Set(), miss = [], noSeance = [], images = {};
   // Şehir: Ankara'nın numarası 3; başka il için numarayı sitenin kendi liste isteğinden öğren (sayfayı açınca kendisi çağırır)
-  const cu = src?.cityUrl || "ankara", cn = src?.cityName || "Ankara"; let cityId = src?.cityId || (cu === "ankara" ? 3 : 0);
+  let cu = src?.cityUrl || "ankara"; const cn = src?.cityName || "Ankara"; let cityId = src?.cityId || (cu === "ankara" ? 3 : 0);
   if (!cityId) {
     try { const pg = await getPage(`https://biletinial.com/tr-tr/tiyatro/${cu}`, { render: true });
       for (const j of pg.jsons || []) { const m = String(j.url).match(/GetMoreItems\?[^#]*cityId=(\d+)&cityUrl=([a-z0-9-]+)/); if (m && m[2] === cu) { cityId = +m[1]; break; } }
+      /* (18.11.2026) Küçük illerde sayfa bu isteği hiç yapmıyor (bütün liste ilk sayfaya sığıyor): 80 ilin 68'inde numara bulunamıyor, veri yarıya düşüyordu.
+         Numara sayfanın il seçim listesinde her zaman var: <option data-name="Samsun" value="samsun" data-id="43">. Sitenin il adresi bizimkinden farklıysa (Afyon gibi) adıyla bulunur. */
+      if (!cityId) { const O = [...String(pg.html || "").matchAll(/<option\b[^>]*data-name="([^"]+)"[^>]*value="([a-z0-9-]+)"[^>]*data-id="(\d+)"/g)], fo = (x) => x.toLocaleLowerCase("tr").trim();
+        const m = O.find((x) => x[2] === cu) || O.find((x) => fo(x[1]) === fo(cn)); if (m) { cityId = +m[3]; cu = m[2]; } }
     } catch {}
     if (!cityId) return { raws: [], detail: [], images: {}, note: `şehir numarası bulunamadı: ${cu}` };
   }

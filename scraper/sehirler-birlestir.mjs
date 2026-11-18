@@ -44,6 +44,12 @@ for (const C of CITIES) {
     (sCities.get(sk(e)) || sCities.set(sk(e), new Set()).get(sk(e))).add(C.id); }
 }
 const homeOf = (e) => { const t = cityOfText(e.venue || ""); if (t) return t; const m = vTitles.get(vk(e)); if (!m) return ""; let best = "", bn = 0; for (const [c, S] of m) if (S.size > bn) { bn = S.size; best = c; } return best; };
+/* Mekânın adında başka il yazıyorsa etkinlik o ilindir (18.11.2026: İstanbul listesinde "Jolly Joker Ankara", Bolu'da "Tekirdağ … Kültür Merkezi"): doğru ilin listesine taşınır.
+   Cadde/sokak adları ve "Van Gogh" gibi adlar sayılmaz; Ankara kendi taramasıyla geldiği için oraya gidecek kayıt yalnızca bu listeden çıkar. */
+const NAMES = CITIES.map((c) => [c.id, new RegExp("(^|[^a-z0-9])" + fold(c.name) + "($|[^a-z0-9])")]);
+const venueCity = (e, cid) => { const v = fold(e.venue || ""); if (!v || /cadde|caddesi|sokak|sokagi|bulvar|mahalle|van gogh/.test(v)) return ""; const hit = NAMES.filter(([, r]) => r.test(v)).map(([id]) => id); return hit.length && !hit.includes(cid) ? hit[0] : ""; };
+const moved = {}; let relocated = 0;
+for (const C of CITIES) { if (C.id === "ankara") continue; SRC[C.id] = SRC[C.id].filter((e) => { const h = e.d >= today && venueCity(e, C.id); if (!h) return true; relocated++; if (h !== "ankara") (moved[h] ||= []).push(e); return false; }); }
 let dropped = 0;
 const wrongCity = (e, cid) => { const cs = sCities.get(sk(e)); if (!cs || cs.size < 2) return false; const h = homeOf(e); if (h && h !== cid && cs.has(h)) { dropped++; return true; } return false; };
 
@@ -54,9 +60,8 @@ for (const C of CITIES) {
     const L = ev.filter((e) => e.d >= today); n = L.length; posters = L.filter((e) => e.img).length; take(C, L);
     films = ((await readJSON(join(ROOT, "data/films.json"), { films: [] })).films || []).filter((f) => Object.keys(f.s || {}).length).length; // yalnızca seansı olan filmler
   } else {
-    const own = (await readJSON(join(ROOT, `data/c/src/${C.id}.json`), { events: [] })).events || [];
     const out = new Map(), byDay = new Map();
-    for (const e of [...tr.filter((x) => x.city === C.id), ...own]) { // kamu kaynağı önce: ad, saat, mekân ondan
+    for (const e of [...SRC[C.id], ...(moved[C.id] || [])]) { // kamu kaynağı önce: ad, saat, mekân ondan
       if (e.d < today) continue;
       if (wrongCity(e, C.id)) continue;
       const k = key(e); let m = out.get(k);
@@ -79,6 +84,6 @@ await writeJSON(join(ROOT, "data/cities.json"), index, true);
   for (let round = 0; round < 12 && top.length < 12; round++) for (const id of order) { const x = byCity[id].find((y) => !seen.has(fold(y.e.title))); if (!x || top.length >= 12) continue; seen.add(fold(x.e.title));
     const e = x.e; top.push({ title: e.title, d: e.d, t: e.t || "", venue: e.venue || "", cat: e.cat || "", img: e.img, imgBy: e.imgBy || "", city: x.C.id, cityName: x.C.name }); }
   await writeJSON(join(ROOT, "data/one-cikan.json"), { updated: index.updated, events: top }, true); }
-log(`Şehirler: başka ilin listesine düşmüş ${dropped} turne seansı asıl iline bırakıldı`);
+log(`Şehirler: başka ilin listesine düşmüş ${dropped} turne seansı asıl iline bırakıldı; mekân adı başka ili gösteren ${relocated} kayıt doğru ile taşındı`);
 const open = Object.values(index.cities).filter((c) => c.n || c.films);
 log(`Şehirler: ${open.length}/81 ilde etkinlik ya da film var · toplam ${Object.values(index.cities).reduce((a, c) => a + c.n, 0)} etkinlik`);
