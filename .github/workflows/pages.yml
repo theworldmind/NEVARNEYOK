@@ -65,6 +65,7 @@ jobs:
         continue-on-error: true
         run: |
           V=$(sed -n 's/.*const ML_V = "\([^"]*\)".*/\1/p' app.js | head -1)
+          mkdir -p _site/vendor/three && curl -fsSL --retry 3 -o _site/vendor/three/three.min.js "https://unpkg.com/three@0.159.0/build/three.min.js" || true
           mkdir -p _site/vendor/maplibre
           for f in maplibre-gl.js maplibre-gl.css; do curl -fsSL --retry 3 -o "_site/vendor/maplibre/$f" "https://unpkg.com/maplibre-gl@$V/dist/$f"; done
       - name: Yayından önce denetim (eksikse yayınlama)
