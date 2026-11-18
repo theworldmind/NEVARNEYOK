@@ -1180,6 +1180,28 @@ function whereAmI(hi = false) {
     navigator.geolocation.getCurrentPosition((p) => { DATA.me = { p: [p.coords.latitude, p.coords.longitude], t: Date.now() }; locSave(DATA.me.p); ok(DATA.me.p); }, no, { enableHighAccuracy: hi, timeout: hi ? 20000 : 12000, maximumAge: 5 * 60e3 });
   });
 }
+/* Konum gelene kadar bekle (18.11.2026, kullanıcı: "konum alınamadı diyor ama bir şey olmuyor; konumu açmamı istesin, uygulamadan çıkmadan kabul edeyim, anlık alınsın").
+   Site telefonun konumunu kendisi açamaz; izin sorulmadıysa sistem penceresi hemen çıkar, konum kapalıysa kullanıcı açar açmaz (izleme + 4 sn'de bir deneme + uygulamaya dönüş) kendiliğinden yakalanır.
+   Reddedilen izin penceresi rahatsız etmemek için kendiliğinden tekrar açılmaz; yalnızca düğmeyle. onState: "off" (kapalı/bulunamıyor), "ask" (izin bekleniyor), "denied" (izin kapalı). */
+function locWait(ok, onState) {
+  const G = navigator.geolocation; let dead = false, w = null, tm = null, perm = null, st = "", blocked = false, busy = false;
+  const stop = () => { dead = true; if (w != null) G?.clearWatch(w); clearInterval(tm); removeEventListener("focus", wake); removeEventListener("online", wake); document.removeEventListener("visibilitychange", back); if (perm) perm.onchange = null; };
+  const say = (s) => { if (!dead && s !== st) { st = s; onState(s); } };
+  const got = (q) => { if (dead) return; stop(); const p = [q.coords.latitude, q.coords.longitude]; DATA.me = { p, t: Date.now() }; locSave(p); ok(p); };
+  const fail = (e) => { busy = false; if (dead) return; if (e?.code !== 1 || perm?.state === "granted") return say("off"); blocked = true; say(perm?.state === "denied" ? "denied" : "ask"); };
+  const ask = (hi) => { if (busy && !hi) return; busy = true; G.getCurrentPosition((q) => { busy = false; got(q); }, fail, { enableHighAccuracy: !!hi, timeout: hi ? 15000 : 8000, maximumAge: hi ? 5000 : 60000 }); };
+  const arm = () => { if (w != null) G.clearWatch(w); w = G.watchPosition(got, () => {}, { enableHighAccuracy: true, timeout: 30000, maximumAge: 5000 }); };
+  function wake() { if (!dead && !document.hidden && !blocked) ask(false); }
+  function back() { if (document.hidden) return; if (!perm) blocked = false; wake(); }
+  if (!G) { setTimeout(() => say("off")); return { stop() {}, retry() {} }; }
+  if (DATA.me && !DATA.me.c && Date.now() - DATA.me.t < 2 * 60e3) { const p = DATA.me.p; setTimeout(() => { if (!dead) { stop(); ok(p); } }); return { stop, retry() {} }; }
+  const start = () => { if (dead) return; arm(); ask(false); tm = setInterval(wake, 4000); addEventListener("focus", wake); addEventListener("online", wake); document.addEventListener("visibilitychange", back); };
+  (navigator.permissions?.query ? navigator.permissions.query({ name: "geolocation" }) : Promise.reject()).then((q) => { perm = q; q.onchange = () => { if (dead) return; blocked = q.state === "denied"; if (blocked) say("denied"); else if (q.state === "granted") { arm(); ask(true); } }; if (q.state === "denied") { blocked = true; say("denied"); } start(); }).catch(start);
+  return { stop, retry() { if (dead) return; blocked = false; arm(); ask(true); } };
+}
+const locHow = () => { const and = /android/i.test(navigator.userAgent); return isIOS ? "iPhone'da <b>Ayarlar › Gizlilik ve Güvenlik › Konum Servisleri</b>'ni aç; sonra <b>Ayarlar › Safari › Konum</b>'u <b>Sor</b> ya da <b>İzin Ver</b> yap."
+  : and ? (standalone ? "<b>Ayarlar › Uygulamalar › Ne Var Ne Yok › İzinler › Konum</b>'dan <b>Uygulamayı kullanırken izin ver</b>'i seç." : "Adres çubuğunun solundaki <b>kilit</b> simgesine dokun › <b>İzinler</b> › <b>Konum</b>'u aç.")
+  : "Adres çubuğunun solundaki <b>ayar</b> simgesine tıkla › <b>Konum</b>'u <b>İzin ver</b> yap."; };
 /* Yakınımda (kullanıcı isteği, 22:57: "izin ver'e tıklasın, bir yere gitmesine gerek kalmasın"):
    dokununca doğrudan sistemin kendi konum izni penceresi açılır (izin sorulmamışsa). İzin önceden kapatılmışsa tarayıcı yeniden sormaya izin vermez;
    o zaman cihaza göre tek satırlık yol + "Tekrar dene" + "Şehir merkezine göre sırala" seçeneği alttan açılan panelde. */
@@ -1213,10 +1235,7 @@ function geoHelp(city, code) {
     sh.querySelector(".ok").addEventListener("click", (ev) => { ev.preventDefault(); haptic(6); dis(open); });
     return;
   }
-  const how = code === 1
-    ? (isIOS ? "iPhone'da <b>Ayarlar › Gizlilik ve Güvenlik › Konum Servisleri</b>'ni aç; sonra <b>Ayarlar › Safari › Konum</b>'u <b>Sor</b> ya da <b>İzin Ver</b> yap."
-      : and ? (standalone ? "<b>Ayarlar › Uygulamalar › Ne Var Ne Yok › İzinler › Konum</b>'dan <b>Uygulamayı kullanırken izin ver</b>'i seç." : "Adres çubuğunun solundaki <b>kilit</b> simgesine dokun › <b>İzinler</b> › <b>Konum</b>'u aç.")
-      : "Adres çubuğunun solundaki <b>ayar</b> simgesine tıkla › <b>Konum</b>'u <b>İzin ver</b> yap.")
+  const how = code === 1 ? locHow()
     : "Cihazının konum servisi kapalı ya da konum şu an bulunamıyor. Konumu açıp tekrar dene.";
   const sh = sheet(`<div class="pn" role="dialog" aria-label="Konum"><div class="hd"><b>📍 Yakınındaki etkinlikler</b><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div>
     <div class="bd2"><p class="pl1">${code === 1 ? "Konum izni daha önce kapatılmış; bu yüzden tarayıcı bir daha soramıyor." : "Konumuna şu an ulaşamadık."}</p><p class="pl1">${how}</p><p class="pl1" style="color:var(--t3)">Konumun yalnızca bu cihazda, uzaklığı hesaplamak için kullanılır; hiçbir yere gönderilmez.</p>
@@ -1394,7 +1413,7 @@ function routeSheet(e, v, city, gUrl) {
     <ol class="rst" id="rst"></ol>
     <div class="rgx"><a class="rg" id="rgt" href="${gUrl}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="5" y="3.5" width="14" height="14" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11h14M8.5 21l1.5-3.5M15.5 21 14 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8.8" cy="14.3" r="1" fill="currentColor"/><circle cx="15.2" cy="14.3" r="1" fill="currentColor"/></svg>Toplu taşımayla ↗</a><a class="rg" id="rgg" href="${gUrl}" target="_blank" rel="noopener">${I.ext}Google Haritalar'da aç</a></div>
     <p class="rnote">Yol OpenStreetMap verisiyle hesaplanır; trafik hesaba katılmaz. Otobüs ve metro tarifi için "Toplu taşımayla" Google Haritalar'ı açar. Bunun için yalnızca başlangıç ve varış noktası OpenStreetMap'in yol sunucusuna gider, bizde saklanmaz.</p></div></div>`, "mn rt");
-  let map = null, line = null, done = null, me = null, watch = null, mode = null, from = null, R = null, S = [], nav = false, C = [], cum = [], sIdx = [], ni = 0, lastStep = -1, warned = -1, wl = null, follow = true;
+  let lw = null, map = null, line = null, done = null, me = null, watch = null, mode = null, from = null, R = null, S = [], nav = false, C = [], cum = [], sIdx = [], ni = 0, lastStep = -1, warned = -1, wl = null, follow = true;
   let voice = store.get("nvny-sesli") !== "0";
   const dest = [v.lat, v.lng], seg = sh.querySelector(".rseg"), sum = sh.querySelector("#rsum"), st = sh.querySelector("#rst");
   /* Yol tarifi doğrudan tam ekran haritada (kullanıcı, 16.11.2026 15:31–15:32: "ayrı panelde küçük kalmayalım, haritada özgürüz; hem yol tarifi hem 3B").
@@ -1413,7 +1432,7 @@ function routeSheet(e, v, city, gUrl) {
       const open = vv < -.35 ? true : vv > .35 ? false : cTy + dY < (H - cMini()) / 2; if (open !== cOpen) { haptic(5); snd.sel?.(); } cSet(open); }, { passive: true }); }
   $("#rgr", sh).addEventListener("click", () => { haptic(5); snd.sel?.(); cSet(!cOpen); });
   addEventListener("resize", () => cSet(cOpen, false));
-  const oldClose = sh.close; sh.close = () => { if (watch != null) navigator.geolocation.clearWatch(watch); try { wl?.release(); speechSynthesis.cancel(); } catch {} oldClose(); };
+  const oldClose = sh.close; sh.close = () => { lw?.stop(); if (watch != null) navigator.geolocation.clearWatch(watch); try { wl?.release(); speechSynthesis.cancel(); } catch {} oldClose(); };
   const setMode = (m) => { mode = m; seg.style.setProperty("--i", ["foot", "bike", "car"].indexOf(m)); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.m === m)); };
   /* Yönü değiştir (kullanıcı, 16.11.2026 20:02: "haritada istediğim her yere yol tarifi"): ⇅ ile gidiş ↔ dönüş. Ters yönde "Başla" yok (canlı yol gösterme yalnızca konumundan çıkarken). */
   let rev = false; const srcName = () => src === "me" ? "Konumun" : src === "x" ? xPlace?.n || "Seçilen yer" : F.find((x) => x.id === src)?.n || "";
@@ -1513,12 +1532,15 @@ function routeSheet(e, v, city, gUrl) {
       if (R && C.length) { let off = 1e9; for (let i = Math.max(0, ni - 3); i < Math.min(C.length, ni + 40); i++) off = Math.min(off, km(np, C[i])); if (off > .06) { from = np; paint(); return; } }
       from = np; if (nav) update(np);
     }, () => {}, { enableHighAccuracy: true, maximumAge: 2000, timeout: 30000 }); };
+  // konum yoksa yol tarifi kapanmaz, başka yere de atlamaz: burada açmasını ister, gelir gelmez yolu çizer
+  const locCard = (k) => { from = null; st.innerHTML = ""; const T = { off: ["Konumun açık mı? 📍", "Kapalıysa telefonun üst menüsünden aç. Bulduğumuz anda yolu çizeriz, buradan çıkmana gerek yok.", "Açtım"], ask: ["Konum iznine ihtiyacımız var 📍", "Yolu bulunduğun yerden çizebilmemiz için izin ver. Konumun yalnızca yol hesabında kullanılır.", "İzin ver"], denied: ["Konum izni kapalı 📍", locHow(), "Açtım"] }[k];
+    sum.innerHTML = `<div class="lcd"><span class="lci"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span><span class="lct"><b>${T[0]}</b><small>${T[1]}</small></span></div><button type="button" class="lcb">${T[2]}</button>${F.length ? '<p class="rnote" style="margin:8px 2px 0;text-align:center">Ya da yukarıdan kayıtlı bir yerini seç.</p>' : ""}`;
+    $(".lcb", sum).addEventListener("click", () => { snd.sel?.(); haptic(6); lw?.retry(); }); };
   function pick(s, user) {
-    if (nav && s !== "me") return; src = s; store.set("nvny-rota-kaynak", s === "x" ? "me" : s); chips(); rfx.hidden = s !== "x" || !!(xPlace && !user); sh.classList.toggle("fixed", s !== "me" || rev);
+    if (nav && s !== "me") return; if (s !== "me") { lw?.stop(); lw = null; } src = s; store.set("nvny-rota-kaynak", s === "x" ? "me" : s); chips(); rfx.hidden = s !== "x" || !!(xPlace && !user); sh.classList.toggle("fixed", s !== "me" || rev);
     if (s === "me") { pin(null); if (meP) { go(meP); return; }
       sum.innerHTML = `<span class="sk" style="display:block;height:52px;border-radius:14px"></span>`;
-      whereAmI(true).then((p) => { meP = p; if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([p[1], p[0]]).addTo(map); if (src === "me") go(p); startWatch(); })
-        .catch((err) => { if (F.length) { toast("Konumun alınamadı; kayıtlı yerlerinden birini seçebilirsin 📍", 3500); pick(F[0].id); } else { sh.close(); setTimeout(() => geoHelp(city, err?.code), 280); } });
+      lw?.stop(); lw = locWait((p) => { lw = null; meP = p; haptic(8); if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([p[1], p[0]]).addTo(map); if (src === "me") go(p); startWatch(); }, (k) => { if (src === "me" && !meP) locCard(k); });
       return; }
     if (s === "x") { if (xPlace && !user) { pin(xPlace.ll, '<div class="pin"></div>'); go(xPlace.ll); } else { sum.innerHTML = `<p class="rnote" style="margin:4px 2px">Nereden yola çıkacaksın? Semt, adres ya da yer adı yaz.</p>`; st.innerHTML = ""; setTimeout(() => $("#rfi", sh).focus(), 120); } return; }
     const f = F.find((x) => x.id === s); if (!f) return pick("me"); pin(f.ll, `<span class="fv"><span class="fvp">${favIc(f.n)}</span><b>${esc(f.n)}</b></span>`); go(f.ll);
