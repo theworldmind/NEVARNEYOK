@@ -5241,5 +5241,725 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/restaurant"
+ },
+ "kahramanmaras|Mehmet Akif Ersoy Kültür Merkezi (Kahramanmaraş)": {
+  "lat": 37.5858268,
+  "lng": 36.9223503,
+  "addr": "Şekerdere Bulvarı, Akçakoyunlu Mahallesi, Kurtuluş Mahallesi",
+  "ilce": "Kurtuluş Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "kirsehir|Neşet Ertaş Kültür Merkezi Kırşehir": {
+  "lat": 39.1385626,
+  "lng": 34.1575833,
+  "addr": "326. Sokak, Kuşdilli, Kuşdilli",
+  "ilce": "Kuşdilli",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "malatya|Mövenpick Malatya Hotel": {
+  "lat": 38.3485085,
+  "lng": 38.2990743,
+  "addr": "İnönü Caddesi No:174, İnönü Mahallesi, Yeşilyurt",
+  "ilce": "Yeşilyurt",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Rebel Kadıköy": {
+  "lat": 40.9901018,
+  "lng": 29.0271964,
+  "addr": "Kazasker Sokağı, Osmanağa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "istanbul|Nazım Hikmet Kültür Merkezi Kadıköy": {
+  "lat": 40.9894273,
+  "lng": 29.0301784,
+  "addr": "Ali Suavi Sokağı, Kadıköy",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "istanbul|Unıq İstanbul": {
+  "lat": 41.1080292,
+  "lng": 29.0078633,
+  "addr": "Maslak Ayazağa Caddesi No:4, Huzur Mahallesi, Sarıyer",
+  "ilce": "Sarıyer",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "istanbul|MEF Üniversitesi": {
+  "lat": 41.1080985,
+  "lng": 29.0086515,
+  "addr": "Fire escape, Huzur Mahallesi, Sarıyer",
+  "ilce": "Sarıyer",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "istanbul|İstanbul Aydın Üniversitesi": {
+  "lat": 40.9904421,
+  "lng": 28.7968447,
+  "addr": "1. İnönü Caddesi No:38, Beşyol Mahallesi, Küçükçekmece",
+  "ilce": "Küçükçekmece",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "istanbul|Hara İstanbul": {
+  "lat": 41.1356221,
+  "lng": 29.2954718,
+  "addr": "Trabzon Caddesi, Beykoz",
+  "ilce": "Beykoz",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/barn"
+ },
+ "istanbul|Welldone Suadiye": {
+  "lat": 40.9566999,
+  "lng": 29.0790479,
+  "addr": "Selim Ragıp Emeç Sokağı No:27, Suadiye Mahallesi, Suadiye Mahallesi",
+  "ilce": "Suadiye Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "istanbul|Rami Kütüphanesi": {
+  "lat": 41.0492231,
+  "lng": 28.9154858,
+  "addr": "Rami Kışla Caddesi No:98, Rami Yeni Mahallesi, Eyüpsultan",
+  "ilce": "Eyüpsultan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/library"
+ },
+ "istanbul|Selectum City Ataşehir Hotel": {
+  "lat": 40.9824958,
+  "lng": 29.133371,
+  "addr": "Dudullu Caddesi, Küçükbakkalköy Mahallesi, Ataşehir",
+  "ilce": "Ataşehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Dorock Heavy Metal Club": {
+  "lat": 41.0350157,
+  "lng": 28.9773695,
+  "addr": "Kameriye Sokağı No:11/A, Hüseyinağa, Hüseyinağa Mahallesi",
+  "ilce": "Hüseyinağa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "istanbul|Şekerci Cafer Erol": {
+  "lat": 40.9928572,
+  "lng": 29.0356061,
+  "addr": "Kurbağalıdere Caddesi, Hasanpaşa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/pastry"
+ },
+ "istanbul|Meryem Ana Kilisesi": {
+  "lat": 41.0250556,
+  "lng": 28.9791249,
+  "addr": "Akçe Sokağı, Kemankeş Karamustafa Paşa, Kemankeş Karamustafa Paşa Mahallesi",
+  "ilce": "Kemankeş Karamustafa Paşa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/place_of_worship"
+ },
+ "istanbul|Ataşehir Atatürk Mahallesi, Ataşehir Bulv. Metropol İstanbul": {
+  "lat": 40.9849741,
+  "lng": 29.1069858,
+  "addr": "Küçükbakkalköy Bağlantısı, Atatürk Mahallesi, Ataşehir",
+  "ilce": "Ataşehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/atm"
+ },
+ "istanbul|Caddebostan Kültür Merkezi Salon A": {
+  "lat": 40.9674826,
+  "lng": 29.0647033,
+  "addr": "Haldun Taner Sokağı No:11, Caddebostan Mahallesi, Caddebostan Mahallesi",
+  "ilce": "Caddebostan Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "istanbul|İstanbul Fuar Merkezi": {
+  "lat": 40.9885977,
+  "lng": 28.8239585,
+  "addr": "Yeşilköy Mahallesi, Bakırköy",
+  "ilce": "Bakırköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/exhibition_centre"
+ },
+ "istanbul|Sheraton Ataköy · 17 Plus": {
+  "lat": 40.9725321,
+  "lng": 28.8703977,
+  "addr": "Rauf Orbay Caddesi, Ataköy 1. Kısım Mahallesi, Bakırköy",
+  "ilce": "Bakırköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|The End İstanbul": {
+  "lat": 40.9856898,
+  "lng": 29.0282637,
+  "addr": "Soner Sokağı, Caferağa Mahallesi, Caferağa Mahallesi",
+  "ilce": "Caferağa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/video"
+ },
+ "istanbul|Panorama Salonu": {
+  "lat": 40.9753572,
+  "lng": 28.6533589,
+  "addr": "Kaptanı Derya Sokağı No:I1, Sahil Mahallesi",
+  "ilce": "Sahil Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/apartments"
+ },
+ "istanbul|Galatasaray Müze": {
+  "lat": 41.0334816,
+  "lng": 28.9769398,
+  "addr": "İstiklal caddesi, Asmalı Mescit, Asmalı Mescit Mahallesi",
+  "ilce": "Asmalı Mescit Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
+ },
+ "istanbul|Tersane İstanbul · Glass Hall": {
+  "lat": 41.0357941,
+  "lng": 28.9551318,
+  "addr": "Okmeydani Caddesi, Keçeci Piri, Keçeci Piri Mahallesi",
+  "ilce": "Keçeci Piri Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "istanbul|Hyatt Regency Istanbul Atakoy": {
+  "lat": 40.9749925,
+  "lng": 28.8567041,
+  "addr": "Rauf Orbay Caddesi, Ataköy 2-5-6. Kısım Mahallesi, Bakırköy",
+  "ilce": "Bakırköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Motto Sahne Kadıköy": {
+  "lat": 40.9877233,
+  "lng": 29.0277486,
+  "addr": "Miralay Nazım Sokağı, Kadıköy",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/pub"
+ },
+ "istanbul|Grand Hyatt İstanbul": {
+  "lat": 41.0410072,
+  "lng": 28.9884744,
+  "addr": "Taşkışla Caddesi No:1, Harbiye Mahallesi, Şişli",
+  "ilce": "Şişli",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Kadıköy Key Koleji Sahnesi": {
+  "lat": 40.995529,
+  "lng": 29.0450895,
+  "addr": "Uzunçayır Caddesi, Hasanpaşa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
+ },
+ "istanbul|Küçükçekmece Belediyesi": {
+  "lat": 41.0354482,
+  "lng": 28.7856709,
+  "addr": "Turgut Özal Bulvarı, Halkalı Merkez Mahallesi, Küçükçekmece",
+  "ilce": "Küçükçekmece",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall"
+ },
+ "istanbul|Swanky Karaköy": {
+  "lat": 41.0248958,
+  "lng": 28.9786055,
+  "addr": "Hoca Tahsin Sokağı, Kemankeş Karamustafa Paşa, Kemankeş Karamustafa Paşa Mahallesi",
+  "ilce": "Kemankeş Karamustafa Paşa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "istanbul|İstanbul,Etiler": {
+  "lat": 41.0891377,
+  "lng": 29.0346947,
+  "addr": "O-2 Yanyol, Etiler Mahallesi, Beşiktaş",
+  "ilce": "Beşiktaş",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Atölye Ataşehir": {
+  "lat": 40.9872229,
+  "lng": 29.1744788,
+  "addr": "Aytaşı Sokağı No:57/1, Ferhatpaşa Mahallesi, Ataşehir",
+  "ilce": "Ataşehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "craft/tailor"
+ },
+ "istanbul|Haliç Üniversitesi": {
+  "lat": 41.0885421,
+  "lng": 28.9523297,
+  "addr": "Mareşal Fevzi Çakmak Caddesi, 5. Levent Mahallesi, Eyüpsultan",
+  "ilce": "Eyüpsultan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "istanbul|CVK Park Bosphorus Otel": {
+  "lat": 41.034864,
+  "lng": 28.9881559,
+  "addr": "Selime Hatun Camii Sokağı, Gümüşsuyu, Gümüşsuyu Mahallesi",
+  "ilce": "Gümüşsuyu Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|İstanbul Kongre Merkezi": {
+  "lat": 41.0462704,
+  "lng": 28.9889649,
+  "addr": "Darülbedai Caddesi, Harbiye Mahallesi, Şişli",
+  "ilce": "Şişli",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/conference_centre"
+ },
+ "istanbul|Çiçek Pasajı": {
+  "lat": 41.0340997,
+  "lng": 28.9779211,
+  "addr": "Çiçek Pasajı, Hüseyinağa, Hüseyinağa Mahallesi",
+  "ilce": "Hüseyinağa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/attraction"
+ },
+ "istanbul|The Hunger": {
+  "lat": 40.993796,
+  "lng": 29.1228681,
+  "addr": "Ataşehir Bulvarı, Atatürk Mahallesi, Ataşehir",
+  "ilce": "Ataşehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "istanbul|Hilton İstanbul Kozyatağı": {
+  "lat": 40.9869631,
+  "lng": 29.0860053,
+  "addr": "Batman Sokağı No:4, Sahrayıcedit Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Başakşehir Kültür Merkezi": {
+  "lat": 41.1206913,
+  "lng": 28.8060442,
+  "addr": "Ordu Caddesi, Başak Mahallesi, Başakşehir",
+  "ilce": "Başakşehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/civic"
+ },
+ "istanbul|Celtic Irish Pub Istanbul": {
+  "lat": 41.0291895,
+  "lng": 28.974497,
+  "addr": "Müeyyet Sokağı, Asmalı Mescit, Asmalı Mescit Mahallesi",
+  "ilce": "Asmalı Mescit Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "istanbul|Deniz Müzesi": {
+  "lat": 41.0410591,
+  "lng": 29.0056913,
+  "addr": "Cezayir Caddesi, Sinanpaşa Mahallesi, Beşiktaş",
+  "ilce": "Beşiktaş",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
+ },
+ "istanbul|Semaver Kumpanya": {
+  "lat": 41.0067414,
+  "lng": 28.9304091,
+  "addr": "Öksüzce Cami Aralığı Sokağı, Silivrikapı Mahallesi, Fatih",
+  "ilce": "Fatih",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "istanbul|Turkcell Sahnesi": {
+  "lat": 41.0936903,
+  "lng": 29.0913688,
+  "addr": "Fatih Sultan Mehmet Caddesi, Kavacık Mahallesi, Beykoz",
+  "ilce": "Beykoz",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/telephone"
+ },
+ "istanbul|Wyndham Grand İstanbul": {
+  "lat": 40.97742,
+  "lng": 29.0414165,
+  "addr": "İskele Sokağı, Fenerbahçe Mahallesi, Fenerbahçe Mahallesi",
+  "ilce": "Fenerbahçe Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Kadıköy Cinema, Osmanağa, Bahariye Cd. Kadıköy Pasajı No:25, Kadıköy// 34714": {
+  "lat": 40.9884436,
+  "lng": 29.0288541,
+  "addr": "General Asım Gündüz Caddesi No:25, Kadıköy",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema"
+ },
+ "istanbul|Istanbul Türkiye": {
+  "lat": 41.1174595,
+  "lng": 29.0386656,
+  "addr": "Aydınlar Caddesi, Poligon Mahallesi, Sarıyer",
+  "ilce": "Sarıyer",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/sports_centre"
+ },
+ "istanbul|Napoli Gusto TomTom": {
+  "lat": 41.0296467,
+  "lng": 28.9793666,
+  "addr": "Boğazkesen Caddesi, Tomtom, Tomtom Mahallesi",
+  "ilce": "Tomtom Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "istanbul|Instanbul": {
+  "lat": 41.0129649,
+  "lng": 28.9787345,
+  "addr": "Tayahatun Sokağı, Cankurtaran Mahallesi, Fatih",
+  "ilce": "Fatih",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/jewelry"
+ },
+ "istanbul|Sakhalin İstanbul": {
+  "lat": 41.0665394,
+  "lng": 29.0182511,
+  "addr": "Vadi Caddesi No:2, Levazım Mahallesi, Beşiktaş",
+  "ilce": "Beşiktaş",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
+ },
+ "istanbul|Galata, Istanbul, Turkey": {
+  "lat": 41.0256406,
+  "lng": 28.9742134,
+  "addr": "Büyük Hendek Caddesi, Bereketzade Mahallesi, Beyoğlu",
+  "ilce": "Beyoğlu",
+  "src": "osm",
+  "v": 2,
+  "osm": "man_made/tower"
+ },
+ "istanbul|Akgün Otel": {
+  "lat": 41.0228691,
+  "lng": 28.93037,
+  "addr": "Adnan Menderes Vatan Bulvarı, Topkapı Mahallesi, Fatih",
+  "ilce": "Fatih",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Ataşehir Mustafa Saffet Kültür Merkezi": {
+  "lat": 40.9958302,
+  "lng": 29.081368,
+  "addr": "Şehit Cahar Dudayev Caddesi No:111, Örnek Mahallesi, Ataşehir",
+  "ilce": "Ataşehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "istanbul|Bova Sahne": {
+  "lat": 41.0361343,
+  "lng": 28.9815543,
+  "addr": "Mis Sokağı, Şehit Muhtar, Şehit Muhtar Mahallesi",
+  "ilce": "Şehit Muhtar Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "istanbul|Radisson Blu Hotel, Istanbul Sisli": {
+  "lat": 41.0614838,
+  "lng": 28.988787,
+  "addr": "19 Mayıs Caddesi, 19 Mayıs Mahallesi, Şişli",
+  "ilce": "Şişli",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|Renaissance Istanbul Polat Bosphorus Hotel": {
+  "lat": 41.0594042,
+  "lng": 29.0101805,
+  "addr": "Barbaros Bulvarı No:145, Gayrettepe Mahallesi, Beşiktaş",
+  "ilce": "Beşiktaş",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "izmir|Hungry Dog Pub (Buca)": {
+  "lat": 38.3882703,
+  "lng": 27.1724215,
+  "addr": "110. Sokak, Vali Rahmi Bey Mahallesi, Buca",
+  "ilce": "Buca",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/pub"
+ },
+ "izmir|Che İzmir": {
+  "lat": 38.4373862,
+  "lng": 27.1423437,
+  "addr": "1453. Sokak, Alsancak Mahallesi, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "izmir|Freed İzmir": {
+  "lat": 38.3792993,
+  "lng": 27.1852464,
+  "addr": "63. Sokak, Adatepe Mahallesi, Buca",
+  "ilce": "Buca",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "izmir|Hakan Çeken Kültür Merkezi": {
+  "lat": 38.3290428,
+  "lng": 26.7670326,
+  "addr": "Uygar Sokak, Yenikent Mahallesi, Urla",
+  "ilce": "Urla",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/public"
+ },
+ "izmir|Cinatı Bar": {
+  "lat": 38.4392878,
+  "lng": 27.1427522,
+  "addr": "1469. Sokak, Alsancak Mahallesi, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "izmir|Fuar İzmir": {
+  "lat": 38.3472178,
+  "lng": 27.1196579,
+  "addr": "Fuar İzmir 2. Etap Geçiş Yolu, Zafer Mahallesi, Gaziemir",
+  "ilce": "Gaziemir",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/commercial"
+ },
+ "izmir|Tarihi Havagazı Fabrikası": {
+  "lat": 38.4402238,
+  "lng": 27.1516963,
+  "addr": "Liman Caddesi, Umurbey Mahallesi, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/yes"
+ },
+ "kirklareli|Kerim Budak Çal Salonu": {
+  "lat": 41.3957857,
+  "lng": 27.3739624,
+  "addr": "Görkem Sokak, İstiklal Mahallesi, Lüleburgaz",
+  "ilce": "Lüleburgaz",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "kirsehir|Neşet Ertaş Kültür Merkezi": {
+  "lat": 39.1385626,
+  "lng": 34.1575833,
+  "addr": "380. Sokak, Kuşdilli, Kuşdilli",
+  "ilce": "Kuşdilli",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "kocaeli|Emex Otel Kocaeli": {
+  "lat": 40.7474532,
+  "lng": 29.9449622,
+  "addr": "Ömer Türkçakal Bulvarı, Sanayi Mahallesi, İzmit",
+  "ilce": "İzmit",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "kocaeli|Kocaeli Bölge Tiyatrosu": {
+  "lat": 40.7631832,
+  "lng": 29.9255831,
+  "addr": "İzmit Yürüyüş Yolu, Ömerağa Mahallesi, İzmit",
+  "ilce": "İzmit",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre"
+ },
+ "kocaeli|262 Live Bar": {
+  "lat": 40.7624504,
+  "lng": 29.9245328,
+  "addr": "İzmit Barlar Sokağı, Tepecik Mahallesi, İzmit",
+  "ilce": "İzmit",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar"
+ },
+ "kocaeli|Kocaeli Kongre Merkezi": {
+  "lat": 40.7611,
+  "lng": 29.8958361,
+  "addr": "Güneş Caddesi, Yenidoğan Mahallesi, İzmit",
+  "ilce": "İzmit",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/conference_centre"
+ },
+ "konya|İrfan Medeniyeti": {
+  "lat": 37.8702216,
+  "lng": 32.5112993,
+  "addr": "Evliya Çelebi Sokak, Aziziye Mahallesi, Karatay",
+  "ilce": "Karatay",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "konya|Yache Sahne": {
+  "lat": 37.8708288,
+  "lng": 32.4839758,
+  "addr": "Kazım Karabekir Caddesi, İhsaniye Mahallesi, Selçuklu",
+  "ilce": "Selçuklu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "konya|Selçuklu Kongre Merkezi · Konya Oditoryum": {
+  "lat": 37.9363451,
+  "lng": 32.5122913,
+  "addr": "Yeni İstanbul Caddesi No:62, Horozluhan Mahallesi, Selçuklu",
+  "ilce": "Selçuklu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/conference_centre"
+ },
+ "manisa|Manisa Büyükşehir Belediyesi": {
+  "lat": 38.6131474,
+  "lng": 27.431712,
+  "addr": "Ergen Cad. No:2, Çarşı, Şehzadeler",
+  "ilce": "Şehzadeler",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall"
+ },
+ "mersin|loba coffee & bakery sahil -mersin · Mersin": {
+  "lat": 36.8035439,
+  "lng": 34.6319469,
+  "addr": "Çakmak Caddesi, Yeni, Yeni",
+  "ilce": "Yeni",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "mersin|Yenişehir Belediyesi Atatürk Kültür Merkezi Özgürl": {
+  "lat": 36.8044253,
+  "lng": 34.5874332,
+  "addr": "13. Cadde, Limonluk, Limonluk",
+  "ilce": "Limonluk",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/public"
+ },
+ "mersin|red flag bistro pub · Mersin": {
+  "lat": 36.0704756,
+  "lng": 32.8663045,
+  "addr": "Zehra Marulyalı Cd., İskele, İskele",
+  "ilce": "İskele",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/pub"
+ },
+ "mersin|Mersin Kültür Merkezi (Opera Binası)": {
+  "lat": 36.7939797,
+  "lng": 34.624852,
+  "addr": "Silifke Caddesi, Kiremithane, Kiremithane",
+  "ilce": "Kiremithane",
+  "src": "osm",
+  "v": 2,
+  "osm": "office/government"
+ },
+ "mersin|Mezitli Belediyesi Kültür Merkezi": {
+  "lat": 36.7633391,
+  "lng": 34.5471508,
+  "addr": "Vali Şenol Engin Caddesi, Atatürk, Atatürk",
+  "ilce": "Atatürk",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "mersin|Yenişehir Belediyesi Akademi Sahnesi": {
+  "lat": 36.8004914,
+  "lng": 34.5935356,
+  "addr": "Vali Hüseyin Aksoy Caddesi No:3, Limonluk, Limonluk",
+  "ilce": "Limonluk",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall"
+ },
+ "mersin|Toroslar Belediyesi": {
+  "lat": 36.8165987,
+  "lng": 34.614291,
+  "addr": "Kuvayi Milliye Cad, Zeki Ayan, Zeki Ayan",
+  "ilce": "Zeki Ayan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall"
+ },
+ "mersin|Mersin Büyükşehir Belediyesi": {
+  "lat": 36.7913307,
+  "lng": 34.6239258,
+  "addr": "4304. Sokak No:1, Kültür, Kültür",
+  "ilce": "Kültür",
+  "src": "osm",
+  "v": 2,
+  "osm": "office/government"
+ },
+ "mersin|TARSUS MÜZESİ": {
+  "lat": 36.9171205,
+  "lng": 34.8922972,
+  "addr": "Yarenlik Alanı, Şehitmustafa, Şehitmustafa",
+  "ilce": "Şehitmustafa",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum"
  }
 }
