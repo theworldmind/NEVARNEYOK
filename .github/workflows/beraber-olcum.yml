@@ -54,6 +54,16 @@ jobs:
       - run: python3 scraper/beraber/gba.py
       - if: always()
         run: cd /tmp/gba && git init -q -b beraber-gba && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "GBA" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" beraber-gba
+  yukseklik:
+    if: github.event.inputs.is == 'yukseklik'
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    env: { OUT: /tmp/gba }
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --break-system-packages ijson && mkdir -p /tmp/gba && python3 scraper/beraber/gba-yap.py
+      - if: always()
+        run: cd /tmp/gba && git init -q -b beraber-yukseklik && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Bina yükseklikleri" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" beraber-yukseklik
   ornek:
     if: github.event.inputs.is == 'ornek' || github.event.inputs.is == 'ikisi'
     runs-on: ubuntu-latest
