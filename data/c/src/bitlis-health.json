@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-17T11:45:26.377Z",
+ "runAt": "2026-11-18T00:55:50.124Z",
  "mode": "full",
  "total": 15,
  "written": true,
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bitlis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
-   "failStreak": 4,
+   "seconds": 78,
+   "failStreak": 5,
    "lastOk": "2026-11-15T10:26:57.284Z"
   },
   "radar": {
@@ -47,7 +47,7 @@
     "www.radarturkiye.com/etkinlikler?genre=4&city=bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 145,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/bitlis/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   }
  }

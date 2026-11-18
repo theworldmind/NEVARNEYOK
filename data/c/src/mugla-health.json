@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-17T12:06:25.012Z",
+ "runAt": "2026-11-18T01:16:22.502Z",
  "mode": "full",
- "total": 416,
+ "total": 410,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,21 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 103,
-   "prevCount": 370,
+   "count": 102,
+   "prevCount": 373,
    "error": "",
    "notes": [
-    "açık veri: 5 seans, 1 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/mugla: 55 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/mugla: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 7 seans, 1 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/mugla: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/mugla: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/mugla: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mugla: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
-   "failStreak": 4,
+   "seconds": 108,
+   "failStreak": 5,
    "lastOk": "2026-11-15T10:33:20.243Z"
   },
   "radar": {
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 42,
+   "count": 43,
    "prevCount": 42,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/mugla-etkinlikleri: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mugla-etkinlikleri: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/mugla-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/mugla-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/mugla-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/etkinlikler?genre=1&city=mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=mugla: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=mugla: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=mugla: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 769,
+   "seconds": 604,
    "failStreak": 0,
-   "lastOk": "2026-11-17T12:06:25.012Z"
+   "lastOk": "2026-11-18T01:16:22.502Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": null
   },
   "allevents": {
@@ -80,14 +80,14 @@
     "allevents.in/mugla/all: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mugla/concerts: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mugla/parties: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/mugla/comedy: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mugla/comedy: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mugla/performances: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mugla/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mugla/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 182,
+   "seconds": 165,
    "failStreak": 0,
-   "lastOk": "2026-11-17T12:06:25.012Z"
+   "lastOk": "2026-11-18T01:16:22.502Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 2,
+   "seconds": 8,
+   "failStreak": 3,
    "lastOk": null
   }
  }
