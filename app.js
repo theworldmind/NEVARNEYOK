@@ -1182,25 +1182,25 @@ function whereAmI(hi = false) {
 }
 /* Konum gelene kadar bekle (18.11.2026, kullanıcı: "konumu açmamı istesin, uygulamadan çıkmadan kabul edeyim, anlık alınsın"; 12:18: "Konumunu aç düğmesi; basınca konum açılsın").
    Android Chrome'da konum kapalıyken "konumu aç" sistem penceresi yalnızca kullanıcının dokunuşuyla başlayan, yeni bir konum isteğinde çıkar: bu yüzden düğme önce açık izlemeyi kapatır,
-   süren deneme bitince dokunuşun içinde taze istek yapar. iPhone ve bilgisayarda böyle bir pencere yok; "off2" ile yol gösterilir, açıldığı an yine kendiliğinden yakalanır.
-   Reddedilen izin penceresi rahatsız etmemek için kendiliğinden tekrar açılmaz. onState: "off", "off2" (düğmeye basıldı, açılmadı), "ask", "denied". */
+   süren deneme bitince dokunuşun içinde taze istek yapar. pencere çıkmazsa (hemen reddedildiyse) Android'de konum ayarının kendisi açılmaya çalışılır. Konum kapalıyken Chrome izni "prompt/denied" gösterebildiği için "denied" denemeyi durdurmaz.
+   Kapatılan izin penceresi rahatsız etmemek için kendiliğinden tekrar açılmaz. onState: "need" (konum gerekli), "off2" (düğmeye basıldı, açılmadı; ikinci değer: hemen mi reddedildi). */
 function locWait(ok, onState) {
-  const G = navigator.geolocation; let dead = false, w = null, tm = null, perm = null, st = "", blocked = false, busy = false, tap = false, queued = null;
+  const G = navigator.geolocation; let dead = false, w = null, tm = null, perm = null, st = "", blocked = false, busy = false, tap = false, queued = null, tapT = 0;
   const stop = () => { dead = true; if (w != null) G?.clearWatch(w); clearInterval(tm); removeEventListener("focus", wake); removeEventListener("online", wake); document.removeEventListener("visibilitychange", back); if (perm) perm.onchange = null; };
-  const say = (s) => { if (!dead && s !== st) { st = s; onState(s); } };
+  const say = (s, x) => { if (!dead && s !== st) { st = s; onState(s, x); } };
   const got = (q) => { if (dead) return; stop(); const p = [q.coords.latitude, q.coords.longitude]; DATA.me = { p, t: Date.now() }; locSave(p); ok(p); };
   const idle = () => { busy = false; if (queued) { const f = queued; queued = null; f(); } };
-  const fail = (e) => { const was = tap; tap = false; if (dead) return idle(); let k = "off"; if (e?.code === 1 && perm?.state !== "granted") { blocked = true; k = perm?.state === "denied" ? "denied" : "ask"; }
-    if (was) { st = ""; say(k === "off" ? "off2" : k); } else if (!(k === "off" && st === "off2")) say(k); idle(); };
+  const fail = (e) => { const was = tap; tap = false; if (dead) return idle(); if (e?.code === 1 && (!perm || perm.state === "prompt")) blocked = true;
+    if (was) { st = ""; say("off2", Date.now() - tapT < 1500); } else if (st !== "off2") say("need"); idle(); };
   const ask = (hi, ms) => { if (busy) return; busy = true; G.getCurrentPosition((q) => { busy = false; queued = null; got(q); }, fail, { enableHighAccuracy: !!hi, timeout: ms, maximumAge: hi ? 0 : 60000 }); };
   const arm = () => { if (w != null) G.clearWatch(w); w = G.watchPosition(got, () => {}, { enableHighAccuracy: true, timeout: 30000, maximumAge: 5000 }); };
   function wake() { if (!dead && !document.hidden && !blocked && !tap) ask(false, st ? 3000 : 8000); }
   function back() { if (document.hidden) return; if (!perm) blocked = false; wake(); }
-  if (!G) { setTimeout(() => say("off2")); return { stop() {}, retry() {} }; }
+  if (!G) { setTimeout(() => say("need")); return { stop() {}, retry() {} }; }
   if (DATA.me && !DATA.me.c && Date.now() - DATA.me.t < 2 * 60e3) { const p = DATA.me.p; setTimeout(() => { if (!dead) { stop(); ok(p); } }); return { stop, retry() {} }; }
   const start = () => { if (dead) return; arm(); ask(false, 8000); tm = setInterval(wake, 4000); addEventListener("focus", wake); addEventListener("online", wake); document.addEventListener("visibilitychange", back); };
-  (navigator.permissions?.query ? navigator.permissions.query({ name: "geolocation" }) : Promise.reject()).then((q) => { perm = q; q.onchange = () => { if (dead) return; blocked = q.state === "denied"; if (blocked) say("denied"); else if (q.state === "granted") { arm(); ask(true, 15000); } }; if (q.state === "denied") { blocked = true; say("denied"); } start(); }).catch(start);
-  return { stop, retry() { if (dead || tap) return; tap = true; blocked = false; if (w != null) { G.clearWatch(w); w = null; } const fire = () => { if (dead) return; ask(true, 20000); arm(); }; if (busy) queued = fire; else fire(); } };
+  (navigator.permissions?.query ? navigator.permissions.query({ name: "geolocation" }) : Promise.reject()).then((q) => { perm = q; q.onchange = () => { if (dead) return; blocked = false; if (q.state === "granted") { arm(); ask(true, 15000); } }; start(); }).catch(start);
+  return { stop, retry() { if (dead || tap) return; tap = true; tapT = Date.now(); blocked = false; if (w != null) { G.clearWatch(w); w = null; } const fire = () => { if (dead) return; ask(true, 20000); arm(); }; if (busy) queued = fire; else fire(); } };
 }
 const locHow = () => { const and = /android/i.test(navigator.userAgent); return isIOS ? "iPhone'da <b>Ayarlar › Gizlilik ve Güvenlik › Konum Servisleri</b>'ni aç; sonra <b>Ayarlar › Safari › Konum</b>'u <b>Sor</b> ya da <b>İzin Ver</b> yap."
   : and ? (standalone ? "<b>Ayarlar › Uygulamalar › Ne Var Ne Yok › İzinler › Konum</b>'dan <b>Uygulamayı kullanırken izin ver</b>'i seç." : "Adres çubuğunun solundaki <b>kilit</b> simgesine dokun › <b>İzinler</b> › <b>Konum</b>'u aç.")
@@ -1536,15 +1536,15 @@ function routeSheet(e, v, city, gUrl) {
       from = np; if (nav) update(np);
     }, () => {}, { enableHighAccuracy: true, maximumAge: 2000, timeout: 30000 }); };
   // konum yoksa yol tarifi kapanmaz, başka yere de atlamaz: burada açmasını ister, gelir gelmez yolu çizer
-  const locCard = (k) => { from = null; st.innerHTML = ""; const dev = isIOS ? "<b>Ayarlar › Gizlilik ve Güvenlik › Konum Servisleri</b>'ni aç." : /android/i.test(navigator.userAgent) ? "Telefonun üst menüsünden <b>Konum</b>'a dokun." : "Bilgisayarının konum ayarını aç.";
-    const T = { off: ["Konumun kapalı görünüyor 📍", "Dokun, açalım. Açılır açılmaz yolu çizeriz."], off2: ["Konum açılamadı 📍", dev + " Açtığın anda yolu çizeriz, buradan çıkmana gerek yok."], ask: ["Konumunu açalım 📍", "Yolu bulunduğun yerden çizebilmemiz için izin ver."], denied: ["Konum izni kapalı 📍", locHow()] }[k];
-    sum.innerHTML = `<div class="lcd"><span class="lci"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span><span class="lct"><b>${T[0]}</b><small>${T[1]}</small></span></div><button type="button" class="lcb">Konumunu aç</button>${F.length ? '<p class="rnote" style="margin:8px 2px 0;text-align:center">Ya da yukarıdan kayıtlı bir yerini seç.</p>' : ""}`;
+  const locCard = (k, fast) => { from = null; st.innerHTML = ""; const no = k === "off2"; // kullanıcı (13:27): "millete yol gösterme, basınca açılsın": tek cümle, tek düğme
+    if (no && fast && /android/i.test(navigator.userAgent)) { try { location.href = "intent:#Intent;action=android.settings.LOCATION_SOURCE_SETTINGS;end"; } catch {} }
+    sum.innerHTML = `<div class="lcd"><span class="lci"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span><span class="lct"><b>${no ? "Konum açılmadı" : "Konumun kapalı"}</b><small>${no ? "Açıldığı an yolu burada çizeriz." : "Aç, yolu hemen çizelim."}</small></span></div><button type="button" class="lcb">Konumunu aç</button>`;
     $(".lcb", sum).addEventListener("click", (ev) => { ev.currentTarget.classList.add("w"); lw?.retry(); snd.sel?.(); haptic(6); }); };
   function pick(s, user) {
     if (nav && s !== "me") return; if (s !== "me") { lw?.stop(); lw = null; } src = s; store.set("nvny-rota-kaynak", s === "x" ? "me" : s); chips(); rfx.hidden = s !== "x" || !!(xPlace && !user); sh.classList.toggle("fixed", s !== "me" || rev);
     if (s === "me") { pin(null); if (meP) { go(meP); return; }
       sum.innerHTML = `<span class="sk" style="display:block;height:52px;border-radius:14px"></span>`;
-      lw?.stop(); lw = locWait((p) => { lw = null; meP = p; haptic(8); if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([p[1], p[0]]).addTo(map); if (src === "me") go(p); startWatch(); }, (k) => { if (src === "me" && !meP) locCard(k); });
+      lw?.stop(); lw = locWait((p) => { lw = null; meP = p; haptic(8); if (map && !me) me = new maplibregl.Marker({ element: elOf('<div class="me"></div>') }).setLngLat([p[1], p[0]]).addTo(map); if (src === "me") go(p); startWatch(); }, (k, x) => { if (src === "me" && !meP) locCard(k, x); });
       return; }
     if (s === "x") { if (xPlace && !user) { pin(xPlace.ll, '<div class="pin"></div>'); go(xPlace.ll); } else { sum.innerHTML = `<p class="rnote" style="margin:4px 2px">Nereden yola çıkacaksın? Semt, adres ya da yer adı yaz.</p>`; st.innerHTML = ""; setTimeout(() => $("#rfi", sh).focus(), 120); } return; }
     const f = F.find((x) => x.id === s); if (!f) return pick("me"); pin(f.ll, `<span class="fv"><span class="fvp">${favIc(f.n)}</span><b>${esc(f.n)}</b></span>`); go(f.ll);
