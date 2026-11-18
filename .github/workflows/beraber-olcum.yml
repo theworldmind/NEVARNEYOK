@@ -44,6 +44,22 @@ jobs:
           node beraber/davet.mjs
       - if: always()
         run: cd /tmp/canli && git init -q -b beraber-canli && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Davet denemesi" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-canli
+  harita:
+    if: github.event.inputs.is == 'harita'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env: { OUT: /tmp/harita }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node beraber/harita-ornek.mjs
+      - if: always()
+        run: cd /tmp/harita && git init -q -b beraber-harita && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Harita" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-harita
   ada:
     if: github.event.inputs.is == 'ada'
     runs-on: ubuntu-latest
@@ -57,7 +73,6 @@ jobs:
         run: |
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
-          node beraber/harita-ornek.mjs || true
           node beraber/ada-ornek.mjs
       - if: always()
         run: cd /tmp/ada && git init -q -b beraber-ada && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Ada" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-ada
