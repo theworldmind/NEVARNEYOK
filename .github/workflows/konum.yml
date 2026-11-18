@@ -1,9 +1,8 @@
 # Mekân konumları (81 il): OpenStreetMap'teki yerler il il alınır, bizim mekân adlarıyla eşleştirilir (scraper/geo-osm.mjs).
 name: Mekan konumlari
 
+# "Şehirleri güncelle" bitince kendiliğinden başlatılır.
 on:
-  schedule:
-    - cron: "30 2 * * *"   # 05:30 Türkiye saati (gece il taramasından sonra)
   workflow_dispatch:
     inputs:
       deneme:
@@ -35,6 +34,15 @@ jobs:
       - name: Bağımlılıkları kur
         working-directory: scraper
         run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --no-audit --no-fund
+      - name: Türkiye'nin OpenStreetMap kopyası (Geofabrik)
+        continue-on-error: true
+        timeout-minutes: 30
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+          curl -fsSL --retry 3 -o /tmp/tr.pbf https://download.geofabrik.de/europe/turkey-latest.osm.pbf
+          osmium tags-filter /tmp/tr.pbf nwr/amenity=theatre,cinema,arts_centre,community_centre,conference_centre,events_venue,exhibition_centre,music_venue,planetarium,stage,nightclub,bar,pub,biergarten,cafe,restaurant,library,social_centre,university,college,townhall nwr/tourism=museum,gallery,hotel,attraction,theme_park,zoo,aquarium,resort nwr/leisure=stadium,sports_centre,sports_hall,park,marina,water_park,dance,bowling_alley,ice_rink,garden nwr/shop=mall nwr/building=civic,public,theatre,cinema,university,stadium,sports_hall,hotel,commercial nwr/historic=castle,monument,ruins,archaeological_site,building r/admin_level=4 -o /tmp/f.pbf --overwrite
+          osmium export /tmp/f.pbf -f geojsonseq -o /tmp/tr.geojsonseq --overwrite
+          ls -la /tmp/tr.pbf /tmp/f.pbf /tmp/tr.geojsonseq
       - name: Eşleştir
         working-directory: scraper
         env:

@@ -180,7 +180,7 @@ export function abbList(html, url) {
  * Tek salonlu kayıtlar doğrudan seanslara açılır; birden çok salonlu tiyatro ve konserler detay sayfasından okunur.
  * Stand-up ve çocuk oyunları tiyatro listesinin içinde (ayrı kategori adresleri 404/500).
  * Sinema: festival gösterimlerinin her seansı; vizyondaki filmlerin önümüzdeki 5 günde günde bir seansı (en erken). */
-const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["stand-up", "standup"], ["cocuk-aktiviteleri", "cocuk"], ["festival", "festival"], ["egitim", "atolye"], ["etkinlik", ""], ["sinema", "sinema"]];
+const BI_CATS = [["tiyatro", "tiyatro"], ["muzik", "konser"], ["opera-bale", "sahne"], ["egitim", "atolye"], ["etkinlik", ""], ["sinema", "sinema"]];
 export async function biletinialCollect({ fetchText, getPage, today, src, city }) {
   const out = [], detail = new Set(), miss = [], noSeance = [], images = {};
   // Şehir: Ankara'nın numarası 3; başka il için numarayı sitenin kendi liste isteğinden öğren (sayfayı açınca kendisi çağırır)
@@ -198,9 +198,10 @@ export async function biletinialCollect({ fetchText, getPage, today, src, city }
   const end5 = new Date(Date.parse(today + "T00:00:00+03:00") + 5 * 864e5).toISOString().slice(0, 10);
   for (const [org, cat] of BI_CATS) {
     const items = [];
-    for (let page = 1; page <= 40; page++) {
+    // sayfalar 0'dan başlar (18.11.2026): 1'den başlayınca her türün ilk 50 kaydı atlanıyor, küçük illerde liste bomboş dönüyordu
+    for (let page = 0; page <= 40; page++) {
       const r = await fetchText(`https://biletinial.com/List/GetMoreItems?region=tr-tr&cityId=${cityId}&cityUrl=${cu}&order=0&isKids=false&isCampaign=false&isForeign=false&organizerUrl=${org}&page=${page}`, { retries: 1 });
-      let j; try { j = JSON.parse(r.text); } catch { if (page === 1) miss.push(`${org}:${r.status || r.error}`); break; }
+      let j; try { j = JSON.parse(r.text); } catch { if (page === 0) miss.push(`${org}:${r.status || r.error}`); break; }
       items.push(...(j.items || []));
       if (!j.hasMore || !(j.items || []).length) break;
     }
