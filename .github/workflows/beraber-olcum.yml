@@ -44,6 +44,16 @@ jobs:
           node beraber/davet.mjs
       - if: always()
         run: cd /tmp/canli && git init -q -b beraber-canli && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Davet denemesi" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-canli
+  gba:
+    if: github.event.inputs.is == 'gba'
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    env: { OUT: /tmp/gba }
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scraper/beraber/gba.py
+      - if: always()
+        run: cd /tmp/gba && git init -q -b beraber-gba && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "GBA" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" beraber-gba
   ornek:
     if: github.event.inputs.is == 'ornek' || github.event.inputs.is == 'ikisi'
     runs-on: ubuntu-latest
