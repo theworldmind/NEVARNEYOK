@@ -116,6 +116,8 @@ for (const [k, u] of biTodo) { if (biReq >= BI_MAX) break; const i = k.indexOf("
     put(c, v, { lat: +p.lat.toFixed(7), lng: +p.lng.toFixed(7), addr: p.addr, ilce: (p.addr.match(/([^\s,\/]+)\s*\/\s*[^\/]+$/) || [])[1] || "", src: "biletinial", v: 2 }); biHit++; break; } }
 log(`geo-osm: Biletinial mekân sayfaları: ${biHit} mekân bulundu (${biReq} istek, ${slugs.size} mekân adı)`);
 
+// 1b) Kaynak sayfalarının yapısal verisi (AllEvents, Biletix, biletimGO, Radar): adresi o ili gösteren ve merkez noktası olmayan koordinat
+{ const VL = await readJSON(join(ROOT, "data/c/_vloc.json"), {}) || {}; let n = 0; for (const [k, x] of Object.entries(VL)) { if (!x?.g) continue; const i = k.indexOf("|"), c = k.slice(0, i), v = k.slice(i + 1); if (!want.get(c)?.has(v)) continue; put(c, v, { lat: x.g[0], lng: x.g[1], addr: x.a, ilce: "", src: "jsonld", v: 2 }); n++; } log(`geo-osm: kaynak sayfası koordinatı: ${n} mekân`); }
 await loadSeq();
 // 2) Kalanlar: OpenStreetMap yerleri + aynı ildeki konumu bilinen mekânlar ("AYDIN GÜN SALONU" = "Aydın Gün Salonu", "Ata Sahne" = "Atakum Belediyesi Ata Sahne")
 await mkdir(join(ROOT, "scraper/out"), { recursive: true });

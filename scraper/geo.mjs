@@ -34,6 +34,7 @@ const addC = async (city, file) => { const f = await readJSON(join(ROOT, file), 
   for (const [cid, c] of Object.entries(f.cinemas)) { if (!n[cid] || !c?.name) continue; const k = TR ? city + "|" + c.name : c.name; if (known.has(fold(k))) continue;
     const x = cnt.get(k) || [city, c.name, 0]; x[2] += n[cid] * 2; cnt.set(k, x); if (c.addr) caddr.set(k, c.addr); } };
 if (TR) { for (const c of CITIES) if (c.id !== "ankara") await addC(c.id, `data/c/${c.id}-films.json`); } else await addC("ankara", "data/films.json");
+if (TR) { const VL = await readJSON(join(ROOT, "data/c/_vloc.json"), {}) || {}; for (const [k, x] of Object.entries(VL)) if (x?.a && cnt.has(k) && !caddr.has(k)) caddr.set(k, x.a); } // kaynak sayfasının yazdığı adres: ad bulunamazsa adresle aranır
 const todo = [...cnt].sort((a, b) => b[1][2] - a[1][2]).map(([k, x]) => [k, x[0], x[1]]).filter(([k]) => !(miss[k] && (Date.parse(today) - Date.parse(miss[k])) / 864e5 < 14)).slice(0, MAX);
 
 // "Karagöz Müzesi · Hayali Küçük Ali Sahne" → önce tamamı, sonra ana ad; salon/sahne ekleri atılarak yeniden denenir

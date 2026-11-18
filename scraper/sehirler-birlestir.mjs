@@ -7,6 +7,7 @@ import { join } from "node:path";
 import { readdir } from "node:fs/promises";
 import { ROOT, log, readJSON, writeJSON, todayIST, fold } from "./lib/util.mjs";
 import { CITIES, cityOfText } from "./lib/cities.mjs";
+import { vlocAdd, vlocFinal } from "./lib/vloc.mjs";
 
 const today = todayIST();
 const key = (e) => fold(e.title).replace(/[^a-z0-9]+/g, "") + "|" + e.d + "|" + (e.t || "");
@@ -43,6 +44,7 @@ for (const C of CITIES) {
     const m = vTitles.get(v) || vTitles.set(v, new Map()).get(v); (m.get(C.id) || m.set(C.id, new Set()).get(C.id)).add(fold(e.title));
     (sCities.get(sk(e)) || sCities.set(sk(e), new Set()).get(sk(e))).add(C.id); }
 }
+const VL = {}; for (const C of CITIES) for (const e of SRC[C.id]) { vlocAdd(VL, C.id, e); delete e.vg; delete e.va; } // kaynakların yapısal adres/koordinatı: geo-osm.mjs ve geo.mjs kullanır
 const homeOf = (e) => { const t = cityOfText(e.venue || ""); if (t) return t; const m = vTitles.get(vk(e)); if (!m) return ""; let best = "", bn = 0; for (const [c, S] of m) if (S.size > bn) { bn = S.size; best = c; } return best; };
 /* Mekânın adında başka il yazıyorsa etkinlik o ilindir (18.11.2026: İstanbul listesinde "Jolly Joker Ankara", Bolu'da "Tekirdağ … Kültür Merkezi"): doğru ilin listesine taşınır.
    Cadde/sokak adları ve "Van Gogh" gibi adlar sayılmaz; Ankara kendi taramasıyla geldiği için oraya gidecek kayıt yalnızca bu listeden çıkar. */
@@ -87,3 +89,4 @@ await writeJSON(join(ROOT, "data/cities.json"), index, true);
 log(`Şehirler: başka ilin listesine düşmüş ${dropped} turne seansı asıl iline bırakıldı; mekân adı başka ili gösteren ${relocated} kayıt doğru ile taşındı`);
 const open = Object.values(index.cities).filter((c) => c.n || c.films);
 log(`Şehirler: ${open.length}/81 ilde etkinlik ya da film var · toplam ${Object.values(index.cities).reduce((a, c) => a + c.n, 0)} etkinlik`);
+await writeJSON(join(ROOT, "data/c/_vloc.json"), vlocFinal(VL), false);

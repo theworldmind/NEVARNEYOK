@@ -2,10 +2,11 @@
 //  - aynı etkinlik farklı sitelerde → tek kart, bilet siteleri yan yana
 //  - yeni eklenen (firstSeen), fiyatı değişen (prevPrice), durumu değişen
 //  - bir site bozulduysa o sitenin eski kayıtları korunur (site boşalmaz)
+import { geoOf } from "./vloc.mjs";
 import { cleanTitle, canonVenue, guessCat, fixCat, sameEvent, siteNameOf, factsFrom } from "./normalize.mjs";
 import { todayIST } from "./util.mjs";
 
-const KEEP_FIELDS = ["age", "dur", "genre", "org", "door", "note", "img", "imgBy", "imgTried"];
+const KEEP_FIELDS = ["vg", "va", "age", "dur", "genre", "org", "door", "note", "img", "imgBy", "imgTried"];
 const STALE_TICKET_DAYS = 10; // bir bilet bağlantısı bu kadar gün görülmezse düşer
 const DROP_SHOW_DAYS = 7;     // "fiyatı düştü" rozeti kaç gün kalsın
 
@@ -32,6 +33,7 @@ export function rawToEvent(r, src) {
   if (r.desc) { const f = factsFrom(r.desc); if (f.dur && !r.dur) ev.dur = f.dur; if (f.age && !r.age) ev.age = f.age; } // metnin kendisi saklanmaz
   if (!src.forceCat) ev.cat = fixCat(ev);
   if (r.status) ev.status = r.status;
+  if (process.env.CITY && process.env.CITY !== "ankara" && r.venue) { const g = geoOf(r.geo), a = String(r.address || "").trim().slice(0, 160); if (g) ev.vg = g; if (a) ev.va = a; } // mekân konumu için; sehirler-birlestir ayıklar, siteye gitmez
   if (r.cid) ev.city = r.cid; // il (bütün Türkiye taramasında)
   if (r.org) ev.org = r.org;
   if (r.free && !r.price) ev.note = "Ücretsiz";
