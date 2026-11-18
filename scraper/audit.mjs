@@ -81,13 +81,16 @@ export function findGaps(cur, hist, health) {
 }
 
 /* ---------- Meraklı tarama: haberlerde geçen ama bizde olmayan adlar ---------- */
-const EVENT_WORDS = /festival|gala|prömiyer|konser|sahne alacak|tiyatro|sergi|gösteri|vizyon|açılış|resital|bienal|şenlik|söyleşi|turne/i;
+// (18.11.2026, kullanıcı: "Atların Dansı neden yok, 30 Kasım'a kadar uzatılmış") uzatma / ek gösterim haberleri ve Ankara'nın tanınan yerleri de yakalanır
+const EVENT_WORDS = /festival|gala|prömiyer|konser|sahne alacak|tiyatro|sergi|gösteri|vizyon|açılış|resital|bienal|şenlik|söyleşi|turne|uzatıldı|ek gösterim|ek seans|biletler tükendi/i;
+const ANK = /ankara|başkent|beştepe|millet kütüphanesi|millet bahçesi|kızılay|çankaya|cso ada|congresium|ato kongre|anıtkabir|hamamönü|ulus/i;
 const STOP = new Set("ankara ankarada ankaranin uluslararasi ulusal festivali festival bienali haftasi gunleri turkiye konseri konser gala galasi ile ve the of".split(" "));
 export function candidatesFrom(title) {
   const t = title.replace(/\s+[-–|]\s+[^-–|]+$/, ""); // "Başlık - Kaynak"
   const c = new Set();
   for (const m of t.matchAll(/[“"‘'«]([^”"’'»]{3,60})[”"’'»]/g)) c.add(m[1].trim());
   for (const m of t.matchAll(/((?:\d+\.\s*)?(?:[A-ZÇĞİÖŞÜ][\wçğıöşü'’]*\s+){0,4}(?:Festivali|Bienali|Haftası|Günleri|Şenliği|Konseri|Galası))/g)) c.add(m[1].trim());
+  for (const m of t.matchAll(/((?:[A-ZÇĞİÖŞÜ][\wçğıöşü'’:]*\s+){1,4})(?:gösterisi|sergisi|oyunu|konseri|festivali|müzikali)/g)) c.add(m[1].trim()); // "Atların Dansı gösterisi"
   return [...c].filter((x) => x.length >= 4);
 }
 export function known(cand, events) {
@@ -105,7 +108,7 @@ async function newsScan(events) {
       const title = it.title, link = it.link, when = it.date ? Date.parse(it.date) : NaN;
       if (!title || !EVENT_WORDS.test(title)) continue;
       if (when && Date.now() - when > 10 * 864e5) continue; // yalnızca son 10 günün haberleri
-      if (!/ankara|başkent|vizyon/i.test(title)) continue;   // başlıkta Ankara geçmeli (vizyon haberleri hariç)
+      if (!ANK.test(title) && !/vizyon/i.test(title) && !/ankara/i.test(url)) continue;   // başlıkta Ankara (ya da tanınan bir yeri) geçmeli, ya da Ankara'nın yerel haber akışı
       n++;
       for (const c of candidatesFrom(title)) {
         const key = fold(c); if (seen.has(key)) continue; seen.add(key);
