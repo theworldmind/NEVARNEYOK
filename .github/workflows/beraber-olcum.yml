@@ -12,8 +12,24 @@ permissions:
   contents: write
 
 jobs:
+  canli:
+    if: github.event.inputs.is == 'canli'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env: { OUT: /tmp/canli }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node beraber/canli.mjs
+      - if: always()
+        run: cd /tmp/canli && git init -q -b beraber-canli && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Canlı deneme" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-canli
   ornek:
-    if: github.event.inputs.is != 'olcum'
+    if: github.event.inputs.is == 'ornek' || github.event.inputs.is == 'ikisi'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env: { TZ: Europe/Istanbul, OUT: /tmp/ornek }
@@ -34,7 +50,7 @@ jobs:
         run: |
           cd /tmp/ornek && git init -q -b beraber-ornek && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Örnek görseller" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-ornek
   olcum:
-    if: github.event.inputs.is != 'ornek'
+    if: github.event.inputs.is == 'olcum' || github.event.inputs.is == 'ikisi'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env: { TZ: Europe/Istanbul, OUT: /tmp/olcum }
