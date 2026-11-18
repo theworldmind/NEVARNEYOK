@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:49:47.598Z",
+ "runAt": "2026-11-18T12:23:30.843Z",
  "mode": "full",
- "total": 168,
+ "total": 176,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 37,
-   "prevCount": 105,
+   "count": 39,
+   "prevCount": 125,
    "error": "",
    "notes": [
     "açık veri: 33 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/nigde: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
-   "failStreak": 6,
+   "seconds": 95,
+   "failStreak": 7,
    "lastOk": "2026-11-15T10:33:25.988Z"
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 143,
-   "failStreak": 2,
+   "seconds": 141,
+   "failStreak": 3,
    "lastOk": "2026-11-17T12:07:48.444Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/nigde/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/nigde/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 184,
+   "seconds": 187,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:49:47.598Z"
+   "lastOk": "2026-11-18T12:23:30.843Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -99,10 +99,10 @@
    "prevCount": 0,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 522"
    ],
-   "seconds": 7,
-   "failStreak": 4,
+   "seconds": 24,
+   "failStreak": 5,
    "lastOk": null
   }
  }

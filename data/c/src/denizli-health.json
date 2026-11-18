@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:24:22.740Z",
+ "runAt": "2026-11-18T12:00:35.111Z",
  "mode": "full",
- "total": 253,
+ "total": 262,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 52,
-   "prevCount": 178,
+   "count": 54,
+   "prevCount": 200,
    "error": "",
    "notes": [
-    "açık veri: 44 seans",
+    "açık veri: 47 seans",
     "biletinial.com/tr-tr/tiyatro/denizli: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/denizli: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/denizli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
-   "failStreak": 6,
+   "seconds": 99,
+   "failStreak": 7,
    "lastOk": "2026-11-15T10:29:07.857Z"
   },
   "radar": {
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=denizli: 37 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1045,
+   "seconds": 1051,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:24:22.740Z"
+   "lastOk": "2026-11-18T12:00:35.111Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/denizli/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/denizli/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 169,
+   "seconds": 179,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:24:22.740Z"
+   "lastOk": "2026-11-18T12:00:35.111Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:24:22.740Z"
+   "lastOk": "2026-11-18T12:00:35.111Z"
   }
  }
 }

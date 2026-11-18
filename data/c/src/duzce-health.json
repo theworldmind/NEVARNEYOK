@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:27:03.583Z",
+ "runAt": "2026-11-18T12:00:46.792Z",
  "mode": "full",
- "total": 237,
+ "total": 249,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 48,
-   "prevCount": 137,
+   "prevCount": 165,
    "error": "",
    "notes": [
     "açık veri: 43 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
-   "failStreak": 6,
+   "seconds": 100,
+   "failStreak": 7,
    "lastOk": "2026-11-15T10:29:06.869Z"
   },
   "radar": {
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 168,
+   "seconds": 180,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:27:03.583Z"
+   "lastOk": "2026-11-18T12:00:46.792Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -72,8 +72,8 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 72,
-   "prevCount": 65,
+   "count": 75,
+   "prevCount": 67,
    "error": "",
    "notes": [
     "allevents.in/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +85,9 @@
     "allevents.in/duzce/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/duzce/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 175,
+   "seconds": 199,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:27:03.583Z"
+   "lastOk": "2026-11-18T12:00:46.792Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:27:03.583Z"
+   "lastOk": "2026-11-18T12:00:46.792Z"
   }
  }
 }

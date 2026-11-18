@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:29:43.914Z",
+ "runAt": "2026-11-18T12:06:03.947Z",
  "mode": "full",
- "total": 88,
+ "total": 87,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 54,
-   "prevCount": 43,
+   "count": 53,
+   "prevCount": 54,
    "error": "",
    "notes": [
-    "açık veri: 52 seans",
+    "açık veri: 51 seans",
     "biletinial.com/tr-tr/tiyatro/giresun: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
+   "seconds": 96,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:29:43.914Z"
+   "lastOk": "2026-11-18T12:06:03.947Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=giresun: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 938,
+   "seconds": 942,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:29:43.914Z"
+   "lastOk": "2026-11-18T12:06:03.947Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/giresun/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/giresun: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:29:43.914Z"
+   "lastOk": "2026-11-18T12:06:03.947Z"
   }
  }
 }

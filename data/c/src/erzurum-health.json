@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:28:35.863Z",
+ "runAt": "2026-11-18T12:01:30.257Z",
  "mode": "full",
- "total": 100,
+ "total": 117,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 40,
+   "count": 57,
    "prevCount": 40,
    "error": "",
    "notes": [
-    "açık veri: 37 seans",
+    "açık veri: 54 seans",
     "biletinial.com/tr-tr/tiyatro/erzurum: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 80,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:28:35.863Z"
+   "lastOk": "2026-11-18T12:01:30.257Z"
   },
   "radar": {
    "id": "radar",
@@ -37,7 +37,7 @@
    "prevCount": 54,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/erzurum-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/erzurum-etkinlikleri: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/erzurum-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/erzurum-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/erzurum-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=erzurum: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1037,
+   "seconds": 1040,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:28:35.863Z"
+   "lastOk": "2026-11-18T12:01:30.257Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -87,7 +87,7 @@
    ],
    "seconds": 173,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:28:35.863Z"
+   "lastOk": "2026-11-18T12:01:30.257Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:28:35.863Z"
+   "lastOk": "2026-11-18T12:01:30.257Z"
   }
  }
 }

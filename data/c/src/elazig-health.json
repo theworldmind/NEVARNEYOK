@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T08:26:49.867Z",
+ "runAt": "2026-11-18T12:01:10.414Z",
  "mode": "full",
  "total": 65,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 57,
-   "prevCount": 121,
+   "prevCount": 57,
    "error": "",
    "notes": [
     "açık veri: 51 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 97,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:26:49.867Z"
+   "lastOk": "2026-11-18T12:01:10.414Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 231,
+   "seconds": 208,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:26:49.867Z"
+   "lastOk": "2026-11-18T12:01:10.414Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/elazig/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 16,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:26:49.867Z"
+   "lastOk": "2026-11-18T12:01:10.414Z"
   }
  }
 }

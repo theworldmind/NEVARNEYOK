@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:47:10.857Z",
+ "runAt": "2026-11-18T12:20:33.404Z",
  "mode": "full",
- "total": 215,
+ "total": 217,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 172,
-   "prevCount": 366,
+   "count": 173,
+   "prevCount": 171,
    "error": "",
    "notes": [
-    "açık veri: 126 seans, 16 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/mugla: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 127 seans, 16 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/mugla: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mugla: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mugla: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 108,
+   "seconds": 114,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:47:10.857Z"
+   "lastOk": "2026-11-18T12:20:33.404Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mugla: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 834,
+   "seconds": 830,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:47:10.857Z"
+   "lastOk": "2026-11-18T12:20:33.404Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/mugla/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mugla/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 171,
+   "seconds": 187,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:47:10.857Z"
+   "lastOk": "2026-11-18T12:20:33.404Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -99,10 +99,10 @@
    "prevCount": 0,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 522"
    ],
-   "seconds": 6,
-   "failStreak": 4,
+   "seconds": 24,
+   "failStreak": 5,
    "lastOk": null
   }
  }

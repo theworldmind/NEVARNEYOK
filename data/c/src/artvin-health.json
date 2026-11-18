@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T08:17:45.244Z",
+ "runAt": "2026-11-18T11:54:58.573Z",
  "mode": "full",
  "total": 71,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 12,
-   "prevCount": 22,
+   "prevCount": 12,
    "error": "",
    "notes": [
     "açık veri: 10 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 78,
+   "seconds": 90,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:17:45.244Z"
+   "lastOk": "2026-11-18T11:54:58.573Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 131,
-   "failStreak": 4,
+   "seconds": 138,
+   "failStreak": 5,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -73,7 +73,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 66,
-   "prevCount": 56,
+   "prevCount": 58,
    "error": "",
    "notes": [
     "allevents.in/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +85,9 @@
     "allevents.in/artvin/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 196,
+   "seconds": 184,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:17:45.244Z"
+   "lastOk": "2026-11-18T11:54:58.573Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:17:45.244Z"
+   "lastOk": "2026-11-18T11:54:58.573Z"
   }
  }
 }

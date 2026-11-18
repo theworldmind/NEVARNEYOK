@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:51:19.029Z",
+ "runAt": "2026-11-18T12:24:31.555Z",
  "mode": "full",
- "total": 73,
+ "total": 75,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 28,
-   "prevCount": 64,
+   "count": 30,
+   "prevCount": 28,
    "error": "",
    "notes": [
-    "açık veri: 23 seans",
-    "biletinial.com/tr-tr/tiyatro/rize: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 25 seans",
+    "biletinial.com/tr-tr/tiyatro/rize: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/rize: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -25,7 +25,7 @@
    ],
    "seconds": 90,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:51:19.029Z"
+   "lastOk": "2026-11-18T12:24:31.555Z"
   },
   "radar": {
    "id": "radar",
@@ -33,11 +33,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 42,
+   "count": 34,
    "prevCount": 42,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/rize-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/rize-etkinlikleri: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/rize-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/rize-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/rize-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=rize: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1087,
+   "seconds": 1033,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:51:19.029Z"
+   "lastOk": "2026-11-18T12:24:31.555Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/rize/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/rize/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 4,
+   "seconds": 156,
+   "failStreak": 5,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:51:19.029Z"
+   "lastOk": "2026-11-18T12:24:31.555Z"
   }
  }
 }

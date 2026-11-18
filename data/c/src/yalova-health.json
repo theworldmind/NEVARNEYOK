@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T09:00:36.904Z",
+ "runAt": "2026-11-18T12:36:11.338Z",
  "mode": "full",
- "total": 74,
+ "total": 73,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 31,
-   "prevCount": 63,
+   "count": 30,
+   "prevCount": 32,
    "error": "",
    "notes": [
-    "açık veri: 29 seans",
+    "açık veri: 28 seans",
     "biletinial.com/tr-tr/tiyatro/yalova: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -25,7 +25,7 @@
    ],
    "seconds": 81,
    "failStreak": 0,
-   "lastOk": "2026-11-18T09:00:36.904Z"
+   "lastOk": "2026-11-18T12:36:11.338Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yalova: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1083,
+   "seconds": 1082,
    "failStreak": 0,
-   "lastOk": "2026-11-18T09:00:36.904Z"
+   "lastOk": "2026-11-18T12:36:11.338Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/yalova/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 155,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
-   "failStreak": 4,
+   "seconds": 10,
+   "failStreak": 5,
    "lastOk": null
   }
  }

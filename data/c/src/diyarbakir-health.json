@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T08:27:36.096Z",
+ "runAt": "2026-11-18T12:00:48.786Z",
  "mode": "full",
  "total": 261,
  "written": true,
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 71,
-   "prevCount": 234,
+   "count": 69,
+   "prevCount": 240,
    "error": "",
    "notes": [
-    "açık veri: 63 seans",
+    "açık veri: 62 seans",
     "biletinial.com/tr-tr/tiyatro/diyarbakir: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/diyarbakir: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 108,
-   "failStreak": 6,
+   "seconds": 103,
+   "failStreak": 7,
    "lastOk": "2026-11-15T10:29:07.999Z"
   },
   "radar": {
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 202,
+   "seconds": 226,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:27:36.096Z"
+   "lastOk": "2026-11-18T12:00:48.786Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/diyarbakir/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 172,
+   "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:27:36.096Z"
+   "lastOk": "2026-11-18T12:00:48.786Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/diyarbakir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:27:36.096Z"
+   "lastOk": "2026-11-18T12:00:48.786Z"
   }
  }
 }

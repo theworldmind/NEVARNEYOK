@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:23:24.705Z",
+ "runAt": "2026-11-18T12:00:20.785Z",
  "mode": "full",
- "total": 268,
+ "total": 271,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 46,
-   "prevCount": 243,
+   "count": 47,
+   "prevCount": 248,
    "error": "",
    "notes": [
     "açık veri: 41 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
-   "failStreak": 6,
+   "seconds": 96,
+   "failStreak": 7,
    "lastOk": "2026-11-15T10:28:56.677Z"
   },
   "radar": {
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 204,
+   "seconds": 205,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:23:24.705Z"
+   "lastOk": "2026-11-18T12:00:20.785Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/canakkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/canakkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 183,
-   "failStreak": 4,
+   "seconds": 176,
+   "failStreak": 5,
    "lastOk": null
   },
   "biletimgo": {
@@ -96,14 +96,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 10,
-   "prevCount": 9,
+   "prevCount": 10,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/canakkale: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 25,
+   "seconds": 24,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:23:24.705Z"
+   "lastOk": "2026-11-18T12:00:20.785Z"
   }
  }
 }

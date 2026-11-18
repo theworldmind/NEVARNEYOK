@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:59:37.026Z",
+ "runAt": "2026-11-18T12:32:58.517Z",
  "mode": "full",
- "total": 136,
+ "total": 137,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 85,
-   "prevCount": 174,
+   "count": 86,
+   "prevCount": 85,
    "error": "",
    "notes": [
     "açık veri: 80 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/trabzon: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:59:37.026Z"
+   "lastOk": "2026-11-18T12:32:58.517Z"
   },
   "radar": {
    "id": "radar",
@@ -37,7 +37,7 @@
    "prevCount": 43,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/trabzon-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/trabzon-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/trabzon-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/trabzon-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/trabzon-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=trabzon: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1024,
+   "seconds": 1084,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:59:37.026Z"
+   "lastOk": "2026-11-18T12:32:58.517Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/trabzon/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 197,
+   "seconds": 181,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:59:37.026Z"
+   "lastOk": "2026-11-18T12:32:58.517Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   }
  }

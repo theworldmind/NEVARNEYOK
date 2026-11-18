@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T08:25:44.179Z",
+ "runAt": "2026-11-18T12:01:02.658Z",
  "mode": "full",
- "total": 145,
+ "total": 142,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 99,
-   "prevCount": 225,
+   "count": 96,
+   "prevCount": 100,
    "error": "",
    "notes": [
-    "açık veri: 92 seans, 1 detay sayfası",
+    "açık veri: 91 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/edirne: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/edirne: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/edirne: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 106,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:25:44.179Z"
+   "lastOk": "2026-11-18T12:01:02.658Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=edirne: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1009,
+   "seconds": 982,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:25:44.179Z"
+   "lastOk": "2026-11-18T12:01:02.658Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/edirne/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/edirne: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 18,
+   "seconds": 19,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:25:44.179Z"
+   "lastOk": "2026-11-18T12:01:02.658Z"
   }
  }
 }

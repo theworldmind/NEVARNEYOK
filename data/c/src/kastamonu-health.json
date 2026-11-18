@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T08:43:39.154Z",
+ "runAt": "2026-11-18T12:12:07.580Z",
  "mode": "full",
  "total": 40,
  "written": true,
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 17,
-   "prevCount": 37,
+   "count": 16,
+   "prevCount": 16,
    "error": "",
    "notes": [
-    "açık veri: 15 seans",
+    "açık veri: 14 seans",
     "biletinial.com/tr-tr/tiyatro/kastamonu: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
+   "seconds": 78,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:43:39.154Z"
+   "lastOk": "2026-11-18T12:12:07.580Z"
   },
   "radar": {
    "id": "radar",
@@ -48,7 +48,7 @@
    ],
    "seconds": 687,
    "failStreak": 0,
-   "lastOk": "2026-11-18T08:43:39.154Z"
+   "lastOk": "2026-11-18T12:12:07.580Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kastamonu/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kastamonu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 4,
+   "seconds": 157,
+   "failStreak": 5,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
-   "failStreak": 4,
+   "seconds": 6,
+   "failStreak": 5,
    "lastOk": null
   }
  }
