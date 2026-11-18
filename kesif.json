@@ -1,0 +1,211 @@
+{
+ "zhu-xlab/GBA.LoD1": [
+  [
+   "directory",
+   "LoD1",
+   0
+  ],
+  [
+   "directory",
+   "Polygon",
+   0
+  ],
+  [
+   "directory",
+   "representative",
+   0
+  ],
+  [
+   "file",
+   ".gitattributes",
+   83391
+  ],
+  [
+   "file",
+   "README.md",
+   4524
+  ],
+  [
+   "file",
+   "produce_lod1.py",
+   6428
+  ]
+ ],
+ "zhu-xlab/GBA.ODbLPolygon": [
+  [
+   "directory",
+   "africa",
+   0
+  ],
+  [
+   "directory",
+   "asiaeast",
+   0
+  ],
+  [
+   "directory",
+   "asiawest",
+   0
+  ],
+  [
+   "directory",
+   "europe",
+   0
+  ],
+  [
+   "directory",
+   "northamerica",
+   0
+  ],
+  [
+   "directory",
+   "oceania",
+   0
+  ],
+  [
+   "directory",
+   "southamerica",
+   0
+  ],
+  [
+   "file",
+   ".gitattributes",
+   43152
+  ],
+  [
+   "file",
+   "README.md",
+   1721
+  ]
+ ],
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+ },
+ "ilk": {
+  "type": "Feature",
+  "properties": {
+   "tile": "europe/w045_n65_w040_n60"
+  },
+  "geometry": {
+   "type": "Polygon",
+   "coordinates": [
+    [
+     [
+      -40.0,
+      60.0
+     ],
+     [
+      -40.0,
+      65.0
+     ],
+     [
+      -45.0,
+      65.0
+     ],
+     [
+      -45.0,
+      60.0
+     ],
+     [
+      -40.0,
+      60.0
+     ]
+    ]
+   ]
+  }
+ },
+ "turkiye": [
+  {
+   "p": {
+    "tile": "europe/e035_n45_e040_n40"
+   },
+   "b": [
+    35.0,
+    40.0,
+    40.0,
+    45.0
+   ]
+  },
+  {
+   "p": {
+    "tile": "europe/e030_n45_e035_n40"
+   },
+   "b": [
+    30.0,
+    40.0,
+    35.0,
+    45.0
+   ]
+  },
+  {
+   "p": {
+    "tile": "europe/e025_n45_e030_n40"
+   },
+   "b": [
+    25.0,
+    40.0,
+    30.0,
+    45.0
+   ]
+  },
+  {
+   "p": {
+    "tile": "europe/e040_n45_e045_n40"
+   },
+   "b": [
+    40.0,
+    40.0,
+    45.0,
+    45.0
+   ]
+  },
+  {
+   "p": {
+    "tile": "africa/e040_n40_e045_n35"
+   },
+   "b": [
+    40.0,
+    35.0,
+    45.0,
+    40.0
+   ]
+  },
+  {
+   "p": {
+    "tile": "africa/e035_n40_e040_n35"
+   },
+   "b": [
+    35.0,
+    35.0,
+    40.0,
+    40.0
+   ]
+  },
+  {
+   "p": {
+    "tile": "africa/e025_n40_e030_n35"
+   },
+   "b": [
+    25.0,
+    35.0,
+    30.0,
+    40.0
+   ]
+  },
+  {
+   "p": {
+    "tile": "africa/e030_n40_e035_n35"
+   },
+   "b": [
+    30.0,
+    35.0,
+    35.0,
+    40.0
+   ]
+  }
+ ],
+ "adet": 922
+}
