@@ -3,10 +3,10 @@
 // Bilet sitesinde satılmayan etkinlikler (ücretsiz/başvurulu gösteriler, belediye etkinlikleri, uzatılan sergiler…) haberle duyurulur.
 // Bu iş haber akışlarındaki etkinlik haberlerini okur, haberin sayfasından YALNIZCA OLGULARI çıkarır (etkinliğin adı, il, tarih(ler), mekân)
 // ve bizde olmayanları data/haber.json'a yazar. Haber metni yalnızca bellekte okunur; saklanan: ad, il, tarih, mekân, tür, haberin sitesi ve bağlantısı.
-// Görsel alınmaz (haber fotoğrafı gazetenin). Kayıtlar Ankara taramasında (run.mjs) ve il birleştirmesinde (sehirler-birlestir.mjs) listelere girer.
+// Haberin paylaşım görselinin yalnızca adresi tutulur (afişi bulunamayan etkinlikte "Görsel: <haber sitesi>"; kullanıcı kararı 18.11.2026). Kayıtlar Ankara taramasında (run.mjs) ve il birleştirmesinde (sehirler-birlestir.mjs) listelere girer.
 //   node haber-kesif.mjs
 import { join } from "node:path";
-import { ROOT, log, readJSON, writeJSON, decodeEntities, todayIST, fold } from "./lib/util.mjs";
+import { ROOT, log, readJSON, writeJSON, decodeEntities, todayIST, fold, pool, withTimeout } from "./lib/util.mjs";
 import { fetchText } from "./lib/net.mjs";
 import { parseFeed, FEEDS as BUZZ_FEEDS } from "./buzz.mjs";
 import { candidatesFrom } from "./audit.mjs";
@@ -14,7 +14,7 @@ import { CITIES, cityOfText } from "./lib/cities.mjs";
 import { guessCat, fixCat } from "./lib/normalize.mjs";
 
 const OUT = join(ROOT, "data/haber.json");
-const MAX_ART = +process.env.HABER_MAX || 160;   // çalışma başına en çok bu kadar haber sayfası okunur
+const MAX_ART = +process.env.HABER_MAX || 450;   // çalışma başına en çok bu kadar haber sayfası okunur
 const DAYS = 14, AHEAD = 120;
 
 // kültür-sanat akışları (buzz) + genel/yerel akışlar: belediye, valilik, kurum duyuruları çoğu zaman "gündem/yerel" başlığında çıkar
@@ -31,7 +31,55 @@ const FEEDS = [
   { id: "ankarahaber", name: "Ankara Haber", url: "https://www.ankarahaber.com.tr/rss" },
   { id: "iha", name: "İHA", url: "https://www.iha.com.tr/rss" },
   { id: "dha", name: "DHA", url: "https://www.dha.com.tr/rss" },
+  ...MORE(),
 ];
+// 18.11.2026 16:11 (kullanıcı: "ne gerekiyorsa yap, her şey gözüksün"): ulusal kültür-sanat/yaşam akışları ve il il yerel gazeteler.
+// Adresler sitelerin yaygın akış biçimleri; çalışmayan (404, robots kapalı) akış yalnızca günlüğe "x: 404" olarak düşer, işi durdurmaz.
+// Aynı sitenin birden çok biçimi denenir; ilk çalışan kalır (aynı alan adı için ikincisi atlanır).
+function MORE() {
+  const N = [
+    ["ntv-sanat", "NTV", "https://www.ntv.com.tr/sanat.rss"], ["ntv-turkiye", "NTV", "https://www.ntv.com.tr/turkiye.rss"],
+    ["cnnturk-kultur", "CNN Türk", "https://www.cnnturk.com/feed/rss/kultur-sanat/news"], ["cnnturk-turkiye", "CNN Türk", "https://www.cnnturk.com/feed/rss/turkiye/news"],
+    ["milliyet-kultur", "Milliyet", "https://www.milliyet.com.tr/rss/rssnew/kultursanatrss.xml"], ["milliyet-gundem", "Milliyet", "https://www.milliyet.com.tr/rss/rssnew/gundemrss.xml"],
+    ["yenisafak-kultur", "Yeni Şafak", "https://www.yenisafak.com/rss?xml=kultur-sanat"], ["t24-kultur", "T24", "https://t24.com.tr/rss/haber/kultur-sanat"],
+    ["birgun", "BirGün", "https://www.birgun.net/rss/home"], ["duvar", "Gazete Duvar", "https://www.gazeteduvar.com.tr/export/rss"],
+    ["karar", "Karar", "https://www.karar.com/rss/kultur-sanat"], ["star", "Star", "https://www.star.com.tr/rss/rss.asp"],
+    ["haberler-kultur", "Haberler.com", "https://rss.haberler.com/rss.asp?kategori=kultur-sanat"], ["haberler-yasam", "Haberler.com", "https://rss.haberler.com/rss.asp?kategori=yasam"],
+    ["haber7-kultur", "Haber7", "https://i12.haber7.net/sondakika/newsstand/latest.xml"], ["iha-kultur", "İHA", "https://www.iha.com.tr/rss/kultur-sanat"],
+    ["aa-yasam", "AA", "https://www.aa.com.tr/tr/rss/default?cat=yasam"], ["trt-yasam", "TRT Haber", "https://www.trthaber.com/yasam_articles.rss"],
+    ["hurriyet-gundem", "Hürriyet", "https://www.hurriyet.com.tr/rss/gundem"], ["sozcu-gundem", "Sözcü", "https://www.sozcu.com.tr/feeds-rss-category-gundem"],
+  ];
+  // yerel gazeteler (il adı başlıkta geçmese de cityOfText gövdeden bulur)
+  const L = [
+    ["Manşet Ankara", "mansetankara.com", ["/rss/ozel-haber", "/rss/kultur-sanat", "/rss/guncel", "/rss/ankara"]],
+    ["Ankara Net Haber", "www.ankaranethaber.com", ["/rss", "/rss.xml", "/feed"]], ["Ankara Masası", "www.ankaramasasi.com", ["/rss", "/rss/kultur-sanat"]],
+    ["Başkent Postası", "www.baskentpostasi.com.tr", ["/rss", "/rss/kultur-sanat"]], ["Başkent Gazete", "www.baskentgazete.com.tr", ["/rss", "/feed"]],
+    ["Yeni Asır", "www.yeniasir.com.tr", ["/rss/kultur-sanat.xml", "/rss/anasayfa.xml"]], ["Ege'de Son Söz", "www.egedesonsoz.com", ["/rss", "/rss/kultur-sanat"]],
+    ["Ege Telgraf", "www.egetelgraf.com", ["/rss", "/rss/kultur-sanat"]], ["İzmir Time24", "www.izmirtime24.com", ["/rss"]],
+    ["Olay", "www.olay.com.tr", ["/rss", "/rss/kultur-sanat"]], ["Bursa Hakimiyet", "www.bursahakimiyet.com.tr", ["/rss", "/rss/kultur-sanat"]], ["Bursada Bugün", "www.bursadabugun.com", ["/rss", "/rss/kultur-sanat"]],
+    ["Antalya Körfez", "www.antalyakorfez.com", ["/rss"]], ["Antalya Son Dakika", "www.antalyasondakika.com", ["/rss"]], ["Akdeniz Gazetesi", "www.akdenizgazetesi.com.tr", ["/rss"]],
+    ["Yeni Adana", "www.yeniadana.net", ["/rss"]], ["Adana Medya", "www.adanamedya.com", ["/rss"]], ["Konya Yenigün", "www.konyayenigun.com", ["/rss"]], ["Yeni Konya", "www.yenikonya.com.tr", ["/rss"]],
+    ["Eskişehir Anadolu", "www.esanadolugazetesi.com", ["/rss"]], ["Sakarya Yenigün", "www.sakaryayenigun.com", ["/rss"]], ["Kocaeli Barış", "www.kocaelibarisgazetesi.com", ["/rss"]],
+    ["Özgür Kocaeli", "www.ozgurkocaeli.com.tr", ["/rss"]], ["Kayseri Anadolu Haber", "www.kayserianadoluhaber.com.tr", ["/rss"]], ["Gaziantep Olay", "www.olaygazetesi.com.tr", ["/rss"]],
+    ["Samsun Haber", "www.samsunhaber.com", ["/rss"]], ["Taka", "www.takagazete.com.tr", ["/rss"]], ["Mersin Haber", "www.mersinhaber.com", ["/rss"]],
+    ["Hatay Gazetesi", "www.hataygazetesi.com.tr", ["/rss"]], ["Denizli Haber", "www.denizlihaber.com", ["/rss"]], ["Muğla Haber", "www.muglahaber.com.tr", ["/rss"]],
+    ["Bodrum Haber", "www.bodrumhaber.com", ["/rss"]], ["Erzurum Pusula", "www.pusulahaber.com.tr", ["/rss"]], ["Diyarbakır Söz", "www.diyarbakirsoz.com", ["/rss"]],
+    ["Van Haber", "www.vanhaber.net", ["/rss"]], ["Malatya Haber", "www.malatyahaber.com", ["/rss"]], ["Elazığ Haber", "www.elazighaber.com.tr", ["/rss"]],
+    ["Sivas Haber", "www.sivashaber.com", ["/rss"]], ["Tokat Haber", "www.tokathaber.com.tr", ["/rss"]], ["Çanakkale Olay", "www.canakkaleolay.com", ["/rss"]],
+    ["Edirne Haber", "www.edirnehaber.org", ["/rss"]], ["Tekirdağ Haber", "www.tekirdaghaber.com", ["/rss"]], ["Balıkesir Haber", "www.balikesirhaber.com.tr", ["/rss"]],
+    ["Manisa Haber", "www.manisahaber.com.tr", ["/rss"]], ["Aydın Ses", "www.aydinses.com", ["/rss"]], ["Isparta Haber", "www.ispartahaber.com", ["/rss"]],
+    ["Afyon Haber", "www.afyonhaber.com", ["/rss"]], ["Kütahya Haber", "www.kutahyahaber.com", ["/rss"]], ["Zonguldak Haber", "www.zonguldakhaber.net", ["/rss"]],
+    ["Bolu Olay", "www.boluolay.com", ["/rss"]], ["Düzce Haber", "www.duzcehaber.com", ["/rss"]], ["Ordu Olay", "www.orduolay.com", ["/rss"]],
+    ["Giresun Haber", "www.giresunhaber.com", ["/rss"]], ["Rize Haber", "www.rizehaber.com", ["/rss"]], ["Kastamonu Haber", "www.kastamonuhaber.com", ["/rss"]],
+    ["Şanlıurfa Haber", "www.urfanatik.com", ["/rss"]], ["Mardin Haber", "www.mardinhaber.com", ["/rss"]], ["Kahramanmaraş Haber", "www.kahramanmarashaber.com", ["/rss"]],
+    ["Nevşehir Haber", "www.nevsehirhaber.com", ["/rss"]], ["Aksaray Haber", "www.aksarayhaber.com", ["/rss"]], ["Niğde Haber", "www.nigdehaber.com", ["/rss"]],
+    ["Bilecik Haber", "www.bilecikhaber.com", ["/rss"]], ["Kırşehir Haber", "www.kirsehirhaber.com", ["/rss"]], ["Yozgat Haber", "www.yozgathaber.com", ["/rss"]],
+    ["Çorum Haber", "www.corumhaber.net", ["/rss"]], ["Amasya Haber", "www.amasyahaber.com", ["/rss"]], ["Karabük Haber", "www.karabukhaber.com", ["/rss"]],
+  ];
+  const out = N.map(([id, name, url]) => ({ id, name, url }));
+  for (const [name, host, paths] of L) paths.forEach((p, i) => out.push({ id: host.replace(/^www\./, "").split(".")[0] + (i ? "-" + i : ""), name, url: "https://" + host + p, host }));
+  return out;
+}
 
 const EVW = /festival|şenli[gğ]|konser|gösteri|sergi|tiyatro|oyun(u|unu)? sahnelen|sahnelenecek|sahne alacak|dinleti|resital|gala|fuar|panayır|söyleşi|atölye|etkinli[gğ]|kutlama|anma töreni|yarışma|turnuva|maraton|uzatıldı|ek gösterim|biletler tükendi|ücretsiz/i;
 const NOT = /deprem|kaza|cinayet|gözaltı|tutuklan|yaralı|öldü|hayatını kaybet|operasyon|seçim|mahkeme|dolandır|yangın|sel |fırtına|trafik kazası|maç sonucu|transfer|borsa|dolar|enflasyon/i;
@@ -119,9 +167,13 @@ async function main() {
   const prev = await readJSON(OUT, { items: [] });
   const known = new Map((prev.items || []).filter((x) => (x.until || x.days?.at(-1) || "") >= today).map((x) => [x.url, x]));
   const seen = new Set(), cands = [], notes = [];
+  const okHost = new Set(), RES = new Map();
+  await pool(FEEDS, 8, async (f) => { RES.set(f, await withTimeout(fetchText(f.url, { retries: f.host ? 0 : 1 }), 25000).catch((e) => ({ error: String(e?.message || e).slice(0, 40) }))); });
   for (const f of FEEDS) {
-    const r = await fetchText(f.url, { retries: 1 });
-    if (!r.text || r.status !== 200) { notes.push(`${f.id}: ${r.robots ? "robots kapalı" : r.status || r.error}`); continue; }
+    if (f.host && okHost.has(f.host) && !/ozel-haber|kultur/.test(f.url)) continue;
+    const r = RES.get(f) || {};
+    if (!r.text || r.status !== 200 || !/<(rss|feed|rdf)\b/i.test(r.text.slice(0, 3000))) { notes.push(`${f.id}: ${r.robots ? "robots kapalı" : r.status !== 200 ? r.status || r.error : "akış değil"}`); continue; }
+    if (f.host) okHost.add(f.host);
     let n = 0;
     for (const it of parseFeed(r.text)) {
       if (!it.title || !it.link || seen.has(it.link)) continue; seen.add(it.link);
@@ -135,21 +187,20 @@ async function main() {
   log(`Haber keşfi: ${cands.length} aday haber (${notes.join(", ")})`);
   const items = [...known.values()];
   let read = 0;
-  for (const c of cands) {
-    if (known.has(c.url)) continue;
-    if (read >= MAX_ART) break;
-    const r = await fetchText(c.url, { retries: 0 }); read++;
-    if (!r.text || r.status !== 200) continue;
+  const todo = cands.filter((c) => !known.has(c.url)).slice(0, MAX_ART);
+  await pool(todo, 8, async (c) => {
+    const r = await withTimeout(fetchText(c.url, { retries: 0 }), 25000).catch(() => ({})); read++;
+    if (!r.text || r.status !== 200) return;
     const body = bodyOf(r.text), all = c.head + "\n" + body;      // metin yalnızca bellekte
-    const city = cityOfText(c.head) || cityOfText(body.slice(0, 1500)); if (!city) continue;
+    const city = cityOfText(c.head) || cityOfText(body.slice(0, 1500)); if (!city) return;
     const D = datesOf(all, today);
-    if (!D.days.length && !D.until) continue;                     // tarihi yazmayan haber etkinlik sayılmaz
+    if (!D.days.length && !D.until) return;                       // tarihi yazmayan haber etkinlik sayılmaz
     const venue = venueOf(body);
     const img = ogImg(r.text, c.url);                                  // haberin tanıtım görseli: yalnızca adresi, kaynağıyla
     items.push({ id: fold(c.name).replace(/[^a-z0-9]+/g, "-").slice(0, 60) + "-" + city, city, title: c.name, cat: catOf(c.name, c.head), venue,
       days: D.days, until: D.until, from: D.from, t: D.time, free: /ücretsiz|ucretsiz|bedava|giriş serbest/i.test(all) || undefined,
       soldout: /biletler(i)? (anında )?tükendi|kontenjan doldu/i.test(all) || undefined, ...(img ? { img } : {}), site: c.site, url: c.url, seen: now });
-  }
+  });
   // aynı etkinlik birden çok haberde: ad + il birleşir (tarihler toplanır, en son haber bağlantısı kalır)
   const byId = new Map();
   for (const x of items) { const m = byId.get(x.id); if (!m) { byId.set(x.id, { ...x, days: [...(x.days || [])] }); continue; }
