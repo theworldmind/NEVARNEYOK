@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T14:12:32.324Z",
+ "runAt": "2026-11-18T22:25:31.283Z",
  "mode": "refresh",
- "total": 2705,
+ "total": 2507,
  "written": true,
  "sources": {
   "biletix": {
@@ -10,15 +10,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 543,
-   "prevCount": 416,
+   "count": 538,
+   "prevCount": 423,
    "error": "",
    "notes": [
-    "açık veri: 395 seans, 389 detay sayfası, dizinde 3511 kayıt"
+    "açık veri: 393 seans, 386 detay sayfası, dizinde 3475 kayıt"
    ],
-   "seconds": 265,
+   "seconds": 269,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "biletinial": {
    "id": "biletinial",
@@ -26,15 +26,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1696,
-   "prevCount": 1778,
+   "count": 1667,
+   "prevCount": 1798,
    "error": "",
    "notes": [
-    "açık veri: 1253 seans, 107 detay sayfası"
+    "açık veri: 1237 seans, 105 detay sayfası"
    ],
-   "seconds": 71,
+   "seconds": 72,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "sanatcepte": {
    "id": "sanatcepte",
@@ -42,13 +42,13 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 281,
+   "count": 269,
    "prevCount": 287,
    "error": "",
    "notes": [],
-   "seconds": 33,
+   "seconds": 36,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "bubilet": {
    "id": "bubilet",
@@ -61,7 +61,7 @@
    "error": "",
    "notes": [],
    "seconds": 14,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "passo": {
@@ -76,7 +76,7 @@
    "notes": [],
    "seconds": 47,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "mobilet": {
    "id": "mobilet",
@@ -89,7 +89,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "iticket": {
@@ -98,13 +98,13 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 12,
+   "count": 11,
    "prevCount": 12,
    "error": "",
    "notes": [],
-   "seconds": 57,
+   "seconds": 6,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "bugece": {
    "id": "bugece",
@@ -113,14 +113,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 11,
-   "prevCount": 19,
+   "prevCount": 20,
    "error": "",
    "notes": [
     "açık veri: 11 seans"
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "tiyatrolar": {
    "id": "tiyatrolar",
@@ -134,7 +134,7 @@
    "notes": [],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "bilkent": {
    "id": "bilkent",
@@ -146,9 +146,9 @@
    "prevCount": 13,
    "error": "",
    "notes": [],
-   "seconds": 7,
+   "seconds": 6,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "biletino": {
    "id": "biletino",
@@ -161,7 +161,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "dob": {
@@ -176,9 +176,9 @@
    "notes": [
     "açık veri: 36 seans"
    ],
-   "seconds": 23,
+   "seconds": 20,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "cso": {
    "id": "cso",
@@ -191,7 +191,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "abb-tiyatro": {
@@ -205,7 +205,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "abb-kultur": {
@@ -219,7 +219,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "cankaya": {
@@ -233,7 +233,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "yenimahalle": {
@@ -247,7 +247,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "kecioren": {
@@ -261,7 +261,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "etimesgut": {
@@ -276,7 +276,7 @@
    "notes": [],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "mamak": {
    "id": "mamak",
@@ -290,8 +290,8 @@
    "notes": [
     "açık veri: 6 seans"
    ],
-   "seconds": 9,
-   "failStreak": 12,
+   "seconds": 10,
+   "failStreak": 13,
    "lastOk": "2026-11-15T13:44:26.805Z"
   },
   "odtu-kkm": {
@@ -305,7 +305,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   },
   "cermodern": {
@@ -319,7 +319,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "erimtan": {
@@ -333,23 +333,23 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": "2026-11-18T08:17:40.582Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 12,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
    "prevCount": 296,
    "error": "",
    "notes": [
     "süre doldu: 94 detay sayfası bu tur atlandı"
    ],
-   "seconds": 719,
-   "failStreak": 0,
+   "seconds": 721,
+   "failStreak": 1,
    "lastOk": "2026-11-18T14:12:32.324Z"
   },
   "allevents": {
@@ -358,13 +358,13 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 100,
+   "count": 97,
    "prevCount": 100,
    "error": "",
    "notes": [],
    "seconds": 33,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -372,13 +372,13 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 140,
+   "count": 135,
    "prevCount": 140,
    "error": "",
    "notes": [],
-   "seconds": 215,
+   "seconds": 216,
    "failStreak": 0,
-   "lastOk": "2026-11-18T14:12:32.324Z"
+   "lastOk": "2026-11-18T22:25:31.283Z"
   },
   "ra": {
    "id": "ra",
@@ -391,7 +391,7 @@
    "error": "",
    "notes": [],
    "seconds": 0,
-   "failStreak": 28,
+   "failStreak": 29,
    "lastOk": null
   }
  }
