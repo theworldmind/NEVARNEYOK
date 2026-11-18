@@ -1,0 +1,1251 @@
+{
+ "overture_tr_adli": 1867350,
+ "guven": {
+  "0.3": 1761764,
+  "0.5": 1531608,
+  "0.7": 1064988,
+  "0.9": 375890
+ },
+ "osm_adli_yer": 350308,
+ "osm_tur": [
+  [
+   "amenity",
+   187603
+  ],
+  [
+   "shop",
+   83591
+  ],
+  [
+   "leisure",
+   26279
+  ],
+  [
+   "office",
+   19559
+  ],
+  [
+   "tourism",
+   19161
+  ],
+  [
+   "historic",
+   9557
+  ],
+  [
+   "craft",
+   3652
+  ],
+  [
+   "?",
+   906
+  ]
+ ],
+ "bolge": {
+  "Ankara merkez": {
+   "overture_toplam": 106627,
+   "overture_g50": 85571,
+   "overture_yeme_icme_g50": 11714,
+   "tur": {
+    "avm": {
+     "osm": 154,
+     "overturede": 128,
+     "overturede_g50": 128
+    },
+    "bar": {
+     "osm": 124,
+     "overturede": 96,
+     "overturede_g50": 95
+    },
+    "gezi": {
+     "osm": 88,
+     "overturede": 28,
+     "overturede_g50": 28
+    },
+    "kafe": {
+     "osm": 761,
+     "overturede": 470,
+     "overturede_g50": 444
+    },
+    "kultur": {
+     "osm": 189,
+     "overturede": 109,
+     "overturede_g50": 109
+    },
+    "otel": {
+     "osm": 261,
+     "overturede": 218,
+     "overturede_g50": 217
+    },
+    "park": {
+     "osm": 2081,
+     "overturede": 1051,
+     "overturede_g50": 1036
+    },
+    "restoran": {
+     "osm": 1382,
+     "overturede": 705,
+     "overturede_g50": 667
+    }
+   }
+  },
+  "Istanbul": {
+   "overture_toplam": 414909,
+   "overture_g50": 321759,
+   "overture_yeme_icme_g50": 50743,
+   "tur": {
+    "avm": {
+     "osm": 424,
+     "overturede": 308,
+     "overturede_g50": 302
+    },
+    "bar": {
+     "osm": 474,
+     "overturede": 331,
+     "overturede_g50": 323
+    },
+    "gezi": {
+     "osm": 358,
+     "overturede": 189,
+     "overturede_g50": 189
+    },
+    "kafe": {
+     "osm": 4049,
+     "overturede": 2442,
+     "overturede_g50": 2350
+    },
+    "kultur": {
+     "osm": 519,
+     "overturede": 343,
+     "overturede_g50": 336
+    },
+    "otel": {
+     "osm": 1958,
+     "overturede": 1552,
+     "overturede_g50": 1525
+    },
+    "park": {
+     "osm": 3585,
+     "overturede": 1898,
+     "overturede_g50": 1875
+    },
+    "restoran": {
+     "osm": 7695,
+     "overturede": 4178,
+     "overturede_g50": 4014
+    }
+   }
+  },
+  "Izmir merkez": {
+   "overture_toplam": 88788,
+   "overture_g50": 71137,
+   "overture_yeme_icme_g50": 11832,
+   "tur": {
+    "avm": {
+     "osm": 55,
+     "overturede": 52,
+     "overturede_g50": 52
+    },
+    "bar": {
+     "osm": 82,
+     "overturede": 53,
+     "overturede_g50": 53
+    },
+    "gezi": {
+     "osm": 77,
+     "overturede": 45,
+     "overturede_g50": 44
+    },
+    "kafe": {
+     "osm": 643,
+     "overturede": 407,
+     "overturede_g50": 394
+    },
+    "kultur": {
+     "osm": 151,
+     "overturede": 77,
+     "overturede_g50": 77
+    },
+    "otel": {
+     "osm": 136,
+     "overturede": 102,
+     "overturede_g50": 102
+    },
+    "park": {
+     "osm": 812,
+     "overturede": 420,
+     "overturede_g50": 397
+    },
+    "restoran": {
+     "osm": 755,
+     "overturede": 446,
+     "overturede_g50": 424
+    }
+   }
+  },
+  "Bursa merkez": {
+   "overture_toplam": 54081,
+   "overture_g50": 43454,
+   "overture_yeme_icme_g50": 6170,
+   "tur": {
+    "avm": {
+     "osm": 50,
+     "overturede": 41,
+     "overturede_g50": 39
+    },
+    "bar": {
+     "osm": 23,
+     "overturede": 18,
+     "overturede_g50": 18
+    },
+    "gezi": {
+     "osm": 25,
+     "overturede": 15,
+     "overturede_g50": 15
+    },
+    "kafe": {
+     "osm": 146,
+     "overturede": 106,
+     "overturede_g50": 105
+    },
+    "kultur": {
+     "osm": 47,
+     "overturede": 32,
+     "overturede_g50": 32
+    },
+    "otel": {
+     "osm": 59,
+     "overturede": 52,
+     "overturede_g50": 52
+    },
+    "park": {
+     "osm": 351,
+     "overturede": 188,
+     "overturede_g50": 188
+    },
+    "restoran": {
+     "osm": 234,
+     "overturede": 148,
+     "overturede_g50": 148
+    }
+   }
+  },
+  "Kayseri merkez": {
+   "overture_toplam": 19910,
+   "overture_g50": 15914,
+   "overture_yeme_icme_g50": 2006,
+   "tur": {
+    "avm": {
+     "osm": 15,
+     "overturede": 13,
+     "overturede_g50": 13
+    },
+    "gezi": {
+     "osm": 87,
+     "overturede": 32,
+     "overturede_g50": 32
+    },
+    "kafe": {
+     "osm": 25,
+     "overturede": 10,
+     "overturede_g50": 10
+    },
+    "kultur": {
+     "osm": 25,
+     "overturede": 10,
+     "overturede_g50": 10
+    },
+    "otel": {
+     "osm": 31,
+     "overturede": 24,
+     "overturede_g50": 24
+    },
+    "park": {
+     "osm": 281,
+     "overturede": 138,
+     "overturede_g50": 133
+    },
+    "restoran": {
+     "osm": 86,
+     "overturede": 54,
+     "overturede_g50": 53
+    }
+   }
+  },
+  "Kirsehir merkez": {
+   "overture_toplam": 2286,
+   "overture_g50": 1920,
+   "overture_yeme_icme_g50": 284,
+   "tur": {
+    "avm": {
+     "osm": 3,
+     "overturede": 2,
+     "overturede_g50": 2
+    },
+    "gezi": {
+     "osm": 8,
+     "overturede": 6,
+     "overturede_g50": 6
+    },
+    "kafe": {
+     "osm": 1,
+     "overturede": 1,
+     "overturede_g50": 1
+    },
+    "kultur": {
+     "osm": 5,
+     "overturede": 0,
+     "overturede_g50": 0
+    },
+    "otel": {
+     "osm": 9,
+     "overturede": 8,
+     "overturede_g50": 8
+    },
+    "park": {
+     "osm": 44,
+     "overturede": 12,
+     "overturede_g50": 12
+    },
+    "restoran": {
+     "osm": 3,
+     "overturede": 1,
+     "overturede_g50": 1
+    }
+   }
+  },
+  "Safranbolu": {
+   "overture_toplam": 2413,
+   "overture_g50": 2035,
+   "overture_yeme_icme_g50": 415,
+   "tur": {
+    "avm": {
+     "osm": 2,
+     "overturede": 2,
+     "overturede_g50": 2
+    },
+    "gezi": {
+     "osm": 6,
+     "overturede": 5,
+     "overturede_g50": 5
+    },
+    "kafe": {
+     "osm": 9,
+     "overturede": 5,
+     "overturede_g50": 5
+    },
+    "kultur": {
+     "osm": 3,
+     "overturede": 3,
+     "overturede_g50": 3
+    },
+    "otel": {
+     "osm": 20,
+     "overturede": 14,
+     "overturede_g50": 14
+    },
+    "park": {
+     "osm": 8,
+     "overturede": 4,
+     "overturede_g50": 4
+    },
+    "restoran": {
+     "osm": 24,
+     "overturede": 13,
+     "overturede_g50": 13
+    }
+   }
+  },
+  "Beypazari": {
+   "overture_toplam": 981,
+   "overture_g50": 833,
+   "overture_yeme_icme_g50": 112,
+   "tur": {
+    "gezi": {
+     "osm": 3,
+     "overturede": 2,
+     "overturede_g50": 2
+    },
+    "kultur": {
+     "osm": 8,
+     "overturede": 6,
+     "overturede_g50": 6
+    },
+    "park": {
+     "osm": 6,
+     "overturede": 2,
+     "overturede_g50": 2
+    }
+   }
+  },
+  "Ardahan merkez": {
+   "overture_toplam": 565,
+   "overture_g50": 479,
+   "overture_yeme_icme_g50": 67,
+   "tur": {
+    "gezi": {
+     "osm": 1,
+     "overturede": 1,
+     "overturede_g50": 1
+    },
+    "kafe": {
+     "osm": 2,
+     "overturede": 2,
+     "overturede_g50": 2
+    },
+    "otel": {
+     "osm": 4,
+     "overturede": 4,
+     "overturede_g50": 4
+    },
+    "restoran": {
+     "osm": 2,
+     "overturede": 0,
+     "overturede_g50": 0
+    }
+   }
+  },
+  "Hakkari merkez": {
+   "overture_toplam": 403,
+   "overture_g50": 358,
+   "overture_yeme_icme_g50": 64,
+   "tur": {
+    "gezi": {
+     "osm": 1,
+     "overturede": 0,
+     "overturede_g50": 0
+    },
+    "kafe": {
+     "osm": 1,
+     "overturede": 0,
+     "overturede_g50": 0
+    },
+    "otel": {
+     "osm": 2,
+     "overturede": 2,
+     "overturede_g50": 2
+    },
+    "park": {
+     "osm": 2,
+     "overturede": 2,
+     "overturede_g50": 2
+    }
+   }
+  }
+ },
+ "kaynak": [
+  [
+   "meta",
+   1721033
+  ],
+  [
+   "AllThePlaces",
+   62112
+  ],
+  [
+   "Foursquare",
+   60566
+  ],
+  [
+   "Microsoft",
+   21237
+  ],
+  [
+   "Uberall",
+   2265
+  ],
+  [
+   "PinMeTo",
+   90
+  ],
+  [
+   "OpenTravel",
+   26
+  ],
+  [
+   "DAC",
+   21
+  ]
+ ],
+ "durum": [
+  [
+   null,
+   1864226
+  ],
+  [
+   "open",
+   3087
+  ],
+  [
+   "temporarily_closed",
+   27
+  ],
+  [
+   "permanently_closed",
+   10
+  ]
+ ],
+ "kategori": [
+  [
+   null,
+   55644
+  ],
+  [
+   "restaurant",
+   49998
+  ],
+  [
+   "cafe",
+   45089
+  ],
+  [
+   "grocery_store",
+   43814
+  ],
+  [
+   "furniture_store",
+   43100
+  ],
+  [
+   "historic_site",
+   40762
+  ],
+  [
+   "hotel",
+   39966
+  ],
+  [
+   "party_and_event_planning",
+   37776
+  ],
+  [
+   "spa",
+   32468
+  ],
+  [
+   "real_estate_service",
+   28556
+  ],
+  [
+   "arts_and_entertainment",
+   25022
+  ],
+  [
+   "real_estate_agent",
+   24485
+  ],
+  [
+   "atm",
+   23163
+  ],
+  [
+   "automotive_repair",
+   22742
+  ],
+  [
+   "professional_service",
+   22251
+  ],
+  [
+   "turkish_restaurant",
+   21906
+  ],
+  [
+   "shopping",
+   21556
+  ],
+  [
+   "home_developer",
+   21501
+  ],
+  [
+   "auto_dealer",
+   21404
+  ],
+  [
+   "travel_service",
+   21146
+  ],
+  [
+   "clothing_store",
+   20517
+  ],
+  [
+   "coffee_shop",
+   20041
+  ],
+  [
+   "building_or_construction_service",
+   19913
+  ],
+  [
+   "elementary_school",
+   19152
+  ],
+  [
+   "bakery",
+   18544
+  ],
+  [
+   "government_office",
+   18516
+  ],
+  [
+   "manufacturer",
+   18450
+  ],
+  [
+   "beauty_salon",
+   17775
+  ],
+  [
+   "lodging",
+   17693
+  ],
+  [
+   "muslim_place_of_worship",
+   17350
+  ],
+  [
+   "park",
+   16669
+  ],
+  [
+   "electronics_store",
+   16401
+  ],
+  [
+   "gym",
+   16269
+  ],
+  [
+   "advertising_agency",
+   15167
+  ],
+  [
+   "doctors_office",
+   15154
+  ],
+  [
+   "fast_food_restaurant",
+   14449
+  ],
+  [
+   "mobile_phone_store",
+   14407
+  ],
+  [
+   "social_or_community_service",
+   13138
+  ],
+  [
+   "gas_station",
+   11271
+  ],
+  [
+   "shopping_mall",
+   11113
+  ],
+  [
+   "convenience_store",
+   10629
+  ],
+  [
+   "pharmacy",
+   10609
+  ],
+  [
+   "jewelry_store",
+   10559
+  ],
+  [
+   "printing_service",
+   10496
+  ],
+  [
+   "flowers_and_gifts_store",
+   10392
+  ]
+ ],
+ "il_alani": [
+  [
+   null,
+   1561585
+  ],
+  [
+   "06",
+   56162
+  ],
+  [
+   "07",
+   43604
+  ],
+  [
+   "16",
+   36529
+  ],
+  [
+   "42",
+   23311
+  ],
+  [
+   "41",
+   19007
+  ],
+  [
+   "01",
+   15858
+  ],
+  [
+   "09",
+   14327
+  ],
+  [
+   "20",
+   12427
+  ],
+  [
+   "İstanbul",
+   11065
+  ],
+  [
+   "Ankara",
+   4276
+  ],
+  [
+   "İzmir",
+   3742
+  ],
+  [
+   "Türkiye",
+   3620
+  ],
+  [
+   "İSTANBUL",
+   2841
+  ],
+  [
+   "Istanbul",
+   2632
+  ],
+  [
+   "Antalya",
+   2437
+  ],
+  [
+   "Bursa",
+   2397
+  ],
+  [
+   "34",
+   1862
+  ],
+  [
+   "Konya",
+   1516
+  ],
+  [
+   "Kocaeli",
+   1271
+  ],
+  [
+   "Muğla",
+   1235
+  ],
+  [
+   "Adana",
+   972
+  ],
+  [
+   "Mersin",
+   935
+  ],
+  [
+   "ANKARA",
+   924
+  ],
+  [
+   "İZMİR",
+   922
+  ],
+  [
+   "Gaziantep",
+   795
+  ],
+  [
+   "Denizli",
+   774
+  ],
+  [
+   "Kayseri",
+   748
+  ],
+  [
+   "ANTALYA",
+   741
+  ],
+  [
+   "Eskişehir",
+   679
+  ],
+  [
+   "Samsun",
+   621
+  ],
+  [
+   "Aydın",
+   612
+  ],
+  [
+   "Manisa",
+   605
+  ],
+  [
+   "Hatay",
+   596
+  ],
+  [
+   "Tekirdağ",
+   579
+  ],
+  [
+   "Sakarya",
+   574
+  ],
+  [
+   "Balıkesir",
+   565
+  ],
+  [
+   "-",
+   554
+  ],
+  [
+   "BURSA",
+   525
+  ],
+  [
+   "Diyarbakır",
+   470
+  ],
+  [
+   "Trabzon",
+   413
+  ],
+  [
+   "MERSİN",
+   392
+  ],
+  [
+   "Turkey",
+   391
+  ],
+  [
+   "Merkez",
+   391
+  ],
+  [
+   "BALIKESİR",
+   362
+  ],
+  [
+   "KOCAELİ",
+   362
+  ],
+  [
+   "MUĞLA",
+   348
+  ],
+  [
+   "Kahramanmaraş",
+   336
+  ],
+  [
+   "Kütahya",
+   321
+  ],
+  [
+   "Şanlıurfa",
+   316
+  ],
+  [
+   "Çanakkale",
+   313
+  ],
+  [
+   "ADANA",
+   302
+  ],
+  [
+   "Ordu",
+   300
+  ],
+  [
+   "",
+   287
+  ],
+  [
+   "AYDIN",
+   284
+  ],
+  [
+   "Malatya",
+   279
+  ],
+  [
+   "Eskisehir",
+   277
+  ],
+  [
+   "Afyonkarahisar",
+   261
+  ],
+  [
+   "Erzurum",
+   261
+  ],
+  [
+   "KAYSERİ",
+   260
+  ],
+  [
+   "35",
+   257
+  ],
+  [
+   "TEKİRDAĞ",
+   254
+  ],
+  [
+   "KONYA",
+   250
+  ],
+  [
+   "Sivas",
+   246
+  ],
+  [
+   "SAMSUN",
+   236
+  ],
+  [
+   "Bodrum",
+   232
+  ],
+  [
+   "Edirne",
+   231
+  ],
+  [
+   "Çankaya",
+   229
+  ],
+  [
+   "Nevşehir",
+   229
+  ],
+  [
+   "HATAY",
+   223
+  ],
+  [
+   "Van",
+   216
+  ],
+  [
+   "MANİSA",
+   215
+  ],
+  [
+   "DİYARBAKIR",
+   215
+  ],
+  [
+   "Zonguldak",
+   214
+  ],
+  [
+   "Giresun",
+   207
+  ],
+  [
+   "Mardin",
+   205
+  ],
+  [
+   "Bolu",
+   204
+  ],
+  [
+   "SAKARYA",
+   202
+  ],
+  [
+   "Tokat",
+   196
+  ],
+  [
+   "Isparta",
+   194
+  ],
+  [
+   "Aksaray",
+   191
+  ],
+  [
+   "istanbul",
+   187
+  ],
+  [
+   "Burdur",
+   178
+  ],
+  [
+   "Rize",
+   177
+  ],
+  [
+   "Uşak",
+   175
+  ],
+  [
+   "DENİZLİ",
+   175
+  ],
+  [
+   "Düzce",
+   175
+  ],
+  [
+   "ESKİŞEHİR",
+   173
+  ],
+  [
+   "TR",
+   171
+  ],
+  [
+   "Çorum",
+   171
+  ]
+ ],
+ "bizim_mekanlar": {
+  "konumlu": 1260,
+  "overturede": 932
+ },
+ "veri_boyutu_g50": {
+  "kayit": 1531608,
+  "mb": 92.3,
+  "gzip_mb": 29.4
+ },
+ "ornek_tunali_kafe": [
+  [
+   "Kafemiz",
+   0.94
+  ],
+  [
+   "Tante Rosa Coffee Garden",
+   0.92
+  ],
+  [
+   "The Lox",
+   0.77
+  ],
+  [
+   "Coffee LAB Tunalı Hilmi",
+   0.97
+  ],
+  [
+   "Eyüpoğlu Fırın",
+   0.93
+  ],
+  [
+   "Erciyes Börek&Pastannecim",
+   0.77
+  ],
+  [
+   "Dharma Coffee",
+   0.99
+  ],
+  [
+   "Cozy Vintage Coffee",
+   0.91
+  ],
+  [
+   "ROR Cafe & Roastery Tunalı",
+   1.0
+  ],
+  [
+   "KATRE FAL",
+   0.77
+  ],
+  [
+   "Cafe Eclair",
+   0.99
+  ],
+  [
+   "Poe and Co.",
+   0.91
+  ],
+  [
+   "Esat Yaprak Cafe",
+   0.76
+  ],
+  [
+   "_cafebien_",
+   0.86
+  ],
+  [
+   "Varuna Gezgin Cafe",
+   1.0
+  ],
+  [
+   "Lifera Cafe",
+   0.98
+  ],
+  [
+   "Cafu Coffee Co.",
+   0.96
+  ],
+  [
+   "Cafe Kish",
+   0.97
+  ],
+  [
+   "Filiz Cafe Kızılay",
+   0.6
+  ],
+  [
+   "Alice's House",
+   0.97
+  ],
+  [
+   "Şelale Cafe",
+   0.68
+  ],
+  [
+   "Ma Petite Coffee&Cake",
+   0.91
+  ],
+  [
+   "Lungo Espresso Bar",
+   0.99
+  ],
+  [
+   "coffee shop",
+   0.92
+  ],
+  [
+   "Ninda Cafe & Restaurant",
+   0.54
+  ],
+  [
+   "Inception Coffee",
+   0.77
+  ],
+  [
+   "Cafe des Cafes",
+   1.0
+  ],
+  [
+   "Abbas Waffle Bestekar",
+   0.88
+  ],
+  [
+   "Coffee pera",
+   0.95
+  ],
+  [
+   "Variante BreakfastCoffee",
+   1.0
+  ]
+ ],
+ "tunali_kafe_sayisi": 125,
+ "ornek_kizilay_kafe": [
+  [
+   "Super Spice Coffee",
+   0.78
+  ],
+  [
+   "Smootea",
+   0.99
+  ],
+  [
+   "Coffee P22",
+   0.81
+  ],
+  [
+   "Filiz Çay Evi",
+   0.96
+  ],
+  [
+   "Mackbear Coffee Co. Yüksel",
+   0.77
+  ],
+  [
+   "No.4 Ankara",
+   0.96
+  ],
+  [
+   "Wafflestop",
+   0.66
+  ],
+  [
+   "Coffee LAB Mithatpaşa",
+   0.99
+  ],
+  [
+   "Orta Asya Cafe & Resteurant & Disko",
+   0.91
+  ],
+  [
+   "Carmelo Coffee Ankara Kızılay Karanfil",
+   0.77
+  ],
+  [
+   "Çınar Kafe",
+   0.84
+  ],
+  [
+   "Fantasy Land",
+   0.83
+  ],
+  [
+   "Bahreyn Kafe&Muhabbethane",
+   0.63
+  ],
+  [
+   "Lucky Travel Coffee",
+   0.96
+  ],
+  [
+   "Teras Cafe",
+   0.64
+  ],
+  [
+   "Wafos",
+   0.62
+  ],
+  [
+   "Arka Bahçe Cafe",
+   0.89
+  ],
+  [
+   "Cafe Barbo",
+   0.88
+  ],
+  [
+   "Vengo Cafe",
+   0.88
+  ],
+  [
+   "Gurme Tost",
+   0.86
+  ]
+ ],
+ "kizilay_kafe_sayisi": 268,
+ "bina": {
+  "bina": 5821427,
+  "yukseklik_bilgili": 179260
+ }
+}
