@@ -36,7 +36,10 @@ export function snapshot(events, health, today, filmsData, buzzData) {
   // iptal / erteleme haberi olup kaynakta hâlâ satışta görünen etkinlikler — kullanıcı uyarısı 13.11.2026: "iptalleri de verelim"
   const cx = [];
   for (const e of events) { if (e.d < today || e.status) continue; const m = (buzzData?.cx || {})[nk(String(e.title).split(/ · | \| /)[0])]; if (m && m.length && !cx.some((x) => x.t === e.title)) cx.push({ t: e.title, d: e.d, v: e.venue, k: m[0][3], u: m[0][1] }); }
-  return { at: today, total: events.length, bySource, byCat, byDay, venues, films, noImg, noImgEx, cx };
+  // Bilet bağlantısı etkinliğin kendi sayfası değil (sitenin ana sayfası ya da web araması): kullanıcı 18.11.2026 "gönderdiğimiz yer doğrudan bilet alınacak yer olmalı"
+  const home = (u) => { try { const x = new URL(u); return (x.pathname === "/" || !x.pathname) && !x.search || /google\.[a-z.]+\/search/.test(u); } catch { return true; } };
+  const noLink = events.filter((e) => e.d >= today && e.d <= end14 && (e.tickets || []).length && e.tickets.every((t) => home(t.url))).map((e) => `${e.title} (${e.tickets[0].site})`);
+  return { at: today, total: events.length, bySource, byCat, byDay, venues, films, noImg, noImgEx, cx, noLink: [...new Set(noLink)].slice(0, 12) };
 }
 
 export function findGaps(cur, hist, health) {
@@ -74,6 +77,7 @@ export function findGaps(cur, hist, health) {
   const mf = median(H.map((h) => h.films).filter((x) => x != null));
   if (cur.films != null && (cur.films < 8 || (mf >= 10 && cur.films < mf * 0.6))) out.push({ w: 3, k: "sinema", t: `Ankara sinemalarında önümüzdeki 7 gün için yalnızca ${cur.films} filmin seansı var${mf ? ` (olağanı ${mf})` : ""}; film toplayıcısına bakılmalı.` });
   // g) afişsiz etkinlikler: her kaynak için 3'ten fazlaysa raporlanır (çözüm: kaynağın etkinlik sayfasındaki og:image, aynı adlı kayıt)
+  if (cur.noLink?.length) out.push({ w: 2, k: "baglanti", t: `Bilet bağlantısı etkinliğin kendi sayfasına gitmiyor (sitenin ana sayfası ya da arama): ${cur.noLink.join(", ")}.` });
   for (const [site, n] of Object.entries(cur.noImg || {})) if (n > 3) out.push({ w: 2, k: "afis", t: `**${site}**: önümüzdeki 14 günde ${n} etkinliğin afişi yok (ör. ${(cur.noImgEx?.[site] || []).join(", ")}).` });
   // h) iptal / erteleme: haberlerde iptal ya da ertelendiği geçen, kaynakta durumu yazmayan etkinlikler (sitede haber bağlantısıyla işaretlenir)
   for (const x of cur.cx || []) out.push({ w: 2, k: "iptal", t: `**${x.t}** (${x.d}, ${x.v}): haberde ${x.k === "ertelendi" ? "ertelendiği" : "iptal edildiği"} geçiyor, kaynak sitede durum yazmıyor. Sitede haberle işaretlendi; doğrulayın: ${x.u}` });
