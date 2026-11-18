@@ -1015,14 +1015,14 @@ function ogCanvas(e, city, line) { // davet/paylaşım görseli: afiş telefonda
 }
 /* ---------- Beraber: haritadaki her yere "beraber gidelim mi?" daveti (18.11.2026). Sunucu yok: bilgi bağlantının # kısmında gider; gönderilenler ve cevaplar yalnızca telefonda ---------- */
 let NVBp = null, YGp = null;
-const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=9", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
+const bjs = () => NVBp ||= window.NVB ? Promise.resolve(window.NVB) : loadJS("/beraber.js?v=10", 15000).then(() => window.NVB).catch((e) => { NVBp = null; throw e; });
 const ygIdx = () => YGp ||= jget("/idx/yg.json").then((x) => x || []);
 const bdL = () => jsGet("nvny-davetler", []), bdS = (L) => store.set("nvny-davetler", JSON.stringify(L.slice(0, 40)));
 const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" · ");
 const bText = (x, url) => `${x.k ? "💌" : "✉️"} *${x.c}*\n*${x.n}*${bWhen(x.w, x.h) ? " · " + bWhen(x.w, x.h) : ""}\n${url}`;
 /* Beraber önizlemesi (18.11.2026): telefon yerin 3B görselini o an çizer, gönderirken Cloudflare'daki küçük depoya koyar; WhatsApp davete özel sayfadan adı ve görseli okur. Özel yerler hiç yüklenmez, hata olursa genel davet bağlantısı kullanılır. */
 const PVW = "https://nvny-yer.berkaytoruntga.workers.dev", pvQ = (v) => new URLSearchParams({ lat: (+v.a + .0005).toFixed(4), lng: v.o, t: v.t, n: v.n }).toString(), pvWait = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(r, ms))]);
-const adaJ = () => window.NVA ? Promise.resolve() : loadJS("/ada.js?v=8", 20000);
+const adaJ = () => window.NVA ? Promise.resolve() : loadJS("/ada.js?v=9", 20000);
 /* Haritadaki "Önizle": seçilen yer ve çevresi haritadan kopup yükselir; Kapat ile yerine oturur */
 let adaOn = null;
 const adaYv = async (c) => { const cs = new Set(); for (const a of [-.008, .008]) for (const o of [-.01, .01]) cs.add(`${Math.floor((c[1] + a) * 10)}_${Math.floor((c[0] + o) * 10)}`); return (await Promise.all([...cs].map((k) => fetch(`/yv/${k}.json`).then((r) => r.ok ? r.json() : []).catch(() => [])))).flat(); };
@@ -1032,7 +1032,7 @@ async function adaOpen(map, ll, name) { if (adaOn || !map) return; const box = m
 async function pvDraw(v, B) {
   await mlgl(); const ml = window.maplibregl, W = 720, H = 900, c = [v.o, v.a], g = { type: "Point", coordinates: c }, lite = B.lite(), box = document.createElement("div"); box.setAttribute("aria-hidden", "true"); box.style.cssText = `position:fixed;left:-${W + 300}px;top:0;width:${W}px;height:${H}px;pointer-events:none`; document.body.append(box); let m;
   try {
-    const st = await (await fetch(B.STYLE)).json(); m = new ml.Map({ container: box, style: B.plain(st, "koyu"), center: c, zoom: 16.2, pitch: 0, bearing: 0, attributionControl: false, interactive: false, preserveDrawingBuffer: true, antialias: !lite, fadeDuration: 0, pixelRatio: 1 }); B.attach(m);
+    const st = await (await fetch(B.STYLE)).json(); m = new ml.Map({ container: box, style: (await B.bina(ml)) ? B.useB(B.plain(st, "koyu")) : B.plain(st, "koyu"), center: c, zoom: 16.2, pitch: 0, bearing: 0, attributionControl: false, interactive: false, preserveDrawingBuffer: true, antialias: !lite, fadeDuration: 0, pixelRatio: 1 }); B.attach(m);
     const on = (ev, ms, must) => new Promise((ok, no) => { const t = setTimeout(() => must ? no(new Error(ev)) : ok(), ms); m.once(ev, () => { clearTimeout(t); ok(); }); });
     await on("load", 15000, true); await on("idle", 18000); if (!m.querySourceFeatures("openmaptiles", { sourceLayer: "transportation" }).length) await on("idle", 12000); if (!m.querySourceFeatures("openmaptiles", { sourceLayer: "transportation" }).length) throw new Error("karo"); await adaJ(); const YL = await adaYv(c); let P = window.NVA.resolve(m, c, v.n, YL); if (Math.hypot((P.c[0] - c[0]) * 85000, (P.c[1] - c[1]) * 111000) > 45) { m.jumpTo({ center: P.c }); await on("idle", 9000); P = window.NVA.resolve(m, P.c, v.n, YL); } await B.heights(m); const A = await window.NVA.create(m, ml, { c: P.c, b: P.b, g: P.g, n: v.n, still: true, maxT: lite ? 400 : 900 }); A.addLabels(YL); m.jumpTo(A.view(W, H, 170)); await on("idle", 9000); A.set(1); await on("idle", 4000); await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
     await Promise.all([document.fonts.load('900 38px Archivo'), document.fonts.load('500 18px "Inter Tight"')]).catch(() => {}); const logo = new Image(); logo.src = "/brand/logo-cam.png"; await logo.decode().catch(() => {});
@@ -2287,8 +2287,9 @@ const mlgl = () => mlP ||= window.maplibregl ? Promise.resolve() : (async () => 
 const MAP_URL = window.NVNY_MAPSTYLE || "https://tiles.openfreemap.org/styles/liberty";
 const mTheme = () => store.get("nvny-harita-tema") || "koyu";
 let MSJ = null; const MST = {};
-const mStyle = (th) => MST[th] ||= (MSJ ||= jget(MAP_URL).then((j) => { if (!j) throw new Error("style"); return j; }).catch((e) => { MSJ = null; throw e; }))
-  .then((j) => { const s = JSON.parse(JSON.stringify(j)); if (th === "koyu") darkStyle(s); build3d(s, th); trNames(s); skyOf(s, th); return s; }).catch((e) => { delete MST[th]; throw e; });
+const mBina = () => Promise.race([mlgl().then(bjs).then((B) => B.bina(maplibregl)).catch(() => false), new Promise((r) => setTimeout(() => r(false), 1300))]);
+const mStyle = (th) => MST[th] ||= Promise.all([MSJ ||= jget(MAP_URL).then((j) => { if (!j) throw new Error("style"); return j; }).catch((e) => { MSJ = null; throw e; }), mBina()])
+  .then(([j, ok]) => { const s = JSON.parse(JSON.stringify(j)); if (th === "koyu") darkStyle(s); build3d(s, th); if (ok) window.NVB.useB(s); trNames(s); skyOf(s, th); return s; }).catch((e) => { delete MST[th]; throw e; });
 const cvx = document.createElement("canvas").getContext("2d");
 const rgbOf = (c) => { if (typeof c !== "string" || c.length > 40) return null; cvx.fillStyle = "#010203"; cvx.fillStyle = c; const v = cvx.fillStyle; if (v === "#010203" && !/^#010203$/i.test(c)) return null;
   if (v[0] === "#") return [parseInt(v.slice(1, 3), 16), parseInt(v.slice(3, 5), 16), parseInt(v.slice(5, 7), 16), 1]; const m = v.match(/[\d.]+/g); return m ? [+m[0], +m[1], +m[2], m[3] != null ? +m[3] : 1] : null; };
