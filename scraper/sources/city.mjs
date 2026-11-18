@@ -67,4 +67,7 @@ if (CITY === "istanbul") ONE.push(
 // İle özel resmî kaynaklar (belediyelerin kendi bilet siteleri)
 if (CITY === "izmir") ONE.push({ id: "izmirks", name: "İzmir Kültürsanat", kind: "kurum", home: "https://kultursanat.izmir.bel.tr", collect: P.izmirKsCollect, listings: [], link: null, city: "izmir" });
 
+if (CITY === "istanbul") ONE.push({ id: "kulturistanbul", name: "Kültür AŞ", kind: "kurum", home: "https://kultur.istanbul", listings: ["https://kultur.istanbul/etkinlikler/"], link: /kultur\.istanbul\/etkinlik\/(?!\d+\/?$)[a-z0-9-]+\/?$/i, render: true, scrolls: 5, city: "istanbul", maxDetail: 180, budgetMin: 20 });
+if (CITY === "kayseri") ONE.push({ id: "kayseribld", name: "Kayseri Büyükşehir", kind: "kurum", home: "https://www.kayseri.bel.tr", listings: ["https://www.kayseri.bel.tr/etkinlikler"], link: /kayseri\.bel\.tr\/etkinlikler\/(?!kultur-yayinlari|[0-9-]*kis-kurslari)[a-z0-9-]+$/i, render: true, scrolls: 3, city: "kayseri", maxDetail: 70, budgetMin: 12 });
+
 export default CITY === "tr" ? TR : ONE;
