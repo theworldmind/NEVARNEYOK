@@ -1,6 +1,7 @@
 // Mekân konumları: haritası çıkmayan mekânlar için OpenStreetMap Nominatim'den koordinat ve adres bulur (kullanıcı isteği 15.11.2026:
 // "seçilen etkinlikte harita önizlemesi"). Anahtarsız; Nominatim kullanım kuralına uyar: kendini tanıtan kimlik, saniyede en çok 1 istek,
 // sonuçlar kalıcı saklanır (data/venues.json), aynı mekân bulunamazsa 14 gün yeniden sorulmaz (data/geo-miss.json). Harita sayfası OSM'yi kaynak gösterir.
+import { kindOk } from "./lib/venue-kind.mjs";
 import { join } from "node:path";
 import { ROOT, readJSON, writeJSON, sleep, log, todayIST } from "./lib/util.mjs";
 // GEO_SCOPE=tr (kullanıcı isteği, 15.11.2026: "Yakınımda"): Ankara dışındaki 80 ilin mekânları; anahtar "<il>|<mekân>",
@@ -64,7 +65,7 @@ async function search(q, city, loose = false) {
         display_name: [p.name, p.street, p.district, p.city, p.county, p.state].filter(Boolean).join(", "), address: { province: p.state, state: p.state, city: p.city, county: p.county, road: p.street, suburb: p.district, house_number: p.housenumber } }; });
   }
   // loose: salon adresiyle arama (ad tutmak zorunda değil; yalnızca il ve mekân/cadde düzeyi)
-  const ok = loose ? (x) => !["boundary", "place", "landuse", "natural"].includes(x.category || x.class) && !["city", "town", "village", "county", "state", "province", "district", "municipality"].includes(x.addresstype) : (x) => isPlace(x) && nameOk(want, x);
+  const ok = loose ? (x) => !["boundary", "place", "landuse", "natural"].includes(x.category || x.class) && !["city", "town", "village", "county", "state", "province", "district", "municipality"].includes(x.addresstype) : (x) => isPlace(x) && nameOk(want, x) && kindOk(want, (x.category || x.class) + "/" + x.type);
   if (!TR) return L.filter((x) => +x.lat > BOX.s && +x.lat < BOX.n && +x.lon > BOX.w && +x.lon < BOX.e && ok(x));
   return L.filter((x) => { const a = x.address || {}; return ok(x) && [a.province, a.state, a.city].some((p) => p && fl2(p).includes(fl2(il))); });
 }
@@ -84,7 +85,8 @@ function nameOk(v, x) {
   const par = (v.match(/\(([^)]+)\)/) || [])[1]; // "(Gençlik Parkı İçi)" gibi ipucu: sonucun adresinde de geçmeli
   if (par) { const dn = toks(x.display_name || ""); const pk = toks(par).filter((w) => !["ici", "yani", "karsisi"].includes(w)); if (pk.length && !pk.some((w) => dn.includes(w) || all.includes(w))) return false; }
   if (!key.length) return vn.every((w) => all.includes(w)); // "Etimesgut Belediyesi" gibi: bütün sözcükler tutmalı
-  return key.some((w) => all.includes(w));
+  if (!key.some((w) => all.includes(w))) return false; // en az bir ayırt edici sözcük yerin adında, iki ve fazlasıysa ikincisi adda ya da adreste de tutmalı
+  const dn = toks(x.display_name || ""); return key.filter((w) => all.includes(w) || dn.includes(w)).length >= Math.min(2, key.length);
 }
 let found = 0, tried = 0;
 for (const [key, city, v] of todo) {

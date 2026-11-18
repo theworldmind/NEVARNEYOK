@@ -10,6 +10,7 @@ import { createInterface } from "node:readline";
 import { ROOT, readJSON, writeJSON, sleep, log, todayIST } from "./lib/util.mjs";
 import { CITIES, fold, cityOfText } from "./lib/cities.mjs";
 import { fetchText } from "./lib/net.mjs";
+import { kindOk } from "./lib/venue-kind.mjs";
 
 const DRY = /^(1|true)$/.test(process.env.GEO_DRY || ""), ONLY = (process.env.GEO_ILLER || "").split(/\s+/).filter(Boolean);
 const UA = "NeVarNeYokBot/1.0 (+https://nevarneyok.net.tr; contact.openmind.vision@gmail.com)";
@@ -123,7 +124,7 @@ const TSV = []; let tot = 0, hit = 0, evT = 0, evH = 0, fail = 0; const rep = []
 for (const c of CITIES) { const W = want.get(c.id); if (!W?.size) continue;
   let els = await pois(c.id); await sleep(2500); if (!els) { fail++; rep.push(`${c.id}:YOK`); els = []; }
   const I = index([...known(c.id), ...els], c.name); let h = 0;
-  for (const [v, n] of [...W]) { tot++; evT += n; const x = match(v, I); TSV.push([c.id, n, v, x ? x.n : "", x ? x.kind : ""].join("\t")); if (!x) continue; hit++; h++; evH += n; const t = x.t;
+  for (const [v, n] of [...W]) { tot++; evT += n; const x0 = match(v, I), x = x0 && kindOk(v, x0.kind) ? x0 : null; TSV.push([c.id, n, v, x ? x.n : "", x ? x.kind : ""].join("\t")); if (!x) continue; hit++; h++; evH += n; const t = x.t;
     const addr = t["nvny:addr"] || [t["addr:street"] && (t["addr:street"] + (t["addr:housenumber"] ? " No:" + t["addr:housenumber"] : "")), t["addr:neighbourhood"] || t["addr:suburb"], t["addr:district"]].filter(Boolean).join(", ");
     put(c.id, v, { lat: +x.ll[0].toFixed(7), lng: +x.ll[1].toFixed(7), addr, ilce: t["addr:district"] || "", src: "osm", v: 2, osm: x.kind, m: "ov" }); }
   rep.push(`${c.id}:${h}/${W.size + h}(${els.length})`); log(`geo-osm: ${c.name}: ${els.length} OSM yeri, ${h} mekân eşleşti, ${W.size} kaldı`); }
