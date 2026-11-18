@@ -19,8 +19,7 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
+  actions: write
   issues: write
 
 concurrency:
@@ -187,22 +186,9 @@ jobs:
             gh issue close "$NUM" --comment "Şüpheli boşluk kalmadı. ✅"
           fi
 
-      - name: Yayın klasörünü hazırla
-        run: |
-          mkdir -p _site
-          rsync -a --exclude '.git' --exclude '.github' --exclude 'scraper' --exclude '_site' --exclude 'README.md' --exclude 'CLAUDE.md' --exclude 'data/coverage.json' ./ _site/
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-  deploy:
-    needs: update
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      # Yayını bu iş yapmaz: "Siteyi yayınla" yapar. Burada ayrı yayın, onun ürettiği idx/ (harita dizini), e/, d/, s/ ve il sayfalarını
+      # siteden siliyordu (18.11.2026; kullanıcı: harita bazen "Etkinlikler yüklenemedi"). Yayın tek yerden çıkar.
+      - name: Siteyi yayınla iş akışını başlat
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main
