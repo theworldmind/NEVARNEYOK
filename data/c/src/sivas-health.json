@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:30:04.823Z",
+ "runAt": "2026-11-18T13:44:16.066Z",
  "mode": "full",
  "total": 113,
  "written": true,
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sivas: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 83,
+   "seconds": 95,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:34:03.415Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 190,
+   "seconds": 193,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:30:04.823Z"
+   "lastOk": "2026-11-18T13:44:16.066Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/sivas/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sivas/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
+   "seconds": 157,
    "failStreak": 5,
    "lastOk": null
   },

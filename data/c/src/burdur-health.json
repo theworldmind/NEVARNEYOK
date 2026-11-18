@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T11:54:50.251Z",
+ "runAt": "2026-11-18T13:05:46.183Z",
  "mode": "full",
  "total": 102,
  "written": true,
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 27,
+   "count": 26,
    "prevCount": 99,
    "error": "",
    "notes": [
-    "açık veri: 23 seans",
+    "açık veri: 22 seans",
     "biletinial.com/tr-tr/tiyatro/burdur: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/burdur: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/burdur: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
+   "seconds": 102,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:26:56.628Z"
   },
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 135,
+   "seconds": 138,
    "failStreak": 5,
    "lastOk": null
   },
@@ -85,7 +85,7 @@
     "allevents.in/burdur/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/burdur/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
+   "seconds": 157,
    "failStreak": 5,
    "lastOk": null
   },

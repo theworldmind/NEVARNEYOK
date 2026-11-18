@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:24:23.339Z",
+ "runAt": "2026-11-18T13:37:00.563Z",
  "mode": "full",
- "total": 338,
+ "total": 340,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/ordu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 101,
+   "seconds": 99,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:33:34.326Z"
   },
@@ -48,7 +48,7 @@
    ],
    "seconds": 1086,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:24:23.339Z"
+   "lastOk": "2026-11-18T13:37:00.563Z"
   },
   "bugece": {
    "id": "bugece",
@@ -72,22 +72,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 93,
+   "count": 94,
    "prevCount": 82,
    "error": "",
    "notes": [
     "allevents.in/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/all: 0 bağlantı, 13 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/concerts: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ordu/parties: 0 bağlantı, 17 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ordu/parties: 0 bağlantı, 18 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/comedy: 0 bağlantı, 5 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/performances: 0 bağlantı, 10 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/workshops: 0 bağlantı, 11 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
+   "seconds": 183,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:24:23.339Z"
+   "lastOk": "2026-11-18T13:37:00.563Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/ordu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 12,
    "failStreak": 5,
    "lastOk": null
   }

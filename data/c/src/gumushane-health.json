@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:06:20.494Z",
+ "runAt": "2026-11-18T13:16:03.476Z",
  "mode": "full",
- "total": 9,
+ "total": 8,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 8,
+   "count": 7,
    "prevCount": 8,
    "error": "",
    "notes": [
-    "açık veri: 6 seans",
+    "açık veri: 5 seans",
     "biletinial.com/tr-tr/tiyatro/gumushane: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 95,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:06:20.494Z"
+   "lastOk": "2026-11-18T13:16:03.476Z"
   },
   "radar": {
    "id": "radar",
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 136,
+   "seconds": 138,
    "failStreak": 5,
    "lastOk": null
   },
@@ -103,7 +103,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:06:20.494Z"
+   "lastOk": "2026-11-18T13:16:03.476Z"
   }
  }
 }

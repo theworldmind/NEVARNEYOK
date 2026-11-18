@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:06:29.834Z",
+ "runAt": "2026-11-18T13:17:25.460Z",
  "mode": "full",
  "total": 0,
  "written": true,
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/hakkari: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
+   "seconds": 75,
    "failStreak": 9,
    "lastOk": null
   },
@@ -43,10 +43,10 @@
     "www.radarturkiye.com/hakkari-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/etkinlikler?genre=1&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 500",
     "www.radarturkiye.com/etkinlikler?genre=4&city=hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 131,
+   "seconds": 145,
    "failStreak": 5,
    "lastOk": null
   },
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/hakkari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
+   "seconds": 6,
    "failStreak": 5,
    "lastOk": null
   }

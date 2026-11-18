@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:24:31.555Z",
+ "runAt": "2026-11-18T13:39:31.743Z",
  "mode": "full",
- "total": 75,
+ "total": 76,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/rize: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:24:31.555Z"
+   "lastOk": "2026-11-18T13:39:31.743Z"
   },
   "radar": {
    "id": "radar",
@@ -33,7 +33,7 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 34,
+   "count": 35,
    "prevCount": 42,
    "error": "",
    "notes": [
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=rize: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1033,
+   "seconds": 1034,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:24:31.555Z"
+   "lastOk": "2026-11-18T13:39:31.743Z"
   },
   "bugece": {
    "id": "bugece",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/rize: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:24:31.555Z"
+   "lastOk": "2026-11-18T13:39:31.743Z"
   }
  }
 }

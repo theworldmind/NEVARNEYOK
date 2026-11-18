@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:25:08.939Z",
+ "runAt": "2026-11-18T13:40:30.343Z",
  "mode": "full",
  "total": 679,
  "written": true,
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 120,
+   "count": 121,
    "prevCount": 561,
    "error": "",
    "notes": [
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sakarya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 111,
+   "seconds": 117,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:33:36.635Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sakarya: 84 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1064,
+   "seconds": 1067,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:25:08.939Z"
+   "lastOk": "2026-11-18T13:40:30.343Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/sakarya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sakarya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 154,
+   "seconds": 157,
    "failStreak": 5,
    "lastOk": null
   },
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/sakarya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:25:08.939Z"
+   "lastOk": "2026-11-18T13:40:30.343Z"
   }
  }
 }

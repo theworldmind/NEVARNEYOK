@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:00:20.785Z",
+ "runAt": "2026-11-18T13:08:16.684Z",
  "mode": "full",
  "total": 271,
  "written": true,
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 103,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:28:56.677Z"
   },
@@ -33,11 +33,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 10,
+   "count": 9,
    "prevCount": 10,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/canakkale-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/canakkale-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/canakkale-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/canakkale-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/canakkale-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 205,
+   "seconds": 208,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:00:20.785Z"
+   "lastOk": "2026-11-18T13:08:16.684Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/canakkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/canakkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
+   "seconds": 174,
    "failStreak": 5,
    "lastOk": null
   },
@@ -103,7 +103,7 @@
    ],
    "seconds": 24,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:00:20.785Z"
+   "lastOk": "2026-11-18T13:08:16.684Z"
   }
  }
 }

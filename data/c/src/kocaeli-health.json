@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:17:38.646Z",
+ "runAt": "2026-11-18T13:29:21.779Z",
  "mode": "full",
- "total": 743,
+ "total": 745,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kocaeli: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 118,
+   "seconds": 132,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:31:25.120Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kocaeli: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1434,
+   "seconds": 1439,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:17:38.646Z"
+   "lastOk": "2026-11-18T13:29:21.779Z"
   },
   "bugece": {
    "id": "bugece",
@@ -83,11 +83,11 @@
     "allevents.in/kocaeli/comedy: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kocaeli/performances: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kocaeli/workshops: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/kids: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/kocaeli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 181,
+   "seconds": 174,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:17:38.646Z"
+   "lastOk": "2026-11-18T13:29:21.779Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:17:38.646Z"
+   "lastOk": "2026-11-18T13:29:21.779Z"
   }
  }
 }

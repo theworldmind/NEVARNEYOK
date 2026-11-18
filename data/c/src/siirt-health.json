@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:28:49.742Z",
+ "runAt": "2026-11-18T13:42:08.428Z",
  "mode": "full",
  "total": 21,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/siirt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
+   "seconds": 92,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:28:49.742Z"
+   "lastOk": "2026-11-18T13:42:08.428Z"
   },
   "radar": {
    "id": "radar",
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 136,
+   "seconds": 140,
    "failStreak": 5,
    "lastOk": null
   },
@@ -85,7 +85,7 @@
     "allevents.in/siirt/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/siirt/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
+   "seconds": 157,
    "failStreak": 5,
    "lastOk": null
   },
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
+   "seconds": 6,
    "failStreak": 5,
    "lastOk": null
   }

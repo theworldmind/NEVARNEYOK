@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:22:46.325Z",
+ "runAt": "2026-11-18T13:38:17.425Z",
  "mode": "full",
- "total": 222,
+ "total": 220,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 54,
+   "count": 53,
    "prevCount": 181,
    "error": "",
    "notes": [
-    "açık veri: 47 seans",
+    "açık veri: 46 seans",
     "biletinial.com/tr-tr/tiyatro/nevsehir: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/nevsehir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/nevsehir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 102,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:33:45.968Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=nevsehir: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 761,
+   "seconds": 758,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:22:46.325Z"
+   "lastOk": "2026-11-18T13:38:17.425Z"
   },
   "bugece": {
    "id": "bugece",
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/nevsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 22,
+   "seconds": 6,
    "failStreak": 5,
    "lastOk": null
   }

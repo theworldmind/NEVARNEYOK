@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:35:59.356Z",
+ "runAt": "2026-11-18T13:51:39.242Z",
  "mode": "full",
  "total": 101,
  "written": true,
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 101,
+   "count": 100,
    "prevCount": 103,
    "error": "",
    "notes": [
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 104,
+   "seconds": 111,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:35:59.356Z"
+   "lastOk": "2026-11-18T13:51:39.242Z"
   },
   "radar": {
    "id": "radar",
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 137,
+   "seconds": 139,
    "failStreak": 7,
    "lastOk": null
   },
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:35:59.356Z"
+   "lastOk": "2026-11-18T13:51:39.242Z"
   }
  }
 }

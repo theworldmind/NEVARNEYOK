@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T11:54:41.213Z",
+ "runAt": "2026-11-18T13:02:04.821Z",
  "mode": "full",
  "total": 105,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/batman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 105,
+   "seconds": 116,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:41.213Z"
+   "lastOk": "2026-11-18T13:02:04.821Z"
   },
   "radar": {
    "id": "radar",
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 137,
+   "seconds": 140,
    "failStreak": 5,
    "lastOk": null
   },
@@ -85,9 +85,9 @@
     "allevents.in/batman/workshops: 0 bağlantı, 10 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/batman/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
+   "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:41.213Z"
+   "lastOk": "2026-11-18T13:02:04.821Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/batman: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 29,
+   "seconds": 18,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:41.213Z"
+   "lastOk": "2026-11-18T13:02:04.821Z"
   }
  }
 }

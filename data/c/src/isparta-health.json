@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:07:24.954Z",
+ "runAt": "2026-11-18T13:18:57.886Z",
  "mode": "full",
- "total": 137,
+ "total": 138,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 32,
+   "count": 31,
    "prevCount": 111,
    "error": "",
    "notes": [
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 97,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:30:20.889Z"
   },
@@ -48,7 +48,7 @@
    ],
    "seconds": 512,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:07:24.954Z"
+   "lastOk": "2026-11-18T13:18:57.886Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,9 +85,9 @@
     "allevents.in/isparta/workshops: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/isparta/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 181,
+   "seconds": 178,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:07:24.954Z"
+   "lastOk": "2026-11-18T13:18:57.886Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:07:24.954Z"
+   "lastOk": "2026-11-18T13:18:57.886Z"
   }
  }
 }

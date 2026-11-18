@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:34:19.204Z",
+ "runAt": "2026-11-18T13:48:17.224Z",
  "mode": "full",
  "total": 60,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/tunceli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:34:19.204Z"
+   "lastOk": "2026-11-18T13:48:17.224Z"
   },
   "radar": {
    "id": "radar",
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 141,
+   "seconds": 140,
    "failStreak": 5,
    "lastOk": null
   },
@@ -87,7 +87,7 @@
    ],
    "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:34:19.204Z"
+   "lastOk": "2026-11-18T13:48:17.224Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
+   "seconds": 5,
    "failStreak": 5,
    "lastOk": null
   }

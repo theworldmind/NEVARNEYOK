@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T11:58:41.574Z",
+ "runAt": "2026-11-18T13:02:34.515Z",
  "mode": "full",
- "total": 587,
+ "total": 586,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 137,
+   "count": 136,
    "prevCount": 491,
    "error": "",
    "notes": [
-    "açık veri: 132 seans",
+    "açık veri: 131 seans",
     "biletinial.com/tr-tr/tiyatro/adana: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/adana: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/adana: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 112,
+   "seconds": 122,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:26:56.370Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=adana: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1072,
+   "seconds": 1083,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:58:41.574Z"
+   "lastOk": "2026-11-18T13:02:34.515Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,9 +85,9 @@
     "allevents.in/adana/workshops: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
+   "seconds": 186,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:58:41.574Z"
+   "lastOk": "2026-11-18T13:02:34.515Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/adana: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:58:41.574Z"
+   "lastOk": "2026-11-18T13:02:34.515Z"
   }
  }
 }

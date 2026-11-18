@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:00:30.222Z",
+ "runAt": "2026-11-18T13:08:27.450Z",
  "mode": "full",
  "total": 193,
  "written": true,
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 38,
+   "count": 39,
    "prevCount": 175,
    "error": "",
    "notes": [
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/corum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 102,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:29:04.289Z"
   },
@@ -48,7 +48,7 @@
    ],
    "seconds": 474,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:00:30.222Z"
+   "lastOk": "2026-11-18T13:08:27.450Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/corum/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/corum/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
+   "seconds": 157,
    "failStreak": 5,
    "lastOk": null
   },

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:12:54.903Z",
+ "runAt": "2026-11-18T13:27:40.518Z",
  "mode": "full",
- "total": 116,
+ "total": 115,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 91,
+   "count": 90,
    "prevCount": 94,
    "error": "",
    "notes": [
-    "açık veri: 86 seans",
+    "açık veri: 85 seans",
     "biletinial.com/tr-tr/tiyatro/kayseri: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kayseri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 95,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:12:54.903Z"
+   "lastOk": "2026-11-18T13:27:40.518Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 198,
+   "seconds": 194,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:12:54.903Z"
+   "lastOk": "2026-11-18T13:27:40.518Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,9 +85,9 @@
     "allevents.in/kayseri/workshops: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/kids: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 196,
+   "seconds": 170,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:12:54.903Z"
+   "lastOk": "2026-11-18T13:27:40.518Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:12:54.903Z"
+   "lastOk": "2026-11-18T13:27:40.518Z"
   }
  }
 }

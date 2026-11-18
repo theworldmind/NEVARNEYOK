@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:18:05.023Z",
+ "runAt": "2026-11-18T13:29:52.725Z",
  "mode": "full",
  "total": 217,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 112,
+   "seconds": 104,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:18:05.023Z"
+   "lastOk": "2026-11-18T13:29:52.725Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=konya: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 865,
+   "seconds": 862,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:18:05.023Z"
+   "lastOk": "2026-11-18T13:29:52.725Z"
   },
   "bugece": {
    "id": "bugece",
@@ -76,18 +76,18 @@
    "prevCount": 6,
    "error": "",
    "notes": [
-    "allevents.in/konya: 22 bağlantı, 15 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya: 21 bağlantı, 15 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/all: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/concerts: 27 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/parties: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/concerts: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/parties: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/comedy: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/performances: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/workshops: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/kids: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/konya/workshops: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/kids: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
+   "seconds": 179,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:18:05.023Z"
+   "lastOk": "2026-11-18T13:29:52.725Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:18:05.023Z"
+   "lastOk": "2026-11-18T13:29:52.725Z"
   }
  }
 }

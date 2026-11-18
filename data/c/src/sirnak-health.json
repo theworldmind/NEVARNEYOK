@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:31:25.038Z",
+ "runAt": "2026-11-18T13:45:27.258Z",
  "mode": "full",
  "total": 31,
  "written": true,
@@ -25,7 +25,7 @@
    ],
    "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:31:25.038Z"
+   "lastOk": "2026-11-18T13:45:27.258Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 199,
+   "seconds": 194,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:31:25.038Z"
+   "lastOk": "2026-11-18T13:45:27.258Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/sirnak/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sirnak/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
+   "seconds": 157,
    "failStreak": 5,
    "lastOk": null
   },

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:18:09.289Z",
+ "runAt": "2026-11-18T13:30:24.058Z",
  "mode": "full",
  "total": 49,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kutahya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
+   "seconds": 90,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:18:09.289Z"
+   "lastOk": "2026-11-18T13:30:24.058Z"
   },
   "radar": {
    "id": "radar",
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 135,
+   "seconds": 141,
    "failStreak": 5,
    "lastOk": null
   },
@@ -85,7 +85,7 @@
     "allevents.in/kutahya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kutahya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
+   "seconds": 156,
    "failStreak": 5,
    "lastOk": null
   },
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
+   "seconds": 6,
    "failStreak": 5,
    "lastOk": null
   }

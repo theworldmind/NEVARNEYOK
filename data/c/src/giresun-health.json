@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:06:03.947Z",
+ "runAt": "2026-11-18T13:15:13.712Z",
  "mode": "full",
- "total": 87,
+ "total": 86,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 53,
+   "count": 52,
    "prevCount": 54,
    "error": "",
    "notes": [
-    "açık veri: 51 seans",
+    "açık veri: 50 seans",
     "biletinial.com/tr-tr/tiyatro/giresun: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 107,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:06:03.947Z"
+   "lastOk": "2026-11-18T13:15:13.712Z"
   },
   "radar": {
    "id": "radar",
@@ -37,7 +37,7 @@
    "prevCount": 32,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/giresun-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/giresun-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/giresun-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/giresun-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "www.radarturkiye.com/giresun-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=giresun: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 942,
+   "seconds": 945,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:06:03.947Z"
+   "lastOk": "2026-11-18T13:15:13.712Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/giresun/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/giresun/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
+   "seconds": 157,
    "failStreak": 5,
    "lastOk": null
   },
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:06:03.947Z"
+   "lastOk": "2026-11-18T13:15:13.712Z"
   }
  }
 }

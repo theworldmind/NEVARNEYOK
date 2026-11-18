@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T11:54:41.519Z",
+ "runAt": "2026-11-18T13:02:08.313Z",
  "mode": "full",
- "total": 138,
+ "total": 139,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
+   "seconds": 84,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:26:55.775Z"
   },
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 133,
+   "seconds": 137,
    "failStreak": 5,
    "lastOk": null
   },
@@ -85,7 +85,7 @@
     "allevents.in/bartin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bartin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
+   "seconds": 156,
    "failStreak": 5,
    "lastOk": null
   },
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bartin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:41.519Z"
+   "lastOk": "2026-11-18T13:02:08.313Z"
   }
  }
 }

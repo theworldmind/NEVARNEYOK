@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:42:11.210Z",
+ "runAt": "2026-11-18T13:50:15.154Z",
  "mode": "full",
- "total": 292,
+ "total": 290,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 87,
+   "count": 86,
    "prevCount": 225,
    "error": "",
    "notes": [
-    "açık veri: 71 seans, 4 detay sayfası",
+    "açık veri: 70 seans, 4 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/zonguldak: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/zonguldak: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/zonguldak: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 104,
    "failStreak": 1,
    "lastOk": "2026-11-18T09:06:14.581Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 226,
+   "seconds": 233,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:42:11.210Z"
+   "lastOk": "2026-11-18T13:50:15.154Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,9 +85,9 @@
     "allevents.in/zonguldak/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/zonguldak/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 179,
+   "seconds": 191,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:42:11.210Z"
+   "lastOk": "2026-11-18T13:50:15.154Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/zonguldak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:42:11.210Z"
+   "lastOk": "2026-11-18T13:50:15.154Z"
   }
  }
 }

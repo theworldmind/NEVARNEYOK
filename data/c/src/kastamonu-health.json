@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:12:07.580Z",
+ "runAt": "2026-11-18T13:23:27.476Z",
  "mode": "full",
  "total": 40,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 78,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:12:07.580Z"
+   "lastOk": "2026-11-18T13:23:27.476Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kastamonu: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 687,
+   "seconds": 691,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:12:07.580Z"
+   "lastOk": "2026-11-18T13:23:27.476Z"
   },
   "bugece": {
    "id": "bugece",
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
+   "seconds": 7,
    "failStreak": 5,
    "lastOk": null
   }

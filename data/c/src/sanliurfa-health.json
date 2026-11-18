@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:31:20.691Z",
+ "runAt": "2026-11-18T13:44:31.267Z",
  "mode": "full",
  "total": 138,
  "written": true,
@@ -10,20 +10,20 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 35,
+   "count": 34,
    "prevCount": 123,
    "error": "",
    "notes": [
     "açık veri: 30 seans",
     "biletinial.com/tr-tr/tiyatro/sanliurfa: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/sanliurfa: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/sanliurfa: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/sanliurfa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sanliurfa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
+   "seconds": 93,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:34:05.486Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 259,
+   "seconds": 210,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:31:20.691Z"
+   "lastOk": "2026-11-18T13:44:31.267Z"
   },
   "bugece": {
    "id": "bugece",

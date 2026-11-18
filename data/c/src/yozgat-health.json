@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:36:28.312Z",
+ "runAt": "2026-11-18T13:50:02.311Z",
  "mode": "full",
- "total": 103,
+ "total": 104,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/yozgat: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
+   "seconds": 90,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:35:57.526Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yozgat: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 938,
+   "seconds": 948,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:36:28.312Z"
+   "lastOk": "2026-11-18T13:50:02.311Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/yozgat/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/yozgat/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 164,
+   "seconds": 163,
    "failStreak": 5,
    "lastOk": null
   },

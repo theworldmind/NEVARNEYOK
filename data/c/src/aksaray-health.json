@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T11:54:37.051Z",
+ "runAt": "2026-11-18T13:07:51.872Z",
  "mode": "full",
  "total": 127,
  "written": true,
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 19,
+   "count": 20,
    "prevCount": 116,
    "error": "",
    "notes": [
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/aksaray: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 80,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:26:54.551Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 184,
+   "seconds": 183,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:37.051Z"
+   "lastOk": "2026-11-18T13:07:51.872Z"
   },
   "bugece": {
    "id": "bugece",
@@ -79,15 +79,15 @@
     "allevents.in/aksaray: 4 bağlantı, 4 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/all: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/concerts: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/aksaray/parties: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/aksaray/parties: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/comedy: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/performances: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/workshops: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/kids: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 170,
+   "seconds": 169,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:37.051Z"
+   "lastOk": "2026-11-18T13:07:51.872Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:37.051Z"
+   "lastOk": "2026-11-18T13:07:51.872Z"
   }
  }
 }

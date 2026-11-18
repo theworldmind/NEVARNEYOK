@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T11:54:43.867Z",
+ "runAt": "2026-11-18T13:02:13.298Z",
  "mode": "full",
- "total": 13,
+ "total": 12,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 13,
+   "count": 12,
    "prevCount": 13,
    "error": "",
    "notes": [
-    "açık veri: 11 seans",
+    "açık veri: 10 seans",
     "biletinial.com/tr-tr/tiyatro/bingol: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:43.867Z"
+   "lastOk": "2026-11-18T13:02:13.298Z"
   },
   "radar": {
    "id": "radar",
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 130,
+   "seconds": 134,
    "failStreak": 5,
    "lastOk": null
   },
@@ -85,7 +85,7 @@
     "allevents.in/bingol/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bingol/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
+   "seconds": 156,
    "failStreak": 5,
    "lastOk": null
   },

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:00:48.786Z",
+ "runAt": "2026-11-18T13:08:24.482Z",
  "mode": "full",
  "total": 261,
  "written": true,
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 103,
+   "seconds": 95,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:29:07.999Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 226,
+   "seconds": 198,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:00:48.786Z"
+   "lastOk": "2026-11-18T13:08:24.482Z"
   },
   "bugece": {
    "id": "bugece",
@@ -77,17 +77,17 @@
    "error": "",
    "notes": [
     "allevents.in/diyarbakir: 8 bağlantı, 8 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/all: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/all: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/parties: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/comedy: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/performances: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/diyarbakir/workshops: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/kids: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
+   "seconds": 177,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:00:48.786Z"
+   "lastOk": "2026-11-18T13:08:24.482Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:00:48.786Z"
+   "lastOk": "2026-11-18T13:08:24.482Z"
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:11:25.336Z",
+ "runAt": "2026-11-18T13:22:02.217Z",
  "mode": "full",
  "total": 175,
  "written": true,
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/karabuk: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
+   "seconds": 83,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:31:32.941Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=karabuk: 38 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1081,
+   "seconds": 1086,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:11:25.336Z"
+   "lastOk": "2026-11-18T13:22:02.217Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/karabuk/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/karabuk/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
+   "seconds": 155,
    "failStreak": 5,
    "lastOk": null
   },

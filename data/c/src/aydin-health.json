@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T11:54:40.088Z",
+ "runAt": "2026-11-18T13:02:10.367Z",
  "mode": "full",
- "total": 413,
+ "total": 415,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 100,
+   "count": 101,
    "prevCount": 362,
    "error": "",
    "notes": [
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/aydin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 97,
+   "seconds": 106,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:26:54.672Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=aydin: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 846,
+   "seconds": 853,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:40.088Z"
+   "lastOk": "2026-11-18T13:02:10.367Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/aydin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aydin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
+   "seconds": 180,
    "failStreak": 5,
    "lastOk": null
   },
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-18T11:54:40.088Z"
+   "lastOk": "2026-11-18T13:02:10.367Z"
   }
  }
 }

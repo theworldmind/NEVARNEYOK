@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T12:10:43.666Z",
+ "runAt": "2026-11-18T13:20:53.835Z",
  "mode": "full",
- "total": 240,
+ "total": 239,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,20 +10,20 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 17,
+   "count": 16,
    "prevCount": 229,
    "error": "",
    "notes": [
     "açık veri: 15 seans",
-    "biletinial.com/tr-tr/tiyatro/kahramanmaras: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kahramanmaras: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/kahramanmaras: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/kahramanmaras: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/opera-bale/kahramanmaras: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/kahramanmaras: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/kahramanmaras: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/egitim/kahramanmaras: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 110,
+   "seconds": 98,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:31:14.099Z"
   },
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 147,
+   "seconds": 140,
    "failStreak": 3,
    "lastOk": "2026-11-17T11:59:33.138Z"
   },
@@ -85,9 +85,9 @@
     "allevents.in/kahramanmaras/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kahramanmaras/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 179,
+   "seconds": 181,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:10:43.666Z"
+   "lastOk": "2026-11-18T13:20:53.835Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 8,
+   "seconds": 6,
    "failStreak": 5,
    "lastOk": null
   }

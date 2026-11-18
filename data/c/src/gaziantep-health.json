@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:03:16.735Z",
+ "runAt": "2026-11-18T13:15:07.251Z",
  "mode": "full",
  "total": 396,
  "written": true,
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 103,
+   "count": 104,
    "prevCount": 344,
    "error": "",
    "notes": [
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/gaziantep: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 108,
+   "seconds": 128,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:29:18.218Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 237,
+   "seconds": 243,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:03:16.735Z"
+   "lastOk": "2026-11-18T13:15:07.251Z"
   },
   "bugece": {
    "id": "bugece",
@@ -72,11 +72,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 41,
+   "count": 22,
    "prevCount": 22,
    "error": "",
    "notes": [
-    "allevents.in/gaziantep: 19 bağlantı, 19 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/gaziantep: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/all: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/concerts: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/parties: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -87,7 +87,7 @@
    ],
    "seconds": 187,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:03:16.735Z"
+   "lastOk": "2026-11-18T13:15:07.251Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
+   "seconds": 7,
    "failStreak": 5,
    "lastOk": null
   }

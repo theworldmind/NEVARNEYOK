@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:12:24.114Z",
+ "runAt": "2026-11-18T13:23:00.017Z",
  "mode": "full",
  "total": 8,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kars: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:12:24.114Z"
+   "lastOk": "2026-11-18T13:23:00.017Z"
   },
   "radar": {
    "id": "radar",
@@ -46,7 +46,7 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 134,
+   "seconds": 144,
    "failStreak": 5,
    "lastOk": null
   },
@@ -85,7 +85,7 @@
     "allevents.in/kars/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kars/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
+   "seconds": 157,
    "failStreak": 5,
    "lastOk": null
   },
@@ -101,7 +101,7 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
+   "seconds": 7,
    "failStreak": 5,
    "lastOk": null
   }

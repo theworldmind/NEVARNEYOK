@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-18T12:14:15.382Z",
+ "runAt": "2026-11-18T13:27:27.599Z",
  "mode": "full",
  "total": 60,
  "written": true,
@@ -23,7 +23,7 @@
     "biletinial.com/tr-tr/festival/kirsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kirsehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 89,
    "failStreak": 7,
    "lastOk": "2026-11-15T10:31:28.788Z"
   },
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirsehir: 36 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirsehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1023,
+   "seconds": 1018,
    "failStreak": 0,
-   "lastOk": "2026-11-18T12:14:15.382Z"
+   "lastOk": "2026-11-18T13:27:27.599Z"
   },
   "bugece": {
    "id": "bugece",
@@ -85,7 +85,7 @@
     "allevents.in/kirsehir/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kirsehir/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 161,
+   "seconds": 166,
    "failStreak": 5,
    "lastOk": null
   },
