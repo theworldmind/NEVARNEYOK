@@ -51,7 +51,8 @@ const tryIt = async (n, f) => { try { await f(); } catch (e) { log(`atlandı ${n
 
 
 await go(`#/${C}`, 2500);
-const EV = await page.evaluate(() => { const T = new Date(Date.now() + 3 * 36e5).toISOString().slice(0, 10); const L = (window.DATA?.events || []).filter((e) => e.img && e.d > T && e.status !== "iptal" && e.t && e.t >= "19:00");
+await page.waitForFunction(() => typeof DATA !== "undefined" && DATA.ready && DATA.events?.length, null, { timeout: 30000 }).catch(() => {});
+const EV = await page.evaluate(() => { const T = new Date(Date.now() + 3 * 36e5).toISOString().slice(0, 10); const L = ((typeof DATA !== "undefined" && DATA.events) || []).filter((e) => e.img && e.d > T && e.status !== "iptal" && e.t && e.t >= "19:00");
   const x = L.find((e) => e.cat === "konser") || L.find((e) => e.cat === "tiyatro" || e.cat === "standup") || L[0]; return x ? { slug: x.slug, title: x.title, d: x.d, t: x.t, venue: x.venue } : null; });
 log("etkinlik: " + JSON.stringify(EV));
 /* 1) davet: etkinlik sayfası → Davet et paneli → davet sayfası */
