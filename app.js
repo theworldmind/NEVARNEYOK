@@ -1020,7 +1020,7 @@ async function pvDraw(v, B) {
     const jpg = (k) => new Promise((r) => cv.toBlob(r, "image/jpeg", k)); let b = await jpg(.74); if (b && b.size > 235 * 1024) b = await jpg(.58); if (!b || b.size > 255 * 1024) throw new Error("boyut"); mk("jpg"); return b;
   } finally { try { m?.remove(); } catch {} box.remove(); }
 }
-const pvK = {}, kisalt = async (full, h, g = "") => { if (pvK[full]) return pvK[full]; const p = full.split("#")[1]; if (!p) return full; try { const c = new AbortController(), t = setTimeout(() => c.abort(), 1800), r = await fetch(`${PVW}/kisa`, { method: "POST", signal: c.signal, body: JSON.stringify({ p, h, g }) }); clearTimeout(t); const j = r.ok ? await r.json() : null; if (j?.k) return pvK[full] = `${PVW}/d/${j.k}`; } catch {} return full; };
+const pvK = {}, kisalt = async (full, h, g = "") => { if (pvK[full]) return pvK[full]; const p = full.split("#")[1]; if (!p) return full; try { const c = new AbortController(), t = setTimeout(() => c.abort(), 4000), r = await fetch(`${PVW}/kisa`, { method: "POST", signal: c.signal, body: JSON.stringify({ p, h, g }) }); clearTimeout(t); const j = r.ok ? await r.json() : null; if (j?.k) return pvK[full] = `${PVW}/d/${j.k}`; } catch {} return full; };
 async function pvMake(v, B) { const r = await fetch(`${PVW}/var?${pvQ(v)}`, { cache: "no-store" }); if (!r.ok) throw new Error("var"); const j = await r.json(); return j.var ? { id: j.id, has: true } : { id: j.id, blob: await pvDraw(v, B) }; }
 const pvPut = (v, blob) => fetch(`${PVW}/yukle?${pvQ(v)}`, { method: "POST", headers: { "Content-Type": "image/jpeg" }, body: blob }).then((r) => r.ok).catch(() => false);
 async function placeInvite(p) {
