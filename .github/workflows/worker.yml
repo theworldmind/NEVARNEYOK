@@ -1,0 +1,34 @@
+name: Sunucuyu yükle
+# cloudflare/worker.js değişince Cloudflare'deki nvny-yer'e yükler. Bağlantılar (DB, YER) ve gizli değerler olduğu gibi kalır.
+on:
+  push:
+    branches: [main]
+    paths: [cloudflare/worker.js]
+  workflow_dispatch:
+concurrency: { group: worker, cancel-in-progress: false }
+jobs:
+  yukle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      T: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CF: https://api.cloudflare.com/client/v4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Yükle
+        run: |
+          set -e
+          [ -n "$T" ] || { echo "CLOUDFLARE_API_TOKEN yok"; exit 1; }
+          H="Authorization: Bearer $T"
+          ACC=$(curl -sf -H "$H" "$CF/accounts" | jq -r '.result[0].id')
+          [ -n "$ACC" ] && [ "$ACC" != null ] || { echo "Hesap bulunamadı"; exit 1; }
+          S=$(curl -sf -H "$H" "$CF/accounts/$ACC/workers/scripts/nvny-yer/settings")
+          echo "$S" | jq -c '{uyum:.result.compatibility_date, baglar:[.result.bindings[]|{type,name}]}'
+          CD=$(echo "$S" | jq -r '.result.compatibility_date // "2024-09-23"')
+          jq -n --arg cd "$CD" '{main_module:"worker.js",compatibility_date:$cd,bindings:[],keep_bindings:["secret_text","secret_key","kv_namespace","d1","plain_text","r2_bucket","durable_object_namespace","service","queue","analytics_engine","ai","browser","vectorize","hyperdrive","version_metadata","assets"]}' > meta.json
+          R=$(curl -s -X PUT -H "$H" "$CF/accounts/$ACC/workers/scripts/nvny-yer" -F "metadata=@meta.json;type=application/json" -F "worker.js=@cloudflare/worker.js;type=application/javascript+module")
+          echo "$R" | jq -c '{success, errors, messages}'
+          echo "$R" | jq -e '.success' >/dev/null
+          sleep 5
+          curl -s "$CF/accounts/$ACC/workers/scripts/nvny-yer/settings" -H "$H" | jq -c '[.result.bindings[]|{type,name}]'
+          for u in https://nvny-yer.nevarneyok.workers.dev/api/gonderiler https://nvny-yer.berkaytoruntga.workers.dev/api/gonderiler; do echo "$u $(curl -s -o /dev/null -w '%{http_code}' $u)"; done
