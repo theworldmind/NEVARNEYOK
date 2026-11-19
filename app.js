@@ -50,7 +50,7 @@ const TL = (n) => "₺" + Math.round(n).toLocaleString("tr-TR");
 // Sayfa açılınca logonun üstünden bir kez ince ışık geçer (yalnızca transform); sonra durur, her sayfa değişiminde tekrar etmez.
 let wmShone = false;
 const WM = () => { const s = wmShone || store.get("nvny-az") === "1" || matchMedia("(prefers-reduced-motion: reduce)").matches ? "" : '<i class="shn" aria-hidden="true"></i>'; wmShone = true;
-  return `<span class="wm"><img src="brand/logo-cam.png" alt="Ne Var Ne Yok" width="1301" height="653" decoding="async">${s}</span>`; };
+  return `<span class="wm"><img src="brand/logo-sivi.png" alt="Ne Var Ne Yok" width="1301" height="653" decoding="async">${s}</span>`; };
 const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg>`;
 const I = {
   cal: `<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
@@ -842,7 +842,8 @@ function tabsUpdate(P) {
   T.hidden = !city; if (!city) return;
   const cur = P[0] === "akis" ? "akis" : ["bilgi", "hesap", "u", "g"].includes(P[0]) ? "" : !P[1] ? "home" : P[1] === "kesfet" ? "home" : P[1] === "sinema" || P[1] === "film" ? "sinema" : P[1] === "takip" ? "takip" : P[1] === "harita" ? "harita" : "";
   const href = { home: `#/${city}`, kesfet: `#/${city}/kesfet`, sinema: `#/${city}/sinema`, harita: `#/${city}/harita`, takip: `#/${city}/takip`, akis: "#/akis" };
-  $$("a", T).forEach((a) => { a.href = href[a.dataset.t]; a.classList.toggle("on", a.dataset.t === cur); });
+  const L = $$("a", T); L.forEach((a) => { a.href = href[a.dataset.t]; a.classList.toggle("on", a.dataset.t === cur); });
+  const ti = L.findIndex((a) => a.dataset.t === cur); T.classList.toggle("has", ti >= 0); if (ti >= 0) T.style.setProperty("--ti", ti);
   const n = Object.keys(follows()).length, b = $('[data-t="takip"] b', T); b.textContent = n || ""; b.classList.toggle("has", !!n);
 }
 
@@ -3041,4 +3042,46 @@ boot().then(() => { offlineBoot(); shortcutBoot(); route(); appUp(); splashOut()
   setInterval(() => { if (!document.hidden) poke(); }, 20 * 60e3);
   document.addEventListener("visibilitychange", () => { if (document.hidden) poke(true); else poke(); });
   addEventListener("pagehide", () => poke(true));
+})();
+
+/* ===================== Apple hissi (19.11.2026, kullanıcı: "tam bir son model Apple uygulaması") =====================
+   1) Büyük başlık: sayfanın ilk büyük başlığı ekrandan çıkınca üst çubukta logonun yerine küçük başlık olarak geçer (iOS; geniş ekranda yok).
+   2) Kesintisiz geçiş: afişe dokununca afiş büyüyerek etkinlik/film sayfasının afişi olur; üstteki "Geri" ile dönünce yerine küçülür.
+      View Transitions (Chrome 111+, Safari 18+); yoksa ya da hareket azaltılmışsa eski sağdan kayma. Kenardan kaydırarak geri dönüşe dokunmaz. */
+(() => {
+  const ttl = document.createElement("b"); ttl.className = "ttl"; ttl.setAttribute("aria-hidden", "true"); TOP.append(ttl);
+  let io = null;
+  const watch = () => { io?.disconnect(); TOP.classList.remove("tt"); const h = V.querySelector("h1, .city h1, .ph1"); if (!h || !h.textContent.trim()) return;
+    ttl.textContent = h.textContent.trim().replace(/\s+/g, " ");
+    io = new IntersectionObserver(([x]) => TOP.classList.toggle("tt", !x.isIntersecting && x.boundingClientRect.top < 80), { rootMargin: "-70px 0px 0px 0px" }); io.observe(h); };
+  let wq = 0; const later = () => { if (wq) return; wq = setTimeout(() => { wq = 0; watch(); }, 60); };
+  addEventListener("hashchange", later); setTimeout(watch, 400); new MutationObserver(later).observe(V, { childList: true });
+
+  if (!document.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let back = null;
+  const posterOf = (a) => { const p = a.querySelector(".ph img.p")?.closest(".ph") || a.querySelector(".po"); return p || a.closest(".sps")?.querySelector(".po"); };
+  const clear = () => document.querySelectorAll(".vtn").forEach((el) => { el.style.viewTransitionName = ""; el.classList.remove("vtn"); });
+  const name = (el) => { if (el) { el.style.viewTransitionName = "nvpo"; el.classList.add("vtn"); } };
+  document.addEventListener("click", (ev) => {
+    if (ev.defaultPrevented || ev.button || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+    const a = ev.target.closest('a[href*="/e/"], a[href*="/film/"]'); if (!a || a.target || !V.contains(a) || document.querySelector(".sh.on, .pk")) return;
+    const href = a.getAttribute("href"); if (!href || !href.startsWith("#/")) return;
+    const p = posterOf(a), im = p?.querySelector("img"); if (!p || !im || !im.complete || !im.naturalWidth) return;
+    const r = p.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    ev.preventDefault(); ev.stopPropagation(); clear(); name(p); snd.sel?.();
+    const t = document.startViewTransition(() => { clear(); V.dataset.sw = "1"; history.pushState(null, "", href); route(); const d = V.querySelector(".dg .dp"); name(d);
+      const i2 = d?.querySelector("img"); return i2 && !i2.complete ? Promise.race([i2.decode().catch(() => {}), new Promise((r) => setTimeout(r, 250))]) : undefined; });
+    back = { href, el: p }; t.finished.finally(clear);
+  }, true);
+  const gb0 = goBack;
+  goBack = window.goBack = function () {
+    const B = back; back = null; const d = V.querySelector(".dg .dp");
+    if (!B || V.dataset.sw === "1" || location.hash !== B.href || !d) return gb0();
+    clear(); name(d);
+    const t = document.startViewTransition(() => new Promise((res) => {
+      let ok = false; const fin = () => { if (ok) return; ok = true; clear(); const el = B.el?.isConnected ? B.el : (() => { const a = V.querySelector(`a[href="${CSS.escape(B.href)}"]`); return a && posterOf(a); })(); const r = el?.getBoundingClientRect(); if (r && r.bottom > 0 && r.top < innerHeight) name(el); res(); };
+      addEventListener("hashchange", fin, { once: true }); setTimeout(fin, 700);
+      V.dataset.sw = "1"; gb0(); }));
+    t.finished.finally(clear);
+  };
 })();
