@@ -180,6 +180,9 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .sbar{display:flex;gap:10px;padding:26px var(--pad) 6px;max-width:1440px;margin:0 auto}
 .sin{flex:1;min-width:0;display:flex;align-items:center;gap:10px;height:52px;padding:0 16px;border-radius:16px;background:var(--s1);border:1px solid var(--line)}
 .sin input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--tx);font:500 16px var(--f)}
+input[type=search],input[type=text],textarea{-webkit-appearance:none;appearance:none;line-height:1.3;text-overflow:ellipsis;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.sin input,.hm-q input,.fvi input,.cin input{align-self:stretch;height:auto;padding:0 3px;margin:0 -3px;font-stretch:100%;letter-spacing:0}
+input[type=search]::-webkit-search-decoration,input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none}
 .sin input::placeholder{color:var(--t3)}
 .fbtn{display:flex;align-items:center;gap:8px;height:52px;padding:0 18px;border-radius:16px;background:var(--s1);border:1px solid var(--line);font-weight:700;white-space:nowrap}
 .fbtn .n{display:grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--acc);color:var(--on-acc);font-size:12px}
