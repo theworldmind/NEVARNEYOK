@@ -1,0 +1,36 @@
+# EGO hareket saatleri (Ankara otobüs, metro, Ankaray): haftalık → "ego-saat" dalı; "Siteyi yayınla" sitede yv/ego/ altına koyar.
+name: EGO hareket saatleri
+
+on:
+  workflow_dispatch:
+    inputs:
+      max: { description: "Deneme için en çok hat (boş = hepsi)", default: "" }
+  schedule:
+    - cron: "10 1 * * 1,4"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: ego-saat
+  cancel-in-progress: false
+
+jobs:
+  saat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env: { TZ: Europe/Istanbul, OUT: /tmp/ego, EGO_MAX: "${{ github.event.inputs.max }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scraper/ego-saat.mjs
+      - name: Dala yaz
+        if: github.event.inputs.max == ''
+        run: |
+          cd /tmp/ego/ego && git init -q -b ego-saat && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "EGO hareket saatleri" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" ego-saat
+      - name: Siteyi yayınla
+        if: github.event.inputs.max == ''
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh workflow run pages.yml --ref main
