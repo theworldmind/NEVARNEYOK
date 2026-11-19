@@ -6,6 +6,7 @@
 import { join } from "node:path";
 import { readdir } from "node:fs/promises";
 import { ROOT, log, readJSON, writeJSON, todayIST, fold } from "./lib/util.mjs";
+import { badEvent, cleanVenueText } from "./lib/quality.mjs";
 import { CITIES, cityOfText } from "./lib/cities.mjs";
 import { vlocAdd, vlocFinal } from "./lib/vloc.mjs";
 import { haberEvents } from "./haber-kesif.mjs";
@@ -57,6 +58,7 @@ const venueCity0 = (e, cid) => { const v = fold(e.venue || ""); if (!v || /cadde
 /* konum işinin bulduğu doğru il: mekân başka ilde tek yerde kayıtlıysa ya da adının başı/sonu başka ilin ilçesiyse ("Watergarden Ataşehir", "Kadıköy … Merkezi") */
 const VIL = (await readJSON(join(ROOT, "data/c/_vil.json"), {})) || {}, ILC = (await readJSON(join(ROOT, "data/c/_ilce.json"), {})) || {}, ILNO = new Set("bahce kale kent mavi sahne yildiz merkez cumhuriyet gazi".split(" "));
 const venueCity = (e, cid) => { const a = venueCity0(e, cid); if (a) return a; const W = fold(e.venue || "").replace(/[^a-z0-9]+/g, " ").trim().split(" "); for (const w of [W[0], W[W.length - 1]]) { const c = ILC[w]; if (c && !ILNO.has(w)) return c !== cid ? c : ""; } return VIL[cid + "|" + e.venue] || ""; };
+{ let n = 0; for (const C of CITIES) { const L = SRC[C.id] || []; SRC[C.id] = L.filter((e) => !badEvent(e)).map((e) => e.venue ? { ...e, venue: cleanVenueText(e.venue) } : e); n += L.length - SRC[C.id].length; } log(`Veri denetimi: ${n} test/online/yurt dışı kayıt çıkarıldı`); }
 const moved = {}; let relocated = 0;
 for (const C of CITIES) { if (C.id === "ankara") continue; SRC[C.id] = SRC[C.id].filter((e) => { const h = e.d >= today && venueCity(e, C.id); if (!h) return true; relocated++; if (h !== "ankara") (moved[h] ||= []).push(e); return false; }); }
 let dropped = 0;

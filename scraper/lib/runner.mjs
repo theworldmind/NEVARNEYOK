@@ -7,6 +7,7 @@ import { cityById, cityOfText, fold as cfold } from "./cities.mjs";
 const CITY = process.env.CITY || "ankara";
 import { log, pool, todayIST, writeText, writeJSON, ROOT } from "./util.mjs";
 import { join } from "node:path";
+import { badEvent } from "./quality.mjs";
 
 const DEBUG = process.env.DEBUG_DIR || join(ROOT, "scraper/out/debug");
 
@@ -166,6 +167,7 @@ const TEAMS = /\b(ankaragücü|ankaragucu|gençlerbirliği|genclerbirligi|keçi�
 const SPORT = /(\b(fk|sk|spor|futbol|kul[uü]b[uü]?|basketbol|voleybol|hentbol|gençlik ?gücü|gücü)\b.*\s[-–]\s|\s[-–]\s.*\b(fk|sk|spor|futbol|kul[uü]b[uü]?|basketbol|voleybol)\b|\bmaç(ı|lar)?\b)/i;
 export function isJunk(r) {
   const title = String(r.title || "");
+  if (badEvent(r)) return true;                                    // test kaydı, online ya da yurt dışı adres
   if (JUNK_TITLE.test(title)) return true;
   if (SPORT.test(title) || (TEAMS.test(title) && /\s[-–]\s|\bvs\.?\b/i.test(title)) || /stad(yum|ı)/i.test(r.venue || "")) return true;
   // genel metin tahmini: ne saat ne mekân bulunduysa sayfa büyük ihtimalle etkinlik değil (haber, liste...)

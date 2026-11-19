@@ -1,5 +1,6 @@
 // Ham kayıtları sitenin biçimine çevirir: mekân adı, kategori, bilet sitesi adı, eşleştirme anahtarı
 import { fold, clean, hostOf } from "./util.mjs";
+import { cleanVenueText } from "./quality.mjs";
 
 /* ---------- Bilet sitesi adları (alan adından) ---------- */
 export const SITE_NAMES = {
@@ -30,7 +31,7 @@ export function loadVenues(venues) {
 const tokens = (s) => new Set(s.split(" ").filter((w) => w.length > 1));
 function jacc(a, b) { const A = tokens(a), B = tokens(b); if (!A.size || !B.size) return 0; let n = 0; for (const x of A) if (B.has(x)) n++; return n / (A.size + B.size - n); }
 export function canonVenue(name) {
-  const raw = clean(name).replace(/\s*[-–|,]\s*Ankara$/i, "").replace(/\s+-\s+/g, " · ");
+  const raw = clean(cleanVenueText(name)).replace(/\s*[-–|,]\s*Ankara$/i, "").replace(/\s+-\s+/g, " · ");
   if (!raw) return "";
   if (!VEN) return raw;
   const f = fold(raw).trim(), k = vkey(raw);

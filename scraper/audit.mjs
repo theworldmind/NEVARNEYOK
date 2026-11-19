@@ -9,6 +9,7 @@ import { ROOT, log, readJSON, writeJSON, writeText, fold, todayIST } from "./lib
 import { fetchText } from "./lib/net.mjs";
 import { FEEDS, parseFeed, nk } from "./buzz.mjs";
 import { speakerIn } from "./lib/konusmaci.mjs";
+import { badEvent, cleanVenueText } from "./lib/quality.mjs";
 
 const HIST = join(ROOT, "data/coverage.json");
 // Google Haberler robots.txt ile otomatik okumaya kapalı; kullanılmaz. Okunamayan akış raporda not edilir.
@@ -141,6 +142,12 @@ export async function main() {
     const sus = data.events.filter((e) => e.cat === "konser" && BAD.test(fold(e.title)) && !/konser|muzik|sarki|orkestra/.test(fold(e.title)));
     if (sus.length) gaps.push({ w: 2, k: "kategori", t: `${sus.length} etkinlik "Konser"de görünüyor ama adı başka türü söylüyor (ör. ${sus.slice(0, 5).map((e) => e.title).join(", ")}); \`normalize.mjs\` → \`fixCat\` kurallarına bakılmalı.` }); }
   const news = process.env.AUDIT_NO_NEWS ? { miss: [], notes: ["haber taraması kapalı"] } : await newsScan(data.events);
+  // k) veri kalitesi (19.11.2026): test kaydı, online/yurt dışı kayıt, bozuk mekân adı yayında kalmamalı
+  { const { readdir } = await import("node:fs/promises"); let all = [...data.events]; for (const f of await readdir(join(ROOT, "data/c")).catch(() => [])) if (/^[a-z]+\.json$/.test(f)) all = all.concat((await readJSON(join(ROOT, "data/c", f), {})).events || []);
+    const up = all.filter((e) => e.d >= today), bad = up.filter(badEvent), mess = up.filter((e) => e.venue && cleanVenueText(e.venue) !== e.venue), none = up.filter((e) => !e.venue);
+    if (bad.length) gaps.push({ w: 3, k: "veri", t: `${bad.length} test/online/yurt dışı kayıt yayında (ör. ${bad.slice(0, 5).map((e) => e.title).join(", ")})` });
+    if (mess.length) gaps.push({ w: 2, k: "veri", t: `${mess.length} kayıtta mekân adı bozuk (ör. ${mess.slice(0, 3).map((e) => e.venue).join(" | ")})` });
+    if (none.length) gaps.push({ w: 1, k: "veri", t: `${none.length} etkinlikte mekân yok (ör. ${none.slice(0, 5).map((e) => e.title).join(", ")})` }); }
   // j) tanınmış konuşmacı (kullanıcı, 19.11.2026: Celal Şengör'ün Ankara etkinliği yoktu): haberde etkinliğiyle geçiyor, bizde yok
   if (news.speakers?.size) { const { readdir } = await import("node:fs/promises"); let all = [...data.events]; for (const f of await readdir(join(ROOT, "data/c")).catch(() => [])) if (/^[a-z]+\.json$/.test(f)) all = all.concat((await readJSON(join(ROOT, "data/c", f), {})).events || []);
     const hay = all.map((e) => fold(e.title + " " + (e.org || ""))).join(" | ");
