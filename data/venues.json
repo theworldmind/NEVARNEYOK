@@ -2009,5 +2009,32 @@
   "v": 2,
   "osm": "amenity/bar",
   "m": "ov"
+ },
+ "Ozanlar": {
+  "lat": 39.9276308,
+  "lng": 32.8691006,
+  "addr": "Ozanlar Caddesi, Çamlıtepe Mahallesi, Çankaya",
+  "ilce": "Çankaya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/taxi"
+ },
+ "prof. dr. necmettin erbakan kongre merkezi · mamak": {
+  "lat": 39.9339303,
+  "lng": 32.899021,
+  "addr": "Mamak Caddesi, Mehtap Mahallesi, Mamak",
+  "ilce": "Mamak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/conference_centre"
+ },
+ "Başkent Millet Bahçesi": {
+  "lat": 39.9444085,
+  "lng": 32.8374768,
+  "addr": "Zübeyde Hanım Mahallesi, Altındağ",
+  "ilce": "Altındağ",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
  }
 }
