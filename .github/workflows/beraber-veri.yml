@@ -29,17 +29,20 @@ jobs:
         with: { python-version: "3.12" }
       - name: Veriyi indir
         run: |
-          pip install -q overturemaps duckdb
+          pip install -q overturemaps duckdb osmium
           sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
           overturemaps download --bbox=25.6,35.8,44.9,42.2 -f geoparquet --type=place -o /tmp/ov.parquet
           curl -fsSL --retry 3 -o /tmp/tr.pbf https://download.geofabrik.de/europe/turkey-latest.osm.pbf
           osmium tags-filter /tmp/tr.pbf nwr/amenity,tourism,leisure,shop,historic,office,healthcare,craft,club nwr/building=university,college,school,kindergarten,dormitory,hospital,public,civic,government,mosque,church,synagogue,stadium,train_station,transportation,hotel,commercial,retail,office,sports_hall,museum,library,theatre,cinema -o /tmp/p.pbf --overwrite
           osmium export /tmp/p.pbf -f geojsonseq -o /tmp/poi.seq --overwrite
+          osmium tags-filter /tmp/tr.pbf r/route=bus,trolleybus,minibus,share_taxi,tram,subway,light_rail,monorail,train,ferry,aerialway,funicular -o /tmp/hat.pbf --overwrite
           curl -fsSL --retry 3 -o /tmp/TR.zip https://download.geonames.org/export/dump/TR.zip && unzip -o -q /tmp/TR.zip TR.txt -d /tmp || echo "GeoNames inmedi"
       - name: Wikidata
         timeout-minutes: 30
         run: python scraper/beraber/wd-yerler.py || echo "Wikidata alınamadı"
       - run: python scraper/beraber/yerler.py
+      - name: Toplu taşıma hatları
+        run: python scraper/beraber/hatlar.py
       - name: Dala yaz
         run: |
           cd /tmp/veri && cp yv/ozet.json . && mv yv/* . && rmdir yv && git init -q -b beraber-veri && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Yer verisi" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-veri
