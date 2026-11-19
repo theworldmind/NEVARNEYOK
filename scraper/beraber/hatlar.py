@@ -1,6 +1,6 @@
 # Toplu taşıma hatları (OpenStreetMap, ODbL; kullanıcı, 19.11.2026: "hangi hatların nerelerden geçtiği açık kaynak, saat şart değil"):
 # metro, tramvay, banliyö, otobüs, minibüs/dolmuş, vapur, teleferik hatları ve durak sıraları → yh/<enlem>_<boylam>.json (1° karo).
-# Karo: {"s": [[ad, enlem, boylam]], "h": [[no, ad, tür, renk, yön(1: tek yön), [durak sırası]]]}. Saat tutulmaz.
+# Karo: {"s": [[ad, enlem, boylam, (durak no)]], "h": [[no, ad, tür, renk, yön(1: tek yön), [durak sırası]]]}. Saat tutulmaz.
 import osmium, json, os, math, collections, re
 OUT = os.environ.get("OUT", "/tmp/veri") + "/yh"; os.makedirs(OUT, exist_ok=True)
 MODES = {"subway": "metro", "light_rail": "hafif", "monorail": "hafif", "tram": "tram", "train": "tren", "bus": "otobus", "trolleybus": "otobus", "minibus": "dolmus", "share_taxi": "dolmus", "ferry": "vapur", "aerialway": "teleferik", "funicular": "teleferik"}
@@ -15,20 +15,26 @@ class H(osmium.SimpleHandler):
         if len(M) >= 2: s.r.append((t.get("ref") or "", t.get("name") or "", MODES[t["route"]], t.get("colour") or "", t.get("from") or "", t.get("to") or "", t.get("public_transport:version") == "2", M))
 H1 = H(); H1.apply_file("/tmp/hat.pbf")
 need_n = {ref for R in H1.r for (ty, ref, _) in R[7] if ty == "n"}; need_w = {ref for R in H1.r for (ty, ref, _) in R[7] if ty == "w"}
+# durak numarası (EGO, İETT, ESHOT… durak tabelasındaki no): OSM'de ref, local_ref ya da kuruma özel ref:* alanında
+def dref(t):
+    for k in ("local_ref", "ref", "ref:EGO", "ref:ego", "ref:IETT", "ref:iett", "ref:ESHOT", "ref:eshot", "ref:durak", "ref:stop"):
+        v = (t.get(k) or "").strip()
+        if v and len(v) <= 12 and re.search(r"\d", v): return v
+    return ""
 class G(osmium.SimpleHandler):
     def __init__(s): super().__init__(); s.n = {}; s.w = {}
     def node(s, n):
-        if n.id in need_n and n.location.valid(): s.n[n.id] = (n.tags.get("name:tr") or n.tags.get("name") or "", round(n.location.lat, 5), round(n.location.lon, 5))
+        if n.id in need_n and n.location.valid(): s.n[n.id] = (n.tags.get("name:tr") or n.tags.get("name") or "", round(n.location.lat, 5), round(n.location.lon, 5), dref(n.tags))
     def way(s, w):
         if w.id in need_w:
             P = [(x.lat, x.lon) for x in w.nodes if x.location.valid()]
-            if P: s.w[w.id] = (w.tags.get("name:tr") or w.tags.get("name") or "", round(sum(p[0] for p in P) / len(P), 5), round(sum(p[1] for p in P) / len(P), 5))
+            if P: s.w[w.id] = (w.tags.get("name:tr") or w.tags.get("name") or "", round(sum(p[0] for p in P) / len(P), 5), round(sum(p[1] for p in P) / len(P), 5), dref(w.tags))
 G1 = G(); G1.apply_file("/tmp/hat.pbf", locations=True)
 # durakları birleştir: aynı ad ve 60 m içinde → tek durak; adsız durak en yakın adlıya (40 m) bağlanır
 S, SK, lines = [], {}, []
-def sid(nm, a, o):
-    k = (re.sub(r"\W+", "", nm.lower()), round(a * 1800), round(o * 1400))
-    if k not in SK: SK[k] = len(S); S.append([nm, a, o])
+def sid(nm, a, o, rf=""):
+    k = (re.sub(r"\W+", "", nm.lower()), rf, round(a * 1800), round(o * 1400))
+    if k not in SK: SK[k] = len(S); S.append([nm, a, o, rf] if rf else [nm, a, o])
     return SK[k]
 for ref, name, mode, col, fr, to, v2, M in H1.r:
     seq = []
@@ -40,7 +46,7 @@ for ref, name, mode, col, fr, to, v2, M in H1.r:
         if not seq or seq[-1] != i: seq.append(i)
     if len(seq) < 2: continue
     lines.append([ref, name or (fr + " – " + to).strip(" –"), mode, col, 1 if v2 else 0, seq])
-print("hat", len(lines), "durak", len(S), collections.Counter(l[2] for l in lines).most_common())
+print("durak no olan", sum(1 for x in S if len(x) > 3)); print("hat", len(lines), "durak", len(S), collections.Counter(l[2] for l in lines).most_common())
 # 1° karolara böl: hattın dokunduğu her karoya hattın tamamı (duraklarıyla) yazılır
 T = collections.defaultdict(set)
 for li, L in enumerate(lines):

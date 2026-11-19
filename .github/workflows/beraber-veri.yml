@@ -50,9 +50,28 @@ jobs:
         if: github.event.inputs.is == 'veri'
         env: { GH_TOKEN: "${{ github.token }}" }
         run: gh workflow run pages.yml --ref main
+  hat:
+    # yalnızca toplu taşıma hatları (hızlı): mevcut beraber-veri dalındaki yh/ yenilenir
+    if: github.event.inputs.is == 'hat'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env: { OUT: /tmp/veri }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: |
+          pip install -q osmium && sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+          curl -fsSL --retry 3 -o /tmp/tr.pbf https://download.geofabrik.de/europe/turkey-latest.osm.pbf
+          osmium tags-filter /tmp/tr.pbf r/route=bus,trolleybus,minibus,share_taxi,tram,subway,light_rail,monorail,train,ferry,aerialway,funicular -o /tmp/hat.pbf --overwrite
+          python scraper/beraber/hatlar.py
+          git clone -q --depth 1 -b beraber-veri "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" /tmp/bv
+          rm -rf /tmp/bv/yh && mv /tmp/veri/yh /tmp/bv/yh && cd /tmp/bv && git add -A && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Hatlar" && git push -q origin beraber-veri
+      - env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh workflow run pages.yml --ref main
   gorsel:
     needs: [veri]
-    if: always() && github.event_name == 'workflow_dispatch' && github.event.inputs.is != 'veri'
+    if: always() && github.event_name == 'workflow_dispatch' && github.event.inputs.is != 'veri' && github.event.inputs.is != 'hat'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env: { TZ: Europe/Istanbul, OUT: /tmp/yg, ONEM: /tmp/v/onem.json, GORSEL_MAX: "${{ github.event.inputs.adet || '350' }}" }
