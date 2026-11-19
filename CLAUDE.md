@@ -91,6 +91,8 @@ Kullanıcıyla her zaman Türkçe konuş.
 
 - **Çocuk içeriğini gösterme (19.11.2026, kullanıcı: "çok fazla çocuk içeriği var, karşıma çıkmasın"):** Kişiselleştir → "🚫 Çocuk etkinliklerini gösterme" (`nvny-prefs.nokids`): `kidApply` → `DATA.all` (tümü) / `DATA.events` (çocuksuz), filmlerde `DATA.filmsAll` / `DATA.films` (Animasyon, Aile); raflar, vitrin, arama, Keşfet, sinema ve harita (`isKid`) çocuk içeriği göstermez; doğrudan bağlantıyla açılan etkinlik/film yine açılır. Filtre → Kimler için → "Çocuksuz" bir seferlik aynısı. `isKid`: Çocuk kategorisi, 5 yaş ve altı ya da yaş aralığı, adında çocuk/masal/kukla/bilinen masal adları (`KIDW`; 19:00 sonrası tiyatro dışı sayılmaz), 14:30 öncesi tiyatro/müzikal (sinema salonları hariç), çocuk etkinliğiyle aynı adla başlayanlar (`KIDT`). Ankara'da ~%12.
 
+- **Beraber reklamı (`scraper/beraber-reklam.mjs`, `tanitim.yml` → `betik=beraber-reklam`; 19.11.2026):** "Beraber gidelim mi?" (etkinlik sayfası, Davet et paneli, davet sayfası) ve "Grubu kur, konuşun." (gerçek grup ekranı; sunucu cevabı tarayıcıda örnek sohbetle doldurulur, görselde "Örnek sohbet" yazar). Etkinlik: satışta, dikey afişli, 19:00 sonrası konser/tiyatro/stand-up. Çıktı `sosyal/<tarih>/beraber-reklam/`.
+
 ## Açık işler (18.11.2026 devir; bitince sil)
 - **Beraber yer daveti: gerçek telefonda denenecek** (WhatsApp içi tarayıcıda konum/paylaşım, iPhone'da Safari ile uygulamanın ayrı verisi). Sonraki fikirler: etkinlik + yer, oylama, ortada buluşma, yer rafları.
 - Yeni kaynakların (AllEvents, biletimGO, Radar, BUGECE) ilk sonuçları ve kalitesi `data/health.json` ile kontrol edilmedi.
