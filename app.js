@@ -861,7 +861,7 @@ document.addEventListener("click", (ev) => {
 const scrollMem = new Map();
 let lastHash = "";
 let routed = false;
-const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=11", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
+const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=12", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
 function route() {
   if (!DATA.boot) return;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
@@ -1512,6 +1512,41 @@ async function routeOf(mode, a, b) {
   const r = await fetch(u); if (!r.ok) throw new Error("rota " + r.status); const j = await r.json(); if (j.code !== "Ok" || !j.routes?.length) throw new Error("rota yok");
   RCACHE.set(k, j.routes[0]); return j.routes[0];
 }
+/* Toplu taşıma tarifi (19.11.2026, kullanıcı: "hangi hatların nerelerden geçtiği açık kaynak, saat şart değil"): OpenStreetMap'teki hatlar ve durak sıraları
+   (yv/yh/<enlem>_<boylam>.json, scraper/beraber/hatlar.py). Saat yok: süre yürüme + bekleme + yolculuk tahmini. En çok 3 biniş; duraklar arası aktarma yürüyüşü 400 m'ye kadar. */
+const PT_ON = /[?&]pt=1/.test(location.search) || (() => { try { return localStorage.getItem("nvny-pt") === "1"; } catch { return false; } })(), YH = new Map(), yhGet = (c) => { if (!YH.has(c)) YH.set(c, fetch(`/yv/yh/${c}.json`).then((r) => r.ok && /json/.test(r.headers.get("content-type") || "") ? r.json() : null).catch(() => null)); return YH.get(c); };
+const PTM = { metro: ["🚇", 36, 4, "Metro"], hafif: ["🚈", 30, 5, "Hafif raylı"], tram: ["🚊", 18, 5, "Tramvay"], tren: ["🚆", 45, 10, "Banliyö / tren"], otobus: ["🚌", 18, 8, "Otobüs"], dolmus: ["🚐", 20, 6, "Dolmuş"], vapur: ["⛴️", 22, 12, "Vapur"], teleferik: ["🚡", 12, 4, "Teleferik"] };
+const ptWalk = (a, b) => km(a, b) * 1.3 / 4.8 * 60;
+async function ptRoute(A, B) {
+  const cells = new Set(); for (const p of [A, B]) for (const da of [-.3, 0, .3]) for (const dn of [-.3, 0, .3]) cells.add(`${Math.floor(p[0] + da)}_${Math.floor(p[1] + dn)}`);
+  const T = (await Promise.all([...cells].map(yhGet))).filter(Boolean); if (!T.length) return { yok: 1 };
+  const S = [], SK = new Map(), L = [], LK = new Set();
+  for (const t of T) { const map2 = t.s.map((s) => { const k = s[0] + "|" + s[1].toFixed(4) + "|" + s[2].toFixed(4); if (!SK.has(k)) { SK.set(k, S.length); S.push({ n: s[0], p: [s[1], s[2]] }); } return SK.get(k); });
+    for (const h of t.h) { const seq = h[5].map((i) => map2[i]), k = h[0] + "|" + h[1] + "|" + seq[0] + "|" + seq[seq.length - 1] + "|" + seq.length; if (LK.has(k)) continue; LK.add(k); L.push({ ref: h[0], name: h[1], mode: h[2], col: /^#?[0-9a-f]{3,6}$/i.test(h[3]) ? (h[3][0] === "#" ? h[3] : "#" + h[3]) : "", uni: h[4] === 1, seq }); } }
+  const G = new Map(), gk = (p) => `${Math.floor(p[0] / .004)}_${Math.floor(p[1] / .005)}`; S.forEach((s, i) => { const k = gk(s.p); if (!G.has(k)) G.set(k, []); G.get(k).push(i); });
+  const near = (p, m) => { const R2 = Math.ceil(m / 400) + 1, a0 = Math.floor(p[0] / .004), o0 = Math.floor(p[1] / .005), out = []; for (let a = a0 - R2; a <= a0 + R2; a++) for (let o = o0 - R2; o <= o0 + R2; o++) for (const i of G.get(`${a}_${o}`) || []) { const d = km(p, S[i].p) * 1000; if (d <= m) out.push([i, d]); } return out; };
+  const at = S.map(() => []); L.forEach((l, li) => l.seq.forEach((s, j) => at[s].push([li, j])));
+  const K = 4, N = S.length * K, cost = new Float64Array(N).fill(Infinity), prev = new Array(N), done = new Uint8Array(N), H = [];
+  const push = (st, c, pv) => { if (c < cost[st]) { cost[st] = c; prev[st] = pv; let i = H.length; H.push([c, st]); while (i) { const q = (i - 1) >> 1; if (H[q][0] <= H[i][0]) break; [H[q], H[i]] = [H[i], H[q]]; i = q; } } };
+  const pop = () => { const top = H[0], last = H.pop(); if (H.length) { H[0] = last; let i = 0; for (;;) { const l = 2 * i + 1, r = l + 1; let m = i; if (l < H.length && H[l][0] < H[m][0]) m = l; if (r < H.length && H[r][0] < H[m][0]) m = r; if (m === i) break; [H[m], H[i]] = [H[i], H[m]]; i = m; } } return top; };
+  let ac = near(A, 900); if (!ac.length) ac = near(A, 1600); let eg = near(B, 900); if (!eg.length) eg = near(B, 1600); if (!ac.length || !eg.length) return { yok: 2 };
+  const EG = new Map(eg.map(([i, d]) => [i, d]));
+  for (const [i, d] of ac) push(i * K, d * 1.3 / 80, { w: 1, d });
+  let best = Infinity, bst = -1, it = 0;
+  while (H.length && it++ < 400000) { const [c, st] = pop(); if (done[st] || c > cost[st]) continue; done[st] = 1; if (c >= best) break; const s = Math.floor(st / K), k = st % K;
+    if (k > 0 && EG.has(s)) { const t = c + EG.get(s) * 1.3 / 80; if (t < best) { best = t; bst = st; } }
+    if (k > 0) for (const [t2, d] of near(S[s].p, 400)) if (t2 !== s) push(t2 * K + k, c + d * 1.3 / 80 + 1, { tr: st, d });
+    if (k < K - 1) for (const [li, j] of at[s]) { const l = L[li], M = PTM[l.mode] || PTM.otobus, w = M[2] + (k ? 2 : 0);
+      for (const dir of l.uni ? [1] : [1, -1]) { let r = 0; for (let x = j + dir; x >= 0 && x < l.seq.length; x += dir) { r += km(S[l.seq[x - dir]].p, S[l.seq[x]].p) * 1.25 / M[1] * 60 + .4; push(l.seq[x] * K + k + 1, c + w + r, { li, a: j, b: x, from: st }); } } } }
+  if (bst < 0) return { yok: 3 };
+  const legs = []; let st = bst; legs.unshift({ t: "w", a: S[Math.floor(st / K)].p, b: B, d: EG.get(Math.floor(st / K)), to: S[Math.floor(st / K)].n });
+  while (st != null) { const pv = prev[st]; if (!pv) break; const s = Math.floor(st / K);
+    if (pv.w) { legs.unshift({ t: "w", a: A, b: S[s].p, d: pv.d, toStop: S[s].n }); break; }
+    if (pv.tr != null) { const f = Math.floor(pv.tr / K); legs.unshift({ t: "w", a: S[f].p, b: S[s].p, d: pv.d, tr: 1, toStop: S[s].n }); st = pv.tr; continue; }
+    const l = L[pv.li], dir = pv.b > pv.a ? 1 : -1, P = []; for (let x = pv.a; x !== pv.b + dir; x += dir) P.push(l.seq[x]);
+    legs.unshift({ t: "r", l, P: P.map((i) => S[i]), head: S[dir > 0 ? l.seq[l.seq.length - 1] : l.seq[0]].n || l.name }); st = pv.from; }
+  return { legs, min: Math.round(best), walkMin: Math.round(ptWalk(A, B)) };
+}
 function routeSheet(e, v, city) {
   /* Yol tarifi + navigasyon (kullanıcı isteği, 16.11.2026 02:17: "kişi yürüdükçe orada da ilerlesin; araçla ya da yaya; güzel yapalım").
      Önce özet: süre, mesafe, varış, adım adım tarif. "Başla" ile navigasyon: harita tam ekran, seni izler; üstte sıradaki dönüş ve kalan metre,
@@ -1525,7 +1560,7 @@ function routeSheet(e, v, city) {
     <div class="nvt" id="nvt"><i></i><span><b></b><small></small></span></div>
     <div class="nvb" id="nvb"><span><b id="nvm"></b><small id="nvk"></small></span><button type="button" class="nvv" id="nvv" aria-label="Sesli yönlendirme"></button><button type="button" class="nve" id="nve">Bitir</button></div>
     <button type="button" class="nvc" id="nvc" aria-label="Konumuma dön"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="currentColor"/></svg></button>
-    <div class="bd2 rcd" id="rcd"><button type="button" class="rgr" id="rgr" aria-label="Ayrıntıları aç"></button><div class="rseg" role="tablist"><i></i><button type="button" data-m="foot" role="tab">Yürüyerek</button><button type="button" data-m="bike" role="tab">Bisikletle</button><button type="button" data-m="car" role="tab">Arabayla</button></div>
+    <div class="bd2 rcd" id="rcd"><button type="button" class="rgr" id="rgr" aria-label="Ayrıntıları aç"></button><div class="rseg" role="tablist" style="--n:${PT_ON ? 4 : 3}"><i></i><button type="button" data-m="foot" role="tab">Yürü</button><button type="button" data-m="bike" role="tab">Bisiklet</button><button type="button" data-m="car" role="tab">Araba</button>${PT_ON ? '<button type="button" data-m="pt" role="tab">Toplu taşıma</button>' : ""}</div>
     <div class="rsum" id="rsum"><span class="sk" style="display:block;height:52px;border-radius:14px"></span></div>
     <ol class="rst" id="rst"></ol>
     <p class="rnote">Yol OpenStreetMap verisiyle hesaplanır; trafik hesaba katılmaz. Bunun için yalnızca başlangıç ve varış noktası OpenStreetMap'in yol sunucusuna gider, bizde saklanmaz.</p></div></div>`, "mn rt");
@@ -1550,7 +1585,7 @@ function routeSheet(e, v, city) {
   $("#rgr", sh).addEventListener("click", () => { haptic(5); snd.sel?.(); cSet(!cOpen); });
   addEventListener("resize", () => cSet(cOpen, false));
   const oldClose = sh.close; sh.close = () => { fl?.stop(); lw?.stop(); if (watch != null) navigator.geolocation.clearWatch(watch); try { wl?.release(); speechSynthesis.cancel(); } catch {} oldClose(); };
-  const setMode = (m) => { mode = m; seg.style.setProperty("--i", ["foot", "bike", "car"].indexOf(m)); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.m === m)); };
+  const setMode = (m) => { mode = m; seg.style.setProperty("--i", ["foot", "bike", "car", "pt"].indexOf(m)); seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.m === m)); };
   /* Yönü değiştir (kullanıcı, 16.11.2026 20:02: "haritada istediğim her yere yol tarifi"): ⇅ ile gidiş ↔ dönüş. Ters yönde "Başla" yok (canlı yol gösterme yalnızca konumundan çıkarken). */
   let rev = false; const srcName = () => src === "me" ? "Konumun" : src === "x" ? xPlace?.n || "Seçilen yer" : F.find((x) => x.id === src)?.n || "";
   const toName = () => rev ? srcName() : e.venue || "";
@@ -1562,9 +1597,21 @@ function routeSheet(e, v, city) {
     let j = 0; sIdx = S.map((s) => { const p = [s.maneuver.location[1], s.maneuver.location[0]]; let b = j, bd = 1e9; for (let i = j; i < C.length; i++) { const d = km(p, C[i]); if (d < bd) { bd = d; b = i; } if (bd < .005 && i > b + 5) break; } j = b; return b; });
     ni = 0; lastStep = -1; warned = -1;
   };
+  const ptPaint = async (A, B) => { R = null; C = [];
+    let P; try { P = await ptRoute(A, B); } catch { P = { yok: 9 }; } if (mode !== "pt") return;
+    if (P.yok || !P.legs) { sum.innerHTML = `<div class="rerr">${P.yok === 1 ? "Bu bölgede açık hat verisi yok." : "Bu iki nokta arasında hat bulamadık."} Yürüyerek ~${durTxt(Math.max(1, Math.round(ptWalk(A, B))))}.</div>`; ptDraw([]); return; }
+    const rides = P.legs.filter((x) => x.t === "r"), tr = Math.max(0, rides.length - 1), at = new Date(Date.now() + P.min * 60e3).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
+    const pill = (l) => { const M = PTM[l.mode] || PTM.otobus; return `<span class="ptl" style="--c:${l.col || (l.mode === "metro" ? "#e11d48" : l.mode === "tram" ? "#0ea5e9" : l.mode === "otobus" ? "#2563eb" : "#64748b")}">${M[0]} <b>${esc(l.ref || M[3])}</b></span>`; };
+    sum.innerHTML = `<div class="rs1"><b>~${durTxt(P.min)}</b><span>${tr ? `${tr} aktarma` : "Aktarmasız"} · varış ~${at}</span></div><div class="ptc">${rides.map((r) => pill(r.l)).join('<i>›</i>')}</div>${P.walkMin <= P.min ? `<small class="go">Yürüyerek ~${durTxt(P.walkMin)}; yürümek daha kısa sürebilir.</small>` : ""}<small class="ptn">Saatler gösterilmez; süre tahminidir. Hat bilgisi: OpenStreetMap.</small>`;
+    st.innerHTML = P.legs.map((x, i) => x.t === "w" ? (x.d < 40 ? "" : `<li class="ptw"><i>🚶</i><span>${i === P.legs.length - 1 ? `${esc(toName() || "Varış yeri")}'ne yürü` : x.tr ? `<b>${esc(x.toStop || "durağa")}</b> durağına geç` : `<b>${esc(x.toStop || "durağa")}</b> durağına yürü`}<small>${mTxt(x.d)} · ~${durTxt(Math.max(1, Math.round(x.d * 1.3 / 80)))}</small></span></li>`)
+      : `<li class="ptr" style="--c:${x.l.col || "#8b5cf6"}"><i>${(PTM[x.l.mode] || PTM.otobus)[0]}</i><span>${pill(x.l)} <b>${esc(x.head)}</b> yönüne bin<small>${esc(x.P[0].n || "")}'den · ${x.P.length - 1} durak · <b>${esc(x.P[x.P.length - 1].n || "")}</b>'de in</small></span></li>`).join("");
+    C = [A, ...rides.flatMap((r) => r.P.map((q) => q.p)), B]; ptDraw(P.legs); cSet(cOpen, false); fitRoute(); };
+  const ptDraw = (legs) => { if (!mapOk) return; const LLc = (c) => [c[1], c[0]];
+    map.getSource("pt")?.setData({ type: "FeatureCollection", features: legs.flatMap((x) => x.t === "w" ? [{ type: "Feature", properties: { w: 1, c: "#c7c7cc" }, geometry: { type: "LineString", coordinates: [LLc(x.a), LLc(x.b)] } }] : [{ type: "Feature", properties: { w: 0, c: x.l.col || "#a78bfa" }, geometry: { type: "LineString", coordinates: x.P.map((q) => LLc(q.p)) } }, ...[x.P[0], x.P[x.P.length - 1]].map((q) => ({ type: "Feature", properties: { s: 1, c: x.l.col || "#a78bfa" }, geometry: { type: "Point", coordinates: LLc(q.p) } }))]) }); };
   const paint = async () => {
     sum.innerHTML = `<span class="sk" style="display:block;height:52px;border-radius:14px"></span>`; st.innerHTML = "";
-    const A = rev ? dest : from, B = rev ? from : dest; hdr();
+    const A = rev ? dest : from, B = rev ? from : dest; hdr(); rDraw();
+    if (mode === "pt") return ptPaint(A, B);
     try { R = await routeOf(mode, A, B); }
     catch { sum.innerHTML = `<div class="rerr">Yol şu an hesaplanamadı. Kuş uçuşu ${kmTxt(km(from, dest))}. <button type="button" class="rerb">Tekrar dene</button></div>`; $(".rerb", sum).addEventListener("click", paint); return; }
     S = R.legs[0].steps.filter((s, i, a) => !(s.maneuver.type === "new name" && s.distance < 15 && i < a.length - 1)); prep();
@@ -1606,7 +1653,8 @@ function routeSheet(e, v, city) {
   // harita (MapLibre; 3B binalar, açık/koyu tema haritadaki seçimle aynı)
   let mapOk = false; const LL = (c) => [c[1], c[0]], ln = (P) => ({ type: "Feature", geometry: { type: "LineString", coordinates: P.map(LL) }, properties: {} });
   function rSet(D, Lc) { if (!mapOk) return; map.getSource("rt-d")?.setData(ln(D)); map.getSource("rt-l")?.setData(ln(Lc)); }
-  function rDraw() { if (!mapOk) return; rSet([], C); map.setLayoutProperty("rt-f", "visibility", mode === "foot" ? "visible" : "none"); map.setLayoutProperty("rt-c", "visibility", mode === "foot" ? "none" : "visible"); }
+  function rDraw() { if (!mapOk) return; const pt = mode === "pt"; if (!pt) { rSet([], C); map.getSource("pt")?.setData({ type: "FeatureCollection", features: [] }); } else rSet([], []);
+    map.setLayoutProperty("rt-f", "visibility", mode === "foot" ? "visible" : "none"); map.setLayoutProperty("rt-c", "visibility", mode === "foot" || pt ? "none" : "visible"); map.setLayoutProperty("rt-cs", "visibility", pt ? "none" : "visible"); }
   function fitRoute() { if (!mapOk || !C.length) return; const b = C.reduce((b, c) => [[Math.min(b[0][0], c[1]), Math.min(b[0][1], c[0])], [Math.max(b[1][0], c[1]), Math.max(b[1][1], c[0])]], [LL(C[0]), LL(C[0])]);
     const pad = wide() ? { top: 60, bottom: 60, left: card.offsetWidth + 70, right: 70 } : { top: rtop.offsetTop + rtop.offsetHeight + 30, bottom: Math.min(innerHeight * .5, card.offsetHeight - (cTy > 2000 ? card.offsetHeight - cMini() : cTy)) + 30, left: 40, right: 72 };
     map.fitBounds(b, { padding: pad, pitch: d3 ? 55 : 0, bearing: d3 ? map.getBearing() : 0, duration: 700 }); }
@@ -1620,6 +1668,11 @@ function routeSheet(e, v, city) {
       map.addLayer({ id: "rt-cs", type: "line", source: "rt-l", layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-color": "#4c1d95", "line-width": 11, "line-opacity": .55 } });
       map.addLayer({ id: "rt-c", type: "line", source: "rt-l", layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-color": "#a78bfa", "line-width": 7 } });
       map.addLayer({ id: "rt-f", type: "line", source: "rt-l", layout: { "line-cap": "round", "line-join": "round", visibility: "none" }, paint: { "line-color": "#c4b5fd", "line-width": 7, "line-dasharray": [0, 1.9] } });
+      map.addSource("pt", { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+      map.addLayer({ id: "pt-w", type: "line", source: "pt", filter: ["==", ["get", "w"], 1], layout: { "line-cap": "round" }, paint: { "line-color": "#c7c7cc", "line-width": 5, "line-dasharray": [0, 1.8] } });
+      map.addLayer({ id: "pt-rc", type: "line", source: "pt", filter: ["==", ["get", "w"], 0], layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-color": "#0a0a10", "line-width": 10, "line-opacity": .5 } });
+      map.addLayer({ id: "pt-r", type: "line", source: "pt", filter: ["==", ["get", "w"], 0], layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-color": ["get", "c"], "line-width": 6.5 } });
+      map.addLayer({ id: "pt-s", type: "circle", source: "pt", filter: ["==", ["get", "s"], 1], paint: { "circle-radius": 6, "circle-color": "#fff", "circle-stroke-color": ["get", "c"], "circle-stroke-width": 3 } });
       mapOk = true; if (C.length) { rDraw(); if (!nav) fitRoute(); } });
     map.on("dragstart", () => { if (nav) { follow = false; sh.classList.add("free"); } });
     new maplibregl.Marker({ element: elOf('<div class="pin"></div>'), anchor: "bottom" }).setLngLat(LL(dest)).addTo(map);
