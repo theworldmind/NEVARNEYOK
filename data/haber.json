@@ -1,19 +1,19 @@
 {
- "updated": "2026-11-19T04:26:19.483Z",
+ "updated": "2026-11-19T14:14:50.365Z",
  "notes": [
   "trt: 0 aday",
-  "aa: 2 aday",
+  "aa: 3 aday",
   "yeniankara: 0 aday",
   "evrensel: 0 aday",
-  "hurriyet: 1 aday",
+  "hurriyet: 0 aday",
   "haberturk: 9 aday",
   "sabah: 0 aday",
-  "cumhuriyet: 13 aday",
+  "cumhuriyet: 14 aday",
   "sozcu: 0 aday",
   "aa-guncel: 0 aday",
   "trt-turkiye: 0 aday",
   "trt-gundem: 0 aday",
-  "haberturk-gundem: 0 aday",
+  "haberturk-gundem: 1 aday",
   "sabah-yasam: 0 aday",
   "cumhuriyet-turkiye: 0 aday",
   "mansetankara: 0 aday",
@@ -29,11 +29,11 @@
   "milliyet-gundem: 0 aday",
   "yenisafak-kultur: 0 aday",
   "t24-kultur: 403",
-  "birgun: 2 aday",
+  "birgun: 3 aday",
   "duvar: 403",
   "karar: 410",
   "star: 0 aday",
-  "haberler-kultur: 11 aday",
+  "haberler-kultur: 8 aday",
   "haberler-yasam: 0 aday",
   "haber7-kultur: 0 aday",
   "iha-kultur: 404",
@@ -53,7 +53,7 @@
   "baskentgazete: 0 aday",
   "yeniasir: akış değil",
   "yeniasir-1: 0 aday",
-  "egedesonsoz: 0 aday",
+  "egedesonsoz: 1 aday",
   "egedesonsoz-1: 1 aday",
   "egetelgraf: 0 aday",
   "egetelgraf-1: 403",
@@ -68,7 +68,7 @@
   "antalyasondakika: fetch failed",
   "akdenizgazetesi: fetch failed",
   "yeniadana: 404",
-  "adanamedya: 0 aday",
+  "adanamedya: fetch failed",
   "konyayenigun: 0 aday",
   "yenikonya: 0 aday",
   "esanadolugazetesi: fetch failed",
@@ -79,7 +79,7 @@
   "olaygazetesi: fetch failed",
   "samsunhaber: 0 aday",
   "takagazete: 1 aday",
-  "mersinhaber: 1 aday",
+  "mersinhaber: 0 aday",
   "hataygazetesi: fetch failed",
   "denizlihaber: 403",
   "muglahaber: 0 aday",
@@ -87,7 +87,7 @@
   "pusulahaber: 0 aday",
   "diyarbakirsoz: 0 aday",
   "vanhaber: fetch failed",
-  "malatyahaber: 1 aday",
+  "malatyahaber: 0 aday",
   "elazighaber: robots kapalı",
   "sivashaber: akış değil",
   "tokathaber: 0 aday",
@@ -95,8 +95,8 @@
   "edirnehaber: 403",
   "tekirdaghaber: 1 aday",
   "balikesirhaber: akış değil",
-  "manisahaber: 429",
-  "aydinses: 0 aday",
+  "manisahaber: akış değil",
+  "aydinses: 1 aday",
   "ispartahaber: fetch failed",
   "afyonhaber: 0 aday",
   "kutahyahaber: fetch failed",
@@ -262,20 +262,39 @@
    "seen": "2026-11-18T13:17:39.473Z"
   },
   {
+   "id": "3-teos-cocuk-festivali-izmir",
+   "city": "izmir",
+   "title": "3. Teos Çocuk Festivali",
+   "cat": "festival",
+   "venue": "",
+   "days": [
+    "2026-11-20"
+   ],
+   "until": "",
+   "from": "",
+   "t": "12:00",
+   "free": true,
+   "img": "https://egedesonsozcom.teimg.com/crop/1280x720/egedesonsoz-com/uploads/2026/11/gfflgkfg.jpg",
+   "site": "Ege'de Son Söz",
+   "url": "https://www.egedesonsoz.com/seferihisarda-cocuklarin-gunu-3-teos-cocuk-festivali-basliyor",
+   "seen": "2026-11-19T14:14:50.365Z"
+  },
+  {
    "id": "ankara-film-festivali-ankara",
    "city": "ankara",
    "title": "Ankara Film Festivali",
    "cat": "festival",
    "venue": "Devlet Tiyatroları Şinasi Sahnesi",
    "days": [
-    "2026-11-20"
+    "2026-11-20",
+    "2026-12-04"
    ],
    "until": "",
    "from": "",
    "t": "19:00",
    "site": "BirGün",
-   "url": "https://www.birgun.net/haber/ankara-film-festivalinde-oduller-icin-geri-sayim-747231",
-   "seen": "2026-11-19T04:26:19.483Z"
+   "url": "https://www.birgun.net/haber/ankara-film-festivalinde-bir-film-bir-yonetmen-747290",
+   "seen": "2026-11-19T14:14:50.365Z"
   },
   {
    "id": "bir-baskadir-yeni-yil-istanbul",
@@ -299,6 +318,23 @@
    "site": "BirGün",
    "url": "https://www.birgun.net/haber/bir-baskadir-yeni-yil-konserleri-hilltown-habitat-acikhava-da-sahnelenecek-747219",
    "seen": "2026-11-19T04:26:19.483Z"
+  },
+  {
+   "id": "demet-taner-soylesisi-istanbul",
+   "city": "istanbul",
+   "title": "Demet Taner söyleşisi",
+   "cat": "atolye",
+   "venue": "",
+   "days": [
+    "2026-11-21"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "img": "https://media.cumhuriyet.com.tr/Archive/53deb7ef-31f5-448f-a409-9010c8c6f0f5.jpg",
+   "site": "Cumhuriyet",
+   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/demet-taner-soylesisi-2557619",
+   "seen": "2026-11-19T14:14:50.365Z"
   },
   {
    "id": "tipografi-festivali-eskisehir",
@@ -406,6 +442,23 @@
    "site": "Cumhuriyet",
    "url": "https://www.cumhuriyet.com.tr/kultur-sanat/elde-edilecek-tum-gelir-tegv-e-bagislanacak-sehrin-nabzi-sergisi-cocuklara-destek-olacak-2556442",
    "seen": "2026-11-18T12:40:21.322Z"
+  },
+  {
+   "id": "muze-konseri-aydin",
+   "city": "aydin",
+   "title": "Müze Konseri",
+   "cat": "konser",
+   "venue": "Afrodisias Müzesi Sevgi Gönül Salonu",
+   "days": [
+    "2026-11-20"
+   ],
+   "until": "",
+   "from": "",
+   "t": "15:00",
+   "img": "https://foto.haberler.com/haber/2026/11/19/aydin-karacasu-da-afrodisias-muzesi-nde-20-ka-20441842_amp.jpg",
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/kultur-sanat/aydin-karacasu-da-afrodisias-muzesi-nde-20-kasim-20441842-haberi/",
+   "seen": "2026-11-19T14:14:50.365Z"
   },
   {
    "id": "tunelin-ucu-edirne",
