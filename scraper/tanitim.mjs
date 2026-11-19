@@ -55,14 +55,18 @@ await tryIt("sehir", async () => { await go(`#/${C}`, 2500); await snap("sehir")
 /* harita: il geneli ve 3B yakın */
 await tryIt("harita_genel", async () => { await cam([32.80, 39.925], 10.6); await go(`#/${C}/harita`, 7000); await snap("harita_genel"); });
 await tryIt("harita_yakin", async () => { await cam([32.8545, 39.9195], 15.4, 58, -28); await go(`#/${C}/harita`, 9000); await snap("harita_yakin"); });
-/* yol tarifi: Kızılay → Gazi Hukuk */
+/* yol tarifi: Kızılay → Kuğulu Park (kullanıcı, 19.11.2026: "Gazi Hukuk dışında güzel bir yer, hem normal hem önizlemeli") */
+const DST = process.env.SHOT_DEST || "39.90265,32.86085", DNM = process.env.SHOT_DEST_NAME || "Kuğulu Park";
 const mode = async (m) => { const b = await page.$(`[data-m="${m}"]`); if (b) { await b.click(); await settle(4500); } return !!b; };
 await tryIt("rota", async () => {
-  await go(`#/${C}/harita?yer=39.9347,32.8282&ad=${encodeURIComponent("GAZİ HUKUK")}&rota=1`, 9000);
+  await go(`#/${C}/harita?yer=${DST}&ad=${encodeURIComponent(DNM)}&rota=1`, 9000);
   if (await mode("foot")) await snap("rota_yuru");
   if (await mode("pt")) { await snap("rota_pt"); const g = await page.$("#rgr"); if (g) { await g.click(); await page.waitForTimeout(1600); await snap("rota_pt_adim"); } }
   await mode("foot");
 });
+/* önizleme: yerinde canlanma (ada.js) */
+await tryIt("onizle", async () => { await go(`#/${C}/harita?yer=${DST}&ad=${encodeURIComponent(DNM)}&onizle=1`, 4000); await page.waitForTimeout(16000); await snap("onizle");
+  await page.waitForTimeout(6000); await snap("onizle2"); });
 /* sinema ve Planım */
 await tryIt("sinema", async () => { await go(`#/${C}/sinema`, 2500); await snap("sinema"); });
 await tryIt("plan", async () => { await go(`#/${C}/takip`, 2500); await snap("plan"); });
@@ -98,9 +102,11 @@ const SC = [
   { id: "harita", h: "ŞEHRİN<br><em>HARİTADA.</em>", p: "Bütün etkinlikler, mekânlar ve afişler tek haritada.",
     body: (s) => P(pick("harita_yakin", "harita_genel"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + (shots.harita_genel && shots.harita_yakin ? P("harita_genel", s ? 420 : 350, s ? -150 : -110, s ? 210 : 140, -9, 1) + P("sehir", s ? 420 : 350, s ? 810 : 840, s ? 210 : 140, 9, 1) : "") },
   { id: "yol", h: "YOLUNU<br><em>BUL.</em>", p: "Yürüyerek, bisikletle, arabayla. Nereden istersen.",
-    body: (s) => P(pick("rota_yuru"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + `<span class="chip" style="left:${s ? 70 : 60}px;top:${s ? 180 : 120}px"><i>🚶</i>Yürüyerek</span><span class="chip p" style="right:${s ? 60 : 50}px;top:${s ? 520 : 380}px"><i>📍</i>Gazi Hukuk</span>` },
+    body: (s) => P(pick("rota_yuru"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + `<span class="chip" style="left:${s ? 70 : 60}px;top:${s ? 180 : 120}px"><i>🚶</i>Yürüyerek</span><span class="chip p" style="right:${s ? 60 : 50}px;top:${s ? 520 : 380}px"><i>📍</i>${DNM}</span>` },
   { id: "toplu", h: "METRO, OTOBÜS,<br><em>VAPUR.</em>", p: "Hangi hat, hangi durak, kaç durak. Adım adım.",
-    body: (s) => P(pick("rota_pt_adim", "rota_pt"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + (shots.rota_pt && shots.rota_pt_adim ? P("rota_pt", s ? 420 : 350, s ? -150 : -110, s ? 210 : 140, -9, 1) : "") + `<span class="chip p" style="right:${s ? 60 : 50}px;top:${s ? 300 : 200}px"><i>🚇</i>Ankaray · 4 istasyon</span><span class="chip" style="left:${s ? 60 : 50}px;top:${s ? 620 : 430}px"><i>🚏</i>Durak no ile</span>` },
+    body: (s) => P(pick("rota_pt_adim", "rota_pt"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + (shots.rota_pt && shots.rota_pt_adim ? P("rota_pt", s ? 420 : 350, s ? -150 : -110, s ? 210 : 140, -9, 1) : "") + `<span class="chip p" style="right:${s ? 60 : 50}px;top:${s ? 300 : 200}px"><i>🚌</i>Hangi hat, kaç durak</span><span class="chip" style="left:${s ? 60 : 50}px;top:${s ? 620 : 430}px"><i>🚏</i>Durak no ile</span>` },
+  { id: "onizle", h: "GİTMEDEN<br><em>GÖR.</em>", p: "Buluşacağın yer, çevresiyle birlikte canlanır.",
+    body: (s) => P(pick("onizle2", "onizle"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + (shots.onizle && shots.onizle2 ? P("rota_yuru", s ? 420 : 350, s ? -150 : -110, s ? 210 : 140, -9, 1) : "") + `<span class="chip p" style="right:${s ? 60 : 50}px;top:${s ? 300 : 200}px"><i>📍</i>${DNM}</span>` },
   { id: "etkinlik", h: "BU AKŞAM<br><em>NE VAR?</em>", p: "Konser, tiyatro, stand-up, sergi. Afiş afiş.",
     body: (s) => P("sehir", s ? 470 : 400, s ? 70 : 90, s ? 90 : 50, -6, 1) + P(pick("etkinlik"), s ? 470 : 400, s ? 540 : 590, s ? 170 : 110, 6, 2) },
   { id: "sinema", h: "SEANS<br><em>SEANS.</em>", p: "Vizyondaki filmler, salon salon, saat saat.",
