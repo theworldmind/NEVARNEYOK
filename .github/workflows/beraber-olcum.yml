@@ -78,10 +78,12 @@ jobs:
       - if: always()
         run: cd /tmp/ces && git init -q -b beraber-cesium && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Cesium" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-cesium
   film:
-    if: github.event.inputs.is == 'film'
+    if: github.event.inputs.is == 'film' || github.event.inputs.is == 'uydu'
     runs-on: ubuntu-latest
     timeout-minutes: 12
-    env: { OUT: /tmp/film }
+    env:
+      OUT: /tmp/film
+      SAT: ${{ github.event.inputs.is == 'uydu' && '1' || '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
