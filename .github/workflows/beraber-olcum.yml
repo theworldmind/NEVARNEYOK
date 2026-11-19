@@ -135,6 +135,7 @@ jobs:
           npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
           node beraber/ara-ornek.mjs || true
+          node beraber/pt-ornek.mjs || true
           node beraber/harita-ornek.mjs
       - if: always()
         run: cd /tmp/harita && git init -q -b beraber-harita && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Harita" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-harita
