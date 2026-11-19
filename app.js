@@ -840,7 +840,7 @@ document.addEventListener("click", (ev) => { if (ev.target.closest?.(".tabs a"))
 function tabsUpdate(P) {
   const T = $("#tabs"), city = P[0] && !["bilgi", "hesap", "u", "akis", "g"].includes(P[0]) ? P[0] : (["bilgi", "hesap", "u", "akis", "g"].includes(P[0]) ? store.get("nvny-city") : null);
   T.hidden = !city; if (!city) return;
-  const cur = P[0] === "akis" ? "akis" : ["bilgi", "hesap", "u", "g"].includes(P[0]) ? "" : !P[1] ? "home" : P[1] === "kesfet" ? "kesfet" : P[1] === "sinema" || P[1] === "film" ? "sinema" : P[1] === "takip" ? "takip" : P[1] === "harita" ? "harita" : "";
+  const cur = P[0] === "akis" ? "akis" : ["bilgi", "hesap", "u", "g"].includes(P[0]) ? "" : !P[1] ? "home" : P[1] === "kesfet" ? "home" : P[1] === "sinema" || P[1] === "film" ? "sinema" : P[1] === "takip" ? "takip" : P[1] === "harita" ? "harita" : "";
   const href = { home: `#/${city}`, kesfet: `#/${city}/kesfet`, sinema: `#/${city}/sinema`, harita: `#/${city}/harita`, takip: `#/${city}/takip`, akis: "#/akis" };
   $$("a", T).forEach((a) => { a.href = href[a.dataset.t]; a.classList.toggle("on", a.dataset.t === cur); });
   const n = Object.keys(follows()).length, b = $('[data-t="takip"] b', T); b.textContent = n || ""; b.classList.toggle("has", !!n);
