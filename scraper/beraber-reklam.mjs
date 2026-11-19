@@ -52,8 +52,11 @@ const tryIt = async (n, f) => { try { await f(); } catch (e) { log(`atlandı ${n
 
 await go(`#/${C}`, 2500);
 await page.waitForFunction(() => typeof DATA !== "undefined" && DATA.ready && DATA.events?.length, null, { timeout: 30000 }).catch(() => {});
-const EV = await page.evaluate(() => { const T = new Date(Date.now() + 3 * 36e5).toISOString().slice(0, 10); const L = ((typeof DATA !== "undefined" && DATA.events) || []).filter((e) => e.img && e.d > T && e.status !== "iptal" && e.t && e.t >= "19:00");
-  const x = L.find((e) => e.cat === "konser") || L.find((e) => e.cat === "tiyatro" || e.cat === "standup") || L[0]; return x ? { slug: x.slug, title: x.title, d: x.d, t: x.t, venue: x.venue } : null; });
+const EV = await page.evaluate(async () => { const T = new Date(Date.now() + 3 * 36e5).toISOString().slice(0, 10); const L = ((typeof DATA !== "undefined" && DATA.events) || []).filter((e) => e.img && e.d > T && !e.status && e.t && e.t >= "19:00" && ["konser", "tiyatro", "standup"].includes(e.cat) && !/meyhane|bar|pub/i.test(e.venue || ""))
+    .sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 40);
+  const R = (u) => new Promise((r) => { const i = new Image(); i.referrerPolicy = "no-referrer"; i.onload = () => r(i.naturalHeight / i.naturalWidth); i.onerror = () => r(0); setTimeout(() => r(0), 6000); i.src = u; });
+  const rat = await Promise.all(L.map((e) => R(e.img))); const ok = L.filter((e, i) => rat[i] >= 1.3 && rat[i] <= 1.6);
+  const x = ok.find((e) => e.cat === "konser") || ok[0] || L[0]; return x ? { slug: x.slug, title: x.title, d: x.d, t: x.t, venue: x.venue } : null; });
 log("etkinlik: " + JSON.stringify(EV));
 /* 1) davet: etkinlik sayfası → Davet et paneli → davet sayfası */
 let DLINK = null;
@@ -68,7 +71,7 @@ const GR = { id: "ornek", il: C, slug: EV.slug, baslik: EV.title, alt: EV.title,
   ben: { id: 1, durum: "geliyor" },
   uyeler: [{ id: 1, durum: "geliyor", kisi: K("Sen") }, { id: 2, durum: "geliyor", kisi: K("Deniz") }, { id: 3, durum: "geliyor", kisi: K("Ece") }, { id: 4, durum: "geliyor", kisi: K("Mert") }, { id: 5, durum: "belki", kisi: K("Zeynep") }],
   mesajlar: [M(1, 2, "Biletleri aldım, hepimiz yan yanayız 🎟️", 95), M(2, 3, "Süper! Önce bir şeyler yiyelim mi?", 88), M(3, 1, "Olur, saat kaçta buluşalım?", 80),
-    M(4, 4, `${EV.t ? (+EV.t.slice(0, 2) - 1) + EV.t.slice(2) : "19:00"} gişenin önü?`, 74), M(5, 2, "Tamamdır 👍", 70), M(6, 5, "Ben belki gelirim, haber veririm", 40), M(7, 3, "Yol tarifini buradan açtım, metroyla 15 dk", 12)] };
+    M(4, 4, `${EV.t ? (+EV.t.slice(0, 2) - 1) + EV.t.slice(2) : "19:00"} gişenin önü?`, 74), M(5, 2, "Tamamdır 👍", 70), M(6, 5, "Ben belki gelirim, haber veririm", 40)] };
 await ctx.route(/workers\.dev\/api\//, (r) => { const u = r.request().url(); r.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": "*" }, body: JSON.stringify(/\/api\/grup\//.test(u) ? GR : {}) }); });
 await tryIt("grup", async () => { await go(`#/g/ornek`, 4000); await snap("grup"); });
 
@@ -95,7 +98,7 @@ body{position:relative;overflow:hidden;color:#fff;font-family:"Inter Tight",Aria
 .hd h1{margin-top:30px;font:900 var(--hs,112px)/.86 Archivo,"Arial Narrow",Arial,sans-serif;font-stretch:70%;text-transform:uppercase;letter-spacing:-.005em}
 .hd h1 em{font-style:normal;background:linear-gradient(180deg,#e9d5ff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hd p{margin-top:20px;max-width:820px;font:600 30px/1.3 "Inter Tight",Arial,sans-serif;color:#ffffffa8}
-.st{position:absolute;left:0;right:0;bottom:0;top:var(--st,480px);-webkit-mask-image:linear-gradient(#000 80%,transparent 98%);mask-image:linear-gradient(#000 80%,transparent 98%)}
+.st{position:absolute;left:0;right:0;bottom:0;top:var(--st,480px);-webkit-mask-image:linear-gradient(#000 68%,transparent 90%);mask-image:linear-gradient(#000 68%,transparent 90%)}
 .ph{position:absolute;width:var(--pw);aspect-ratio:393/852;border-radius:calc(var(--pw)*.155);padding:calc(var(--pw)*.026);background:linear-gradient(145deg,#5a5470,#1d1a28 22%,#0c0b12 55%,#3a3450 85%,#6a6380);box-shadow:0 0 0 1.5px #ffffff30 inset,0 0 0 calc(var(--pw)*.006) #000 inset,0 60px 120px -30px #000,0 0 160px -40px #8b5cf6aa}
 .ph .scr{position:relative;width:100%;height:100%;border-radius:calc(var(--pw)*.13);overflow:hidden;background:#0a0a10;display:flex;flex-direction:column}
 .ph .scr img{display:block;width:100%;flex:1;min-height:0;object-fit:cover;object-position:top}
@@ -106,7 +109,7 @@ body{position:relative;overflow:hidden;color:#fff;font-family:"Inter Tight",Aria
 .bat{width:calc(var(--pw)*.062);height:calc(var(--pw)*.029);border:1.6px solid #ffffff99;border-radius:4px;padding:1.5px;display:block}.bat i{display:block;height:100%;width:80%;background:#fff;border-radius:2px}
 .chip{position:absolute;z-index:9;display:flex;align-items:center;gap:12px;padding:16px 24px;border-radius:99px;background:linear-gradient(180deg,#ffffff2a,#ffffff10);backdrop-filter:blur(18px);box-shadow:0 0 0 1.5px #ffffff38 inset,0 24px 50px -16px #000c;font:800 26px/1 "Inter Tight";white-space:nowrap}
 .chip i{font-style:normal;font-size:28px}.chip.p{background:linear-gradient(180deg,#a78bfa,#7c3aed);box-shadow:0 0 0 1.5px #ffffff40 inset,0 20px 50px -12px #7c3aedcc}
-.ft{position:absolute;left:0;right:0;bottom:34px;text-align:center;font:700 22px/1 "Inter Tight";color:#ffffff70;letter-spacing:.02em}`;
+.ft{z-index:20;position:absolute;left:0;right:0;bottom:34px;text-align:center;font:700 22px/1 "Inter Tight";color:#ffffff70;letter-spacing:.02em}`;
 const html = (sc, s) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><style>${CSS}</style></head><body><div class="bg" style="--gy:${s ? 70 : 76}%"></div>
 <div class="hd" style="--ht:${s ? 190 : 72}px;--hs:${s ? 136 : 112}px"><div class="lg"><img src="${LOGO}" alt="Ne Var Ne Yok"></div><h1>${sc.h}</h1><p>${sc.p}</p></div>
 <div class="st" style="--st:${s ? 640 : 470}px">${sc.body(s)}</div><div class="ft">nevarneyok.net.tr${sc.note ? " · " + sc.note : ""}</div></body></html>`;
