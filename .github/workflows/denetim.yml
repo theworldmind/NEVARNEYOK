@@ -1,0 +1,34 @@
+# Tasarım denetimi: depodaki site üç boyda (telefon, DeX/tablet, bilgisayar) ekran görüntüleri + telefonda akıcılık ölçümü → "denetim" dalı
+name: Tasarim denetimi
+
+on:
+  workflow_dispatch:
+    inputs:
+      city: { description: "İl", default: ankara }
+
+permissions:
+  contents: write
+
+concurrency:
+  group: denetim-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  denetim:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env: { TZ: Europe/Istanbul }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          sudo apt-get install -y -qq fonts-noto-color-emoji >/dev/null || true
+      - working-directory: scraper
+        env: { OUT_DIR: /tmp/denetim, SHOT_CITY: "${{ github.event.inputs.city || 'ankara' }}" }
+        run: node denetim.mjs
+      - run: |
+          cd /tmp/denetim && git init -q -b "denetim-${{ github.ref_name }}" && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Denetim $(date +%F_%H%M)" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "denetim-${{ github.ref_name }}"
