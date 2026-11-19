@@ -32,6 +32,12 @@ async function run() {
 }
 self.addEventListener("periodicsync", (e) => { if (e.tag === "nvny-takip") e.waitUntil(run().catch(() => {})); });
 self.addEventListener("message", (e) => { if (e.data === "nvny-check") e.waitUntil(run().catch(() => {})); });
+/* Grup sohbeti bildirimi (Web Push, yükü boş): gelince kendi yeni mesajlarını sunucudan çeker; her grup tek bildirim, üstte "Kişi: mesaj". */
+self.addEventListener("push", (e) => e.waitUntil((async () => {
+  let L = []; try { const s = await self.registration.pushManager.getSubscription(); const r = await fetch("https://nvny-yer.nevarneyok.workers.dev/api/push/son", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ep: s ? s.endpoint : "" }) }); L = ((await r.json()) || {}).ogeler || []; } catch (x) {}
+  if (!L.length) return self.registration.showNotification("Ne Var Ne Yok", { body: "Grubunda yeni mesaj var 💬", icon: "icons/icon-192.png?v=3", badge: "icons/icon-192.png?v=3", tag: "grup-mesaj" });
+  for (const x of L) await self.registration.showNotification("👥 " + x.baslik, { body: x.kim + ": " + x.yazi + (x.n > 1 ? "  (+" + (x.n - 1) + ")" : ""), icon: "icons/icon-192.png?v=3", badge: "icons/icon-192.png?v=3", tag: "g-" + x.grup, renotify: true, data: { url: "/#/g/" + x.grup } });
+})()));
 self.addEventListener("notificationclick", (e) => {
   e.notification.close();
   const url = new URL((e.notification.data && e.notification.data.url) || "/", self.location.origin).href;
