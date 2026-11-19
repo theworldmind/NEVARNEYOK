@@ -861,7 +861,7 @@ document.addEventListener("click", (ev) => {
 const scrollMem = new Map();
 let lastHash = "";
 let routed = false;
-const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=15", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
+const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=16", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
 function route() {
   if (!DATA.boot) return;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
@@ -1441,10 +1441,10 @@ function viewPlan(city, tab) {
   if (!viewPlan.gsync && store.get("nvny-oturum")) { viewPlan.gsync = 1; hesapJS().then(() => window.NVH?.gruplarSync?.()).then((ch) => { if (ch && location.hash.includes("/takip")) viewPlan(city, tab); }).catch(() => {}); }
   const sel = viewPlan.sel && viewPlan.sel >= today ? viewPlan.sel : today, dayBox = (d) => { const L = [...rows.filter((r) => r.d === d).map(item), ...grOf(d).map(gItem), ...notesOf(d).map(nItem)]; return `<div class="aj-d"><div class="aj-h"><b>${dayH(d)}</b><small>${d === today || d === addD(today, 1) ? dLong(d) : GUN[pd(d).getDay()]}</small><button type="button" class="aj-add" data-ajn="${d}">＋ Not ekle</button></div>${L.join("") || '<p class="aj-e">Bu gün boş.</p>'}</div>`; };
   V.innerHTML = `<div class="kh aj-kh"><div><h1>Takvimim</h1><p>${rows.length + AJ.length ? `${rows.length} plan${AJ.length ? ` · ${AJ.length} not` : ""}` : "Planların ve notların"}</p></div>${tab ? "" : `<button type="button" class="aj-plus" data-ajn="${sel}" aria-label="Not ekle">＋</button>`}</div>
-  <div class="wrap"><div class="seg pl-seg" style="--n:4;--i:${tab === 3 ? 3 : tab === 2 ? 2 : tab ? 1 : 0}"><span class="thumb" aria-hidden="true"></span><button type="button" data-tab="0" class="${tab ? "" : "on"}">Takvim</button><button type="button" data-tab="3" class="${tab === 3 ? "on" : ""}">Gruplar</button><button type="button" data-tab="1" class="${tab === true ? "on" : ""}">Takipler</button><button type="button" data-tab="2" class="${tab === 2 ? "on" : ""}">Davetler</button></div></div>
+  <div class="wrap"><div class="seg pl-seg" style="--n:4;--i:${tab === 3 ? 1 : tab === 2 ? 3 : tab ? 2 : 0}"><span class="thumb" aria-hidden="true"></span><button type="button" data-tab="0" class="${tab ? "" : "on"}">Takvim</button><button type="button" data-tab="3" class="${tab === 3 ? "on" : ""}">Gruplar</button><button type="button" data-tab="1" class="${tab === true ? "on" : ""}">Takipler</button><button type="button" data-tab="2" class="${tab === 2 ? "on" : ""}">Davetler</button></div></div>
   <div class="wrap plan">${tab ? "" : `<div id="mcb">${calMonth(rows, today, viewPlan.ay || 0, bx, sel)}</div><div id="ajd">${dayBox(sel)}</div>`}${tab === 3 ? grHTML() : tab === 2 ? davetlerHTML(city) : tab ? ven + followLists(city) : bPlanHTML(city) + plan}</div>
-  ${tab ? `<div class="wrap" style="margin-top:22px">${notifBox(city)}</div>` : ""}${footer()}`;
-  if (tab) bindNotifBox(V, city);
+  ${tab === true ? `<div class="wrap" style="margin-top:22px">${notifBox(city)}</div>` : ""}${footer()}`;
+  if (tab === true) bindNotifBox(V, city);
   const ajEdit = (d, id) => { const L0 = jsGet("nvny-ajanda", []), n = id ? L0.find((x) => x.id === id) : null; haptic(5); snd.sheet?.();
     const sh = sheet(`<div class="pn ajp" role="dialog" aria-label="${n ? "Notu düzenle" : "Not ekle"}"><div class="hd"><h3>${n ? "Notu düzenle" : "Takvimine not ekle"}</h3><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button></div><div class="bd2"><textarea id="ajx" maxlength="140" rows="2" placeholder="Ne yapacaksın? Örn. Ece ile sinema, doğum günü…">${esc(n?.x || "")}</textarea><div class="aj-r"><label><span>Gün</span><input id="ajdd" type="date" min="${today}" value="${esc(n?.d || d)}"></label><label><span>Saat <small>(isteğe bağlı)</small></span><input id="ajt" type="time" step="300" value="${esc(n?.t || "")}"></label></div><button type="button" class="pl-all" id="ajs">${n ? "Kaydet" : "Takvime ekle"}</button>${n ? '<button type="button" class="aj-del" id="ajdel">Notu sil</button>' : ""}</div></div>`, "mn");
     const x = sh.querySelector("#ajx"); setTimeout(() => x.focus(), 320);
