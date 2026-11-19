@@ -16714,5 +16714,276 @@
   "src": "osm",
   "v": 2,
   "osm": "craft/window_construction"
+ },
+ "denizli|Denizli Merkezefendi Belediyesi KM · Petek Salonu": {
+  "lat": 37.7667403,
+  "lng": 29.0562291,
+  "addr": "Merkez Efendi, 20010 Merkezefendi/Denizli",
+  "ilce": "Merkezefendi",
+  "src": "biletinial",
+  "v": 2
+ },
+ "edirne|22 Station Pub": {
+  "lat": 41.6563817,
+  "lng": 26.5811502,
+  "addr": "İstasyon, İstasyon Cd. Avenue Residence no :32/B, 22100 Edirne Merkez/Edirne",
+  "ilce": "Merkez",
+  "src": "biletinial",
+  "v": 2
+ },
+ "eskisehir|Toprak Kitap Kafe": {
+  "lat": 39.7796669,
+  "lng": 30.5150191,
+  "addr": "Hoşnudiye mh. Bayramyeri sk. No:14/A Tepebaşı/Eskişehir",
+  "ilce": "Tepebaşı",
+  "src": "biletinial",
+  "v": 2
+ },
+ "kirklareli|Teşrif Sahne": {
+  "lat": 41.734877,
+  "lng": 27.220279,
+  "addr": "Karakaş, Mahmut Ağa &#199;eşme Sokak. No 4 39100 Merkez / Kırklareli",
+  "ilce": "Merkez",
+  "src": "biletinial",
+  "v": 2
+ },
+ "elazig|Elazığ Belediyesi Bünyamin Eroğlu Kültür ve Kongre Merkezi": {
+  "lat": 38.667996,
+  "lng": 39.180786,
+  "addr": "Cumhuriyet, Gazi Cd., 23190 Elazığ Merkez/Elazığ, Elazığ",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|RESPIRO HOTEL": {
+  "lat": 41.033217,
+  "lng": 28.461855,
+  "addr": "Kumburgaz Merkez Mah., Milli Egemenlik Cd. No:48 D:1, 34530 Büyükçekmece/İstanbul, İstanbul",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|Sanat Restaurant Cafe & Bar": {
+  "lat": 41.034809,
+  "lng": 28.972997,
+  "addr": "Hüseyinağa, Nevizade Sk. No:11, 34435 Beyoğlu/İstanbul, İstanbul",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|Workinton Levent 199": {
+  "lat": 41.079371,
+  "lng": 29.012304,
+  "addr": "Levent, Büyükdere Caddesi no 199, Şişli/İstanbul, Türkiye, Beşiktaş, İstanbul",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "izmir|Ahmet Piriştina Kültür Merkezi": {
+  "lat": 38.473965,
+  "lng": 27.097028,
+  "addr": "Şemikler, 6274/1. Sk., 35560 Karşıyaka/İzmir, İzmir, İzmir",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "antalya|Akra Antalya": {
+  "lat": 36.8640945,
+  "lng": 30.7260589,
+  "addr": "Lara caddesi No:24, Şirinyalı mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/hotel",
+  "m": "ov"
+ },
+ "bilecik|6 Eylül Kültür Merkezi": {
+  "lat": 39.900806,
+  "lng": 30.041309,
+  "addr": "Demirdöküm Caddesi 7",
+  "ilce": "Bozüyük",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "denizli|Denizli Merkezefendi Belediyesi K.M.": {
+  "lat": 37.7786445,
+  "lng": 29.0844374,
+  "addr": "1581 Sokak, Sırakapılar, Sırakapılar",
+  "ilce": "Sırakapılar",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "diyarbakir|Diyarbakır Sezai Karakoç Kültür ve Kongre Merkezi": {
+  "lat": 37.920448,
+  "lng": 40.218033,
+  "addr": "Yenişehir",
+  "ilce": "Yenişehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "diyarbakir|Sezai Karakoç Kültür Merkezi · Mehmet Emin Yalçınkaya Sahnesi": {
+  "lat": 37.920448,
+  "lng": 40.218033,
+  "addr": "Yenişehir",
+  "ilce": "Yenişehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "diyarbakir|Sezai Karakoç Kongre ve Kültür Merkezi": {
+  "lat": 37.920448,
+  "lng": 40.218033,
+  "addr": "Yenişehir",
+  "ilce": "Yenişehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "diyarbakir|Diyarbakır Sezai Karakoç Kültür ve KM": {
+  "lat": 37.920448,
+  "lng": 40.218033,
+  "addr": "Yenişehir",
+  "ilce": "Yenişehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "diyarbakir|Diyarbakır Sezai Karakoç Kongre ve Kültür Merkezi": {
+  "lat": 37.920448,
+  "lng": 40.218033,
+  "addr": "Yenişehir",
+  "ilce": "Yenişehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "duzce|Düzce Belediyesi Celil Yağız Sahnesi": {
+  "lat": 40.8250356,
+  "lng": 31.1928218,
+  "addr": "Bolu Caddesi, Nusrettin, Nusrettin",
+  "ilce": "Nusrettin",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Bahçeşehir Üniversitesi": {
+  "lat": 40.989487,
+  "lng": 29.079277,
+  "addr": "Batman Sk. No:66",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "istanbul|Cinetime ÖzdilekPark İstanbul": {
+  "lat": 41.077305,
+  "lng": 29.0109271,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "istanbul|Vodvil Sanat Akademisi": {
+  "lat": 41.0471159,
+  "lng": 29.2390554,
+  "addr": "Demir İş Merkezi, Alemdağ, Saray Cd. No:203 Kat:3, Daire:3, 34794 &#199;ekmek&#246;y/İstanbul",
+  "ilce": "&#199;ekmek&#246;y",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Mi Coffees": {
+  "lat": 40.935818,
+  "lng": 29.136042,
+  "addr": "Samanyolu Sk. No:19",
+  "ilce": "Maltepe",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Kadıköy Belediyesi Barış Manço Kültür Merkezi": {
+  "lat": 40.988613,
+  "lng": 29.025669,
+  "addr": "Moda Caddesi 37",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|people’s social / bostanlı": {
+  "lat": 38.458885,
+  "lng": 27.091339,
+  "addr": "2021. Sk. No:3",
+  "ilce": "Karşıyaka",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "izmir|Nazım Hikmet Kültür Merkezi -Konak Sahnesi": {
+  "lat": 38.4182725,
+  "lng": 27.1301746,
+  "addr": "846. Sokak, Konak, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|İzmir AKM Tiyatro S.": {
+  "lat": 38.388283,
+  "lng": 27.055738,
+  "addr": "Balçova",
+  "ilce": "Balçova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|Kemeraltı Nâzım Hikmet Kültür Merkezi": {
+  "lat": 38.4182725,
+  "lng": 27.1301746,
+  "addr": "846. Sokak, Konak, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mersin|Mersin Büyükşehir Belediyesi Kongre ve Sergi Sarayı": {
+  "lat": 36.7989988,
+  "lng": 34.6338482,
+  "addr": "İsmet İnönü Bulvarı, Akdeniz",
+  "ilce": "Akdeniz",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Tersane İstanbul": {
+  "lat": 41.0357941,
+  "lng": 28.9551318,
+  "addr": "Okmeydani Caddesi, Keçeci Piri, Keçeci Piri Mahallesi",
+  "ilce": "Keçeci Piri Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
  }
 }
