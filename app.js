@@ -233,7 +233,7 @@ function storyInit() {
   const sv = $(".sv", root), segs = $$(".sg i", root), N = segs.length; let i = 0, alive = true, lock = 0;
   const paint = () => segs.forEach((g, k) => { g.className = k < i ? "done" : ""; });
   const slides = $$(".sps", root);
-  const play = () => { paint(); const b = segs[i]; void b.offsetWidth; b.className = "on"; };
+  const play = () => { paint(); const b = segs[i]; if (!b) return; void b.offsetWidth; b.className = "on"; };
   /* Arka plandaki renk kaydırmayla AYNI ANDA değişir (kullanıcı isteği, 22:03): her afişin bulanık rengi ayrı katman;
      katmanın görünürlüğü kayan sayfanın o anki konumundan hesaplanır (parmakla sürüklerken de, kendiliğinden geçerken de). Yalnızca opacity. */
   const W = $$(".wash img"); let wr = 0;
