@@ -1,7 +1,7 @@
 /* Ne Var Ne Yok · hesap, akış, alıntı ve yönetim. Yalnızca bu sayfalar açılınca yüklenir.
    Google ile giriş isteğe bağlı; şifre ve e-posta saklanmaz. Serbest yazı yalnızca site sahibinin gönderisinde; herkes hazır cümleyle alıntılar. */
 (function (g) {
-  const W = "https://nvny-yer.berkaytoruntga.workers.dev", API = W + "/api/", CID = "1011120503952-d4i6abes7jkn59d08htbuomlrepq1jbh.apps.googleusercontent.com", KEY = "nvny-oturum", EMO = ["🔥", "👏", "😂", "😍", "🙌", "👀"];
+  const W = "https://nvny-yer.nevarneyok.workers.dev", API = W + "/api/", CID = "1011120503952-d4i6abes7jkn59d08htbuomlrepq1jbh.apps.googleusercontent.com", KEY = "nvny-oturum", EMO = ["🔥", "👏", "😂", "😍", "🙌", "👀"];
   let V, ME = null, GEN = 0;
   const e = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const tok = () => { try { return localStorage.getItem(KEY) || ""; } catch { return ""; } }, setTok = (t) => { try { t ? localStorage.setItem(KEY, t) : localStorage.removeItem(KEY); } catch {} ME = null; };

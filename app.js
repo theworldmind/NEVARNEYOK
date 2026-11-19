@@ -861,7 +861,7 @@ document.addEventListener("click", (ev) => {
 const scrollMem = new Map();
 let lastHash = "";
 let routed = false;
-const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=6", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
+const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=7", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
 function route() {
   if (!DATA.boot) return;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
@@ -996,7 +996,7 @@ const bdL = () => jsGet("nvny-davetler", []), bdS = (L) => store.set("nvny-davet
 const bWhen = (w, h) => [w ? dLongTR(w) : "", h || ""].filter(Boolean).join(" · ");
 const bText = (x, url) => `${x.k ? "💌" : "✉️"} *${x.c}*\n*${x.n}*${bWhen(x.w, x.h) ? " · " + bWhen(x.w, x.h) : ""}\n${url}`;
 /* Beraber önizlemesi (18.11.2026): telefon yerin 3B görselini o an çizer, gönderirken Cloudflare'daki küçük depoya koyar; WhatsApp davete özel sayfadan adı ve görseli okur. Özel yerler hiç yüklenmez, hata olursa genel davet bağlantısı kullanılır. */
-const PVW = "https://nvny-yer.berkaytoruntga.workers.dev", pvQ = (v) => new URLSearchParams({ lat: (+v.a + .0018).toFixed(4), lng: v.o, t: v.t, n: v.n }).toString(), pvWait = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(r, ms))]);
+const PVW = "https://nvny-yer.nevarneyok.workers.dev", pvQ = (v) => new URLSearchParams({ lat: (+v.a + .0018).toFixed(4), lng: v.o, t: v.t, n: v.n }).toString(), pvWait = (p, ms) => Promise.race([p, new Promise((r) => setTimeout(r, ms))]);
 const adaJ = () => window.NVA ? Promise.resolve() : loadJS("/ada.js?v=37", 20000);
 /* Haritadaki "Önizle": seçilen yer ve çevresi haritadan kopup yükselir; Kapat ile yerine oturur */
 let adaOn = null;
