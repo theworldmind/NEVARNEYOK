@@ -2798,6 +2798,13 @@ function viewHarita(city, Q = {}) {
       const seen = new Set(), L = [...LC.filter((x) => hit(x.n)), ...P0].filter((x) => { if (!x.n) return false; const k = fold(x.n).replace(/[^a-z0-9]/g, ""); if ([...seen].some((z) => z[0] === k && km(z[1], x.ll) < .25)) return false; seen.add([k, x.ll]); return true; })
         .filter((x) => full(x.n) || (hit(x.n) > 0 && km(cc, x.ll) < 70))
         .map((x) => [x, (full(x.n) ? 0 : (sig.length - hit(x.n)) * 1e4 - (lastW && fold(x.n).includes(lastW) ? 5e3 : 0)) + km(ll, x.ll)]).sort((a, b) => a[1] - b[1]).map((x) => { const z = x[0]; if (z.loc) z.s = `Mekân · ${km(ll, z.ll) < 1 ? Math.round(km(ll, z.ll) * 1000) + " m" : km(ll, z.ll).toFixed(1).replace(".", ",") + " km"}`; return z; });
+      // "starbucks kızılay" gibi: sözcüklerden biri semt/ilçe ise öteki sözcükleri o semtin çevresinde ara
+      if (!L.some((x) => full(x.n)) && sig.filter(wsig).length > 1) { const AT = ["district", "locality", "city", "county", "other"];
+        const AW = await Promise.all(sig.filter(wsig).map((w) => photon(w, cc, 6, BOX).then((R2) => [w, R2.find((x) => AT.includes(x.tp) && fold(x.n) === w)]))); if (my !== pq || res.hidden) return;
+        const ar = AW.find((z) => z[1]); if (ar) { const rest = sig.filter((w) => w !== ar[0]), aL = ar[1].ll;
+          const [LA, PA] = await Promise.all([yvAround(aL, .1).catch(() => []), photon(rest.join(" "), aL, 10, bx(aL, .15))]); if (my !== pq || res.hidden) return;
+          const sn = new Set(), C = [...LA.filter((y) => y && y[0]).map((y) => ({ n: hukName(y[0], y[1], y[2]), s: "Mekân", ll: [y[1], y[2]] })), ...PA].filter((x) => x.n && rest.every((w) => fold(x.n).includes(w)) && km(aL, x.ll) < 3).filter((x) => { const k = fold(x.n).replace(/[^a-z0-9]/g, "") + x.ll.map((v) => v.toFixed(3)); if (sn.has(k)) return false; sn.add(k); return true; }).sort((u, v) => km(aL, u.ll) - km(aL, v.ll)).slice(0, 8);
+          if (C.length) { const an = ar[1].n; C.forEach((x) => { const d = km(aL, x.ll); x.s = `Mekân · ${an} · ${d < 1 ? Math.round(d * 1000) + " m" : d.toFixed(1).replace(".", ",") + " km"}`; }); pickAt = aL; draw(C, true, q); return; } } }
       const exact = L.some((x) => full(x.n)), area = exact ? [] : A0.filter((x) => ["district", "locality", "city", "county", "street", "other"].includes(x.tp)).slice(0, 1);
       pickAt = area[0]?.ll || (cityHit && ILLL[cityHit.id]) || ll;
       draw([...L.filter((x) => full(x.n)), ...area, ...L.filter((x) => !full(x.n))].slice(0, 8), exact, q);
