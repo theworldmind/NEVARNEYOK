@@ -639,7 +639,7 @@ function viewEvent(city, slug) {
     ${st ? `<div class="stb">${st}.${e.stNews ? " Haberlere göre: " + e.stNews.slice(0, 2).map((x) => `<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc((DATA.buzz.names || {})[x[0]] || x[0])} haberi ↗</a>`).join(" ") + " · Bilet sitesinden de kontrol edin." : ""}</div>` : ""}
     ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">${buyLbl(e, best || T[0])} · ${esc((best || T[0]).site.replace(/ haberi$/, ""))}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
     ${T.length ? `${tix}<p class="chk">${checked ? `Fiyatlar satış sitelerinde ${ago(checked)} kontrol edildi. ` : ""}Hizmet bedeli ve son fiyat siteye göre değişebilir; satın alma ve iade bileti satan sitenin kurallarına tabidir.</p>` : ""}
-    <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}${isF(e) ? "Takvimde" : "Takvime ekle"}</button><button type="button" id="qt">💬 Alıntıla</button><button type="button" id="inv" class="invb">✉️ Davet et</button><button type="button" id="shr">${I.share}Paylaş</button></div>
+    <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}${isF(e) ? "Takvimde" : "Takvime ekle"}</button><button type="button" id="qt">💬 Alıntıla</button><button type="button" id="grp">👥 Grup kur</button><button type="button" id="bld" aria-label="Yanlışlık bildir">⚑ Bildir</button><button type="button" id="inv" class="invb">✉️ Davet et</button><button type="button" id="shr">${I.share}Paylaş</button></div>
     ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl">${cgIcon("standup")}<span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>
     ${live(e) ? `<p class="flh">Takip edersen fiyatı düştüğünde, iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
     <section class="sec"><h3>Bu etkinlik hakkında</h3>${infoBlock(e, city)}<a class="wrong" href="${wrongMail(e, city)}">Bir yanlış mı var? Bize yaz →</a></section>
@@ -652,6 +652,7 @@ function viewEvent(city, slug) {
   $("#shr").addEventListener("click", () => shareEv(e, city));
   $("#inv").addEventListener("click", () => inviteEv(e, city));
   $("#cal").addEventListener("click", () => calAdd({ ...e, city }));
+  { const hb = () => ({ il: city, slug: e.slug, baslik: e.title }), wh = [dLongTR(e.d), e.venue].filter(Boolean).join(" · "); $("#grp").addEventListener("click", () => { haptic(6); hesapJS().then(() => window.NVH.grupKur({ ...hb(), alt: wh, gun: e.d, saat: e.t || "" })); }); $("#bld").addEventListener("click", () => { haptic(5); hesapJS().then(() => window.NVH.bildir(hb())); }); fetch(`${PVW}/api/duzeltme?il=${city}`).then((r) => r.ok ? r.json() : null).then((j) => { const x = j?.L?.find((y) => y.slug === e.slug), b = $(".shr"); if (x && b && !$("#dzt")) b.insertAdjacentHTML("beforebegin", `<div class="pl-w" id="dzt">⚠️ ${x.tur === "yok" || x.tur === "iptal" ? "Bu etkinliğin gerçekleşmeyebileceği bildirildi." : "Bu etkinliğin bilgilerinde değişiklik bildirildi."} Satış sitesinden kontrol et.</div>`); }).catch(() => {}); }
   $("#qt").addEventListener("click", () => alintila({ tur: "etkinlik", il: city, slug: e.slug, baslik: e.title, alt: [dLongTR(e.d), e.venue].filter(Boolean).join(" · ") }));
   $("#vfl").addEventListener("click", (ev) => toggleVenue(e, city, ev.currentTarget));
   $("#flw").addEventListener("click", () => toggleFollow(e, city));
@@ -837,7 +838,7 @@ function viewBilgi(k) {
 /* Alt sekme çubuğu (iPhone uygulaması gibi): Bugün · Keşfet · Sinema · Takip */
 document.addEventListener("click", (ev) => { if (ev.target.closest?.(".tabs a")) { snd.tab(); } }, true);
 function tabsUpdate(P) {
-  const T = $("#tabs"), city = P[0] && !["bilgi", "hesap", "u", "akis"].includes(P[0]) ? P[0] : (["bilgi", "hesap", "u", "akis"].includes(P[0]) ? store.get("nvny-city") : null);
+  const T = $("#tabs"), city = P[0] && !["bilgi", "hesap", "u", "akis", "g"].includes(P[0]) ? P[0] : (["bilgi", "hesap", "u", "akis", "g"].includes(P[0]) ? store.get("nvny-city") : null);
   T.hidden = !city; if (!city) return;
   const cur = !P[1] ? "home" : P[1] === "kesfet" ? "kesfet" : P[1] === "sinema" || P[1] === "film" ? "sinema" : P[1] === "takip" ? "takip" : P[1] === "harita" ? "harita" : "";
   const href = { home: `#/${city}`, kesfet: `#/${city}/kesfet`, sinema: `#/${city}/sinema`, harita: `#/${city}/harita`, takip: `#/${city}/takip` };
@@ -860,7 +861,7 @@ document.addEventListener("click", (ev) => {
 const scrollMem = new Map();
 let lastHash = "";
 let routed = false;
-const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=2", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
+const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=3", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
 function route() {
   if (!DATA.boot) return;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
@@ -877,7 +878,7 @@ function route() {
   const old = location.hash.match(/^#(e\/.+|hakkinda|kaynaklar|gizlilik|kosullar|iletisim)$/); // eski sitenin ve Google sayfalarının bağlantıları
   if (old) { location.replace(old[1].startsWith("e/") ? `#/ankara/${old[1]}` : `#/bilgi/${old[1]}`); return; }
   const saved = store.get("nvny-city");
-  if (P[0] === "hesap" || P[0] === "u" || P[0] === "akis") { setTop(saved || "ankara"); V.innerHTML = ""; hesapJS().then(() => window.NVH.ac(V, P)).catch(() => { V.innerHTML = `<section class="ac" style="padding:24px 18px"><p>Hesap sayfası açılamadı.</p></section>`; }); }
+  if (["hesap", "u", "akis", "g"].includes(P[0])) { setTop(saved || "ankara"); V.innerHTML = ""; hesapJS().then(() => window.NVH.ac(V, P)).catch(() => { V.innerHTML = `<section class="ac" style="padding:24px 18px"><p>Hesap sayfası açılamadı.</p></section>`; }); }
   else if (P[0] === "bilgi") viewBilgi(P[1]);
   else if (!P.length) { // ilk girişte tanıtım + il seçimi; sonra kayıtlı ille açılır (kullanıcı isteği, 15.11.2026 22:43). İl üstteki düğmeden (#/?sec=1) değişir.
     // uygulama her kurulduğunda ilk açılış sıfırdan: tanıtım + il seçimi (tarayıcıda seçilmiş il kendiliğinden açılmaz; kullanıcı, 23:19)
@@ -901,7 +902,7 @@ function route() {
   }
   V.dataset.h = location.hash;
   // iPhone gibi: ileri sağdan, geri soldan (derinlikli), sekmeler arası anında; kenardan kaydırarak geri dönüldüyse canlandırma yok
-  const isRoot = !P.length || P[0] === "bilgi" || P[0] === "hesap" || P[0] === "akis" || (P.length === 1) || (P.length === 2 && ["kesfet", "sinema", "takip", "harita"].includes(P[1]) && !qs);
+  const isRoot = !P.length || P[0] === "bilgi" || P[0] === "hesap" || P[0] === "akis" || P[0] === "g" || (P.length === 1) || (P.length === 2 && ["kesfet", "sinema", "takip", "harita"].includes(P[1]) && !qs);
   navTrack(lastHash, location.hash, isRoot);
   if (routed && V.dataset.sw !== "1") { V.classList.remove("go", "gt", "gb"); void V.offsetWidth; V.classList.add(navDir === "push" ? "go" : navDir === "back" ? "gb" : "gt"); }
   V.dataset.sw = ""; routed = true; // ilk sayfa canlandırmasız
@@ -912,7 +913,7 @@ function route() {
 /* Sekme önbelleği: en çok 6 görünüm, 10 dakika; veri yenilendiyse ya da il değiştiyse yeniden kurulur */
 const VC = new Map();
 { const rs = history.replaceState.bind(history); history.replaceState = (...x) => { V.dataset.h = ""; return rs(...x); }; } // görünüm yerinde değiştiyse saklama
-const TABROOT = (hh) => { const P2 = (hh || "").replace(/^#\/?/, "").split("?")[0].split("/").filter(Boolean); return P2.length === 1 ? !["bilgi", "hesap", "akis", "u"].includes(P2[0]) : P2.length === 2 && (P2[1] === "kesfet" || P2[1] === "sinema"); };
+const TABROOT = (hh) => { const P2 = (hh || "").replace(/^#\/?/, "").split("?")[0].split("/").filter(Boolean); return P2.length === 1 ? !["bilgi", "hesap", "akis", "u", "g"].includes(P2[0]) : P2.length === 2 && (P2[1] === "kesfet" || P2[1] === "sinema"); };
 function vcSave(hh) { const f = document.createDocumentFragment(); while (V.firstChild) f.append(V.firstChild); VC.delete(hh); VC.set(hh, { f, t: Date.now(), u: DATA.updated, c: DATA.city, title: document.title }); while (VC.size > 6) VC.delete(VC.keys().next().value); }
 function vcLoad(hh, city) { const x = VC.get(hh); VC.delete(hh); if (!x || Date.now() - x.t > 10 * 60e3 || x.u !== DATA.updated || x.c !== city) return false; V.replaceChildren(x.f); document.title = x.title; setTop(city); $$(".stp .sg i.on", V).forEach((b) => { b.className = ""; void b.offsetWidth; b.className = "on"; }); return true; }
 addEventListener("hashchange", route);
