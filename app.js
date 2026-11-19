@@ -50,7 +50,7 @@ const TL = (n) => "₺" + Math.round(n).toLocaleString("tr-TR");
 // Sayfa açılınca logonun üstünden bir kez ince ışık geçer (yalnızca transform); sonra durur, her sayfa değişiminde tekrar etmez.
 let wmShone = false;
 const WM = () => { const s = wmShone || store.get("nvny-az") === "1" || matchMedia("(prefers-reduced-motion: reduce)").matches ? "" : '<i class="shn" aria-hidden="true"></i>'; wmShone = true;
-  return `<span class="wm"><img src="brand/logo-sivi.png" alt="Ne Var Ne Yok" width="1301" height="653" decoding="async">${s}</span>`; };
+  return `<span class="wm"><img src="brand/logo-cam.png" alt="Ne Var Ne Yok" width="1301" height="653" decoding="async">${s}</span>`; };
 const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg>`;
 const I = {
   cal: `<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
@@ -247,6 +247,7 @@ function storyInit() {
   const hold = (on) => root.classList.toggle("hold", on);
   sv.addEventListener("pointerdown", () => hold(true), { passive: true }); addEventListener("pointerup", () => hold(false), { passive: true }); sv.addEventListener("pointercancel", () => hold(false));
   const vis = () => root.classList.toggle("hold", document.hidden); document.addEventListener("visibilitychange", vis);
+  try { new IntersectionObserver(([x]) => root.classList.toggle("off", !x.isIntersecting)).observe(root); } catch {}
   stpStop = () => { alive = false; document.removeEventListener("visibilitychange", vis); };
   play();
 }
@@ -619,7 +620,12 @@ function openPrefs(city, after) {
 /* ---------- Etkinlik sayfası ---------- */
 function viewEvent(city, slug) {
   setTop(city); const e = DATA.bySlug.get(slug);
-  if (!e) { V.innerHTML = `<div class="empty"><p>Bu etkinlik artık listede değil (tarihi geçmiş ya da kaldırılmış olabilir).</p><p style="margin-top:16px"><a class="more" style="display:inline-flex;align-items:center" href="#/${city}">Şehir sayfasına dön</a></p></div>${footer()}`; return; }
+  if (!e) { // geçmiş etkinlik takipteyse: afiş, bilgiler ve değerlendirme (19.11.2026, kullanıcı: "gittikleri etkinlik hakkında değerlendirme")
+    const q = new URLSearchParams(location.hash.split("?")[1] || ""), f = Object.values(follows()).find((x) => x.slug === slug) || (q.get("b") && /^\d{4}-\d\d-\d\d$/.test(q.get("g") || "") ? { title: q.get("b"), d: q.get("g"), t: q.get("s") || "", venue: q.get("m") || "", cat: q.get("k") || "", img: /^https:\/\//.test(q.get("i") || "") ? q.get("i") : "" } : null);
+    if (f) { document.title = `${f.title} · Ne Var Ne Yok`; V.innerHTML = `<article class="dt">${f.img ? `<div class="bk"><img src="${esc(f.img)}" alt="" referrerpolicy="no-referrer"></div>` : ""}<div class="in"><div class="dg"><div class="dp">${poster({ ...f, slug }, { badge: false, lazy: false })}</div><div>
+      <div class="tags"><span>${esc(CATS[f.cat] || "Etkinlik")}</span><span>Geçmiş etkinlik</span></div><h1>${esc(f.title)}</h1><div class="meta"><div>${I.cal}<span>${dLong(f.d)}${f.t ? " · " + esc(f.t) : ""}</span></div><div>${I.pin}<span>${esc(f.venue || "")}</span></div></div>
+      <section class="sec dgk" id="dgk" data-tur="etkinlik" data-il="${esc(city)}" data-slug="${esc(slug)}" data-baslik="${esc(f.title)}" data-mekan="${esc(f.venue || "")}" data-gun="${esc(f.d)}" data-saat="${esc(f.t || "")}"></section></div></div></div></article>${footer()}`; dgkWire(); return; }
+    V.innerHTML = `<div class="empty"><p>Bu etkinlik artık listede değil (tarihi geçmiş ya da kaldırılmış olabilir).</p><p style="margin-top:16px"><a class="more" style="display:inline-flex;align-items:center" href="#/${city}">Şehir sayfasına dön</a></p></div>${footer()}`; return; }
   document.title = `${e.title} · ${dShort(e.d)} · Ne Var Ne Yok`;
   const v = vOf(e.venue), st = e.status === "tukendi" ? "Biletler tükendi" : e.status === "iptal" ? "Bu etkinlik iptal edildi" : e.status === "ertelendi" ? "Bu etkinlik ertelendi" : "";
   const T = e.tickets, best = T.find((x) => x.price);
@@ -646,6 +652,7 @@ function viewEvent(city, slug) {
     <section class="sec"><h3>Bu etkinlik hakkında</h3>${infoBlock(e, city)}<a class="wrong" href="${wrongMail(e, city)}">Bir yanlış mı var? Bize yaz →</a></section>
     <div id="wxb"></div>
     <section class="sec"><h3>Konum</h3><div class="mapc">${v?.lat ? `<div class="map" id="map"></div>` : ""}<div class="ad">${I.pin}<span><b>${esc(e.venue || "")}</b><small>${esc(v?.addr || (v?.ilce ? v.ilce + ", " : "") + (CITIES.find((c) => c.id === city)?.name || ""))}</small></span><button type="button" id="vfl" class="vfl${vfol()[vkey(city, e.venue)] ? " on" : ""}">${vfol()[vkey(city, e.venue)] ? I.bellOn + "Mekân takipte" : I.pin + "Mekânı takip et"}</button></div><div class="bt">${v?.lat ? `<button type="button" class="p" id="rte">${I.dir}Yol tarifi</button>` : `<a class="p" href="${hereU}">${I.dir}Yol tarifi</a>`}<a href="${hereU}">${I.pin}Haritada aç</a></div></div></section>
+    <section class="sec dgk" id="dgk" data-tur="etkinlik" data-il="${esc(city)}" data-slug="${esc(e.slug)}" data-baslik="${esc(e.title)}" data-mekan="${esc(e.venue || "")}" data-gun="${esc(e.until && e.until > e.d ? e.until : e.d)}" data-saat="${esc(e.t || "")}"></section>
   </div></div></div></article>
   ${same.length ? rail("Aynı mekânda", e.venue, same, city, `#/${city}/kesfet?m=${encodeURIComponent(e.venue)}`) : ""}
   ${sim.length ? rail("Bunlar da ilgini çekebilir", CATS[e.cat] || "", sim, city, `#/${city}/kesfet?k=${e.cat}`) : ""}
@@ -660,6 +667,7 @@ function viewEvent(city, slug) {
   $("#afl")?.addEventListener("click", (ev) => toggleArtist(e, city, ev.currentTarget));
   otherCities(e, city);
   wxCard(e, city, $("#wxb"));
+  dgkWire();
   if (v?.lat) { mapInit(v.lat, v.lng); $("#rte").addEventListener("click", () => routeSheet(e, v, city)); const d = $("#dst"); if (d) distFill(v, d); }
 }
 let leafletP = null;
@@ -685,6 +693,10 @@ function viewSinema(city, day) {
   <div class="grid">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}?gun=${d}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[d].length} salon</div></a>`).join("")}</div>${L.length ? "" : `<div class="empty">Bu gün için seans bilgisi yok.</div>`}${footer()}`;
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/sinema?gun=${b.dataset.d}`; }));
 }
+/* Değerlendirmeler bölümü (19.11.2026): etkinlik/film sayfasında bölüm ekrana yaklaşınca hesap.js yüklenir ve doldurulur; sayfanın açılışını bekletmez */
+function dgkWire() { const b = $("#dgk", V); if (!b) return; const fill = () => hesapJS().then(() => window.NVH?.degerKutu?.(b)).catch(() => { b.remove(); });
+  if (new URLSearchParams(location.hash.split("?")[1] || "").get("degerlendir") === "1") { fill(); return; }
+  try { const io = new IntersectionObserver(([x]) => { if (x.isIntersecting) { io.disconnect(); fill(); } }, { rootMargin: "400px 0px" }); io.observe(b); } catch { fill(); } }
 function viewFilm(city, id, day) {
   setTop(city); const F = DATA.films?.films || [], f = F.find((x) => String(x.id) === String(id)), C = DATA.films?.cinemas || {};
   if (!f) { V.innerHTML = `<div class="empty">Film bulunamadı.</div>${footer()}`; return; }
@@ -702,8 +714,10 @@ function viewFilm(city, id, day) {
   <div class="shr"><button type="button" id="ffl" class="flw${ffol()[f.id] ? " on" : ""}">${ffol()[f.id] ? I.bellOn + "Film takipte" : I.bell + "Filmi takip et"}</button></div>
   <p class="flh">${rows.length ? "Seans saatine dokun: seansı takip et, takvimine ekle ya da biletini al." : "Bu filmin şehrinde henüz seansı yok. Takip edersen seanslar açılınca haber veririz."}</p>
   <a class="buy" href="${esc(f.url)}" target="_blank" rel="noopener" data-buy="sinemalar.com">Seanslar ve bilet · sinemalar.com</a>
+  <section class="sec dgk" id="dgk" data-tur="film" data-il="tr" data-slug="film-${esc(String(f.id))}" data-baslik="${esc(f.title)}" data-mekan="" data-gun=""></section>
   </div></div></div></article>${footer()}`;
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/film/${id}?gun=${b.dataset.d}`; }));
+  dgkWire();
   $("#ffl").addEventListener("click", (ev) => toggleFilm(f, city, ev.currentTarget));
   $$("[data-st]").forEach((b) => b.addEventListener("click", () => seansSheet(f, city, d, b.dataset.st, b.dataset.cid, C[b.dataset.cid] || { name: "Salon" }, b)));
 }
@@ -826,7 +840,7 @@ const C = window.NVNY_SITE?.contact || "";
 const PAGES = {
   hakkinda: ["Hakkında", `<p><b>Ne Var Ne Yok</b>, şehrinde yapılacak konser, tiyatro, stand-up, opera, bale, çocuk etkinliği, festival, parti ve atölyeleri bir arada gösteren bağımsız bir etkinlik rehberidir.</p><p>Bilet satmıyoruz. Her etkinlikte, bileti satan sitelerin hepsi fiyatlarıyla yan yana gösterilir; “Bilet al” düğmesi seni doğrudan o sitenin satış sayfasına götürür. Satın alma, iade ve değişiklik işlemleri ilgili bilet sitesinin kurallarına tabidir.</p><p>Reklam almıyoruz, komisyon almıyoruz, kimseden ücret almıyoruz. Bir etkinliğin listede yer alması ya da öne çıkması için ödeme yapılmaz.</p><p>Şu an Ankara açık; diğer şehirler yakında.</p>`],
   kaynaklar: ["Veri kaynakları", `<p>Etkinlikler bilet sitelerinin, kurumların, mekânların ve belediyelerin herkese açık sayfalarından toplanır.</p><p>Hava durumu: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0). Harita: © OpenStreetMap katkıcıları. Yer adları: OpenStreetMap (ODbL), Overture Maps Foundation (Meta, Microsoft, Foursquare kayıtları; CDLA Permissive 2.0 / Apache 2.0), Wikidata (CC0) ve GeoNames (CC BY 4.0). Davet önizlemelerindeki bina yükseklikleri: GlobalBuildingAtlas (Zhu ve ark., 2025; CC BY-NC 4.0, makine öğrenmesiyle tahmin edilmiştir). Uygulama içi yol tarifi: OpenStreetMap verisiyle FOSSGIS yol sunucusu.</p><p>Toplama her sabah yeniden yapılır; öğleden sonra da bilinen etkinliklerin fiyat ve satış durumu bir kez daha kontrol edilir. Bir site o gün okunamazsa son doğrulanmış bilgisi korunur. Tarihi geçen etkinlikler kendiliğinden kaldırılır. Elle eklenen etkinlikler de aynı listeye katılır.</p><p>Gösterilen fiyat, o sitede listelenen en uygun kategoridir. Fiyat, seans ve satış durumu satış sitesinde değişebilir; satın almadan önce bilet sayfasını kontrol et.</p><p>Etkinlik sayfasındaki harita OpenStreetMap'ten gelir (© OpenStreetMap katkıcıları); mekân konumları OpenStreetMap Nominatim ile bulunur. Yol tarifi ve harita uygulamanın içinde açılır. Arazi yüksekliği Terrain Tiles (Mapzen, AWS) verisinden gelir; 3B cepheler temsilîdir. Mekân ve yer adlarının bir kısmı Overture Maps Foundation açık verisinden gelir (CDLA Permissive 2.0).</p>`],
-  gizlilik: ["Gizlilik", `<p>Siteyi kullanmak için hesap gerekmez. Çerez ya da reklam takibi kullanmayız.</p><p>İstersen Google hesabınla giriş yapabilirsin. Bu durumda Google hesabından türetilmiş tek yönlü bir kimlik, seçtiğin kullanıcı adı ve görünen ad, profil fotoğrafın, gizlilik tercihin, alıntıların, emoji tepkilerin, takip ve engelleme kayıtların Cloudflare üzerindeki veritabanımızda tutulur. Kurallara uyum ve güvenlik için site yöneticisi, gizli hesaplar dahil bu bilgileri görebilir ve uygunsuz içeriği kaldırabilir. E-posta adresini ve şifreni saklamayız. Hesabını istediğin an "Hesabımı sil" ile silebilirsin.</p><p>Bir yere Beraber daveti gönderdiğinde, bağlantı önizlemesi için yalnızca o yerin adı, türü ve 3B görseli Cloudflare üzerindeki depomuzda en çok 60 gün tutulur. Davet cümlen, tarih ve saat oraya gönderilmez; ev ve kayıtlı özel yerler için hiçbir şey yüklenmez.</p><p>Kaç kişinin siteye girdiğini görmek için çerezsiz bir sayaç (GoatCounter) kullanılır: kimliğin, IP adresin ya da cihaz kimliğin saklanmaz; yalnızca girilen sayfa, gelinen site ve tarayıcı türü gibi kimseyi tanımlamayan toplam sayılar tutulur. Uygulamayı indirme, takip etme, bildirimleri açma ve "Bilet al" düğmelerine kaç kez basıldığı da aynı şekilde yalnızca sayı olarak tutulur.</p><p>Seçtiğin şehir, ilgi alanların (Kişiselleştir) ve takip ettiğin etkinlikler yalnızca kendi telefonunda ya da tarayıcında saklanır; sunucuya gönderilmez. Tarayıcı verilerini silerek bunları kaldırabilirsin.</p><p>Bildirimler isteğe bağlıdır ve yalnızca sen izin verirsen açılır. Bildirimler telefonun kendisinde, sitemizin herkese açık etkinlik listesiyle karşılaştırılarak oluşturulur; hiçbir bildirim sunucusu ya da kimlik kullanılmaz, kimin neyi takip ettiğini biz bilmeyiz. Bildirimleri tarayıcı ya da telefon ayarlarından istediğin an kapatabilirsin.</p><p>Etkinlik sayfasındaki harita için tarayıcın OpenStreetMap'ten harita parçalarını indirir; senin konumun gönderilmez. Uzaklık ("Senden 3,4 km") yalnızca telefonunda hesaplanır. Hava durumu için Open-Meteo'ya yalnızca ilin ya da mekânın koordinatı gönderilir, senin konumun değil. Haritada bir yer adı aradığında (ör. "Yenimahalle") yalnızca yazdığın ad OpenStreetMap tabanlı Photon arama servisine gönderilir. Uygulama içinde yol tarifi istersen, yolu hesaplamak için yalnızca başlangıç ve varış noktası OpenStreetMap topluluğunun (FOSSGIS) yol sunucusuna gönderilir; biz saklamayız. Bilet sitelerine gittiğinde o sitelerin kendi gizlilik kuralları geçerlidir.</p>`],
+  gizlilik: ["Gizlilik", `<p>Siteyi kullanmak için hesap gerekmez. Çerez ya da reklam takibi kullanmayız.</p><p>Hesabınla bir etkinliği ya da filmi değerlendirirsen puanın, yorumun ve seçtiğin etiketler görünen adınla herkese açık görünür; istediğin an silebilirsin. Uygunsuz yorumları yöneticimiz kaldırabilir.</p><p>İstersen Google hesabınla giriş yapabilirsin. Bu durumda Google hesabından türetilmiş tek yönlü bir kimlik, seçtiğin kullanıcı adı ve görünen ad, profil fotoğrafın, gizlilik tercihin, alıntıların, emoji tepkilerin, takip ve engelleme kayıtların Cloudflare üzerindeki veritabanımızda tutulur. Kurallara uyum ve güvenlik için site yöneticisi, gizli hesaplar dahil bu bilgileri görebilir ve uygunsuz içeriği kaldırabilir. E-posta adresini ve şifreni saklamayız. Hesabını istediğin an "Hesabımı sil" ile silebilirsin.</p><p>Bir yere Beraber daveti gönderdiğinde, bağlantı önizlemesi için yalnızca o yerin adı, türü ve 3B görseli Cloudflare üzerindeki depomuzda en çok 60 gün tutulur. Davet cümlen, tarih ve saat oraya gönderilmez; ev ve kayıtlı özel yerler için hiçbir şey yüklenmez.</p><p>Kaç kişinin siteye girdiğini görmek için çerezsiz bir sayaç (GoatCounter) kullanılır: kimliğin, IP adresin ya da cihaz kimliğin saklanmaz; yalnızca girilen sayfa, gelinen site ve tarayıcı türü gibi kimseyi tanımlamayan toplam sayılar tutulur. Uygulamayı indirme, takip etme, bildirimleri açma ve "Bilet al" düğmelerine kaç kez basıldığı da aynı şekilde yalnızca sayı olarak tutulur.</p><p>Seçtiğin şehir, ilgi alanların (Kişiselleştir) ve takip ettiğin etkinlikler yalnızca kendi telefonunda ya da tarayıcında saklanır; sunucuya gönderilmez. Tarayıcı verilerini silerek bunları kaldırabilirsin.</p><p>Bildirimler isteğe bağlıdır ve yalnızca sen izin verirsen açılır. Bildirimler telefonun kendisinde, sitemizin herkese açık etkinlik listesiyle karşılaştırılarak oluşturulur; hiçbir bildirim sunucusu ya da kimlik kullanılmaz, kimin neyi takip ettiğini biz bilmeyiz. Bildirimleri tarayıcı ya da telefon ayarlarından istediğin an kapatabilirsin.</p><p>Etkinlik sayfasındaki harita için tarayıcın OpenStreetMap'ten harita parçalarını indirir; senin konumun gönderilmez. Uzaklık ("Senden 3,4 km") yalnızca telefonunda hesaplanır. Hava durumu için Open-Meteo'ya yalnızca ilin ya da mekânın koordinatı gönderilir, senin konumun değil. Haritada bir yer adı aradığında (ör. "Yenimahalle") yalnızca yazdığın ad OpenStreetMap tabanlı Photon arama servisine gönderilir. Uygulama içinde yol tarifi istersen, yolu hesaplamak için yalnızca başlangıç ve varış noktası OpenStreetMap topluluğunun (FOSSGIS) yol sunucusuna gönderilir; biz saklamayız. Bilet sitelerine gittiğinde o sitelerin kendi gizlilik kuralları geçerlidir.</p>`],
   kosullar: ["Kullanım koşulları", `<p>Bu site bilgilendirme amaçlıdır. Etkinlik bilgileri (ad, tarih, saat, mekân, fiyat, satış durumu) herkese açık sayfalardan otomatik toplanır; tanıtım metinleri kopyalanmaz. Afişler kopyalanmaz ve sunucumuzda saklanmaz: yalnızca yayımlandıkları kaynak adresten, değiştirilmeden gösterilir (gömülür) ve her afişin üzerinde kaynağı yazar. Kaynak afişi kaldırdığında bizde de görünmez. Etkinlik tanımları bu bilgilerden site tarafından yazılır. Toplayıcı kendini <i>NeVarNeYokBot</i> olarak tanıtır ve sitelerin robots.txt kurallarına uyar.</p><p>Hak sahipleri bir içeriğin kaldırılmasını <a href="mailto:${C}?subject=Kald%C4%B1rma%20talebi">${C}</a> adresinden isteyebilir; talep en geç 48 saat içinde, afişlerde 24 saat içinde yerine getirilir.</p><p>Etkinlik bilgileri; doğruluğu için özen gösterilir ama tarih, saat, fiyat ve satış durumunda değişiklik olabilir. Kesin bilgi her zaman etkinliğin satıldığı sitededir.</p><p>Bilet satın alma işlemleri bu sitede değil, bağlantı verilen bilet sitelerinde yapılır; o işlemlerden ilgili site sorumludur. Etkinlik adları, afişler ve markalar sahiplerine aittir. Afişi olmayan etkinliklerde görülen görseller site tarafından çizilmiş temsili çizimlerdir.</p>`],
   iletisim: ["İletişim", `<p>Soru, öneri, etkinlik ekleme ya da kaldırma talebi için: <a href="mailto:${C}">${C}</a></p><p>Organizatörsen etkinliğini bize yazabilirsin; tanıtım metnin olduğu gibi gösterilebilir.</p>`],
 };
@@ -863,7 +877,22 @@ document.addEventListener("click", (ev) => {
 const scrollMem = new Map();
 let lastHash = "";
 let routed = false;
-const hesapJS = () => window.NVH ? Promise.resolve() : loadJS("/hesap.js?v=16", 15000), alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
+const hesapJS = () => window.NVH ? Promise.resolve() : (hesapJS.p || (hesapJS.p = loadJS("/hesap.js?v=17", 12000).catch(() => new Promise((r) => setTimeout(r, 900)).then(() => loadJS("/hesap.js?v=17&r=1", 15000))).finally(() => { hesapJS.p = null; })));
+/* Akış, Hesabım, profil, grup (19.11.2026, kullanıcı: "Hesap sayfası açılamadı" görünmesi mümkün değil): iskelet hemen çıkar; kod ya da veri gelmezse
+   sessizce 3 kez daha denenir, bağlantı gelince ve uygulamaya dönünce de; başka sayfaya geçildiyse eski istek hiçbir şey yazmaz. */
+function acOpen(P) {
+  const my = location.hash, alive = () => location.hash === my;
+  V.innerHTML = `<section class="ac acsk" aria-busy="true"><div class="skl" style="width:42%;height:30px;border-radius:10px"></div>${'<div class="skc" style="height:120px;margin-top:14px;border-radius:22px"></div>'.repeat(3)}</section>`;
+  let n = 0, timer = 0;
+  const fail = () => { if (!alive()) return; if (n < 3) { timer = setTimeout(go, [700, 1800, 4000][n++]); return; }
+    V.innerHTML = `<section class="ac acf"><div class="acfi">📡</div><b>Bağlantı zayıf</b><p>Bağlantı gelince kendiliğinden açılacak.</p><button type="button" class="ac-b" id="acre">Tekrar dene</button></section>`;
+    $("#acre")?.addEventListener("click", () => { n = 0; go(); }); };
+  const go = () => { clearTimeout(timer); if (!alive()) return; hesapJS().then(() => { if (!alive()) return; return window.NVH.ac(V, P); }).catch((e) => { if (String(e?.message || e) === "STALE") return; fail(); }); };
+  acOpen.again = () => { if (alive() && $(".acf", V)) { n = 0; go(); } };
+  if (!acOpen.l) { acOpen.l = 1; const a = () => acOpen.again?.(); addEventListener("online", a); document.addEventListener("visibilitychange", () => { if (!document.hidden) a(); }); }
+  go();
+}
+const _hjs = 0, alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
 function route() {
   if (!DATA.boot) return;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
@@ -880,7 +909,7 @@ function route() {
   const old = location.hash.match(/^#(e\/.+|hakkinda|kaynaklar|gizlilik|kosullar|iletisim)$/); // eski sitenin ve Google sayfalarının bağlantıları
   if (old) { location.replace(old[1].startsWith("e/") ? `#/ankara/${old[1]}` : `#/bilgi/${old[1]}`); return; }
   const saved = store.get("nvny-city");
-  if (["hesap", "u", "akis", "g"].includes(P[0])) { setTop(saved || "ankara"); V.innerHTML = ""; hesapJS().then(() => window.NVH.ac(V, P)).catch(() => { V.innerHTML = `<section class="ac" style="padding:24px 18px"><p>Hesap sayfası açılamadı.</p></section>`; }); }
+  if (["hesap", "u", "akis", "g"].includes(P[0])) { setTop(saved || "ankara"); acOpen(P); }
   else if (P[0] === "bilgi") viewBilgi(P[1]);
   else if (!P.length) { // ilk girişte tanıtım + il seçimi; sonra kayıtlı ille açılır (kullanıcı isteği, 15.11.2026 22:43). İl üstteki düğmeden (#/?sec=1) değişir.
     // uygulama her kurulduğunda ilk açılış sıfırdan: tanıtım + il seçimi (tarayıcıda seçilmiş il kendiliğinden açılmaz; kullanıcı, 23:19)
@@ -919,7 +948,7 @@ const TABROOT = (hh) => { const P2 = (hh || "").replace(/^#\/?/, "").split("?")[
 function vcSave(hh) { const f = document.createDocumentFragment(); while (V.firstChild) f.append(V.firstChild); VC.delete(hh); VC.set(hh, { f, t: Date.now(), u: DATA.updated, c: DATA.city, title: document.title }); while (VC.size > 6) VC.delete(VC.keys().next().value); }
 function vcLoad(hh, city) { const x = VC.get(hh); VC.delete(hh); if (!x || Date.now() - x.t > 10 * 60e3 || x.u !== DATA.updated || x.c !== city) return false; V.replaceChildren(x.f); document.title = x.title; setTop(city); $$(".stp .sg i.on", V).forEach((b) => { b.className = ""; void b.offsetWidth; b.className = "on"; }); return true; }
 addEventListener("hashchange", route);
-addEventListener("scroll", () => TOP.classList.toggle("sc", scrollY > 8), { passive: true });
+let SCRT = 0; addEventListener("scroll", () => { SCRT = performance.now(); TOP.classList.toggle("sc", scrollY > 8); }, { passive: true });
 document.addEventListener("click", (ev) => { const b = ev.target.closest("[data-buy]"); if (b) { let h = ""; try { h = new URL(b.href).hostname.replace(/^www\./, ""); } catch {} gcEv("bilet-al/" + (h || "?"), "Bilet al: " + (h || "?")); } }, true);
 
 /* ======================================================================================================
@@ -1227,6 +1256,8 @@ if (!reduced && "DeviceOrientationEvent" in window && !DeviceOrientationEvent.re
   addEventListener("deviceorientation", (ev) => {
     if (ev.beta == null) return; if (!TILT.base) TILT.base = [ev.beta, ev.gamma];
     TILT.base[0] += (ev.beta - TILT.base[0]) * .01; TILT.base[1] += (ev.gamma - TILT.base[1]) * .01; // yavaşça yeni duruşa alışır
+    if (performance.now() - SCRT < 260) return; // kaydırırken eğme yok (19.11.2026, kullanıcı: "Bugün'de inerken takılma")
+    const now = performance.now(); if (now - (TILT.tc || 0) < 32) return; TILT.tc = now; // en çok ~30/sn
     const el = tiltTarget(); if (!el) return; const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
     tiltTo(-(ev.beta - TILT.base[0]) * .5, (ev.gamma - TILT.base[1]) * .6, el);
   }, { passive: true });

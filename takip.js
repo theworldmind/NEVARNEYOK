@@ -46,7 +46,7 @@ var NV = (function () {
       var url = "/#/" + (f.city || city || "ankara") + "/e/" + encodeURIComponent(e ? e.slug || f.slug : f.slug), n = Object.assign({}, f);
       if (!e) {
         // etkinlikten bir gün sonra: tatlı bir "nasıldı?" (bir kez), sonra listeden çıkar
-        if (f.d === addD(t0, -1) && f.status !== "iptal") msgs.push({ tag: "a-" + id, title: "Dün nasıldı? 🌟", body: f.title + " umarız harikaydı! Bir sonraki plan için benzerlerine göz atmak ister misin?", url: "/#/" + (f.city || city || "ankara") + "/kesfet" + (f.cat ? "?k=" + f.cat : "") });
+        if (f.d === addD(t0, -1) && f.status !== "iptal") msgs.push({ tag: "a-" + id, title: "Dün nasıldı? 🌟", body: f.title + " umarız güzel geçmiştir. Puanını ve birkaç sözünü bırakmak ister misin?", url: "/#/" + (f.city || city || "ankara") + "/e/" + encodeURIComponent(f.slug) + "?degerlendir=1&b=" + encodeURIComponent(f.title || "") + "&g=" + (f.d || "") + "&s=" + encodeURIComponent(f.t || "") + "&m=" + encodeURIComponent(f.venue || "") + "&k=" + encodeURIComponent(f.cat || "") + "&i=" + encodeURIComponent(f.img || "") });
         if (f.d < t0) return; // geçmiş: listeden çıkar
         if (!f.gone) { msgs.push({ tag: "x-" + id, title: f.title, body: "Bu etkinliği artık listede bulamıyoruz 🤔 İptal olmuş ya da satıştan kalkmış olabilir, bilet sitesine bir bakıver.", url: url }); n.gone = 1; }
         out[id] = n; return;
