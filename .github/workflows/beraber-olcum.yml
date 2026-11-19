@@ -102,7 +102,7 @@ jobs:
     steps:
       - run: |
           mkdir -p /tmp/k; cd /tmp/k
-          Q='[out:json][timeout:50];(way(around:450,39.9420,32.8190)["amenity"~"university|college"];relation(around:450,39.9420,32.8190)["amenity"~"university|college"];way(around:450,39.9420,32.8190)["landuse"~"education|university"];way(around:450,39.9420,32.8190)["building"]["name"];);out geom tags;'
+          Q='[out:json][timeout:50];(way(around:350,39.9347,32.8276)["amenity"~"university|college"];relation(around:350,39.9347,32.8276)["amenity"~"university|college"];way(around:350,39.9347,32.8276)["landuse"~"education|university"];way(around:350,39.9347,32.8276)["building"]["name"];);out geom tags;'
           for u in https://overpass-api.de/api/interpreter https://overpass.private.coffee/api/interpreter https://maps.mail.ru/osm/tools/overpass/api/interpreter https://overpass.kumi.systems/api/interpreter; do sleep 3; curl -sS -m 90 -A NeVarNeYokBot --data-urlencode "data=$Q" "$u" -o k.json && python3 -c "import json;print(len(json.load(open('k.json'))['elements']))" && break; done
           git init -q -b beraber-kampus; git add .; git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm Kampus; git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-kampus
   hesap:
