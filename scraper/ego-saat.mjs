@@ -40,6 +40,8 @@ for (const h of MAX ? [...L.filter((x) => x.kind === "otobus").slice(0, MAX), ..
   idx[h.v] = [o.n, o.k, o.t.map((x) => x.length), S.length]; ok++;
   if (n % 50 === 0) console.log(n, "/", L.length, "tamam", ok);
 }
+const HL = {}; for (const [k, v] of Object.entries(idx)) if (v[1] === "otobus") { try { const o = JSON.parse(await (await import("node:fs/promises")).readFile(join(OUT, `${k.replace(/[^\w-]/g, "_")}.json`), "utf8")); if (o.s.length) HL[k] = [o.n, o.s.map((x) => x[0]), o.t.map((x) => x.length)]; } catch {} }
+await writeFile(join(OUT, "hatlar.json"), JSON.stringify(HL)); // otobüs hatlarının durak sırası (durak no) → app.js ptRoute OSM duraklarına bağlar
 await writeFile(join(OUT, "index.json"), JSON.stringify({ zaman: new Date().toISOString(), kaynak: "EGO Genel Müdürlüğü · ego.gov.tr hareket saatleri", h: idx }));
 console.log("bitti: tamam", ok, "boş", bos, "hata", hata, "saatli", Object.values(idx).filter((x) => x[2][0] + x[2][1] + x[2][2] > 0).length);
 if (ok < L.length * 0.5 && !MAX) { console.log("çok az hat alındı, yazılmıyor"); process.exit(1); }
