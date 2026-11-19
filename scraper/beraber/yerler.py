@@ -72,10 +72,14 @@ P.sort(key=lambda x: -x[4]); seen = {}; out = collections.defaultdict(list); nk 
 for n, a, o, t, s in P:
     k = (fold(n), round(a * 700), round(o * 550))
     if k in seen: continue
-    seen[k] = 1; out[f"{math.floor(a * 10)}_{math.floor(o * 10)}"].append([n, round(a, 5), round(o, 5), TI[t]]); nk += 1
-tot = 0
+    seen[k] = 1; out[f"{math.floor(a * 10)}_{math.floor(o * 10)}"].append((s * 2 + (t != "yer"), [n, round(a, 5), round(o, 5), TI[t]])); nk += 1
+# Yoğun hücrelerde harita yazıları için en önemli 12.000 yer yv/<hücre>.json'da; geri kalanı yalnızca aramanın indirdiği yv/ek/<hücre>.json'da (telefon az veri indirsin)
+tot = 0; CAP = 12000; os.makedirs(OUT + "/yv/ek", exist_ok=True); nek = 0
 for c, L in out.items():
-    b = json.dumps(L, ensure_ascii=False, separators=(",", ":")); tot += len(b.encode()); open(f"{OUT}/yv/{c}.json", "w", encoding="utf8").write(b)
+    L.sort(key=lambda x: -x[0]); A, B = [x[1] for x in L[:CAP]], [x[1] for x in L[CAP:]]
+    b = json.dumps(A, ensure_ascii=False, separators=(",", ":")); tot += len(b.encode()); open(f"{OUT}/yv/{c}.json", "w", encoding="utf8").write(b)
+    if B: b = json.dumps(B, ensure_ascii=False, separators=(",", ":")); tot += len(b.encode()); open(f"{OUT}/yv/ek/{c}.json", "w", encoding="utf8").write(b); nek += 1
+print("ek hücre", nek)
 # bizim mekânlar görsel listesinin başına
 V = []
 for f, tr in (("data/venues-tr.json", 1), ("data/venues.json", 0)):
