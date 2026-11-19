@@ -7,5 +7,8 @@ const p = await c.newPage(), R = {};
 try { await p.goto(`https://nevarneyok.net.tr/?t=${Date.now()}#/ankara/harita`, { timeout: 60000 }); await p.waitForSelector("#hmq input", { timeout: 60000 }); await p.waitForTimeout(4000);
   for (const [i, q] of ["kova waffle ankara", "waffle", "hacı bayram veli hukuk", "kuğulu park", "starbucks kızılay"].entries()) { await p.fill("#hmq input", ""); await p.click("#hmq input"); await p.type("#hmq input", q, { delay: 40 }); await p.waitForTimeout(4500);
     R[q] = await p.$$eval("#hmpl button", (L) => L.map((b) => b.innerText.replace(/\s+/g, " ").slice(0, 110))); await p.screenshot({ path: `${OUT}/ara-${i}.jpg`, type: "jpeg", quality: 78 }); }
+  await p.evaluate(() => { location.hash = "#/ankara/takip"; }); await p.waitForSelector("#mcb", { timeout: 30000 }); await p.waitForTimeout(1200); await p.screenshot({ path: `${OUT}/plan-0.jpg`, type: "jpeg", quality: 78 });
+  await p.click(".aj-plus"); await p.waitForSelector("#ajx", { timeout: 10000 }); await p.waitForTimeout(500); await p.fill("#ajx", "Ece ile sinema"); await p.fill("#ajt", "19:30"); await p.screenshot({ path: `${OUT}/plan-1.jpg`, type: "jpeg", quality: 78 });
+  await p.click("#ajs"); await p.waitForTimeout(1500); R.not = await p.$$eval(".aj", (L) => L.map((x) => x.innerText.replace(/\s+/g, " "))); await p.screenshot({ path: `${OUT}/plan-2.jpg`, type: "jpeg", quality: 78 });
 } catch (e) { R.hata = e.message.slice(0, 200); }
 W(`${OUT}/ara.json`, JSON.stringify(R, null, 1)); console.log(JSON.stringify(R, null, 1)); await b.close();
