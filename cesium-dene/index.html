@@ -1,0 +1,13 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>3B deneme</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.121.0/Build/Cesium/Widgets/widgets.css"><style>html,body,#g{margin:0;height:100%;background:#000}</style></head><body><div id="g"></div>
+<script>window.CESIUM_BASE_URL="https://cdn.jsdelivr.net/npm/cesium@1.121.0/Build/Cesium/"</script><script src="https://cdn.jsdelivr.net/npm/cesium@1.121.0/Build/Cesium/Cesium.js"></script>
+<script>
+Cesium.Ion.defaultAccessToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IlA4Z3RsSUlzeUY3bGZzVksiLCJqdGkiOiJmNmYwODRkOS1lNWFhLTRiNjQtYTRlNy1mYTc5MGEyN2I5NGEiLCJpZCI6NTUyNDQ1LCJzdWIiOiJuZXZhcm5leW9rIiwiaXNzIjoiaHR0cHM6Ly9hcGkuY2VzaXVtLmNvbSIsImF1ZCI6Im5ldmFybmV5b2siLCJpYXQiOjE3OTUwNDgzODF9.ltsxL_RKmkwKxylp_oxu_ksEfn1h6Je1bxFpZvrlYo0";
+window.NV3={durum:"basliyor",hata:[]};(async function(){try{
+const v=new Cesium.Viewer("g",{animation:false,timeline:false,baseLayer:false,baseLayerPicker:false,geocoder:false,homeButton:false,sceneModePicker:false,navigationHelpButton:false,fullscreenButton:false,infoBox:false,selectionIndicator:false,contextOptions:{webgl:{preserveDrawingBuffer:true}}});
+v.scene.globe.show=false;v.scene.skyAtmosphere.show=true;
+const t=await Cesium.createGooglePhotorealistic3DTileset(undefined,{showCreditsOnScreen:true,maximumScreenSpaceError:8});v.scene.primitives.add(t);t.tileFailed.addEventListener(e=>NV3.hata.push(String(e.message).slice(0,120)));
+const tp=await Cesium.createWorldTerrainAsync();
+NV3.git=async function(lon,lat,h,p,head,ms){const[c]=await Cesium.sampleTerrainMostDetailed(tp,[Cesium.Cartographic.fromDegrees(lon,lat)]);const g=Cesium.Cartesian3.fromDegrees(lon,lat,c.height+2),pr=Cesium.Math.toRadians(p),r=h/Math.sin(Math.abs(pr));v.camera.lookAt(g,new Cesium.HeadingPitchRange(Cesium.Math.toRadians(head),pr,r));const t0=performance.now();await new Promise(ok=>{let n=0;(function w(){v.scene.requestRender();if(t.tilesLoaded&&++n>4||performance.now()-t0>ms)return ok();n=t.tilesLoaded?n:0;setTimeout(w,500)})()});return{ms:Math.round(performance.now()-t0),tam:t.tilesLoaded,zemin:Math.round(c.height),bellek:Math.round(t.totalMemoryUsageInBytes/1048576)}};
+NV3.durum="hazir"}catch(e){NV3.durum="hata";NV3.hata.push(String(e&&e.message||e).slice(0,200))}})();
+</script></body></html>
