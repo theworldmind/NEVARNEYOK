@@ -123,7 +123,8 @@ async function load(city) {
     o.drop = o.price && e.prevPrice > o.price && e.priceChanged && (Date.now() - Date.parse(e.priceChanged)) / 864e5 <= 7 ? Math.round((1 - o.price / e.prevPrice) * 100) : 0;
     return o;
   }).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "99").localeCompare(b.t || "99"));
-  DATA.bySlug = new Map(DATA.events.map((e) => [e.slug, e]));
+  DATA.all = DATA.events; DATA.filmsAll = fl; kidApply();
+  DATA.bySlug = new Map(DATA.all.map((e) => [e.slug, e]));
   DATA.city = city; DATA.ready = true;
 }
 function timeDiff(a, b) { const m = (s) => +s.slice(0, 2) * 60 + +s.slice(3, 5); return m(b) - m(a); }
@@ -443,6 +444,20 @@ const SIRA = { "": "Tarihe göre", populer: "Öne çıkanlar", fiyat: "Fiyat (do
 const list = (v) => (v ? String(v).split(",").filter(Boolean) : []);
 const ilceOf = (e) => { const v = vOf(e.venue); let i = String(v?.ilce || "").replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&amp;/g, "&").trim(); // HTML kodlu ya da sayı olan ilçe adı gösterilmez
   if (!/[A-Za-zÇĞİÖŞÜçğıöşü]{3}/.test(i)) return ""; if (i === i.toLocaleUpperCase("tr")) i = i[0] + i.slice(1).toLocaleLowerCase("tr"); return i; };
+/* Çocuk içeriğini gösterme (19.11.2026, kullanıcı: "çok fazla çocuk içeriği var; filtrede ve kişiselleştirmede karşıma çıkmasın"): Kişiselleştir → "Çocuk etkinliklerini gösterme"
+   (nvny-prefs.nokids) açıksa bütün raflarda, vitrinde, aramada, haritada ve sinemada çocuk içeriği yok; filtrede "Kimler için → Çocuksuz" bir seferlik aynısı.
+   Çocuk sayılan: Çocuk kategorisi, 10 yaş ve altı, adında çocuk/masal/kukla/bilinen masal adları, sabah–öğle tiyatro/müzikal oyunu (14:30 öncesi), çocuk etkinliğiyle aynı adı taşıyanlar; filmde Animasyon. */
+const KIDW = /\b(cocuk\w*|masal\w*|kukla\w*|minik\w*|minis\w*|bebek\w*|ayicik\w*|tavsan\w*|sincap\w*|peri masal\w*|dinozor\w*|oyuncak\w*|keloglan|pinokyo|pamuk prenses|kulkedisi|rapunzel|hansel|alice harikalar|peter pan|bremen|agustos bocegi|kirmizi baslikli|cizmeli kedi|uyuyan guzel|kibritci|karagoz|ceviz adam|pepee|kral sakir|rafadan|niloya|aslan kral|masha|maşa|sevimli|aile muzikal\w*|ailece|aile boyu|kids|junior|baby)\b/;
+let KIDT = new Set();
+const isKid = (e) => { if (e.cat === "cocuk") return true; const a = ageN(e), A = String(e.age || ""); if (a != null && (a <= 5 || /\d\s*[–-]\s*(\d|1[0-2])\b/.test(A))) return true; const t = fold(e.title || "");
+  if (KIDW.test(t) && !(e.t >= "19:00" && e.cat !== "tiyatro") || KIDW.test(fold(e.venue || "").replace(/sahne|tiyatro/g, "")) && /cocuk/.test(fold(e.venue || ""))) return true;
+  if ((e.cat === "tiyatro" || /muzikal/.test(t)) && e.t && e.t < "14:30" && !/sinema|cinema|arcadium|avsar|prestige|movie|imax/.test(fold(e.venue || ""))) return true;
+  return e.cat !== "sinema" && KIDT.has(t.split(" ").slice(0, 3).join(" ")); };
+const isKidFilm = (f) => /animasyon|\baile\b/i.test(String(f.genre || f.tur || "")) || KIDW.test(fold(f.title || ""));
+const noKids = () => !!prefs()?.nokids;
+function kidApply() { if (!DATA.all) return; KIDT = new Set(DATA.all.filter((e) => e.cat === "cocuk" || (ageN(e) != null && ageN(e) <= 5)).map((e) => fold(e.title).split(" ").slice(0, 3).join(" ")));
+  const on = noKids(); DATA.events = on ? DATA.all.filter((e) => !isKid(e)) : DATA.all;
+  DATA.films = on && DATA.filmsAll?.films ? { ...DATA.filmsAll, films: DATA.filmsAll.films.filter((f) => !isKidFilm(f)) } : DATA.filmsAll; }
 const ageN = (e) => { const m = String(e.age || "").match(/(\d+)/); return m ? +m[1] : null; };
 const slot = (t) => (!t ? "" : t < "14:00" ? "sabah" : t < "18:00" ? "ogle" : t < "21:00" ? "aksam" : "gece");
 function applyF(f) {
@@ -451,7 +466,7 @@ function applyF(f) {
   const q = fold(f.q || "").trim().split(/\s+/).filter(Boolean), K = list(f.k), Sx = list(f.s), IL = list(f.il);
   let L = DATA.events.filter((e) => (f.iptal ? !live(e) : live(e)) && (!K.length || K.includes(e.cat)) && (!range || (e.d >= range[0] && e.d <= range[1]))
     && (!Sx.length || Sx.includes(slot(e.t))) && (!f.p || (e.price && e.price <= +f.p)) && (!f.m || e.venue === f.m) && (!IL.length || IL.includes(fold(ilceOf(e)).replace(/\s+/g, "")))
-    && (!f.c || (f.c === "cocuk" ? e.cat === "cocuk" || (ageN(e) != null && ageN(e) <= 8) : ageN(e) >= 18)) && (!f.yeni || e.isNew) && (!f.cok || e.tickets.filter((x) => x.price).length > 1)
+    && (!f.c || (f.c === "cocuk" ? isKid(e) : f.c === "cocuksuz" ? !isKid(e) : ageN(e) >= 18)) && (!f.yeni || e.isNew) && (!f.cok || e.tickets.filter((x) => x.price).length > 1)
     && (!f.tk || e.status !== "tukendi") && (!f.dus || e.drop) && (!f.ucr || e.free) && q.every((w) => e.q.includes(w)));
   DATA.events.forEach((e) => { e._km = null; });
   // Aranan sözcükle BAŞLAYAN adlar önce ("atların" → Atların Dansı, "Tatların…" sonra)
@@ -531,7 +546,7 @@ function openFilters(city, f0) {
   const SIC = { sabah: "🌅", ogle: "☀️", aksam: "🌆", gece: "🌙" };
   const tileM = (key, val, label, ic, sub) => `<button type="button" class="tile${list(f[key]).includes(String(val)) ? " on" : ""}" data-many="${key}" data-v="${esc(val)}"><span class="ti">${ic}</span><span class="tl3">${esc(label)}</span>${sub != null ? `<small class="ts">${esc(sub)}</small>` : ""}<i class="tk" aria-hidden="true">✓</i></button>`;
   const pill = (key, val, label) => `<button type="button" data-one="${key}" data-v="${esc(val)}" class="${(f[key] || "") === String(val) ? "on" : ""}">${esc(label)}</button>`;
-  const KS = [["", "Herkes"], ["cocuk", "Aile"], ["yetiskin", "18+"]], ki = Math.max(0, KS.findIndex(([v]) => v === (f.c || "")));
+  const KS = [["", "Herkes"], ["cocuk", "Aile"], ["cocuksuz", "Çocuksuz"], ["yetiskin", "18+"]], ki = Math.max(0, KS.findIndex(([v]) => v === (f.c || "")));
   const IL = ILCELER();
   const body = () => `<div class="pn full flt" role="dialog" aria-label="Filtrele"><div class="hd"><button type="button" class="ibtn" data-close aria-label="Kapat">✕</button><b>Filtrele</b><button type="button" class="lnk" data-reset>Temizle</button></div><div class="bd2 fsx">
     <h4>Ne zaman?</h4><div class="pills">${pill("t", "", "Tümü")}${Object.entries(TIMES).map(([k, l]) => pill("t", k, l)).join("")}</div>
@@ -606,14 +621,14 @@ function openPrefs(city, after) {
     ${IL.length ? `<h4>${esc(cname)} · Hangi semtler sana yakın?</h4><div class="grp"><div class="ch">${IL.slice(0, 14).map(([n]) => chip("ilce", fold(n).replace(/\s+/g, ""), n)).join("")}</div></div>` : ""}
     <h4>Ne zaman çıkarsın?</h4><div class="tiles t3">${Object.entries(WHEN).map(([k, l]) => tile("when", k, l, WIC[k])).join("")}</div>
     <h4>Bütçe</h4><div class="seg" style="--n:${B.length};--i:${bi}"><span class="thumb" aria-hidden="true"></span>${B.map(([v, l], k) => `<button type="button" data-b="${v}" data-k="${k}" class="${k === bi ? "on" : ""}">${l}</button>`).join("")}</div>
-    <div class="grp" style="margin-top:22px"><label class="tg2"><span>👨‍👩‍👧 Aileyle gidiyorum<small>Ailece gidilecek etkinlikler öne çıksın</small></span><input type="checkbox" id="kids"${P.kids ? " checked" : ""}></label></div>
+    <div class="grp" style="margin-top:22px"><label class="tg2"><span>👨‍👩‍👧 Aileyle gidiyorum<small>Ailece gidilecek etkinlikler öne çıksın</small></span><input type="checkbox" id="kids"${P.kids ? " checked" : ""}></label><label class="tg2"><span>🚫 Çocuk etkinliklerini gösterme<small>Çocuk oyunları, masallar ve animasyon filmler hiçbir yerde çıkmasın</small></span><input type="checkbox" id="nokids"${P.nokids ? " checked" : ""}></label></div>
     <a class="srow" style="margin-top:22px;border-radius:14px;background:rgba(255,255,255,.06)" href="#/${city}/ayarlar" data-close><span class="sic">⚙️</span><span class="stx">Ses, bildirim ve görünüm<small>Ayarlar'da</small></span><svg class="chv" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div><div class="ft"><button type="button" class="ok" data-save>Kaydet</button></div></div>`, "fsheet");
   sh.addEventListener("click", (ev) => {
     const c = ev.target.closest("[data-p]"); if (c) { const k = c.dataset.p, v = c.dataset.v; P[k] = (P[k] || []).includes(v) ? P[k].filter((x) => x !== v) : [...(P[k] || []), v]; c.classList.toggle("on"); c.setAttribute("aria-pressed", c.classList.contains("on")); return; }
     const bb = ev.target.closest("[data-b]"); if (bb) { P.budget = +bb.dataset.b; $(".seg", sh).style.setProperty("--i", bb.dataset.k); $$("[data-b]", sh).forEach((x) => x.classList.toggle("on", x === bb)); return; }
     if (ev.target.closest("[data-clear]")) { store.set("nvny-prefs", ""); sh.close(); after?.(); return; }
-    if (ev.target.closest("[data-save]")) { P.kids = $("#kids", sh).checked; store.set("nvny-prefs", JSON.stringify(P)); NV.set("prefs", P); sh.close(); after?.(); }
+    if (ev.target.closest("[data-save]")) { P.kids = $("#kids", sh).checked; P.nokids = $("#nokids", sh).checked; if (P.nokids) P.kids = false; const kc = !!prefs()?.nokids !== P.nokids; store.set("nvny-prefs", JSON.stringify(P)); NV.set("prefs", P); sh.close(); if (kc) { kidApply(); VC.clear(); } after?.(); if (kc && !after) route(); }
   });
 }
 
@@ -698,7 +713,7 @@ function dgkWire() { const b = $("#dgk", V); if (!b) return; const fill = () => 
   if (new URLSearchParams(location.hash.split("?")[1] || "").get("degerlendir") === "1") { fill(); return; }
   try { const io = new IntersectionObserver(([x]) => { if (x.isIntersecting) { io.disconnect(); fill(); } }, { rootMargin: "400px 0px" }); io.observe(b); } catch { fill(); } }
 function viewFilm(city, id, day) {
-  setTop(city); const F = DATA.films?.films || [], f = F.find((x) => String(x.id) === String(id)), C = DATA.films?.cinemas || {};
+  setTop(city); const F = DATA.filmsAll?.films || DATA.films?.films || [], f = F.find((x) => String(x.id) === String(id)), C = DATA.films?.cinemas || {};
   if (!f) { V.innerHTML = `<div class="empty">Film bulunamadı.</div>${footer()}`; return; }
   document.title = `${f.title} · seanslar · Ne Var Ne Yok`;
   const { d: today, hm } = nowIST(), days = Object.keys(f.s || {}).filter((x) => x >= today).sort(), d = days.includes(day) ? day : days[0];
@@ -2580,7 +2595,7 @@ const hmPrice = (x) => x[10] && Date.now() / 36e5 - x[11] <= PRICE_MAX_H ? x[10]
 // sinema satırında x[14] bütün seans saatleri: bugün son seansı geçmediyse ve seçilen saatten sonra seansı varsa görünür
 const hmLast = (x) => x[14] ? x[14].slice(-5) : x[4];
 const hmFilter = (IX, F) => { const [a, b] = hmRange(F.when), { d: today, hm } = nowIST();
-  return IX.e.filter((x) => x[3] >= a && x[3] <= b && !(x[3] === today && x[4] && hmLast(x) < hm && timeDiff(hmLast(x), hm) > (x[14] ? 0 : 120)) && (!F.cats.length || F.cats.includes(x[5]))
+  return IX.e.filter((x) => x[3] >= a && x[3] <= b && !(x[3] === today && x[4] && hmLast(x) < hm && timeDiff(hmLast(x), hm) > (x[14] ? 0 : 120)) && (!F.cats.length || F.cats.includes(x[5])) && (!noKids() || x[5] === "sinema" ? !(noKids() && KIDW.test(fold(x[2] || ""))) : !isKid({ cat: x[5], title: x[2] || x[1] || "", t: x[4], venue: x[8] }))
     && (!F.from || (x[4] && hmLast(x) >= F.from)) && (!F.tk || x[9] !== "t") && (!F.bud || (F.bud < 0 ? x[12] : hmPrice(x) && hmPrice(x) <= F.bud))); };
 // etkinlik → etkinlik sayfası; film → o günün seanslarıyla film sayfası
 const hmHref = (x, c) => x[13] ? `#/${x[7] || c}/film/${x[13]}?gun=${x[3]}` : `#/${x[7] || c}/e/${encodeURIComponent(x[1])}`;
