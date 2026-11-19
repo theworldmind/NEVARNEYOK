@@ -8,6 +8,10 @@ on:
         description: "İl"
         required: false
         default: ankara
+      betik:
+        description: "tanitim ya da beraber-reklam"
+        required: false
+        default: tanitim
 
 permissions:
   contents: write
@@ -38,12 +42,12 @@ jobs:
         env:
           OUT_DIR: /tmp/tanitim
           SHOT_CITY: ${{ github.event.inputs.city || 'ankara' }}
-        run: node tanitim.mjs
+        run: node ${{ github.event.inputs.betik || 'tanitim' }}.mjs
       - name: sosyal dalına ekle
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          D="$(date +%F)/tanitim"
+          D="$(date +%F)/${{ github.event.inputs.betik || 'tanitim' }}"
           git config --global user.name "nevarneyok-bot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git clone -q --depth 1 --branch sosyal "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" /tmp/sosyal
