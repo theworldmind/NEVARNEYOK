@@ -20,7 +20,7 @@ for (const s of page.text.matchAll(/<select[^>]*name="(hat_no\d)"[^>]*id="([^"]+
 console.log("hat sayısı", L.length, Object.entries(L.reduce((a, x) => (a[x.kind] = (a[x.kind] || 0) + 1, a), {})));
 if (!(await robotsAllows(B + "/HareketSaatleri")).ok) { console.log("robots izin vermiyor"); process.exit(1); }
 const idx = {}; let ok = 0, bos = 0, hata = 0, n = 0;
-for (const h of MAX ? L.slice(0, MAX) : L) {
+for (const h of MAX ? [...L.filter((x) => x.kind === "otobus").slice(0, MAX), ...L.filter((x) => x.kind !== "otobus")] : L) {
   n++; let t = "";
   for (let k = 0; k < 3; k++) { try { const r = await fetch(B + "/HareketSaatleri", { method: "POST", headers: { "user-agent": UA, "content-type": "application/x-www-form-urlencoded", "accept-language": "tr-TR" }, body: new URLSearchParams({ [h.f]: h.v }), signal: AbortSignal.timeout(25000) }); if (r.ok) { t = await r.text(); break; } } catch {} await sleep(4000 * (k + 1)); }
   await sleep(1500);
@@ -31,7 +31,7 @@ for (const h of MAX ? L.slice(0, MAX) : L) {
   const cols = [...tb.matchAll(/<td class="hs-times">([\s\S]*?)<\/td>/g)].map((m) => min(m[1]));
   const rt = (t.match(/<caption>Geçtiği Güzergahlar<\/caption>([\s\S]*?)<\/table>/) || [])[1] || "";
   const S = [...rt.matchAll(/<tr>([\s\S]*?)<\/tr>/g)].map((m) => [...m[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((c) => txt(c[1]))).filter((c) => c.length >= 3 && /^\d+$/.test(c[0])).map((c) => [c[1], c[2]]);
-  if (n <= 3 || (h.kind !== "otobus" && n % 1 === 0 && !cols.flat().length)) console.log("örnek", h.v, JSON.stringify(kv), heads, cols.map((c) => c.length), S.length, (txt(t).match(/İlk[^.]{0,80}|Son[^.]{0,80}/gi) || []).slice(0, 4));
+  if (n <= 3 || h.kind !== "otobus") console.log("örnek", h.v, JSON.stringify(kv), heads, cols.map((c) => c.length), S.length, (txt(t).match(/İlk[^.]{0,80}|Son[^.]{0,80}/gi) || []).slice(0, 4));
   if (!kv["Hat No"] && !S.length) { bos++; continue; }
   const pick = (re) => { const i = heads.findIndex((x) => re.test(x)); return i >= 0 ? cols[i] || [] : []; };
   const o = { n: kv["Hat Adı"] || "", km: parseFloat((kv["Mesafesi"] || "").replace(",", ".")) || 0, dk: parseInt(kv["Süresi"] || "") || 0, k: h.kind,
