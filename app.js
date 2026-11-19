@@ -2775,8 +2775,8 @@ function viewHarita(city, Q = {}) {
      - yine yoksa: haritaya ekle ya da haritada basılı tutup kendin kaydet */
   const GEN = new Set(["yurdu", "yurt", "yurtlari", "ogrenci", "erkek", "kiz", "ozel", "devlet", "okulu", "okul", "lisesi", "universitesi", "fakultesi", "hastanesi", "camii", "cami", "parki", "park", "merkezi", "sitesi", "apartmani", "mahallesi", "mah", "caddesi", "cad", "sokak", "sokagi", "sk", "binasi", "kampusu", "ve", "ile", "subesi", "magazasi", "restoran", "kafe", "cafe", "otel", "oteli", "salonu", "spor", "kurs", "kursu", "dershanesi", "anaokulu", "ilkokulu", "ortaokulu"]);
   const pNorm = (f, src) => { if (src === "n") { const ad = f.address || {}; return { n: hukName(f.name || f.display_name.split(",")[0], f.lat, f.lon), s: ["Yer", ad.suburb || ad.neighbourhood || ad.quarter, ad.town || ad.city_district || ad.county, ad.province || ad.state].filter(Boolean).join(" · "), ll: [+f.lat, +f.lon] }; }
-    const p = f.properties || {}; return { n: p.name || p.street || "", s: [PTY[p.type] || "Yer", p.district || p.locality, p.city !== p.name ? p.city : "", p.state].filter(Boolean).join(" · "), ll: [f.geometry.coordinates[1], f.geometry.coordinates[0]], tp: p.type }; };
-  const photon = (q, ll, n = 10) => fetch(`https://photon.komoot.io/api/?limit=${n}&bbox=25.6,35.8,44.9,42.2&lat=${ll[0]}&lon=${ll[1]}&location_bias_scale=0.25&q=${encodeURIComponent(q)}`).then((r) => r.ok ? r.json() : null).then((j) => (j?.features || []).map(hukF).filter((f) => (f.properties?.countrycode || "").toUpperCase() === "TR").map((f) => pNorm(f))).catch(() => []);
+    const p = f.properties || {}; return { n: p.name || p.street || "", s: [(p.type === "house" && POIK[p.osm_value]) || (p.type === "house" && p.name ? "Mekân" : "") || PTY[p.type] || "Yer", p.district || p.locality, p.city !== p.name ? p.city : "", p.state].filter(Boolean).join(" · "), ll: [f.geometry.coordinates[1], f.geometry.coordinates[0]], tp: p.type }; };
+  const photon = (q, ll, n = 10, box = "25.6,35.8,44.9,42.2") => fetch(`https://photon.komoot.io/api/?limit=${n}&bbox=${box}&lat=${ll[0]}&lon=${ll[1]}&location_bias_scale=0.25&q=${encodeURIComponent(q)}`).then((r) => r.ok ? r.json() : null).then((j) => (j?.features || []).map(hukF).filter((f) => (f.properties?.countrycode || "").toUpperCase() === "TR").map((f) => pNorm(f))).catch(() => []);
   const placeSearch = (raw) => { const my = ++pq; if (raw.length < 3) return;
     const c0 = map ? map.getCenter() : null; let ll = c0 ? [c0.lat, c0.lng] : ILLL[city] || [39.93, 32.86], cityHit = null;
     const W = raw.split(/\s+/).filter((w) => { const f = fold(w.replace(/['’].*$/, "")).trim(); const c = CITIES.find((c) => fold(c.name) === f); if (c && !cityHit) { cityHit = c; return false; } return true; });
@@ -2786,13 +2786,21 @@ function viewHarita(city, Q = {}) {
     // ad farklı yazılmış olabilir ("Özel Sıhhiye Öğrenci Yurdu" gibi): tam sorgu + çekirdek sorgu ("Sıhhiye Yurdu") + semt aynı anda aranır, kelime örtüşmesine göre sıralanır
     const gen = W.filter((w) => GEN.has(fold(w).trim())), core = key.length && gen.length ? [...key, gen[gen.length - 1]].join(" ") : "";
     const ov = (n) => { const f = fold(n); return sig.filter((w) => f.includes(w)).length / Math.max(1, sig.length); };
+    // (19.11.2026, kullanıcı: "kova waffle ankara diyom, bambaşka il öneriyor; mekân adlarını anla"): arama ilin içinde kalır (Photon il kutusunda,
+    // bizim yer verimiz de haritanın ve ilin çevresinde), hiçbir anlamlı sözcüğü tutmayan sonuç gösterilmez; tam tutan yoksa en çok sözcüğü tutan yakın yerler gelir.
+    const cc = cityHit && ILLL[cityHit.id] ? ILLL[cityHit.id] : ILLL[city] || ll, bx = (c, d) => `${(c[1] - d * 1.3).toFixed(3)},${(c[0] - d).toFixed(3)},${(c[1] + d * 1.3).toFixed(3)},${(c[0] + d).toFixed(3)}`, BOX = bx(cityHit ? cc : ll, cityHit ? .75 : .6);
+    const wsig = (w) => !GEN.has(w) && w.length > 2; const lastW = [...sig].reverse().find(wsig) || "";
     setTimeout(async () => { if (my !== pq) return;
-      const [L0, L1, A0] = await Promise.all([photon(q, ll), core && core !== q ? photon(core, ll, 8) : [], key.length && key.length < sig.length ? photon(key.join(" "), ll, 4) : []]); if (my !== pq || res.hidden) return;
-      const seen = new Set(), L = [...L0, ...L1].filter((x) => { if (!x.n) return false; const k = fold(x.n) + x.ll.map((v) => v.toFixed(3)); if (seen.has(k)) return false; seen.add(k); return true; })
-        .map((x) => [x, (full(x.n) ? 0 : (1 - ov(x.n)) * 1e4) + km(ll, x.ll)]).sort((a, b) => a[1] - b[1]).map((x) => x[0]);
+      const locP = Promise.all([...new Set([ll, cc].map((c) => c.map((v) => v.toFixed(1)).join(",")))].map((k) => yvAround(k.split(",").map(Number), .1).catch(() => []))).then((A) => A.flat().filter((y) => y && y[0]).map((y) => ({ n: hukName(y[0], y[1], y[2]), s: "Mekân", ll: [y[1], y[2]], loc: 1 })));
+      const [L0, L1, A0, LC] = await Promise.all([photon(q, ll, 12, BOX), core && core !== q ? photon(core, ll, 8, BOX) : [], key.length && key.length < sig.length ? photon(key.join(" "), ll, 4, BOX) : [], locP]); if (my !== pq || res.hidden) return;
+      let P0 = [...L0, ...L1]; if (!P0.some((x) => full(x.n)) && !LC.some((x) => full(x.n))) { const T = await photon(q, cc, 8); if (my !== pq || res.hidden) return; P0 = [...P0, ...T.filter((x) => full(x.n))]; }
+      const hit = (n) => { const f = fold(n); return sig.filter((w) => wsig(w) && f.includes(w)).length; };
+      const seen = new Set(), L = [...LC.filter((x) => hit(x.n)), ...P0].filter((x) => { if (!x.n) return false; const k = fold(x.n).replace(/[^a-z0-9]/g, ""); if ([...seen].some((z) => z[0] === k && km(z[1], x.ll) < .25)) return false; seen.add([k, x.ll]); return true; })
+        .filter((x) => full(x.n) || (hit(x.n) > 0 && km(cc, x.ll) < 70))
+        .map((x) => [x, (full(x.n) ? 0 : (sig.length - hit(x.n)) * 1e4 - (lastW && fold(x.n).includes(lastW) ? 5e3 : 0)) + km(ll, x.ll)]).sort((a, b) => a[1] - b[1]).map((x) => { const z = x[0]; if (z.loc) z.s = `Mekân · ${km(ll, z.ll) < 1 ? Math.round(km(ll, z.ll) * 1000) + " m" : km(ll, z.ll).toFixed(1).replace(".", ",") + " km"}`; return z; });
       const exact = L.some((x) => full(x.n)), area = exact ? [] : A0.filter((x) => ["district", "locality", "city", "county", "street", "other"].includes(x.tp)).slice(0, 1);
       pickAt = area[0]?.ll || (cityHit && ILLL[cityHit.id]) || ll;
-      draw([...L.filter((x) => full(x.n)), ...area, ...L.filter((x) => !full(x.n))].slice(0, 7), exact, q);
+      draw([...L.filter((x) => full(x.n)), ...area, ...L.filter((x) => !full(x.n))].slice(0, 8), exact, q);
       if (!exact && autoDeep) $("[data-qd]", res)?.click(); autoDeep = false;
     }, 300);
     const draw = (R, exact, q) => { const box = $("#hmpl", res); if (!box) return; $("#hm0", res)?.remove();
