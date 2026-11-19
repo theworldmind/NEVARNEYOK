@@ -238,7 +238,7 @@ function storyInit() {
      katmanın görünürlüğü kayan sayfanın o anki konumundan hesaplanır (parmakla sürüklerken de, kendiliğinden geçerken de). Yalnızca opacity. */
   const W = $$(".wash img"); let wr = 0;
   const wpaint = () => { wr = 0; if (!W.length) return; const p = sv.scrollLeft / (sv.clientWidth || 1);
-    for (let k = 0; k < W.length; k++) { const o = Math.max(0, 1 - Math.abs(p - k)); const v = (o * .42).toFixed(3); if (W[k]._o !== v) { W[k].style.opacity = v; W[k]._o = v; } } };
+    for (let k = 0; k < W.length; k++) { const o = Math.max(0, 1 - Math.abs(p - k)); const v = (o * .42).toFixed(3); if (W[k]._o !== v) { W[k].style.opacity = v; W[k]._o = v; const hd = o <= 0; if (W[k].hidden !== hd) W[k].hidden = hd; } } }; // görünmeyen renk katmanları çizilmez (kaydırmada takılma)
   if (W.length) { sv.addEventListener("scroll", () => { if (!wr) wr = requestAnimationFrame(wpaint); }, { passive: true }); wpaint(); }
   const go = (n, smooth = true) => { i = (n + N) % N; lock = Date.now(); sv.scrollTo({ left: i * sv.clientWidth, behavior: smooth ? "smooth" : "auto" }); play(); };
   segs.forEach((g) => g.querySelector("b").addEventListener("animationend", () => { if (alive && document.body.contains(root)) go(i + 1); }));
