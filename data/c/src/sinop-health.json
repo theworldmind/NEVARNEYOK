@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-19T01:28:50.229Z",
+ "runAt": "2026-11-19T12:24:42.288Z",
  "mode": "full",
  "total": 44,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 40,
-   "prevCount": 84,
+   "prevCount": 40,
    "error": "",
    "notes": [
     "açık veri: 36 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sinop: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
+   "seconds": 84,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:28:50.229Z"
+   "lastOk": "2026-11-19T12:24:42.288Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 153,
-   "failStreak": 4,
+   "seconds": 144,
+   "failStreak": 5,
    "lastOk": "2026-11-17T12:13:19.029Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/sinop/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sinop/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 6,
+   "seconds": 155,
+   "failStreak": 7,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   }
  }

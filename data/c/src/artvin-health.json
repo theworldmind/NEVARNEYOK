@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T00:55:30.690Z",
+ "runAt": "2026-11-19T11:53:27.040Z",
  "mode": "full",
- "total": 56,
+ "total": 72,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 8,
-   "prevCount": 12,
+   "count": 24,
+   "prevCount": 8,
    "error": "",
    "notes": [
-    "açık veri: 6 seans",
+    "açık veri: 22 seans",
     "biletinial.com/tr-tr/tiyatro/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/artvin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 84,
    "failStreak": 0,
-   "lastOk": "2026-11-19T00:55:30.690Z"
+   "lastOk": "2026-11-19T11:53:27.040Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 152,
-   "failStreak": 6,
+   "seconds": 138,
+   "failStreak": 7,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/artvin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 180,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": "2026-11-18T13:02:12.245Z"
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
-   "failStreak": 1,
+   "seconds": 12,
+   "failStreak": 2,
    "lastOk": "2026-11-18T13:02:12.245Z"
   }
  }

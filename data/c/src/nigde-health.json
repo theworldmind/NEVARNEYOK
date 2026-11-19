@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:24:53.840Z",
+ "runAt": "2026-11-19T12:20:32.660Z",
  "mode": "full",
- "total": 163,
+ "total": 171,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 41,
-   "prevCount": 141,
+   "count": 39,
+   "prevCount": 127,
    "error": "",
    "notes": [
     "açık veri: 37 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/nigde: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 101,
-   "failStreak": 8,
+   "seconds": 90,
+   "failStreak": 9,
    "lastOk": "2026-11-15T10:33:25.988Z"
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 146,
-   "failStreak": 4,
+   "seconds": 143,
+   "failStreak": 5,
    "lastOk": "2026-11-17T12:07:48.444Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/nigde/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/nigde/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
-   "failStreak": 1,
+   "seconds": 175,
+   "failStreak": 2,
    "lastOk": "2026-11-18T13:39:41.420Z"
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 7,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   }
  }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-19T01:19:48.010Z",
+ "runAt": "2026-11-19T12:16:45.694Z",
  "mode": "full",
  "total": 218,
  "written": true,
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 157,
-   "prevCount": 160,
+   "count": 156,
+   "prevCount": 157,
    "error": "",
    "notes": [
-    "açık veri: 145 seans, 3 detay sayfası",
+    "açık veri: 146 seans, 3 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/konya: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/konya: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 128,
+   "seconds": 105,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:19:48.010Z"
+   "lastOk": "2026-11-19T12:16:45.694Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 50,
-   "prevCount": 52,
+   "prevCount": 57,
    "error": "",
    "notes": [
     "www.radarturkiye.com/konya-etkinlikleri: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=konya: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 643,
+   "seconds": 877,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:19:48.010Z"
+   "lastOk": "2026-11-19T12:16:45.694Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -73,21 +73,21 @@
    "ok": true,
    "status": "calisiyor",
    "count": 8,
-   "prevCount": 6,
+   "prevCount": 5,
    "error": "",
    "notes": [
     "allevents.in/konya: 20 bağlantı, 15 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/all: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/concerts: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/parties: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/comedy: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/parties: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/comedy: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/performances: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/workshops: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/kids: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/konya/workshops: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/kids: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 175,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:19:48.010Z"
+   "lastOk": "2026-11-19T12:16:45.694Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:19:48.010Z"
+   "lastOk": "2026-11-19T12:16:45.694Z"
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-19T01:01:00.568Z",
+ "runAt": "2026-11-19T11:59:04.606Z",
  "mode": "full",
  "total": 268,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 49,
-   "prevCount": 251,
+   "prevCount": 248,
    "error": "",
    "notes": [
     "açık veri: 44 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
-   "failStreak": 8,
+   "seconds": 94,
+   "failStreak": 9,
    "lastOk": "2026-11-15T10:28:56.677Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 8,
-   "prevCount": 10,
+   "prevCount": 14,
    "error": "",
    "notes": [
     "www.radarturkiye.com/canakkale-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 218,
+   "seconds": 203,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:01:00.568Z"
+   "lastOk": "2026-11-19T11:59:04.606Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/canakkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/canakkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
-   "failStreak": 6,
+   "seconds": 180,
+   "failStreak": 7,
    "lastOk": null
   },
   "biletimgo": {
@@ -96,14 +96,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 9,
-   "prevCount": 10,
+   "prevCount": 9,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/canakkale: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 25,
+   "seconds": 23,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:01:00.568Z"
+   "lastOk": "2026-11-19T11:59:04.606Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:20:11.585Z",
+ "runAt": "2026-11-19T12:13:38.069Z",
  "mode": "full",
- "total": 33,
+ "total": 43,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 10,
-   "prevCount": 16,
+   "count": 20,
+   "prevCount": 10,
    "error": "",
    "notes": [
-    "açık veri: 8 seans",
+    "açık veri: 18 seans",
     "biletinial.com/tr-tr/tiyatro/kastamonu: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 83,
+   "seconds": 78,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:20:11.585Z"
+   "lastOk": "2026-11-19T12:13:38.069Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kastamonu: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 532,
+   "seconds": 673,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:20:11.585Z"
+   "lastOk": "2026-11-19T12:13:38.069Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kastamonu/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kastamonu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 6,
+   "seconds": 156,
+   "failStreak": 7,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
-   "failStreak": 6,
+   "seconds": 6,
+   "failStreak": 7,
    "lastOk": null
   }
  }

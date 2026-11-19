@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-19T01:01:25.280Z",
+ "runAt": "2026-11-19T12:03:51.506Z",
  "mode": "full",
  "total": 57,
  "written": true,
@@ -10,22 +10,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 50,
-   "prevCount": 58,
+   "count": 48,
+   "prevCount": 50,
    "error": "",
    "notes": [
-    "açık veri: 43 seans",
+    "açık veri: 44 seans",
     "biletinial.com/tr-tr/tiyatro/elazig: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/elazig: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/elazig: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 105,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:01:25.280Z"
+   "lastOk": "2026-11-19T12:03:51.506Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": false,
    "status": "dustu",
    "count": 0,
-   "prevCount": 7,
+   "prevCount": 6,
    "error": "",
    "notes": [
     "www.radarturkiye.com/elazig-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 159,
-   "failStreak": 1,
+   "seconds": 147,
+   "failStreak": 2,
    "lastOk": "2026-11-18T13:11:40.454Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/elazig/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/elazig/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
-   "failStreak": 6,
+   "seconds": 156,
+   "failStreak": 7,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:01:25.280Z"
+   "lastOk": "2026-11-19T12:03:51.506Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:15:35.928Z",
+ "runAt": "2026-11-19T12:12:44.155Z",
  "mode": "full",
- "total": 189,
+ "total": 219,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 26,
-   "prevCount": 162,
+   "count": 52,
+   "prevCount": 150,
    "error": "",
    "notes": [
-    "açık veri: 22 seans",
-    "biletinial.com/tr-tr/tiyatro/kirklareli: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 47 seans",
+    "biletinial.com/tr-tr/tiyatro/kirklareli: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kirklareli: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kirklareli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
-   "failStreak": 8,
+   "seconds": 100,
+   "failStreak": 9,
    "lastOk": "2026-11-15T10:31:19.700Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 36,
-   "prevCount": 35,
+   "prevCount": 40,
    "error": "",
    "notes": [
     "www.radarturkiye.com/kirklareli-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirklareli: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 693,
+   "seconds": 966,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:15:35.928Z"
+   "lastOk": "2026-11-19T12:12:44.155Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kirklareli/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kirklareli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 6,
+   "seconds": 158,
+   "failStreak": 7,
    "lastOk": null
   },
   "biletimgo": {
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1,
-   "prevCount": 0,
+   "count": 2,
+   "prevCount": 1,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/kirklareli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/kirklareli: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:15:35.928Z"
+   "lastOk": "2026-11-19T12:12:44.155Z"
   }
  }
 }

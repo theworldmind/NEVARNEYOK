@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:01:05.969Z",
+ "runAt": "2026-11-19T12:00:03.067Z",
  "mode": "full",
- "total": 254,
+ "total": 258,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 70,
-   "prevCount": 241,
+   "count": 73,
+   "prevCount": 233,
    "error": "",
    "notes": [
-    "açık veri: 63 seans",
-    "biletinial.com/tr-tr/tiyatro/diyarbakir: 36 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 66 seans",
+    "biletinial.com/tr-tr/tiyatro/diyarbakir: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/diyarbakir: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -24,7 +24,7 @@
     "biletinial.com/tr-tr/egitim/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 94,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": "2026-11-15T10:29:07.999Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 9,
-   "prevCount": 9,
+   "prevCount": 13,
    "error": "",
    "notes": [
     "www.radarturkiye.com/diyarbakir-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 201,
+   "seconds": 205,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:01:05.969Z"
+   "lastOk": "2026-11-19T12:00:03.067Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/diyarbakir/workshops: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/kids: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 172,
+   "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:01:05.969Z"
+   "lastOk": "2026-11-19T12:00:03.067Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:01:05.969Z"
+   "lastOk": "2026-11-19T12:00:03.067Z"
   }
  }
 }
