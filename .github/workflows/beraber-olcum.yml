@@ -105,6 +105,22 @@ jobs:
           Q='[out:json][timeout:50];(way(around:450,39.9420,32.8190)["amenity"~"university|college"];relation(around:450,39.9420,32.8190)["amenity"~"university|college"];way(around:450,39.9420,32.8190)["landuse"~"education|university"];way(around:450,39.9420,32.8190)["building"]["name"];);out geom tags;'
           for u in https://overpass-api.de/api/interpreter https://overpass.private.coffee/api/interpreter https://maps.mail.ru/osm/tools/overpass/api/interpreter https://overpass.kumi.systems/api/interpreter; do sleep 3; curl -sS -m 90 -A NeVarNeYokBot --data-urlencode "data=$Q" "$u" -o k.json && python3 -c "import json;print(len(json.load(open('k.json'))['elements']))" && break; done
           git init -q -b beraber-kampus; git add .; git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm Kampus; git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-kampus
+  hesap:
+    if: github.event.inputs.is == 'hesap'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env: { OUT: /tmp/hesap }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24 }
+      - working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node beraber/hesap-ornek.mjs
+      - if: always()
+        run: cd /tmp/hesap && git init -q -b beraber-hesap && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm Hesap && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-hesap
   harita:
     if: github.event.inputs.is == 'harita'
     runs-on: ubuntu-latest
