@@ -2812,8 +2812,8 @@ function viewHarita(city, Q = {}) {
     }, 300);
     const draw = (R, exact, q) => { const box = $("#hmpl", res); if (!box) return; $("#hm0", res)?.remove();
       // tam eşleşme yoksa en üstte: "haritaya ekle" (iğneyi kendin tam yerine koyarsın, hep haritada kalır)
-      box.innerHTML = (exact ? "" : `<button type="button" class="hm-add" data-qa>${favIc(q)}<span><b>“${esc(q)}”i haritaya ekle</b><small>İğneyi tam yerine koy, hep haritada kalsın</small></span><svg class="chv" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`)
-        + R.map((x, i) => `<button type="button" data-qp="${i}">${ico.p}<span><b>${esc(x.n)}</b><small>${esc(x.s)} · yakındaki etkinlikler</small></span></button>`).join("")
+      const ADD = (exact ? "" : `<button type="button" class="hm-add" data-qa>${favIc(q)}<span><b>“${esc(q)}”i haritaya ekle</b><small>İğneyi tam yerine koy, hep haritada kalsın</small></span><svg class="chv" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`);
+      box.innerHTML = (R.length ? "" : ADD) + R.map((x, i) => `<button type="button" data-qp="${i}">${ico.p}<span><b>${esc(x.n)}</b><small>${esc(x.s)} · yakındaki etkinlikler</small></span></button>`).join("") + (R.length ? ADD : "")
         + (exact ? "" : `<button type="button" data-qd>${ico.r.replace("rgba(120,120,128,.36)", "#5e5ce6")}<span><b>“${esc(q)}” için daha derin ara</b><small>OpenStreetMap'te ikinci bir aramayla</small></span></button>`);
       $$("[data-qp]", box).forEach((b) => b.addEventListener("click", () => { const x = R[+b.dataset.qp]; recAdd({ k: "p", l: x.n, s: x.s, ll: x.ll }); done(); if (Q.ara) { map?.flyTo({ center: [x.ll[1], x.ll[0]], zoom: 16, duration: 900 }); placeCard(x.ll, { n: x.n, s: x.s }); } else nearPlace(x.ll, x.n, x.s); }));
       $("[data-qa]", box)?.addEventListener("click", () => pick(q, pickAt));
