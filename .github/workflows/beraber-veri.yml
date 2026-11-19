@@ -35,7 +35,7 @@ jobs:
           curl -fsSL --retry 6 --retry-delay 20 --retry-all-errors -o /tmp/tr.pbf https://download.geofabrik.de/europe/turkey-latest.osm.pbf
           osmium tags-filter /tmp/tr.pbf nwr/amenity,tourism,leisure,shop,historic,office,healthcare,craft,club nwr/building=university,college,school,kindergarten,dormitory,hospital,public,civic,government,mosque,church,synagogue,stadium,train_station,transportation,hotel,commercial,retail,office,sports_hall,museum,library,theatre,cinema -o /tmp/p.pbf --overwrite
           osmium export /tmp/p.pbf -f geojsonseq -o /tmp/poi.seq --overwrite
-          osmium tags-filter /tmp/tr.pbf r/route=bus,trolleybus,minibus,share_taxi,tram,subway,light_rail,monorail,train,ferry,aerialway,funicular -o /tmp/hat.pbf --overwrite
+          osmium tags-filter /tmp/tr.pbf r/route=bus,trolleybus,minibus,share_taxi,tram,subway,light_rail,monorail,train,ferry,aerialway,funicular w/route=ferry nw/amenity=ferry_terminal -o /tmp/hat.pbf --overwrite
           curl -fsSL --retry 3 -o /tmp/TR.zip https://download.geonames.org/export/dump/TR.zip && unzip -o -q /tmp/TR.zip TR.txt -d /tmp || echo "GeoNames inmedi"
       - name: Wikidata
         timeout-minutes: 30
@@ -63,7 +63,7 @@ jobs:
       - run: |
           pip install -q osmium && sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
           curl -fsSL --retry 6 --retry-delay 20 --retry-all-errors -o /tmp/tr.pbf https://download.geofabrik.de/europe/turkey-latest.osm.pbf
-          osmium tags-filter /tmp/tr.pbf r/route=bus,trolleybus,minibus,share_taxi,tram,subway,light_rail,monorail,train,ferry,aerialway,funicular -o /tmp/hat.pbf --overwrite
+          osmium tags-filter /tmp/tr.pbf r/route=bus,trolleybus,minibus,share_taxi,tram,subway,light_rail,monorail,train,ferry,aerialway,funicular w/route=ferry nw/amenity=ferry_terminal -o /tmp/hat.pbf --overwrite
           python scraper/beraber/hatlar.py
           git clone -q --depth 1 -b beraber-veri "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" /tmp/bv
           rm -rf /tmp/bv/yh && mv /tmp/veri/yh /tmp/bv/yh && cd /tmp/bv && git add -A && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Hatlar" && git push -q origin beraber-veri
