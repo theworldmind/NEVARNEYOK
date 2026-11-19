@@ -93,6 +93,8 @@ Kullanıcıyla her zaman Türkçe konuş.
 
 - **Beraber reklamı (`scraper/beraber-reklam.mjs`, `tanitim.yml` → `betik=beraber-reklam`; 19.11.2026):** "Beraber gidelim mi?" (etkinlik sayfası, Davet et paneli, davet sayfası) ve "Grubu kur, konuşun." (gerçek grup ekranı; sunucu cevabı tarayıcıda örnek sohbetle doldurulur, görselde "Örnek sohbet" yazar). Etkinlik: satışta, dikey afişli, 19:00 sonrası konser/tiyatro/stand-up. Çıktı `sosyal/<tarih>/beraber-reklam/`.
 
+- **İletildi/görüldü ve varsayılan bildirim (19.11.2026, kullanıcı: "ulaştı çift tik, görüldü içi dolu çift tik; WhatsApp/Telegram mantığı; bildirimler varsayılan açık"):** Worker `uye.ulasti`/`uye.gordu` (son mesaj no): grubu çeken üye "ulaştı" (bildirim işçisinin `push/son`u da), sohbet ekranı açıkken (`?g=1`, gönderen de) "gördü". Kendi mesajında tek tik = gönderildi, çift tik = herkese ulaştı, açık mavi çift tik = herkes gördü (`tikH`); mesaja basılı tutunca Görenler / İletildi listesi. Açıkken 5 sn'de bir yalnızca tikler yenilenir. Bildirim: gruba katılınca ya da grup açılınca kendiliğinden açılır (izin varsa sessizce, yoksa ilk mesajda sorulur); kullanıcı kapatırsa `nvny-gbil[id]=0` ve bir daha açılmaz.
+
 ## Açık işler (18.11.2026 devir; bitince sil)
 - **Beraber yer daveti: gerçek telefonda denenecek** (WhatsApp içi tarayıcıda konum/paylaşım, iPhone'da Safari ile uygulamanın ayrı verisi). Sonraki fikirler: etkinlik + yer, oylama, ortada buluşma, yer rafları.
 - Yeni kaynakların (AllEvents, biletimGO, Radar, BUGECE) ilk sonuçları ve kalitesi `data/health.json` ile kontrol edilmedi.

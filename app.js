@@ -892,7 +892,7 @@ document.addEventListener("click", (ev) => {
 const scrollMem = new Map();
 let lastHash = "";
 let routed = false;
-const hesapJS = () => window.NVH ? Promise.resolve() : (hesapJS.p || (hesapJS.p = loadJS("/hesap.js?v=18", 12000).catch(() => new Promise((r) => setTimeout(r, 900)).then(() => loadJS("/hesap.js?v=18&r=1", 15000))).finally(() => { hesapJS.p = null; })));
+const hesapJS = () => window.NVH ? Promise.resolve() : (hesapJS.p || (hesapJS.p = loadJS("/hesap.js?v=19", 12000).catch(() => new Promise((r) => setTimeout(r, 900)).then(() => loadJS("/hesap.js?v=19&r=1", 15000))).finally(() => { hesapJS.p = null; })));
 /* Akış, Hesabım, profil, grup (19.11.2026, kullanıcı: "Hesap sayfası açılamadı" görünmesi mümkün değil): iskelet hemen çıkar; kod ya da veri gelmezse
    sessizce 3 kez daha denenir, bağlantı gelince ve uygulamaya dönünce de; başka sayfaya geçildiyse eski istek hiçbir şey yazmaz. */
 function acOpen(P) {
