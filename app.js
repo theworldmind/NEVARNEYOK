@@ -440,7 +440,8 @@ const FIYAT = { 250: "₺250 ve altı", 500: "₺500 ve altı", 750: "₺750 ve 
 const KIM = { cocuk: "Aileyle", yetiskin: "18 yaş ve üzeri" };
 const SIRA = { "": "Tarihe göre", populer: "Öne çıkanlar", fiyat: "Fiyat (doğrulanmış)", sen: "Senin için", yakin: "Yakınımda" };
 const list = (v) => (v ? String(v).split(",").filter(Boolean) : []);
-const ilceOf = (e) => { const v = vOf(e.venue); return v?.ilce || ""; };
+const ilceOf = (e) => { const v = vOf(e.venue); let i = String(v?.ilce || "").replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&amp;/g, "&").trim(); // HTML kodlu ya da sayı olan ilçe adı gösterilmez
+  if (!/[A-Za-zÇĞİÖŞÜçğıöşü]{3}/.test(i)) return ""; if (i === i.toLocaleUpperCase("tr")) i = i[0] + i.slice(1).toLocaleLowerCase("tr"); return i; };
 const ageN = (e) => { const m = String(e.age || "").match(/(\d+)/); return m ? +m[1] : null; };
 const slot = (t) => (!t ? "" : t < "14:00" ? "sabah" : t < "18:00" ? "ogle" : t < "21:00" ? "aksam" : "gece");
 function applyF(f) {
