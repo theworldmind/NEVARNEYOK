@@ -37,7 +37,8 @@ const settle = async (ms = 1200) => {
   await page.evaluate(() => Promise.all([document.fonts.ready, ...[...document.images].filter((i) => !i.complete && i.getBoundingClientRect().top < innerHeight).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 7000); }))])).catch(() => {});
   await page.waitForTimeout(ms);
 };
-const go = async (hash, ms) => { await page.goto(BASE + hash, { waitUntil: "domcontentloaded", timeout: 60000 }); await settle(ms); };
+let NAV = 0;
+const go = async (hash, ms) => { await page.goto(BASE + `?s=${++NAV}` + hash, { waitUntil: "domcontentloaded", timeout: 60000 }); await settle(ms); };
 const shots = {};
 const snap = async (name) => {
   await page.evaluate(() => document.querySelectorAll(".ph img.p").forEach((i) => { if (i.complete && i.naturalWidth) i.parentNode.classList.add("ok"); })).catch(() => {});
@@ -49,16 +50,18 @@ const tryIt = async (n, f) => { try { await f(); } catch (e) { log(`atlandı ${n
 await go(`#/${C}`, 1500);
 /* şehir sayfası ve etkinlik */
 await tryIt("sehir", async () => { await go(`#/${C}`, 2500); await snap("sehir");
-  const ev = await page.evaluate(() => { const L = [...document.querySelectorAll('a.cd[href*="/e/"]')].filter((x) => !x.classList.contains("off")); return (L.find((x) => x.querySelector(".ph.ok img, .ph img.p")) || L[0])?.getAttribute("href"); });
-  if (ev) { await go(ev, 2000); await snap("etkinlik"); await page.evaluate(() => { const k = document.querySelector(".loc, #loc, .evmap, [data-loc]"); if (k) scrollTo(0, k.getBoundingClientRect().top + scrollY - 120); }); await settle(1500); await snap("etkinlik_konum"); } });
+  const ev = await page.evaluate(() => { const L = [...document.querySelectorAll('a.cd[href*="/e/"]')].filter((x) => !x.classList.contains("off") && x.querySelector(".ph img.p")); return (L.find((x) => /konser|müzik|caz|rock|senfoni/i.test(x.textContent)) || L.find((x) => /tiyatro|stand/i.test(x.textContent)) || L[0])?.getAttribute("href"); });
+  if (ev) { await go(ev, 2000); await snap("etkinlik"); } });
 /* harita: il geneli ve 3B yakın */
 await tryIt("harita_genel", async () => { await cam([32.80, 39.925], 10.6); await go(`#/${C}/harita`, 7000); await snap("harita_genel"); });
 await tryIt("harita_yakin", async () => { await cam([32.8545, 39.9195], 15.4, 58, -28); await go(`#/${C}/harita`, 9000); await snap("harita_yakin"); });
 /* yol tarifi: Kızılay → Gazi Hukuk */
+const mode = async (m) => { const b = await page.$(`[data-m="${m}"]`); if (b) { await b.click(); await settle(4500); } return !!b; };
 await tryIt("rota", async () => {
-  await go(`#/${C}/harita?yer=39.9347,32.8282&ad=${encodeURIComponent("GAZİ HUKUK")}&rota=1`, 9000); await snap("rota_yuru");
-  const pt = await page.$('[data-m="pt"]'); if (pt) { await pt.click(); await settle(5000); await snap("rota_pt");
-    const g = await page.$("#rgr"); if (g) { await g.click(); await page.waitForTimeout(1500); await snap("rota_pt_adim"); } }
+  await go(`#/${C}/harita?yer=39.9347,32.8282&ad=${encodeURIComponent("GAZİ HUKUK")}&rota=1`, 9000);
+  if (await mode("foot")) await snap("rota_yuru");
+  if (await mode("pt")) { await snap("rota_pt"); const g = await page.$("#rgr"); if (g) { await g.click(); await page.waitForTimeout(1600); await snap("rota_pt_adim"); } }
+  await mode("foot");
 });
 /* sinema ve Planım */
 await tryIt("sinema", async () => { await go(`#/${C}/sinema`, 2500); await snap("sinema"); });
@@ -97,19 +100,19 @@ const SC = [
   { id: "yol", h: "YOLUNU<br><em>BUL.</em>", p: "Yürüyerek, bisikletle, arabayla. Nereden istersen.",
     body: (s) => P(pick("rota_yuru"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + `<span class="chip" style="left:${s ? 70 : 60}px;top:${s ? 180 : 120}px"><i>🚶</i>Yürüyerek</span><span class="chip p" style="right:${s ? 60 : 50}px;top:${s ? 520 : 380}px"><i>📍</i>Gazi Hukuk</span>` },
   { id: "toplu", h: "METRO, OTOBÜS,<br><em>VAPUR.</em>", p: "Hangi hat, hangi durak, kaç durak. Adım adım.",
-    body: (s) => P(pick("rota_pt_adim", "rota_pt"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + (shots.rota_pt && shots.rota_pt_adim ? P("rota_pt", s ? 420 : 350, s ? -150 : -110, s ? 210 : 140, -9, 1) : "") + `<span class="chip p" style="right:${s ? 60 : 50}px;top:${s ? 300 : 200}px"><i>🚇</i>Ankaray · 4 istasyon</span>` },
+    body: (s) => P(pick("rota_pt_adim", "rota_pt"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + (shots.rota_pt && shots.rota_pt_adim ? P("rota_pt", s ? 420 : 350, s ? -150 : -110, s ? 210 : 140, -9, 1) : "") + `<span class="chip p" style="right:${s ? 60 : 50}px;top:${s ? 300 : 200}px"><i>🚇</i>Ankaray · 4 istasyon</span><span class="chip" style="left:${s ? 60 : 50}px;top:${s ? 620 : 430}px"><i>🚏</i>Durak no ile</span>` },
   { id: "etkinlik", h: "BU AKŞAM<br><em>NE VAR?</em>", p: "Konser, tiyatro, stand-up, sergi. Afiş afiş.",
     body: (s) => P("sehir", s ? 470 : 400, s ? 70 : 90, s ? 90 : 50, -6, 1) + P(pick("etkinlik"), s ? 470 : 400, s ? 540 : 590, s ? 170 : 110, 6, 2) },
   { id: "sinema", h: "SEANS<br><em>SEANS.</em>", p: "Vizyondaki filmler, salon salon, saat saat.",
     body: (s) => P(pick("sinema"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + `<span class="chip" style="left:${s ? 70 : 60}px;top:${s ? 260 : 180}px"><i>🍿</i>Vizyonda</span>` },
   { id: "plan", h: "PLANIN<br><em>HAZIR.</em>", p: "Gideceğin etkinlikler ve kendi notların, gün gün.",
-    body: (s) => P(pick("plan"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + (shots.etkinlik_konum ? P("etkinlik_konum", s ? 420 : 350, s ? 810 : 840, s ? 210 : 140, 9, 1) : "") },
+    body: (s) => P(pick("plan"), s ? 560 : 470, s ? 260 : 305, s ? 40 : 10, 0, 2) + (shots.etkinlik ? P("etkinlik", s ? 420 : 350, s ? 810 : 840, s ? 210 : 140, 9, 1) : "") },
   { id: "hepsi", h: "NE VAR<br><em>NE YOK.</em>", p: "Etkinlikler, harita, yol tarifi, sinema. 81 il.",
     body: (s) => P(pick("harita_yakin", "harita_genel"), s ? 400 : 340, s ? 40 : 40, s ? 200 : 130, -10, 1) + P("sehir", s ? 480 : 410, s ? 300 : 335, s ? 60 : 20, 0, 3) + P(pick("rota_pt_adim", "rota_yuru"), s ? 400 : 340, s ? 640 : 700, s ? 200 : 130, 10, 1) },
 ];
 const html = (sc, s) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><style>${CSS}</style></head><body><div class="bg" style="--gy:${s ? 70 : 76}%"></div>
 <div class="hd" style="--ht:${s ? 190 : 72}px;--hs:${s ? 136 : 112}px"><div class="lg"><img src="${LOGO}" alt="Ne Var Ne Yok"></div><h1>${sc.h}</h1><p>${sc.p}</p></div>
-<div class="st" style="--st:${s ? 760 : 470}px">${sc.body(s)}</div><div class="ft">nevarneyok.net.tr</div></body></html>`;
+<div class="st" style="--st:${s ? 640 : 470}px">${sc.body(s)}</div><div class="ft">nevarneyok.net.tr</div></body></html>`;
 const cp = await browser.newPage({ deviceScaleFactor: 2 });
 for (const sc of SC) for (const s of [false, true]) {
   await cp.setViewportSize({ width: 1080, height: s ? 1920 : 1350 });
