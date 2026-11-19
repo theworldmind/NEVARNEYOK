@@ -3052,9 +3052,9 @@ boot().then(() => { offlineBoot(); shortcutBoot(); route(); appUp(); splashOut()
 (() => {
   const ttl = document.createElement("b"); ttl.className = "ttl"; ttl.setAttribute("aria-hidden", "true"); TOP.append(ttl);
   let io = null;
-  const watch = () => { io?.disconnect(); TOP.classList.remove("tt"); const h = V.querySelector("h1, .city h1, .ph1"); if (!h || !h.textContent.trim()) return;
+  const watch = () => { io?.disconnect(); TOP.classList.remove("ttx"); const h = V.querySelector("h1, .city h1, .ph1"); if (!h || !h.textContent.trim()) return;
     ttl.textContent = h.textContent.trim().replace(/\s+/g, " ");
-    io = new IntersectionObserver(([x]) => TOP.classList.toggle("tt", !x.isIntersecting && x.boundingClientRect.top < 80), { rootMargin: "-70px 0px 0px 0px" }); io.observe(h); };
+    io = new IntersectionObserver(([x]) => TOP.classList.toggle("ttx", !x.isIntersecting && x.boundingClientRect.top < 80), { rootMargin: "-70px 0px 0px 0px" }); io.observe(h); };
   let wq = 0; const later = () => { if (wq) return; wq = setTimeout(() => { wq = 0; watch(); }, 60); };
   addEventListener("hashchange", later); setTimeout(watch, 400); new MutationObserver(later).observe(V, { childList: true });
 

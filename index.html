@@ -1347,9 +1347,9 @@ button.hm-n{color:#fff}
 /* büyük başlık: kaydırınca sayfa başlığı küçülüp üst çubukta logonun yerine geçer (iOS) */
 .top .ttl{position:absolute;left:var(--pad);top:calc(env(safe-area-inset-top) + 31px);transform:translateY(-50%) translateY(8px);opacity:0;max-width:44vw;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:900 20px/1 var(--fd);font-stretch:80%;letter-spacing:.005em;text-transform:uppercase;pointer-events:none;transition:opacity .25s,transform .45s var(--spring-s)}
 .top #home{transition:opacity .2s,transform .45s var(--spring-s)}
-.top.tt:not(.bk) #home{opacity:0;transform:translateY(-8px) scale(.94);pointer-events:none}
-.top.tt:not(.bk) .ttl{opacity:1;transform:translateY(-50%)}
-@media (min-width:900px){html.app .top .ttl{display:none}html.app .top.tt #home{opacity:1;transform:none;pointer-events:auto}}
+.top.ttx:not(.bk) #home{opacity:0;transform:translateY(-8px) scale(.94);pointer-events:none}
+.top.ttx:not(.bk) .ttl{opacity:1;transform:translateY(-50%)}
+@media (min-width:900px){html.app .top .ttl{display:none}html.app .top.ttx #home{opacity:1;transform:none;pointer-events:auto}}
 /* alttan açılan paneller: aşağıdan yaylanarak gelir, hızlıca iner */
 .sh .pn:not(.rtp){transform:translate3d(0,104%,0);transition:transform .28s var(--out)}
 .sh.on .pn:not(.rtp){transform:none;transition:transform .62s var(--spring-s)}
