@@ -171,9 +171,9 @@ html.app .dl-top,html.app [data-app]{display:none!important}
 .sps .go{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 20px;border-radius:999px;background:#fff;color:#0a0a10;font:800 14px var(--f)}
 .stp .nv{position:absolute;top:40px;bottom:120px;width:22%;z-index:2;background:none;border:0;cursor:pointer}
 .stp .pv{left:0}.stp .nx{right:0}
-@media (min-width:900px){.sps{min-height:480px}.sps .po{width:270px;margin:46px 0 32px 64px;float:left}.sps .tx{padding:0 64px 0 380px;text-align:left;position:absolute;left:0;right:0;top:50%;transform:translateY(-35%)}.stp .nv{width:12%}}
+@media (min-width:900px){.sps{min-height:480px}.sps .po{width:270px;margin:46px 0 32px 64px;float:left}.sps .tx{padding:0 calc(var(--pad) + 64px) 0 calc(var(--pad) + 64px + 270px + 64px);text-align:left;position:absolute;left:0;right:0;top:50%;transform:translateY(-35%)}.sps h2{font-size:clamp(34px,4.6vw,64px)}.stp .nv{width:12%}}
 .cs .sps{min-height:0}.cs .sps .po{width:min(40vw,200px);margin-top:40px}.cs .sps .tx{padding:14px 18px 20px}.cs .sps h2{font-size:clamp(24px,6vw,44px);-webkit-line-clamp:2}.cs .sps .go{display:none}
-@media (min-width:900px){.cs .sps{min-height:380px}.cs .sps .po{width:210px;margin-left:56px}.cs .sps .tx{padding-left:330px}}
+@media (min-width:900px){.cs .sps{min-height:380px}.cs .sps .po{width:210px;margin-left:56px}.cs .sps .tx{padding-left:calc(var(--pad) + 56px + 210px + 56px)}}
 .ld{min-height:60vh;display:grid;place-items:center}.ld span{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.15);border-top-color:#fff;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(1turn)}}
 
 /* ---- Arama + filtre ---- */
