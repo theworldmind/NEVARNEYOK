@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T13:37:00.563Z",
+ "runAt": "2026-11-19T01:25:18.409Z",
  "mode": "full",
- "total": 340,
+ "total": 288,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 53,
-   "prevCount": 204,
+   "count": 45,
+   "prevCount": 212,
    "error": "",
    "notes": [
-    "açık veri: 49 seans, 1 detay sayfası",
+    "açık veri: 41 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/ordu: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/ordu: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/ordu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
-   "failStreak": 7,
+   "seconds": 88,
+   "failStreak": 8,
    "lastOk": "2026-11-15T10:33:34.326Z"
   },
   "radar": {
@@ -33,7 +33,7 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 45,
+   "count": 44,
    "prevCount": 45,
    "error": "",
    "notes": [
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=ordu: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1086,
+   "seconds": 754,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:37:00.563Z"
+   "lastOk": "2026-11-19T01:25:18.409Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,17 +63,17 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 5,
+   "failStreak": 6,
    "lastOk": null
   },
   "allevents": {
    "id": "allevents",
    "name": "AllEvents",
    "kind": "toplayici",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 94,
-   "prevCount": 82,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
+   "prevCount": 55,
    "error": "",
    "notes": [
     "allevents.in/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/ordu/workshops: 0 bağlantı, 11 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 183,
-   "failStreak": 0,
+   "seconds": 192,
+   "failStreak": 1,
    "lastOk": "2026-11-18T13:37:00.563Z"
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/ordu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
-   "failStreak": 5,
+   "seconds": 11,
+   "failStreak": 6,
    "lastOk": null
   }
  }

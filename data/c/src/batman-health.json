@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T13:02:04.821Z",
+ "runAt": "2026-11-19T00:55:13.960Z",
  "mode": "full",
- "total": 105,
+ "total": 64,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 31,
-   "prevCount": 32,
+   "count": 23,
+   "prevCount": 31,
    "error": "",
    "notes": [
-    "açık veri: 26 seans",
+    "açık veri: 18 seans",
     "biletinial.com/tr-tr/tiyatro/batman: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/batman: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/batman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 116,
+   "seconds": 91,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:02:04.821Z"
+   "lastOk": "2026-11-19T00:55:13.960Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 140,
-   "failStreak": 5,
+   "seconds": 151,
+   "failStreak": 6,
    "lastOk": null
   },
   "bugece": {
@@ -63,17 +63,17 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 5,
+   "failStreak": 6,
    "lastOk": null
   },
   "allevents": {
    "id": "allevents",
    "name": "AllEvents",
    "kind": "toplayici",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 84,
-   "prevCount": 70,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
+   "prevCount": 39,
    "error": "",
    "notes": [
     "allevents.in/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/batman/workshops: 0 bağlantı, 10 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/batman/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
-   "failStreak": 0,
+   "seconds": 172,
+   "failStreak": 1,
    "lastOk": "2026-11-18T13:02:04.821Z"
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/batman: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 18,
+   "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:02:04.821Z"
+   "lastOk": "2026-11-19T00:55:13.960Z"
   }
  }
 }

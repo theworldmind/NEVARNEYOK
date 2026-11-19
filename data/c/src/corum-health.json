@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T13:08:27.450Z",
+ "runAt": "2026-11-19T01:07:11.551Z",
  "mode": "full",
- "total": 193,
+ "total": 185,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 39,
-   "prevCount": 175,
+   "count": 37,
+   "prevCount": 176,
    "error": "",
    "notes": [
-    "açık veri: 33 seans",
-    "biletinial.com/tr-tr/tiyatro/corum: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 32 seans",
+    "biletinial.com/tr-tr/tiyatro/corum: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/corum: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/corum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 102,
-   "failStreak": 7,
+   "seconds": 100,
+   "failStreak": 8,
    "lastOk": "2026-11-15T10:29:04.289Z"
   },
   "radar": {
@@ -33,7 +33,7 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 17,
+   "count": 16,
    "prevCount": 17,
    "error": "",
    "notes": [
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=corum: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 474,
+   "seconds": 395,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:08:27.450Z"
+   "lastOk": "2026-11-19T01:07:11.551Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 5,
+   "failStreak": 6,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/corum/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/corum/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 5,
+   "seconds": 156,
+   "failStreak": 6,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 5,
+   "failStreak": 6,
    "lastOk": null
   }
  }

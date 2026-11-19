@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-18T13:01:55.241Z",
+ "runAt": "2026-11-19T00:55:16.572Z",
  "mode": "full",
- "total": 4754,
+ "total": 4670,
  "written": true,
  "sources": {
   "sanatcepte": {
@@ -10,15 +10,31 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 832,
-   "prevCount": 838,
+   "count": 808,
+   "prevCount": 832,
    "error": "",
    "notes": [
-    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 355 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 345 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 98,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:01:55.241Z"
+   "lastOk": "2026-11-19T00:55:16.572Z"
+  },
+  "akansel": {
+   "id": "akansel",
+   "name": "Akansel",
+   "kind": "mekan",
+   "ok": true,
+   "status": "calisiyor",
+   "count": 7,
+   "prevCount": 0,
+   "error": "",
+   "notes": [
+    "akanselegitimdanismanlik.com/seminerler.aspx: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 7 takvim satırı, durum 200"
+   ],
+   "seconds": 10,
+   "failStreak": 0,
+   "lastOk": "2026-11-19T00:55:16.572Z"
   },
   "dob": {
    "id": "dob",
@@ -26,15 +42,15 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 210,
-   "prevCount": 233,
+   "count": 208,
+   "prevCount": 253,
    "error": "",
    "notes": [
-    "açık veri: 210 seans"
+    "açık veri: 208 seans"
    ],
-   "seconds": 25,
+   "seconds": 26,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:01:55.241Z"
+   "lastOk": "2026-11-19T00:55:16.572Z"
   },
   "tiyatrolar": {
    "id": "tiyatrolar",
@@ -42,20 +58,20 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 20,
-   "prevCount": 18,
+   "count": 23,
+   "prevCount": 21,
    "error": "",
    "notes": [
-    "tiyatrolar.com.tr/: 219 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=1: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=2: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=3: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=4: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/: 224 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=1: 54 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=2: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=3: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=4: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "site haritası: 2000 adres"
    ],
-   "seconds": 535,
+   "seconds": 234,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:01:55.241Z"
+   "lastOk": "2026-11-19T00:55:16.572Z"
   },
   "iticket": {
    "id": "iticket",
@@ -63,8 +79,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 391,
-   "prevCount": 388,
+   "count": 377,
+   "prevCount": 391,
    "error": "",
    "notes": [
     "iticket.com.tr/etkinlikler/tumu?page=1: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -76,9 +92,9 @@
     "iticket.com.tr/etkinlikler/tumu?page=7: 105 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "iticket.com.tr/etkinlikler/tumu?page=8: 120 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 324,
+   "seconds": 356,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:01:55.241Z"
+   "lastOk": "2026-11-19T00:55:16.572Z"
   },
   "biletix": {
    "id": "biletix",
@@ -86,15 +102,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 6551,
-   "prevCount": 3501,
+   "count": 6474,
+   "prevCount": 3518,
    "error": "",
    "notes": [
-    "açık veri: 3509 seans, 3443 detay sayfası, dizinde 3509 kayıt"
+    "açık veri: 3476 seans, 3411 detay sayfası, dizinde 3476 kayıt"
    ],
-   "seconds": 3035,
+   "seconds": 3811,
    "failStreak": 0,
-   "lastOk": "2026-11-18T13:01:55.241Z"
+   "lastOk": "2026-11-19T00:55:16.572Z"
   }
  }
 }
