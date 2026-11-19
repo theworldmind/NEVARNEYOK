@@ -1,0 +1,52 @@
+# Uygulama tanıtım görselleri (harita, yol tarifi, toplu taşıma, etkinlik, sinema, Planım; 2× çözünürlük) → "sosyal" dalı <tarih>/tanitim/
+name: Uygulama tanıtım görselleri
+
+on:
+  workflow_dispatch:
+    inputs:
+      city:
+        description: "İl"
+        required: false
+        default: ankara
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sosyal
+  cancel-in-progress: false
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TZ: Europe/Istanbul
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Bağımlılıkları kur
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          sudo apt-get install -y -qq fonts-noto-color-emoji >/dev/null || true
+      - name: Görselleri üret
+        working-directory: scraper
+        env:
+          OUT_DIR: /tmp/tanitim
+          SHOT_CITY: ${{ github.event.inputs.city || 'ankara' }}
+        run: node tanitim.mjs
+      - name: sosyal dalına ekle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D="$(date +%F)/tanitim"
+          git config --global user.name "nevarneyok-bot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git clone -q --depth 1 --branch sosyal "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" /tmp/sosyal
+          cd /tmp/sosyal && rm -rf "$D" && mkdir -p "$D" && cp /tmp/tanitim/* "$D/"
+          git add -A && git commit -qm "Tanıtım görselleri: $D" || exit 0
+          for i in 1 2 3; do git push -q origin sosyal && break; git pull -q --rebase origin sosyal; done
