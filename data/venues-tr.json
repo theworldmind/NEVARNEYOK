@@ -16985,5 +16985,647 @@
   "src": "osm",
   "v": 2,
   "osm": "shop/mall"
+ },
+ "edirne|edirne halk eğitim merkezi-Edirne": {
+  "lat": 41.4,
+  "lng": 26.33,
+  "addr": "Kargı Baba Tekke Sokak, Kıyık Cd. No:1, 22030 Edirne",
+  "ilce": "",
+  "src": "biletinial",
+  "v": 2
+ },
+ "eskisehir|Haus": {
+  "lat": 39.780201,
+  "lng": 30.5139397,
+  "addr": "Hoşnudiye, Vural Sk. no:66/1, 26130 Tepebaşı/Eskişehir",
+  "ilce": "Tepebaşı",
+  "src": "biletinial",
+  "v": 2
+ },
+ "gaziantep|Gaziantep Devlet Tiyatroları Şehitkamil Sahnesi": {
+  "lat": 37.0152462,
+  "lng": 37.3590755,
+  "addr": "Gaziantep Devlet Tiyatrosu Şehitkamil Sahnesi Batıkent Mh. Abd&#252;lkadir Aksu Blv. No:48 Şehitkamil / GAZİANTEP",
+  "ilce": "Şehitkamil",
+  "src": "biletinial",
+  "v": 2
+ },
+ "izmir|sekizde sahne": {
+  "lat": 38.418163,
+  "lng": 27.1317167,
+  "addr": "Konak, Dr. Faik Muhittin Adam Cd. No:13, 35250 Konak/İzmir",
+  "ilce": "Konak",
+  "src": "biletinial",
+  "v": 2
+ },
+ "izmir|sahne tozu tiyatrosu haldun dormen sahnesi": {
+  "lat": 38.4967059,
+  "lng": 27.5352045,
+  "addr": "Konak, SSK Blokları (eski &#199;ınar Sineması, Mithatpaşa Cd. E-1 Blok No:9, 35250 Konak/İzmir",
+  "ilce": "Konak",
+  "src": "biletinial",
+  "v": 2
+ },
+ "mersin|mersin yenişehir belediyesi konferans salonu": {
+  "lat": 36.8045464,
+  "lng": 34.5883678,
+  "addr": "Limonluk, 13. Cd. No: 11, 33120 Yenişehir/Mersin",
+  "ilce": "Yenişehir",
+  "src": "biletinial",
+  "v": 2
+ },
+ "zonguldak|zonguldak belediyesi sinema salonu · Zonguldak": {
+  "lat": 41.4520123,
+  "lng": 31.7905982,
+  "addr": "Meşrutiyet Mahallesi Gazipaşa Caddesi No:13/A Belediye Sinema Salonu Zonguldak/Merkez",
+  "ilce": "Zonguldak",
+  "src": "biletinial",
+  "v": 2
+ },
+ "batman|Holly Stone Performance Hall": {
+  "lat": 37.900172,
+  "lng": 41.138561,
+  "addr": "Belde Mahallesi Ömer Muhtar Bulvarı No: 2808 - Merkez / Batman, Batman",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "kastamonu|Taşköprü Belediyesi Kültür Merkezi": {
+  "lat": 41.501295,
+  "lng": 34.217047,
+  "addr": "Bahçelievler, Mustafa Sıtkı Erkek Cd., 37400 Taşköprü/Kastamonu, Kastamonu, Kastamonu",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "kutahya|Ressam Ahmet Yakupoğlu Konferans Salonu": {
+  "lat": 39.413407,
+  "lng": 29.994293,
+  "addr": "30 Ağustos, Meriç Sk. No:4, 43100, 43100 Kütahya Merkez/Kütahya, Kütahya, Kütahya",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "antalya|Tiyatro Özgün Sahnesi": {
+  "lat": 36.923397,
+  "lng": 30.707439,
+  "addr": "Yenimahalle Kültür Merkezi Kepez",
+  "ilce": "Kepez",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "antalya|Konyaaltı Belediyesi Nazım Hikmet Fuar ve Kongre M": {
+  "lat": 36.885352,
+  "lng": 30.6506801,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "ardahan|ardahan üniversitesi · yenisey kampüsü aşık şenlik": {
+  "lat": 41.1326035,
+  "lng": 42.7809389,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "bartin|Riverside Otel ve Restaurant": {
+  "lat": 41.644665,
+  "lng": 32.279408,
+  "addr": "Gürgenpınarı Köyü No:79 K:2",
+  "ilce": "Bartın",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "batman|Hatice Nasıroğlu Konferans Salonu · Batman": {
+  "lat": 37.9085463,
+  "lng": 41.1292156,
+  "addr": "Kapalı Otopark, Gültepe, Gültepe",
+  "ilce": "Gültepe",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "bolu|Bolu Hampton by Hilton": {
+  "lat": 40.7312097,
+  "lng": 31.5684774,
+  "addr": "Eski Istanbul Caddesi No:73, Paşaköy, Paşaköy",
+  "ilce": "Paşaköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "bursa|pub locale bursa": {
+  "lat": 40.225391,
+  "lng": 28.969904,
+  "addr": "Podyum Park, Nilüfer Hatun Cd. No:114 F D:E",
+  "ilce": "Nilüfer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "bursa|nicespresso fsm bulvarı": {
+  "lat": 40.218559,
+  "lng": 28.977522,
+  "addr": "Fatih Sultan Mehmet Blv. 41-37",
+  "ilce": "Nilüfer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "bursa|Qabile": {
+  "lat": 40.228268,
+  "lng": 28.914156,
+  "addr": "Ahmet Taner Kışlalı Caddesi 35",
+  "ilce": "Nilüfer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "bursa|Valentia Concept Coffee & Shop": {
+  "lat": 40.221478,
+  "lng": 28.849974,
+  "addr": "Fındık Sk. 500) sok B blok no 5 B/A dükkan 62",
+  "ilce": "Nilüfer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "bursa|Zorlu PSM %100 Studio": {
+  "lat": 40.250065,
+  "lng": 28.953909,
+  "addr": "Wattarya, Korupark Evleri 2",
+  "ilce": "Osmangazi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "diyarbakir|Mehmet Emin Yalçınkaya Tiyatro Sahnesi": {
+  "lat": 37.920448,
+  "lng": 40.218033,
+  "addr": "Yenişehir",
+  "ilce": "Yenişehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "eskisehir|livia coffee & bakery · Eskişehir": {
+  "lat": 39.77763,
+  "lng": 30.514275,
+  "addr": "Porsuk Blv no:39 D:c",
+  "ilce": "Odunpazarı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "eskisehir|Gibi Kafe Eskişehir": {
+  "lat": 39.787688,
+  "lng": 30.513184,
+  "addr": "Seylap Caddesi No:39/B, Bahçelievler Mahallesi, Tepebaşı",
+  "ilce": "Tepebaşı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "gaziantep|Merinos Atatürk Kongre ve Kültür Merkezi Osmangazi Salonu": {
+  "lat": 37.07217,
+  "lng": 37.316635,
+  "addr": "Şehitkamil",
+  "ilce": "Şehitkamil",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "igdir|Cinegold": {
+  "lat": 39.924812,
+  "lng": 44.049976,
+  "addr": "Kültür Merkezi Zemin Kat",
+  "ilce": "Iğdır",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "istanbul|Güngören Kent Parkı": {
+  "lat": 41.008236,
+  "lng": 28.872644,
+  "addr": "Şevket Dağ Cd. No:14",
+  "ilce": "İstanbul",
+  "src": "overture",
+  "v": 2,
+  "osm": "leisure/park",
+  "m": "ov"
+ },
+ "istanbul|ruwa coffee i İstanbul": {
+  "lat": 40.9018822,
+  "lng": 29.2266251,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Florida Coffee Co.": {
+  "lat": 41.038628,
+  "lng": 28.984041,
+  "addr": "Aydede Cd. No:15/a",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|World CineZone Marmara Forum": {
+  "lat": 40.9973787,
+  "lng": 28.8854275,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "istanbul|Zeytinburnu Buz Adası": {
+  "lat": 40.9961337,
+  "lng": 28.8943611,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/ice_rink",
+  "m": "ov"
+ },
+ "istanbul|Long Bar · Raffles İstanbul": {
+  "lat": 41.066345,
+  "lng": 29.018192,
+  "addr": "Zorlu Center - Shopping Mall, Vadi Caddesi",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "istanbul|All Saints Kilisesi Moda": {
+  "lat": 40.9820854,
+  "lng": 29.02524,
+  "addr": "Yusuf Kamil Paşa Sokağı No:8, Caferağa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Gri Sahne": {
+  "lat": 41.02721,
+  "lng": 28.978207,
+  "addr": "Kumbaracı Yokuşu Sok. No:7A",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Çapa Pera": {
+  "lat": 41.03643,
+  "lng": 28.982481,
+  "addr": "Fitaş Pasajı, Kurabiye Sk. No:5",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|RESPIRO PARK HOTEL": {
+  "lat": 41.033215,
+  "lng": 28.462492,
+  "addr": "Milli Egemenlik Cd. No:48 D:1",
+  "ilce": "Büyükçekmece",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "istanbul|İTÜ Süleyman Demirel Kültür Merkezi": {
+  "lat": 41.107159,
+  "lng": 29.022966,
+  "addr": "Kuzey Yolu",
+  "ilce": "Sarıyer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Bahçelievler Tiyatrosu Nurettin Topçu Sahnesi": {
+  "lat": 40.9978366,
+  "lng": 28.8512973,
+  "addr": "Barbaros Caddesi No:9",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Boğaziçi Üniversitesi SİNEBU": {
+  "lat": 41.086441,
+  "lng": 29.043888,
+  "addr": "Boğaziçi Üniversitesi Kuzey Kampüs",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "izmir|Coffee Bright Co. Alsancak": {
+  "lat": 38.433723,
+  "lng": 27.145666,
+  "addr": "Ali Çetinkaya Bulvarı No:40/A Mimar Sinan Mahallesi",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "izmir|Paribu Cineverse Konak Pier · İzmir": {
+  "lat": 38.4228719,
+  "lng": 27.1292137,
+  "addr": "Atatürk Caddesi No:19, Konak, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "izmir|diplomat 1974": {
+  "lat": 38.480907,
+  "lng": 27.05447,
+  "addr": "8280. Sokak",
+  "ilce": "Çiğli",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "izmir|KALT": {
+  "lat": 38.447849,
+  "lng": 27.209423,
+  "addr": "372/32 sokak Port",
+  "ilce": "Bornova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "izmir|aziz vukolos kilisesi · İzmir": {
+  "lat": 38.4214805,
+  "lng": 27.1476451,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre",
+  "m": "ov"
+ },
+ "izmir|Balcova Termal": {
+  "lat": 38.3881798,
+  "lng": 27.0346968,
+  "addr": "Sakarya Caddesi, Korutürk, Korutürk",
+  "ilce": "Korutürk",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|Avni Anıl Sahnesi": {
+  "lat": 38.410851,
+  "lng": 27.128136,
+  "addr": "Birleşmiş Milletler Cd. 48 B",
+  "ilce": "Konak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "izmir|Tepekule Kültür ve Kongre Merkezi": {
+  "lat": 38.4534398,
+  "lng": 27.1710506,
+  "addr": "Adalet, Anadolu Cd. No:40, 35010 Bayraklı/İzmir",
+  "ilce": "Bayraklı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "kirsehir|Klas": {
+  "lat": 39.1484707,
+  "lng": 34.1609178,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "kocaeli|Cinetime Özdilek Kocaeli": {
+  "lat": 40.745076,
+  "lng": 30.0632906,
+  "addr": "Özdilek Avm, Emekevler Mahallesi, Kartepe",
+  "ilce": "Kartepe",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "kocaeli|Saraka Sahne": {
+  "lat": 40.765438,
+  "lng": 29.93354,
+  "addr": "İskete Sk. No:9/A",
+  "ilce": "İzmit",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "kutahya|Panda Exclusive Club · Kütahya": {
+  "lat": 39.431858,
+  "lng": 30.00309,
+  "addr": "10. Sardunya Sokak 4",
+  "ilce": "Kütahya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "mardin|mardin grand yay otel · cemal yay kongre salonu": {
+  "lat": 37.320404,
+  "lng": 40.721394,
+  "addr": "diyarbakır yolu üzeri toki karşısı yenişehir MARDİN",
+  "ilce": "Artuklu",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "mugla|Marmaris Belediyesi Armutalan Kültür Merkezi": {
+  "lat": 36.982428,
+  "lng": 28.247956,
+  "addr": "Marmaris Belediyesi Armutalan Kültür Merkezi, Armutalan, 48706 Marmaris/Muğla, Muğla, Muğla",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "tekirdag|Karşıyaka Belediyesi Hikmet Şimşek Sanat Merkezi": {
+  "lat": 41.29425,
+  "lng": 27.99795,
+  "addr": "Çerkezköy",
+  "ilce": "Çerkezköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "tokat|Tokat Dedeman Otel · Tokat": {
+  "lat": 40.3376541,
+  "lng": 36.5446548,
+  "addr": "Vali Zekai Gümüşdiş Bulvarı, Yeşilırmak, Yeşilırmak",
+  "ilce": "Yeşilırmak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "usak|UŞAK HAYAL KAHVESİ": {
+  "lat": 38.679829,
+  "lng": 29.409826,
+  "addr": "Dülgeroğlu Otel, Cumhuriyet Caddesi 36C",
+  "ilce": "Uşak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "usak|uşak belediyesi atatürk kültür merkezi": {
+  "lat": 38.6685923,
+  "lng": 29.4008776,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "usak|Uşak Atatürk Kültür Merkezi Büyük Salon": {
+  "lat": 38.6685923,
+  "lng": 29.4008776,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre",
+  "m": "ov"
+ },
+ "zonguldak|Zonguldak Pera Performance Hall": {
+  "lat": 41.451256,
+  "lng": 31.789469,
+  "addr": "Milli Egemenlik Caddesi 16",
+  "ilce": "Zonguldak",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Kırım Kilisesi": {
+  "lat": 41.0276537,
+  "lng": 28.9771216,
+  "addr": "Hacı Mimi Külhanı Sokağı No:52, Hacımimi, Hacımimi Mahallesi",
+  "ilce": "Hacımimi Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/place_of_worship"
+ },
+ "antalya|Sandland": {
+  "lat": 36.8484416,
+  "lng": 30.8142397,
+  "addr": "Lara, Güzeloba Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/attraction"
+ },
+ "istanbul|Üç Horan Ermeni Kilisesi": {
+  "lat": 41.0345098,
+  "lng": 28.9779916,
+  "addr": "Solakzade Sokağı, Hüseyinağa, Hüseyinağa Mahallesi",
+  "ilce": "Hüseyinağa Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/place_of_worship"
+ },
+ "duzce|Konsopa Otel": {
+  "lat": 40.8489379,
+  "lng": 31.1217953,
+  "addr": "Adapazarı-Bolu Yolu, Mergiç, Mergiç",
+  "ilce": "Mergiç",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel"
+ },
+ "istanbul|FATİH KÜLTÜR MERKEZİ": {
+  "lat": 40.9868693,
+  "lng": 28.6723537,
+  "addr": "44. Sokak, Yakuplu Mahallesi, Beylikdüzü",
+  "ilce": "Beylikdüzü",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "kars|kars kültür merkezi": {
+  "lat": 40.6010355,
+  "lng": 43.0952826,
+  "addr": "Hakim Ali Rıza Aslan Caddesi, Cumhuriyet Mahallesi, Cumhuriyet Mahallesi",
+  "ilce": "Cumhuriyet Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "office/government"
+ },
+ "kars|kafkas üniversitesi · ahmet arslan kültür ve kongr": {
+  "lat": 40.5809467,
+  "lng": 43.0565672,
+  "addr": "Üniversite Sok., Şehitler Mahallesi, Şehitler Mahallesi",
+  "ilce": "Şehitler Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/university"
+ },
+ "kocaeli|pure black coffee · fuar şubesi · Kocaeli": {
+  "lat": 40.7728071,
+  "lng": 29.9805975,
+  "addr": "İshakpaşa Caddesi No:6/A, Alikahya Fatih Mahallesi, İzmit",
+  "ilce": "İzmit",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
  }
 }
