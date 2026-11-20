@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-19T14:14:50.365Z",
+ "updated": "2026-11-20T04:21:55.141Z",
  "notes": [
   "trt: 0 aday",
   "aa: 3 aday",
   "yeniankara: 0 aday",
   "evrensel: 0 aday",
   "hurriyet: 0 aday",
-  "haberturk: 9 aday",
+  "haberturk: 8 aday",
   "sabah: 0 aday",
-  "cumhuriyet: 14 aday",
+  "cumhuriyet: 12 aday",
   "sozcu: 0 aday",
-  "aa-guncel: 0 aday",
+  "aa-guncel: 1 aday",
   "trt-turkiye: 0 aday",
-  "trt-gundem: 0 aday",
+  "trt-gundem: 1 aday",
   "haberturk-gundem: 1 aday",
   "sabah-yasam: 0 aday",
   "cumhuriyet-turkiye: 0 aday",
@@ -29,13 +29,13 @@
   "milliyet-gundem: 0 aday",
   "yenisafak-kultur: 0 aday",
   "t24-kultur: 403",
-  "birgun: 3 aday",
+  "birgun: 6 aday",
   "duvar: 403",
   "karar: 410",
-  "star: 0 aday",
-  "haberler-kultur: 8 aday",
+  "star: 1 aday",
+  "haberler-kultur: 10 aday",
   "haberler-yasam: 0 aday",
-  "haber7-kultur: 0 aday",
+  "haber7-kultur: 1 aday",
   "iha-kultur: 404",
   "aa-yasam: 0 aday",
   "trt-yasam: 0 aday",
@@ -53,8 +53,8 @@
   "baskentgazete: 0 aday",
   "yeniasir: akış değil",
   "yeniasir-1: 0 aday",
-  "egedesonsoz: 1 aday",
-  "egedesonsoz-1: 1 aday",
+  "egedesonsoz: 0 aday",
+  "egedesonsoz-1: 0 aday",
   "egetelgraf: 0 aday",
   "egetelgraf-1: 403",
   "izmirtime24: fetch failed",
@@ -68,7 +68,7 @@
   "antalyasondakika: fetch failed",
   "akdenizgazetesi: fetch failed",
   "yeniadana: 404",
-  "adanamedya: fetch failed",
+  "adanamedya: 0 aday",
   "konyayenigun: 0 aday",
   "yenikonya: 0 aday",
   "esanadolugazetesi: fetch failed",
@@ -116,11 +116,28 @@
   "bilecikhaber: fetch failed",
   "kirsehirhaber: fetch failed",
   "yozgathaber: 403",
-  "corumhaber: 0 aday",
+  "corumhaber: 1 aday",
   "amasyahaber: akış değil",
   "karabukhaber: fetch failed"
  ],
  "items": [
+  {
+   "id": "cocuklarin-hayalleri-kentin-sinirlarindan-buyuk-istanbul",
+   "city": "istanbul",
+   "title": "Çocukların hayalleri kentin sınırlarından büyük",
+   "cat": "festival",
+   "venue": "",
+   "days": [
+    "2026-11-20"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "free": true,
+   "site": "BirGün",
+   "url": "https://www.birgun.net/haber/6-uluslararasi-cocuk-haklari-festivali-basliyor-cocuklarin-hayalleri-kentin-sinirlarindan-buyuk-747365",
+   "seen": "2026-11-20T04:21:55.141Z"
+  },
   {
    "id": "istanbuldan-riyada-etnospor-kultur-festivali-istanbul",
    "city": "istanbul",
@@ -156,6 +173,23 @@
    "seen": "2026-11-18T13:17:39.473Z"
   },
   {
+   "id": "29-uluslararasi-ankara-tiyatro-festivali-ankara",
+   "city": "ankara",
+   "title": "29. Uluslararası Ankara Tiyatro Festivali",
+   "cat": "festival",
+   "venue": "Çankaya Belediyesi Doğan Taşdelen Çağdaş Sanatlar Merkezi",
+   "days": [
+    "2026-11-20",
+    "2026-11-30"
+   ],
+   "until": "2026-11-30",
+   "from": "2026-11-20",
+   "t": "19:30",
+   "site": "BirGün",
+   "url": "https://www.birgun.net/haber/29-uluslararasi-ankara-tiyatro-festivali-basliyor-perdeler-yasanilabilir-bir-dunya-icin-acilacak-747363",
+   "seen": "2026-11-20T04:21:55.141Z"
+  },
+  {
    "id": "30-uluslararasi-ankara-caz-festivali-ankara",
    "city": "ankara",
    "title": "30. Uluslararası Ankara Caz Festivali",
@@ -188,20 +222,37 @@
    "seen": "2026-11-18T13:17:39.473Z"
   },
   {
-   "id": "italyan-ezgileriyle-bir-aksam-mersin",
-   "city": "mersin",
-   "title": "İtalyan Ezgileriyle Bir Akşam",
-   "cat": "konser",
-   "venue": "Mersin Kültür Merkezi",
+   "id": "23-uluslararasi-film-festivali-eskisehir",
+   "city": "eskisehir",
+   "title": "23. Uluslararası Film Festivali",
+   "cat": "festival",
+   "venue": "Üniversitenin Yunus Emre Yerleşkesi",
    "days": [
-    "2026-11-19"
+    "2026-11-27"
    ],
    "until": "",
    "from": "",
-   "t": "20:00",
+   "t": "",
+   "img": "https://foto.haberler.com/haber/2026/11/19/eskisehir-de-23-uluslararasi-film-festivali-3-20443989_amp.jpg",
    "site": "Haberler.com",
-   "url": "https://www.haberler.com/kultur-sanat/mdob-italyan-ezgileriyle-bir-aksam-konserini-19-20435059-haberi/",
-   "seen": "2026-11-18T13:17:39.473Z"
+   "url": "https://www.haberler.com/kultur-sanat/eskisehir-de-23-uluslararasi-film-festivali-34-20443989-haberi/",
+   "seen": "2026-11-20T04:21:55.141Z"
+  },
+  {
+   "id": "minik-sefler-tatilde-mutfakta-izmir",
+   "city": "izmir",
+   "title": "Minik Şefler Tatilde Mutfakta",
+   "cat": "atolye",
+   "venue": "",
+   "days": [
+    "2026-11-20"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "site": "BirGün",
+   "url": "https://www.birgun.net/makale/minik-sefler-tatilde-mutfakta-atolyesi-basladi-747372",
+   "seen": "2026-11-20T04:21:55.141Z"
   },
   {
    "id": "altin-taka-film-festivali-trabzon",
@@ -293,8 +344,8 @@
    "from": "",
    "t": "19:00",
    "site": "BirGün",
-   "url": "https://www.birgun.net/haber/ankara-film-festivalinde-bir-film-bir-yonetmen-747290",
-   "seen": "2026-11-19T14:14:50.365Z"
+   "url": "https://www.birgun.net/haber/ankara-film-festivalinde-oduller-icin-geri-sayim-747231",
+   "seen": "2026-11-20T04:21:55.141Z"
   },
   {
    "id": "bir-baskadir-yeni-yil-istanbul",
@@ -350,6 +401,23 @@
    "site": "Haberler.com",
    "url": "https://www.haberler.com/kultur-sanat/eskisehir-de-18-anadolu-kaligrafi-ve-tipografi-20434899-haberi/",
    "seen": "2026-11-18T13:17:39.473Z"
+  },
+  {
+   "id": "doha-film-festivali-kocaeli",
+   "city": "kocaeli",
+   "title": "Doha Film Festivali",
+   "cat": "festival",
+   "venue": "",
+   "days": [
+    "2026-11-27"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "img": "https://foto.haberler.com/haber/2026/11/19/doha-film-festivali-2026-60-ulkeden-104-yapim-20444208_amp.jpg",
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/guncel/doha-film-festivali-2026-60-ulkeden-104-yapimla-ve-20444208-haberi/",
+   "seen": "2026-11-20T04:21:55.141Z"
   },
   {
    "id": "ara-tatil-senligi-erzurum",
