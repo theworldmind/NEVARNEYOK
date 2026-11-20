@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:54:25.817Z",
+ "runAt": "2026-11-20T11:58:15.862Z",
  "mode": "full",
- "total": 262,
+ "total": 268,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 48,
-   "prevCount": 248,
+   "count": 52,
+   "prevCount": 243,
    "error": "",
    "notes": [
-    "açık veri: 43 seans",
-    "biletinial.com/tr-tr/tiyatro/canakkale: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 44 seans",
+    "biletinial.com/tr-tr/tiyatro/canakkale: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/canakkale: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 102,
-   "failStreak": 10,
+   "seconds": 90,
+   "failStreak": 11,
    "lastOk": "2026-11-15T10:28:56.677Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 6,
-   "prevCount": 14,
+   "prevCount": 13,
    "error": "",
    "notes": [
     "www.radarturkiye.com/canakkale-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 170,
+   "seconds": 163,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:25.817Z"
+   "lastOk": "2026-11-20T11:58:15.862Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/canakkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/canakkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 179,
-   "failStreak": 8,
+   "seconds": 183,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 9,
+   "count": 10,
    "prevCount": 9,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/canakkale: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/canakkale: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 25,
+   "seconds": 23,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:25.817Z"
+   "lastOk": "2026-11-20T11:58:15.862Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:54:47.428Z",
+ "runAt": "2026-11-20T11:58:47.794Z",
  "mode": "full",
- "total": 62,
+ "total": 63,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 49,
-   "prevCount": 50,
+   "count": 50,
+   "prevCount": 49,
    "error": "",
    "notes": [
     "açık veri: 44 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
+   "seconds": 97,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:47.428Z"
+   "lastOk": "2026-11-20T11:58:47.794Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 8,
-   "prevCount": 6,
+   "prevCount": 14,
    "error": "",
    "notes": [
     "www.radarturkiye.com/elazig-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 195,
+   "seconds": 199,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:47.428Z"
+   "lastOk": "2026-11-20T11:58:47.794Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/elazig/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:47.428Z"
+   "lastOk": "2026-11-20T11:58:47.794Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:54:41.827Z",
+ "runAt": "2026-11-20T11:58:36.902Z",
  "mode": "full",
- "total": 135,
+ "total": 134,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 89,
-   "prevCount": 84,
+   "count": 87,
+   "prevCount": 89,
    "error": "",
    "notes": [
-    "açık veri: 83 seans",
+    "açık veri: 79 seans",
     "biletinial.com/tr-tr/tiyatro/duzce: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 102,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:41.827Z"
+   "lastOk": "2026-11-20T11:58:36.902Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 9,
-   "prevCount": 3,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "www.radarturkiye.com/duzce-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 190,
+   "seconds": 191,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:41.827Z"
+   "lastOk": "2026-11-20T11:58:36.902Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -73,7 +73,7 @@
    "ok": false,
    "status": "dustu",
    "count": 0,
-   "prevCount": 44,
+   "prevCount": 40,
    "error": "",
    "notes": [
     "allevents.in/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/duzce/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/duzce/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 183,
-   "failStreak": 3,
+   "seconds": 177,
+   "failStreak": 4,
    "lastOk": "2026-11-18T13:09:02.792Z"
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:41.827Z"
+   "lastOk": "2026-11-20T11:58:36.902Z"
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-20T01:12:09.048Z",
+ "runAt": "2026-11-20T12:16:44.385Z",
  "mode": "full",
  "total": 83,
  "written": true,
@@ -11,10 +11,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 77,
-   "prevCount": 80,
+   "prevCount": 77,
    "error": "",
    "notes": [
-    "açık veri: 73 seans",
+    "açık veri: 72 seans",
     "biletinial.com/tr-tr/tiyatro/malatya: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/malatya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/malatya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 98,
+   "seconds": 97,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:12:09.048Z"
+   "lastOk": "2026-11-20T12:16:44.385Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 5,
-   "prevCount": 4,
+   "prevCount": 9,
    "error": "",
    "notes": [
     "www.radarturkiye.com/malatya-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 189,
+   "seconds": 182,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:12:09.048Z"
+   "lastOk": "2026-11-20T12:16:44.385Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/malatya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/malatya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:12:09.048Z"
+   "lastOk": "2026-11-20T12:16:44.385Z"
   }
  }
 }

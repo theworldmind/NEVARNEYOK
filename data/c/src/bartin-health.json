@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:48:37.781Z",
+ "runAt": "2026-11-20T11:52:21.503Z",
  "mode": "full",
- "total": 142,
+ "total": 148,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 42,
-   "prevCount": 128,
+   "count": 43,
+   "prevCount": 138,
    "error": "",
    "notes": [
     "açık veri: 38 seans",
@@ -24,7 +24,7 @@
     "biletinial.com/tr-tr/egitim/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 92,
-   "failStreak": 10,
+   "failStreak": 11,
    "lastOk": "2026-11-15T10:26:55.775Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 1,
-   "prevCount": 0,
+   "prevCount": 1,
    "error": "",
    "notes": [
     "www.radarturkiye.com/bartin-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 151,
+   "seconds": 153,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:37.781Z"
+   "lastOk": "2026-11-20T11:52:21.503Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/bartin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bartin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 8,
+   "seconds": 157,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bartin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 13,
+   "seconds": 14,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:37.781Z"
+   "lastOk": "2026-11-20T11:52:21.503Z"
   }
  }
 }

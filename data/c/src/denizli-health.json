@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:54:38.642Z",
+ "runAt": "2026-11-20T11:58:18.396Z",
  "mode": "full",
- "total": 310,
+ "total": 324,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 66,
-   "prevCount": 233,
+   "count": 71,
+   "prevCount": 219,
    "error": "",
    "notes": [
-    "açık veri: 60 seans",
-    "biletinial.com/tr-tr/tiyatro/denizli: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 63 seans",
+    "biletinial.com/tr-tr/tiyatro/denizli: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/denizli: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/denizli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 101,
-   "failStreak": 10,
+   "seconds": 91,
+   "failStreak": 11,
    "lastOk": "2026-11-15T10:29:07.857Z"
   },
   "radar": {
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 89,
-   "prevCount": 58,
+   "count": 90,
+   "prevCount": 91,
    "error": "",
    "notes": [
     "www.radarturkiye.com/denizli-etkinlikleri: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/denizli-muzik-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/denizli-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/denizli-hafta-sonu-etkinlikleri: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/denizli-hafta-sonu-etkinlikleri: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=denizli: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=denizli: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 936,
+   "seconds": 1083,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:38.642Z"
+   "lastOk": "2026-11-20T11:58:18.396Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/denizli/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/denizli/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 168,
+   "seconds": 174,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:38.642Z"
+   "lastOk": "2026-11-20T11:58:18.396Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/denizli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:54:38.642Z"
+   "lastOk": "2026-11-20T11:58:18.396Z"
   }
  }
 }

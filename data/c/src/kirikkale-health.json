@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-20T01:08:54.087Z",
+ "runAt": "2026-11-20T12:13:45.668Z",
  "mode": "full",
  "total": 2,
  "written": true,
@@ -24,7 +24,7 @@
     "biletinial.com/tr-tr/egitim/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 80,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 151,
-   "failStreak": 8,
+   "seconds": 161,
+   "failStreak": 9,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kirikkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kirikkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 154,
-   "failStreak": 8,
+   "seconds": 156,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -96,14 +96,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 2,
-   "prevCount": 1,
+   "prevCount": 2,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kirikkale: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:08:54.087Z"
+   "lastOk": "2026-11-20T12:13:45.668Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:55:08.740Z",
+ "runAt": "2026-11-20T12:02:49.985Z",
  "mode": "full",
- "total": 415,
+ "total": 420,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,22 +10,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 240,
-   "prevCount": 245,
+   "count": 244,
+   "prevCount": 241,
    "error": "",
    "notes": [
     "açık veri: 228 seans, 1 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/eskisehir: 86 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/eskisehir: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/eskisehir: 89 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/eskisehir: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/eskisehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/eskisehir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 134,
+   "seconds": 123,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:55:08.740Z"
+   "lastOk": "2026-11-20T12:02:49.985Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 136,
-   "prevCount": 111,
+   "prevCount": 149,
    "error": "",
    "notes": [
     "www.radarturkiye.com/eskisehir-etkinlikleri: 53 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=eskisehir: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1225,
+   "seconds": 1403,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:55:08.740Z"
+   "lastOk": "2026-11-20T12:02:49.985Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -72,12 +72,12 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 32,
+   "count": 34,
    "prevCount": 15,
    "error": "",
    "notes": [
-    "allevents.in/eskisehir: 22 bağlantı, 16 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/eskisehir/all: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir: 23 bağlantı, 17 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir/all: 37 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/concerts: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +85,9 @@
     "allevents.in/eskisehir/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 177,
+   "seconds": 189,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:55:08.740Z"
+   "lastOk": "2026-11-20T12:02:49.985Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/eskisehir: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 28,
+   "seconds": 23,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:55:08.740Z"
+   "lastOk": "2026-11-20T12:02:49.985Z"
   },
   "efkm": {
    "id": "efkm",
@@ -112,14 +112,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 14,
-   "prevCount": 15,
+   "prevCount": 14,
    "error": "",
    "notes": [
     "www.efkm.com.tr/etkinlikler: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 18,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:55:08.740Z"
+   "lastOk": "2026-11-20T12:02:49.985Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T01:24:37.121Z",
+ "runAt": "2026-11-20T12:28:28.428Z",
  "mode": "full",
- "total": 116,
+ "total": 113,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 72,
-   "prevCount": 21,
+   "count": 69,
+   "prevCount": 72,
    "error": "",
    "notes": [
-    "açık veri: 68 seans",
+    "açık veri: 64 seans",
     "biletinial.com/tr-tr/tiyatro/usak: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/usak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/usak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:24:37.121Z"
+   "lastOk": "2026-11-20T12:28:28.428Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 9,
-   "prevCount": 0,
+   "prevCount": 9,
    "error": "",
    "notes": [
     "www.radarturkiye.com/usak-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 178,
+   "seconds": 199,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:24:37.121Z"
+   "lastOk": "2026-11-20T12:28:28.428Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -73,7 +73,7 @@
    "ok": false,
    "status": "dustu",
    "count": 0,
-   "prevCount": 37,
+   "prevCount": 36,
    "error": "",
    "notes": [
     "allevents.in/usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -86,7 +86,7 @@
     "allevents.in/usak/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 174,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": "2026-11-18T13:48:36.810Z"
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   }
  }

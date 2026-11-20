@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T01:11:49.289Z",
+ "runAt": "2026-11-20T12:14:50.879Z",
  "mode": "full",
- "total": 75,
+ "total": 79,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 76,
-   "prevCount": 73,
+   "count": 78,
+   "prevCount": 74,
    "error": "",
    "notes": [
-    "açık veri: 68 seans",
+    "açık veri: 71 seans",
     "biletinial.com/tr-tr/tiyatro/kutahya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kutahya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kutahya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:11:49.289Z"
+   "lastOk": "2026-11-20T12:14:50.879Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 1,
-   "prevCount": 0,
+   "prevCount": 1,
    "error": "",
    "notes": [
     "www.radarturkiye.com/kutahya-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 145,
+   "seconds": 153,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:11:49.289Z"
+   "lastOk": "2026-11-20T12:14:50.879Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kutahya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kutahya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 8,
+   "seconds": 156,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   }
  }

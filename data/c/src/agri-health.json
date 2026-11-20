@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:48:36.241Z",
+ "runAt": "2026-11-20T11:52:33.167Z",
  "mode": "full",
- "total": 41,
+ "total": 42,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 40,
-   "prevCount": 38,
+   "count": 41,
+   "prevCount": 40,
    "error": "",
    "notes": [
     "açık veri: 38 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/agri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:36.241Z"
+   "lastOk": "2026-11-20T11:52:33.167Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 1,
-   "prevCount": 0,
+   "prevCount": 1,
    "error": "",
    "notes": [
     "www.radarturkiye.com/agri-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 155,
+   "seconds": 164,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:36.241Z"
+   "lastOk": "2026-11-20T11:52:33.167Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/agri/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 8,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   }
  }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-20T01:17:33.317Z",
+ "runAt": "2026-11-20T12:21:54.175Z",
  "mode": "full",
  "total": 34,
  "written": true,
@@ -11,10 +11,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 34,
-   "prevCount": 58,
+   "prevCount": 34,
    "error": "",
    "notes": [
-    "açık veri: 30 seans",
+    "açık veri: 29 seans",
     "biletinial.com/tr-tr/tiyatro/osmaniye: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/osmaniye: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/osmaniye: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 78,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:17:33.317Z"
+   "lastOk": "2026-11-20T12:21:54.175Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 173,
-   "failStreak": 8,
+   "seconds": 148,
+   "failStreak": 9,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/osmaniye/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/osmaniye/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 182,
-   "failStreak": 8,
+   "seconds": 155,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 8,
+   "seconds": 5,
+   "failStreak": 9,
    "lastOk": null
   }
  }

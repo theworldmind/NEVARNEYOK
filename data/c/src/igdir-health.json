@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T01:05:42.032Z",
+ "runAt": "2026-11-20T12:04:55.067Z",
  "mode": "full",
- "total": 23,
+ "total": 24,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 7,
-   "prevCount": 27,
+   "prevCount": 23,
    "error": "",
    "notes": [
     "açık veri: 5 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
-   "failStreak": 10,
+   "seconds": 90,
+   "failStreak": 11,
    "lastOk": "2026-11-15T10:29:40.541Z"
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 165,
-   "failStreak": 8,
+   "seconds": 164,
+   "failStreak": 9,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/igdir/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/igdir/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 8,
+   "seconds": 157,
+   "failStreak": 9,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   }
  }

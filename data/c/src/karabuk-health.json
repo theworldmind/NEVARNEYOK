@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T01:04:23.533Z",
+ "runAt": "2026-11-20T12:09:53.266Z",
  "mode": "full",
- "total": 116,
+ "total": 123,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 65,
-   "prevCount": 105,
+   "count": 72,
+   "prevCount": 65,
    "error": "",
    "notes": [
-    "açık veri: 61 seans",
-    "biletinial.com/tr-tr/tiyatro/karabuk: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 62 seans",
+    "biletinial.com/tr-tr/tiyatro/karabuk: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/karabuk: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/karabuk: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:04:23.533Z"
+   "lastOk": "2026-11-20T12:09:53.266Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 49,
-   "prevCount": 46,
+   "prevCount": 52,
    "error": "",
    "notes": [
     "www.radarturkiye.com/karabuk-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=karabuk: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1044,
+   "seconds": 1047,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:04:23.533Z"
+   "lastOk": "2026-11-20T12:09:53.266Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/karabuk/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/karabuk/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
-   "failStreak": 7,
+   "seconds": 156,
+   "failStreak": 8,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   }
  }

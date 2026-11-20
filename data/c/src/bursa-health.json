@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:48:35.238Z",
+ "runAt": "2026-11-20T11:52:08.161Z",
  "mode": "full",
- "total": 1372,
+ "total": 1393,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,21 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 398,
-   "prevCount": 1258,
+   "count": 405,
+   "prevCount": 1226,
    "error": "",
    "notes": [
-    "açık veri: 371 seans, 6 detay sayfası",
+    "açık veri: 370 seans, 5 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/bursa: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/bursa: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/bursa: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bursa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/bursa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/bursa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/bursa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bursa: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 159,
-   "failStreak": 10,
+   "seconds": 162,
+   "failStreak": 11,
    "lastOk": "2026-11-15T10:28:55.678Z"
   },
   "radar": {
@@ -34,10 +34,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 139,
-   "prevCount": 104,
+   "prevCount": 160,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/bursa-etkinlikleri: 55 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/bursa-etkinlikleri: 54 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/bursa-muzik-etkinlikleri: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/bursa-tiyatro-etkinlikleri: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/bursa-hafta-sonu-etkinlikleri: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bursa: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bursa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 809,
+   "seconds": 1364,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:35.238Z"
+   "lastOk": "2026-11-20T11:52:08.161Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -77,9 +77,9 @@
    "error": "",
    "notes": [
     "allevents.in/bursa: 17 bağlantı, 15 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/bursa/all: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/bursa/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/bursa/parties: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/bursa/all: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/bursa/concerts: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/bursa/parties: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/bursa/comedy: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/bursa/performances: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/bursa/workshops: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -87,7 +87,7 @@
    ],
    "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:35.238Z"
+   "lastOk": "2026-11-20T11:52:08.161Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -96,14 +96,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 1,
-   "prevCount": 0,
+   "prevCount": 1,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bursa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:35.238Z"
+   "lastOk": "2026-11-20T11:52:08.161Z"
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-20T00:48:38.400Z",
+ "runAt": "2026-11-20T11:52:40.716Z",
  "mode": "full",
  "total": 71,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
+   "seconds": 94,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:38.400Z"
+   "lastOk": "2026-11-20T11:52:40.716Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 1,
-   "prevCount": 0,
+   "prevCount": 1,
    "error": "",
    "notes": [
     "www.radarturkiye.com/artvin-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 147,
+   "seconds": 158,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:38.400Z"
+   "lastOk": "2026-11-20T11:52:40.716Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -73,7 +73,7 @@
    "ok": false,
    "status": "dustu",
    "count": 1,
-   "prevCount": 48,
+   "prevCount": 46,
    "error": "",
    "notes": [
     "allevents.in/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/artvin/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 177,
-   "failStreak": 3,
+   "seconds": 175,
+   "failStreak": 4,
    "lastOk": "2026-11-18T13:02:12.245Z"
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
-   "failStreak": 3,
+   "seconds": 11,
+   "failStreak": 4,
    "lastOk": "2026-11-18T13:02:12.245Z"
   }
  }

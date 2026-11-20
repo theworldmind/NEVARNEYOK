@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T00:48:42.923Z",
+ "runAt": "2026-11-20T11:52:09.955Z",
  "mode": "full",
- "total": 104,
+ "total": 103,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 66,
-   "prevCount": 133,
+   "count": 63,
+   "prevCount": 64,
    "error": "",
    "notes": [
-    "açık veri: 60 seans",
+    "açık veri: 58 seans",
     "biletinial.com/tr-tr/tiyatro/amasya: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/amasya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:42.923Z"
+   "lastOk": "2026-11-20T11:52:09.955Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 149,
+   "seconds": 154,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:42.923Z"
+   "lastOk": "2026-11-20T11:52:09.955Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -73,7 +73,7 @@
    "ok": false,
    "status": "dustu",
    "count": 0,
-   "prevCount": 38,
+   "prevCount": 37,
    "error": "",
    "notes": [
     "allevents.in/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/amasya/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/amasya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 182,
-   "failStreak": 3,
+   "seconds": 175,
+   "failStreak": 4,
    "lastOk": "2026-11-18T13:02:05.936Z"
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-20T00:48:42.923Z"
+   "lastOk": "2026-11-20T11:52:09.955Z"
   }
  }
 }

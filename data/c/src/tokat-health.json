@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T01:23:40.115Z",
+ "runAt": "2026-11-20T12:27:47.679Z",
  "mode": "full",
- "total": 80,
+ "total": 82,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 77,
-   "prevCount": 74,
+   "count": 79,
+   "prevCount": 77,
    "error": "",
    "notes": [
     "açık veri: 73 seans, 1 detay sayfası",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/tokat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/tokat: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
+   "seconds": 102,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:23:40.115Z"
+   "lastOk": "2026-11-20T12:27:47.679Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 1,
-   "prevCount": 0,
+   "prevCount": 1,
    "error": "",
    "notes": [
     "www.radarturkiye.com/tokat-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=tokat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tokat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 152,
+   "seconds": 155,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:23:40.115Z"
+   "lastOk": "2026-11-20T12:27:47.679Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/tokat/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tokat/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 172,
+   "seconds": 179,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:23:40.115Z"
+   "lastOk": "2026-11-20T12:27:47.679Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/tokat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 8,
+   "seconds": 8,
+   "failStreak": 9,
    "lastOk": null
   }
  }

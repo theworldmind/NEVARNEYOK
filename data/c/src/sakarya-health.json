@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T01:18:16.050Z",
+ "runAt": "2026-11-20T12:23:09.904Z",
  "mode": "full",
- "total": 546,
+ "total": 561,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 139,
-   "prevCount": 525,
+   "count": 145,
+   "prevCount": 528,
    "error": "",
    "notes": [
     "açık veri: 132 seans",
@@ -23,18 +23,18 @@
     "biletinial.com/tr-tr/festival/sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sakarya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 120,
-   "failStreak": 9,
+   "seconds": 116,
+   "failStreak": 10,
    "lastOk": "2026-11-15T10:33:36.635Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "dustu",
+   "ok": true,
+   "status": "calisiyor",
    "count": 19,
-   "prevCount": 119,
+   "prevCount": 29,
    "error": "",
    "notes": [
     "www.radarturkiye.com/sakarya-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1028,
-   "failStreak": 1,
-   "lastOk": "2026-11-19T01:27:38.095Z"
+   "seconds": 226,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T12:23:09.904Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/sakarya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sakarya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 7,
+   "seconds": 154,
+   "failStreak": 8,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/sakarya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 13,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:18:16.050Z"
+   "lastOk": "2026-11-20T12:23:09.904Z"
   }
  }
 }

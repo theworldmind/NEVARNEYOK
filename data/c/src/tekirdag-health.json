@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T01:23:07.845Z",
+ "runAt": "2026-11-20T12:27:27.254Z",
  "mode": "full",
- "total": 566,
+ "total": 586,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 164,
-   "prevCount": 554,
+   "count": 173,
+   "prevCount": 546,
    "error": "",
    "notes": [
-    "açık veri: 146 seans, 7 detay sayfası",
+    "açık veri: 143 seans, 8 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/tekirdag: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/tekirdag: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -24,17 +24,17 @@
     "biletinial.com/tr-tr/egitim/tekirdag: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 116,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": "2026-11-15T10:34:30.216Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "dustu",
+   "ok": true,
+   "status": "calisiyor",
    "count": 15,
-   "prevCount": 55,
+   "prevCount": 25,
    "error": "",
    "notes": [
     "www.radarturkiye.com/tekirdag-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 862,
-   "failStreak": 1,
-   "lastOk": "2026-11-19T01:31:17.731Z"
+   "seconds": 239,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T12:27:27.254Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/tekirdag/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tekirdag/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 171,
-   "failStreak": 7,
+   "seconds": 170,
+   "failStreak": 8,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/tekirdag: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:23:07.845Z"
+   "lastOk": "2026-11-20T12:27:27.254Z"
   }
  }
 }

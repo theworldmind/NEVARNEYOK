@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T01:01:17.320Z",
+ "runAt": "2026-11-20T12:04:53.316Z",
  "mode": "full",
- "total": 128,
+ "total": 132,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 36,
-   "prevCount": 110,
+   "count": 35,
+   "prevCount": 116,
    "error": "",
    "notes": [
-    "açık veri: 30 seans",
+    "açık veri: 29 seans",
     "biletinial.com/tr-tr/tiyatro/isparta: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/isparta: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,18 +23,18 @@
     "biletinial.com/tr-tr/festival/isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 97,
-   "failStreak": 10,
+   "seconds": 90,
+   "failStreak": 11,
    "lastOk": "2026-11-15T10:30:20.889Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "dustu",
+   "ok": true,
+   "status": "calisiyor",
    "count": 8,
-   "prevCount": 25,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "www.radarturkiye.com/isparta-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 408,
-   "failStreak": 1,
-   "lastOk": "2026-11-19T12:07:30.654Z"
+   "seconds": 202,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T12:04:53.316Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/isparta/workshops: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/isparta/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 171,
+   "seconds": 172,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:01:17.320Z"
+   "lastOk": "2026-11-20T12:04:53.316Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-20T01:01:17.320Z"
+   "lastOk": "2026-11-20T12:04:53.316Z"
   }
  }
 }
