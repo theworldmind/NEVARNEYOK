@@ -2084,5 +2084,25 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/pub"
+ },
+ "icaz restoran": {
+  "lat": 39.830162,
+  "lng": 32.747459,
+  "addr": "Mayra Park AVM, 2899. Sokak No:10B/25 D:2.Kat Teras",
+  "ilce": "Çankaya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "Barrio Pub": {
+  "lat": 39.894119,
+  "lng": 32.858097,
+  "addr": "Üsküp Caddesi 24B",
+  "ilce": "Çankaya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
  }
 }

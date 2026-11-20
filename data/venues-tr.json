@@ -17627,5 +17627,415 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/cafe"
+ },
+ "batman|Batman Hatice Nasıroğlu Konferans Salonu": {
+  "lat": 37.9089647,
+  "lng": 41.1290254,
+  "addr": "G&#252;ltepe Mah. Demokrasi Bul. 72070 Necat Nasıroğlu K&#252;lliyesi Batman Merkez MERKEZ/Batman",
+  "ilce": "MERKEZ",
+  "src": "biletinial",
+  "v": 2
+ },
+ "bursa|Merinos Akkm Osmangazi Salonu": {
+  "lat": 40.1996523,
+  "lng": 29.0523044,
+  "addr": "Santral Garaj, Atat&#252;rk Kongre K&#252;lt&#252;r Merkezi, 16099 Osmangazi/Bursa",
+  "ilce": "Osmangazi",
+  "src": "biletinial",
+  "v": 2
+ },
+ "eskisehir|Opus XI": {
+  "lat": 39.764325,
+  "lng": 30.527715,
+  "addr": "Akcami Mah. Dedelek Sk. No:11, 26030 Odunpazarı/Eskişehir",
+  "ilce": "Odunpazarı",
+  "src": "biletinial",
+  "v": 2
+ },
+ "eskisehir|ArtCorner Sahne/Cassaba Modern": {
+  "lat": 39.784498,
+  "lng": 30.5007109,
+  "addr": "HOŞNUDİYE MAH. 770 SK. CASABA MODERN NO: 4 İ&#199; KAPI NO: B106 (-1 KAT) TEPEBAŞI/ ESKİŞEHİR",
+  "ilce": "TEPEBAŞI",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|Paribu ART Ana Sahne · Ayakta": {
+  "lat": 40.9914327,
+  "lng": 29.0363885,
+  "addr": "Hasanpaşa, Kurbağalıdere Cd. No:2/26 GH Blok, İ&#231; Kapı No:13, 34722 Kadık&#246;y/İstanbul",
+  "ilce": "Kadık&#246;y",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|Leyla Gencer Opera Ve Sanat Merkezi": {
+  "lat": 40.9942966,
+  "lng": 28.8774905,
+  "addr": "Osmaniye, İncirli Yolu Sk. No:1 D:20, 34146 Bakırk&#246;y/İstanbul",
+  "ilce": "Bakırk&#246;y",
+  "src": "biletinial",
+  "v": 2
+ },
+ "mugla|Fethiye Beşkoza Kapalı Spor Salonu": {
+  "lat": 36.674021,
+  "lng": 29.167341,
+  "addr": "Eldireık Mah., &#199;obanlar Sok. 43/5, 48300 Fethiye/Muğla",
+  "ilce": "Fethiye",
+  "src": "biletinial",
+  "v": 2
+ },
+ "tekirdag|Arsera Cafe & Events": {
+  "lat": 40.9855736,
+  "lng": 27.5821568,
+  "addr": "Değirmenaltı Mh. Adnan Karaevli Sk no:28/A S&#252;leymanpaşa / Tekirdağ",
+  "ilce": "S&#252;leymanpaşa",
+  "src": "biletinial",
+  "v": 2
+ },
+ "antalya|Ceila Club": {
+  "lat": 36.850328,
+  "lng": 30.762809,
+  "addr": "Çağlayan Mahallesi, Fener Caddesi No: 12/A, 07230 Muratpaşa/Antalya, Muratpaşa, Antalya",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "antalya|Muratpaşa Belediyesi Kültür Merkezi": {
+  "lat": 36.851968,
+  "lng": 30.75975,
+  "addr": "Fener Mahallesi Tekelioğlu Caddesi No:63 MURATPAŞA ANTALYA, Antalya, Antalya",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "aydin|Nazilli Belediyesi Tiyatro Salonu": {
+  "lat": 37.916771,
+  "lng": 28.324228,
+  "addr": "Yeni, Hürriyet Cd. No:184, 09800 Nazilli/Aydın, Türkiye, Aydın",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "gaziantep|Gaziantep Şehitkamil Kültür ve Kongre Merkezi": {
+  "lat": 37.079535,
+  "lng": 37.359329,
+  "addr": "Mücahitler, Şehitkamil Kültür Ve Kongre Mrk., 27090 Şehitkamil/Gaziantep, Gaziantep, Gaziantep",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|HoP House of Performance Bakırköy": {
+  "lat": 40.978508,
+  "lng": 28.872588,
+  "addr": "Zeytinlik, Türkçü Sk. No:6, 34140 Bakırköy/İstanbul, İstanbul",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|Sultangazi Hoca Ahmet Yesevi Kültür Merkezi": {
+  "lat": 41.097691,
+  "lng": 28.876467,
+  "addr": "Esentepe Mahallesi, Hoca Ahmet Yesevi Blv No:38, 34265 Sultangazi/İstanbul, İstanbul Avrupa, İstanbul Avrupa",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "izmir|8019/16 sk. No:4 Ataşehir Mah., Mavişehir · Çiğli Kavşağı (Ekol Sağlık Kampüsü İçi), Çiğli /İZMİR, Izmir": {
+  "lat": 38.48535,
+  "lng": 27.05985,
+  "addr": "8019/16. Sokak 4, 35620, Ataşehir, Ciğli/İzmir, Turkiye, Izmir, IZ",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "izmir|Ege Üniversitesi AKM Yunus Emre Salonu": {
+  "lat": 38.415695,
+  "lng": 27.126526,
+  "addr": "Ege Üniversitesi 92/A Mithat Paşa Cad, 35260 Konak/İzmir, İzmir, İzmir",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "mugla|Marmaris Armutalan KM Tarık Akan Salonu": {
+  "lat": 36.982428,
+  "lng": 28.247956,
+  "addr": "Marmaris Belediyesi Armutalan Kültür Merkezi, Armutalan, 48706 Marmaris/Muğla, Muğla, Muğla",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "ordu|Fatsa Belediyesi Kültür Sarayı": {
+  "lat": 41.035774,
+  "lng": 37.492182,
+  "addr": "Mustafakemalpaşa, Samsun-Ordu Yolu, 52400 Fatsa/Ordu, Ordu, Ordu",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "osmaniye|Kadirli Devlet Bahçeli Kültür Merkezi": {
+  "lat": 37.367954,
+  "lng": 36.095068,
+  "addr": "Şehit Vedat Kocadallı, Kamil Kara Blv. No:359, 80750 Kadirli/Osmaniye, Osmaniye, Osmaniye",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "amasya|Afyon Girne Koleji": {
+  "lat": 40.651596,
+  "lng": 35.833092,
+  "addr": "Amasya",
+  "ilce": "Amasya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "antalya|Megasaray Westbeach": {
+  "lat": 36.8599066,
+  "lng": 30.6335272,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "aydin|Nurullah Kocabıyık Kültür Merkezi": {
+  "lat": 37.370941,
+  "lng": 27.271156,
+  "addr": "19 Mayıs Caddesi 21",
+  "ilce": "Didim",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "balikesir|Lemon Bandırma": {
+  "lat": 40.355206,
+  "lng": 27.970667,
+  "addr": "Kaşif Acar Caddesi 4",
+  "ilce": "Bandırma",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "bursa|Marjin Bistro Pub": {
+  "lat": 40.427734,
+  "lng": 29.155336,
+  "addr": "2. Aralık Sk.",
+  "ilce": "Gemlik",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "edirne|Afyon Girne Koleji": {
+  "lat": 41.599976,
+  "lng": 26.672569,
+  "addr": "Edirne",
+  "ilce": "Edirne",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "gaziantep|Şehitkamil Kültür Ve Kongre Merkezi": {
+  "lat": 37.079535,
+  "lng": 37.359329,
+  "addr": "Mücahitler, Şehitkamil Kültür Ve Kongre Mrk., 27090 Şehitkamil/Gaziantep, Gaziantep, Gaziantep",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "isparta|Beygir Pub": {
+  "lat": 37.765789,
+  "lng": 30.55517,
+  "addr": "Kutlubey mahallesi 1003 sokak, kafeler caddesi no:11",
+  "ilce": "Isparta",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "istanbul|Ruwa Coffee": {
+  "lat": 40.9018822,
+  "lng": 29.2266251,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Fil Sahne": {
+  "lat": 40.989601,
+  "lng": 29.02252,
+  "addr": "Neşet Ömer Sk. No:18",
+  "ilce": "Kadıköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "izmir|ÇİFTEKAVRULMUŞ ATÖLYE": {
+  "lat": 38.46899,
+  "lng": 27.08823,
+  "addr": "Dilek Apt, 6440/2. Sk. No:3/A",
+  "ilce": "Karşıyaka",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|SCARLET": {
+  "lat": 38.4386375,
+  "lng": 27.1481683,
+  "addr": "Atatürk Caddesi, Mimar Sinan, Mimar Sinan",
+  "ilce": "Mimar Sinan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|Univercity Park Avm SİNEMASI": {
+  "lat": 38.3694465,
+  "lng": 27.2067405,
+  "addr": "DEÜ Merkez Yerleşkesi İç Yolu No:22, Adatepe Mahallesi, Buca",
+  "ilce": "Buca",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|People’s Social": {
+  "lat": 38.458885,
+  "lng": 27.091339,
+  "addr": "2021. Sk. No:3",
+  "ilce": "Karşıyaka",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|İzmir Nazım Hikmet Kültür Merkezi": {
+  "lat": 38.4182725,
+  "lng": 27.1301746,
+  "addr": "846. Sokak, Konak, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|Bornova Bozkurt Kuruç Sahnesi · DT Mutfak": {
+  "lat": 38.463596,
+  "lng": 27.211508,
+  "addr": "Mustafa Kemal Cd. No:60",
+  "ilce": "Bornova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "karabuk|Karabük 100 Yıl Kültür Merkezi": {
+  "lat": 41.224339,
+  "lng": 32.668396,
+  "addr": "Safranbolu",
+  "ilce": "Safranbolu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "kars|Ahmet Arslan KKM": {
+  "lat": 40.5809467,
+  "lng": 43.0565672,
+  "addr": "Üniversite Sok., Şehitler Mahallesi, Şehitler Mahallesi",
+  "ilce": "Şehitler Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "kars|Kars Ahmet Arslan Kültür ve Kongre Merkezi": {
+  "lat": 40.5809467,
+  "lng": 43.0565672,
+  "addr": "Üniversite Sok., Şehitler Mahallesi, Şehitler Mahallesi",
+  "ilce": "Şehitler Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mersin|Social Hall Mersin": {
+  "lat": 36.772884,
+  "lng": 34.539925,
+  "addr": "Smart point, Üniversite Cd. No:48/C B blok",
+  "ilce": "Mezitli",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mersin|Tünel Performans Mersin": {
+  "lat": 36.772369,
+  "lng": 34.540337,
+  "addr": "Çiftlikköy mah. Üniversite cad. Venüs ünivercity A blok No:50AC",
+  "ilce": "Yenişehir",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "mugla|Afyon Girne Koleji": {
+  "lat": 37.216396,
+  "lng": 28.363899,
+  "addr": "Mugla",
+  "ilce": "Menteşe",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "osmaniye|Devlet Bahçeli Kültür Merkezi": {
+  "lat": 37.367954,
+  "lng": 36.095068,
+  "addr": "Şehit Vedat Kocadallı, Kamil Kara Blv. No:359, 80750 Kadirli/Osmaniye, Osmaniye, Osmaniye",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "sivas|FATİH KÜLTÜR MERKEZİ": {
+  "lat": 39.7614541,
+  "lng": 36.9922912,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre",
+  "m": "ov"
+ },
+ "mugla|Dalaman Atatürk Spor Salonu": {
+  "lat": 36.7800798,
+  "lng": 28.8012538,
+  "addr": "Gazi Bayram Diker Cadde, Bezkese, Dalaman",
+  "ilce": "Dalaman",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/pitch"
+ },
+ "mugla|Spor": {
+  "lat": 37.2128251,
+  "lng": 28.3746099,
+  "addr": "Zihni Derin Caddesi, Orhaniye Mahallesi, Menteşe",
+  "ilce": "Menteşe",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/sports_centre"
  }
 }
