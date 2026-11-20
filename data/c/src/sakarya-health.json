@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:27:38.095Z",
+ "runAt": "2026-11-20T01:18:16.050Z",
  "mode": "full",
- "total": 631,
+ "total": 546,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,44 +10,44 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 106,
-   "prevCount": 571,
+   "count": 139,
+   "prevCount": 525,
    "error": "",
    "notes": [
-    "açık veri: 100 seans",
-    "biletinial.com/tr-tr/tiyatro/sakarya: 68 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 132 seans",
+    "biletinial.com/tr-tr/tiyatro/sakarya: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sakarya: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/sakarya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/sakarya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/egitim/sakarya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 121,
-   "failStreak": 8,
+   "seconds": 120,
+   "failStreak": 9,
    "lastOk": "2026-11-15T10:33:36.635Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 105,
-   "prevCount": 106,
+   "ok": false,
+   "status": "dustu",
+   "count": 19,
+   "prevCount": 119,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/sakarya-etkinlikleri: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/sakarya-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/sakarya-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/sakarya-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/sakarya-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/sakarya-muzik-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/sakarya-tiyatro-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/sakarya-hafta-sonu-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=sakarya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=sakarya: 84 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1030,
-   "failStreak": 0,
+   "seconds": 1028,
+   "failStreak": 1,
    "lastOk": "2026-11-19T01:27:38.095Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/sakarya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sakarya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 6,
+   "seconds": 157,
+   "failStreak": 7,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/sakarya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:27:38.095Z"
+   "lastOk": "2026-11-20T01:18:16.050Z"
   }
  }
 }

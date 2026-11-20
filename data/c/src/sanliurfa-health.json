@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:29:09.125Z",
+ "runAt": "2026-11-20T01:22:44.359Z",
  "mode": "full",
- "total": 63,
+ "total": 67,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 57,
+   "count": 58,
    "prevCount": 131,
    "error": "",
    "notes": [
-    "açık veri: 52 seans",
-    "biletinial.com/tr-tr/tiyatro/sanliurfa: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 54 seans",
+    "biletinial.com/tr-tr/tiyatro/sanliurfa: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sanliurfa: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,32 +23,32 @@
     "biletinial.com/tr-tr/festival/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sanliurfa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:29:09.125Z"
+   "lastOk": "2026-11-20T01:22:44.359Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "dustu",
-   "count": 0,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 7,
    "prevCount": 7,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/sanliurfa-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/sanliurfa-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/sanliurfa-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/sanliurfa-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/sanliurfa-etkinlikleri: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/sanliurfa-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/sanliurfa-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/sanliurfa-hafta-sonu-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 153,
-   "failStreak": 1,
-   "lastOk": "2026-11-18T13:44:31.267Z"
+   "seconds": 206,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T01:22:44.359Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/sanliurfa/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sanliurfa/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 6,
+   "seconds": 157,
+   "failStreak": 7,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   }
  }

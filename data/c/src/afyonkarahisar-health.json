@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T11:53:22.910Z",
+ "runAt": "2026-11-20T00:50:39.790Z",
  "mode": "full",
- "total": 244,
+ "total": 270,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/afyonkarahisar: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
-   "failStreak": 9,
+   "seconds": 111,
+   "failStreak": 10,
    "lastOk": "2026-11-15T10:26:54.753Z"
   },
   "radar": {
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 36,
-   "prevCount": 36,
+   "count": 70,
+   "prevCount": 37,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/afyonkarahisar-etkinlikleri: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/afyonkarahisar-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/afyonkarahisar-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/afyonkarahisar-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/afyonkarahisar-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/afyonkarahisar-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/afyonkarahisar-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/afyonkarahisar-hafta-sonu-etkinlikleri: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=afyonkarahisar: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=afyonkarahisar: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1015,
+   "seconds": 862,
    "failStreak": 0,
-   "lastOk": "2026-11-19T11:53:22.910Z"
+   "lastOk": "2026-11-20T00:50:39.790Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/afyonkarahisar/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 8,
-   "failStreak": 7,
+   "seconds": 6,
+   "failStreak": 8,
    "lastOk": null
   }
  }

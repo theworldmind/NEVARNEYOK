@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:31:26.215Z",
+ "runAt": "2026-11-20T01:23:54.908Z",
  "mode": "full",
- "total": 54,
+ "total": 48,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 5,
-   "prevCount": 6,
+   "count": 3,
+   "prevCount": 5,
    "error": "",
    "notes": [
-    "açık veri: 3 seans",
+    "açık veri: 1 seans",
     "biletinial.com/tr-tr/tiyatro/tunceli: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/tunceli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,32 +23,32 @@
     "biletinial.com/tr-tr/festival/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/tunceli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
+   "seconds": 78,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:31:26.215Z"
+   "lastOk": "2026-11-20T01:23:54.908Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 1,
    "prevCount": 0,
    "error": "",
    "notes": [
     "www.radarturkiye.com/tunceli-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/tunceli-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/tunceli-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/tunceli-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/tunceli-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/tunceli-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/tunceli-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 145,
-   "failStreak": 6,
-   "lastOk": null
+   "seconds": 149,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T01:23:54.908Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -72,8 +72,8 @@
    "kind": "toplayici",
    "ok": false,
    "status": "dustu",
-   "count": 1,
-   "prevCount": 50,
+   "count": 2,
+   "prevCount": 49,
    "error": "",
    "notes": [
     "allevents.in/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/tunceli/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tunceli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 190,
-   "failStreak": 1,
+   "seconds": 193,
+   "failStreak": 2,
    "lastOk": "2026-11-18T13:48:17.224Z"
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   }
  }

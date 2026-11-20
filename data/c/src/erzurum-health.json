@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:07:38.894Z",
+ "runAt": "2026-11-20T00:55:00.939Z",
  "mode": "full",
- "total": 119,
+ "total": 158,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 59,
-   "prevCount": 57,
+   "prevCount": 59,
    "error": "",
    "notes": [
     "açık veri: 56 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 113,
+   "seconds": 80,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:07:38.894Z"
+   "lastOk": "2026-11-20T00:55:00.939Z"
   },
   "radar": {
    "id": "radar",
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 53,
-   "prevCount": 54,
+   "count": 93,
+   "prevCount": 55,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/erzurum-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/erzurum-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/erzurum-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/erzurum-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/erzurum-etkinlikleri: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/erzurum-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/erzurum-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/erzurum-hafta-sonu-etkinlikleri: 49 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=erzurum: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=erzurum: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 956,
+   "seconds": 1054,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:07:38.894Z"
+   "lastOk": "2026-11-20T00:55:00.939Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/erzurum/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/erzurum/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 164,
+   "seconds": 169,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:07:38.894Z"
+   "lastOk": "2026-11-20T00:55:00.939Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-19T01:07:38.894Z"
+   "lastOk": "2026-11-20T00:55:00.939Z"
   }
  }
 }

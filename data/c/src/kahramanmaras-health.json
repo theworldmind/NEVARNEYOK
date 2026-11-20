@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T12:09:58.727Z",
+ "runAt": "2026-11-20T01:04:06.078Z",
  "mode": "full",
- "total": 226,
+ "total": 240,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 11,
-   "prevCount": 217,
+   "count": 36,
+   "prevCount": 221,
    "error": "",
    "notes": [
-    "açık veri: 10 seans",
+    "açık veri: 35 seans",
     "biletinial.com/tr-tr/tiyatro/kahramanmaras: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kahramanmaras: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,32 +23,32 @@
     "biletinial.com/tr-tr/festival/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kahramanmaras: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 108,
-   "failStreak": 9,
+   "seconds": 111,
+   "failStreak": 10,
    "lastOk": "2026-11-15T10:31:14.099Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "dustu",
-   "count": 0,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 3,
    "prevCount": 3,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/kahramanmaras-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/kahramanmaras-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/kahramanmaras-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/kahramanmaras-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/kahramanmaras-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kahramanmaras-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kahramanmaras-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kahramanmaras-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 149,
-   "failStreak": 5,
-   "lastOk": "2026-11-17T11:59:33.138Z"
+   "seconds": 212,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T01:04:06.078Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/kahramanmaras/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kahramanmaras/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 181,
+   "seconds": 167,
    "failStreak": 0,
-   "lastOk": "2026-11-19T12:09:58.727Z"
+   "lastOk": "2026-11-20T01:04:06.078Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kahramanmaras: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 7,
+   "seconds": 6,
+   "failStreak": 8,
    "lastOk": null
   }
  }

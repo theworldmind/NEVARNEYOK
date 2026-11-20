@@ -1,54 +1,54 @@
 {
- "runAt": "2026-11-19T12:17:53.494Z",
+ "runAt": "2026-11-20T01:14:01.377Z",
  "mode": "full",
- "total": 105,
+ "total": 68,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 31,
-   "prevCount": 98,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 64,
+   "prevCount": 103,
    "error": "",
    "notes": [
-    "açık veri: 27 seans",
+    "açık veri: 60 seans",
     "biletinial.com/tr-tr/tiyatro/mardin: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/mardin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/mardin: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
-   "failStreak": 2,
-   "lastOk": "2026-11-18T13:32:43.444Z"
+   "seconds": 103,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T01:14:01.377Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 4,
    "prevCount": 0,
    "error": "",
    "notes": [
     "www.radarturkiye.com/mardin-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/mardin-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/mardin-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/mardin-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/mardin-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mardin-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mardin-hafta-sonu-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 155,
-   "failStreak": 7,
-   "lastOk": null
+   "seconds": 159,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T01:14:01.377Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/mardin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/mardin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 7,
+   "seconds": 156,
+   "failStreak": 8,
    "lastOk": null
   },
   "biletimgo": {
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 2,
+   "count": 1,
    "prevCount": 2,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/mardin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-19T12:17:53.494Z"
+   "lastOk": "2026-11-20T01:14:01.377Z"
   }
  }
 }

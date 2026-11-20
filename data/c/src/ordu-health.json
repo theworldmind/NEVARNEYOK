@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T01:25:18.409Z",
+ "runAt": "2026-11-20T01:16:45.298Z",
  "mode": "full",
- "total": 288,
+ "total": 275,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 45,
-   "prevCount": 212,
+   "count": 74,
+   "prevCount": 187,
    "error": "",
    "notes": [
-    "açık veri: 41 seans, 1 detay sayfası",
+    "açık veri: 70 seans, 2 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/ordu: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/ordu: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,31 +23,31 @@
     "biletinial.com/tr-tr/festival/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/ordu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
-   "failStreak": 8,
+   "seconds": 91,
+   "failStreak": 9,
    "lastOk": "2026-11-15T10:33:34.326Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 44,
-   "prevCount": 45,
+   "ok": false,
+   "status": "dustu",
+   "count": 4,
+   "prevCount": 48,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/ordu-etkinlikleri: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/ordu-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/ordu-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/ordu-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/ordu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/ordu-muzik-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/ordu-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/ordu-hafta-sonu-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=ordu: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 754,
-   "failStreak": 0,
+   "seconds": 1044,
+   "failStreak": 1,
    "lastOk": "2026-11-19T01:25:18.409Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": null
   },
   "allevents": {
@@ -77,16 +77,16 @@
    "error": "",
    "notes": [
     "allevents.in/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ordu/all: 0 bağlantı, 13 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ordu/all: 0 bağlantı, 12 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/concerts: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/parties: 0 bağlantı, 18 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ordu/comedy: 0 bağlantı, 5 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/ordu/comedy: 0 bağlantı, 7 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/performances: 0 bağlantı, 10 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/workshops: 0 bağlantı, 11 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 192,
-   "failStreak": 1,
+   "seconds": 179,
+   "failStreak": 2,
    "lastOk": "2026-11-18T13:37:00.563Z"
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/ordu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
-   "failStreak": 6,
+   "seconds": 10,
+   "failStreak": 7,
    "lastOk": null
   }
  }

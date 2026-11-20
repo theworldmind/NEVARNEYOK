@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-19T11:53:25.145Z",
+ "runAt": "2026-11-20T00:48:42.923Z",
  "mode": "full",
- "total": 176,
+ "total": 104,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 32,
-   "prevCount": 128,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 66,
+   "prevCount": 133,
    "error": "",
    "notes": [
-    "açık veri: 25 seans",
+    "açık veri: 60 seans",
     "biletinial.com/tr-tr/tiyatro/amasya: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/amasya: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
-   "failStreak": 9,
-   "lastOk": "2026-11-15T10:26:53.901Z"
+   "seconds": 85,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T00:48:42.923Z"
   },
   "radar": {
    "id": "radar",
@@ -37,18 +37,18 @@
    "prevCount": 6,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/amasya-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/amasya-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/amasya-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/amasya-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/amasya-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/amasya-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/amasya-tiyatro-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/amasya-hafta-sonu-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 168,
+   "seconds": 149,
    "failStreak": 0,
-   "lastOk": "2026-11-19T11:53:25.145Z"
+   "lastOk": "2026-11-20T00:48:42.923Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/amasya/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/amasya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 175,
-   "failStreak": 2,
+   "seconds": 182,
+   "failStreak": 3,
    "lastOk": "2026-11-18T13:02:05.936Z"
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-19T11:53:25.145Z"
+   "lastOk": "2026-11-20T00:48:42.923Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T12:03:51.506Z",
+ "runAt": "2026-11-20T00:54:47.428Z",
  "mode": "full",
- "total": 57,
+ "total": 62,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 48,
+   "count": 49,
    "prevCount": 50,
    "error": "",
    "notes": [
@@ -23,32 +23,32 @@
     "biletinial.com/tr-tr/festival/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 105,
+   "seconds": 99,
    "failStreak": 0,
-   "lastOk": "2026-11-19T12:03:51.506Z"
+   "lastOk": "2026-11-20T00:54:47.428Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "dustu",
-   "count": 0,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 8,
    "prevCount": 6,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/elazig-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/elazig-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/elazig-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/elazig-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/elazig-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/elazig-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/elazig-tiyatro-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/elazig-hafta-sonu-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 147,
-   "failStreak": 2,
-   "lastOk": "2026-11-18T13:11:40.454Z"
+   "seconds": 195,
+   "failStreak": 0,
+   "lastOk": "2026-11-20T00:54:47.428Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/elazig/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-19T12:03:51.506Z"
+   "lastOk": "2026-11-20T00:54:47.428Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-19T12:28:33.909Z",
+ "runAt": "2026-11-20T01:24:04.424Z",
  "mode": "full",
- "total": 124,
+ "total": 77,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 66,
-   "prevCount": 70,
+   "count": 63,
+   "prevCount": 66,
    "error": "",
    "notes": [
-    "açık veri: 61 seans",
+    "açık veri: 58 seans",
     "biletinial.com/tr-tr/tiyatro/trabzon: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/trabzon: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,31 +23,31 @@
     "biletinial.com/tr-tr/festival/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/trabzon: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 100,
+   "seconds": 104,
    "failStreak": 0,
-   "lastOk": "2026-11-19T12:28:33.909Z"
+   "lastOk": "2026-11-20T01:24:04.424Z"
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 47,
+   "ok": false,
+   "status": "dustu",
+   "count": 4,
    "prevCount": 50,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/trabzon-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/trabzon-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/trabzon-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
-    "www.radarturkiye.com/trabzon-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
+    "www.radarturkiye.com/trabzon-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/trabzon-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/trabzon-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/trabzon-hafta-sonu-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=trabzon: 42 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1064,
-   "failStreak": 0,
+   "seconds": 908,
+   "failStreak": 1,
    "lastOk": "2026-11-19T12:28:33.909Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   },
   "allevents": {
@@ -78,16 +78,16 @@
    "notes": [
     "allevents.in/trabzon: 12 bağlantı, 12 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/all: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/concerts: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/concerts: 27 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/performances: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
+   "seconds": 179,
    "failStreak": 0,
-   "lastOk": "2026-11-19T12:28:33.909Z"
+   "lastOk": "2026-11-20T01:24:04.424Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 7,
+   "failStreak": 8,
    "lastOk": null
   }
  }
