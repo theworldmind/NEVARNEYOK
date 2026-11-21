@@ -18492,5 +18492,115 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/place_of_worship"
+ },
+ "bursa|Swissotel Uludağ Bursa · Chalet1889 Restoran": {
+  "lat": 40.1165278,
+  "lng": 29.0914317,
+  "addr": "SWISS&#212;TEL ULUDAĞ BURSA - Kirazlı Mah Kirazlıyayla Mevkii No.1 16100 Osmangazi,Bursa",
+  "ilce": "",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|Paribu ART Ana Sahne · A Planı": {
+  "lat": 40.9914327,
+  "lng": 29.0363885,
+  "addr": "Hasanpaşa, Kurbağalıdere Cd. No:2/26 GH Blok, İ&#231; Kapı No:13, 34722 Kadık&#246;y/İstanbul",
+  "ilce": "Kadık&#246;y",
+  "src": "biletinial",
+  "v": 2
+ },
+ "mersin|Koro Hizmet Binasi": {
+  "lat": 36.802484,
+  "lng": 34.633398,
+  "addr": "Cami Şerif, 118. Cd. No:13, 33100 Akdeniz/Mersin",
+  "ilce": "Akdeniz",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|Acıbadem-Stüdyo": {
+  "lat": 41.011049,
+  "lng": 29.048096,
+  "addr": "Atıfbey sokak Derya85sitesi Çeliker ap no26d/11 Acıbadem, İstanbul Anadolu, İstanbul Anadolu",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "izmir|Balcova Therapy Forest, Izmir": {
+  "lat": 38.4079,
+  "lng": 27.0635,
+  "addr": "Inciralti Kent Ormanı, 35330, Bahcelerarası, Balcova/İzmir, Turkiye, Izmir, IZ",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "adana|Yenimahalle Nazım Hikmet KM · Genco Erkal Sahnesi": {
+  "lat": 36.994041,
+  "lng": 35.328175,
+  "addr": "Seyhan",
+  "ilce": "Seyhan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "antalya|Türkan Şoray Kültür Merkezi · Antalya": {
+  "lat": 36.8696065,
+  "lng": 30.7248161,
+  "addr": "1455. Sokak, Yeşilbahçe Mahallesi, Muratpaşa",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "isparta|devin cafe bakery · Isparta": {
+  "lat": 37.768688,
+  "lng": 30.551487,
+  "addr": "Pirimehmet Mahallesi",
+  "ilce": "Isparta",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|Euro Park Otel": {
+  "lat": 41.015316,
+  "lng": 28.642902,
+  "addr": "Barbaros Hayrettin Paşa Mahallesi, 1992. Sokak No: 4",
+  "ilce": "Esenyurt",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "kocaeli|Gebze Osman Hamdi Bey Sahnesi": {
+  "lat": 40.8059992,
+  "lng": 29.4395172,
+  "addr": "Namık Kemal Caddesi, Arapçeşme, Arapçeşme",
+  "ilce": "Arapçeşme",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "sakarya|Yenimahalle Nazım Hikmet KM · Genco Erkal Sahnesi": {
+  "lat": 41.123772,
+  "lng": 30.648397,
+  "addr": "Karasu",
+  "ilce": "Karasu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "samsun|Zehra Yıldız Sahnesi (Küçük Sahne)": {
+  "lat": 41.29462,
+  "lng": 36.334803,
+  "addr": "Kale, AKM Atat&#252;rk K&#252;lt&#252;r Merkezi, Atat&#252;rk Blv. No.1, 55100 İlkadım/Samsun",
+  "ilce": "İlkadım",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
  }
 }
