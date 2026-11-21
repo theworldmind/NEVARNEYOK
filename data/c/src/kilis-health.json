@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-21T01:12:07.177Z",
+ "runAt": "2026-11-21T12:00:12.344Z",
  "mode": "full",
  "total": 3,
  "written": true,
@@ -25,7 +25,7 @@
    ],
    "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:12:07.177Z"
+   "lastOk": "2026-11-21T12:00:12.344Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 162,
-   "failStreak": 12,
+   "seconds": 170,
+   "failStreak": 13,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kilis/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kilis/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 12,
+   "seconds": 181,
+   "failStreak": 13,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   }
  }

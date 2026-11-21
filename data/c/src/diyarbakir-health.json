@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-21T00:58:09.817Z",
+ "runAt": "2026-11-21T11:46:25.926Z",
  "mode": "full",
  "total": 256,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 79,
-   "prevCount": 241,
+   "prevCount": 234,
    "error": "",
    "notes": [
     "açık veri: 70 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 103,
-   "failStreak": 12,
+   "seconds": 97,
+   "failStreak": 13,
    "lastOk": "2026-11-15T10:29:07.999Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 10,
-   "prevCount": 12,
+   "prevCount": 13,
    "error": "",
    "notes": [
     "www.radarturkiye.com/diyarbakir-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 220,
+   "seconds": 219,
    "failStreak": 0,
-   "lastOk": "2026-11-21T00:58:09.817Z"
+   "lastOk": "2026-11-21T11:46:25.926Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 10,
+   "failStreak": 11,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/diyarbakir/workshops: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/kids: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 177,
+   "seconds": 178,
    "failStreak": 0,
-   "lastOk": "2026-11-21T00:58:09.817Z"
+   "lastOk": "2026-11-21T11:46:25.926Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/diyarbakir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-21T00:58:09.817Z"
+   "lastOk": "2026-11-21T11:46:25.926Z"
   }
  }
 }

@@ -1,21 +1,21 @@
 {
- "runAt": "2026-11-21T01:13:13.309Z",
+ "runAt": "2026-11-21T12:00:13.264Z",
  "mode": "full",
- "total": 745,
+ "total": 385,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 223,
-   "prevCount": 640,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 249,
+   "prevCount": 612,
    "error": "",
    "notes": [
-    "açık veri: 204 seans, 2 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/kocaeli: 69 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 219 seans, 5 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/kocaeli: 73 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kocaeli: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kocaeli: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 122,
-   "failStreak": 11,
-   "lastOk": "2026-11-15T10:31:25.120Z"
+   "seconds": 128,
+   "failStreak": 0,
+   "lastOk": "2026-11-21T12:00:13.264Z"
   },
   "radar": {
    "id": "radar",
@@ -34,21 +34,21 @@
    "ok": true,
    "status": "calisiyor",
    "count": 141,
-   "prevCount": 156,
+   "prevCount": 137,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/kocaeli-etkinlikleri: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kocaeli-etkinlikleri: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kocaeli-muzik-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kocaeli-tiyatro-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/kocaeli-hafta-sonu-etkinlikleri: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kocaeli-hafta-sonu-etkinlikleri: 66 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=kocaeli: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=kocaeli: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1428,
+   "seconds": 1423,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:13:13.309Z"
+   "lastOk": "2026-11-21T12:00:13.264Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "allevents": {
@@ -72,22 +72,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 10,
+   "count": 11,
    "prevCount": 6,
    "error": "",
    "notes": [
     "allevents.in/kocaeli: 5 bağlantı, 5 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/all: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/concerts: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kocaeli/all: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kocaeli/concerts: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kocaeli/parties: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/comedy: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kocaeli/comedy: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kocaeli/performances: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kocaeli/workshops: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kocaeli/workshops: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kocaeli/kids: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 183,
+   "seconds": 195,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:13:13.309Z"
+   "lastOk": "2026-11-21T12:00:13.264Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:13:13.309Z"
+   "lastOk": "2026-11-21T12:00:13.264Z"
   }
  }
 }

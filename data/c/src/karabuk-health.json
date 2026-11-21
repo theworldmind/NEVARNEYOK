@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-21T01:06:29.598Z",
+ "runAt": "2026-11-21T11:57:23.564Z",
  "mode": "full",
- "total": 106,
+ "total": 105,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 72,
+   "count": 71,
    "prevCount": 72,
    "error": "",
    "notes": [
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/karabuk: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 101,
+   "seconds": 99,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:06:29.598Z"
+   "lastOk": "2026-11-21T11:57:23.564Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 33,
-   "prevCount": 52,
+   "prevCount": 35,
    "error": "",
    "notes": [
     "www.radarturkiye.com/karabuk-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=karabuk: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1061,
+   "seconds": 931,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:06:29.598Z"
+   "lastOk": "2026-11-21T11:57:23.564Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/karabuk/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   }
  }

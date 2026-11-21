@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-21T01:04:10.818Z",
+ "runAt": "2026-11-21T11:52:36.435Z",
  "mode": "full",
- "total": 210,
+ "total": 213,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 58,
-   "prevCount": 216,
+   "prevCount": 210,
    "error": "",
    "notes": [
     "açık veri: 51 seans, 1 detay sayfası",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/hatay: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
-   "failStreak": 12,
+   "seconds": 99,
+   "failStreak": 13,
    "lastOk": "2026-11-15T10:29:48.292Z"
   },
   "radar": {
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 147,
-   "failStreak": 3,
+   "seconds": 163,
+   "failStreak": 4,
    "lastOk": "2026-11-19T12:06:30.191Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 10,
+   "failStreak": 11,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/hatay/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/hatay/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 10,
+   "seconds": 156,
+   "failStreak": 11,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 10,
+   "failStreak": 11,
    "lastOk": null
   }
  }

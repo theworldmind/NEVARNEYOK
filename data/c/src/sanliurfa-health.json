@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-21T01:24:03.475Z",
+ "runAt": "2026-11-21T12:12:25.699Z",
  "mode": "full",
  "total": 65,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 57,
-   "prevCount": 60,
+   "prevCount": 57,
    "error": "",
    "notes": [
     "açık veri: 53 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sanliurfa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 96,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:24:03.475Z"
+   "lastOk": "2026-11-21T12:12:25.699Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 6,
-   "prevCount": 9,
+   "prevCount": 8,
    "error": "",
    "notes": [
     "www.radarturkiye.com/sanliurfa-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 165,
+   "seconds": 161,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:24:03.475Z"
+   "lastOk": "2026-11-21T12:12:25.699Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/sanliurfa/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sanliurfa/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 9,
+   "seconds": 156,
+   "failStreak": 10,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   }
  }

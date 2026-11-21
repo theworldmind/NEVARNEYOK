@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-21T01:04:40.761Z",
+ "runAt": "2026-11-21T11:53:48.356Z",
  "mode": "full",
- "total": 1032,
+ "total": 1041,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,22 +10,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 737,
-   "prevCount": 702,
+   "count": 729,
+   "prevCount": 674,
    "error": "",
    "notes": [
-    "açık veri: 549 seans, 34 detay sayfası",
+    "açık veri: 536 seans, 34 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/izmir: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/izmir: 37 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/izmir: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/izmir: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/egitim/izmir: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 197,
+   "seconds": 205,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:04:40.761Z"
+   "lastOk": "2026-11-21T11:53:48.356Z"
   },
   "radar": {
    "id": "radar",
@@ -33,11 +33,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 276,
-   "prevCount": 355,
+   "count": 279,
+   "prevCount": 335,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/izmir-etkinlikleri: 63 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/izmir-etkinlikleri: 61 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/izmir-muzik-etkinlikleri: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/izmir-tiyatro-etkinlikleri: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/izmir-hafta-sonu-etkinlikleri: 73 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=izmir: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1189,
+   "seconds": 1613,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:04:40.761Z"
+   "lastOk": "2026-11-21T11:53:48.356Z"
   },
   "bugece": {
    "id": "bugece",
@@ -57,14 +57,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 6,
-   "prevCount": 6,
+   "prevCount": 5,
    "error": "",
    "notes": [
     "açık veri: 6 seans"
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:04:40.761Z"
+   "lastOk": "2026-11-21T11:53:48.356Z"
   },
   "allevents": {
    "id": "allevents",
@@ -72,22 +72,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 62,
-   "prevCount": 47,
+   "count": 64,
+   "prevCount": 44,
    "error": "",
    "notes": [
-    "allevents.in/izmir: 25 bağlantı, 20 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/all: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir: 26 bağlantı, 20 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/all: 60 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/concerts: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/parties: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/comedy: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/performances: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/workshops: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/workshops: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 193,
+   "seconds": 194,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:04:40.761Z"
+   "lastOk": "2026-11-21T11:53:48.356Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -96,14 +96,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 32,
-   "prevCount": 36,
+   "prevCount": 32,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/izmir: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 68,
+   "seconds": 55,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:04:40.761Z"
+   "lastOk": "2026-11-21T11:53:48.356Z"
   },
   "izmirks": {
    "id": "izmirks",
@@ -112,14 +112,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 19,
-   "prevCount": 21,
+   "prevCount": 19,
    "error": "",
    "notes": [
     "açık veri: 29 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate"
    ],
-   "seconds": 22,
+   "seconds": 40,
    "failStreak": 0,
-   "lastOk": "2026-11-21T01:04:40.761Z"
+   "lastOk": "2026-11-21T11:53:48.356Z"
   }
  }
 }
