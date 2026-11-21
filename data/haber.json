@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-20T14:10:34.430Z",
+ "updated": "2026-11-21T04:19:40.755Z",
  "notes": [
   "trt: 0 aday",
   "aa: 2 aday",
   "yeniankara: 0 aday",
   "evrensel: 0 aday",
   "hurriyet: 0 aday",
-  "haberturk: 8 aday",
-  "sabah: 0 aday",
+  "haberturk: 9 aday",
+  "sabah: 1 aday",
   "cumhuriyet: 12 aday",
   "sozcu: 0 aday",
   "aa-guncel: 1 aday",
@@ -33,9 +33,9 @@
   "duvar: 403",
   "karar: 410",
   "star: 0 aday",
-  "haberler-kultur: 7 aday",
+  "haberler-kultur: 10 aday",
   "haberler-yasam: 1 aday",
-  "haber7-kultur: 1 aday",
+  "haber7-kultur: 0 aday",
   "iha-kultur: 404",
   "aa-yasam: 0 aday",
   "trt-yasam: 0 aday",
@@ -62,10 +62,10 @@
   "olay-1: 0 aday",
   "bursahakimiyet: 0 aday",
   "bursahakimiyet-1: 404",
-  "bursadabugun: akış değil",
+  "bursadabugun: 403",
   "bursadabugun-1: 404",
   "antalyakorfez: 0 aday",
-  "antalyasondakika: 0 aday",
+  "antalyasondakika: fetch failed",
   "akdenizgazetesi: fetch failed",
   "yeniadana: 404",
   "adanamedya: 0 aday",
@@ -79,7 +79,7 @@
   "olaygazetesi: fetch failed",
   "samsunhaber: 0 aday",
   "takagazete: 2 aday",
-  "mersinhaber: 3 aday",
+  "mersinhaber: 1 aday",
   "hataygazetesi: fetch failed",
   "denizlihaber: 403",
   "muglahaber: 0 aday",
@@ -87,7 +87,7 @@
   "pusulahaber: 0 aday",
   "diyarbakirsoz: 0 aday",
   "vanhaber: fetch failed",
-  "malatyahaber: 1 aday",
+  "malatyahaber: 0 aday",
   "elazighaber: robots kapalı",
   "sivashaber: akış değil",
   "tokathaber: 0 aday",
@@ -122,23 +122,6 @@
  ],
  "items": [
   {
-   "id": "cocuklarin-hayalleri-kentin-sinirlarindan-buyuk-istanbul",
-   "city": "istanbul",
-   "title": "Çocukların hayalleri kentin sınırlarından büyük",
-   "cat": "festival",
-   "venue": "",
-   "days": [
-    "2026-11-20"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "free": true,
-   "site": "BirGün",
-   "url": "https://www.birgun.net/haber/6-uluslararasi-cocuk-haklari-festivali-basliyor-cocuklarin-hayalleri-kentin-sinirlarindan-buyuk-747365",
-   "seen": "2026-11-20T04:21:55.141Z"
-  },
-  {
    "id": "istanbuldan-riyada-etnospor-kultur-festivali-istanbul",
    "city": "istanbul",
    "title": "İstanbul'dan Riyad'a Etnospor Kültür Festivali",
@@ -156,38 +139,20 @@
    "seen": "2026-11-18T22:24:16.479Z"
   },
   {
-   "id": "muradiye-mevlevihanesinde-anadolu-evliyalari-edirne",
-   "city": "edirne",
-   "title": "Muradiye Mevlevihanesi'nde Anadolu Evliyaları",
-   "cat": "konser",
-   "venue": "Muradiye Mevlevihanesi",
-   "days": [
-    "2026-11-20"
-   ],
-   "until": "",
-   "from": "",
-   "t": "20:00",
-   "free": true,
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/guncel/edirne-de-muradiye-mevlevihanesi-nde-anadolu-20438765-haberi/",
-   "seen": "2026-11-18T13:17:39.473Z"
-  },
-  {
    "id": "29-uluslararasi-ankara-tiyatro-festivali-ankara",
    "city": "ankara",
    "title": "29. Uluslararası Ankara Tiyatro Festivali",
    "cat": "festival",
    "venue": "Çankaya Belediyesi Doğan Taşdelen Çağdaş Sanatlar Merkezi",
    "days": [
-    "2026-11-20",
     "2026-11-30"
    ],
    "until": "2026-11-30",
    "from": "2026-11-20",
    "t": "19:30",
    "site": "BirGün",
-   "url": "https://www.birgun.net/haber/29-uluslararasi-ankara-tiyatro-festivali-basliyor-perdeler-yasanilabilir-bir-dunya-icin-acilacak-747363",
-   "seen": "2026-11-20T04:21:55.141Z"
+   "url": "https://www.birgun.net/haber/29-uluslararasi-ankara-tiyatro-festivali-basladi-747547",
+   "seen": "2026-11-21T04:19:40.755Z"
   },
   {
    "id": "30-uluslararasi-ankara-caz-festivali-ankara",
@@ -240,6 +205,23 @@
    "seen": "2026-11-20T14:10:34.430Z"
   },
   {
+   "id": "mutter-bir-annenin-hatira-defteri-ankara",
+   "city": "ankara",
+   "title": "MUTTER: Bir Annenin Hatıra Defteri",
+   "cat": "sahne",
+   "venue": "",
+   "days": [
+    "2026-11-27"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "img": "https://iasbh.tmgrup.com.tr/48fdaa/1200/675/0/0/827/465?u=https://isbh.tmgrup.com.tr/sbh/2026/11/21/mutter-bir-annenin-hatira-defterinden-ozel-gosterim-1795227065756.jpeg",
+   "site": "Sabah",
+   "url": "https://www.sabah.com.tr/magazin/mutter-bir-annenin-hatira-defterinden-ozel-gosterim-7706205",
+   "seen": "2026-11-21T04:19:40.755Z"
+  },
+  {
    "id": "23-uluslararasi-film-festivali-eskisehir",
    "city": "eskisehir",
    "title": "23. Uluslararası Film Festivali",
@@ -254,22 +236,6 @@
    "img": "https://foto.haberler.com/haber/2026/11/19/eskisehir-de-23-uluslararasi-film-festivali-3-20443989_amp.jpg",
    "site": "Haberler.com",
    "url": "https://www.haberler.com/kultur-sanat/eskisehir-de-23-uluslararasi-film-festivali-34-20443989-haberi/",
-   "seen": "2026-11-20T04:21:55.141Z"
-  },
-  {
-   "id": "minik-sefler-tatilde-mutfakta-izmir",
-   "city": "izmir",
-   "title": "Minik Şefler Tatilde Mutfakta",
-   "cat": "atolye",
-   "venue": "",
-   "days": [
-    "2026-11-20"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "site": "BirGün",
-   "url": "https://www.birgun.net/makale/minik-sefler-tatilde-mutfakta-atolyesi-basladi-747372",
    "seen": "2026-11-20T04:21:55.141Z"
   },
   {
@@ -316,7 +282,6 @@
    "cat": "tiyatro",
    "venue": "Marmaris Armutalan Kültür Merkezi",
    "days": [
-    "2026-11-20",
     "2026-11-21",
     "2026-12-04",
     "2026-12-19",
@@ -331,31 +296,12 @@
    "seen": "2026-11-18T13:17:39.473Z"
   },
   {
-   "id": "3-teos-cocuk-festivali-izmir",
-   "city": "izmir",
-   "title": "3. Teos Çocuk Festivali",
-   "cat": "festival",
-   "venue": "",
-   "days": [
-    "2026-11-20"
-   ],
-   "until": "",
-   "from": "",
-   "t": "12:00",
-   "free": true,
-   "img": "https://egedesonsozcom.teimg.com/crop/1280x720/egedesonsoz-com/uploads/2026/11/gfflgkfg.jpg",
-   "site": "Ege'de Son Söz",
-   "url": "https://www.egedesonsoz.com/seferihisarda-cocuklarin-gunu-3-teos-cocuk-festivali-basliyor",
-   "seen": "2026-11-19T14:14:50.365Z"
-  },
-  {
    "id": "izmirde-kosova-gunleri-izmir",
    "city": "izmir",
    "title": "İzmir'de Kosova Günleri",
    "cat": "konser",
    "venue": "",
    "days": [
-    "2026-11-20",
     "2026-11-21"
    ],
    "until": "",
@@ -373,7 +319,6 @@
    "cat": "festival",
    "venue": "Devlet Tiyatroları Şinasi Sahnesi",
    "days": [
-    "2026-11-20",
     "2026-12-04"
    ],
    "until": "",
@@ -454,6 +399,26 @@
    "site": "Haberler.com",
    "url": "https://www.haberler.com/guncel/doha-film-festivali-2026-60-ulkeden-104-yapimla-ve-20444208-haberi/",
    "seen": "2026-11-20T04:21:55.141Z"
+  },
+  {
+   "id": "karacaoglan-izinden-izmir",
+   "city": "izmir",
+   "title": "Karacaoğlan İzinden",
+   "cat": "konser",
+   "venue": "İş Kuleleri Salonu",
+   "days": [
+    "2026-11-21",
+    "2026-11-22",
+    "2026-11-23"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "free": true,
+   "img": "https://im.haberturk.com/l/2026/11/20/ver1795175719/3928808/jpg/1200x628",
+   "site": "Habertürk",
+   "url": "https://www.haberturk.com/kultur-sanat/musa-eroglu-karacaoglan-izinden-konseriyle-is-sanattaydi-3928808",
+   "seen": "2026-11-21T04:19:40.755Z"
   },
   {
    "id": "ara-tatil-senligi-erzurum",
@@ -548,23 +513,6 @@
    "seen": "2026-11-18T12:40:21.322Z"
   },
   {
-   "id": "muze-konseri-aydin",
-   "city": "aydin",
-   "title": "Müze Konseri",
-   "cat": "konser",
-   "venue": "Afrodisias Müzesi Sevgi Gönül Salonu",
-   "days": [
-    "2026-11-20"
-   ],
-   "until": "",
-   "from": "",
-   "t": "15:00",
-   "img": "https://foto.haberler.com/haber/2026/11/19/aydin-karacasu-da-afrodisias-muzesi-nde-20-ka-20441842_amp.jpg",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/kultur-sanat/aydin-karacasu-da-afrodisias-muzesi-nde-20-kasim-20441842-haberi/",
-   "seen": "2026-11-19T14:14:50.365Z"
-  },
-  {
    "id": "tunelin-ucu-edirne",
    "city": "edirne",
    "title": "Tünelin Ucu",
@@ -588,7 +536,6 @@
    "cat": "tiyatro",
    "venue": "Ankara Kült Sahne",
    "days": [
-    "2026-11-20",
     "2026-11-22",
     "2026-11-23",
     "2026-11-27"
