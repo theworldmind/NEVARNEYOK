@@ -1,0 +1,10 @@
+[
+ {
+  "url": "https://bam.nr-data.net/browser/connect/2/ea025ea6a0?a=339581800&v=1.324.1&s=9a07c42f40562a40",
+  "sample": "{\"config\":{\"err\":1,\"ins\":1,\"spa\":1,\"sr\":0,\"srs\":0,\"st\":1,\"sts\":0,\"log\":0,\"logapi\":0},\"app\":{\"agents\":[{\"entityGuid\":\"MzY3MzcyfEJST1dTRVJ8QVBQTElDQVRJT058MzM5NTgyMTA2\"}],\"igp\":\"\",\"nrServerTime\":1795235693143}}"
+ },
+ {
+  "url": "https://allevents.in/api/index.php/geo/ip2location",
+  "sample": "{\"city\":\"Boardman\",\"country_code\":\"US\",\"region\":\"Oregon\",\"region_name\":\"Oregon\",\"postal_code\":\"97818\",\"latitude\":45.83986,\"longitude\":-119.70058,\"raw_obj\":{\"city\":{\"names\":{\"en\":\"Boardman\"}},\"country\":{\"iso_code\":\"US\",\"names\":{\"en\":\"\"}},\"continent\":{\"code\":\"\"},\"subdivisions\":[{\"iso_code\":\"Oregon\",\"names\":{\"en\":\"Oregon\"}}],\"postal\":{\"code\":\"97818\"},\"location\":{\"latitude\":45.83986,\"longitude\":-119.70058}}}"
+ }
+]

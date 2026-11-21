@@ -1,0 +1,148 @@
+# Kapsam raporu · 2026-11-21
+
+Sitede 2908 etkinlik. Denetim kendi geçmişiyle (14 tarama) ve haber akışlarıyla karşılaştırdı.
+
+## Şüpheli boşluklar
+
+- **Passo** listesi sonuna kadar açılamadı: www.passo.com.tr/tr/arama?city=Ankara
+- **Çukurambar Kültür Sanat Merkezi AKM Sahnesi** mekânında önümüzdeki 30 gün için hiç etkinlik kalmadı (önceden düzenli vardı).
+- **SAMM's Bistro** mekânında önümüzdeki 30 gün için hiç etkinlik kalmadı (önceden düzenli vardı).
+- Bilet bağlantısı etkinliğin kendi sayfasına gitmiyor (sitenin ana sayfası ya da arama): Atların Dansı: Diriliş Ateşi (Millet Kültür).
+- **Passo**: önümüzdeki 14 günde 24 etkinliğin afişi yok (ör. İnayet, Kırmızı Hangar, Savaş Kuşları).
+- **Biletix**: önümüzdeki 14 günde 4 etkinliğin afişi yok (ör. Heykel - Kendi Heykelini Yap, Kaç Baba Kaç, Figen Ayhan Anlatıyor Opera Fandom: Don Giovanni).
+- **Bubilet** 5 taramadır boş/hatalı (dustu).
+- **Mobilet** 5 taramadır boş/hatalı (bos).
+- **tiyatrolar.com.tr** 5 taramadır boş/hatalı (dustu).
+- **Biletino** 5 taramadır boş/hatalı (bos).
+- **CSO** 5 taramadır boş/hatalı (bos).
+- **ABB Şehir Tiyatroları** 5 taramadır boş/hatalı (bos).
+- **Ankara Büyükşehir Kültür** 5 taramadır boş/hatalı (bos).
+- **Çankaya Belediyesi** 5 taramadır boş/hatalı (bos).
+- **Yenimahalle Belediyesi** 5 taramadır boş/hatalı (bos).
+- **Keçiören Belediyesi** 5 taramadır boş/hatalı (bos).
+- **Mamak Belediyesi** 5 taramadır boş/hatalı (bos).
+- **ODTÜ KKM** 5 taramadır boş/hatalı (bos).
+- **Resident Advisor** 5 taramadır boş/hatalı (bos).
+- 5 etkinlik "Konser"de görünüyor ama adı başka türü söylüyor (ör. Madagaskar Sirki - Büyülü Dünya Turu, Madagaskar Sirki - Büyülü Dünya Turu, Madagaskar Sirki - Büyülü Dünya Turu, Madagaskar Sirki - Büyülü Dünya Turu, Madagaskar Sirki - Büyülü Dünya Turu); `normalize.mjs` → `fixCat` kurallarına bakılmalı.
+- 23 etkinlikte mekân yok (ör. MUTTER: Bir Annenin Hatıra Defteri, Artvin Borçka'da Halkların Türküleri, Tünelin Ucu, Ara Tatil Şenliği, Demet Taner söyleşisi)
+
+## Haberlerde geçiyor, bizde bulamadım
+
+_Elle bakılmalı: bazıları davetli tören, başka şehir ya da geçmiş tarih olabilir._
+
+- **nin başkenti Washington**: [İstanbul Photo Awards 2026 Sergisi ABD'nin başkenti Washington'da açıldı](https://www.aa.com.tr/tr/kultur/istanbul-photo-awards-2026-sergisi-abdnin-baskenti-washingtonda-acildi/4130020)
+- **da peş peşe sakatlık haberleri! Galatasaray**: [Galatasaray'da peş peşe sakatlık haberleri! Galatasaray'da hangi yıldızın durumu daha ciddi?](https://www.yeniankara.com.tr/spor/galatasarayda-pes-pese-sakatlik-haberleri-galatasarayda-hangi-yildizin-durumu-daha-ciddi-190951)
+- **nde ödüller**: [Ankara Film Festivali'nde ödüller 'Ölü Köpekler Isırmaz'a](https://www.haberturk.com/kultur-sanat/ankara-film-festivali-nde-oduller-olu-kopekler-isirmaz-3928920)
+- **Hayalet Şarkısı**: [Fatih Akın’ın yeni filmi Selanik Uluslararası Film Festivali’nde gösterildi: 'Hayalet Şarkısı'](https://www.cumhuriyet.com.tr/kultur-sanat/fatih-akin-in-yeni-filmi-selanik-uluslararasi-film-festivali-nde-gosterildi-hayalet-sarkisi-2555775)
+- **Selanik Uluslararası Film Festivali**: [Fatih Akın’ın yeni filmi Selanik Uluslararası Film Festivali’nde gösterildi: 'Hayalet Şarkısı'](https://www.cumhuriyet.com.tr/kultur-sanat/fatih-akin-in-yeni-filmi-selanik-uluslararasi-film-festivali-nde-gosterildi-hayalet-sarkisi-2555775)
+- **de Perdeler Açıldı! 34 Ülkeden 55 Filmle**: [Eskişehir'de Perdeler Açıldı! 34 Ülkeden 55 Filmle "23. Eskişehir Uluslararası Film Festivali" Başladı](https://www.beyazperde.com/haberler/filmler/haberler-1000233326/)
+- **23. Eskişehir Uluslararası Film Festivali**: [Eskişehir'de Perdeler Açıldı! 34 Ülkeden 55 Filmle "23. Eskişehir Uluslararası Film Festivali" Başladı](https://www.beyazperde.com/haberler/filmler/haberler-1000233326/)
+- **Örümcek-Adam: Yepyeni Bir Gün**: [Rekorlara Doymayan Örümcek-Adam Dönüyor: İşte "Örümcek-Adam: Yepyeni Bir Gün"ün Yepyeni Posteri ve Vizyon Tarihi!](https://www.beyazperde.com/haberler/filmler/haberler-1000233128/)
+
+<sub>Haber akışları: www.trthaber.com: 1 ilgili haber · www.aa.com.tr: 1 ilgili haber · www.yeniankara.com.tr: 1 ilgili haber · www.evrensel.net: 0 ilgili haber · www.hurriyet.com.tr: 0 ilgili haber · www.haberturk.com: 2 ilgili haber · www.sabah.com.tr: 0 ilgili haber · www.cumhuriyet.com.tr: 5 ilgili haber · www.sozcu.com.tr: 0 ilgili haber · www.beyazperde.com: 2 ilgili haber · boxofficeturkiye.com: 5 ilgili haber</sub>
+
+## Otomatik keşif
+
+Uzun süredir çalışmayan kaynakların liste sayfaları incelendi; çıktı aşağıda.
+
+
+<details><summary>Keşif çıktısı</summary>
+
+```
+
+================ https://www.bubilet.com.tr/ankara
+robots: izin var gecikme: 0
+durum: 403 son adres: https://www.bubilet.com.tr/ankara 
+başlık: Bir dakika lütfen...
+iç bağlantı kalıpları (sayı, tarihli metin, örnek):
+JSON-LD türleri: yok
+JSON yanıtları: 0
+h1: www.bubilet.com.tr
+sayfadaki tarih ifadesi sayısı: 0 html boyu: 44969
+
+================ https://www.mobilet.com/tr/search/?city=ankara
+robots: izin var gecikme: 0
+durum: 200 son adres: https://mobilet.com/tr/search/?city=ankara 
+başlık: Mobilet | Yerin Hazır! Tiyatro, Konser, Festival, Spor Etkinlik Biletleri
+iç bağlantı kalıpları (sayı, tarihli metin, örnek):
+   19   0  /tr/event/{slug-n}/   /tr/event/tarihi-halicte-kano-deneyimi-56795/  /tr/event/mozaik-lamba-atolyesi-56754/  /tr/event/parfum-atolyesi-56753/
+    1   0  /tr/parent-event-detail/{slug-n}/   /tr/parent-event-detail/14-bogazici-film-festivali-421/
+    1   0  /tr/help/faq/   /tr/help/faq/
+    1   0  /tr/help/about-us/   /tr/help/about-us/
+    1   0  /tr/help/contact-us/   /tr/help/contact-us/
+    1   0  /tr/help/transaction-guide/   /tr/help/transaction-guide/
+JSON-LD türleri: yok
+JSON yanıtları: 8
+   https://securepubads.g.doubleclick.net/pagead/ppub_config?ippd=mobilet.com [dizi 14]
+      örnek kayıt: ["mobilet.com",null,"mobilet.com",null,null,["22866579169"]]
+   https://localizationmbt.blob.core.windows.net/prod/tr.json general,seo,event,faq,contact_us,about_us,terms_of_use,privacy
+   https://cms.mobilet.com/graphql data
+      örnek kayıt: {"attributes":{"cityName":"İstanbul"}}
+   https://cms.mobilet.com/graphql data
+      örnek kayıt: {"attributes":{"locationName":"Kadıköy Sahne"}}
+   https://api-v2.mobilet.com/event/searchEvent isSuccessful,messages,data
+   https://us.i.posthog.com/flags/?v=2&config=true&ip=0&_=1795235983937&ver=1.269.1&compression=base64 errorsWhileComputingFlags,flags,requestId,evaluatedAt,supportedCompression,config,isAuthenticated,toolbarParams
+   https://kontrol.binclusive.io/graphql data
+h1: undefined
+iframe: https://widget.binclusive.io/?site=https%3A%2F%2Fmobilet.com%2Ftr%2Fsearch%2F%3Fcity%3Dankara  https://www.googletagmanager.com/ns.html?id=GTM-MRCK8ZSP  about:blank  about:blank  https://www.google.com/recaptcha/api2/aframe
+sayfadaki tarih ifadesi sayısı: 2 html boyu: 82630
+
+================ https://tiyatrolar.com.tr/ankara-tiyatro-oyunlari
+robots: izin var gecikme: 0
+durum: 200 son adres: https://tiyatrolar.com.tr/404 
+başlık: Paylaşılabilir Sanat | tiyatrolar.com.tr
+iç bağlantı kalıpları (sayı, tarihli metin, örnek):
+    1   0  /   /
+JSON-LD türleri: yok
+JSON yanıtları: 0
+h1: undefined
+sayfadaki tarih ifadesi sayısı: 0 html boyu: 2763
+
+================ https://biletino.com/tr/ankara/
+robots: izin var gecikme: 0
+durum: 200 son adres: https://biletino.com/tr/turkiye/ 
+başlık: Etkinlik Keşfet veya Etkinlik Oluşturup Bilet Sat | Biletino
+iç bağlantı kalıpları (sayı, tarihli metin, örnek):
+    9   0  /tr/content/about/{slug}   /tr/content/about/biletino-kontrol-uygulamasi/  /tr/content/about/kayit-sureclerinizi-basitlestirin/  /tr/content/about/isinizi-gelistirecek-ve-kolaylastiracak-cozumler-size-iyi-geliyo/
+    8   4  /tr/e-1e2r/jumpin-cats/   /tr/e-1e2r/jumpin-cats/  /tr/e-1e2r/jumpin-cats/  /tr/e-1e2r/jumpin-cats/
+    8   4  /tr/e-1bl9/carpenter-brut/   /tr/e-1bl9/carpenter-brut/  /tr/e-1bl9/carpenter-brut/  /tr/e-1bl9/carpenter-brut/
+    8   4  /tr/e-1e6u/{slug}/   /tr/e-1e6u/oscar-and-the-wolf-star-under-the-moon/  /tr/e-1e6u/oscar-and-the-wolf-star-under-the-moon/  /tr/e-1e6u/oscar-and-the-wolf-star-under-the-moon/
+    8   4  /tr/e-1dyj/no-1-konseri/   /tr/e-1dyj/no-1-konseri/  /tr/e-1dyj/no-1-konseri/  /tr/e-1dyj/no-1-konseri/
+    6   3  /tr/e-1ds9/{slug}/   /tr/e-1ds9/kapadokya-christmas-in-the-cave-cappadocia/  /tr/e-1ds9/kapadokya-christmas-in-the-cave-cappadocia/  /tr/e-1ds9/kapadokya-christmas-in-the-cave-cappadocia/
+    6   3  /tr/e-1dwd/moblack-klein-phonix/   /tr/e-1dwd/moblack-klein-phonix/  /tr/e-1dwd/moblack-klein-phonix/  /tr/e-1dwd/moblack-klein-phonix/
+    6   3  /tr/e-1e3e/sarra-prime-sky/   /tr/e-1e3e/sarra-prime-sky/  /tr/e-1e3e/sarra-prime-sky/  /tr/e-1e3e/sarra-prime-sky/
+    6   3  /tr/e-1e5f/{slug}/   /tr/e-1e5f/koro-istanbul-kumkapi-meryem-ana-patriklik-kilisesi-konseri/  /tr/e-1e5f/koro-istanbul-kumkapi-meryem-ana-patriklik-kilisesi-konseri/  /tr/e-1e5f/koro-istanbul-kumkapi-meryem-ana-patriklik-kilisesi-konseri/
+    6   0  /tr/e-1e3m/sufle-prime-sky/   /tr/e-1e3m/sufle-prime-sky/  /tr/e-1e3m/sufle-prime-sky/  /tr/e-1e3m/sufle-prime-sky/
+    6   3  /tr/e-1dz8/linska-klein-phonix/   /tr/e-1dz8/linska-klein-phonix/  /tr/e-1dz8/linska-klein-phonix/  /tr/e-1dz8/linska-klein-phonix/
+    6   3  /tr/e-1dqq/{slug}/   /tr/e-1dqq/chris-avantgarde-klein-phonix/  /tr/e-1dqq/chris-avantgarde-klein-phonix/  /tr/e-1dqq/chris-avantgarde-klein-phonix/
+    4   2  /tr/e-1e3q/marica-prime-sky/   /tr/e-1e3q/marica-prime-sky/  /tr/e-1e3q/marica-prime-sky/  /tr/e-1e3q/marica-prime-sky/
+    4   2  /tr/e-1e8v/{slug}/   /tr/e-1e8v/kapadokya-solar-eclipse-new-year-edition/  /tr/e-1e8v/kapadokya-solar-eclipse-new-year-edition/  /tr/e-1e8v/kapadokya-solar-eclipse-new-year-edition/
+    4   2  /tr/e-1e0s/altin-saatler/   /tr/e-1e0s/altin-saatler/  /tr/e-1e0s/altin-saatler/  /tr/e-1e0s/altin-saatler/
+    4   2  /tr/e-1dyo/orbit-001/   /tr/e-1dyo/orbit-001/  /tr/e-1dyo/orbit-001/  /tr/e-1dyo/orbit-001/
+    4   2  /tr/e-1e9g/{slug}/   /tr/e-1e9g/modundayiz-presents-legends-of-the-night/  /tr/e-1e9g/modundayiz-presents-legends-of-the-night/  /tr/e-1e9g/modundayiz-presents-legends-of-the-night/
+    4   2  /tr/e-1e9t/{slug}/   /tr/e-1e9t/star-under-the-moon-i-official-after-party/  /tr/e-1e9t/star-under-the-moon-i-official-after-party/  /tr/e-1e9t/star-under-the-moon-i-official-after-party/
+JSON-LD türleri: yok
+JSON yanıtları: 7
+   https://consentcdn.cookiebot.com/consentconfig/f41a5cb5-3af6-485f-b9ed-eadd0df11f9b/settings.json widget
+   https://peranet-626383782402771290-8b15cbb6dc7061316957111.freshchat.com/app/services/app/webchat/3e30405b-16fa-468d-9bca-222a17ca5141/config?domain=aHR0cHM6Ly9iaWxldGluby5jb20= pageSpecificMessage,headerProperty,backgroundImage,customBackground,appId,configId,createdMillis,updatedMillis
+   https://peranet-626383782402771290-8b15cbb6dc7061316957111.freshchat.com/app/services/app/webchat/3e30405b-16fa-468d-9bca-222a17ca5141/user/496e745d-594d-4388-f67b-61bb1adf83d8 success,errorCode,errorMessage
+   https://peranet-626383782402771290-8b15cbb6dc7061316957111.freshchat.com/app/services/app/webchat/3e30405b-16fa-468d-9bca-222a17ca5141/widget_info_v2?locales=tr,tr-TR,tr-TR&platform=web responseTimeHolder,userRules,channelResponse,operatingHoursResponse,offlineExperienceResponse,messageMaskConfigList,requestsWhiteListedDomains,categoryResponse
+   https://peranet-626383782402771290-8b15cbb6dc7061316957111.freshchat.com/app/services/app/webchat/3e30405b-16fa-468d-9bca-222a17ca5141/user/496e745d-594d-4388-f67b-61bb1adf83d8/activity?widgetInfoTrac success
+   https://peranet-626383782402771290-8b15cbb6dc7061316957111.freshchat.com/app/services/app/webchat/3e30405b-16fa-468d-9bca-222a17ca5141/faq/category?platform=web&locales=tr%2Ctr-TR%2Ctr-TR&since=&lastL contentLocale,lastModifiedAt,categories
+h1: undefined
+   · Çerez beyanı en son 10.11.2026 tarihinde Cookiebot tarafından güncellenmiştir
+   · OATW 1/1/1970
+   · Fener Rum Lisesi 1/1/1970
+   · Koro İstanbul 1/1/1970
+   · LINSKA 1/1/1970
+   · Chris Avantgarde 1/1/1970
+   · MOBLACK 1/1/1970
+   · ASH 1/1/1970
+   · Naaptın Live 1/1/1970
+   · Carpenter Brut 1/1/1970
+   · Fırsatlar 1/1/1970
+   · 31 Aralık Perşembe
+iframe: https://consentcdn.cookiebot.com/sdk/bc-v5.min.html  ' +   https://accounts.google.com/gsi/button?type=standard&amp;width=272&amp;is_fedcm_supported=true&amp;client_id=294905761251-vm6vpdf87dcean3qu4jollh4dnq202rv.apps.googleusercontent.com&amp;iframe_id=gsi_997285_397637&amp;cas=PmFfb9AnNJrVfD4XsVw2%2FlopnjJjPpjpTwYi9A6MWWk  https://accounts.google.com/gsi/button?type=standard&amp;width=272&amp;is_fedcm_supported=true&amp;client_id=294905761251-vm6vpdf87dcean3qu4jollh4dnq202rv.apps.googleusercontent.com&amp;iframe_id=gsi_997288_481818&amp;cas=PmFfb9AnNJrVfD4XsVw2%2FlopnjJjPpjpTwYi9A6MWWk  https://accounts.google.com/gsi/button?type=standard&amp;width=272&amp;is_fedcm_supported=true&amp;client_id=294905761251-vm6vpdf87dcean3qu4jollh4dnq202rv.apps.googleusercontent.com&amp;iframe_id=gsi_997289_166898&amp;cas=PmFfb9AnNJrVfD4XsVw2%2FlopnjJjPpjpTwYi9A6MWWk
+sayfadaki tarih ifadesi sayısı: 167 html boyu: 793323
+```
+</details>
