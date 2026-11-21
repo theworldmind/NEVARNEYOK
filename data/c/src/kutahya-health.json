@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T12:14:50.879Z",
+ "runAt": "2026-11-21T01:14:59.372Z",
  "mode": "full",
- "total": 79,
+ "total": 81,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 78,
-   "prevCount": 74,
+   "count": 80,
+   "prevCount": 78,
    "error": "",
    "notes": [
-    "açık veri: 71 seans",
+    "açık veri: 73 seans",
     "biletinial.com/tr-tr/tiyatro/kutahya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kutahya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kutahya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 92,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:14:50.879Z"
+   "lastOk": "2026-11-21T01:14:59.372Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 153,
+   "seconds": 165,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:14:50.879Z"
+   "lastOk": "2026-11-21T01:14:59.372Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/kutahya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   }
  }

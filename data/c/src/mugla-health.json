@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T12:18:08.427Z",
+ "runAt": "2026-11-21T01:17:09.701Z",
  "mode": "full",
- "total": 233,
+ "total": 238,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 196,
-   "prevCount": 176,
+   "count": 206,
+   "prevCount": 196,
    "error": "",
    "notes": [
-    "açık veri: 132 seans, 17 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/mugla: 62 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 143 seans, 17 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/mugla: 64 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mugla: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mugla: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 120,
+   "seconds": 110,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:18:08.427Z"
+   "lastOk": "2026-11-21T01:17:09.701Z"
   },
   "radar": {
    "id": "radar",
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 28,
+   "count": 25,
    "prevCount": 39,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/mugla-etkinlikleri: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/mugla-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 500",
-    "www.radarturkiye.com/mugla-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 500",
+    "www.radarturkiye.com/mugla-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mugla-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mugla-tiyatro-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/mugla-hafta-sonu-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=mugla: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=mugla: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 580,
+   "seconds": 590,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:18:08.427Z"
+   "lastOk": "2026-11-21T01:17:09.701Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/mugla/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mugla/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
+   "seconds": 163,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:18:08.427Z"
+   "lastOk": "2026-11-21T01:17:09.701Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 8,
+   "failStreak": 9,
    "lastOk": null
   }
  }

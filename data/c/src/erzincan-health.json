@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T11:59:22.964Z",
+ "runAt": "2026-11-21T00:58:25.977Z",
  "mode": "full",
- "total": 73,
+ "total": 70,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 18,
-   "prevCount": 66,
+   "prevCount": 67,
    "error": "",
    "notes": [
     "açık veri: 16 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
-   "failStreak": 11,
+   "seconds": 88,
+   "failStreak": 12,
    "lastOk": "2026-11-15T10:29:01.995Z"
   },
   "radar": {
@@ -33,13 +33,13 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 8,
+   "count": 10,
    "prevCount": 10,
    "error": "",
    "notes": [
     "www.radarturkiye.com/erzincan-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/erzincan-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/erzincan-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 503",
+    "www.radarturkiye.com/erzincan-tiyatro-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/erzincan-hafta-sonu-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -48,7 +48,7 @@
    ],
    "seconds": 155,
    "failStreak": 0,
-   "lastOk": "2026-11-20T11:59:22.964Z"
+   "lastOk": "2026-11-21T00:58:25.977Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/erzincan/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   }
  }

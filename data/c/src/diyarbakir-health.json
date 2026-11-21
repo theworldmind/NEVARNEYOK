@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T11:58:46.285Z",
+ "runAt": "2026-11-21T00:58:09.817Z",
  "mode": "full",
- "total": 262,
+ "total": 256,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,21 +10,21 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 81,
-   "prevCount": 231,
+   "count": 79,
+   "prevCount": 241,
    "error": "",
    "notes": [
-    "açık veri: 72 seans",
-    "biletinial.com/tr-tr/tiyatro/diyarbakir: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/diyarbakir: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 70 seans",
+    "biletinial.com/tr-tr/tiyatro/diyarbakir: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/diyarbakir: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 109,
-   "failStreak": 11,
+   "seconds": 103,
+   "failStreak": 12,
    "lastOk": "2026-11-15T10:29:07.999Z"
   },
   "radar": {
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 9,
+   "count": 10,
    "prevCount": 12,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/diyarbakir-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/diyarbakir-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/diyarbakir-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/diyarbakir-muzik-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/diyarbakir-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/diyarbakir-hafta-sonu-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=diyarbakir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 191,
+   "seconds": 220,
    "failStreak": 0,
-   "lastOk": "2026-11-20T11:58:46.285Z"
+   "lastOk": "2026-11-21T00:58:09.817Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/diyarbakir/workshops: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/kids: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 171,
+   "seconds": 177,
    "failStreak": 0,
-   "lastOk": "2026-11-20T11:58:46.285Z"
+   "lastOk": "2026-11-21T00:58:09.817Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/diyarbakir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-20T11:58:46.285Z"
+   "lastOk": "2026-11-21T00:58:09.817Z"
   }
  }
 }

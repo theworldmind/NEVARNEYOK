@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T12:02:49.985Z",
+ "runAt": "2026-11-21T00:58:54.967Z",
  "mode": "full",
- "total": 420,
+ "total": 389,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 244,
-   "prevCount": 241,
+   "count": 243,
+   "prevCount": 244,
    "error": "",
    "notes": [
     "açık veri: 228 seans, 1 detay sayfası",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/eskisehir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 123,
+   "seconds": 139,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:02:49.985Z"
+   "lastOk": "2026-11-21T00:58:54.967Z"
   },
   "radar": {
    "id": "radar",
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 136,
+   "count": 116,
    "prevCount": 149,
    "error": "",
    "notes": [
     "www.radarturkiye.com/eskisehir-etkinlikleri: 53 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/eskisehir-muzik-etkinlikleri: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/eskisehir-tiyatro-etkinlikleri: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/eskisehir-muzik-etkinlikleri: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/eskisehir-tiyatro-etkinlikleri: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/eskisehir-hafta-sonu-etkinlikleri: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=eskisehir: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=eskisehir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=eskisehir: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1403,
+   "seconds": 1406,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:02:49.985Z"
+   "lastOk": "2026-11-21T00:58:54.967Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "allevents": {
@@ -72,22 +72,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 34,
-   "prevCount": 15,
+   "count": 27,
+   "prevCount": 16,
    "error": "",
    "notes": [
-    "allevents.in/eskisehir: 23 bağlantı, 17 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/eskisehir/all: 37 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/eskisehir/concerts: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir: 14 bağlantı, 14 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir/all: 27 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir/concerts: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/eskisehir/performances: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir/performances: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 189,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:02:49.985Z"
+   "lastOk": "2026-11-21T00:58:54.967Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 11,
+   "count": 9,
    "prevCount": 11,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/eskisehir: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/eskisehir: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 23,
+   "seconds": 26,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:02:49.985Z"
+   "lastOk": "2026-11-21T00:58:54.967Z"
   },
   "efkm": {
    "id": "efkm",
@@ -117,9 +117,9 @@
    "notes": [
     "www.efkm.com.tr/etkinlikler: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 14,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:02:49.985Z"
+   "lastOk": "2026-11-21T00:58:54.967Z"
   }
  }
 }

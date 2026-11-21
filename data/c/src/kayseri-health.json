@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-20T12:14:35.906Z",
+ "runAt": "2026-11-21T01:10:30.641Z",
  "mode": "full",
- "total": 117,
+ "total": 125,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,22 +10,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 90,
+   "count": 94,
    "prevCount": 91,
    "error": "",
    "notes": [
-    "açık veri: 85 seans",
-    "biletinial.com/tr-tr/tiyatro/kayseri: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/kayseri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 87 seans",
+    "biletinial.com/tr-tr/tiyatro/kayseri: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/kayseri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 100,
+   "seconds": 97,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:14:35.906Z"
+   "lastOk": "2026-11-21T01:10:30.641Z"
   },
   "radar": {
    "id": "radar",
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 14,
+   "count": 20,
    "prevCount": 17,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/kayseri-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/kayseri-muzik-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/kayseri-tiyatro-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kayseri-etkinlikleri: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kayseri-muzik-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kayseri-tiyatro-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kayseri-hafta-sonu-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 230,
+   "seconds": 217,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:14:35.906Z"
+   "lastOk": "2026-11-21T01:10:30.641Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 9,
+   "failStreak": 10,
    "lastOk": null
   },
   "allevents": {
@@ -77,7 +77,7 @@
    "error": "",
    "notes": [
     "allevents.in/kayseri: 7 bağlantı, 7 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kayseri/all: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kayseri/all: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/concerts: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/parties: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/kayseri/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 191,
-   "failStreak": 3,
+   "seconds": 188,
+   "failStreak": 4,
    "lastOk": "2026-11-18T14:25:48.080Z"
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-20T12:14:35.906Z"
+   "lastOk": "2026-11-21T01:10:30.641Z"
   },
   "kayseribld": {
    "id": "kayseribld",
@@ -118,7 +118,7 @@
     "www.kayseri.bel.tr/etkinlikler: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 14,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": null
   }
  }
