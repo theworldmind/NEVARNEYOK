@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-21T11:46:12.342Z",
+ "runAt": "2026-11-22T05:14:22.723Z",
  "mode": "full",
- "total": 69,
+ "total": 62,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
+   "seconds": 94,
    "failStreak": 0,
-   "lastOk": "2026-11-21T11:46:12.342Z"
+   "lastOk": "2026-11-22T05:14:22.723Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 158,
+   "seconds": 192,
    "failStreak": 0,
-   "lastOk": "2026-11-21T11:46:12.342Z"
+   "lastOk": "2026-11-22T05:14:22.723Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 11,
+   "failStreak": 12,
    "lastOk": null
   },
   "allevents": {
@@ -77,7 +77,7 @@
    "error": "",
    "notes": [
     "allevents.in/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/artvin/all: 0 bağlantı, 1 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/artvin/all: 0 bağlantı, 2 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/concerts: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/parties: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/comedy: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/artvin/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
-   "failStreak": 6,
+   "seconds": 193,
+   "failStreak": 7,
    "lastOk": "2026-11-18T13:02:12.245Z"
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 7,
-   "failStreak": 6,
+   "failStreak": 7,
    "lastOk": "2026-11-18T13:02:12.245Z"
   }
  }

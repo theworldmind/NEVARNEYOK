@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-21T11:40:04.177Z",
+ "runAt": "2026-11-22T05:14:08.439Z",
  "mode": "full",
- "total": 4889,
+ "total": 4703,
  "written": true,
  "sources": {
   "sanatcepte": {
@@ -10,15 +10,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 961,
-   "prevCount": 965,
+   "count": 912,
+   "prevCount": 958,
    "error": "",
    "notes": [
-    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 352 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 339 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 98,
    "failStreak": 0,
-   "lastOk": "2026-11-21T11:40:04.177Z"
+   "lastOk": "2026-11-22T05:14:08.439Z"
   },
   "akansel": {
    "id": "akansel",
@@ -32,9 +32,9 @@
    "notes": [
     "akanselegitimdanismanlik.com/seminerler.aspx: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 7 takvim satırı, durum 200"
    ],
-   "seconds": 8,
+   "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-21T11:40:04.177Z"
+   "lastOk": "2026-11-22T05:14:08.439Z"
   },
   "dob": {
    "id": "dob",
@@ -42,15 +42,15 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 204,
-   "prevCount": 271,
+   "count": 200,
+   "prevCount": 275,
    "error": "",
    "notes": [
-    "açık veri: 204 seans"
+    "açık veri: 200 seans"
    ],
-   "seconds": 26,
+   "seconds": 21,
    "failStreak": 0,
-   "lastOk": "2026-11-21T11:40:04.177Z"
+   "lastOk": "2026-11-22T05:14:08.439Z"
   },
   "tiyatrolar": {
    "id": "tiyatrolar",
@@ -58,20 +58,20 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 33,
-   "prevCount": 32,
+   "count": 29,
+   "prevCount": 34,
    "error": "",
    "notes": [
-    "tiyatrolar.com.tr/: 219 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=1: 53 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=2: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=3: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=4: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/: 218 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=1: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=2: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=3: 54 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=4: 54 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "site haritası: 2000 adres"
    ],
-   "seconds": 210,
+   "seconds": 203,
    "failStreak": 0,
-   "lastOk": "2026-11-21T11:40:04.177Z"
+   "lastOk": "2026-11-22T05:14:08.439Z"
   },
   "iticket": {
    "id": "iticket",
@@ -79,8 +79,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 397,
-   "prevCount": 392,
+   "count": 404,
+   "prevCount": 388,
    "error": "",
    "notes": [
     "iticket.com.tr/etkinlikler/tumu?page=1: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -92,9 +92,9 @@
     "iticket.com.tr/etkinlikler/tumu?page=7: 105 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "iticket.com.tr/etkinlikler/tumu?page=8: 120 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 303,
+   "seconds": 272,
    "failStreak": 0,
-   "lastOk": "2026-11-21T11:40:04.177Z"
+   "lastOk": "2026-11-22T05:14:08.439Z"
   },
   "biletix": {
    "id": "biletix",
@@ -102,15 +102,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 6426,
-   "prevCount": 3494,
+   "count": 6316,
+   "prevCount": 3502,
    "error": "",
    "notes": [
-    "açık veri: 3438 seans, 3371 detay sayfası, dizinde 3438 kayıt"
+    "açık veri: 3329 seans, 3268 detay sayfası, dizinde 3329 kayıt"
    ],
-   "seconds": 3019,
+   "seconds": 2802,
    "failStreak": 0,
-   "lastOk": "2026-11-21T11:40:04.177Z"
+   "lastOk": "2026-11-22T05:14:08.439Z"
   }
  }
 }
