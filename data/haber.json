@@ -1,16 +1,16 @@
 {
- "updated": "2026-11-21T13:51:03.731Z",
+ "updated": "2026-11-22T11:44:21.947Z",
  "notes": [
   "trt: 0 aday",
-  "aa: 2 aday",
-  "yeniankara: 0 aday",
+  "aa: 3 aday",
+  "yeniankara: 2 aday",
   "evrensel: 0 aday",
   "hurriyet: 0 aday",
   "haberturk: 7 aday",
   "sabah: 1 aday",
-  "cumhuriyet: 12 aday",
+  "cumhuriyet: 11 aday",
   "sozcu: 0 aday",
-  "aa-guncel: 0 aday",
+  "aa-guncel: 1 aday",
   "trt-turkiye: 0 aday",
   "trt-gundem: 1 aday",
   "haberturk-gundem: 0 aday",
@@ -33,9 +33,9 @@
   "duvar: 403",
   "karar: 410",
   "star: 0 aday",
-  "haberler-kultur: 10 aday",
+  "haberler-kultur: 8 aday",
   "haberler-yasam: 0 aday",
-  "haber7-kultur: 1 aday",
+  "haber7-kultur: 0 aday",
   "iha-kultur: 404",
   "aa-yasam: 0 aday",
   "trt-yasam: 0 aday",
@@ -70,7 +70,7 @@
   "yeniadana: 404",
   "adanamedya: 0 aday",
   "konyayenigun: 0 aday",
-  "yenikonya: 0 aday",
+  "yenikonya: 1 aday",
   "esanadolugazetesi: fetch failed",
   "sakaryayenigun: fetch failed",
   "kocaelibarisgazetesi: 403",
@@ -82,7 +82,7 @@
   "mersinhaber: 3 aday",
   "hataygazetesi: fetch failed",
   "denizlihaber: 403",
-  "muglahaber: 0 aday",
+  "muglahaber: 1 aday",
   "bodrumhaber: 0 aday",
   "pusulahaber: 0 aday",
   "diyarbakirsoz: 0 aday",
@@ -91,11 +91,11 @@
   "elazighaber: robots kapalı",
   "sivashaber: akış değil",
   "tokathaber: 0 aday",
-  "canakkaleolay: 3 aday",
+  "canakkaleolay: 4 aday",
   "edirnehaber: 403",
   "tekirdaghaber: 0 aday",
   "balikesirhaber: akış değil",
-  "manisahaber: 429",
+  "manisahaber: akış değil",
   "aydinses: 1 aday",
   "ispartahaber: fetch failed",
   "afyonhaber: 0 aday",
@@ -104,7 +104,7 @@
   "boluolay: 403",
   "duzcehaber: akış değil",
   "orduolay: 403",
-  "giresunhaber: 404",
+  "giresunhaber: 429",
   "rizehaber: fetch failed",
   "kastamonuhaber: 404",
   "urfanatik: 0 aday",
@@ -189,24 +189,6 @@
    "seen": "2026-11-18T13:17:39.473Z"
   },
   {
-   "id": "baskan-genc-midyat-hamsi-festivali-mardin",
-   "city": "mardin",
-   "title": "Başkan Genç Midyat Hamsi Festivali",
-   "cat": "festival",
-   "venue": "",
-   "days": [
-    "2026-11-21"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "free": true,
-   "img": "https://takagazetecomtr.teimg.com/crop/1280x720/takagazete-com-tr/uploads/2026/11/d51804b4-b595-485e-a8b2-294a7f170c17.jpg",
-   "site": "Taka",
-   "url": "https://www.takagazete.com.tr/foto-galeri/baskan-genc-midyat-hamsi-festivali-icin-mardine-gitti",
-   "seen": "2026-11-20T14:10:34.430Z"
-  },
-  {
    "id": "mutter-bir-annenin-hatira-defteri-ankara",
    "city": "ankara",
    "title": "MUTTER: Bir Annenin Hatıra Defteri",
@@ -222,6 +204,21 @@
    "site": "Sabah",
    "url": "https://www.sabah.com.tr/magazin/mutter-bir-annenin-hatira-defterinden-ozel-gosterim-7706205",
    "seen": "2026-11-21T04:19:40.755Z"
+  },
+  {
+   "id": "hilalin-isiginda-konya-buyuksehir-konya",
+   "city": "konya",
+   "title": "Hilalin Işığında“ Konya Büyükşehir",
+   "cat": "atolye",
+   "venue": "Sanat Merkezi",
+   "days": [],
+   "until": "2026-11-29",
+   "from": "",
+   "t": "",
+   "img": "https://www.yenikonya.com.tr/uploads/2026/11/22/278926da_big.png",
+   "site": "Yeni Konya",
+   "url": "https://www.yenikonya.com.tr/konya/gazze_icin_dayanisma_sergisi_hilalin_isiginda_konya_buyuksehir_in_ev_sahipliginde_acildi-1988586",
+   "seen": "2026-11-22T11:44:21.947Z"
   },
   {
    "id": "23-uluslararasi-film-festivali-eskisehir",
@@ -263,23 +260,6 @@
    "seen": "2026-11-18T12:40:21.322Z"
   },
   {
-   "id": "midyatta-hamsi-festivali-mardin",
-   "city": "mardin",
-   "title": "Midyat’ta Hamsi Festivali",
-   "cat": "festival",
-   "venue": "",
-   "days": [
-    "2026-11-21"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://takagazetecomtr.teimg.com/crop/1280x720/takagazete-com-tr/uploads/2026/11/686c680e-9350-4e9b-ac36-396e77a0670c.png",
-   "site": "Taka",
-   "url": "https://www.takagazete.com.tr/foto-galeri/midyatta-hamsi-festivali-trabzon-ve-mardin-ayni-sofrada-bulustu",
-   "seen": "2026-11-21T13:51:03.731Z"
-  },
-  {
    "id": "sanat-lezzetli-resimler-antalya",
    "city": "ankara",
    "title": "Sanat: Lezzetli Resimler",
@@ -301,7 +281,6 @@
    "cat": "tiyatro",
    "venue": "Marmaris Armutalan Kültür Merkezi",
    "days": [
-    "2026-11-21",
     "2026-12-04",
     "2026-12-19",
     "2027-01-14"
@@ -315,21 +294,21 @@
    "seen": "2026-11-18T13:17:39.473Z"
   },
   {
-   "id": "izmirde-kosova-gunleri-izmir",
-   "city": "izmir",
-   "title": "İzmir'de Kosova Günleri",
-   "cat": "konser",
+   "id": "locarno-film-festivali-istanbul",
+   "city": "istanbul",
+   "title": "Locarno Film Festivali",
+   "cat": "festival",
    "venue": "",
    "days": [
-    "2026-11-21"
+    "2026-11-26",
+    "2026-12-06"
    ],
    "until": "",
    "from": "",
    "t": "",
-   "img": "https://www.mersinhaber.com/cropp/1200x675/Depo/haber/855887/org/855887.webp",
-   "site": "Mersin Haber",
-   "url": "https://www.mersinhaber.com/haber-izmirde-kosova-gunleri-etkinligi-basladi-ve-iki-ulke-arasindaki-iliskiler-gucleniyor/855887",
-   "seen": "2026-11-20T14:10:34.430Z"
+   "site": "BirGün",
+   "url": "https://www.birgun.net/haber/locarno-film-festivali-istanbul-da-sanat-bir-fanusun-icinde-var-olamaz-747735",
+   "seen": "2026-11-22T11:44:21.947Z"
   },
   {
    "id": "ankara-film-festivali-ankara",
@@ -369,23 +348,6 @@
    "site": "BirGün",
    "url": "https://www.birgun.net/haber/bir-baskadir-yeni-yil-konserleri-hilltown-habitat-acikhava-da-sahnelenecek-747219",
    "seen": "2026-11-19T04:26:19.483Z"
-  },
-  {
-   "id": "demet-taner-soylesisi-istanbul",
-   "city": "istanbul",
-   "title": "Demet Taner söyleşisi",
-   "cat": "atolye",
-   "venue": "",
-   "days": [
-    "2026-11-21"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://media.cumhuriyet.com.tr/Archive/53deb7ef-31f5-448f-a409-9010c8c6f0f5.jpg",
-   "site": "Cumhuriyet",
-   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/demet-taner-soylesisi-2557619",
-   "seen": "2026-11-19T14:14:50.365Z"
   },
   {
    "id": "cocuk-film-festivali-istanbul",
@@ -441,7 +403,6 @@
    "cat": "konser",
    "venue": "İş Kuleleri Salonu",
    "days": [
-    "2026-11-21",
     "2026-11-22",
     "2026-11-23"
    ],
@@ -470,6 +431,23 @@
    "site": "Haber7",
    "url": "https://www.haber7.com/istanbul/3677841-bagcilarda-ara-tatil-senligi-coskusu-tiyatro-ile-bulustu",
    "seen": "2026-11-18T13:17:39.473Z"
+  },
+  {
+   "id": "edebiyat-gunleri-kahramanmaras",
+   "city": "kahramanmaras",
+   "title": "Edebiyat Günleri",
+   "cat": "atolye",
+   "venue": "Katip Han",
+   "days": [
+    "2026-11-22"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "img": "https://www.mersinhaber.com/cropp/1200x675/Depo/haber/856954/org/856954.webp",
+   "site": "Mersin Haber",
+   "url": "https://www.mersinhaber.com/haber-kahramanmarasta-6-uluslararasi-siir-ve-edebiyat-gunleri-edebiyatta-kadin-konulu-soylesi-ile-acildi/856954",
+   "seen": "2026-11-22T11:44:21.947Z"
   },
   {
    "id": "2-aile-arasinda-istanbul",
