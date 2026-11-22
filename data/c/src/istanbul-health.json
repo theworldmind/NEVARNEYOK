@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-22T05:26:59.892Z",
+ "runAt": "2026-11-22T18:32:47.676Z",
  "mode": "full",
- "total": 5279,
+ "total": 5250,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,22 +10,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 4087,
-   "prevCount": 4168,
+   "count": 3928,
+   "prevCount": 4003,
    "error": "",
    "notes": [
-    "açık veri: 2767 seans, 289 detay sayfası",
+    "açık veri: 2653 seans, 278 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/istanbul: 153 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/istanbul: 153 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/istanbul: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/istanbul: 90 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/egitim/istanbul: 83 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 535,
+   "seconds": 524,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   },
   "radar": {
    "id": "radar",
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 652,
-   "prevCount": 741,
+   "count": 746,
+   "prevCount": 594,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/istanbul-etkinlikleri: 94 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/istanbul-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 503",
+    "www.radarturkiye.com/istanbul-etkinlikleri: 96 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/istanbul-muzik-etkinlikleri: 120 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/istanbul-tiyatro-etkinlikleri: 120 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/istanbul-hafta-sonu-etkinlikleri: 104 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/istanbul-hafta-sonu-etkinlikleri: 105 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=istanbul: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=istanbul: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=istanbul: 100 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=istanbul: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 712,
+   "seconds": 653,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   },
   "bugece": {
    "id": "bugece",
@@ -57,14 +57,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 60,
-   "prevCount": 59,
+   "prevCount": 61,
    "error": "",
    "notes": [
     "açık veri: 60 seans"
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   },
   "allevents": {
    "id": "allevents",
@@ -72,22 +72,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 351,
-   "prevCount": 321,
+   "count": 357,
+   "prevCount": 303,
    "error": "",
    "notes": [
-    "allevents.in/istanbul: 307 bağlantı, 64 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/all: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/concerts: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/parties: 54 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/comedy: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/performances: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/workshops: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/kids: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/istanbul: 314 bağlantı, 64 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/all: 68 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/concerts: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/parties: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/comedy: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/performances: 51 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/workshops: 49 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/kids: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 624,
+   "seconds": 647,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 425,
-   "prevCount": 438,
+   "count": 439,
+   "prevCount": 417,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/istanbul: 434 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/istanbul: 438 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 697,
+   "seconds": 690,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   },
   "iksv": {
    "id": "iksv",
@@ -111,15 +111,15 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 27,
-   "prevCount": 30,
+   "count": 26,
+   "prevCount": 27,
    "error": "",
    "notes": [
-    "açık veri: 27 seans, alanlar: articleId,category,headline,date,date1,enddate,place,alias,thumb,ticket,flag1,activity,zoneName,zoneGroupName,zoneGroupId,zoneId,zone,endDate,time,dateFormatted,endDateFormatted,files,programs,order,tags,tagIds,section,director,description,day,dayString,monthString,month,year,flag2,flag3,flag4,flag5"
+    "açık veri: 26 seans, alanlar: articleId,category,headline,date,date1,enddate,place,alias,thumb,ticket,flag1,activity,zoneName,zoneGroupName,zoneGroupId,zoneId,zone,endDate,time,dateFormatted,endDateFormatted,files,programs,order,tags,tagIds,section,director,description,day,dayString,monthString,month,year,flag2,flag3,flag4,flag5"
    ],
    "seconds": 44,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   },
   "zorlupsm": {
    "id": "zorlupsm",
@@ -128,14 +128,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 34,
-   "prevCount": 32,
+   "prevCount": 31,
    "error": "",
    "notes": [
     "www.zorlupsm.com/etkinlikler: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 20,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   },
   "ibbst": {
    "id": "ibbst",
@@ -149,9 +149,9 @@
    "notes": [
     "sehirtiyatrolari.ibb.istanbul/oyunlar: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 13,
+   "seconds": 14,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   },
   "kulturistanbul": {
    "id": "kulturistanbul",
@@ -160,14 +160,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 13,
-   "prevCount": 17,
+   "prevCount": 13,
    "error": "",
    "notes": [
-    "kultur.istanbul/etkinlikler/: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "kultur.istanbul/etkinlikler/: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:26:59.892Z"
+   "lastOk": "2026-11-22T18:32:47.676Z"
   }
  }
 }

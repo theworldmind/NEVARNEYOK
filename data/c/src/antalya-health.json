@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-22T05:14:20.643Z",
+ "runAt": "2026-11-22T18:17:49.139Z",
  "mode": "full",
- "total": 642,
+ "total": 637,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 439,
-   "prevCount": 448,
+   "count": 425,
+   "prevCount": 438,
    "error": "",
    "notes": [
-    "açık veri: 365 seans, 21 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/antalya: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 350 seans, 19 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/antalya: 148 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/antalya: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/antalya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 164,
+   "seconds": 150,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:14:20.643Z"
+   "lastOk": "2026-11-22T18:17:49.139Z"
   },
   "radar": {
    "id": "radar",
@@ -33,11 +33,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 184,
-   "prevCount": 141,
+   "count": 185,
+   "prevCount": 197,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/antalya-etkinlikleri: 55 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/antalya-etkinlikleri: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/antalya-muzik-etkinlikleri: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/antalya-tiyatro-etkinlikleri: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/antalya-hafta-sonu-etkinlikleri: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=antalya: 100 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=antalya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1100,
+   "seconds": 1624,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:14:20.643Z"
+   "lastOk": "2026-11-22T18:17:49.139Z"
   },
   "bugece": {
    "id": "bugece",
@@ -64,7 +64,7 @@
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:14:20.643Z"
+   "lastOk": "2026-11-22T18:17:49.139Z"
   },
   "allevents": {
    "id": "allevents",
@@ -73,20 +73,20 @@
    "ok": false,
    "status": "dustu",
    "count": 2,
-   "prevCount": 25,
+   "prevCount": 24,
    "error": "",
    "notes": [
-    "allevents.in/antalya: 22 bağlantı, 20 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya: 19 bağlantı, 17 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/all: 42 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/antalya/concerts: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya/concerts: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/comedy: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/antalya/performances: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya/performances: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/workshops: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 189,
-   "failStreak": 7,
+   "seconds": 190,
+   "failStreak": 8,
    "lastOk": "2026-11-18T13:02:05.489Z"
   },
   "biletimgo": {
@@ -96,14 +96,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 8,
-   "prevCount": 9,
+   "prevCount": 8,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/antalya: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 23,
+   "seconds": 18,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:14:20.643Z"
+   "lastOk": "2026-11-22T18:17:49.139Z"
   },
   "antalya-bel": {
    "id": "antalya-bel",
@@ -117,8 +117,8 @@
    "notes": [
     "www.antalya.bel.tr/tr/etkinlikler: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 15,
-   "failStreak": 7,
+   "seconds": 13,
+   "failStreak": 8,
    "lastOk": null
   }
  }

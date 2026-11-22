@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-22T05:14:36.897Z",
+ "runAt": "2026-11-22T18:17:56.282Z",
  "mode": "full",
- "total": 110,
+ "total": 111,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 21,
-   "prevCount": 111,
+   "count": 22,
+   "prevCount": 101,
    "error": "",
    "notes": [
     "açık veri: 17 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/aksaray: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
-   "failStreak": 14,
+   "seconds": 84,
+   "failStreak": 15,
    "lastOk": "2026-11-15T10:26:54.551Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 8,
-   "prevCount": 7,
+   "prevCount": 8,
    "error": "",
    "notes": [
     "www.radarturkiye.com/aksaray-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -48,7 +48,7 @@
    ],
    "seconds": 207,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:14:36.897Z"
+   "lastOk": "2026-11-22T18:17:56.282Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "allevents": {
@@ -83,10 +83,10 @@
     "allevents.in/aksaray/comedy: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/performances: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/aksaray/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/aksaray/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 168,
-   "failStreak": 7,
+   "seconds": 166,
+   "failStreak": 8,
    "lastOk": "2026-11-18T13:07:51.872Z"
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-22T05:14:36.897Z"
+   "lastOk": "2026-11-22T18:17:56.282Z"
   }
  }
 }
