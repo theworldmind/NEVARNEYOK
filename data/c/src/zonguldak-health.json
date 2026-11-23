@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-22T18:56:34.698Z",
+ "runAt": "2026-11-23T06:21:41.473Z",
  "mode": "full",
- "total": 257,
+ "total": 230,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 78,
-   "prevCount": 235,
+   "prevCount": 236,
    "error": "",
    "notes": [
     "açık veri: 65 seans, 3 detay sayfası",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/zonguldak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 106,
-   "failStreak": 8,
+   "seconds": 107,
+   "failStreak": 9,
    "lastOk": "2026-11-18T09:06:14.581Z"
   },
   "radar": {
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 13,
+   "count": 11,
    "prevCount": 18,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/zonguldak-etkinlikleri: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/zonguldak-muzik-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/zonguldak-tiyatro-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/zonguldak-hafta-sonu-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/zonguldak-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/zonguldak-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/zonguldak-tiyatro-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/zonguldak-hafta-sonu-etkinlikleri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=zonguldak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=zonguldak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 261,
+   "seconds": 240,
    "failStreak": 0,
-   "lastOk": "2026-11-22T18:56:34.698Z"
+   "lastOk": "2026-11-23T06:21:41.473Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 12,
+   "failStreak": 13,
    "lastOk": null
   },
   "allevents": {
@@ -72,22 +72,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 18,
+   "count": 16,
    "prevCount": 9,
    "error": "",
    "notes": [
-    "allevents.in/zonguldak: 12 bağlantı, 12 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/zonguldak/all: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/zonguldak/concerts: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/zonguldak/parties: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/zonguldak/comedy: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/zonguldak/performances: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/zonguldak/workshops: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/zonguldak/kids: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/zonguldak: 11 bağlantı, 11 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/zonguldak/all: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/zonguldak/concerts: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/zonguldak/parties: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/zonguldak/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/zonguldak/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/zonguldak/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/zonguldak/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 195,
+   "seconds": 197,
    "failStreak": 0,
-   "lastOk": "2026-11-22T18:56:34.698Z"
+   "lastOk": "2026-11-23T06:21:41.473Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-22T18:56:34.698Z"
+   "lastOk": "2026-11-23T06:21:41.473Z"
   }
  }
 }

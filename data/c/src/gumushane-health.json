@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-22T18:29:37.356Z",
+ "runAt": "2026-11-23T06:01:53.083Z",
  "mode": "full",
  "total": 13,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 12,
-   "prevCount": 14,
+   "prevCount": 12,
    "error": "",
    "notes": [
     "açık veri: 10 seans",
@@ -25,7 +25,7 @@
    ],
    "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-22T18:29:37.356Z"
+   "lastOk": "2026-11-23T06:01:53.083Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 194,
-   "failStreak": 13,
+   "seconds": 187,
+   "failStreak": 14,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 13,
+   "failStreak": 14,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/gumushane/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 13,
+   "failStreak": 14,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-22T18:29:37.356Z"
+   "lastOk": "2026-11-23T06:01:53.083Z"
   }
  }
 }
