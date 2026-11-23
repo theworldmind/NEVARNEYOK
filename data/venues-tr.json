@@ -20420,5 +20420,387 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/community_centre"
+ },
+ "elazig|Fi Sanat Merkezi": {
+  "lat": 38.7394185,
+  "lng": 40.0659498,
+  "addr": "Akg&#252;n AVM, &#199;ayda&#231;ıra mahallesi şehit korgeneral hulusi sayın cad no:18, 23100 El&#226;zığ Merkez/Elazığ",
+  "ilce": "Merkez",
+  "src": "biletinial",
+  "v": 2
+ },
+ "diyarbakir|Yay Grand Otel Cemal Yay Kongre Salonu": {
+  "lat": 37.33748,
+  "lng": 40.69585,
+  "addr": "Diyarbakır Yolu 1. Km. Yay Grand Otel Merkez, 47100 Artuklu/Mardin, Mardin, Mardin",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|KLOOZ": {
+  "lat": 41.045754,
+  "lng": 28.985961,
+  "addr": "Harbiye Mahallesi Cebel Topu Sokak No: 4 - Şişli / İstanbul, İstanbul",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "bitlis|AndaluSahne Tatvan": {
+  "lat": 38.4959925,
+  "lng": 42.2864442,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "bursa|pablo parkora": {
+  "lat": 40.223228,
+  "lng": 28.914286,
+  "addr": "Özlüce Blv Kent Park A Blok No:23 C",
+  "ilce": "Nilüfer",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "canakkale|LODOS Çanakkale": {
+  "lat": 40.1567426,
+  "lng": 26.4094915,
+  "addr": "Nara Yolu Sokak, Cevat Paşa, Cevat Paşa",
+  "ilce": "Cevat Paşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "denizli|Nihat Zeybekci Kongre ve Kültür Merkezi": {
+  "lat": 37.759519,
+  "lng": 29.09609,
+  "addr": "İncilipınar, 20150 Pamukkale/Denizli, Denizli, Denizli",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "edirne|Uzunköprü CineMy Sineması": {
+  "lat": 41.2499053,
+  "lng": 26.6834286,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "edirne|trakya üniversitesi balkan kongre merkezi": {
+  "lat": 41.6378989,
+  "lng": 26.6155586,
+  "addr": "Trakya Üniversitesi Tıp Fakültesi Otoparkı, Koca Sinan, Koca Sinan",
+  "ilce": "Koca Sinan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "edirne|Edirne Trakya Üniversitesi Balkan Kongre Merkezi": {
+  "lat": 41.6378989,
+  "lng": 26.6155586,
+  "addr": "Trakya Üniversitesi Tıp Fakültesi Otoparkı, Koca Sinan, Koca Sinan",
+  "ilce": "Koca Sinan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "edirne|Edirne Belediyesi Atatürk Kültür Merkezi": {
+  "lat": 41.2499053,
+  "lng": 26.6834286,
+  "addr": "19 Mayıs Caddesi, Habib Hoca, Habib Hoca",
+  "ilce": "Habib Hoca",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "hatay|HATAY GÜNEŞ KOLEJİ": {
+  "lat": 36.2272703,
+  "lng": 36.1227244,
+  "addr": "220 Sokak No:1, Akasya, Akasya",
+  "ilce": "Akasya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Ofis Voyvoda Coworking Space": {
+  "lat": 40.9592658,
+  "lng": 29.0854444,
+  "addr": "Müzeyyen Sokağı No:4, Suadiye Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|Yenibosna Dr. Enver Ören Kültür Merkezi": {
+  "lat": 41.0113506,
+  "lng": 28.8161279,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Kadıköy Müze Gazhane Meydan Sahnesi": {
+  "lat": 40.9977503,
+  "lng": 29.0438295,
+  "addr": "Gazhane Deresi Sokağı, Hasanpaşa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Sinematek Sinema Evi": {
+  "lat": 40.9864836,
+  "lng": 29.0326796,
+  "addr": "Hasırcı Sokağı No:16, Osmanağa Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|B-B-S SAHNE YENİBOSNA": {
+  "lat": 41.0113506,
+  "lng": 28.8161279,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Göktürk Gençlik ve Kültür Merkezi": {
+  "lat": 41.0115191,
+  "lng": 28.6492713,
+  "addr": "E-5 Yanyol No:22, Büyükşehir, Büyükşehir",
+  "ilce": "Büyükşehir",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|Hayal Kahvesi": {
+  "lat": 38.2825587,
+  "lng": 26.3784109,
+  "addr": "3013. Sokak No:8, Alaçatı, Alaçatı",
+  "ilce": "Alaçatı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|İstinye Art 100%": {
+  "lat": 38.399362,
+  "lng": 27.068295,
+  "addr": "Bah&#231;elerarası Mh Şehit Binbaşı Ali Resmi Tufan Sok. No:3, 35330 Bal&#231;ova/İzmir",
+  "ilce": "Bal&#231;ova",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "manisa|Güneş Koleji Tiyatro Salonu": {
+  "lat": 38.6308772,
+  "lng": 27.3833562,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/college",
+  "m": "ov"
+ },
+ "manisa|İsmail Hakkı Tonguç KS": {
+  "lat": 38.6290853,
+  "lng": 27.3899309,
+  "addr": "19 Mayıs Bulvarı, Güzelyurt, Güzelyurt",
+  "ilce": "Güzelyurt",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mardin|Mêrdin Brecht Sahne": {
+  "lat": 37.323647,
+  "lng": 40.717274,
+  "addr": "Yenişehir, Akasya 3 Sokak No:9, 47200 Artuklu/Mardin",
+  "ilce": "Artuklu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mersin|Silifke Doğan Cücelioğlu Kültür Merkezi": {
+  "lat": 36.36604,
+  "lng": 33.946035,
+  "addr": "Yeni, 364. Sk., 33940 Silifke/Mersin, Mersin, Mersin",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mersin|mersin toroslar belediyesi": {
+  "lat": 36.8165987,
+  "lng": 34.614291,
+  "addr": "Kuvayi Milliye Cad, Zeki Ayan, Zeki Ayan",
+  "ilce": "Zeki Ayan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mugla|Oasis Bodrum Cinemarine": {
+  "lat": 37.0422327,
+  "lng": 27.4112831,
+  "addr": "Yenik&#246;y, 48400 Bodrum/Muğla",
+  "ilce": "Bodrum",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mugla|Köyceğiz Kapalı Spor Salonu": {
+  "lat": 36.956802,
+  "lng": 28.68623,
+  "addr": "Atatürk Kordonu No:8/1",
+  "ilce": "Köyceğiz",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mugla|Marmaris Beldipi Kapalı Spor Salonu": {
+  "lat": 36.982428,
+  "lng": 28.247956,
+  "addr": "Marmaris Belediyesi Armutalan Kültür Merkezi, Armutalan, 48706 Marmaris/Muğla, Muğla, Muğla",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mugla|Datça Atatürk Kapalı Spor Salonu": {
+  "lat": 36.729023,
+  "lng": 27.686155,
+  "addr": "İskele Mahallesi. Ahmet Taner Kışlalı Bulvarı No:9, Ahmet Taner Kışlalı Cd No:9",
+  "ilce": "Datça",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mugla|Milas Kapalı Spor Salonu": {
+  "lat": 36.674021,
+  "lng": 29.167341,
+  "addr": "Eldireık Mah., &#199;obanlar Sok. 43/5, 48300 Fethiye/Muğla",
+  "ilce": "Fethiye",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mugla|Bodrum Oasis AVM Cinemarine": {
+  "lat": 37.0422327,
+  "lng": 27.4112831,
+  "addr": "Yenik&#246;y, 48400 Bodrum/Muğla",
+  "ilce": "Bodrum",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mugla|Marmaris Sine Point": {
+  "lat": 36.982428,
+  "lng": 28.247956,
+  "addr": "Marmaris Belediyesi Armutalan Kültür Merkezi, Armutalan, 48706 Marmaris/Muğla, Muğla, Muğla",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mugla|Köyçeğiz Sığla Park AVM Cinemarine": {
+  "lat": 36.956802,
+  "lng": 28.68623,
+  "addr": "Atatürk Kordonu No:8/1",
+  "ilce": "Köyceğiz",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "osmaniye|kadirli devlet bahçeli kültür merkezi · Osmaniye": {
+  "lat": 37.367954,
+  "lng": 36.095068,
+  "addr": "Şehit Vedat Kocadallı, Kamil Kara Blv. No:359, 80750 Kadirli/Osmaniye, Osmaniye, Osmaniye",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "yozgat|Yimpaş Sinemaları · Yozgat": {
+  "lat": 39.824816,
+  "lng": 34.8184224,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "yozgat|Yimpaş Vizyon": {
+  "lat": 39.824816,
+  "lng": 34.8184224,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "yozgat|Novada Cinegold": {
+  "lat": 39.8236129,
+  "lng": 34.821898,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "istanbul|Ottimo-İstanbul": {
+  "lat": 40.9273814,
+  "lng": 29.1229587,
+  "addr": "Turgut Özal Bulvarı, Yalı Mahallesi",
+  "ilce": "Yalı Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
+ },
+ "kocaeli|Ballıkayalar Tabiat Parkı": {
+  "lat": 40.8542337,
+  "lng": 29.5187402,
+  "addr": "Gebze",
+  "ilce": "Gebze",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/nature_reserve"
  }
 }
