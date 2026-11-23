@@ -20802,5 +20802,334 @@
   "src": "osm",
   "v": 2,
   "osm": "leisure/nature_reserve"
+ },
+ "antalya|Holly Stone Performance Hall": {
+  "lat": 36.8851054,
+  "lng": 30.7045662,
+  "addr": "Sel&#231;uk, Sel&#231;uk Mah, Uzun &#199;arşı Sk. No:42, 07100 Muratpaşa/Antalya",
+  "ilce": "Muratpaşa",
+  "src": "biletinial",
+  "v": 2
+ },
+ "balikesir|Balıkesir Avlu Kültür Merkezi · Ertuğrul Salonu": {
+  "lat": 39.654383,
+  "lng": 27.90165,
+  "addr": "G&#252;m&#252;s&#231;esme, 10040 Altıeyl&#252;l/Balıkesir",
+  "ilce": "Altıeyl&#252;l",
+  "src": "biletinial",
+  "v": 2
+ },
+ "bursa|Ahmet Vefik Paşa Devlet Tiyatrosu": {
+  "lat": 40.183063,
+  "lng": 29.066981,
+  "addr": "Alacamescit, Atat&#252;rk Cad. No:40, 16020 Heykel / Osmangazi/Osmangazi/Bursa",
+  "ilce": "Osmangazi",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|Watergarden Performans Merkezi Duru Tiyatro Ataşehir": {
+  "lat": 40.9978003,
+  "lng": 29.0996336,
+  "addr": "Barbaros, Kızılbegonya Sok 10, 34746 Ataşehir/İstanbul",
+  "ilce": "Ataşehir",
+  "src": "biletinial",
+  "v": 2
+ },
+ "izmir|Bi’nevi Pub Alsancak": {
+  "lat": 38.4348682,
+  "lng": 27.1416107,
+  "addr": "Alsancak, Ali &#199;etinkaya Blv No:21/A, 35220 Konak/İzmir",
+  "ilce": "Konak",
+  "src": "biletinial",
+  "v": 2
+ },
+ "konya|TED Konya Koleji": {
+  "lat": 37.9265494,
+  "lng": 32.4361623,
+  "addr": "Sille Ak, Yeni Sille Cd. No:305, 42132 Sel&#231;uklu/Konya ,",
+  "ilce": "Sel&#231;uklu",
+  "src": "biletinial",
+  "v": 2
+ },
+ "sanliurfa|Milli Egitim Konferans Salonu": {
+  "lat": 37.157846,
+  "lng": 38.788174,
+  "addr": "Mahmut Nedim K&#252;rk&#231;&#252;oğlu Konağı Atat&#252;rk Mah.18.Sokak No:3 / Şanlıurfa",
+  "ilce": "No:3",
+  "src": "biletinial",
+  "v": 2
+ },
+ "adana|Adana Çukurova Üniversitesi Kongre Salonu, Adana": {
+  "lat": 37.048444,
+  "lng": 35.36488,
+  "addr": "Balcalı, 01330 Sarıçam/Adana, Adana",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|Park of İstanbul Hayvanat Bahçesi": {
+  "lat": 41.051175,
+  "lng": 29.248502,
+  "addr": "Çatalmeşe, Hopa Villalaro No:1, 34794 Çekmeköy/İstanbul, İstanbul Anadolu, İstanbul Anadolu",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|Bahçelievler Nurettin Topçu Sahnesi": {
+  "lat": 41.038458,
+  "lng": 28.987976,
+  "addr": "şirinevler Barbaros CD.No 9 BAHÇELİEVLER İSTANBUL, İstanbul Avrupa, İstanbul Avrupa",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "adana|hayal kahvesi · Adana": {
+  "lat": 37.016674,
+  "lng": 35.312916,
+  "addr": "Seyhan",
+  "ilce": "Seyhan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "adana|Konyaaltı Nazım Hikmet KM Tarık Akan Salonu": {
+  "lat": 36.994041,
+  "lng": 35.328175,
+  "addr": "Seyhan",
+  "ilce": "Seyhan",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "antalya|Akm Aspendos Salonu": {
+  "lat": 36.940401,
+  "lng": 31.1696915,
+  "addr": "Belkıs Mahallesi, Belkıs Mahallesi",
+  "ilce": "Belkıs Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "antalya|konyaaltı belediyesi feslikan salonu": {
+  "lat": 36.8653426,
+  "lng": 30.6416304,
+  "addr": "Belediye Caddesi No:77, Kuşkavağı, Kuşkavağı",
+  "ilce": "Kuşkavağı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "antalya|Turgut Özal Spor Salonu": {
+  "lat": 36.9260741,
+  "lng": 30.7080068,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/sports_centre",
+  "m": "ov"
+ },
+ "gaziantep|Bandırma Barış Manço Kültür Merkezi": {
+  "lat": 37.0704,
+  "lng": 37.360828,
+  "addr": "Bağdat Caddesi",
+  "ilce": "Şahinbey",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "hatay|Güneş Koleji Tiyatro Salonu": {
+  "lat": 36.2272703,
+  "lng": 36.1227244,
+  "addr": "220 Sokak No:1, Akasya, Akasya",
+  "ilce": "Akasya",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "isparta|İyaşpark düğün salonları (süleyman demirel kongre merkezi)": {
+  "lat": 37.781071,
+  "lng": 30.543308,
+  "addr": "3013. Sokak 23",
+  "ilce": "Isparta",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Sarıyer Sahili": {
+  "lat": 41.153431,
+  "lng": 29.037502,
+  "addr": "Anzer Sofrası, Kefeliköy Bağlar Sokak 5",
+  "ilce": "Sarıyer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|Sanat Teras": {
+  "lat": 41.116314,
+  "lng": 29.045437,
+  "addr": "İstinye Mah",
+  "ilce": "Sarıyer",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Fakülte Teras · Gastro Pub": {
+  "lat": 41.036282,
+  "lng": 28.982555,
+  "addr": "Fitaş Pasajı, İstiklal Cd. No:12 D:5. kat",
+  "ilce": "Beyoğlu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Legy İstanbul": {
+  "lat": 41.048515,
+  "lng": 28.99362,
+  "addr": "Atiye Sk. NO:7",
+  "ilce": "Şişli",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "istanbul|olden 1545": {
+  "lat": 41.001286,
+  "lng": 28.934156,
+  "addr": "Nafiz Gürman Cad No: 74",
+  "ilce": "Fatih",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|İbb baruthane sahnesi": {
+  "lat": 40.9755004,
+  "lng": 28.860091,
+  "addr": "Rauf Orbay Caddesi, Ataköy 2-5-6. Kısım, Ataköy 2-5-6. Kısım",
+  "ilce": "Ataköy 2-5-6. Kısım",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Ofis Voyvoda": {
+  "lat": 40.9592658,
+  "lng": 29.0854444,
+  "addr": "Müzeyyen Sokağı No:4, Suadiye Mahallesi, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Hamson No:1": {
+  "lat": 41.028927,
+  "lng": 28.974293,
+  "addr": "Sofyalı Sokak 20",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/music_venue",
+  "m": "ov"
+ },
+ "istanbul|Yabangee Base": {
+  "lat": 41.0340866,
+  "lng": 28.9867589,
+  "addr": "Cihangir, Kazancı Yokuşu Sok. 52A, 34310 Beyoğlu/İstanbul",
+  "ilce": "Beyoğlu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Maltepe Türkan Saylan KM Kardelen 2 Salonu": {
+  "lat": 40.92526,
+  "lng": 29.156642,
+  "addr": "Gülsuyu, No: 34050, Gülsuyu Kavşağı No:100, 34848 Maltepe/İstanbul, İstanbul Anadolu, İstanbul Anadolu",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|HOP Sahne · Küçük Salon": {
+  "lat": 40.978788,
+  "lng": 28.8732729,
+  "addr": "Zeytinlik, T&#252;rk&#231;&#252; Sk. No:6, 34140 Bakırk&#246;y/İstanbul",
+  "ilce": "Bakırk&#246;y",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|MyVia 414": {
+  "lat": 38.450821,
+  "lng": 27.20137,
+  "addr": "Sanayi Cd. No:31 B 01",
+  "ilce": "Bornova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/nightclub",
+  "m": "ov"
+ },
+ "mugla|Lu Bistro": {
+  "lat": 36.661629,
+  "lng": 29.114367,
+  "addr": "Çalış, Barış Manço Blv. No:95",
+  "ilce": "Fethiye",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "sakarya|Konyaaltı Nazım Hikmet KM Tarık Akan Salonu": {
+  "lat": 41.123772,
+  "lng": 30.648397,
+  "addr": "Karasu",
+  "ilce": "Karasu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "sivas|sivas büyük hotel": {
+  "lat": 39.746132,
+  "lng": 37.011402,
+  "addr": "Örtülüpınar, İstasyon Cad",
+  "ilce": "Sivas",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "tekirdag|Trend Arena Çorlu Cinemarine": {
+  "lat": 41.1518479,
+  "lng": 27.8312856,
+  "addr": "Alipaşa Mahallesi, Çorlu",
+  "ilce": "Çorlu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|Tarihi Asansör": {
+  "lat": 38.4086288,
+  "lng": 27.1174792,
+  "addr": "Şehit Nihat Bey Caddesi, Turgut Reis Mahallesi, Konak",
+  "ilce": "Konak",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/cafe"
  }
 }
