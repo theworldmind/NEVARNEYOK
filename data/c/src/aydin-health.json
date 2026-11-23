@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T05:53:49.964Z",
+ "runAt": "2026-11-23T22:29:53.618Z",
  "mode": "full",
- "total": 343,
+ "total": 334,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 99,
-   "prevCount": 345,
+   "count": 94,
+   "prevCount": 311,
    "error": "",
    "notes": [
-    "açık veri: 71 seans, 9 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/aydin: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 66 seans, 9 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/aydin: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/aydin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/aydin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 100,
-   "failStreak": 16,
+   "seconds": 104,
+   "failStreak": 17,
    "lastOk": "2026-11-15T10:26:54.672Z"
   },
   "radar": {
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 35,
-   "prevCount": 40,
+   "count": 36,
+   "prevCount": 37,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/aydin-etkinlikleri: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/aydin-etkinlikleri: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/aydin-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/aydin-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/aydin-hafta-sonu-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/aydin-tiyatro-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/aydin-hafta-sonu-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=aydin: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 361,
+   "seconds": 719,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:53:49.964Z"
+   "lastOk": "2026-11-23T22:29:53.618Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/aydin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aydin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 175,
-   "failStreak": 14,
+   "seconds": 165,
+   "failStreak": 15,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:53:49.964Z"
+   "lastOk": "2026-11-23T22:29:53.618Z"
   }
  }
 }

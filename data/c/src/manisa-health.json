@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T06:10:02.109Z",
+ "runAt": "2026-11-23T22:55:27.679Z",
  "mode": "full",
- "total": 118,
+ "total": 106,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 97,
-   "prevCount": 99,
+   "count": 85,
+   "prevCount": 96,
    "error": "",
    "notes": [
-    "açık veri: 85 seans, 2 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/manisa: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 73 seans, 2 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/manisa: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/manisa: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/manisa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/manisa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/manisa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/manisa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 105,
+   "seconds": 108,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:10:02.109Z"
+   "lastOk": "2026-11-23T22:55:27.679Z"
   },
   "radar": {
    "id": "radar",
@@ -33,11 +33,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 22,
-   "prevCount": 23,
+   "count": 23,
+   "prevCount": 22,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/manisa-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/manisa-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/manisa-muzik-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/manisa-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/manisa-hafta-sonu-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=manisa: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=manisa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 368,
+   "seconds": 650,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:10:02.109Z"
+   "lastOk": "2026-11-23T22:55:27.679Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/manisa/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/manisa/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 179,
-   "failStreak": 14,
+   "seconds": 169,
+   "failStreak": 15,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/manisa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:10:02.109Z"
+   "lastOk": "2026-11-23T22:55:27.679Z"
   }
  }
 }

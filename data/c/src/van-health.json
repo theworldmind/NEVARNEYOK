@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T06:19:36.725Z",
+ "runAt": "2026-11-23T23:08:54.222Z",
  "mode": "full",
- "total": 95,
+ "total": 90,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,13 +10,13 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 89,
-   "prevCount": 90,
+   "count": 84,
+   "prevCount": 89,
    "error": "",
    "notes": [
-    "açık veri: 81 seans, 1 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/van: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/van: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 76 seans, 1 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/van: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/van: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/van: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -25,7 +25,7 @@
    ],
    "seconds": 100,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:19:36.725Z"
+   "lastOk": "2026-11-23T23:08:54.222Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 6,
-   "prevCount": 2,
+   "prevCount": 6,
    "error": "",
    "notes": [
     "www.radarturkiye.com/van-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 181,
+   "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:19:36.725Z"
+   "lastOk": "2026-11-23T23:08:54.222Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/van/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/van/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 16,
+   "seconds": 163,
+   "failStreak": 17,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": "2026-11-21T12:15:52.341Z"
   }
  }

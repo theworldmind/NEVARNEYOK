@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-23T06:08:06.225Z",
+ "runAt": "2026-11-23T22:51:21.485Z",
  "mode": "full",
  "total": 3,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kilis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 77,
+   "seconds": 79,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:08:06.225Z"
+   "lastOk": "2026-11-23T22:51:21.485Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 170,
-   "failStreak": 16,
+   "seconds": 174,
+   "failStreak": 17,
    "lastOk": null
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kilis/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kilis/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 16,
+   "seconds": 156,
+   "failStreak": 17,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/kilis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   }
  }

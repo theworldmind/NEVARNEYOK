@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T06:16:08.892Z",
+ "runAt": "2026-11-23T23:02:59.442Z",
  "mode": "full",
- "total": 103,
+ "total": 102,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 35,
-   "prevCount": 101,
+   "prevCount": 99,
    "error": "",
    "notes": [
     "açık veri: 31 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sivas: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 101,
-   "failStreak": 15,
+   "seconds": 90,
+   "failStreak": 16,
    "lastOk": "2026-11-15T10:34:03.415Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 11,
-   "prevCount": 5,
+   "prevCount": 10,
    "error": "",
    "notes": [
     "www.radarturkiye.com/sivas-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 225,
+   "seconds": 228,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:16:08.892Z"
+   "lastOk": "2026-11-23T23:02:59.442Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 13,
+   "failStreak": 14,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/sivas/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sivas/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 13,
+   "seconds": 156,
+   "failStreak": 14,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 13,
+   "failStreak": 14,
    "lastOk": null
   }
  }

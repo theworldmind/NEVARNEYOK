@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T06:09:46.749Z",
+ "runAt": "2026-11-23T22:53:20.156Z",
  "mode": "full",
- "total": 67,
+ "total": 59,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 64,
-   "prevCount": 65,
+   "count": 56,
+   "prevCount": 64,
    "error": "",
    "notes": [
-    "açık veri: 60 seans",
+    "açık veri: 51 seans",
     "biletinial.com/tr-tr/tiyatro/malatya: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/malatya: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/malatya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:09:46.749Z"
+   "lastOk": "2026-11-23T22:53:20.156Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 9,
-   "prevCount": 6,
+   "prevCount": 7,
    "error": "",
    "notes": [
     "www.radarturkiye.com/malatya-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 172,
+   "seconds": 182,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:09:46.749Z"
+   "lastOk": "2026-11-23T22:53:20.156Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/malatya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/malatya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 14,
+   "seconds": 155,
+   "failStreak": 15,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:09:46.749Z"
+   "lastOk": "2026-11-23T22:53:20.156Z"
   }
  }
 }

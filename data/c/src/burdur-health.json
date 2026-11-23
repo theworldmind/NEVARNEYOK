@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T05:53:50.945Z",
+ "runAt": "2026-11-23T22:28:58.586Z",
  "mode": "full",
- "total": 40,
+ "total": 36,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 40,
+   "count": 36,
    "prevCount": 40,
    "error": "",
    "notes": [
-    "açık veri: 34 seans",
-    "biletinial.com/tr-tr/tiyatro/burdur: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 28 seans",
+    "biletinial.com/tr-tr/tiyatro/burdur: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/burdur: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/burdur: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 91,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:53:50.945Z"
+   "lastOk": "2026-11-23T22:28:58.586Z"
   },
   "radar": {
    "id": "radar",
@@ -37,7 +37,7 @@
    "prevCount": 3,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/burdur-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/burdur-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/burdur-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/burdur-tiyatro-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/burdur-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 215,
+   "seconds": 187,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:53:50.945Z"
+   "lastOk": "2026-11-23T22:28:58.586Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/burdur/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 14,
+   "seconds": 8,
+   "failStreak": 15,
    "lastOk": null
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T05:59:41.494Z",
+ "runAt": "2026-11-23T22:34:47.255Z",
  "mode": "full",
- "total": 238,
+ "total": 233,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 75,
-   "prevCount": 228,
+   "count": 74,
+   "prevCount": 218,
    "error": "",
    "notes": [
-    "açık veri: 65 seans",
+    "açık veri: 66 seans",
     "biletinial.com/tr-tr/tiyatro/diyarbakir: 37 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/diyarbakir: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
-   "failStreak": 16,
+   "seconds": 97,
+   "failStreak": 17,
    "lastOk": "2026-11-15T10:29:07.999Z"
   },
   "radar": {
@@ -37,7 +37,7 @@
    "prevCount": 11,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/diyarbakir-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/diyarbakir-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/diyarbakir-muzik-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/diyarbakir-tiyatro-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/diyarbakir-hafta-sonu-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 189,
+   "seconds": 212,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:59:41.494Z"
+   "lastOk": "2026-11-23T22:34:47.255Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -77,17 +77,17 @@
    "error": "",
    "notes": [
     "allevents.in/diyarbakir: 8 bağlantı, 8 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/all: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/performances: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/diyarbakir/all: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/concerts: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/comedy: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/workshops: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/kids: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 177,
+   "seconds": 175,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:59:41.494Z"
+   "lastOk": "2026-11-23T22:34:47.255Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -95,7 +95,7 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 2,
+   "count": 3,
    "prevCount": 2,
    "error": "",
    "notes": [
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:59:41.494Z"
+   "lastOk": "2026-11-23T22:34:47.255Z"
   }
  }
 }

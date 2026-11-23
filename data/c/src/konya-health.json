@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T06:09:45.806Z",
+ "runAt": "2026-11-23T22:53:06.028Z",
  "mode": "full",
- "total": 226,
+ "total": 213,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,22 +10,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 169,
-   "prevCount": 171,
+   "count": 157,
+   "prevCount": 169,
    "error": "",
    "notes": [
-    "açık veri: 156 seans, 3 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/konya: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/konya: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 145 seans, 3 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/konya: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/konya: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "liste açılmadı: https://biletinial.com/tr-tr/egitim/konya (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/egitim/konya\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/egitim/konya\", waiting until \"domcontentloaded\"\n)"
    ],
-   "seconds": 116,
+   "seconds": 122,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:09:45.806Z"
+   "lastOk": "2026-11-23T22:53:06.028Z"
   },
   "radar": {
    "id": "radar",
@@ -33,7 +33,7 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 59,
+   "count": 58,
    "prevCount": 60,
    "error": "",
    "notes": [
@@ -42,13 +42,13 @@
     "www.radarturkiye.com/konya-tiyatro-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/konya-hafta-sonu-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=konya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=konya: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 474,
+   "seconds": 878,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:09:45.806Z"
+   "lastOk": "2026-11-23T22:53:06.028Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -79,15 +79,15 @@
     "allevents.in/konya: 13 bağlantı, 10 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/all: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/concerts: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/parties: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/parties: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/comedy: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/performances: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/konya/workshops: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/kids: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 175,
+   "seconds": 197,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:09:45.806Z"
+   "lastOk": "2026-11-23T22:53:06.028Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:09:45.806Z"
+   "lastOk": "2026-11-23T22:53:06.028Z"
   }
  }
 }

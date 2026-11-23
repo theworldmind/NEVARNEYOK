@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T06:19:22.460Z",
+ "runAt": "2026-11-23T23:06:57.860Z",
  "mode": "full",
- "total": 47,
+ "total": 45,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 13,
+   "count": 11,
    "prevCount": 13,
    "error": "",
    "notes": [
-    "açık veri: 11 seans",
+    "açık veri: 9 seans",
     "biletinial.com/tr-tr/tiyatro/tunceli: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/tunceli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/tunceli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
+   "seconds": 77,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:19:22.460Z"
+   "lastOk": "2026-11-23T23:06:57.860Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 172,
+   "seconds": 170,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:19:22.460Z"
+   "lastOk": "2026-11-23T23:06:57.860Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 13,
+   "failStreak": 14,
    "lastOk": null
   },
   "allevents": {
@@ -73,7 +73,7 @@
    "ok": false,
    "status": "dustu",
    "count": 0,
-   "prevCount": 36,
+   "prevCount": 33,
    "error": "",
    "notes": [
     "allevents.in/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/tunceli/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tunceli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 177,
-   "failStreak": 8,
+   "seconds": 176,
+   "failStreak": 9,
    "lastOk": "2026-11-18T13:48:17.224Z"
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 13,
+   "seconds": 6,
+   "failStreak": 14,
    "lastOk": null
   }
  }

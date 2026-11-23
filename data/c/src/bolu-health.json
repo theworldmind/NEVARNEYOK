@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-23T05:53:47.413Z",
+ "runAt": "2026-11-23T22:28:59.148Z",
  "mode": "full",
- "total": 78,
- "written": false,
+ "total": 149,
+ "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 68,
+   "ok": false,
+   "status": "dustu",
+   "count": 60,
    "prevCount": 167,
    "error": "",
    "notes": [
-    "açık veri: 58 seans",
+    "açık veri: 50 seans",
     "biletinial.com/tr-tr/tiyatro/bolu: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bolu: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
-   "failStreak": 0,
+   "seconds": 88,
+   "failStreak": 1,
    "lastOk": "2026-11-23T05:53:47.413Z"
   },
   "radar": {
@@ -33,11 +33,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 12,
+   "count": 10,
    "prevCount": 8,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/bolu-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/bolu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/bolu-muzik-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/bolu-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/bolu-hafta-sonu-etkinlikleri: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 220,
+   "seconds": 181,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:53:47.413Z"
+   "lastOk": "2026-11-23T22:28:59.148Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/bolu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-23T05:53:47.413Z"
+   "lastOk": "2026-11-23T22:28:59.148Z"
   }
  }
 }

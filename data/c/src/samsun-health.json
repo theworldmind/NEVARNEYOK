@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T06:15:32.118Z",
+ "runAt": "2026-11-23T23:00:05.915Z",
  "mode": "full",
- "total": 368,
+ "total": 352,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 116,
-   "prevCount": 381,
+   "count": 106,
+   "prevCount": 351,
    "error": "",
    "notes": [
-    "açık veri: 102 seans, 1 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/samsun: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 93 seans, 1 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/samsun: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/samsun: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/samsun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 103,
-   "failStreak": 18,
+   "seconds": 109,
+   "failStreak": 19,
    "lastOk": "2026-11-15T10:33:49.507Z"
   },
   "radar": {
@@ -33,12 +33,12 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 17,
-   "prevCount": 18,
+   "count": 18,
+   "prevCount": 17,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/samsun-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/samsun-muzik-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/samsun-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/samsun-muzik-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/samsun-tiyatro-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/samsun-hafta-sonu-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 243,
+   "seconds": 270,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:15:32.118Z"
+   "lastOk": "2026-11-23T23:00:05.915Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "allevents": {
@@ -77,16 +77,16 @@
    "error": "",
    "notes": [
     "allevents.in/samsun: 4 bağlantı, 4 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/samsun/all: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/samsun/concerts: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/samsun/parties: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/samsun/comedy: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/samsun/performances: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/samsun/workshops: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/samsun/kids: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/samsun/all: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/samsun/concerts: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/samsun/parties: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/samsun/comedy: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/samsun/performances: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/samsun/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/samsun/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 190,
-   "failStreak": 5,
+   "seconds": 188,
+   "failStreak": 6,
    "lastOk": "2026-11-20T12:22:54.268Z"
   },
   "biletimgo": {
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 6,
+   "count": 7,
    "prevCount": 6,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/samsun: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/samsun: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 19,
+   "seconds": 21,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:15:32.118Z"
+   "lastOk": "2026-11-23T23:00:05.915Z"
   }
  }
 }

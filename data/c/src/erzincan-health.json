@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T06:00:02.983Z",
+ "runAt": "2026-11-23T22:35:51.170Z",
  "mode": "full",
- "total": 69,
+ "total": 67,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 14,
-   "prevCount": 57,
+   "count": 13,
+   "prevCount": 47,
    "error": "",
    "notes": [
     "açık veri: 11 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
-   "failStreak": 16,
+   "seconds": 96,
+   "failStreak": 17,
    "lastOk": "2026-11-15T10:29:01.995Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 23,
-   "prevCount": 33,
+   "prevCount": 23,
    "error": "",
    "notes": [
     "www.radarturkiye.com/erzincan-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=erzincan: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 360,
+   "seconds": 703,
    "failStreak": 0,
-   "lastOk": "2026-11-23T06:00:02.983Z"
+   "lastOk": "2026-11-23T22:35:51.170Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/erzincan/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/erzincan/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 14,
+   "seconds": 157,
+   "failStreak": 15,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 14,
+   "seconds": 8,
+   "failStreak": 15,
    "lastOk": null
   }
  }
