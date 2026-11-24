@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-23T22:29:07.838Z",
+ "runAt": "2026-11-24T08:31:34.125Z",
  "mode": "full",
  "total": 51,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 16,
-   "prevCount": 20,
+   "prevCount": 16,
    "error": "",
    "notes": [
     "açık veri: 14 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
+   "seconds": 90,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:29:07.838Z"
+   "lastOk": "2026-11-24T08:31:34.125Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 173,
+   "seconds": 195,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:29:07.838Z"
+   "lastOk": "2026-11-24T08:31:34.125Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/artvin/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 181,
-   "failStreak": 10,
+   "seconds": 198,
+   "failStreak": 11,
    "lastOk": "2026-11-18T13:02:12.245Z"
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 10,
+   "seconds": 7,
+   "failStreak": 11,
    "lastOk": "2026-11-18T13:02:12.245Z"
   }
  }

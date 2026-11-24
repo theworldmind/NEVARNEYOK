@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-23T22:29:01.545Z",
+ "runAt": "2026-11-24T08:31:25.751Z",
  "mode": "full",
  "total": 82,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 42,
-   "prevCount": 50,
+   "prevCount": 42,
    "error": "",
    "notes": [
     "açık veri: 37 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/batman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 87,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:29:01.545Z"
+   "lastOk": "2026-11-24T08:31:25.751Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
+   "seconds": 180,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:29:01.545Z"
+   "lastOk": "2026-11-24T08:31:25.751Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/batman/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/batman/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 178,
-   "failStreak": 10,
+   "seconds": 176,
+   "failStreak": 11,
    "lastOk": "2026-11-18T13:02:04.821Z"
   },
   "biletimgo": {
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 9,
-   "prevCount": 5,
+   "count": 8,
+   "prevCount": 8,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/batman: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 23,
+   "seconds": 22,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:29:01.545Z"
+   "lastOk": "2026-11-24T08:31:25.751Z"
   }
  }
 }

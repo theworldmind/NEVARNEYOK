@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-23T22:40:08.334Z",
+ "runAt": "2026-11-24T08:42:55.923Z",
  "mode": "full",
  "total": 76,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 47,
-   "prevCount": 58,
+   "prevCount": 47,
    "error": "",
    "notes": [
     "açık veri: 43 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 91,
+   "seconds": 90,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:40:08.334Z"
+   "lastOk": "2026-11-24T08:42:55.923Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 28,
-   "prevCount": 30,
+   "prevCount": 28,
    "error": "",
    "notes": [
     "www.radarturkiye.com/giresun-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=giresun: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 909,
+   "seconds": 912,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:40:08.334Z"
+   "lastOk": "2026-11-24T08:42:55.923Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/giresun/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 8,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:40:08.334Z"
+   "lastOk": "2026-11-24T08:42:55.923Z"
   }
  }
 }

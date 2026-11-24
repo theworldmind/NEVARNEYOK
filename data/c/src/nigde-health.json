@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T22:57:01.993Z",
+ "runAt": "2026-11-24T09:00:03.532Z",
  "mode": "full",
- "total": 57,
+ "total": 60,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 43,
-   "prevCount": 54,
+   "prevCount": 44,
    "error": "",
    "notes": [
     "açık veri: 39 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/nigde: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 92,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:57:01.993Z"
+   "lastOk": "2026-11-24T09:00:03.532Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 182,
+   "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:57:01.993Z"
+   "lastOk": "2026-11-24T09:00:03.532Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   },
   "allevents": {
@@ -72,8 +72,8 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 12,
-   "prevCount": 7,
+   "count": 15,
+   "prevCount": 12,
    "error": "",
    "notes": [
     "allevents.in/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +85,9 @@
     "allevents.in/nigde/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/nigde/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 187,
+   "seconds": 176,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:57:01.993Z"
+   "lastOk": "2026-11-24T09:00:03.532Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/nigde: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   }
  }

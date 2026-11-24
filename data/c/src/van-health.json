@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T23:08:54.222Z",
+ "runAt": "2026-11-24T09:10:39.424Z",
  "mode": "full",
- "total": 90,
+ "total": 92,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 84,
-   "prevCount": 89,
+   "count": 86,
+   "prevCount": 84,
    "error": "",
    "notes": [
-    "açık veri: 76 seans, 1 detay sayfası",
+    "açık veri: 78 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/van: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/van: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 100,
+   "seconds": 104,
    "failStreak": 0,
-   "lastOk": "2026-11-23T23:08:54.222Z"
+   "lastOk": "2026-11-24T09:10:39.424Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
+   "seconds": 186,
    "failStreak": 0,
-   "lastOk": "2026-11-23T23:08:54.222Z"
+   "lastOk": "2026-11-24T09:10:39.424Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/van/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/van/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 163,
-   "failStreak": 17,
+   "seconds": 165,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 4,
+   "failStreak": 5,
    "lastOk": "2026-11-21T12:15:52.341Z"
   }
  }

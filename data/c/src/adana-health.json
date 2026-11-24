@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T22:29:02.434Z",
+ "runAt": "2026-11-24T08:31:27.832Z",
  "mode": "full",
- "total": 528,
+ "total": 536,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 132,
-   "prevCount": 427,
+   "count": 139,
+   "prevCount": 418,
    "error": "",
    "notes": [
-    "açık veri: 124 seans",
-    "biletinial.com/tr-tr/tiyatro/adana: 59 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 125 seans",
+    "biletinial.com/tr-tr/tiyatro/adana: 60 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/adana: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/adana: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 119,
-   "failStreak": 17,
+   "seconds": 108,
+   "failStreak": 18,
    "lastOk": "2026-11-15T10:26:56.370Z"
   },
   "radar": {
@@ -34,10 +34,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 100,
-   "prevCount": 98,
+   "prevCount": 100,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/adana-etkinlikleri: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/adana-etkinlikleri: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/adana-muzik-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/adana-tiyatro-etkinlikleri: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/adana-hafta-sonu-etkinlikleri: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=adana: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1141,
+   "seconds": 1140,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:29:02.434Z"
+   "lastOk": "2026-11-24T08:31:27.832Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   },
   "allevents": {
@@ -78,16 +78,16 @@
    "notes": [
     "allevents.in/adana: 16 bağlantı, 16 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/all: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/adana/concerts: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/adana/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/parties: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/workshops: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 187,
+   "seconds": 190,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:29:02.434Z"
+   "lastOk": "2026-11-24T08:31:27.832Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:29:02.434Z"
+   "lastOk": "2026-11-24T08:31:27.832Z"
   }
  }
 }

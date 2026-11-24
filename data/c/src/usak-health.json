@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T23:08:18.886Z",
+ "runAt": "2026-11-24T09:09:38.606Z",
  "mode": "full",
- "total": 86,
+ "total": 85,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 52,
-   "prevCount": 64,
+   "count": 51,
+   "prevCount": 52,
    "error": "",
    "notes": [
-    "açık veri: 47 seans",
+    "açık veri: 46 seans",
     "biletinial.com/tr-tr/tiyatro/usak: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/usak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/usak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 90,
    "failStreak": 0,
-   "lastOk": "2026-11-23T23:08:18.886Z"
+   "lastOk": "2026-11-24T09:09:38.606Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 6,
-   "prevCount": 11,
+   "prevCount": 6,
    "error": "",
    "notes": [
     "www.radarturkiye.com/usak-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 194,
+   "seconds": 186,
    "failStreak": 0,
-   "lastOk": "2026-11-23T23:08:18.886Z"
+   "lastOk": "2026-11-24T09:09:38.606Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/usak/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/usak/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 198,
-   "failStreak": 9,
+   "seconds": 196,
+   "failStreak": 10,
    "lastOk": "2026-11-18T13:48:36.810Z"
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-23T23:08:18.886Z"
+   "lastOk": "2026-11-24T09:09:38.606Z"
   }
  }
 }

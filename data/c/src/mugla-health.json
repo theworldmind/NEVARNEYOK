@@ -1,31 +1,31 @@
 {
- "runAt": "2026-11-23T23:01:32.784Z",
+ "runAt": "2026-11-24T08:56:58.936Z",
  "mode": "full",
- "total": 193,
+ "total": 195,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 0,
-   "prevCount": 185,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 174,
+   "prevCount": 168,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, şehir numarası bulunamadı: mugla",
-    "liste açılmadı: https://biletinial.com/tr-tr/tiyatro/mugla (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/tiyatro/mugla\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/tiyatro/mugla\", waiting until \"domcontentloaded\"\n)",
-    "liste açılmadı: https://biletinial.com/tr-tr/muzik/mugla (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/muzik/mugla\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/muzik/mugla\", waiting until \"domcontentloaded\"\n)",
-    "liste açılmadı: https://biletinial.com/tr-tr/stand-up/mugla (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/stand-up/mugla\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/stand-up/mugla\", waiting until \"domcontentloaded\"\n)",
-    "liste açılmadı: https://biletinial.com/tr-tr/cocuk-aktiviteleri/mugla (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/cocuk-aktiviteleri/mugla\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/cocuk-aktiviteleri/mugla\", waiting until \"domcontentloaded\"\n)",
-    "liste açılmadı: https://biletinial.com/tr-tr/opera-bale/mugla (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/opera-bale/mugla\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/opera-bale/mugla\", waiting until \"domcontentloaded\"\n)",
-    "liste açılmadı: https://biletinial.com/tr-tr/festival/mugla (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/festival/mugla\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/festival/mugla\", waiting until \"domcontentloaded\"\n)",
-    "liste açılmadı: https://biletinial.com/tr-tr/egitim/mugla (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/egitim/mugla\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/egitim/mugla\", waiting until \"domcontentloaded\"\n)"
+    "açık veri: 108 seans, 18 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/mugla: 62 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/mugla: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/stand-up/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/cocuk-aktiviteleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/opera-bale/mugla: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/festival/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/egitim/mugla: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1771,
-   "failStreak": 1,
-   "lastOk": "2026-11-23T06:12:17.121Z"
+   "seconds": 116,
+   "failStreak": 0,
+   "lastOk": "2026-11-24T08:56:58.936Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 27,
-   "prevCount": 30,
+   "prevCount": 29,
    "error": "",
    "notes": [
     "www.radarturkiye.com/mugla-etkinlikleri: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mugla: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 381,
+   "seconds": 412,
    "failStreak": 0,
-   "lastOk": "2026-11-23T23:01:32.784Z"
+   "lastOk": "2026-11-24T08:56:58.936Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 14,
+   "failStreak": 15,
    "lastOk": null
   },
   "allevents": {
@@ -85,9 +85,9 @@
     "allevents.in/mugla/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mugla/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 165,
+   "seconds": 180,
    "failStreak": 0,
-   "lastOk": "2026-11-23T23:01:32.784Z"
+   "lastOk": "2026-11-24T08:56:58.936Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/mugla: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 14,
+   "seconds": 6,
+   "failStreak": 15,
    "lastOk": null
   }
  }

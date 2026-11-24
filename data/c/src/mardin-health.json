@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T22:54:20.691Z",
+ "runAt": "2026-11-24T08:56:19.541Z",
  "mode": "full",
- "total": 57,
+ "total": 59,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 47,
-   "prevCount": 54,
+   "count": 49,
+   "prevCount": 47,
    "error": "",
    "notes": [
     "açık veri: 43 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:54:20.691Z"
+   "lastOk": "2026-11-24T08:56:19.541Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 11,
-   "prevCount": 11,
+   "prevCount": 10,
    "error": "",
    "notes": [
     "www.radarturkiye.com/mardin-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 205,
+   "seconds": 209,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:54:20.691Z"
+   "lastOk": "2026-11-24T08:56:19.541Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/mardin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/mardin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 15,
+   "seconds": 156,
+   "failStreak": 16,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:54:20.691Z"
+   "lastOk": "2026-11-24T08:56:19.541Z"
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-23T22:49:18.777Z",
+ "runAt": "2026-11-24T08:50:04.911Z",
  "mode": "full",
- "total": 96,
+ "total": 95,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 70,
-   "prevCount": 76,
+   "prevCount": 70,
    "error": "",
    "notes": [
     "açık veri: 63 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 94,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:49:18.777Z"
+   "lastOk": "2026-11-24T08:50:04.911Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 210,
+   "seconds": 207,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:49:18.777Z"
+   "lastOk": "2026-11-24T08:50:04.911Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 15,
+   "failStreak": 16,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kayseri/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 178,
-   "failStreak": 9,
+   "seconds": 194,
+   "failStreak": 10,
    "lastOk": "2026-11-18T14:25:48.080Z"
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-23T22:49:18.777Z"
+   "lastOk": "2026-11-24T08:50:04.911Z"
   },
   "kayseribld": {
    "id": "kayseribld",
@@ -118,7 +118,7 @@
     "www.kayseri.bel.tr/etkinlikler: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 12,
-   "failStreak": 10,
+   "failStreak": 11,
    "lastOk": null
   }
  }
