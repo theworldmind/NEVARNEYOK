@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T14:02:20.360Z",
+ "updated": "2026-11-24T22:54:46.546Z",
  "notes": [
   "trt: 0 aday",
   "aa: 1 aday",
@@ -24,16 +24,16 @@
   "ntv-sanat: 301",
   "ntv-turkiye: 0 aday",
   "cnnturk-kultur: 0 aday",
-  "cnnturk-turkiye: 1 aday",
+  "cnnturk-turkiye: 0 aday",
   "milliyet-kultur: 404",
   "milliyet-gundem: 0 aday",
   "yenisafak-kultur: 0 aday",
   "t24-kultur: 403",
-  "birgun: 3 aday",
+  "birgun: 2 aday",
   "duvar: 403",
   "karar: 410",
   "star: 0 aday",
-  "haberler-kultur: 14 aday",
+  "haberler-kultur: 15 aday",
   "haberler-yasam: 0 aday",
   "haber7-kultur: 0 aday",
   "iha-kultur: 404",
@@ -45,7 +45,7 @@
   "mansetankara-1: robots kapalı",
   "mansetankara-2: robots kapalı",
   "mansetankara-3: robots kapalı",
-  "ankaranethaber: 1 aday",
+  "ankaranethaber: 0 aday",
   "ankaramasasi: 404",
   "ankaramasasi-1: 404",
   "baskentpostasi: fetch failed",
@@ -58,7 +58,7 @@
   "egetelgraf: 0 aday",
   "egetelgraf-1: 403",
   "izmirtime24: fetch failed",
-  "olay: 0 aday",
+  "olay: 1 aday",
   "olay-1: 0 aday",
   "bursahakimiyet: 0 aday",
   "bursahakimiyet-1: 404",
@@ -79,7 +79,7 @@
   "olaygazetesi: fetch failed",
   "samsunhaber: 0 aday",
   "takagazete: 0 aday",
-  "mersinhaber: 1 aday",
+  "mersinhaber: 2 aday",
   "hataygazetesi: fetch failed",
   "denizlihaber: 403",
   "muglahaber: 0 aday",
@@ -87,15 +87,15 @@
   "pusulahaber: 0 aday",
   "diyarbakirsoz: 0 aday",
   "vanhaber: fetch failed",
-  "malatyahaber: 1 aday",
+  "malatyahaber: 2 aday",
   "elazighaber: robots kapalı",
   "sivashaber: akış değil",
-  "tokathaber: 1 aday",
+  "tokathaber: 0 aday",
   "canakkaleolay: 1 aday",
   "edirnehaber: 403",
   "tekirdaghaber: 0 aday",
   "balikesirhaber: akış değil",
-  "manisahaber: akış değil",
+  "manisahaber: 429",
   "aydinses: 0 aday",
   "ispartahaber: fetch failed",
   "afyonhaber: 0 aday",
@@ -107,7 +107,7 @@
   "giresunhaber: 404",
   "rizehaber: fetch failed",
   "kastamonuhaber: 404",
-  "urfanatik: 0 aday",
+  "urfanatik: 1 aday",
   "mardinhaber: fetch failed",
   "kahramanmarashaber: 0 aday",
   "nevsehirhaber: 0 aday",
@@ -127,9 +127,7 @@
    "title": "Ü'de Öğretmenler Günü'nde Hasan Tuluk'un söyleşisi",
    "cat": "atolye",
    "venue": "Kültür Merkezi",
-   "days": [
-    "2026-11-24"
-   ],
+   "days": [],
    "until": "2026-11-27",
    "from": "",
    "t": "",
@@ -174,36 +172,21 @@
    "imgBy": "Başkent Gazete"
   },
   {
-   "id": "salon-mumhanede-hasan-ucarsu-soylesisi-istanbul",
-   "city": "istanbul",
-   "title": "Salon Mumhane’de Hasan Uçarsu söyleşisi",
-   "cat": "atolye",
-   "venue": "Salon Mumhane",
+   "id": "inonu-universitesi-kisa-film-festivali-malatya",
+   "city": "malatya",
+   "title": "İnönü Üniversitesi Kısa Film Festivali",
+   "cat": "festival",
+   "venue": "Kültür Merkezi",
    "days": [
-    "2026-11-24"
+    "2027-02-06"
    ],
    "until": "",
    "from": "",
    "t": "",
-   "img": "https://media.cumhuriyet.com.tr/Archive/cbfde636-a28f-403c-9d48-df7536ee5f4a.jpg",
-   "site": "Cumhuriyet",
-   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/salon-mumhane-de-hasan-ucarsu-soylesisi-2558933",
-   "seen": "2026-11-24T14:02:20.360Z"
-  },
-  {
-   "id": "katil-baglanti-kur-firsatlari-yakala-malatya",
-   "city": "malatya",
-   "title": "Katıl, Bağlantı Kur, Fırsatları Yakala",
-   "cat": "festival",
-   "venue": "Sanat Merkezi",
-   "days": [],
-   "until": "2026-11-24",
-   "from": "",
-   "t": "",
-   "img": "https://malatyahabercom.teimg.com/crop/1280x720/malatyahaber-com/uploads/2026/11/istihdam1b.jpg",
+   "img": "https://malatyahabercom.teimg.com/crop/1280x720/malatyahaber-com/uploads/2026/11/film.jpg",
    "site": "Malatya Haber",
-   "url": "https://malatyahaber.com/katil-baglanti-kur-firsatlari-yakala-temali-istihdam-fuari",
-   "seen": "2026-11-24T00:35:15.828Z"
+   "url": "https://malatyahaber.com/inonu-universitesi-kisa-film-festivalinde-on-elemeyi-40-film-gecti",
+   "seen": "2026-11-24T22:54:46.546Z"
   },
   {
    "id": "30-uluslararasi-ankara-caz-festivali-ankara",
@@ -219,23 +202,6 @@
    "site": "AA",
    "url": "https://www.aa.com.tr/tr/kultur/30-uluslararasi-ankara-caz-festivali-caz-evrenseldir-temasiyla-basladi/4127908",
    "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
-   "id": "cumhuriyetin-cumhuriyeti-soylesisi-ankara",
-   "city": "ankara",
-   "title": "Cumhuriyet’in Cumhuriyet’i' söyleşisi",
-   "cat": "atolye",
-   "venue": "TMMOB Maden Mühendisleri Odası Genel Merkezi",
-   "days": [
-    "2026-11-24"
-   ],
-   "until": "",
-   "from": "",
-   "t": "18:30",
-   "img": "https://media.cumhuriyet.com.tr/Archive/1f5e0e5d-8a41-4bc8-bd44-c0c85c86ec67.jpg",
-   "site": "Cumhuriyet",
-   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/cumhuriyet-in-belleginde-turkiye-nin-oykusu-tmmob-den-cumhuriyet-in-cumhuriyet-i-soylesisi-2558603",
-   "seen": "2026-11-24T14:02:20.360Z"
   },
   {
    "id": "artvin-borckada-halklarin-turkuleri-artvin",
@@ -304,23 +270,6 @@
    "seen": "2026-11-22T11:44:21.947Z"
   },
   {
-   "id": "bir-anne-sefkatiyle-calisiyorlar-konya",
-   "city": "konya",
-   "title": "Bir anne şefkatiyle çalışıyorlar",
-   "cat": "konser",
-   "venue": "",
-   "days": [
-    "2026-11-24"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://konyayeniguncom.teimg.com/crop/1280x720/konyayenigun-com/uploads/2026/11/1-760.jpg",
-   "site": "Konya Yenigün",
-   "url": "https://www.konyayenigun.com/konyada-yurekleri-isitan-24-kasim-kutlamasi-bir-anne-sefkatiyle-calisiyorlar",
-   "seen": "2026-11-24T14:02:20.360Z"
-  },
-  {
    "id": "23-uluslararasi-film-festivali-eskisehir",
    "city": "eskisehir",
    "title": "23. Uluslararası Film Festivali",
@@ -336,23 +285,6 @@
    "site": "Haberler.com",
    "url": "https://www.haberler.com/kultur-sanat/eskisehir-de-23-uluslararasi-film-festivali-34-20443989-haberi/",
    "seen": "2026-11-20T04:21:55.141Z"
-  },
-  {
-   "id": "kastamonuda-ogretmenler-gunu-kastamonu",
-   "city": "kastamonu",
-   "title": "Kastamonu'da Öğretmenler Günü",
-   "cat": "konser",
-   "venue": "Kastamonu Halk Eğitimi Merkezi",
-   "days": [
-    "2026-11-24"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://foto.haberler.com/haber/2026/11/24/kastamonu-da-ogretmenler-gunu-konserinde-3-mu-20455903_amp.jpg",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/guncel/kastamonu-da-ogretmenler-gunu-konserinde-3-muzik-20455903-haberi/",
-   "seen": "2026-11-24T14:02:20.360Z"
   },
   {
    "id": "kadim-bir-dongunun-resimleri-istanbul",
@@ -535,6 +467,22 @@
    "seen": "2026-11-24T14:02:20.360Z"
   },
   {
+   "id": "dtnin-ogretmene-vefa-ankara",
+   "city": "ankara",
+   "title": "DT'nin Öğretmene Vefa",
+   "cat": "atolye",
+   "venue": "CSO Ada Ankara Fuaye Salonu",
+   "days": [],
+   "until": "2026-12-01",
+   "from": "",
+   "t": "",
+   "free": true,
+   "img": "https://foto.haberler.com/haber/2026/11/24/dt-nin-ogretmene-vefa-sergisi-24-kasim-da-cso-20458495_amp.jpg",
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/guncel/dt-nin-ogretmene-vefa-sergisi-24-kasim-da-cso-ada-20458495-haberi/",
+   "seen": "2026-11-24T22:54:46.546Z"
+  },
+  {
    "id": "cocuk-film-festivali-istanbul",
    "city": "istanbul",
    "title": "Çocuk Film Festivali",
@@ -565,6 +513,25 @@
    "site": "Ankara Net Haber",
    "url": "https://www.ankaranethaber.com/yapay-zeka-akademik-yayinciligi-nasil-degistiriyor-ankaradaki-seminerin-tarihi-belli-oldu",
    "seen": "2026-11-24T14:02:20.360Z"
+  },
+  {
+   "id": "belene-toplama-kampi-bursa",
+   "city": "bursa",
+   "title": "Belene Toplama Kampı",
+   "cat": "konser",
+   "venue": "Kültür Merkezi Özel Harekât Polisi İlyas Kaygusuz Salonu",
+   "days": [
+    "2026-11-26",
+    "2026-11-27"
+   ],
+   "until": "",
+   "from": "",
+   "t": "19:30",
+   "free": true,
+   "img": "https://cdn.olay.com.tr/2026/11/belene-toplama-kampinin-son-tutsaklari-belgeseli-bursada-izleyiciyle-bulusacak_aba0d4e2fbe0.jpg",
+   "site": "Olay",
+   "url": "https://www.olay.com.tr/belene-toplama-kampinin-son-tutsaklari-belgeseli-bursada-izleyiciyle-bulusacak-1815194",
+   "seen": "2026-11-24T22:54:46.546Z"
   },
   {
    "id": "tipografi-festivali-eskisehir",
@@ -634,9 +601,9 @@
    "from": "",
    "t": "",
    "free": true,
-   "site": "BirGün",
-   "url": "https://www.birgun.net/haber/16-uluslararasi-suc-ve-ceza-film-festivali-herkes-icin-adalet-temasiyla-basliyor-748188",
-   "seen": "2026-11-24T14:02:20.360Z"
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/guncel/16-suc-ve-ceza-film-festivali-26-kasim-da-35-20457396-haberi/",
+   "seen": "2026-11-24T22:54:46.546Z"
   },
   {
    "id": "tiyatro-festivali-istanbul",
@@ -645,7 +612,6 @@
    "cat": "festival",
    "venue": "Zorlu PSM Turkcell Sahnesi",
    "days": [
-    "2026-11-24",
     "2026-11-25",
     "2026-11-27",
     "2026-11-28",
@@ -710,23 +676,6 @@
    "site": "Cumhuriyet",
    "url": "https://www.cumhuriyet.com.tr/kultur-sanat/shakespeare-in-olumsuz-eseri-romeo-ve-juliet-sahnelenecek-2553709",
    "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
-   "id": "marifetli-eller-tekirdag",
-   "city": "tekirdag",
-   "title": "Marifetli Eller",
-   "cat": "atolye",
-   "venue": "Yahya Kemal Beyatlı Kültür Merkezi",
-   "days": [
-    "2026-11-24"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://foto.haberler.com/haber/2026/11/24/tekirdag-da-ogretmen-ve-ogrencilerin-49-eserl-20458036_amp.jpg",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/guncel/tekirdag-da-ogretmen-ve-ogrencilerin-49-eserlik-20458036-haberi/",
-   "seen": "2026-11-24T14:02:20.360Z"
   },
   {
    "id": "baba-ve-baba-istanbul",
@@ -801,23 +750,6 @@
    "site": "Cumhuriyet",
    "url": "https://www.cumhuriyet.com.tr/kultur-sanat/ardic-agaci-kasimda-bes-ulkede-sahnelenecek-2553963",
    "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
-   "id": "kayip-okul-tokat",
-   "city": "tokat",
-   "title": "Kayıp Okul",
-   "cat": "tiyatro",
-   "venue": "Kültür Merkezi",
-   "days": [
-    "2026-11-24"
-   ],
-   "until": "",
-   "from": "",
-   "t": "19:00",
-   "img": "https://tokathabercomtr.teimg.com/crop/1280x720/tokathaber-com-tr/uploads/2026/11/tiyatro-1-2.jpg",
-   "site": "Tokat Haber",
-   "url": "https://www.tokathaber.com.tr/erbaada-ogretmenler-gunune-ozel-tiyatro-kayip-okul-bu-aksam-sahnede",
-   "seen": "2026-11-24T14:02:20.360Z"
   },
   {
    "id": "dus-izi-ankara",
