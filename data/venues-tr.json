@@ -21131,5 +21131,166 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/cafe"
+ },
+ "eskisehir|Avlu Performans": {
+  "lat": 39.765073,
+  "lng": 30.5198686,
+  "addr": "Akarbaşı Mahallesi Şehit Y&#252;zbaşı Tuncer G&#252;ng&#246;r Caddesi No:1 Eskişehir",
+  "ilce": "",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|Kartal Uğur Mumcu Kültür Merkezi": {
+  "lat": 40.932396,
+  "lng": 29.213017,
+  "addr": "Uğurmumcu, Şeyh Şamil Cd. No:9 D:1, 34882 Kartal/İstanbul, İstanbul Anadolu, İstanbul Anadolu",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|Mehmet Akif Ersoy Sanat Merkezi": {
+  "lat": 40.8787,
+  "lng": 29.23247,
+  "addr": "Batı Mah. İsmet Paşa Cad. No:2 (Migros Yanı),Yayalar, Istanbul, Turkey, Istanbul, IB",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "balikesir|Marmara Eğitim Kurumları Kocaeli Kampüsü": {
+  "lat": 40.356274,
+  "lng": 27.973742,
+  "addr": "2. Okul Sokak 19A",
+  "ilce": "Bandırma",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "bartin|Yaşar Kemal Kültür ve Sanat Merkezi": {
+  "lat": 41.6334152,
+  "lng": 32.3431795,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "tourism/museum",
+  "m": "ov"
+ },
+ "erzincan|Nurettin Ardıçoğlu Kültür Merkezi Küçük Salon": {
+  "lat": 39.641003,
+  "lng": 39.654091,
+  "addr": "",
+  "ilce": "",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "istanbul|İstanbul Workshops · Fabrikafa Make&Coffee": {
+  "lat": 41.026587,
+  "lng": 28.9780013,
+  "addr": "Lüleci Hendek Caddesi No:20, Müeyyedzade, Hacımimi Mahallesi",
+  "ilce": "Hacımimi Mahallesi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|KidZania İstanbul": {
+  "lat": 41.0005774,
+  "lng": 29.0549259,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Torium AVM": {
+  "lat": 41.0040225,
+  "lng": 28.6885526,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall",
+  "m": "ov"
+ },
+ "istanbul|KAĞITHANE SULTAN SELİM": {
+  "lat": 41.092796,
+  "lng": 29.004299,
+  "addr": "ESKİ BÜYÜKDERE CADDESİ SULTAN SELİM MAHALLESİ NO:65/A",
+  "ilce": "İstanbul Avrupa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|Simurg Cafe": {
+  "lat": 41.013458,
+  "lng": 28.960941,
+  "addr": "Molla hüsrev mahallesi Cemal yener Tosyalı Caddesi no:69 Vezneciler",
+  "ilce": "Fatih",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "istanbul|The Ritz-Carlton, Istanbul": {
+  "lat": 40.997757,
+  "lng": 28.884605,
+  "addr": "Bakırköy",
+  "ilce": "Bakırköy",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "konya|İrfan Medeniyeti Kültür ve Araştırma Merkezi": {
+  "lat": 37.8702216,
+  "lng": 32.5112993,
+  "addr": "Evliya Çelebi Sokak, Aziziye Mahallesi, Karatay",
+  "ilce": "Karatay",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "samsun|Yaşar Kemal Kültür ve Sanat Merkezi": {
+  "lat": 41.2057335,
+  "lng": 36.7120232,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Park of İstanbul": {
+  "lat": 41.0528088,
+  "lng": 29.2493962,
+  "addr": "Çatalmeşe Mahallesi, Çekmeköy",
+  "ilce": "Çekmeköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park"
+ },
+ "istanbul|Sapphire AVM": {
+  "lat": 41.0849899,
+  "lng": 29.0060481,
+  "addr": "İsmet İnönü Caddesi, Emniyetevleri Mahallesi, Kâğıthane",
+  "ilce": "Kâğıthane",
+  "src": "osm",
+  "v": 2,
+  "osm": "shop/mall"
+ },
+ "malatya|Sanat Merkezi": {
+  "lat": 38.3490991,
+  "lng": 38.2919839,
+  "addr": "Buhara Caddesi, İnönü Mahallesi, Yeşilyurt",
+  "ilce": "Yeşilyurt",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/construction"
  }
 }
