@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T08:31:23.613Z",
+ "runAt": "2026-11-24T21:00:45.117Z",
  "mode": "full",
- "total": 4719,
+ "total": 4735,
  "written": true,
  "sources": {
   "sanatcepte": {
@@ -10,15 +10,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 902,
-   "prevCount": 900,
+   "count": 894,
+   "prevCount": 899,
    "error": "",
    "notes": [
-    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 340 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 344 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-24T08:31:23.613Z"
+   "lastOk": "2026-11-24T21:00:45.117Z"
   },
   "akansel": {
    "id": "akansel",
@@ -32,9 +32,9 @@
    "notes": [
     "akanselegitimdanismanlik.com/seminerler.aspx: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 7 takvim satırı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 8,
    "failStreak": 0,
-   "lastOk": "2026-11-24T08:31:23.613Z"
+   "lastOk": "2026-11-24T21:00:45.117Z"
   },
   "dob": {
    "id": "dob",
@@ -42,15 +42,15 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 198,
-   "prevCount": 259,
+   "count": 195,
+   "prevCount": 264,
    "error": "",
    "notes": [
-    "açık veri: 198 seans"
+    "açık veri: 195 seans"
    ],
-   "seconds": 25,
+   "seconds": 22,
    "failStreak": 0,
-   "lastOk": "2026-11-24T08:31:23.613Z"
+   "lastOk": "2026-11-24T21:00:45.117Z"
   },
   "tiyatrolar": {
    "id": "tiyatrolar",
@@ -59,19 +59,19 @@
    "ok": true,
    "status": "calisiyor",
    "count": 33,
-   "prevCount": 31,
+   "prevCount": 34,
    "error": "",
    "notes": [
     "tiyatrolar.com.tr/: 223 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "tiyatrolar.com.tr/sahnedekiler/?tip=1: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "tiyatrolar.com.tr/sahnedekiler/?tip=2: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=3: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=4: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=3: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=4: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "site haritası: 2000 adres"
    ],
-   "seconds": 223,
+   "seconds": 219,
    "failStreak": 0,
-   "lastOk": "2026-11-24T08:31:23.613Z"
+   "lastOk": "2026-11-24T21:00:45.117Z"
   },
   "iticket": {
    "id": "iticket",
@@ -79,8 +79,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 420,
-   "prevCount": 408,
+   "count": 443,
+   "prevCount": 409,
    "error": "",
    "notes": [
     "iticket.com.tr/etkinlikler/tumu?page=1: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -92,9 +92,9 @@
     "iticket.com.tr/etkinlikler/tumu?page=7: 105 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "iticket.com.tr/etkinlikler/tumu?page=8: 120 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 389,
+   "seconds": 338,
    "failStreak": 0,
-   "lastOk": "2026-11-24T08:31:23.613Z"
+   "lastOk": "2026-11-24T21:00:45.117Z"
   },
   "biletix": {
    "id": "biletix",
@@ -102,15 +102,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 6342,
-   "prevCount": 3355,
+   "count": 6346,
+   "prevCount": 3374,
    "error": "",
    "notes": [
-    "açık veri: 3337 seans, 3273 detay sayfası, dizinde 3337 kayıt"
+    "açık veri: 3337 seans, 3272 detay sayfası, dizinde 3337 kayıt"
    ],
-   "seconds": 3812,
+   "seconds": 3266,
    "failStreak": 0,
-   "lastOk": "2026-11-24T08:31:23.613Z"
+   "lastOk": "2026-11-24T21:00:45.117Z"
   }
  }
 }

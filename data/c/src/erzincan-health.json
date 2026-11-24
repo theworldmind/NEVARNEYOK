@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T08:37:46.025Z",
+ "runAt": "2026-11-24T21:06:59.963Z",
  "mode": "full",
- "total": 67,
+ "total": 63,
  "written": true,
  "sources": {
   "biletinial": {
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 81,
-   "failStreak": 18,
+   "seconds": 82,
+   "failStreak": 19,
    "lastOk": "2026-11-15T10:29:01.995Z"
   },
   "radar": {
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=erzincan: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 697,
+   "seconds": 644,
    "failStreak": 0,
-   "lastOk": "2026-11-24T08:37:46.025Z"
+   "lastOk": "2026-11-24T21:06:59.963Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/erzincan/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 16,
+   "seconds": 7,
+   "failStreak": 17,
    "lastOk": null
   }
  }

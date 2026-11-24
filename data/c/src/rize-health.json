@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T09:02:08.834Z",
+ "runAt": "2026-11-24T21:29:54.839Z",
  "mode": "full",
- "total": 85,
+ "total": 78,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 40,
+   "count": 32,
    "prevCount": 40,
    "error": "",
    "notes": [
-    "açık veri: 34 seans",
+    "açık veri: 26 seans",
     "biletinial.com/tr-tr/tiyatro/rize: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/rize: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/rize: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-24T09:02:08.834Z"
+   "lastOk": "2026-11-24T21:29:54.839Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=rize: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1057,
+   "seconds": 1075,
    "failStreak": 0,
-   "lastOk": "2026-11-24T09:02:08.834Z"
+   "lastOk": "2026-11-24T21:29:54.839Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/rize/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/rize/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 16,
+   "seconds": 156,
+   "failStreak": 17,
    "lastOk": null
   },
   "biletimgo": {
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 4,
+   "count": 5,
    "prevCount": 4,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/rize: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/rize: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 16,
    "failStreak": 0,
-   "lastOk": "2026-11-24T09:02:08.834Z"
+   "lastOk": "2026-11-24T21:29:54.839Z"
   }
  }
 }
