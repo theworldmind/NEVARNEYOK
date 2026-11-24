@@ -2236,5 +2236,33 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/bar"
+ },
+ "kas sahne": {
+  "lat": 39.8486968,
+  "lng": 32.6355139,
+  "addr": "Yaşamkule Alacaatlı Mah. 3408 Cadde No:2C Yaşamkent/Ankara",
+  "ilce": "Yaşamkent",
+  "src": "biletinial",
+  "v": 2
+ },
+ "Kas Sahne": {
+  "lat": 39.8486968,
+  "lng": 32.6355139,
+  "addr": "Yaşamkule Alacaatlı Mah. 3408 Cadde No:2C Yaşamkent/Ankara",
+  "ilce": "Yaşamkent",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "Gürkan Şef Steakfood Ankara": {
+  "lat": 39.845341,
+  "lng": 32.828648,
+  "addr": "Kuzu Effect Shopping Center, Zülfü Tiğrel Cd. No:1/5/138",
+  "ilce": "Çankaya",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
  }
 }

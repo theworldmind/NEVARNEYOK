@@ -21292,5 +21292,224 @@
   "src": "osm",
   "v": 2,
   "osm": "building/construction"
+ },
+ "gaziantep|Gaziantep Şehit Kamil Sanat Merkezi": {
+  "lat": 37.0662135,
+  "lng": 37.3714597,
+  "addr": "İncili Pınar, 27000 Şehitkamil/Gaziantep",
+  "ilce": "Şehitkamil",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|İnal Aydınoğlu KM Şener Şen Sahnesi": {
+  "lat": 40.974225,
+  "lng": 29.114692,
+  "addr": "İ&#231;erenk&#246;y, &#199;i&#231;ek&#231;iler Sokağı No:78, 34752 Ataşehir/İstanbul",
+  "ilce": "Ataşehir",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|Moda Kayıkhane Sokak": {
+  "lat": 40.9830996,
+  "lng": 29.0310043,
+  "addr": "Caferağa, Moda Cd. No:194, 34710 Kadık&#246;y/İstanbul",
+  "ilce": "Kadık&#246;y",
+  "src": "biletinial",
+  "v": 2
+ },
+ "izmir|Ahmet Adnan Saygun · Sanat Merkezi": {
+  "lat": 38.3981384,
+  "lng": 27.0782674,
+  "addr": "Mehmet Ali Akman, Mahallesi, Mithatpaşa Cd. No:1087, 35290 Konak/İzmir",
+  "ilce": "Konak",
+  "src": "biletinial",
+  "v": 2
+ },
+ "bursa|fakülte osmangazi": {
+  "lat": 40.193977,
+  "lng": 29.061697,
+  "addr": "Osmangazi",
+  "ilce": "Osmangazi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "bursa|Club Inferno Bursa": {
+  "lat": 40.210999,
+  "lng": 28.999332,
+  "addr": "cad Parkora, Akpınar Cd. No:180",
+  "ilce": "Nilüfer",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "denizli|Denizli Merkezefendi Belediyesi K.M. Petek Salonu": {
+  "lat": 37.7667403,
+  "lng": 29.0562291,
+  "addr": "Merkez Efendi, 20010 Merkezefendi/Denizli",
+  "ilce": "Merkezefendi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "erzincan|Binali Yıldırım Üniversitesi": {
+  "lat": 39.815952,
+  "lng": 39.367302,
+  "addr": "erzincan",
+  "ilce": "Erzincan",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "gaziantep|Ömer Ersoy Kültür Merkezi (Aziz Bedros Kilisesi)": {
+  "lat": 37.058792,
+  "lng": 37.376522,
+  "addr": "Şahinbey",
+  "ilce": "Şahinbey",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|İstanbul Medipol Üniversitesi Güney Kampüsü": {
+  "lat": 41.071159,
+  "lng": 28.906601,
+  "addr": "Gaziosmanpaşa",
+  "ilce": "Gaziosmanpaşa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/university",
+  "m": "ov"
+ },
+ "istanbul|The Wall Sahne Performance": {
+  "lat": 40.9899152,
+  "lng": 29.0233938,
+  "addr": "Validei Atik, Neşet &#214;mer Sk. 5-7/A, 34710 Kadık&#246;y/İstanbul",
+  "ilce": "Kadık&#246;y",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Bebek Parkı": {
+  "lat": 41.0759099,
+  "lng": 29.0437867,
+  "addr": "Bebek Mahallesi, Beşiktaş",
+  "ilce": "Beşiktaş",
+  "src": "osm",
+  "v": 2,
+  "osm": "leisure/park",
+  "m": "ov"
+ },
+ "istanbul|Aşina Asmalı": {
+  "lat": 41.030342,
+  "lng": 28.974791,
+  "addr": "Gönül Sk. No: 9C",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|Karaköy Port": {
+  "lat": 41.025269,
+  "lng": 28.98526,
+  "addr": "Beyoğlu",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/hotel",
+  "m": "ov"
+ },
+ "istanbul|Aqua Restaurant": {
+  "lat": 41.042343,
+  "lng": 29.012594,
+  "addr": "Çırağan Cd. NO. 28",
+  "ilce": "Beşiktaş",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "istanbul|İBB Hoca Ahmet Yesevi": {
+  "lat": 41.097782,
+  "lng": 28.8767238,
+  "addr": "2383. Sokak, Esentepe, Esentepe",
+  "ilce": "Esentepe",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|people’s social / buca": {
+  "lat": 38.388329,
+  "lng": 27.173853,
+  "addr": "106. Sk. No:5",
+  "ilce": "Buca",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cafe",
+  "m": "ov"
+ },
+ "izmir|bros pub": {
+  "lat": 38.450359,
+  "lng": 27.202692,
+  "addr": "367. Sk. No:7/B",
+  "ilce": "Bornova",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "izmir|TaTa MIDNIGHT Myvia 414": {
+  "lat": 38.450821,
+  "lng": 27.20137,
+  "addr": "Sanayi Cd. No:31 B 01",
+  "ilce": "Bornova",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mersin|Anamur Sinema": {
+  "lat": 36.068878,
+  "lng": 32.863964,
+  "addr": "Adnan Menderes Cd. No:11",
+  "ilce": "Anamur",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "malatya|Kültür Merkezi": {
+  "lat": 38.3466912,
+  "lng": 38.2872498,
+  "addr": "İnönü Caddesi, İnönü Mahallesi, Yeşilyurt",
+  "ilce": "Yeşilyurt",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/arts_centre"
+ },
+ "eskisehir|Kültür Merkezi": {
+  "lat": 39.7771631,
+  "lng": 30.51912,
+  "addr": "Dinçer Sokak No:5, Cumhuriye Mahallesi, Tepebaşı",
+  "ilce": "Tepebaşı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/community_centre"
+ },
+ "istanbul|Çeşme Bazlama Kahvaltı Şaşkınbakkal": {
+  "lat": 40.9629092,
+  "lng": 29.0748288,
+  "addr": "Noter Sokağı No:23, Kadıköy",
+  "ilce": "Kadıköy",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/restaurant"
  }
 }
