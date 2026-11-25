@@ -96,8 +96,19 @@ export async function main() {
   log(`Filmler: vizyonda ${now.length}, yakında ${comingAll.length} (7 gün içinde ${coming.length}; tarihsiz ${comingAll.filter((f) => !f.release).length})`);
   const seen = new Set(), list = [];
   for (const f of [...now, ...coming]) if (!seen.has(f.id)) { seen.add(f.id); list.push(f); }
+  /* Salon salon (25.11.2026, kullanıcı: "hocamın attığı filmlerin çoğu yoktu; hepsi olacak"): vizyondaki listesi ağırlıkla büyük filmleri veriyor;
+     bağımsız, festival sonrası ya da tek seanslık filmler yalnızca salonun kendi program sayfasında görünüyor (/sinemasalonu/<no>/<ad>).
+     Bilinen her salonun (dünkü veri + bu çalışmada bulunanlar) sayfası okunur, listede olmayan film eklenir ve seans sayfası aynı yoldan okunur. */
+  const salonIds = new Set(Object.keys(prev.cinemas || {}).map(Number));
+  const fromSalon = async (ids) => { let add = 0; for (const cid of ids) { const html = await get(`/sinemasalonu/${cid}/x`); if (!html) continue;
+      for (const m of html.matchAll(/href="(?:https?:\/\/www\.sinemalar\.com)?\/film\/(\d+)\/([a-z0-9-]+)"[^>]*>([\s\S]{0,400}?)<\/a>/gi)) { const id = +m[1]; if (seen.has(id) || /benzerleri/.test(m[2])) continue;
+        const t = txt((m[3].match(/<h[23][^>]*>([\s\S]*?)<\/h[23]>/) || [])[1] || (m[3].match(/alt="([^"]+?)\s*(?:\(\d{4}\))?\s*afişi"/) || [])[1] || "");
+        if (!t) continue; seen.add(id); add++; const img = (m[3].match(/src="(https:\/\/cdn\.sinemalar\.com\/[^"]+)"/) || [])[1];
+        list.push({ id, slug: m[2], title: t, ...(img ? { img } : {}), salon: 1 }); } } return add; };
+  const ilk = await fromSalon([...salonIds]);
+  log(`Filmler: salon sayfalarından ${ilk} film daha (${salonIds.size} salon)`);
   const cinemas = {}, films = [];
-  for (const f of list) {
+  const seance = async (f) => {
     const page = `/seans/${f.id}/${f.slug}/${SLUGS[0]}`, days = {};
     let any = false;
     for (const sl of SLUGS) {
@@ -107,16 +118,22 @@ export async function main() {
       Object.assign(cinemas, cs);
       for (const [d, byC] of Object.entries(dd)) Object.assign((days[d] ||= {}), byC);
     }
-    if (!any) continue;
+    if (!any) return;
     const s = {};
     for (const [d, byC] of Object.entries(days)) {
       if (d < today) continue;
       s[d] = Object.entries(byC).map(([cid, groups]) => [+cid, groups.map(([t, fmt]) => `${t.join(",")}${fmt ? "|" + fmt : ""}`).join(";")]);
     }
     const nS = Object.values(s).flat().reduce((n, [, g]) => n + g.split(/[;,]/).length, 0);
-    if (!nS && !(f.release >= today)) continue; // Ankara'da seansı olmayan eski filmler alınmaz
+    if (!nS && !(f.release >= today)) return; // ilde seansı olmayan eski filmler alınmaz
+    if (f.salon && !f.release) { const fp = await get(`/film/${f.id}/${f.slug}`); const inf = (fp.match(/<div class="card-info">\s*([^<]*•[^<]*)<\/div>/) || fp.match(/class="[^"]*info[^"]*">\s*([^<]*•[^<]*)</) || [])[1]; if (inf) Object.assign(f, parseInfo(inf)); }
     films.push({ id: f.id, title: f.title, release: f.release || "", dur: f.dur || 0, country: f.country || "", genre: f.genre || "", ...(f.year ? { year: f.year } : {}), url: BASE + page, ...(f.img ? { img: f.img } : {}), s });
-  }
+  };
+  for (const f of list) await seance(f);
+  // Bu çalışmada ilk kez görülen salonlar: onların sayfalarına da bakılır, yeni film çıkarsa seansı okunur
+  const yeni = Object.keys(cinemas).map(Number).filter((c) => !salonIds.has(c));
+  if (yeni.length) { const before = list.length; const n = await fromSalon(yeni);
+    if (n) { log(`Filmler: yeni ${yeni.length} salondan ${n} film daha`); for (const f of list.slice(before)) await seance(f); } }
   // Kaynak boş döndüyse dünkü veriyi silme (site boş kalmasın)
   if (!films.length && prev.films?.length) { log(`Filmler: kaynak boş döndü (${notes.join(" · ")}), dünkü veri korunuyor`); return; }
   if (parseSeances.miss) notes.push(`DİKKAT: saati okunamayan ${parseSeances.miss} seans kartı (sayfa yapısı değişmiş olabilir)`);
