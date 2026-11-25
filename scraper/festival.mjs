@@ -21,34 +21,8 @@ const tkey = (s) => fold(String(s || "").split(" / ")[0].replace(/^festival\s*[-
 const AYL = { ocak: 1, subat: 2, mart: 3, nisan: 4, mayis: 5, haziran: 6, temmuz: 7, agustos: 8, eylul: 9, ekim: 10, kasim: 11, aralik: 12 };
 const iso = (y, m, d) => `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
 
-/* Türkiye'deki film festivalleri: ad, il, resmî site ve adın metinde nasıl geçtiği. Yeni festival buraya bir satırla eklenir. */
-export const FEST = [
-  { f: "aff", ad: "Ankara Film Festivali", il: "ankara", site: "https://filmfestankara.org.tr", re: /\bankara (uluslararasi )?film festival/, mekan: /buyulu fener/, no: (y) => y - 1989, program: (y) => `https://filmfestankara.org.tr/${y - 1989}-aff` },
-  { f: "ucansupurge", ad: "Uçan Süpürge Kadın Filmleri Festivali", il: "ankara", site: "https://www.ucansupurge.org.tr", re: /ucan supurge/ },
-  { f: "gezici", ad: "Gezici Festival", il: "ankara", site: "https://gezicifestival.org", re: /gezici festival|festival on wheels/ },
-  { f: "engelsiz", ad: "Engelsiz Filmler Festivali", il: "ankara", site: "https://engelsizfestival.com", re: /engelsiz filmler/ },
-  { f: "iff", ad: "İstanbul Film Festivali", il: "istanbul", site: "https://film.iksv.org", re: /\bistanbul (uluslararasi )?film festival/ },
-  { f: "filmekimi", ad: "Filmekimi", il: "istanbul", site: "https://filmekimi.iksv.org", re: /\bfilmekimi\b/ },
-  { f: "if", ad: "!f İstanbul Bağımsız Filmler Festivali", il: "istanbul", site: "https://www.ifistanbul.com", re: /!f istanbul|\bif istanbul\b|bagimsiz filmler festival/ },
-  { f: "altinportakal", ad: "Antalya Altın Portakal Film Festivali", il: "antalya", site: "https://www.altinportakal.org.tr", re: /altin portakal/ },
-  { f: "altinkoza", ad: "Adana Altın Koza Film Festivali", il: "adana", site: "https://www.altinkozafestivali.org.tr", re: /altin koza/ },
-  { f: "eskisehir", ad: "Eskişehir Uluslararası Film Festivali", il: "eskisehir", site: "https://eskisehirfilmfestivali.anadolu.edu.tr", re: /eskisehir (uluslararasi )?film festival/ },
-  { f: "bogazici", ad: "Boğaziçi Film Festivali", il: "istanbul", site: "https://bogazicifilmfestivali.com", re: /bogazici film festival/ },
-  { f: "sucveceza", ad: "Suç ve Ceza Film Festivali", il: "istanbul", site: "https://www.sucvecezafilmfest.org", re: /suc ve ceza film/ },
-  { f: "documentarist", ad: "Documentarist İstanbul Belgesel Günleri", il: "istanbul", site: "https://documentarist.org", re: /documentarist/ },
-  { f: "kisadanhisse", ad: "Kısa'dan Hisse Kısa Film Festivali", il: "istanbul", site: "https://kisadanhisse.com", re: /kisa ?dan hisse/ },
-  { f: "korkutata", ad: "Korkut Ata Türk Dünyası Film Festivali", il: "istanbul", site: "", re: /korkut ata/ },
-  { f: "malatya", ad: "Malatya Uluslararası Film Festivali", il: "malatya", site: "", re: /malatya (uluslararasi )?film festival/ },
-  { f: "izmirkisa", ad: "İzmir Uluslararası Kısa Film Festivali", il: "izmir", site: "https://www.izmirkisafilm.org", re: /izmir (uluslararasi )?kisa film/ },
-  { f: "frankofon", ad: "Frankofon Film Festivali", il: "", site: "", re: /frankofon film|frankofoni film/ },
-  { f: "tursak", ad: "TÜRSAK Çocuk Filmleri Festivali", il: "", site: "https://www.tursak.org.tr", re: /tursak cocuk film/ },
-  { f: "tsf", ad: "Türkiye Sinema Festivali", il: "", site: "", re: /turkiye sinema festival/ },
-  { f: "ayvalik", ad: "Ayvalık Uluslararası Film Festivali", il: "balikesir", site: "", re: /ayvalik (uluslararasi )?film festival/ },
-  { f: "bodrum", ad: "Bodrum Film Festivali", il: "mugla", site: "", re: /bodrum (uluslararasi )?film festival/ },
-  { f: "antakya", ad: "Antakya Film Festivali", il: "hatay", site: "", re: /antakya (uluslararasi )?film festival/ },
-  { f: "kayseri", ad: "Kayseri Film Festivali", il: "kayseri", site: "", re: /kayseri (uluslararasi )?film festival/ },
-  { f: "genel", ad: "Film festivali", il: "", site: "", re: /\bfilm festival|\bfestival\s*[-–:]\s/ }, // tanınmayan festival: Biletinial "Festival - <film>"
-];
+import { FEST } from "./lib/festivaller.mjs";
+export { FEST };
 const which = (s) => { const x = fold(s); if (!x) return null; return FEST.find((F) => F.re.test(x)) || null; };
 
 /* ---------- Ankara Film Festivali programı: filmfestankara.org.tr/<no>-aff ----------

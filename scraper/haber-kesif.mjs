@@ -11,6 +11,7 @@ import { fetchText } from "./lib/net.mjs";
 import { parseFeed, FEEDS as BUZZ_FEEDS } from "./buzz.mjs";
 import { candidatesFrom } from "./audit.mjs";
 import { CITIES, cityOfText } from "./lib/cities.mjs";
+const ABROAD = /\b(gazze|filistin|riyad|cidde|dubai|doha|katar|tahran|bakü|baku|kktc|lefkoşa|girne|berlin|paris|londra|new york|los angeles|viyana|roma|madrid|atina|moskova|amsterdam|brüksel|cannes|venedik|tokyo|kahire|beyrut|şam|bağdat|erbil|üsküp|saraybosna|tiflis|almanya|fransa|ingiltere|abd|amerika|italya|ispanya|yunanistan|rusya|mısır|lübnan|suriye|irak|iran|azerbaycan)(['’ ]?(da|de|ta|te|nda|nde|daki|deki))\b/i;
 import { guessCat, fixCat } from "./lib/normalize.mjs";
 import { speakerIn } from "./lib/konusmaci.mjs";
 
@@ -194,6 +195,8 @@ async function main() {
     const r = await withTimeout(fetchText(c.url, { retries: 0 }), 25000).catch(() => ({})); read++;
     if (!r.text || r.status !== 200) return;
     const body = bodyOf(r.text), all = c.head + "\n" + body;      // metin yalnızca bellekte
+    // yurt dışında olan etkinliğin haberi alınmaz (25.11.2026: "Gazze'de Çocuk Film Festivali" İstanbul'a, "Riyad'da festival" İstanbul'a düşüyordu)
+    if ((ABROAD.test(c.head) || ABROAD.test(decodeURIComponent(String(c.url || "")).replace(/-/g, " "))) && !cityOfText(c.head)) return;
     const city = cityOfText(c.head) || cityOfText(body.slice(0, 1500)); if (!city) return;
     const D = datesOf(all, today);
     if (!D.days.length && !D.until) return;                       // tarihi yazmayan haber etkinlik sayılmaz

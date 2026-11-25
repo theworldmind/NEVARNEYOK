@@ -152,11 +152,25 @@ export async function main() {
   if (news.speakers?.size) { const { readdir } = await import("node:fs/promises"); let all = [...data.events]; for (const f of await readdir(join(ROOT, "data/c")).catch(() => [])) if (/^[a-z]+\.json$/.test(f)) all = all.concat((await readJSON(join(ROOT, "data/c", f), {})).events || []);
     const hay = all.map((e) => fold(e.title + " " + (e.org || ""))).join(" | ");
     for (const [sp, n] of news.speakers) if (!hay.includes(fold(sp))) gaps.push({ w: 2, k: "konusmaci", t: `${sp} haberde etkinlikle geçiyor, bizde kaydı yok: [${n.title}](${n.link})` }); }
+  // l) sinema ve festivaller (25.11.2026, kullanıcı: "festivali bile çekememişsin; benim müdahalemle var olmasın, her şeyi kendin bul")
+  const festProbe = [];
+  { const FS = (await readJSON(join(ROOT, "data/festival.json"), { festivals: [] })).festivals || [], { FEST } = await import("./lib/festivaller.mjs");
+    for (const x of FS) { const live = x.bas && x.bit && x.bit >= today && x.bas <= addDays(today, 30); if (!live) continue;
+      if (!x.g?.length) gaps.push({ w: 3, k: "festival", t: `${x.ad} (${x.bas}–${x.bit}, ${x.il}): yaklaşıyor ama hiç gösterim saati yok` });
+      const nog = (x.films || []).filter((f) => !f.auto && !(x.g || []).some((r) => r[4] === f.k));
+      if (nog.length > 2) gaps.push({ w: 2, k: "festival", t: `${x.ad}: programdaki ${nog.length} filmin seansı yok (ör. ${nog.slice(0, 5).map((f) => f.t).join(", ")})` });
+      const F = FEST.find((F) => F.f === x.f); if (x.f === "genel" || (F && !F.program)) { gaps.push({ w: 2, k: "festival", t: `${x.ad}: festivalin kendi programı okunmuyor (seanslar yalnızca bilet sitelerinden/haberlerden)${F?.site ? `; site incelendi: ${F.site}` : ""}` }); if (F?.site) festProbe.push(F.site); } }
+    const all = [...data.events]; const { readdir } = await import("node:fs/promises"); for (const f of await readdir(join(ROOT, "data/c")).catch(() => [])) if (/^[a-z]+\.json$/.test(f)) all.push(...((await readJSON(join(ROOT, "data/c", f), {})).events || []));
+    const nolink = all.filter((e) => e.cat === "sinema" && e.d >= today && !(e.tickets || []).some((t) => t.url));
+    if (nolink.length) gaps.push({ w: 2, k: "sinema", t: `${nolink.length} film gösteriminde bilet ya da ayrıntı bağlantısı yok (ör. ${[...new Set(nolink.map((e) => e.title))].slice(0, 5).join(", ")})` });
+    const fl = await readJSON(join(ROOT, "data/films.json"), null);
+    if (fl?.cinemas) { const used = new Set(); for (const f of fl.films || []) for (const r of (f.s && f.s[today]) || []) used.add(String(r[0])); const idle = Object.entries(fl.cinemas).filter(([id]) => !used.has(id)).map(([, c]) => c.name);
+      if (idle.length > 3) gaps.push({ w: 1, k: "sinema", t: `Ankara'da ${idle.length} salonun bugün seansı görünmüyor (ör. ${idle.slice(0, 6).join(", ")}); salon programları kontrol edilmeli` }); } }
   await writeJSON(HIST, [...hist.filter((h) => h.at !== today), cur].slice(-30), false);
 
   const probeIds = gaps.filter((g) => g.probe).map((g) => g.probe).slice(0, 4);
   const sources = (await import("./sources/index.mjs")).default;
-  const probeUrls = probeIds.map((id) => sources.find((s) => s.id === id)?.listings?.[0]).filter(Boolean);
+  const probeUrls = [...probeIds.map((id) => sources.find((s) => s.id === id)?.listings?.[0]).filter(Boolean), ...festProbe].slice(0, 6);
   await writeText(join(ROOT, "scraper/out/probe-urls.txt"), probeUrls.join(" "));
 
   const L = [`# Kapsam raporu · ${today}`, "", `Sitede ${data.events.length} etkinlik. Denetim kendi geçmişiyle (${Math.min(hist.length, 14)} tarama) ve haber akışlarıyla karşılaştırdı.`, ""];
