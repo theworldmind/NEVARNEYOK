@@ -10,7 +10,7 @@ export const FEST = [
   { f: "if", ad: "!f İstanbul Bağımsız Filmler Festivali", il: "istanbul", site: "https://www.ifistanbul.com", re: /!f istanbul|\bif istanbul\b|bagimsiz filmler festival/ },
   { f: "altinportakal", ad: "Antalya Altın Portakal Film Festivali", il: "antalya", site: "https://www.altinportakal.org.tr", re: /altin portakal/ },
   { f: "altinkoza", ad: "Adana Altın Koza Film Festivali", il: "adana", site: "https://www.altinkozafestivali.org.tr", re: /altin koza/ },
-  { f: "eskisehir", ad: "Eskişehir Uluslararası Film Festivali", il: "eskisehir", site: "https://eskisehirfilmfestivali.anadolu.edu.tr", re: /eskisehir (uluslararasi )?film festival/ },
+  { f: "eskisehir", ad: "Eskişehir Uluslararası Film Festivali", il: "eskisehir", site: "https://eskfilmfest.org", re: /eskisehir (uluslararasi )?film festival/ },
   { f: "bogazici", ad: "Boğaziçi Film Festivali", il: "istanbul", site: "https://bogazicifilmfestivali.com", re: /bogazici film festival/ },
   { f: "sucveceza", ad: "Suç ve Ceza Film Festivali", il: "istanbul", site: "https://www.sucvecezafilmfest.org", re: /suc ve ceza film|\bceza film festival/ },
   { f: "documentarist", ad: "Documentarist İstanbul Belgesel Günleri", il: "istanbul", site: "https://documentarist.org", re: /documentarist/ },
@@ -25,5 +25,7 @@ export const FEST = [
   { f: "bodrum", ad: "Bodrum Film Festivali", il: "mugla", site: "", re: /bodrum (uluslararasi )?film festival/ },
   { f: "antakya", ad: "Antakya Film Festivali", il: "hatay", site: "", re: /antakya (uluslararasi )?film festival/ },
   { f: "kayseri", ad: "Kayseri Film Festivali", il: "kayseri", site: "", re: /kayseri (uluslararasi )?film festival/ },
+  { f: "altintaka", ad: "Trabzon Altın Taka Film Festivali", il: "trabzon", site: "", re: /altin taka|trabzon (uluslararasi )?film festival/ },
+  { f: "abkultur", ad: "Avrupa Birliği Kültür Günleri", il: "", site: "https://www.eeas.europa.eu/delegations/turkiye", re: /avrupa birligi kultur gunleri|ab kultur gunleri|avrupa film gunleri/ },
   { f: "genel", ad: "Film festivali", il: "", site: "", re: /\bfilm festival|\bfestival\s*[-–:]\s|\bfilm gunleri|\bfilm haftasi|\bsinema gunleri|\bbelgesel gunleri/ }, // tanınmayan festival: Biletinial "Festival - <film>"
 ];
