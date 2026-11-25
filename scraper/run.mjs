@@ -62,7 +62,8 @@ const health = {};
 const prevCount = (id) => (prev.events || []).filter((e) => (e.tickets || []).some((t) => t.src === id)).length;
 for (const src of SOURCES) {
   const r = results[src.id] || { raws: [] };
-  const count = r.raws.length, pc = prevCount(src.id);
+  // düşüş, bir önceki taramanın ham sayısıyla ölçülür (25.11.2026: birikmiş etkinlik sayısıyla karşılaştırınca Biletinial 25 ilde yanlışlıkla "düştü" görünüyordu)
+  const count = r.raws.length, ph = prevHealth.sources?.[src.id] || {}, pc0 = ph.okCount ?? ph.count, pc = pc0 != null ? pc0 : prevCount(src.id);
   let status = "calisiyor";
   if (r.error) status = "hata";
   else if (count === 0 && pc === 0) status = "bos";
@@ -70,7 +71,7 @@ for (const src of SOURCES) {
   const streak = status === "calisiyor" ? 0 : ((prevHealth.sources?.[src.id]?.failStreak || 0) + 1);
   health[src.id] = { id: src.id, name: src.name, kind: src.kind, ok: status === "calisiyor", status, count, prevCount: pc,
     error: r.error || "", notes: (r.notes || []).slice(0, 8), seconds: Math.round((r.ms || 0) / 1000), failStreak: streak,
-    lastOk: status === "calisiyor" ? now : prevHealth.sources?.[src.id]?.lastOk || null };
+    lastOk: status === "calisiyor" ? now : prevHealth.sources?.[src.id]?.lastOk || null, okCount: status === "calisiyor" ? count : (ph.okCount ?? null) };
 }
 
 /* ---------- 3) Birleştir ---------- */
@@ -183,7 +184,8 @@ if (shrink && !process.env.FORCE_WRITE) {
 } else {
   await writeJSON(OUT, out);
 }
-await writeJSON(HEALTH, { runAt: now, mode: MODE, total: out.events.length, written: !shrink, sources: health }, true);
+// tek kaynaklı denemeler (--only) öteki kaynakların sağlık kaydını silmesin (25.11.2026: health.json'da yalnızca film-ankara kalmıştı)
+await writeJSON(HEALTH, { runAt: now, mode: MODE, total: out.events.length, written: !shrink, sources: ONLY.length ? { ...(prevHealth.sources || {}), ...health } : health }, true);
 await writeText(join(ROOT, process.env.HEALTH_MD || "scraper/out/health.md"), healthMarkdown(health, out.events.length, shrink));
 const newOnes = out.events.filter((e) => e.firstSeen === now).length;
 log(`Bitti: ${out.events.length} etkinlik · bugün yeni ${newOnes} · çalışan kaynak ${Object.values(health).filter((h) => h.ok).length}/${SOURCES.length}`);
