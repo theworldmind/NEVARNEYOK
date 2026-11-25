@@ -37,7 +37,7 @@ for (const [nm, w, h, dpr, mob] of SIZES) {
   await T("sinema", async () => { await go(`#/${C}/sinema`); await snap("5-sinema"); });
   await T("harita", async () => { await go(`#/${C}/harita`, 7000); await snap("6-harita"); });
   await T("plan", async () => { await go(`#/${C}/takip`); await snap("7-planim"); });
-  await T("akis", async () => { await go(`#/akis`); await snap("8-akis"); });
+  await T("festival", async () => { await go(`#/${C}/festivaller`); await snap("8-festivaller"); });
   await T("panel", async () => { await go(`#/${C}`, 2500); const b = await page.$("#pz"); if (b) { await b.click(); await page.waitForTimeout(900); await snap("9-panel"); } });
   if (mob) { // akıcılık: 4× yavaş işlemci
     await T("olcum", async () => {

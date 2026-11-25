@@ -3321,3 +3321,9 @@ boot().then(() => { offlineBoot(); shortcutBoot(); route(); appUp(); splashOut()
     t.finished.finally(clear);
   };
 })();
+
+/* Akıcılık (25.11.2026 denetimi: 4× yavaş işlemcide kaydırmada 161 karenin 7'si takılıyordu; üst çubuk ve sekme çubuğundaki buzlu cam kapatılınca 0):
+   zayıf cihazda (≤4 çekirdek ya da ≤4 GB) yalnızca kaydırma sürerken iki çubuğun camı aynı tonda opak zemine geçer, durunca geri gelir. */
+(() => { const low = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4 || matchMedia("(prefers-reduced-transparency: reduce)").matches; if (!low) return;
+  const H = document.documentElement; H.classList.add("lowfx"); let t = 0;
+  addEventListener("scroll", () => { if (!H.classList.contains("scr")) H.classList.add("scr"); clearTimeout(t); t = setTimeout(() => H.classList.remove("scr"), 160); }, { passive: true }); })();
