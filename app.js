@@ -702,6 +702,7 @@ function viewEvent(city, slug) {
     <section class="sec"><h3>Bu etkinlik hakkında</h3>${infoBlock(e, city)}<a class="wrong" href="${wrongMail(e, city)}">Bir yanlış mı var? Bize yaz →</a></section>
     <div id="wxb"></div>
     <section class="sec"><h3>Konum</h3><div class="mapc">${v?.lat ? `<div class="map" id="map"></div>` : ""}<div class="ad">${I.pin}<span><b>${esc(e.venue || "")}</b><small>${esc(v?.addr || (v?.ilce ? v.ilce + ", " : "") + (CITIES.find((c) => c.id === city)?.name || ""))}</small></span><button type="button" id="vfl" class="vfl${vfol()[vkey(city, e.venue)] ? " on" : ""}">${vfol()[vkey(city, e.venue)] ? I.bellOn + "Mekân takipte" : I.pin + "Mekânı takip et"}</button></div><div class="bt">${v?.lat ? `<button type="button" class="p" id="rte">${I.dir}Yol tarifi</button>` : `<a class="p" href="${hereU}">${I.dir}Yol tarifi</a>`}<a href="${hereU}">${I.pin}Haritada aç</a></div></div></section>
+    <a class="kva" href="#/${city}/gecmis?q=${encodeURIComponent(e.venue || "")}">🕰️ ${esc(e.venue || "Bu mekân")}: burada neler oldu <span>›</span></a>
     <section class="sec dgk" id="dgk" data-tur="etkinlik" data-il="${esc(city)}" data-slug="${esc(e.slug)}" data-baslik="${esc(e.title)}" data-mekan="${esc(e.venue || "")}" data-gun="${esc(e.until && e.until > e.d ? e.until : e.d)}" data-saat="${esc(e.t || "")}"></section>
   </div></div></div></article>
   ${same.length ? rail("Aynı mekânda", e.venue, same, city, `#/${city}/kesfet?m=${encodeURIComponent(e.venue)}`) : ""}
@@ -763,7 +764,7 @@ function viewFilm(city, id, day) {
   <div class="meta">${f.release ? `<div>${I.cal}<span>Vizyon tarihi<small>${dLong(f.release)}</small></span></div>` : ""}<div>${I.pin}<span>${rows.length} salonda seans<small>${dLong(d)}</small></span></div></div>
   <div class="days" style="padding:18px 0 0">${days.map((x) => { const dt = pd(x); return `<button type="button" data-d="${x}" class="${x === d ? "on" : ""}">${x === today ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
   <div class="ss">${rows.map((r) => `<div class="h"><b>${esc(r.c.name)}</b>${r.c.addr ? `<small>${esc(r.c.addr)}</small>` : ""}<div class="tm">${r.times.map((t) => d === today && t < hm ? `<span class="ps">${esc(t)}</span>` : `<button type="button" class="${follows()[sid(f, r.cid, d, t)] ? "on" : ""}" data-st="${esc(t)}" data-cid="${esc(r.cid)}">${esc(t)}</button>`).join("")}${r.fmt ? `<i>${esc(r.fmt)}</i>` : ""}</div></div>`).join("")}</div>
-  <div class="shr"><button type="button" id="ffl" class="flw${ffol()[f.id] ? " on" : ""}">${ffol()[f.id] ? I.bellOn + "Film takipte" : I.bell + "Filmi takip et"}</button></div>
+  <div class="shr"><button type="button" id="ffl" class="flw${ffol()[f.id] ? " on" : ""}">${ffol()[f.id] ? I.bellOn + "Film takipte" : I.bell + "Filmi takip et"}</button>${izBtn(f.title, f.img)}</div>
   <p class="flh">${rows.length ? "Seans saatine dokun: seansı takip et, takvimine ekle ya da biletini al." : "Bu filmin şehrinde henüz seansı yok. Takip edersen seanslar açılınca haber veririz."}</p>
   ${f.url ? `<a class="buy" href="${esc(f.url)}" target="_blank" rel="noopener" data-buy="${f.ev ? "salon" : "sinemalar.com"}">${f.ev ? "Bilet al" : "Seanslar ve bilet · sinemalar.com"}</a>` : ""}
   <section class="sec" id="fgh"></section>
@@ -772,7 +773,7 @@ function viewFilm(city, id, day) {
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/film/${id}?gun=${b.dataset.d}`; }));
   dgkWire();
   $("#ffl").addEventListener("click", (ev) => toggleFilm(f, city, ev.currentTarget));
-  filmFests(f, city, $("#ffs")); filmHist(city, f, $("#fgh")).catch(() => $("#fgh")?.remove());
+  izWire(); filmFests(f, city, $("#ffs")); filmHist(city, f, $("#fgh")).catch(() => $("#fgh")?.remove());
   $$("[data-st]").forEach((b) => b.addEventListener("click", () => seansSheet(f, city, d, b.dataset.st, b.dataset.cid, C[b.dataset.cid] || { name: "Salon" }, b)));
 }
 
@@ -846,11 +847,13 @@ function viewFFilm(city, id, k) {
     <h1>${esc(f.t)}</h1>${f.en ? `<p class="fo">${esc(f.en)}</p>` : ""}${f.dir ? `<p class="fdr">Yönetmen <b>${esc(f.dir)}</b></p>` : ""}
     <h2 class="fsh">Festival gösterimleri</h2><div class="fpl">${G.map((r) => { const past = r[0] < t || (r[0] === t && r[1] < hm); return `<div class="fpr${past ? " ps" : ""}"><b class="fpt">${esc(dShort(r[0]))}<small>${esc(r[1])}</small></b><div class="fpm"><span>${esc(r[3])}</span></div>${past ? `<em class="fpg">Gösterildi</em>` : r[6] && !/filmfestankara/.test(r[6]) ? `<a class="fpb" href="${esc(r[6])}" target="_blank" rel="noopener" data-buy="festival">Bilet</a>` : ""}</div>`; }).join("") || `<div class="empty">Gösterim saati henüz yok.</div>`}</div>
     ${vz ? `<a class="buy" href="#/${city}/film/${esc(String(vz.id))}">Vizyonda · seanslar</a>` : ""}
+    <div class="shr">${vz ? "" : `<button type="button" id="ffl" class="flw${ffol()["k:" + fk(f.t)] ? " on" : ""}">${ffol()["k:" + fk(f.t)] ? I.bellOn + "Takipte" : I.bell + "İzleyeceğim · şehrime gelince haber ver"}</button>`}${izBtn(f.t, f.img)}</div>
     ${other.length ? `<h2 class="fsh">Başka festivallerde</h2><div class="fsr">${other.slice(0, 8).map((y) => fstCard(y, city)).join("")}</div>` : ""}
     ${f.url ? `<p class="fsn"><a href="${esc(f.url)}" target="_blank" rel="noopener">Filmin festival sayfası ↗</a></p>` : ""}
     <section class="sec dgk" id="dgk" data-tur="film" data-il="tr" data-slug="film-f-${esc(fk(f.t).replace(/\s+/g, "-").slice(0, 50))}" data-baslik="${esc(f.t)}" data-mekan="" data-gun=""></section>
     </div></div></div></article>${footer()}`;
-    dgkWire();
+    dgkWire(); izWire();
+    $("#ffl")?.addEventListener("click", (ev) => toggleFilm({ id: "k:" + fk(f.t), title: f.t, img: f.img, s: {} }, city, ev.currentTarget));
   });
 }
 // Filmin geçmiş gösterimleri (bu ilde, son 6 ay): salon salon, gün gün
@@ -2121,6 +2124,12 @@ const afol = () => { try { return JSON.parse(store.get(AKEY) || "{}") || {}; } c
 const asave = (A) => { store.set(AKEY, JSON.stringify(A)); NV.set("arts", A); };
 const ffol = () => { try { return JSON.parse(store.get(FLKEY) || "{}") || {}; } catch { return {}; } };
 const fsave = (F) => { store.set(FLKEY, JSON.stringify(F)); NV.set("films", F); };
+// Film günlüğü (25.11.2026): "İzledim" yalnızca bu cihazda (nvny-izledim); Planım → Takipler'de liste. "İzleyeceğim" = filmi takip et (şehre gelince haber).
+const IZK = "nvny-izledim", izl = () => { try { return JSON.parse(store.get(IZK) || "{}") || {}; } catch { return {}; } };
+function izBtn(t, img) { const on = !!izl()[fk(t)]; return `<button type="button" class="flw izb${on ? " on" : ""}" data-iz="${esc(t)}" data-izi="${esc(img || "")}">${on ? "✓ İzledim" : "👁 İzledim"}</button>`; }
+function izWire(root = V) { $$("[data-iz]", root).forEach((b) => b.addEventListener("click", () => { const Z = izl(), k = fk(b.dataset.iz);
+  if (Z[k]) { delete Z[k]; b.classList.remove("on"); b.textContent = "👁 İzledim"; } else { Z[k] = { t: b.dataset.iz, img: b.dataset.izi, d: nowIST().d }; b.classList.add("on"); b.textContent = "✓ İzledim"; snd.ok(); haptic(8); toast(`🎬 <span><b>${esc(b.dataset.iz)}</b><small>İzlediklerine eklendi. Aşağıdan puan da verebilirsin.</small></span>`, 4200); }
+  store.set(IZK, JSON.stringify(Z)); })); }
 const aName = (e) => { if (e.cat === "sinema") return ""; const n = String(e.title || "").split(/\s[-|–:]\s/)[0].replace(/\([^)]*\)/g, "").replace(/\s+(konseri|konserleri)$/i, "").trim(); return NV.akey(n).length >= 3 ? n : ""; };
 let aIdxP = null;
 const aIdx = () => aIdxP ||= fetch("idx/a.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : {}).catch(() => { aIdxP = null; return {}; });
@@ -2167,7 +2176,8 @@ function seansSheet(f, city, d, t, cid, cin, btn) {
 function followLists(city) {
   const A = Object.entries(afol()), F = Object.entries(ffol()), N = CNAME();
   return `${A.length ? `<h3 class="fl-h">Takip ettiğin sanatçı ve oyunlar</h3><div class="sgrp">${A.map(([k, a]) => `<div class="srow nr">${cgIcon("standup")}<span class="stx">${esc(a.name)}<small>${(a.seen || []).length} yaklaşan tarih · ${[...new Set((a.seen || []).map((s) => N[s.split("/")[0]]).filter(Boolean))].slice(0, 3).join(", ") || "yeni tarih bekleniyor"}</small></span><button type="button" class="spill gh" data-ax="${esc(k)}">Bırak</button></div>`).join("")}</div>` : ""}
-  ${F.length ? `<h3 class="fl-h">Takip ettiğin filmler</h3><div class="sgrp">${F.map(([id, f]) => `<a class="srow" href="#/${f.city}/film/${esc(id)}">${cgIcon("sinema")}<span class="stx">${esc(f.title)}<small>${f.had ? "Vizyonda · " + esc(N[f.city] || "") : "Seansları bekleniyor"}</small></span><button type="button" class="spill gh" data-fx="${esc(id)}" onclick="event.preventDefault()">Bırak</button></a>`).join("")}</div>` : ""}
+  ${F.length ? `<h3 class="fl-h">Takip ettiğin filmler</h3><div class="sgrp">${F.map(([id, f]) => `<a class="srow" href="${id.startsWith("k:") ? `#/${f.city}/kesfet?q=${encodeURIComponent(f.title)}` : `#/${f.city}/film/${esc(id)}`}">${cgIcon("sinema")}<span class="stx">${esc(f.title)}<small>${f.had ? "Vizyonda · " + esc(N[f.city] || "") : "Seansları bekleniyor"}</small></span><button type="button" class="spill gh" data-fx="${esc(id)}" onclick="event.preventDefault()">Bırak</button></a>`).join("")}</div>` : ""}
+  ${(() => { const Z = Object.values(izl()).sort((a, b) => (b.d || "").localeCompare(a.d || "")); return Z.length ? `<h3 class="fl-h">İzlediğim filmler · ${Z.length}</h3><div class="sgrp">${Z.slice(0, 60).map((z) => `<div class="srow nr">${cgIcon("sinema")}<span class="stx">${esc(z.t)}<small>${z.d ? esc(dLong(z.d)) : ""}</small></span></div>`).join("")}</div>` : ""; })()}
   ${!A.length && !F.length ? `<p class="flh" style="margin-top:20px">Bir etkinliğin sayfasındaki <b>🎤 Yeni tarihlerini takip et</b> ya da bir filmin sayfasındaki <b>Filmi takip et</b> ile buraya ekleyebilirsin.</p>` : ""}`;
 }
 async function watchBoot(city) {
