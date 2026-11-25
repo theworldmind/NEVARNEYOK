@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T18:28:12.735Z",
+ "runAt": "2026-11-25T20:56:14.827Z",
  "mode": "full",
- "total": 29,
+ "total": 25,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 24,
-   "prevCount": 27,
+   "count": 20,
+   "prevCount": 24,
    "error": "",
    "notes": [
-    "açık veri: 17 seans, 1 detay sayfası",
+    "açık veri: 13 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/sirnak: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:28:12.735Z",
-   "okCount": 24
+   "lastOk": "2026-11-25T20:56:14.827Z",
+   "okCount": 20
   },
   "radar": {
    "id": "radar",
@@ -49,7 +49,7 @@
    ],
    "seconds": 164,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:28:12.735Z",
+   "lastOk": "2026-11-25T20:56:14.827Z",
    "okCount": 4
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/sirnak/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sirnak/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 19,
+   "seconds": 156,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   }

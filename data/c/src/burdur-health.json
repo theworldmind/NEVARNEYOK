@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T17:49:34.718Z",
+ "runAt": "2026-11-25T20:24:47.170Z",
  "mode": "full",
- "total": 29,
+ "total": 28,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 29,
-   "prevCount": 35,
+   "count": 28,
+   "prevCount": 29,
    "error": "",
    "notes": [
-    "açık veri: 23 seans",
+    "açık veri: 22 seans",
     "biletinial.com/tr-tr/tiyatro/burdur: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/burdur: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/burdur: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 84,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:34.718Z",
-   "okCount": 29
+   "lastOk": "2026-11-25T20:24:47.170Z",
+   "okCount": 28
   },
   "radar": {
    "id": "radar",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 162,
+   "seconds": 157,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:34.718Z",
+   "lastOk": "2026-11-25T20:24:47.170Z",
    "okCount": 3
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/burdur/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T18:31:24.058Z",
+ "runAt": "2026-11-25T20:58:14.139Z",
  "mode": "full",
- "total": 143,
+ "total": 108,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 62,
-   "prevCount": 72,
+   "count": 58,
+   "prevCount": 62,
    "error": "",
    "notes": [
-    "açık veri: 60 seans",
+    "açık veri: 56 seans",
     "biletinial.com/tr-tr/tiyatro/yalova: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:31:24.058Z",
-   "okCount": 62
+   "lastOk": "2026-11-25T20:58:14.139Z",
+   "okCount": 58
   },
   "radar": {
    "id": "radar",
@@ -35,7 +35,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 80,
-   "prevCount": 63,
+   "prevCount": 80,
    "error": "",
    "notes": [
     "www.radarturkiye.com/yalova-etkinlikleri: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yalova: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1079,
+   "seconds": 1069,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:31:24.058Z",
+   "lastOk": "2026-11-25T20:58:14.139Z",
    "okCount": 80
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
+   "failStreak": 19,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/yalova/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/yalova/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 18,
+   "seconds": 155,
+   "failStreak": 19,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:31:24.058Z",
+   "lastOk": "2026-11-25T20:58:14.139Z",
    "okCount": 3
   }
  }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T18:09:08.038Z",
+ "runAt": "2026-11-25T20:40:40.820Z",
  "mode": "full",
  "total": 39,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 36,
-   "prevCount": 42,
+   "prevCount": 36,
    "error": "",
    "notes": [
     "açık veri: 32 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/karaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/karaman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 83,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:09:08.038Z",
+   "lastOk": "2026-11-25T20:40:40.820Z",
    "okCount": 36
   },
   "radar": {
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=karaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=karaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 161,
+   "seconds": 170,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:09:08.038Z",
+   "lastOk": "2026-11-25T20:40:40.820Z",
    "okCount": 2
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
+   "failStreak": 19,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/karaman/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/karaman/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 175,
-   "failStreak": 18,
+   "seconds": 158,
+   "failStreak": 19,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/karaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
-   "failStreak": 18,
+   "seconds": 7,
+   "failStreak": 19,
    "lastOk": null,
    "okCount": null
   }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T17:59:29.753Z",
+ "runAt": "2026-11-25T20:31:05.962Z",
  "mode": "full",
- "total": 403,
+ "total": 400,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 242,
-   "prevCount": 252,
+   "count": 238,
+   "prevCount": 242,
    "error": "",
    "notes": [
-    "açık veri: 225 seans, 1 detay sayfası",
+    "açık veri: 220 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/eskisehir: 93 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/eskisehir: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/eskisehir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 138,
+   "seconds": 126,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:59:29.753Z",
-   "okCount": 242
+   "lastOk": "2026-11-25T20:31:05.962Z",
+   "okCount": 238
   },
   "radar": {
    "id": "radar",
@@ -35,10 +35,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 126,
-   "prevCount": 122,
+   "prevCount": 126,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/eskisehir-etkinlikleri: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/eskisehir-etkinlikleri: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/eskisehir-muzik-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/eskisehir-tiyatro-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/eskisehir-hafta-sonu-etkinlikleri: 65 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=eskisehir: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1384,
+   "seconds": 1390,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:59:29.753Z",
+   "lastOk": "2026-11-25T20:31:05.962Z",
    "okCount": 126
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -75,23 +75,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 15,
-   "prevCount": 27,
+   "count": 27,
+   "prevCount": 15,
    "error": "",
    "notes": [
-    "allevents.in/eskisehir: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/eskisehir/all: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/eskisehir/concerts: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir: 20 bağlantı, 14 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir/all: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir/concerts: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 186,
+   "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:59:29.753Z",
-   "okCount": 15
+   "lastOk": "2026-11-25T20:31:05.962Z",
+   "okCount": 27
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -100,14 +100,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 10,
-   "prevCount": 9,
+   "prevCount": 10,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/eskisehir: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 24,
+   "seconds": 22,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:59:29.753Z",
+   "lastOk": "2026-11-25T20:31:05.962Z",
    "okCount": 10
   },
   "efkm": {
@@ -124,7 +124,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:59:29.753Z",
+   "lastOk": "2026-11-25T20:31:05.962Z",
    "okCount": 15
   }
  }

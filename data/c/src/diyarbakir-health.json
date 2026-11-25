@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T17:56:17.589Z",
+ "runAt": "2026-11-25T20:30:45.832Z",
  "mode": "full",
- "total": 103,
+ "total": 104,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 83,
-   "prevCount": 76,
+   "count": 84,
+   "prevCount": 83,
    "error": "",
    "notes": [
     "açık veri: 73 seans",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 119,
+   "seconds": 99,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:56:17.589Z",
-   "okCount": 83
+   "lastOk": "2026-11-25T20:30:45.832Z",
+   "okCount": 84
   },
   "radar": {
    "id": "radar",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 177,
+   "seconds": 165,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:56:17.589Z",
+   "lastOk": "2026-11-25T20:30:45.832Z",
    "okCount": 10
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -82,15 +82,15 @@
     "allevents.in/diyarbakir: 8 bağlantı, 8 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/all: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/concerts: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/parties: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/comedy: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/workshops: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/kids: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 169,
+   "seconds": 171,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:56:17.589Z",
+   "lastOk": "2026-11-25T20:30:45.832Z",
    "okCount": 16
   },
   "biletimgo": {
@@ -100,14 +100,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 3,
-   "prevCount": 2,
+   "prevCount": 3,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/diyarbakir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:56:17.589Z",
+   "lastOk": "2026-11-25T20:30:45.832Z",
    "okCount": 3
   }
  }

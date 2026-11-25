@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T18:17:28.714Z",
+ "runAt": "2026-11-25T20:46:59.884Z",
  "mode": "full",
  "total": 40,
  "written": true,
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 38,
-   "prevCount": 47,
+   "count": 37,
+   "prevCount": 38,
    "error": "",
    "notes": [
     "açık veri: 33 seans",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/malatya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 98,
+   "seconds": 100,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:17:28.714Z",
-   "okCount": 38
+   "lastOk": "2026-11-25T20:46:59.884Z",
+   "okCount": 37
   },
   "radar": {
    "id": "radar",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
+   "seconds": 177,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:17:28.714Z",
+   "lastOk": "2026-11-25T20:46:59.884Z",
    "okCount": 9
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/malatya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/malatya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
-   "failStreak": 19,
+   "seconds": 157,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/malatya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:17:28.714Z",
+   "lastOk": "2026-11-25T20:46:59.884Z",
    "okCount": 1
   }
  }

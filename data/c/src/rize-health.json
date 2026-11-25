@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T18:21:40.880Z",
+ "runAt": "2026-11-25T20:52:31.296Z",
  "mode": "full",
  "total": 73,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 26,
-   "prevCount": 32,
+   "prevCount": 26,
    "error": "",
    "notes": [
     "açık veri: 20 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/rize: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 102,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:21:40.880Z",
+   "lastOk": "2026-11-25T20:52:31.296Z",
    "okCount": 26
   },
   "radar": {
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=rize: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1079,
+   "seconds": 377,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:21:40.880Z",
+   "lastOk": "2026-11-25T20:52:31.296Z",
    "okCount": 41
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/rize/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/rize/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 19,
+   "seconds": 156,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/rize: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 20,
+   "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:21:40.880Z",
+   "lastOk": "2026-11-25T20:52:31.296Z",
    "okCount": 6
   }
  }

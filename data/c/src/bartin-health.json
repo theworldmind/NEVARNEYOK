@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T17:50:33.425Z",
+ "runAt": "2026-11-25T20:24:49.659Z",
  "mode": "full",
  "total": 25,
  "written": false,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 21,
-   "prevCount": 28,
+   "prevCount": 21,
    "error": "",
    "notes": [
     "açık veri: 16 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 95,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:50:33.425Z",
+   "lastOk": "2026-11-25T20:24:49.659Z",
    "okCount": 21
   },
   "radar": {
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 157,
+   "seconds": 166,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:50:33.425Z",
+   "lastOk": "2026-11-25T20:24:49.659Z",
    "okCount": 1
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/bartin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 16,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:50:33.425Z",
+   "lastOk": "2026-11-25T20:24:49.659Z",
    "okCount": 4
   }
  }

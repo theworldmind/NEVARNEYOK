@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T17:49:39.827Z",
+ "runAt": "2026-11-25T20:24:48.122Z",
  "mode": "full",
- "total": 780,
+ "total": 779,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 550,
-   "prevCount": 505,
+   "count": 546,
+   "prevCount": 550,
    "error": "",
    "notes": [
-    "açık veri: 476 seans, 19 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/antalya: 146 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 475 seans, 19 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/antalya: 148 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/antalya: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/antalya: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 148,
+   "seconds": 156,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:39.827Z",
-   "okCount": 550
+   "lastOk": "2026-11-25T20:24:48.122Z",
+   "okCount": 546
   },
   "radar": {
    "id": "radar",
@@ -34,8 +34,8 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 219,
-   "prevCount": 220,
+   "count": 220,
+   "prevCount": 219,
    "error": "",
    "notes": [
     "www.radarturkiye.com/antalya-etkinlikleri: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,10 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=antalya: 100 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=antalya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1589,
+   "seconds": 1090,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:39.827Z",
-   "okCount": 219
+   "lastOk": "2026-11-25T20:24:48.122Z",
+   "okCount": 220
   },
   "bugece": {
    "id": "bugece",
@@ -66,7 +66,7 @@
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:39.827Z",
+   "lastOk": "2026-11-25T20:24:48.122Z",
    "okCount": 3
   },
   "allevents": {
@@ -75,23 +75,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 35,
-   "prevCount": 3,
+   "count": 33,
+   "prevCount": 35,
    "error": "",
    "notes": [
-    "allevents.in/antalya: 21 bağlantı, 17 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya: 24 bağlantı, 20 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/all: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/concerts: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/parties: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/antalya/comedy: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya/comedy: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/performances: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/workshops: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 181,
+   "seconds": 184,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:39.827Z",
-   "okCount": 35
+   "lastOk": "2026-11-25T20:24:48.122Z",
+   "okCount": 33
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/antalya: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 20,
+   "seconds": 18,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:39.827Z",
+   "lastOk": "2026-11-25T20:24:48.122Z",
    "okCount": 8
   },
   "antalya-bel": {
@@ -122,8 +122,8 @@
    "notes": [
     "www.antalya.bel.tr/tr/etkinlikler: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
-   "failStreak": 14,
+   "seconds": 13,
+   "failStreak": 15,
    "lastOk": null,
    "okCount": null
   }

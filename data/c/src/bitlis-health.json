@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T17:50:31.255Z",
+ "runAt": "2026-11-25T20:24:45.395Z",
  "mode": "full",
- "total": 29,
+ "total": 28,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 26,
-   "prevCount": 30,
+   "count": 25,
+   "prevCount": 26,
    "error": "",
    "notes": [
-    "açık veri: 24 seans",
+    "açık veri: 23 seans",
     "biletinial.com/tr-tr/tiyatro/bitlis: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bitlis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bitlis: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 97,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:50:31.255Z",
-   "okCount": 26
+   "lastOk": "2026-11-25T20:24:45.395Z",
+   "okCount": 25
   },
   "radar": {
    "id": "radar",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 168,
+   "seconds": 159,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:50:31.255Z",
+   "lastOk": "2026-11-25T20:24:45.395Z",
    "okCount": 3
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bitlis/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bitlis/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 19,
+   "seconds": 156,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bitlis: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 8,
-   "failStreak": 19,
+   "seconds": 6,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   }

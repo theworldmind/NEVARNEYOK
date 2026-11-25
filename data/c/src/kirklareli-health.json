@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T18:12:29.538Z",
+ "runAt": "2026-11-25T20:43:19.335Z",
  "mode": "full",
  "total": 76,
  "written": false,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 42,
-   "prevCount": 33,
+   "prevCount": 42,
    "error": "",
    "notes": [
     "açık veri: 37 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kirklareli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 96,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:12:29.538Z",
+   "lastOk": "2026-11-25T20:43:19.335Z",
    "okCount": 42
   },
   "radar": {
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirklareli: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 918,
+   "seconds": 921,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:12:29.538Z",
+   "lastOk": "2026-11-25T20:43:19.335Z",
    "okCount": 37
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/kirklareli/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kirklareli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 167,
-   "failStreak": 19,
+   "seconds": 155,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:12:29.538Z",
+   "lastOk": "2026-11-25T20:43:19.335Z",
    "okCount": 2
   }
  }

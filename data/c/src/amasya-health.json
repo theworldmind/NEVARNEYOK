@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T17:49:39.073Z",
+ "runAt": "2026-11-25T20:24:47.968Z",
  "mode": "full",
- "total": 59,
+ "total": 58,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 31,
-   "prevCount": 39,
+   "count": 30,
+   "prevCount": 31,
    "error": "",
    "notes": [
-    "açık veri: 26 seans",
+    "açık veri: 25 seans",
     "biletinial.com/tr-tr/tiyatro/amasya: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/amasya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:39.073Z",
-   "okCount": 31
+   "lastOk": "2026-11-25T20:24:47.968Z",
+   "okCount": 30
   },
   "radar": {
    "id": "radar",
@@ -49,7 +49,7 @@
    ],
    "seconds": 156,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:39.073Z",
+   "lastOk": "2026-11-25T20:24:47.968Z",
    "okCount": 4
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/amasya/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/amasya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 192,
-   "failStreak": 14,
+   "seconds": 175,
+   "failStreak": 15,
    "lastOk": "2026-11-18T13:02:05.936Z",
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:49:39.073Z",
+   "lastOk": "2026-11-25T20:24:47.968Z",
    "okCount": 1
   }
  }

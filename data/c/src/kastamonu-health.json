@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T18:10:04.275Z",
+ "runAt": "2026-11-25T20:42:46.056Z",
  "mode": "full",
  "total": 36,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 16,
-   "prevCount": 23,
+   "prevCount": 16,
    "error": "",
    "notes": [
     "açık veri: 8 seans, 1 detay sayfası",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 81,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:10:04.275Z",
+   "lastOk": "2026-11-25T20:42:46.056Z",
    "okCount": 16
   },
   "radar": {
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kastamonu: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 589,
+   "seconds": 305,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:10:04.275Z",
+   "lastOk": "2026-11-25T20:42:46.056Z",
    "okCount": 20
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/kastamonu/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kastamonu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 159,
-   "failStreak": 19,
+   "seconds": 156,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   }

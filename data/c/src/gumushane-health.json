@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T18:01:40.160Z",
+ "runAt": "2026-11-25T20:36:17.750Z",
  "mode": "full",
- "total": 7,
+ "total": 13,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 6,
-   "prevCount": 8,
+   "count": 12,
+   "prevCount": 6,
    "error": "",
    "notes": [
-    "açık veri: 4 seans",
+    "açık veri: 10 seans",
     "biletinial.com/tr-tr/tiyatro/gumushane: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 83,
+   "seconds": 80,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:01:40.160Z",
-   "okCount": 6
+   "lastOk": "2026-11-25T20:36:17.750Z",
+   "okCount": 12
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 156,
-   "failStreak": 19,
+   "seconds": 155,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/gumushane/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/gumushane/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 19,
+   "seconds": 155,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:01:40.160Z",
+   "lastOk": "2026-11-25T20:36:17.750Z",
    "okCount": 1
   }
  }

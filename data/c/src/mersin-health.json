@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T18:17:27.970Z",
+ "runAt": "2026-11-25T20:48:48.978Z",
  "mode": "full",
- "total": 227,
+ "total": 224,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 177,
-   "prevCount": 147,
+   "count": 174,
+   "prevCount": 177,
    "error": "",
    "notes": [
-    "açık veri: 152 seans, 7 detay sayfası",
+    "açık veri: 148 seans, 7 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/mersin: 65 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mersin: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mersin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 117,
+   "seconds": 128,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:17:27.970Z",
-   "okCount": 177
+   "lastOk": "2026-11-25T20:48:48.978Z",
+   "okCount": 174
   },
   "radar": {
    "id": "radar",
@@ -35,10 +35,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 50,
-   "prevCount": 52,
+   "prevCount": 50,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/mersin-etkinlikleri: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mersin-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/mersin-muzik-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/mersin-tiyatro-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/mersin-hafta-sonu-etkinlikleri: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mersin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 266,
+   "seconds": 269,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:17:27.970Z",
+   "lastOk": "2026-11-25T20:48:48.978Z",
    "okCount": 50
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -75,11 +75,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 25,
-   "prevCount": 26,
+   "count": 27,
+   "prevCount": 25,
    "error": "",
    "notes": [
-    "allevents.in/mersin: 18 bağlantı, 13 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mersin: 19 bağlantı, 14 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/all: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/concerts: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/parties: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -88,10 +88,10 @@
     "allevents.in/mersin/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 194,
+   "seconds": 179,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:17:27.970Z",
-   "okCount": 25
+   "lastOk": "2026-11-25T20:48:48.978Z",
+   "okCount": 27
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -100,14 +100,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 11,
-   "prevCount": 10,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/mersin: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 23,
+   "seconds": 25,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:17:27.970Z",
+   "lastOk": "2026-11-25T20:48:48.978Z",
    "okCount": 11
   }
  }

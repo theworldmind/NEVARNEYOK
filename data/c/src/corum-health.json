@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T17:55:46.546Z",
+ "runAt": "2026-11-25T20:30:38.874Z",
  "mode": "full",
- "total": 75,
+ "total": 76,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 37,
-   "prevCount": 39,
+   "count": 39,
+   "prevCount": 37,
    "error": "",
    "notes": [
     "açık veri: 31 seans",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/corum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:55:46.546Z",
-   "okCount": 37
+   "lastOk": "2026-11-25T20:30:38.874Z",
+   "okCount": 39
   },
   "radar": {
    "id": "radar",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=corum: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1054,
+   "seconds": 1055,
    "failStreak": 0,
-   "lastOk": "2026-11-25T17:55:46.546Z",
+   "lastOk": "2026-11-25T20:30:38.874Z",
    "okCount": 43
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/corum/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 19,
+   "seconds": 6,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   }

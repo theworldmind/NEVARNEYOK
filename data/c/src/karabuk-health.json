@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T18:08:45.300Z",
+ "runAt": "2026-11-25T20:38:56.797Z",
  "mode": "full",
- "total": 93,
+ "total": 92,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 32,
-   "prevCount": 39,
+   "count": 31,
+   "prevCount": 32,
    "error": "",
    "notes": [
-    "açık veri: 25 seans",
+    "açık veri: 22 seans",
     "biletinial.com/tr-tr/tiyatro/karabuk: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/karabuk: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/karabuk: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:08:45.300Z",
-   "okCount": 32
+   "lastOk": "2026-11-25T20:38:56.797Z",
+   "okCount": 31
   },
   "radar": {
    "id": "radar",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=karabuk: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1076,
+   "seconds": 934,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:08:45.300Z",
+   "lastOk": "2026-11-25T20:38:56.797Z",
    "okCount": 61
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
+   "failStreak": 19,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/karabuk/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/karabuk/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 18,
+   "seconds": 156,
+   "failStreak": 19,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/karabuk: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 18,
+   "failStreak": 19,
    "lastOk": null,
    "okCount": null
   }

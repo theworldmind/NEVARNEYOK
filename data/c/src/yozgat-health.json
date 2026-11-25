@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T18:31:22.647Z",
+ "runAt": "2026-11-25T20:59:16.050Z",
  "mode": "full",
  "total": 50,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 18,
-   "prevCount": 20,
+   "prevCount": 18,
    "error": "",
    "notes": [
     "açık veri: 13 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/yozgat: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:31:22.647Z",
+   "lastOk": "2026-11-25T20:59:16.050Z",
    "okCount": 18
   },
   "radar": {
@@ -34,7 +34,7 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 33,
+   "count": 58,
    "prevCount": 33,
    "error": "",
    "notes": [
@@ -47,10 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yozgat: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 864,
+   "seconds": 331,
    "failStreak": 0,
-   "lastOk": "2026-11-25T18:31:22.647Z",
-   "okCount": 33
+   "lastOk": "2026-11-25T20:59:16.050Z",
+   "okCount": 58
   },
   "bugece": {
    "id": "bugece",
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/yozgat/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/yozgat/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 165,
-   "failStreak": 19,
+   "seconds": 161,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   }
