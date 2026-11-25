@@ -107,6 +107,15 @@ if ((process.env.CITY || "ankara") === "ankara") {
   if (H.length) log(`Haberden: ${nh} etkinlik eklendi (${H.length - nh} zaten vardı)`);
 }
 events = events.filter((e) => e.d >= todayIST());
+/* Başka ilin mekânı Ankara listesine girmesin (25.11.2026: Passo, İstanbul'daki Suç ve Ceza Film Festivali'nin "Beyoğlu Sineması" gösterimlerini Ankara'da veriyordu).
+   Temkinli: mekân adında başka bir il adı (Ankara'da cadde/yol adı olarak da geçenler hariç) ya da başka ilin Ankara'da semt adı olmayan belirgin bir ilçesi geçiyorsa çıkarılır. */
+if ((process.env.CITY || "ankara") === "ankara") {
+  const { CITIES } = await import("./lib/cities.mjs"), SOKAK = new Set(["sakarya", "konya", "eskisehir", "izmir", "samsun", "bursa yolu"]);
+  const NM = CITIES.filter((c) => c.id !== "ankara" && !SOKAK.has(fold(c.name))).map((c) => new RegExp("(^|[^a-z0-9])" + fold(c.name) + "($|[^a-z0-9])"));
+  const DIST = new Set("beyoglu kadikoy besiktas sisli uskudar atasehir bakirkoy sariyer kartal beylikduzu esenyurt zeytinburnu karsiyaka bornova buca nilufer osmangazi muratpasa konyaalti atakum odunpazari tepebasi meram selcuklu seyhan cukurova sahinbey sehitkamil".split(" "));
+  const other = (e) => { const v = fold(e.venue || ""); if (!v || /cadde|caddesi|sokak|sokagi|bulvar|mahalle|yolu|van gogh|ankara/.test(v)) return false; return NM.some((r) => r.test(v)) || v.split(/[^a-z0-9]+/).some((w) => DIST.has(w)); };
+  const n0 = events.length; events = events.filter((e) => !other(e)); if (events.length < n0) log(`Başka ilin mekânı: ${n0 - events.length} kayıt Ankara listesinden çıkarıldı`);
+}
 
 /* ---------- 4b) Engel listesi: kaldırılmasını isteyen hak sahipleri (data/blocklist.txt) ---------- */
 const BL = await loadBlocklist();
