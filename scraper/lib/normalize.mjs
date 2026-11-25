@@ -71,7 +71,9 @@ const FC_MUS = /konser|concert|senfoni|orkestra|resital|\bkoro|caz|jazz|rock|met
 const FC_ATL = /boyama|yapimi|comlek|seramik|boncuk|\bkil\b|ebru sanat|ebru atolye|mozaik|origami|^resim\b|resim atolye|tadim|yemekleri|mutfak|lazanya|workshop|\bkurs|egitimi?\b|seminer|webinar|\bseo\b|deneyim|degustasyon|atolye|soylesi|kitap kulubu|sofrasi/;
 const FC_SAH = /\bsema\b|semazen|mevlevi/;
 const FC_VT = /\bdt\b|devlet tiyatro|sehir tiyatro|oda tiyatrosu|kucuk tiyatro|kumpanya/, FC_VT2 = /tiyatro/, FC_VA = /muze|museum|atolye|mutfak|deneyim|flight|tatlari|turlar/;
+const FC_KID = /\b(cocuk\w*|masal\w*|kukla\w*|minik\w*|bebek\w*|sincap\w*|dinozor\w*|oyuncak\w*|keloglan|pinokyo|pamuk prenses|kulkedisi|rapunzel|hansel|peter pan|bremen mizikac\w*|agustos bocegi|kirmizi baslikli|cizmeli kedi|uyuyan guzel|kibritci|ceviz adam|pepee|kral sakir|rafadan|niloya)\b/;
 export const fixCat = (e, F = fold) => { if (e.cat !== "konser" || e.catLocked) return e.cat; const t = F(e.title), v = F(e.venue).trim(); if (/muzikal/.test(t)) return "tiyatro";
+  if (FC_KID.test(t)) return "cocuk"; // çocuk konserleri, masal oyunları (25.11.2026: CSO Ada "Ağustos Böceği ile Karınca", "Şeker Sincap" Konser'de görünüyordu)
   if (FC_MUS.test(t)) return "konser"; if (FC_ATL.test(t)) return "atolye"; if (FC_SAH.test(t)) return "sahne";
   if (FC_VT.test(v) || (FC_VT2.test(v) && (e.tickets || []).some((x) => /sanat/i.test(x.site || "")))) return "tiyatro"; if (FC_VA.test(v)) return "atolye"; return "konser"; };
 export function guessCat({ title = "", desc = "", url = "", catHint = "", genre = "" }) {
