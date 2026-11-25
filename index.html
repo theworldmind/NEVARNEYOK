@@ -1378,6 +1378,58 @@ button.hm-n{color:#fff}
 /* kaydırmada buzlu cam maliyeti (19.11.2026 ölçüm): üst çubuk ve sekme camı biraz daha hafif bulanıklık, görünüm aynı */
 .top{-webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px)}
 .tabs{-webkit-backdrop-filter:saturate(1.7) blur(20px)!important;backdrop-filter:saturate(1.7) blur(20px)!important}
+
+/* 25.11.2026: Keşfet merkezde, arama üstte, tek ekran tanıtım, ipucu, gruplar Planım'da */
+.sbtop{margin:var(--sp3,12px) 0 var(--sp2,8px)}.city .sbtop{max-width:640px}
+.kvn{margin:var(--sp5,24px) var(--sp4,16px) 0}.kvl{display:flex;flex-direction:column;border-radius:var(--rd3,22px);overflow:hidden;background:var(--glass1);box-shadow:var(--edge)}.kvl a{display:grid;grid-template-columns:34px 1fr;gap:0 10px;align-items:center;padding:11px 14px;color:inherit;text-decoration:none;border-top:.5px solid rgba(255,255,255,.07)}.kvl a:first-child{border-top:0}.kvl b{font:700 15px var(--f);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.kvl small{grid-column:2;color:var(--t2);font-size:12.5px}.kvi{grid-row:span 2;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(139,92,246,.22);color:#c4b5fd}.kvi svg{width:18px;height:18px}
+.kva{display:flex;align-items:center;gap:6px;margin-top:10px;padding:12px 14px;border-radius:16px;color:var(--tx);background:rgba(255,255,255,.05);text-decoration:none;font:600 14.5px var(--f)}.kva b{font-weight:800}.kva span{margin-left:auto;color:var(--t3)}
+.in-l{display:flex;align-items:center;gap:10px;margin:9px auto 0;max-width:320px;padding:10px 14px;border-radius:16px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.1);text-align:left;font:600 15px/1.3 var(--f);color:#fff}.in-l b{font-size:20px}
+.ipu{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 98px);z-index:95;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 32px);padding:11px 16px;border-radius:999px;color:#fff;font:600 14px/1.25 var(--f);background:var(--glass3,rgba(28,24,40,.82));-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);box-shadow:var(--edge),0 12px 30px rgba(0,0,0,.4);opacity:0;transform:translate(-50%,14px) scale(.96);transition:opacity .35s ease,transform .5s var(--spring,ease)}.ipu.on{opacity:1;transform:translate(-50%,0)}
+.grs{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 0 var(--sp3,12px);padding:2px 2px 6px;scroll-snap-type:x mandatory}.grs::-webkit-scrollbar{display:none}.grs-c{flex:none;scroll-snap-align:start;width:156px;display:flex;flex-direction:column;gap:3px;padding:14px;border-radius:22px;color:inherit;text-decoration:none;background:linear-gradient(160deg,rgba(139,92,246,.28),rgba(255,255,255,.05));box-shadow:var(--edge);transition:transform .2s var(--spring,ease)}.grs-c:active{transform:scale(.96)}.grs-e{position:relative;font-size:34px;line-height:1;margin-bottom:6px}.grs-c b{font:800 15px/1.2 var(--f);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.grs-c small{color:var(--t2);font-size:12.5px}
+.grc-i{position:relative}.grc-n{position:absolute;right:-3px;top:-3px;width:11px;height:11px;border-radius:50%;background:#ff3b5c;box-shadow:0 0 0 2px #0a0a10}
+.mc-g em.mce{font-style:normal;font-size:13px;line-height:1;margin-top:1px}
+
+/* Festivaller, film künyesi, geçmiş (25.11.2026) */
+.sqk{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:14px var(--pad) 0;max-width:1440px;margin:0 auto}
+.sqk a{flex:none;padding:9px 14px;border-radius:999px;background:var(--glass1,rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.1);font:700 14px var(--f);color:#fff;white-space:nowrap}
+.fsr,.fsg{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:0 var(--pad);scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);max-width:1440px;margin:0 auto}
+.fsg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));overflow:visible;margin-bottom:8px}
+.fsc{flex:none;width:236px;scroll-snap-align:start;display:flex;flex-direction:column;gap:3px;color:#fff}
+.fsg .fsc{width:auto}
+.fsc-i{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#2a1a4a,#120c20);border:1px solid rgba(255,255,255,.08);margin-bottom:6px}
+.fsc-i img{width:100%;height:100%;object-fit:cover}
+.fsc-s{position:absolute;top:8px;left:8px;padding:3px 9px;border-radius:999px;font:800 11px var(--f);letter-spacing:.02em;background:rgba(10,10,16,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.fsc-s:empty{display:none}.fsc-s.simdi{background:#30d158;color:#04210d}.fsc-s.yakin{background:#8b5cf6}
+.fsth .fsc-s{position:static;display:inline-block;margin-bottom:10px}
+.fsc b{font:800 15px/1.25 var(--fh,var(--f));letter-spacing:-.01em}
+.fsc small{font:500 12.5px var(--f);color:rgba(235,235,245,.62)}
+.fsh{font:900 19px var(--fh,var(--f));font-stretch:80%;text-transform:uppercase;letter-spacing:.01em;padding:26px var(--pad) 12px;max-width:1440px;margin:0 auto}
+.dt .fsh,.fst .fsh{padding-left:0;padding-right:0}
+.fst{position:relative}.fst .bk{position:absolute;inset:0 0 auto;height:420px;overflow:hidden;opacity:.35;filter:blur(40px);transform:scale(1.2);pointer-events:none}
+.fst .bk img{width:100%;height:100%;object-fit:cover}
+.fst .in{position:relative;padding:18px var(--pad) 0;max-width:1100px;margin:0 auto}
+.fsth{padding:18px 0 6px}.fsth h1{font:900 clamp(30px,7vw,52px)/1 var(--fh,var(--f));font-stretch:75%;text-transform:uppercase;letter-spacing:-.01em}
+.fsth p{margin-top:10px;color:rgba(235,235,245,.72);font:500 15px var(--f)}
+.fstn{display:flex;gap:18px;margin-top:16px;font:500 13px var(--f);color:rgba(235,235,245,.6)}.fstn b{display:block;font:800 22px var(--f);color:#fff}
+.fsts{display:inline-block;margin-top:16px;font:700 14px var(--f);color:#c4b5fd}
+.fsg2{display:inline-flex;gap:4px;padding:3px;margin:18px 0 4px;border-radius:13px;background:rgba(118,118,128,.24)}
+.kh+form+.fsg2,.sbar+.fsg2{margin-left:var(--pad)}
+.fsg2 a{padding:8px 16px;border-radius:10px;font:700 14px var(--f);color:rgba(235,235,245,.75)}.fsg2 a.on{background:#fff;color:#0a0a10}
+.fpl{display:flex;flex-direction:column;gap:8px;padding:6px var(--pad) 0;max-width:1440px;margin:0 auto}
+.dt .fpl,.fst .fpl{padding-left:0;padding-right:0}
+.fpr{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:var(--glass1,rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.07)}
+.fpr.ps{opacity:.62}
+.fpt{flex:none;min-width:54px;font:800 17px var(--f);font-variant-numeric:tabular-nums}.fpt small{display:block;font:600 12px var(--f);color:rgba(235,235,245,.6)}
+.fpm{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.fpm a,.fpm span{font:700 15px/1.3 var(--f);color:#fff}
+.fpm small{font:500 12.5px var(--f);color:rgba(235,235,245,.6);overflow:hidden;text-overflow:ellipsis}
+.fpg{flex:none;font:700 12px var(--f);color:rgba(235,235,245,.55);font-style:normal}
+.fpb{flex:none;padding:8px 14px;border-radius:999px;background:#fff;color:#0a0a10;font:800 13px var(--f)}.fpb.s{background:rgba(255,255,255,.12);color:#fff}
+.fpi{flex:none;width:40px;height:56px;border-radius:8px;object-fit:cover;background:rgba(255,255,255,.06)}
+.fo{margin-top:6px;font:600 17px var(--f);color:rgba(235,235,245,.7)}
+.fdr{margin-top:6px;font:500 15px var(--f);color:rgba(235,235,245,.62)}.fdr b{color:#fff;font-weight:700}
+.fbds{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.fbds:empty{display:none}
+.fbd{padding:7px 12px;border-radius:999px;background:rgba(139,92,246,.22);border:1px solid rgba(167,139,250,.35);font:700 13px var(--f);color:#ede9fe}
+.fsn{margin:26px 0 0;font:500 12.5px var(--f);color:rgba(235,235,245,.5)}.fsn a{color:#c4b5fd}
 </style>
 </head>
 <body>
@@ -1390,7 +1442,7 @@ button.hm-n{color:#fff}
   <a class="dl-top" href="indir/" data-app>Uygulamayı indir</a>
   <a class="cbtn" id="cityBtn" href="#/?sec=1"><span>Ankara</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></a>
   <a class="ibtn fbell" id="flwBtn" href="#/ankara/takip" aria-label="Planım"><svg class="ic" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b></b></a>
-  <a class="ibtn" id="acBtn" href="#/hesap" aria-label="Hesabım"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20.5c1.2-3.8 4-5.5 7.5-5.5s6.3 1.7 7.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+  
   <a class="ibtn" id="setBtn" href="#/ankara/ayarlar" aria-label="Ayarlar"><svg class="ic" viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4.9a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.4A7.5 7.5 0 0 0 7 6.4l-2.4-.9-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-.9a7.5 7.5 0 0 0 2.6 1.5l.4 2.4h4l.4-2.4a7.5 7.5 0 0 0 2.6-1.5l2.4.9 2-3.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a>
   <a class="ibtn" id="srchBtn" href="#/ankara/kesfet" aria-label="Ara"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
 </header>
@@ -1398,7 +1450,7 @@ button.hm-n{color:#fff}
 <nav class="tabs" id="tabs" hidden aria-label="Sekmeler"><i class="tpl" aria-hidden="true"></i>
   <a data-t="home"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Bugün</span></a>
   <a data-t="sinema"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 9.5h17M8 5v4.5M13 5v4.5M17.5 5v4.5" stroke="currentColor" stroke-width="1.8"/></svg><span>Sinema</span></a>
-  <a data-t="akis" class="tak" href="#/akis" aria-label="Akış"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.3" cy="10.3" r="8.1" fill="none" stroke="currentColor" stroke-width="3.2"/><circle cx="10.3" cy="10.3" r="5.2" fill="currentColor" opacity=".38"/><path d="M17.4 17.4 21.7 21.7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg><img src="/brand/akis-on.png?v=1" alt="" width="26" height="26" decoding="async"></i><span>Akış</span></a>
+  <a data-t="kesfet" class="tak" aria-label="Keşfet"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.3" cy="10.3" r="8.1" fill="none" stroke="currentColor" stroke-width="3.2"/><circle cx="10.3" cy="10.3" r="5.2" fill="currentColor" opacity=".38"/><path d="M17.4 17.4 21.7 21.7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg><img src="/brand/akis-on.png?v=1" alt="" width="26" height="26" decoding="async"></i><span>Keşfet</span></a>
   <a data-t="harita"><svg viewBox="0 0 24 24"><path d="M9 4.5 3.5 6.8v12.7L9 17.2l6 2.3 5.5-2.3V4.5L15 6.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 4.5v12.7M15 6.8v12.7" stroke="currentColor" stroke-width="2"/></svg><span>Harita</span></a>
   <a data-t="takip"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="15" r="1.6" fill="currentColor"/></svg><span>Planım</span><b></b></a>
 </nav>
