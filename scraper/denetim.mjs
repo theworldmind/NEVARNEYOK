@@ -36,6 +36,9 @@ for (const [nm, w, h, dpr, mob] of SIZES) {
   await T("etkinlik", async () => { await go(`#/${C}`, 2500); const a = await page.$('a.cd[href*="/e/"]:has(.ph img.p)'); if (a) { await a.scrollIntoViewIfNeeded(); await page.waitForTimeout(500); await a.click(); await page.waitForTimeout(1400); await snap("3-etkinlik"); await page.evaluate(() => scrollTo(0, 600)); await page.waitForTimeout(600); await snap("4-etkinlik-alt"); } });
   await T("sinema", async () => { await go(`#/${C}/sinema`); await snap("5-sinema"); });
   await T("harita", async () => { await go(`#/${C}/harita`, 7000); await snap("6-harita"); });
+  if (mob) await T("adres", async () => { const fs = await import("node:fs"); const d = fs.readdirSync(new URL("../istanbul/etkinlik/", import.meta.url)).find((x) => !x.startsWith(".")); if (!d) return log("adres: sayfa yok");
+    await page.goto(`${BASE}istanbul/etkinlik/${d}/`, { waitUntil: "load" }); await page.waitForTimeout(6000); log(`adres: ${page.url()} · başlık: ${await page.title()} · uygulama: ${!!(await page.$("#view .ev, #view article, #view h1"))}`); await snap("0-gercek-adres");
+    const a = await page.$('a[href^="#/istanbul"]'); if (a) { await a.click(); await page.waitForTimeout(2500); log(`adres sonrası: ${page.url()}`); } });
   if (mob) await T("rota", async () => { await go(`#/${C}/harita?yer=39.9208,32.8541&ad=Kızılay&rota=1`, 9000); await snap("6b-rota"); });
   await T("plan", async () => { await go(`#/${C}/takip`); await snap("7-planim"); });
   await T("festival", async () => { await go(`#/${C}/festivaller`); await snap("8-festivaller"); });

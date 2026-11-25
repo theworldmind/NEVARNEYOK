@@ -1102,7 +1102,7 @@ function acOpen(P) {
 }
 const _hjs = 0, alintila = (o) => { haptic(6); hesapJS().then(() => window.NVH.alinti(o)).catch(() => toast("Şu an açılamadı.", 2400)); };
 function route() {
-  if (!DATA.boot) return;
+  if (!DATA.boot) return; route.last = location.href;
   { const P0 = (location.hash.replace(/^#\/?/, "").split("?")[0].split("/")[0]) || "";
     const need = P0 && P0 !== "bilgi" && CITIES.find((c) => c.id === P0 && c.live) && DATA.city !== P0;
     if (need) { const nm = CITIES.find((c) => c.id === P0)?.name || ""; V.innerHTML = `<section class="city sk"><h1 style="--L:${[...nm].length}">${esc(nm)}</h1><div class="st"><span class="skl" style="width:120px"></span><span class="skl" style="width:90px"></span></div></section><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div>`; setTop(P0); loadCity(P0).then(() => { cityLoads[P0] = null; route(); followBoot(); }).catch(() => loadFail(P0)); return; } }
@@ -1161,6 +1161,11 @@ const TABROOT = (hh) => { const P2 = (hh || "").replace(/^#\/?/, "").split("?")[
 function vcSave(hh) { const f = document.createDocumentFragment(); while (V.firstChild) f.append(V.firstChild); VC.delete(hh); VC.set(hh, { f, t: Date.now(), u: DATA.updated, c: DATA.city, title: document.title }); while (VC.size > 6) VC.delete(VC.keys().next().value); }
 function vcLoad(hh, city) { const x = VC.get(hh); VC.delete(hh); if (!x || Date.now() - x.t > 10 * 60e3 || x.u !== DATA.updated || x.c !== city) return false; V.replaceChildren(x.f); document.title = x.title; setTop(city); $$(".stp .sg i.on", V).forEach((b) => { b.className = ""; void b.offsetWidth; b.className = "on"; }); return true; }
 addEventListener("hashchange", route);
+/* Gerçek adresler (25.11.2026): /<il>/etkinlik/<ad>/ gibi arama motoru sayfalarından açılınca uygulama o adreste çalışır (base href="/").
+   Oradayken "#/..." bağlantıları sayfayı yeniden yüklemesin: adres köke taşınır ve yönlendirme elle çalışır; geri tuşu da aynı. */
+document.addEventListener("click", (ev) => { if (location.pathname === "/" || ev.defaultPrevented || ev.button || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
+  const a = ev.target.closest?.('a[href^="#"]'); if (!a || a.target) return; ev.preventDefault(); history.pushState(null, "", "/" + a.getAttribute("href")); route(); });
+addEventListener("popstate", () => { const h = location.href; setTimeout(() => { if (route.last !== h) route(); }, 30); });
 let SCRT = 0; addEventListener("scroll", () => { SCRT = performance.now(); TOP.classList.toggle("sc", scrollY > 8); }, { passive: true });
 document.addEventListener("click", (ev) => { const b = ev.target.closest("[data-buy]"); if (b) { let h = ""; try { h = new URL(b.href).hostname.replace(/^www\./, ""); } catch {} gcEv("bilet-al/" + (h || "?"), "Bilet al: " + (h || "?")); } }, true);
 

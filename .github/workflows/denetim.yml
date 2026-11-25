@@ -29,6 +29,6 @@ jobs:
           sudo apt-get install -y -qq fonts-noto-color-emoji >/dev/null || true
       - working-directory: scraper
         env: { OUT_DIR: /tmp/denetim, SHOT_CITY: "${{ github.event.inputs.city || 'ankara' }}" }
-        run: node denetim.mjs
+        run: (node seo-tr.mjs || true) && node denetim.mjs
       - run: |
           cd /tmp/denetim && git init -q -b "denetim-${{ github.ref_name }}" && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Denetim $(date +%F_%H%M)" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "denetim-${{ github.ref_name }}"

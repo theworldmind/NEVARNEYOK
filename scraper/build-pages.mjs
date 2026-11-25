@@ -26,7 +26,9 @@ const put = async (path, html, prio = "0.6") => { await writeText(join(ROOT, pat
 const rel = (depth) => "../".repeat(depth);
 
 /* ---------- ortak şablon ---------- */
-function shell({ depth, title, desc, canonical, body, jsonld }) {
+// gerçek adres (25.11.2026): sayfa açılınca uygulamanın kendisi aynı yerde açılır (seo-tr.mjs ile aynı)
+const bootJS = (app) => app ? `<script>(function(){if(location.hash||!window.fetch)return;var R=${JSON.stringify(app)};fetch("/index.html",{cache:"no-cache"}).then(function(x){return x.ok?x.text():Promise.reject()}).then(function(h){var H="";document.head.querySelectorAll('title,meta[name=description],link[rel=canonical],meta[property^="og:"],script[type="application/ld+json"]').forEach(function(n){H+=n.outerHTML});h=h.replace(/<title>[\\s\\S]*?<\\/title>/,"").replace(/<meta name="description"[^>]*>/,"").replace('<base href="/">','<base href="/">'+H);history.replaceState(null,"",location.pathname+location.search+R);document.open();document.write(h);document.close()}).catch(function(){})})();</script>` : "";
+function shell({ depth, title, desc, canonical, body, jsonld, app = "#/ankara" }) {
   const r = rel(depth);
   return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}">
@@ -36,7 +38,7 @@ ${BASE ? `<meta property="og:image" content="${esc(BASE)}/icons/og.png">` : ""}
 <link rel="icon" type="image/png" href="${r}icons/icon-192.png"><link rel="stylesheet" href="${r}assets/pages.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&text=onesidby&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=Onest:wght@400;600;700&display=swap">
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, "\\u003c")}</script>` : ""}
-</head><body><header class="top"><a class="brand" href="${r}">Ne Var Ne Yok<b>?</b> <span>Ankara</span></a><a class="back" href="${r}">Tüm etkinlikler →</a></header>
+${bootJS(app)}</head><body><header class="top"><a class="brand" href="${r}">Ne Var Ne Yok<b>?</b> <span>Ankara</span></a><a class="back" href="${r}">Tüm etkinlikler →</a></header>
 <main>${body}</main>
 <footer><p>Ne Var Ne Yok? Ankara bilet satmaz; bilet bağlantıları etkinliğin satıldığı siteye gider. Fiyat ve seanslar satış sitesinde değişebilir.</p>
 <p>Son güncelleme: ${esc(new Date(data.updated || Date.now()).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }))}${CFG.instagram ? ` · <a href="https://instagram.com/${esc(CFG.instagram)}">Instagram</a>` : ""}</p><div class="byos" aria-label="by oneside"><span class="byos-by">by</span><span class="byos-card"><svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg><span class="byos-w">one<b>side</b></span></span></div><style>.byos{display:flex;align-items:center;justify-content:center;gap:12px;margin:26px auto 6px;padding-bottom:env(safe-area-inset-bottom,0px)}.byos-by{font:300 15px/1 Poppins,var(--f-body,system-ui),sans-serif;letter-spacing:.04em;opacity:.7}.byos-card{display:inline-flex;align-items:center;gap:14px;padding:12px 22px 12px 18px;border-radius:14px;background:#060e33;color:#fff;box-shadow:0 8px 24px rgba(6,14,51,.25)}.byos-card svg{width:30px;height:30px;fill:#fff;flex:none}.byos-w{font:300 26px/1 Poppins,system-ui,sans-serif;letter-spacing:-.01em}.byos-w b{font-weight:800}</style></footer><script data-goatcounter="https://nevarneyok.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body></html>`;
@@ -97,7 +99,7 @@ for (const e of pageEvents) {
 <h2>Biletler</h2><ul class="tix">${e.tickets.map((t) => `<li><span>${esc(t.site)}</span><b>${t.price && !t.est ? esc(fmtTL(t.price)) : ""}</b><a rel="nofollow noopener" target="_blank" href="${esc(t.url)}">Bilet al ↗</a></li>`).join("")}</ul>
 <p class="cta"><a class="btn" href="../../#e/${esc(s)}">Sitede aç: hava durumu ve diğer bilgiler</a>${v.lat ? ` <a class="btn ghost" href="../../#/ankara/harita?yer=${v.lat},${v.lng}&amp;ad=${encodeURIComponent(e.venue || "")}">Haritada aç</a>` : ""}</p>
 ${others.length ? `<h2>Diğer tarihler</h2>${list(others, 2)}` : ""}</article>`;
-  await put(`etkinlik/${s}`, shell({ depth: 2, title: `${e.title} · ${fmtDate(e.d)} · ${e.venue} | Ne Var Ne Yok? Ankara`, desc, canonical: `etkinlik/${s}/`, body, jsonld: eventLd(e) }), "0.7");
+  await put(`etkinlik/${s}`, shell({ depth: 2, title: `${e.title} · ${fmtDate(e.d)} · ${e.venue} | Ne Var Ne Yok? Ankara`, desc, canonical: `etkinlik/${s}/`, body, jsonld: eventLd(e), app: `#/ankara/e/${encodeURIComponent(s)}` }), "0.7");
 }
 
 /* ---------- mekân sayfaları ---------- */
@@ -114,18 +116,18 @@ for (const [name, evs] of Object.entries(byVenue)) {
 for (const [k, label] of Object.entries(CATS)) {
   const evs = events.filter((e) => e.cat === k).slice(0, 300);
   const body = `<h1>Ankara ${esc(label)}</h1><p class="sub">${evs.length} yaklaşan etkinlik · her sabah güncellenir</p>${list(evs, 2)}`;
-  await put(`kategori/${k}`, shell({ depth: 2, title: `Ankara ${label} etkinlikleri ve bilet fiyatları | Ne Var Ne Yok?`, desc: `Ankara'daki ${label.toLocaleLowerCase("tr")} etkinlikleri, tarihleri ve bilet sitelerinin fiyatları yan yana.`, canonical: `kategori/${k}/`, body }), "0.8");
+  await put(`kategori/${k}`, shell({ app: `#/ankara/kesfet?k=${k}`, depth: 2, title: `Ankara ${label} etkinlikleri ve bilet fiyatları | Ne Var Ne Yok?`, desc: `Ankara'daki ${label.toLocaleLowerCase("tr")} etkinlikleri, tarihleri ve bilet sitelerinin fiyatları yan yana.`, canonical: `kategori/${k}/`, body }), "0.8");
 }
 
 /* ---------- bu hafta sonu / bugün ---------- */
 const wk = weekendRange(today);
 const wkEvents = events.filter((e) => e.d >= wk.from && e.d <= wk.to);
 const top = pickTop(wkEvents, 8, events);
-await put("bu-hafta-sonu", shell({ depth: 1, title: `Bu hafta sonu Ankara'da ne var? (${fmtDate(wk.from)}–${fmtDate(wk.to)}) | Ne Var Ne Yok?`,
+await put("bu-hafta-sonu", shell({ app: "#/ankara/kesfet?t=haftasonu", depth: 1, title: `Bu hafta sonu Ankara'da ne var? (${fmtDate(wk.from)}–${fmtDate(wk.to)}) | Ne Var Ne Yok?`,
   desc: `Bu hafta sonu Ankara'da ${wkEvents.length} etkinlik: konser, tiyatro, stand-up, çocuk etkinlikleri. Öne çıkanlar: ${top.slice(0, 3).map((e) => e.title).join(", ")}.`, canonical: "bu-hafta-sonu/",
   body: `<h1>Bu hafta sonu Ankara'da</h1><p class="sub">${esc(fmtDate(wk.from))} – ${esc(fmtDate(wk.to))} · ${wkEvents.length} etkinlik</p>${top.length ? `<h2>Öne çıkanlar</h2>${list(top, 1)}<h2>Hepsi</h2>` : ""}${list(wkEvents, 1)}` }), "0.9");
 const td = events.filter((e) => e.d === today);
-await put("bugun", shell({ depth: 1, title: `Bugün Ankara'da ne var? (${fmtDate(today)}) | Ne Var Ne Yok?`, desc: `Bugün Ankara'da ${td.length} etkinlik var. Saatleri, mekânları ve bilet fiyatları.`, canonical: "bugun/",
+await put("bugun", shell({ app: "#/ankara/kesfet?t=bugun", depth: 1, title: `Bugün Ankara'da ne var? (${fmtDate(today)}) | Ne Var Ne Yok?`, desc: `Bugün Ankara'da ${td.length} etkinlik var. Saatleri, mekânları ve bilet fiyatları.`, canonical: "bugun/",
   body: `<h1>Bugün Ankara'da</h1><p class="sub">${esc(fmtDate(today))} ${esc(dayName(today))} · ${td.length} etkinlik</p>${list(td, 1)}` }), "0.9");
 
 /* ---------- sitemap, robots, RSS ---------- */
