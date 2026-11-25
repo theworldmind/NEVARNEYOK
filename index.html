@@ -1510,7 +1510,7 @@ function send(m,s){m=String(m||"").slice(0,200);if(!m||n>=5||seen[m+s])return;se
 window.nvHata=send;
 addEventListener("error",function(e){var t=e.target;if(t&&t!==window&&t.src){if(/\/(app|hesap|sokak|takip|beraber|ada)\.js/.test(t.src))send("dosya inmedi",(t.src.split("/").pop()||"").split("?")[0]);return}var F=e.filename||"";if(F.indexOf(location.origin)!==0)return;var f=F.split("/").pop().split("?")[0];send(e.message,f+":"+e.lineno+":"+e.colno)},true);
 addEventListener("unhandledrejection",function(e){var r=e.reason,m=r&&(r.message||String(r));if(!m||/Failed to fetch|NetworkError|Load failed|AbortError|aborted|timeout|STALE/i.test(m))return;var st=(r&&r.stack||"").match(/([\w-]+\.js)(?:\?[^:]*)?:(\d+):(\d+)/);send("söz: "+m,st?st[1]+":"+st[2]+":"+st[3]:"")})})();</script>
-<script src="app.js?v=05ee84c414"></script>
+<script src="app.js?v=1d2121a7b9"></script>
 <script>/* Kod dosyası bağlantı yüzünden inmediyse bir kez daha istenir */
 (function(){if(window.NV_JS)return;var add=function(q,cb){var o=document.querySelector('script[src*="'+q+'"]'),s=document.createElement("script");s.src=o.getAttribute("src")+"&r=1";s.async=false;s.onload=cb||null;document.body.appendChild(s)},app=function(){add("app.js")};if(!window.NV)add("takip.js",app);else app()})();</script>
 <script data-goatcounter="https://nevarneyok.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
