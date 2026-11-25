@@ -99,7 +99,7 @@ for (const e of pageEvents) {
 <h2>Biletler</h2><ul class="tix">${e.tickets.map((t) => `<li><span>${esc(t.site)}</span><b>${t.price && !t.est ? esc(fmtTL(t.price)) : ""}</b><a rel="nofollow noopener" target="_blank" href="${esc(t.url)}">Bilet al ↗</a></li>`).join("")}</ul>
 <p class="cta"><a class="btn" href="../../#e/${esc(s)}">Sitede aç: hava durumu ve diğer bilgiler</a>${v.lat ? ` <a class="btn ghost" href="../../#/ankara/harita?yer=${v.lat},${v.lng}&amp;ad=${encodeURIComponent(e.venue || "")}">Haritada aç</a>` : ""}</p>
 ${others.length ? `<h2>Diğer tarihler</h2>${list(others, 2)}` : ""}</article>`;
-  await put(`etkinlik/${s}`, shell({ depth: 2, title: `${e.title} · ${fmtDate(e.d)} · ${e.venue} | Ne Var Ne Yok? Ankara`, desc, canonical: `etkinlik/${s}/`, body, jsonld: eventLd(e), app: `#/ankara/e/${encodeURIComponent(s)}` }), "0.7");
+  await put(`etkinlik/${s}`, shell({ depth: 2, title: `${e.title} · ${fmtDate(e.d)} · ${e.venue} | Ne Var Ne Yok? Ankara`, desc, canonical: `etkinlik/${s}/`, body, jsonld: eventLd(e), app: `#/ankara/e/${encodeURIComponent(s)}?` + new URLSearchParams({ b: e.title, g: e.d, s: e.t || "", m: e.venue || "", k: e.cat || "", ...(/^https:\/\//.test(e.img || "") ? { i: e.img } : {}) }) }), "0.7");
 }
 
 /* ---------- mekân sayfaları ---------- */
