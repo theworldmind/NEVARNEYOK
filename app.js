@@ -253,7 +253,10 @@ function storyInit() {
   sv.addEventListener("pointerdown", () => hold(true), { passive: true }); addEventListener("pointerup", () => hold(false), { passive: true }); sv.addEventListener("pointercancel", () => hold(false));
   const vis = () => root.classList.toggle("hold", document.hidden); document.addEventListener("visibilitychange", vis);
   try { new IntersectionObserver(([x]) => root.classList.toggle("off", !x.isIntersecting)).observe(root); } catch {}
-  stpStop = () => { alive = false; document.removeEventListener("visibilitychange", vis); };
+  /* sayfa kaydırılırken vitrin kendiliğinden geçmez: yatay kayma + renk katmanları dikey kaydırmayla üst üste binince kare kaçıyordu (25.11.2026 ölçüm) */
+  let pst = 0; const psc = () => { if (!root.classList.contains("psc")) root.classList.add("psc"); clearTimeout(pst); pst = setTimeout(() => root.classList.remove("psc"), 900); };
+  addEventListener("scroll", psc, { passive: true });
+  stpStop = () => { alive = false; document.removeEventListener("visibilitychange", vis); removeEventListener("scroll", psc); };
   play();
 }
 
@@ -384,6 +387,18 @@ function viewCities() {
   const start = ALL.indexOf(saved || liveC[0]); if (start > 0) to(start, false); paint();
 }
 
+/* Sıradaki (25.11.2026, kullanıcı: "cilala, derinlik kat"): Bugün sayfasında tek büyük kart. Saate göre değişir:
+   bir saat içinde başlayan → "Az sonra · 42 dk", bu akşam → "Bu akşam · 20:30", akşam bittiyse → "Yarın akşam". Yalnızca afişli, iptal/tükenmemiş etkinlik. */
+function nextHero(city, E, today, hm) {
+  const mn = (t) => +t.slice(0, 2) * 60 + +t.slice(3, 5), now = mn(hm || "00:00"), ok = (e) => e.img && e.t && /^\d\d:\d\d/.test(e.t) && !e.status && e.cat !== "sinema";
+  const best = (L) => L.sort((a, b) => b.score - a.score || a.t.localeCompare(b.t))[0];
+  let e = best(E.filter((x) => ok(x) && x.d === today && mn(x.t) > now && mn(x.t) - now <= 60)), lab;
+  if (e) lab = `Az sonra · ${mn(e.t) - now} dk`;
+  else if ((e = best(E.filter((x) => ok(x) && x.d === today && mn(x.t) > now && x.t >= "17:00")))) lab = `Bu akşam · ${e.t.slice(0, 5)}`;
+  else if ((e = best(E.filter((x) => ok(x) && x.d === addD(today, 1) && x.t >= "17:00")))) lab = `Yarın akşam · ${e.t.slice(0, 5)}`;
+  if (!e) return "";
+  return `<a class="nxh" href="#/${city}/e/${encodeURIComponent(e.slug)}"><img class="nxh-b" src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async" aria-hidden="true"><span class="nxh-p">${poster(e, { badge: false })}</span><span class="nxh-x"><small class="nxh-k"><i></i>${esc(lab)}</small><b>${esc(e.title)}</b><span>${esc(e.venue || "")}</span><em>Ayrıntılar ›</em></span></a>`;
+}
 function viewCity(city) {
   turAt("ana"); setTop(city); const cname = CITIES.find((c) => c.id === city)?.name || city; document.title = `${cname} · Ne Var Ne Yok`;
   const { d: today, hm } = nowIST(), E = DATA.events.filter(live), wk = addD(today, 6);
@@ -402,6 +417,7 @@ function viewCity(city) {
   <div class="qk"><a href="${k("t=bugun")}">Bugün</a><a href="${k("t=yarin")}">Yarın</a><a href="${k("t=haftasonu")}">Hafta sonu</a><a href="#/${city}/sinema">Sinema</a>${Object.keys(CATS).filter((c) => c !== "sinema" && weekL.some((e) => e.cat === c)).map((c) => `<a href="${k("k=" + c)}">${esc(CATS[c])}</a>`).join("")}</div>
   ${notifAsk(city)}
   ${prefs() ? rail("Senin için", "İlgi alanlarına göre bu hafta", uniq([...weekL.filter((e) => e.img)].sort((a, b) => pscore(b) - pscore(a)), 16), city, k("sira=sen&t=hafta")) : ""}
+  ${nextHero(city, E, today, hm)}
   ${rail("Bu akşam", `${dLong(today)} · ${tonight.length} etkinlik`, uniq(tonight.filter((e) => e.img).sort((a, b) => (a.t || "").localeCompare(b.t || "")), 16), city, k("t=bugun"))}
   <section class="rail" id="fsr1"></section>
   <div id="mid"></div>
@@ -697,10 +713,10 @@ function viewEvent(city, slug) {
     <div>${I.pin}<span>${esc(e.venue || "")}${v?.addr ? `<small>${esc(v.addr)}</small>` : ""}${v?.lat && mesafeOn() ? `<small class="dst" id="dst"></small>` : ""}</span></div>
     ${e.price ? `<div>${I.tag}<span>${TL(e.price)}'den başlayan fiyatlarla<small>${T.filter((x) => x.price).length > 1 ? T.filter((x) => x.price).length + " sitede satışta" : "Satış sitesinde doğrulandı"}</small></span></div>` : ""}</div>
     ${st ? `<div class="stb">${st}.${e.stNews ? " Haberlere göre: " + e.stNews.slice(0, 2).map((x) => `<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc((DATA.buzz.names || {})[x[0]] || x[0])} haberi ↗</a>`).join(" ") + " · Bilet sitesinden de kontrol edin." : ""}</div>` : ""}
-    ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">${buyLbl(e, best || T[0])} · ${esc((best || T[0]).site.replace(/ haberi$/, ""))}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
+    ${T.length && live(e) ? `<div class="buyw">${e.img ? `<img class="aur" src="${esc(e.img)}" alt="" aria-hidden="true" referrerpolicy="no-referrer" decoding="async">` : ""}<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">${buyLbl(e, best || T[0])} · ${esc((best || T[0]).site.replace(/ haberi$/, ""))}${best ? ` · ${TL(best.price)}` : ""}</a></div>` : ""}
     ${!T.length && news && live(e) ? `<p class="flh">Bu etkinliğin satış sayfasını henüz bulamadık; her taramada yeniden aranır. Kayıt ya da ücretsizse girişi düzenleyen kurum yapar.</p>` : ""}
     ${T.length ? `${tix}<p class="chk">${checked ? `Fiyatlar satış sitelerinde ${ago(checked)} kontrol edildi. ` : ""}Hizmet bedeli ve son fiyat siteye göre değişebilir; satın alma ve iade bileti satan sitenin kurallarına tabidir.</p>` : ""}
-    <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}${isF(e) ? "Takvimde" : "Takvime ekle"}</button><button type="button" id="grp">👥 Grup kur</button><button type="button" id="bld" aria-label="Yanlışlık bildir">⚑ Bildir</button><button type="button" id="inv" class="invb">✉️ Davet et</button><button type="button" id="shr">${I.share}Paylaş</button></div>
+    <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}${isF(e) ? "Takvimde" : "Takvime ekle"}</button><button type="button" id="grp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15.5 4.9a3.2 3.2 0 0 1 0 6.2M17.2 14.7c2 .6 3.4 2.2 3.8 4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Grup kur</button><button type="button" id="bld" aria-label="Yanlışlık bildir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 4.5h11.5l-2.2 4 2.2 4H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Bildir</button><button type="button" id="inv" class="invb"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Davet et</button><button type="button" id="shr">${I.share}Paylaş</button></div>
     ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl">${cgIcon("standup")}<span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>
     ${live(e) ? `<p class="flh">Takip edersen fiyatı düştüğünde, iptal, erteleme, saat, tarih ya da yer değişikliğinde ve etkinlikten bir gün önce haber veririz.</p>` : ""}
     <section class="sec"><h3>Bu etkinlik hakkında</h3>${infoBlock(e, city)}<a class="wrong" href="${wrongMail(e, city)}">Bir yanlış mı var? Bize yaz →</a></section>
@@ -988,7 +1004,7 @@ function toggleFollow(e, city) {
   const F = follows(), id = fid(e), b = $("#flw");
   if (F[id]) { delete F[id]; saveF(F); b.classList.remove("on"); b.innerHTML = I.bell + "Takip et"; toast("Takipten çıkarıldı"); }
   else {
-    F[id] = { ...NV.snap(e, e.slug), city }; saveF(F); b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; gcEv("takip-et", "Takip et"); snd.ok();
+    F[id] = { ...NV.snap(e, e.slug), city }; saveF(F); b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); gcEv("takip-et", "Takip et"); snd.ok();
     if (notifOn()) toast(`Takip ediyorsun. Bir değişiklik olursa haber vereceğiz. <a href="#/${city}/takip">Takip ettiklerim →</a>`);
     else if (!store.get("nvny-nask-f") && !(NOTIF && Notification.permission === "denied")) {
       store.set("nvny-nask-f", "1");
@@ -1203,7 +1219,7 @@ applyLook(); setInterval(applyLook, 5 * 60e3);
 /* ---------- Takvime ekle: yalnızca uygulamanın kendi takvimi (Planım). Telefon takvimine, Google'a ya da .ics dosyasına gitmez (kullanıcı, 19.11.2026). Hatırlatmalar takip bildirimlerinden gelir. ---------- */
 const durMin = (e) => { const m = String(e.dur || "").match(/(\d+)\s*(dk|dakika|min)/i), h = String(e.dur || "").match(/(\d+)\s*(sa|saat)/i); return (h ? +h[1] * 60 : 0) + (m ? +m[1] : 0) || 120; };
 const locD = (x) => `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, "0")}-${String(x.getDate()).padStart(2, "0")}`;
-function calAdd(e0) { const e = e0, city = e.city || DATA.city, F = follows(), id = e.kind === "seans" ? e.sid : fid(e); if (!e.d || !id) return; haptic(8); gcEv("takvime-ekle", "Takvime ekle"); if (!F[id]) { F[id] = e.kind === "seans" ? { kind: "seans", film: e.film, title: e.title, tk: NV.key(e.title), vk: NV.key(e.venue), venue: e.venue, d: e.d, t: e.t, city, img: e.img, cat: "sinema", slug: "", status: "", at: Date.now() } : { ...NV.snap(e, e.slug), city }; saveF(F); snd.ok(); } const b = $("#flw"); if (b && e.kind !== "seans") { b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; } const c = $("#cal"); if (c) c.innerHTML = I.cal + "Takvimde"; setTop(city); toast(`📅 Takvimine eklendi, zamanı gelince hatırlatırız. <a href="#/${city}/takip">Takvimim →</a>`, 4200); }
+function calAdd(e0) { const e = e0, city = e.city || DATA.city, F = follows(), id = e.kind === "seans" ? e.sid : fid(e); if (!e.d || !id) return; haptic(8); gcEv("takvime-ekle", "Takvime ekle"); if (!F[id]) { F[id] = e.kind === "seans" ? { kind: "seans", film: e.film, title: e.title, tk: NV.key(e.title), vk: NV.key(e.venue), venue: e.venue, d: e.d, t: e.t, city, img: e.img, cat: "sinema", slug: "", status: "", at: Date.now() } : { ...NV.snap(e, e.slug), city }; saveF(F); snd.ok(); } const b = $("#flw"); if (b && e.kind !== "seans") { b.classList.add("on"); b.innerHTML = I.bellOn + "Takip ediliyor"; b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); } const c = $("#cal"); if (c) c.innerHTML = I.cal + "Takvimde"; setTop(city); toast(`📅 Takvimine eklendi, zamanı gelince hatırlatırız. <a href="#/${city}/takip">Takvimim →</a>`, 4200); }
 const calMonth = (rows, today, ofs, extra, sel = "", EM = {}) => { const t0 = pd(today), m = new Date(t0.getFullYear(), t0.getMonth() + ofs, 1), y = m.getFullYear(), mo = m.getMonth(), n = new Date(y, mo + 1, 0).getDate(), lead = (m.getDay() + 6) % 7, C = {}; rows.forEach((r) => { C[r.d] = (C[r.d] || 0) + 1; }); extra.forEach((d) => { C[d] = (C[d] || 0) + 1; }); let h = ""; for (let i = 0; i < lead; i++) h += "<i></i>"; for (let d = 1; d <= n; d++) { const k = `${y}-${String(mo + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`, c = C[k] || 0; h += `<button type="button" class="${k === today ? "now " : ""}${k < today ? "ps " : ""}${c ? "has " : ""}${k === sel ? "sel" : ""}" data-cd="${k}" aria-label="${d} ${AY[mo]}${c ? `, ${c} plan` : ""}"><span>${d}</span>${EM[k] ? `<em class="mce">${esc(EM[k])}</em>` : c ? `<em>${"<u></u>".repeat(Math.min(3, c))}</em>` : ""}</button>`; } return `<div class="mc"><div class="mc-h"><b>${AY[mo]} ${y}</b><span><button type="button" data-cm="-1" aria-label="Önceki ay"${ofs <= 0 ? " disabled" : ""}>‹</button><button type="button" data-cm="1" aria-label="Sonraki ay"${ofs >= 11 ? " disabled" : ""}>›</button></span></div><div class="mc-w">${["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"].map((x) => `<small>${x}</small>`).join("")}</div><div class="mc-g">${h}</div></div>`; };
 
 /* ---------- Paylaş: etkinliğin kendi paylaşım sayfası (e/<il>/<ad>/; WhatsApp/Instagram önizlemesinde ad, tarih, mekân ve afiş) ---------- */
@@ -1889,9 +1905,9 @@ function seansSheet(f, city, d, t, cid, cin, btn) {
   sh.querySelector("[data-fl]").addEventListener("click", (ev) => { const F = follows(), b = ev.currentTarget;
     if (F[id]) { delete F[id]; saveF(F); b.classList.remove("on"); b.innerHTML = I.bell + "Bu seansı takip et"; btn.classList.remove("on"); }
     else { F[id] = { kind: "seans", film: f.id, title: f.title, tk: NV.key(f.title), vk: NV.key(cin.name), venue: cin.name, d, t, city, img: f.img, cat: "sinema", slug: "", status: "", at: Date.now() }; saveF(F); snd.ok(); haptic(8);
-      b.classList.add("on"); b.innerHTML = I.bellOn + "Seans takipte"; btn.classList.add("on"); toast(`🍿 Seans Planım'a eklendi. <a href="#/${city}/takip">Planım →</a>`, 4500); gcEv("seans-takip", "Seans takip"); }
+      b.classList.add("on"); b.innerHTML = I.bellOn + "Seans takipte"; b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); btn.classList.add("on"); toast(`🍿 Seans Planım'a eklendi. <a href="#/${city}/takip">Planım →</a>`, 4500); gcEv("seans-takip", "Seans takip"); }
     setTop(city); });
-  sh.querySelector("[data-cal]").addEventListener("click", () => { calAdd({ kind: "seans", sid: id, film: f.id, img: f.img, title: f.title, venue: cin.name, d, t, city }); const b = sh.querySelector("[data-fl]"); b.classList.add("on"); b.innerHTML = I.bellOn + "Seans takipte"; btn.classList.add("on"); });
+  sh.querySelector("[data-cal]").addEventListener("click", () => { calAdd({ kind: "seans", sid: id, film: f.id, img: f.img, title: f.title, venue: cin.name, d, t, city }); const b = sh.querySelector("[data-fl]"); b.classList.add("on"); b.innerHTML = I.bellOn + "Seans takipte"; b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); btn.classList.add("on"); });
 }
 function followLists(city) {
   const A = Object.entries(afol()), F = Object.entries(ffol()), N = CNAME();
