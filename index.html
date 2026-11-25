@@ -1440,6 +1440,36 @@ button.hm-n{color:#fff}
 
 /* Zayıf cihazda kaydırırken cam yerine opak zemin (app.js sonundaki blok) */
 html.lowfx.scr .top,html.lowfx.scr .tabs{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(18,16,28,.94)!important}
+
+/* ===================== NVNY marka sistemi (25.11.2026, kullanıcı: "temamızın asil morluğu daha iyi kullanılsın; Apple güçlülüğünde, cesur, mükemmel; artık markamız NVNY") =====================
+   Tek mor yerine asil mor ailesi: --nv1 (en açık) … --nv7 (en derin). Mor yalnızca anlam taşıyan yerde: seçili, odak, ilerleme, canlı vurgu, marka anı. Ana logo birebir korunur. */
+:root{--nv1:#f1ebff;--nv2:#d8c9ff;--nv3:#b79cff;--nv:#8b5cf6;--nv5:#7444f0;--nv6:#5326c4;--nv7:#2a0f6b;--nvink:#140b26;--nvglow:rgba(139,92,246,.42);
+  --nvgrad:linear-gradient(135deg,#b79cff 0%,#8b5cf6 42%,#5326c4 100%);--nvgrad2:linear-gradient(180deg,rgba(139,92,246,.30),rgba(83,38,196,.16));--nvedge:inset 0 0 0 .5px rgba(196,181,253,.45),inset 0 1px 0 rgba(255,255,255,.22)}
+/* zemin: sol üstten çok hafif asil mor derinlik (ışıma değil, ton) */
+body{background:radial-gradient(1200px 700px at -10% -12%,rgba(83,38,196,.20),transparent 60%),radial-gradient(900px 600px at 110% 8%,rgba(42,15,107,.22),transparent 60%),var(--bg)}
+::selection{background:rgba(139,92,246,.55);color:#fff}
+:focus-visible{outline:2px solid var(--nv3);outline-offset:3px;border-radius:12px}
+/* alt sekme: seçili sekmenin hapı asil mor cam, simge açık mor */
+.tpl{background:var(--nvgrad2),linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03));box-shadow:var(--nvedge),0 6px 22px -8px var(--nvglow)}
+.tabs a.on svg{color:var(--nv2)}
+/* bölüm başlıkları: güçlü, sıkı; "Tümü →" bağlantıları mor */
+.rh h3{letter-spacing:-.01em}
+.rh a{color:var(--nv3)}.rh a:active{color:var(--nv2)}
+.rh small{color:rgba(216,201,255,.62)}
+/* seçili çip ve segmentler: beyaz kalır (marka kuralı: düğmeler beyaz zemin siyah yazı), kenarına mor ışık */
+.qk a.on,.fsk a.on{box-shadow:0 0 0 1px rgba(255,255,255,.9),0 6px 20px -6px var(--nvglow)}
+/* kartlarda dokununca ince mor kenar; afişin üstünde değil, kartın çerçevesinde */
+.cd:active .ph,.fsc:active .fsc-i{box-shadow:0 0 0 2px var(--nv),0 12px 30px -12px var(--nvglow)}
+/* yakında rozeti ve festival şeridi asil mor */
+.fsc-s.yakin{background:var(--nvgrad);color:#fff}
+.fsq a i{background:rgba(139,92,246,.22)}.fsq-l{color:var(--nv3)}
+/* ilerleme ve sayfa göstergesi */
+progress{accent-color:var(--nv)}
+input[type=range]{accent-color:var(--nv)}
+.tg input:checked{background:var(--nv)}
+/* boş sayfa / bulunamadı: marka anı */
+.empty{position:relative}
+.empty::before{content:"";display:block;width:56px;height:56px;margin:0 auto 16px;border-radius:18px;background:url("/icons/icon-192.png?v=3") center/cover;box-shadow:0 10px 34px -10px var(--nvglow),var(--nvedge)}
 </style>
 </head>
 <body>
