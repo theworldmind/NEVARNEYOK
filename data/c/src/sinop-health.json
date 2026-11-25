@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:43:28.880Z",
+ "runAt": "2026-11-25T18:27:29.453Z",
  "mode": "full",
- "total": 40,
+ "total": 37,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,22 +10,23 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 37,
+   "count": 34,
    "prevCount": 37,
    "error": "",
    "notes": [
-    "açık veri: 31 seans",
-    "biletinial.com/tr-tr/tiyatro/sinop: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/sinop: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 29 seans",
+    "biletinial.com/tr-tr/tiyatro/sinop: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/sinop: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/sinop: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sinop: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 91,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:43:28.880Z"
+   "lastOk": "2026-11-25T18:27:29.453Z",
+   "okCount": 34
   },
   "radar": {
    "id": "radar",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 171,
+   "seconds": 154,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:43:28.880Z"
+   "lastOk": "2026-11-25T18:27:29.453Z",
+   "okCount": 5
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -85,9 +88,10 @@
     "allevents.in/sinop/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sinop/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 18,
-   "lastOk": null
+   "seconds": 155,
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -102,8 +106,9 @@
     "www.biletimgo.com/sehir-etkinlikleri/sinop: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   }
  }
 }

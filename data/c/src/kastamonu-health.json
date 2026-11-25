@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:26:33.767Z",
+ "runAt": "2026-11-25T18:10:04.275Z",
  "mode": "full",
- "total": 41,
+ "total": 36,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 23,
-   "prevCount": 21,
+   "count": 16,
+   "prevCount": 23,
    "error": "",
    "notes": [
-    "açık veri: 15 seans, 1 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/kastamonu: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 8 seans, 1 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/kastamonu: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kastamonu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:26:33.767Z"
+   "lastOk": "2026-11-25T18:10:04.275Z",
+   "okCount": 16
   },
   "radar": {
    "id": "radar",
@@ -37,7 +38,7 @@
    "prevCount": 20,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/kastamonu-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kastamonu-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kastamonu-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kastamonu-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kastamonu-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kastamonu: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 587,
+   "seconds": 589,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:26:33.767Z"
+   "lastOk": "2026-11-25T18:10:04.275Z",
+   "okCount": 20
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -85,9 +88,10 @@
     "allevents.in/kastamonu/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kastamonu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
-   "failStreak": 18,
-   "lastOk": null
+   "seconds": 159,
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -102,8 +106,9 @@
     "www.biletimgo.com/sehir-etkinlikleri/kastamonu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T07:12:43.368Z",
+ "runAt": "2026-11-25T17:55:48.252Z",
  "mode": "full",
  "total": 1,
  "written": true,
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/cankiri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/cankiri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
-   "failStreak": 22,
-   "lastOk": null
+   "seconds": 91,
+   "failStreak": 23,
+   "lastOk": null,
+   "okCount": null
   },
   "radar": {
    "id": "radar",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=cankiri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=cankiri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 167,
-   "failStreak": 18,
-   "lastOk": null
+   "seconds": 166,
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -85,9 +88,10 @@
     "allevents.in/cankiri/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/cankiri/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 18,
-   "lastOk": null
+   "seconds": 159,
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +105,10 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/cankiri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:12:43.368Z"
+   "lastOk": "2026-11-25T17:55:48.252Z",
+   "okCount": 1
   }
  }
 }

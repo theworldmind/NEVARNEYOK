@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:06:44.466Z",
+ "runAt": "2026-11-25T17:51:01.998Z",
  "mode": "full",
- "total": 12,
+ "total": 11,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 11,
+   "count": 10,
    "prevCount": 11,
    "error": "",
    "notes": [
-    "açık veri: 9 seans",
+    "açık veri: 8 seans",
     "biletinial.com/tr-tr/tiyatro/bilecik: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -25,7 +25,8 @@
    ],
    "seconds": 82,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:06:44.466Z"
+   "lastOk": "2026-11-25T17:51:01.998Z",
+   "okCount": 10
   },
   "radar": {
    "id": "radar",
@@ -48,7 +49,8 @@
    ],
    "seconds": 161,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:06:44.466Z"
+   "lastOk": "2026-11-25T17:51:01.998Z",
+   "okCount": 3
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -86,8 +89,9 @@
     "allevents.in/bilecik/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +105,10 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 18,
-   "lastOk": null
+   "seconds": 5,
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   }
  }
 }

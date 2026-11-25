@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:30:40.928Z",
+ "runAt": "2026-11-25T18:14:51.606Z",
  "mode": "full",
- "total": 431,
+ "total": 461,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 256,
+   "count": 278,
    "prevCount": 256,
    "error": "",
    "notes": [
-    "açık veri: 227 seans, 5 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/kocaeli: 71 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 249 seans, 5 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/kocaeli: 70 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kocaeli: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kocaeli: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 120,
+   "seconds": 123,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:30:40.928Z"
+   "lastOk": "2026-11-25T18:14:51.606Z",
+   "okCount": 278
   },
   "radar": {
    "id": "radar",
@@ -33,22 +34,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 161,
-   "prevCount": 146,
+   "count": 160,
+   "prevCount": 161,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/kocaeli-etkinlikleri: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kocaeli-etkinlikleri: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kocaeli-muzik-etkinlikleri: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/kocaeli-tiyatro-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/kocaeli-hafta-sonu-etkinlikleri: 67 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/kocaeli-hafta-sonu-etkinlikleri: 64 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=kocaeli: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=kocaeli: 52 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kocaeli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1431,
+   "seconds": 1441,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:30:40.928Z"
+   "lastOk": "2026-11-25T18:14:51.606Z",
+   "okCount": 160
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
-   "lastOk": null
+   "failStreak": 18,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -73,7 +76,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 12,
-   "prevCount": 7,
+   "prevCount": 12,
    "error": "",
    "notes": [
     "allevents.in/kocaeli: 5 bağlantı, 5 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +88,10 @@
     "allevents.in/kocaeli/workshops: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kocaeli/kids: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
+   "seconds": 200,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:30:40.928Z"
+   "lastOk": "2026-11-25T18:14:51.606Z",
+   "okCount": 12
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +105,10 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kocaeli: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:30:40.928Z"
+   "lastOk": "2026-11-25T18:14:51.606Z",
+   "okCount": 3
   }
  }
 }

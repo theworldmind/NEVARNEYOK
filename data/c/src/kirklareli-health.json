@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-25T07:27:34.400Z",
+ "runAt": "2026-11-25T18:12:29.538Z",
  "mode": "full",
- "total": 167,
- "written": true,
+ "total": 76,
+ "written": false,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 33,
-   "prevCount": 133,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 42,
+   "prevCount": 33,
    "error": "",
    "notes": [
-    "açık veri: 28 seans",
+    "açık veri: 37 seans",
     "biletinial.com/tr-tr/tiyatro/kirklareli: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kirklareli: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kirklareli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
-   "failStreak": 20,
-   "lastOk": "2026-11-15T10:31:19.700Z"
+   "seconds": 84,
+   "failStreak": 0,
+   "lastOk": "2026-11-25T18:12:29.538Z",
+   "okCount": 42
   },
   "radar": {
    "id": "radar",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirklareli: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 908,
+   "seconds": 918,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:27:34.400Z"
+   "lastOk": "2026-11-25T18:12:29.538Z",
+   "okCount": 37
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -85,9 +88,10 @@
     "allevents.in/kirklareli/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kirklareli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 18,
-   "lastOk": null
+   "seconds": 167,
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +107,8 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:27:34.400Z"
+   "lastOk": "2026-11-25T18:12:29.538Z",
+   "okCount": 2
   }
  }
 }

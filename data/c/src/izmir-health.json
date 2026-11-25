@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:25:12.404Z",
+ "runAt": "2026-11-25T18:07:29.401Z",
  "mode": "full",
- "total": 1028,
+ "total": 1068,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 681,
-   "prevCount": 638,
+   "count": 690,
+   "prevCount": 681,
    "error": "",
    "notes": [
-    "açık veri: 525 seans, 31 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/izmir: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 538 seans, 32 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/izmir: 153 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/izmir: 63 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/izmir: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 204,
+   "seconds": 209,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:25:12.404Z"
+   "lastOk": "2026-11-25T18:07:29.401Z",
+   "okCount": 690
   },
   "radar": {
    "id": "radar",
@@ -33,22 +34,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 306,
-   "prevCount": 318,
+   "count": 324,
+   "prevCount": 306,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/izmir-etkinlikleri: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/izmir-etkinlikleri: 24 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/izmir-muzik-etkinlikleri: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/izmir-tiyatro-etkinlikleri: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/izmir-hafta-sonu-etkinlikleri: 73 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/izmir-hafta-sonu-etkinlikleri: 76 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=izmir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=izmir: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=izmir: 100 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=izmir: 114 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 2163,
+   "seconds": 1858,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:25:12.404Z"
+   "lastOk": "2026-11-25T18:07:29.401Z",
+   "okCount": 324
   },
   "bugece": {
    "id": "bugece",
@@ -57,14 +59,15 @@
    "ok": true,
    "status": "calisiyor",
    "count": 6,
-   "prevCount": 5,
+   "prevCount": 6,
    "error": "",
    "notes": [
     "açık veri: 6 seans"
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:25:12.404Z"
+   "lastOk": "2026-11-25T18:07:29.401Z",
+   "okCount": 6
   },
   "allevents": {
    "id": "allevents",
@@ -73,11 +76,11 @@
    "ok": true,
    "status": "calisiyor",
    "count": 63,
-   "prevCount": 45,
+   "prevCount": 63,
    "error": "",
    "notes": [
-    "allevents.in/izmir: 26 bağlantı, 21 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/all: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir: 24 bağlantı, 21 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/all: 55 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/concerts: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/parties: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/comedy: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +88,10 @@
     "allevents.in/izmir/workshops: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/izmir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 198,
+   "seconds": 226,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:25:12.404Z"
+   "lastOk": "2026-11-25T18:07:29.401Z",
+   "okCount": 63
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -95,15 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 36,
+   "count": 35,
    "prevCount": 36,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/izmir: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/izmir: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: etkinlik değil 3 (ör. Bez Çanta Boyama Atölyesi |  |  |  | 2026-11-25)"
    ],
-   "seconds": 62,
+   "seconds": 65,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:25:12.404Z"
+   "lastOk": "2026-11-25T18:07:29.401Z",
+   "okCount": 35
   },
   "repertuvar": {
    "id": "repertuvar",
@@ -111,15 +117,16 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 4,
-   "prevCount": 0,
+   "count": 2,
+   "prevCount": 4,
    "error": "",
    "notes": [
-    "açık veri: 4 seans, 2 gün okundu, 0 mekân adı"
+    "açık veri: 2 seans, 1 gün okundu, 0 mekân adı"
    ],
-   "seconds": 73,
+   "seconds": 70,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:25:12.404Z"
+   "lastOk": "2026-11-25T18:07:29.401Z",
+   "okCount": 2
   },
   "izmirks": {
    "id": "izmirks",
@@ -127,15 +134,17 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 27,
+   "count": 28,
    "prevCount": 27,
    "error": "",
    "notes": [
-    "açık veri: 39 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate"
+    "açık veri: 40 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate",
+    "elenen: geçmiş 12 (ör. Ulusal Genç Solist Yarışması 2027 | Ahmed Adnan Saygun Sanat Merkezi |  | İzmir | 2026-11-23)"
    ],
-   "seconds": 35,
+   "seconds": 48,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:25:12.404Z"
+   "lastOk": "2026-11-25T18:07:29.401Z",
+   "okCount": 28
   }
  }
 }

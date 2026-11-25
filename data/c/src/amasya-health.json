@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:06:40.325Z",
+ "runAt": "2026-11-25T17:49:39.073Z",
  "mode": "full",
- "total": 66,
+ "total": 59,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 39,
-   "prevCount": 38,
+   "count": 31,
+   "prevCount": 39,
    "error": "",
    "notes": [
-    "açık veri: 34 seans",
-    "biletinial.com/tr-tr/tiyatro/amasya: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 26 seans",
+    "biletinial.com/tr-tr/tiyatro/amasya: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/amasya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
+   "seconds": 84,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:06:40.325Z"
+   "lastOk": "2026-11-25T17:49:39.073Z",
+   "okCount": 31
   },
   "radar": {
    "id": "radar",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 168,
+   "seconds": 156,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:06:40.325Z"
+   "lastOk": "2026-11-25T17:49:39.073Z",
+   "okCount": 4
   },
   "bugece": {
    "id": "bugece",
@@ -63,17 +65,18 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
    "name": "AllEvents",
    "kind": "toplayici",
    "ok": false,
-   "status": "dustu",
+   "status": "bos",
    "count": 0,
-   "prevCount": 26,
+   "prevCount": 0,
    "error": "",
    "notes": [
     "allevents.in/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,9 +88,10 @@
     "allevents.in/amasya/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/amasya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 169,
-   "failStreak": 13,
-   "lastOk": "2026-11-18T13:02:05.936Z"
+   "seconds": 192,
+   "failStreak": 14,
+   "lastOk": "2026-11-18T13:02:05.936Z",
+   "okCount": null
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +105,10 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:06:40.325Z"
+   "lastOk": "2026-11-25T17:49:39.073Z",
+   "okCount": 1
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:43:54.021Z",
+ "runAt": "2026-11-25T18:26:30.831Z",
  "mode": "full",
- "total": 43,
+ "total": 39,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 36,
-   "prevCount": 38,
+   "count": 32,
+   "prevCount": 36,
    "error": "",
    "notes": [
-    "açık veri: 32 seans",
-    "biletinial.com/tr-tr/tiyatro/sanliurfa: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 27 seans",
+    "biletinial.com/tr-tr/tiyatro/sanliurfa: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sanliurfa: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sanliurfa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:43:54.021Z"
+   "lastOk": "2026-11-25T18:26:30.831Z",
+   "okCount": 32
   },
   "radar": {
    "id": "radar",
@@ -34,7 +35,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 6,
-   "prevCount": 7,
+   "prevCount": 6,
    "error": "",
    "notes": [
     "www.radarturkiye.com/sanliurfa-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 172,
+   "seconds": 170,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:43:54.021Z"
+   "lastOk": "2026-11-25T18:26:30.831Z",
+   "okCount": 6
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
-   "lastOk": null
+   "failStreak": 18,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -86,8 +89,9 @@
     "allevents.in/sanliurfa/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 17,
-   "lastOk": null
+   "failStreak": 18,
+   "lastOk": null,
+   "okCount": null
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +105,10 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 17,
-   "lastOk": null
+   "seconds": 7,
+   "failStreak": 18,
+   "lastOk": null,
+   "okCount": null
   }
  }
 }

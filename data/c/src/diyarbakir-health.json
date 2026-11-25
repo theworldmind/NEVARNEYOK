@@ -1,31 +1,32 @@
 {
- "runAt": "2026-11-25T07:12:48.601Z",
+ "runAt": "2026-11-25T17:56:17.589Z",
  "mode": "full",
- "total": 235,
- "written": true,
+ "total": 103,
+ "written": false,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 76,
-   "prevCount": 216,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 83,
+   "prevCount": 76,
    "error": "",
    "notes": [
-    "açık veri: 67 seans",
-    "biletinial.com/tr-tr/tiyatro/diyarbakir: 37 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/diyarbakir: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 73 seans",
+    "biletinial.com/tr-tr/tiyatro/diyarbakir: 42 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/diyarbakir: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/diyarbakir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
-   "failStreak": 20,
-   "lastOk": "2026-11-15T10:29:07.999Z"
+   "seconds": 119,
+   "failStreak": 0,
+   "lastOk": "2026-11-25T17:56:17.589Z",
+   "okCount": 83
   },
   "radar": {
    "id": "radar",
@@ -34,7 +35,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 10,
-   "prevCount": 9,
+   "prevCount": 10,
    "error": "",
    "notes": [
     "www.radarturkiye.com/diyarbakir-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=diyarbakir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 163,
+   "seconds": 177,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:12:48.601Z"
+   "lastOk": "2026-11-25T17:56:17.589Z",
+   "okCount": 10
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -73,21 +76,22 @@
    "ok": true,
    "status": "calisiyor",
    "count": 16,
-   "prevCount": 8,
+   "prevCount": 16,
    "error": "",
    "notes": [
     "allevents.in/diyarbakir: 8 bağlantı, 8 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/all: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/concerts: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/diyarbakir/parties: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/diyarbakir/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/comedy: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/workshops: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/diyarbakir/kids: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 168,
+   "seconds": 169,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:12:48.601Z"
+   "lastOk": "2026-11-25T17:56:17.589Z",
+   "okCount": 16
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -95,15 +99,16 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 2,
+   "count": 3,
    "prevCount": 2,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/diyarbakir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/diyarbakir: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:12:48.601Z"
+   "lastOk": "2026-11-25T17:56:17.589Z",
+   "okCount": 3
   }
  }
 }

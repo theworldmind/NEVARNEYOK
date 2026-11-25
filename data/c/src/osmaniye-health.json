@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:37:53.388Z",
+ "runAt": "2026-11-25T18:21:37.276Z",
  "mode": "full",
- "total": 22,
+ "total": 30,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 22,
+   "count": 30,
    "prevCount": 22,
    "error": "",
    "notes": [
-    "açık veri: 18 seans",
+    "açık veri: 26 seans",
     "biletinial.com/tr-tr/tiyatro/osmaniye: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/osmaniye: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/osmaniye: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:37:53.388Z"
+   "lastOk": "2026-11-25T18:21:37.276Z",
+   "okCount": 30
   },
   "radar": {
    "id": "radar",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 150,
+   "seconds": 167,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:37:53.388Z"
+   "lastOk": "2026-11-25T18:21:37.276Z",
+   "okCount": 3
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -86,8 +89,9 @@
     "allevents.in/osmaniye/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 160,
-   "failStreak": 18,
-   "lastOk": null
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,9 +105,10 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/osmaniye: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
-   "failStreak": 18,
-   "lastOk": null
+   "seconds": 6,
+   "failStreak": 19,
+   "lastOk": null,
+   "okCount": null
   }
  }
 }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T07:14:36.085Z",
+ "runAt": "2026-11-25T17:56:46.724Z",
  "mode": "full",
- "total": 104,
+ "total": 116,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 48,
+   "count": 60,
    "prevCount": 48,
    "error": "",
    "notes": [
-    "açık veri: 45 seans",
+    "açık veri: 57 seans",
     "biletinial.com/tr-tr/tiyatro/erzurum: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,10 @@
     "biletinial.com/tr-tr/festival/erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 85,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:14:36.085Z"
+   "lastOk": "2026-11-25T17:56:46.724Z",
+   "okCount": 60
   },
   "radar": {
    "id": "radar",
@@ -46,9 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=erzurum: 49 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1060,
+   "seconds": 1065,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:14:36.085Z"
+   "lastOk": "2026-11-25T17:56:46.724Z",
+   "okCount": 52
   },
   "bugece": {
    "id": "bugece",
@@ -63,8 +65,9 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
-   "lastOk": null
+   "failStreak": 20,
+   "lastOk": null,
+   "okCount": null
   },
   "allevents": {
    "id": "allevents",
@@ -85,9 +88,10 @@
     "allevents.in/erzurum/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/erzurum/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
+   "seconds": 166,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:14:36.085Z"
+   "lastOk": "2026-11-25T17:56:46.724Z",
+   "okCount": 2
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +107,8 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-25T07:14:36.085Z"
+   "lastOk": "2026-11-25T17:56:46.724Z",
+   "okCount": 3
   }
  }
 }
