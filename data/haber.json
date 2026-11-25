@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-25T13:15:31.981Z",
+ "updated": "2026-11-25T22:08:21.375Z",
  "notes": [
   "trt: 0 aday",
-  "aa: 2 aday",
+  "aa: 3 aday",
   "yeniankara: 0 aday",
   "evrensel: 0 aday",
   "hurriyet: 0 aday",
-  "haberturk: 4 aday",
+  "haberturk: 5 aday",
   "sabah: 2 aday",
-  "cumhuriyet: 12 aday",
+  "cumhuriyet: 13 aday",
   "sozcu: 0 aday",
   "aa-guncel: 0 aday",
   "trt-turkiye: 0 aday",
@@ -19,7 +19,7 @@
   "mansetankara: 0 aday",
   "mansetankara2: 404",
   "ankarahaber: fetch failed",
-  "iha: akış değil",
+  "iha: 403",
   "dha: 404",
   "ntv-sanat: 301",
   "ntv-turkiye: 0 aday",
@@ -33,10 +33,10 @@
   "duvar: 403",
   "karar: 410",
   "star: 0 aday",
-  "haberler-kultur: 18 aday",
+  "haberler-kultur: 21 aday",
   "haberler-yasam: 0 aday",
   "haber7-kultur: 0 aday",
-  "iha-kultur: 404",
+  "iha-kultur: 403",
   "aa-yasam: 0 aday",
   "trt-yasam: 0 aday",
   "hurriyet-gundem: 0 aday",
@@ -50,7 +50,7 @@
   "ankaramasasi-1: 404",
   "baskentpostasi: fetch failed",
   "baskentpostasi-1: fetch failed",
-  "baskentgazete: 0 aday",
+  "baskentgazete: 1 aday",
   "yeniasir: akış değil",
   "yeniasir-1: 0 aday",
   "egedesonsoz: 0 aday",
@@ -78,8 +78,8 @@
   "kayserianadoluhaber: 403",
   "olaygazetesi: fetch failed",
   "samsunhaber: 0 aday",
-  "takagazete: 1 aday",
-  "mersinhaber: 1 aday",
+  "takagazete: 0 aday",
+  "mersinhaber: 0 aday",
   "hataygazetesi: fetch failed",
   "denizlihaber: 403",
   "muglahaber: 0 aday",
@@ -87,7 +87,7 @@
   "pusulahaber: 1 aday",
   "diyarbakirsoz: 0 aday",
   "vanhaber: fetch failed",
-  "malatyahaber: 1 aday",
+  "malatyahaber: 0 aday",
   "elazighaber: robots kapalı",
   "sivashaber: akış değil",
   "tokathaber: 0 aday",
@@ -95,7 +95,7 @@
   "edirnehaber: 403",
   "tekirdaghaber: 0 aday",
   "balikesirhaber: akış değil",
-  "manisahaber: akış değil",
+  "manisahaber: 429",
   "aydinses: 0 aday",
   "ispartahaber: fetch failed",
   "afyonhaber: 0 aday",
@@ -305,22 +305,6 @@
    "seen": "2026-11-20T04:21:55.141Z"
   },
   {
-   "id": "kadim-bir-dongunun-resimleri-istanbul",
-   "city": "istanbul",
-   "title": "Kadim Bir Döngünün Resimleri",
-   "cat": "konser",
-   "venue": "",
-   "days": [
-    "2026-11-25"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "site": "BirGün",
-   "url": "https://www.birgun.net/haber/gulbug-mukaddes-kilincin-kadim-bir-dongunun-resimleri-sanatseverlerle-bulusuyor-747838",
-   "seen": "2026-11-22T20:08:44.804Z"
-  },
-  {
    "id": "altin-taka-film-festivali-trabzon",
    "city": "trabzon",
    "title": "Altın Taka Film Festivali",
@@ -402,6 +386,24 @@
    "site": "Antalya Körfez",
    "url": "https://www.antalyakorfez.com/antalya-piyano-festivali-basliyor-iste-sahne-alacak-unlu-isimler",
    "seen": "2026-11-25T13:15:31.981Z"
+  },
+  {
+   "id": "sefika-kutluer-festivali-ankara",
+   "city": "ankara",
+   "title": "Şefika Kutluer Festivali",
+   "cat": "festival",
+   "venue": "CSO Ada Ankara Bankkart Mavi Salon",
+   "days": [
+    "2026-11-30",
+    "2026-12-06",
+    "2026-12-14"
+   ],
+   "until": "",
+   "from": "",
+   "t": "20:00",
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/guncel/sefika-kutluer-festivali-30-kasim-da-ankara-da-20463044-haberi/",
+   "seen": "2026-11-25T22:08:21.375Z"
   },
   {
    "id": "15-kisa-film-festivali-malatya",
@@ -546,6 +548,23 @@
    "seen": "2026-11-25T13:15:31.981Z"
   },
   {
+   "id": "istanbul-photo-awards-istanbul",
+   "city": "istanbul",
+   "title": "İstanbul Photo Awards",
+   "cat": "atolye",
+   "venue": "Ulusal Basın Merkezi",
+   "days": [
+    "2026-12-05"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "img": "https://foto.haberler.com/haber/2026/11/25/istanbul-photo-awards-sergisi-washington-da-i-20462330_amp.jpg",
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/guncel/istanbul-photo-awards-sergisi-washington-da-ilk-20462330-haberi/",
+   "seen": "2026-11-25T22:08:21.375Z"
+  },
+  {
    "id": "cocuk-film-festivali-istanbul",
    "city": "istanbul",
    "title": "Çocuk Film Festivali",
@@ -675,7 +694,6 @@
    "cat": "festival",
    "venue": "Zorlu PSM Turkcell Sahnesi",
    "days": [
-    "2026-11-25",
     "2026-11-27",
     "2026-11-28",
     "2026-11-29",
@@ -704,6 +722,22 @@
    "site": "Bursa Hakimiyet",
    "url": "https://www.bursahakimiyet.com.tr/bursa/henuz-tanismadik-sergisi-bursa-da-sanatseverlerle-bulustu-1757645",
    "seen": "2026-11-23T13:21:10.497Z"
+  },
+  {
+   "id": "kusurlu-butunluk-istanbul",
+   "city": "istanbul",
+   "title": "Kusurlu Bütünlük",
+   "cat": "konser",
+   "venue": "Galeri Bej",
+   "days": [
+    "2026-11-28"
+   ],
+   "until": "2026-12-18",
+   "from": "",
+   "t": "",
+   "site": "BirGün",
+   "url": "https://www.birgun.net/haber/kusurlu-butunluk-sanatseverlerle-bulusuyor-748488",
+   "seen": "2026-11-25T22:08:21.375Z"
   },
   {
    "id": "2-aile-arasinda-istanbul",
@@ -739,23 +773,6 @@
    "site": "Cumhuriyet",
    "url": "https://www.cumhuriyet.com.tr/kultur-sanat/shakespeare-in-olumsuz-eseri-romeo-ve-juliet-sahnelenecek-2553709",
    "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
-   "id": "sinema-gunleri-izmir",
-   "city": "izmir",
-   "title": "Sinema Günleri",
-   "cat": "sinema",
-   "venue": "Elhamra Sahnesi",
-   "days": [
-    "2026-11-25"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://www.mersinhaber.com/cropp/1200x675/Depo/haber/859323/org/859323.webp",
-   "site": "Mersin Haber",
-   "url": "https://www.mersinhaber.com/haber-izmirde-isitme-engelliler-icin-sinema-gunleri-etkinligi-gerceklesti/859323",
-   "seen": "2026-11-25T07:40:25.089Z"
   },
   {
    "id": "baba-ve-baba-istanbul",
