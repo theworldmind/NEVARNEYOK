@@ -12,6 +12,26 @@ permissions:
   contents: write
 
 jobs:
+  sokak-canli:
+    if: github.event.inputs.is == 'sokak-canli'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Tarayıcı
+        working-directory: scraper
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Sokak görünümü canlı deneme
+        working-directory: scraper
+        run: node beraber/sokak-canli.mjs
+      - name: Dala yaz
+        if: always()
+        run: |
+          cd /tmp/sokak && git init -q -b beraber-sokak && git add . && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Sokak görünümü denemesi" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" beraber-sokak
   sokak:
     if: github.event.inputs.is == 'sokak'
     runs-on: ubuntu-latest
