@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T01:53:06.438Z",
+ "runAt": "2026-11-25T02:01:22.736Z",
  "mode": "full",
- "total": 2508,
+ "total": 2511,
  "written": true,
  "sources": {
   "film-ankara": {
@@ -17,24 +17,24 @@
     "açık veri: 0 seans, programda 69 film"
    ],
    "seconds": 2,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": null
   },
   "repertuvar": {
    "id": "repertuvar",
    "name": "Repertuvar",
    "kind": "toplayici",
-   "ok": false,
-   "status": "bos",
-   "count": 0,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 7,
    "prevCount": 0,
    "error": "",
    "notes": [
-    "açık veri: 0 seans, 1 mekân"
+    "açık veri: 7 seans, 5 gün okundu, 0 mekân adı"
    ],
-   "seconds": 49,
-   "failStreak": 1,
-   "lastOk": null
+   "seconds": 68,
+   "failStreak": 0,
+   "lastOk": "2026-11-25T02:01:22.736Z"
   }
  }
 }
