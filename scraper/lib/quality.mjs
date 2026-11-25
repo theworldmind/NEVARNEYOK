@@ -3,7 +3,8 @@ import { fold } from "./util.mjs";
 const US = "AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY";
 const FOREIGN = new RegExp(`\\b(USA|U\\.S\\.A\\.?|United States|Canada|United Kingdom|Deutschland|Germany)\\b|,\\s*(${US})(\\s+\\d{5}(-\\d{4})?)?\\s*(,|$)`);
 export const isTestEvent = (e) => { const t = fold(e.title || "").trim(), v = fold(e.venue || "").trim();
-  return /^(test|deneme|demo|dummy|sample|asdf+|qwerty|x{3,})( ?\d+)?$/.test(t) || /\btest webbox\b|\bwebbox deneme\b|\bkampanyasi test$/.test(t) || /^(ilgili urunler|tarihiebrusanattasarimi venue)$/.test(v); };
+  return /^(test|deneme|demo|dummy|sample|asdf+|qwerty|x{3,})( ?\d+)?$/.test(t) || /\btest webbox\b|\bwebbox deneme\b|\bkampanyasi test$/.test(t) || /^(ilgili urunler|tarihiebrusanattasarimi venue|incele|detaylar?|bilet al|satin al)$/.test(v)
+    || /^(tum )?(etkinlikleri?|biletleri?) (kesfet|gor|incele|listele)$|^(daha fazla|tumunu gor|hepsini gor)$/.test(t); }; // site düğmeleri etkinlik sanılmasın (25.11.2026: biletimGO "Etkinlikleri Keşfet" / "İncele")
 export const isOnlineVenue = (v) => /^online\b|\bonline etkinlik|\bcurrently online\b|\bzoom\b|\bstreamyard\b|\bwebinar\b|^cevrim ?ici/.test(fold(v || "").trim());
 export const isForeignVenue = (e) => FOREIGN.test([e.venue, e.address].filter(Boolean).join(" "));
 export const badEvent = (e) => !e.manual && (isTestEvent(e) || isOnlineVenue(e.venue) || isForeignVenue(e));
