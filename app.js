@@ -398,6 +398,7 @@ function viewCity(city) {
   <form class="sbar sbtop" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, film, mekân ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
   <button type="button" class="pz" id="pz">${prefs() ? `<span class="dot"></span>Senin için kişiselleştirildi<em>Düzenle</em>` : `${I.spark}Kişiselleştir<em>İlgi alanlarını seç, sana uygun etkinlikler öne çıksın</em>`}</button></section>
   <div class="qk2"><button type="button" id="tnt">${cgIcon("haftaiciaksam")}Bu akşam ne yapsak?</button><button type="button" id="nrb"><span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span>Yakınımda</button></div>
+  <div class="fsq" id="fsq"></div>
   ${stories(featured, (e) => `#/${city}/e/${encodeURIComponent(e.slug)}`)}
   <div class="qk"><a href="${k("t=bugun")}">Bugün</a><a href="${k("t=yarin")}">Yarın</a><a href="${k("t=haftasonu")}">Hafta sonu</a><a href="#/${city}/sinema">Sinema</a>${Object.keys(CATS).filter((c) => c !== "sinema" && weekL.some((e) => e.cat === c)).map((c) => `<a href="${k("k=" + c)}">${esc(CATS[c])}</a>`).join("")}</div>
   ${notifAsk(city)}
@@ -791,8 +792,11 @@ let GIP = null; const gIdx = () => GIP ||= jget("data/gecmis/index.json").then((
 const fstState = (x) => { const t = nowIST().d; return !x.bas ? "bitti" : t < x.bas ? "yakin" : t > (x.bit || x.bas) ? "bitti" : "simdi"; };
 const fstRange = (x) => { if (!x.bas) return ""; const a = pd(x.bas), b = pd(x.bit || x.bas); return x.bas === x.bit || !x.bit ? `${a.getDate()} ${AY[a.getMonth()]} ${a.getFullYear()}` : a.getMonth() === b.getMonth() ? `${a.getDate()}–${b.getDate()} ${AY[a.getMonth()]} ${b.getFullYear()}` : `${a.getDate()} ${AY[a.getMonth()]} – ${b.getDate()} ${AY[b.getMonth()]} ${b.getFullYear()}`; };
 const ilAd = (id) => CITIES.find((c) => c.id === id)?.name || "";
-const fstImg = (x) => (x.films || []).map((f) => f.img).find(Boolean) || (x.g || []).map((r) => r[5]).find(Boolean) || "";
+const fstImg = (x) => { if (x.f === "etk") { const n = fold(x.ad), G = (x.g || []).filter((r) => r[5]), t = nowIST().d; const c = {}; for (const r of G) c[r[5]] = (c[r[5]] || 0) + 1;
+    return (G.find((r) => fold(r[2]).startsWith(n) && r[0] >= t) || G.sort((a, b) => c[b[5]] - c[a[5]])[0] || [])[5] || ""; }
+  return (x.films || []).map((f) => f.img).find(Boolean) || (x.g || []).map((r) => r[5]).find(Boolean) || ""; };
 const ST_L = { simdi: "Şimdi", yakin: "Yakında", bitti: "Bitti" };
+const fstW = (x) => (/^\d+\.|uluslararas|international/i.test(x.ad) ? 60 : 0) + (x.f !== "etk" ? 20 : 0) + Math.min(40, (x.g || []).length * 2) + (x.site ? 10 : 0);
 const fstKind = (x) => x.f === "etk" ? (x.kat || "Festival") : "Film";
 const fstWhen = (x) => { const st = fstState(x), t = nowIST().d; if (st === "simdi") return "Şimdi"; if (st !== "yakin") return ST_L[st] || ""; const n = Math.round((Date.parse(x.bas) - Date.parse(t)) / 864e5); return n <= 1 ? "Yarın" : n <= 30 ? `${n} gün sonra` : "Yakında"; };
 const fstCard = (x, city) => { if (x.f === "etk") { const st = fstState(x), img = fstImg(x), ne = new Set((x.g || []).map((r) => fold(r[2]) + r[0])).size;
@@ -803,8 +807,10 @@ const fstCard = (x, city) => { if (x.f === "etk") { const st = fstState(x), img 
    (film, caz, tiyatro, gitar, komedi…), "Bu akşam"ın hemen altında; yoksa raf hiç görünmez */
 async function cityFest(city, el) {
   const L = await festJ(); if (!el.isConnected) return; const t = nowIST().d;
-  const P = L.filter((x) => x.il === city && fstState(x) !== "bitti" && x.bas <= addD(t, 30)).sort((a, b) => (fstState(a) === "simdi" ? 0 : 1) - (fstState(b) === "simdi" ? 0 : 1) || a.bas.localeCompare(b.bas) || (b.g || []).length - (a.g || []).length).slice(0, 12);
-  if (!P.length) { el.remove(); return; } const ns = P.filter((x) => fstState(x) === "simdi").length;
+  const P = L.filter((x) => x.il === city && fstState(x) !== "bitti" && x.bas <= addD(t, 30)).sort((a, b) => (fstState(a) === "simdi" ? 0 : 1) - (fstState(b) === "simdi" ? 0 : 1) || fstW(b) - fstW(a) || a.bas.localeCompare(b.bas)).slice(0, 12);
+  const q = $("#fsq"); if (!P.length) { el.remove(); q?.remove(); return; } const ns = P.filter((x) => fstState(x) === "simdi").length;
+  // en üstte (vitrinin hemen üstünde) şu an süren festivaller: tek satır, dokununca festivalin programı
+  if (q) { const N = P.filter((x) => fstState(x) === "simdi").slice(0, 4); if (N.length) q.innerHTML = `<span class="fsq-l">Şu an ${esc(ilAd(city))}'da</span>${N.map((x) => `<a href="#/${city}/festival/${esc(x.id)}"><i>${x.f === "etk" ? "🎪" : "🎞️"}</i>${esc(x.ad.replace(/^\d+\.\s*/, "").replace(/^Uluslararası\s+/i, ""))}<small>${esc(fstRange(x).replace(/\s\d{4}$/, ""))}</small></a>`).join("")}`; else q.remove(); }
   el.innerHTML = `<div class="rh"><div><h3>Festivaller</h3><small>${ns ? `Şu an ${ns === 1 ? "bir festival sürüyor" : ns + " festival sürüyor"}${P.length > ns ? " · yakında başlayanlar da var" : ""}` : "Önümüzdeki günlerde başlıyor"}</small></div><a href="#/${city}/festivaller">Tümü →</a></div><div class="fsr">${P.map((x) => fstCard(x, city)).join("")}</div>`;
 }
 // Sinema sayfasının başındaki festival rafı: bu ilde şimdi/yakında olanlar, Türkiye'de süren büyük festivaller, sonra bu ilin son festivalleri
@@ -821,7 +827,7 @@ function viewFestivaller(city, Q = {}) {
   festJ().then((L0) => { const el = $("#fsl"); if (!el) return;
     const KD = ["Film", "Müzik", "Tiyatro", "Komedi", "Dans", "Çocuk", "Lezzet", "Festival"].filter((k) => L0.some((x) => fstKind(x) === k)), tk = KD.includes(Q.t) ? Q.t : "";
     const L = tk ? L0.filter((x) => fstKind(x) === tk) : L0, g = (a) => a.length ? `<div class="fsg">${a.map((x) => fstCard(x, city)).join("")}</div>` : "";
-    const by = (a) => a.sort((x, y) => (fstState(x) === "simdi" ? 0 : 1) - (fstState(y) === "simdi" ? 0 : 1) || (x.bas || "").localeCompare(y.bas || ""));
+    const by = (a) => a.sort((x, y) => (fstState(x) === "simdi" ? 0 : 1) - (fstState(y) === "simdi" ? 0 : 1) || fstW(y) - fstW(x) || (x.bas || "").localeCompare(y.bas || ""));
     const hereNow = by(L.filter((x) => x.il === city && fstState(x) !== "bitti")), now = by(L.filter((x) => x.il !== city && fstState(x) !== "bitti")), here = L.filter((x) => x.il === city && fstState(x) === "bitti"), rest = L.filter((x) => x.il !== city && fstState(x) === "bitti");
     el.innerHTML = `<div class="qk fsk"><a href="#/${city}/festivaller" class="${tk ? "" : "on"}">Tümü</a>${KD.map((k) => `<a href="#/${city}/festivaller?t=${encodeURIComponent(k)}" class="${k === tk ? "on" : ""}">${esc(k)}</a>`).join("")}</div>`
       + ((hereNow.length ? `<h2 class="fsh">${esc(ilAd(city))}: şimdi ve yakında</h2>${g(hereNow)}` : "") + (now.length ? `<h2 class="fsh">Türkiye: şimdi ve yakında</h2>${g(now)}` : "") + (here.length ? `<h2 class="fsh">${esc(ilAd(city))}: geçmiş festivaller</h2>${g(here)}` : "") + (rest.length ? `<h2 class="fsh">Türkiye: geçmiş festivaller</h2>${g(rest)}` : "") || `<div class="empty">Henüz festival kaydı yok.</div>`); });
