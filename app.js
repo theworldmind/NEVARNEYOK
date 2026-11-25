@@ -464,6 +464,7 @@ function evFilms(fl, E) {
     if (ex) { if (t && !ex[1].split(/[;,|]/).includes(t)) ex[1] = [ex[1].split("|")[0], t].filter(Boolean).join(",") + (ex[1].includes("|") ? "|" + ex[1].split("|")[1] : ""); } else if (t) L.push([cid, t]); }
   // Afişsiz salon filmlerine film arşivinden (bütün illerde görülen filmler) afiş ve bilgi
   if (DATA.arc?.length) { const A = new Map(DATA.arc.map((a) => [key(a.title), a]));
+    const AI = new Map(DATA.arc.map((a) => [String(a.id), a])); for (const f of F) { const a = AI.get(String(f.id)) || A.get(key(f.title)); if (a) { if (a.o && !f.o) f.o = a.o; if (a.dir && !f.dir) f.dir = a.dir; if (a.cast && !f.cast) f.cast = a.cast; } } // künye (film-kunye.mjs)
     for (const f of F) if (f.ev) { const a = A.get(key(f.title)); if (a) Object.assign(f, { ...(a.img && !f.img ? { img: a.img, imgBy: "sinemalar.com" } : {}), year: a.year, genre: a.genre || f.genre, country: a.country || f.country, dur: a.dur || f.dur, ...(a.url && !f.url ? { url: a.url } : {}) }); } }
   return { ...fl, films: F, cinemas: C };
 }
@@ -758,7 +759,7 @@ function viewFilm(city, id, day) {
   <a class="back" href="#/${city}/sinema">${I.back}Sinema</a>
   <div class="dg"><div class="dp"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')">${f.img ? `<span class="cr">Görsel: ${esc(f.imgBy || "sinemalar.com")}</span>` : ""}<div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div></div><div>
   <div class="tags"><span>Sinema</span>${filmGenre(f) ? `<span>${esc(filmGenre(f))}</span>` : ""}${f.dur ? `<span>${f.dur} dk</span>` : ""}${filmCountry(f) ? `<span>${esc(filmCountry(f))}</span>` : ""}${f.year ? `<span>${f.year}</span>` : ""}</div>
-  <h1>${esc(f.title)}</h1>${f.o ? `<p class="fo">${esc(f.o)}</p>` : ""}${f.dir ? `<p class="fdr">Yönetmen <b>${esc(f.dir)}</b></p>` : ""}<div class="fbds" id="ffs"></div>
+  <h1>${esc(f.title)}</h1>${f.o ? `<p class="fo">${esc(f.o)}</p>` : ""}${f.dir ? `<p class="fdr">Yönetmen <b>${esc(f.dir)}</b></p>` : ""}${f.cast?.length ? `<p class="fdr">Oyuncular <b>${esc(f.cast.slice(0, 4).join(", "))}</b></p>` : ""}<div class="fbds" id="ffs"></div>
   <div class="meta">${f.release ? `<div>${I.cal}<span>Vizyon tarihi<small>${dLong(f.release)}</small></span></div>` : ""}<div>${I.pin}<span>${rows.length} salonda seans<small>${dLong(d)}</small></span></div></div>
   <div class="days" style="padding:18px 0 0">${days.map((x) => { const dt = pd(x); return `<button type="button" data-d="${x}" class="${x === d ? "on" : ""}">${x === today ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
   <div class="ss">${rows.map((r) => `<div class="h"><b>${esc(r.c.name)}</b>${r.c.addr ? `<small>${esc(r.c.addr)}</small>` : ""}<div class="tm">${r.times.map((t) => d === today && t < hm ? `<span class="ps">${esc(t)}</span>` : `<button type="button" class="${follows()[sid(f, r.cid, d, t)] ? "on" : ""}" data-st="${esc(t)}" data-cid="${esc(r.cid)}">${esc(t)}</button>`).join("")}${r.fmt ? `<i>${esc(r.fmt)}</i>` : ""}</div></div>`).join("")}</div>

@@ -160,7 +160,7 @@ jobs:
         working-directory: scraper
         continue-on-error: true
         timeout-minutes: 15
-        run: node gecmis.mjs --diger && node festival.mjs
+        run: node gecmis.mjs --diger && node festival.mjs && (node film-kunye.mjs || true)
       - name: Mekân konumları (80 il, "Yakınımda" için; OpenStreetMap)
         working-directory: scraper
         continue-on-error: true
