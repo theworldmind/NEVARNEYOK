@@ -645,7 +645,8 @@ html.app body:has(.tabs:not([hidden])) #view{padding-bottom:calc(96px + env(safe
 /* yazı boyutu: sayfa içeriği büyür (üst çubuk ve sekmeler sabit) */
 html.zm #view{zoom:var(--zm,1)}
 /* gece göz yormayan mod: ekranı hafifçe kısar ve ısıtır */
-html.gece /* erişilebilirlik: klavyeyle gezene belirgin odak halkası; hareket azaltılmışsa canlandırmalar durur */
+html.gece body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;background:linear-gradient(rgba(255,140,40,.045),rgba(255,140,40,.045)),rgba(0,0,0,.14)}
+/* erişilebilirlik: klavyeyle gezene belirgin odak halkası; hareket azaltılmışsa canlandırmalar durur */
 :focus-visible{outline:2.5px solid #a78bfa;outline-offset:3px;border-radius:12px}
 @media (prefers-reduced-motion:reduce){.stp .sg i.on b{animation:none;transform:scaleX(1)}#view.go{animation:none!important}}
 .cd,.sps{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
