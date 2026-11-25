@@ -1782,7 +1782,9 @@ async function ptRoute(A, B) {
   for (const [id, ad, o] of V) { const legs = run(o); if (!legs) continue; const R2 = legs.filter((x) => x.t === "r"), sig = R2.map((x) => x.l.ref + ":" + x.P[0].n + ">" + x.P[x.P.length - 1].n).join("|"); if (!R2.length || seen.has(sig)) { const same = opts.find((q) => q.sig === sig); if (same && !same.tags.includes(ad)) same.tags.push(ad); continue; } seen.add(sig);
     const wm = legs.filter((x) => x.t === "w").reduce((a, x) => a + (x.d || 0), 0); opts.push({ id, tags: [ad], sig, legs, min: Math.round(real(legs)), tr: Math.max(0, R2.length - 1), walkM: Math.round(wm) }); }
   if (!opts.length) return { yok: 3 };
-  opts.sort((a, b) => a.min - b.min); const legs = opts[0].legs, best = opts[0].min;
+  opts.sort((a, b) => a.min - b.min); const b0 = opts[0], bw = Math.min(...opts.map((q) => q.walkM)); // mantıksız seçenek (çok uzun, çok yürüyüşlü) gösterilmez
+  for (let i = opts.length - 1; i > 0; i--) { const q = opts[i]; if (q.min > Math.max(b0.min * 1.8, b0.min + 25) || q.walkM > Math.max(1600, bw * 2.2)) opts.splice(i, 1); }
+  const legs = opts[0].legs, best = opts[0].min;
   return { legs, min: Math.round(best), walkMin: Math.round(ptWalk(A, B)), opts };
 }
 /* EGO hareket saatleri (19.11.2026, kullanıcı: "Ankara'da otobüs ve metroların tahmini geliş saatlerinden yararlan"):

@@ -147,11 +147,16 @@ for r in feeds:
     RT = {x["route_id"]: ((x.get("route_short_name") or "").strip(), (x.get("route_long_name") or "").strip(), gmode(x.get("route_type")), (x.get("route_color") or "").strip()) for x in rd("routes.txt")}
     TR = {}
     for x in rd("trips.txt"): TR[x["trip_id"]] = (x["route_id"], x.get("direction_id") or "0", x.get("trip_headsign") or "", x.get("service_id") or "")
-    seqs = collections.defaultdict(list)
+    seqs = collections.defaultdict(list); dep = {}
+    def mins(v):
+        try: h, m, *_ = (v or "").split(":"); return int(h) * 60 + int(m)
+        except Exception: return None
     for x in rd("stop_times.txt"):
         t = x.get("trip_id")
         if t in TR:
-            try: seqs[t].append((int(x.get("stop_sequence") or 0), x["stop_id"]))
+            try:
+                q = int(x.get("stop_sequence") or 0); seqs[t].append((q, x["stop_id"]))
+                if t not in dep or q < dep[t][0]: dep[t] = (q, mins(x.get("departure_time") or x.get("arrival_time")))
             except Exception: pass
     # hat+yön: en çok duraklı sefer; sefer sayısı = en kalabalık hizmet gününün seferleri
     best, cnt = {}, collections.Counter()
@@ -168,8 +173,11 @@ for r in feeds:
             i = sid(p[0], p[1], p[2], p[3])
             if not seq or seq[-1] != i: seq.append(i)
         if len(seq) < 2: continue
-        trips = max([c for (a, b, sv), c in cnt.items() if a == rid and b == d] or [0])
-        w = min(60, max(3, round(960 / trips / 2))) if trips else 0
+        # bekleme: en kalabalık hizmet gününde gerçek kalkış saatlerinden ortalama aralığın yarısı (06–22 arası); saat yoksa sefer sayısından
+        sv0 = max([(c, sv) for (a, b, sv), c in cnt.items() if a == rid and b == d] or [(0, "")])[1]
+        T0 = sorted(m for t2, (r2, d2, _, sv2) in TR.items() if r2 == rid and d2 == d and sv2 == sv0 and t2 in dep and (m := dep[t2][1]) is not None and 360 <= m <= 1320)
+        if len(T0) >= 2: w = min(60, max(2, round((T0[-1] - T0[0]) / (len(T0) - 1) / 2)))
+        else: trips = max([c for (a, b, sv), c in cnt.items() if a == rid and b == d] or [0]); w = min(60, max(3, round(960 / trips / 2))) if trips else 0
         glines.append([ref or ln[:12], (hs or ln or ref), mode, ("#" + col) if col and not col.startswith("#") else col, 1, seq, w]); n0 += 1
     gsrc.append({"ad": r.get("provider"), "il": r.get("location.municipality") or r.get("location.subdivision_name"), "hat": n0, "lisans": r.get("urls.license") or "", "kaynak": r.get("urls.direct_download") or url})
     print("  GTFS", r.get("provider"), "·", r.get("location.municipality") or r.get("location.subdivision_name"), "·", n0, "hat-yön")
