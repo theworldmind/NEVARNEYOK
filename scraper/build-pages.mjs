@@ -142,7 +142,8 @@ const feedItems = (fresh.length ? fresh : events.slice(0, 40)).map((e) => {
 }).join("\n");
 await writeFile(join(ROOT, "feed.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Ne Var Ne Yok? Ankara · yeni eklenen etkinlikler</title><link>${esc(BASE || ".")}/</link><description>Ankara'da yeni satışa çıkan etkinlikler</description><language>tr</language>\n${feedItems}\n</channel></rss>\n`);
 
-/* ---------- app.js sürüm damgası ---------- */
+/* ---------- harita.js ve app.js sürüm damgası (harita.js'in sürümü app.js içinde yazılı, önce o güncellenir) ---------- */
+{ const har = await readFile(join(ROOT, "harita.js")).catch(() => null); if (har) { const hv = createHash("sha1").update(har).digest("hex").slice(0, 10), a0 = await readFile(join(ROOT, "app.js"), "utf8"), a1 = a0.replace(/harita\.js\?v=[\w-]+/g, `harita.js?v=${hv}`); if (a1 !== a0) await writeFile(join(ROOT, "app.js"), a1); } }
 const app = await readFile(join(ROOT, "app.js"));
 const ver = createHash("sha1").update(app).digest("hex").slice(0, 10);
 const idxPath = join(ROOT, "index.html");

@@ -36,6 +36,7 @@ for (const [nm, w, h, dpr, mob] of SIZES) {
   await T("etkinlik", async () => { await go(`#/${C}`, 2500); const a = await page.$('a.cd[href*="/e/"]:has(.ph img.p)'); if (a) { await a.scrollIntoViewIfNeeded(); await page.waitForTimeout(500); await a.click(); await page.waitForTimeout(1400); await snap("3-etkinlik"); await page.evaluate(() => scrollTo(0, 600)); await page.waitForTimeout(600); await snap("4-etkinlik-alt"); } });
   await T("sinema", async () => { await go(`#/${C}/sinema`); await snap("5-sinema"); });
   await T("harita", async () => { await go(`#/${C}/harita`, 7000); await snap("6-harita"); });
+  if (mob) await T("rota", async () => { await go(`#/${C}/harita?yer=39.9208,32.8541&ad=Kızılay&rota=1`, 9000); await snap("6b-rota"); });
   await T("plan", async () => { await go(`#/${C}/takip`); await snap("7-planim"); });
   await T("festival", async () => { await go(`#/${C}/festivaller`); await snap("8-festivaller"); });
   await T("panel", async () => { await go(`#/${C}`, 2500); const b = await page.$("#pz"); if (b) { await b.click(); await page.waitForTimeout(900); await snap("9-panel"); } });
