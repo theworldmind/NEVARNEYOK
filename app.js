@@ -403,6 +403,7 @@ function viewCity(city) {
   ${notifAsk(city)}
   ${prefs() ? rail("Senin için", "İlgi alanlarına göre bu hafta", uniq([...weekL.filter((e) => e.img)].sort((a, b) => pscore(b) - pscore(a)), 16), city, k("sira=sen&t=hafta")) : ""}
   ${rail("Bu akşam", `${dLong(today)} · ${tonight.length} etkinlik`, uniq(tonight.filter((e) => e.img).sort((a, b) => (a.t || "").localeCompare(b.t || "")), 16), city, k("t=bugun"))}
+  <section class="rail" id="fsr1"></section>
   <div id="mid"></div>
   <div id="kac"></div>
   <div id="later"></div>${footer()}`;
@@ -410,6 +411,7 @@ function viewCity(city) {
   const later = () => `${order.map((c) => rail(CATS[c], "Bu hafta", byCat(c), city, k("k=" + c))).join("")}
   ${rail("Festival", "Yaklaşan", pick(E.filter((e) => e.cat === "festival" && e.img), 12), city, k("k=festival"))}
   ${rail("Yeni eklenenler", "Son 3 günde", uniq(E.filter((e) => e.isNew && e.img).sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || "")), 16), city, k("yeni=1"))}`;
+  cityFest(city, $("#fsr1")).catch(() => $("#fsr1")?.remove());
   { const lt = $("#later"), idle = window.requestIdleCallback || ((f) => setTimeout(f, 120));
     // (11:08 akıcılık) ilk ekranda görünmeyen raflar açılıştan sonra, tarayıcı boşaldıkça teker teker eklenir (açılışta tek büyük iş olmasın)
     const md = $("#mid"), mids = [() => filmRail(city), () => rail("Hafta sonu", wkend.length + " etkinlik", pick(wkend.filter((e) => e.img), 16), city, k("t=haftasonu")),
@@ -540,7 +542,9 @@ function viewKesfet(city, f) {
     if (f.q && f.q.length > 1) { const w = fold(f.q), VN = new Map(); for (const e of DATA.events) if (e.venue && fold(e.venue).includes(w) && !VN.has(e.venue)) VN.set(e.venue, DATA.events.filter((x) => x.venue === e.venue && live(x)).length);
       const vb = [...VN].sort((a, b) => b[1] - a[1]).slice(0, 8), box = document.createElement("section"); box.className = "kvn"; box.innerHTML = `${vb.length ? `<div class="rh"><div><h3>Mekânlar</h3><small>${vb.length} mekân</small></div></div><div class="kvl">${vb.map(([v, n]) => `<a href="#/${city}/harita?ara=${encodeURIComponent(v)}"><span class="kvi"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="currentColor"/><circle cx="12" cy="10" r="2.4" fill="#0a0a10"/></svg></span><b>${esc(v)}</b><small>${n ? n + " etkinlik" : "Yaklaşan etkinlik yok"}</small></a>`).join("")}</div>` : ""}${(() => { const FL = (DATA.filmsAll?.films || []).filter((x) => fold([x.title, x.o, x.dir].join(" ")).includes(w)).slice(0, 8); return FL.length ? `<div class="rh"><div><h3>Filmler</h3><small>${FL.length} film</small></div></div><div class="kvl">${FL.map((x) => `<a href="#/${city}/film/${esc(String(x.id))}"><span class="kvi">🎬</span><b>${esc(x.title)}</b><small>${esc([x.o, x.dir, x.year].filter(Boolean).join(" · ") || (Object.keys(x.s || {}).length ? "Vizyonda" : ""))}</small></a>`).join("")}</div>` : ""; })()}<div id="kvf"></div><a class="kva" href="#/${city}/harita?ara=${encodeURIComponent(f.q)}">🗺️ Haritada ara: <b>${esc(f.q)}</b> <span>›</span></a><a class="kva" href="#/${city}/gecmis?q=${encodeURIComponent(f.q)}">🕰️ Geçmişte ara: <b>${esc(f.q)}</b> <span>›</span></a>`;
       festJ().then((FS) => { const el = box.querySelector("#kvf"); if (!el) return; const H = []; for (const x of FS) for (const z of x.films || []) if (fold([z.t, z.en, z.dir].join(" ")).includes(w)) H.push([x, z]);
-        if (H.length) el.innerHTML = `<div class="rh"><div><h3>Festivallerde</h3><small>${H.length} film</small></div></div><div class="kvl">${H.slice(0, 8).map(([x, z]) => `<a href="#/${city}/ffilm/${esc(x.id)}/${encodeURIComponent(z.k)}"><span class="kvi">🎞️</span><b>${esc(z.t)}</b><small>${esc([x.ad, z.dir].filter(Boolean).join(" · "))}</small></a>`).join("")}</div>`; });
+        const FN = FS.filter((x) => fold(x.ad).includes(w)).sort((a, b) => (a.il === city ? 0 : 1) - (b.il === city ? 0 : 1) || (fstState(a) === "bitti") - (fstState(b) === "bitti") || (b.bas || "").localeCompare(a.bas || "")).slice(0, 6);
+        el.innerHTML = (FN.length ? `<div class="rh"><div><h3>Festivaller</h3><small>${FN.length} festival</small></div></div><div class="kvl">${FN.map((x) => `<a href="#/${city}/festival/${esc(x.id)}"><span class="kvi">${x.f === "etk" ? "🎪" : "🎞️"}</span><b>${esc(x.ad)}</b><small>${esc([fstWhen(x), fstRange(x), ilAd(x.il)].filter(Boolean).join(" · "))}</small></a>`).join("")}</div>` : "")
+          + (H.length ? `<div class="rh"><div><h3>Festivallerde</h3><small>${H.length} film</small></div></div><div class="kvl">${H.slice(0, 8).map(([x, z]) => `<a href="#/${city}/ffilm/${esc(x.id)}/${encodeURIComponent(z.k)}"><span class="kvi">🎞️</span><b>${esc(z.t)}</b><small>${esc([x.ad, z.dir].filter(Boolean).join(" · "))}</small></a>`).join("")}</div>` : ""); });
       const at = $(".kfl") || $(".wrap"); at?.insertAdjacentElement(at.classList.contains("kfl") ? "afterend" : "beforebegin", box); } }
   $$("[data-x]").forEach((b) => b.addEventListener("click", () => go(dropChip(f, b.dataset.x))));
   $("#fo").addEventListener("click", () => openFilters(city, f));
@@ -789,23 +793,38 @@ const fstRange = (x) => { if (!x.bas) return ""; const a = pd(x.bas), b = pd(x.b
 const ilAd = (id) => CITIES.find((c) => c.id === id)?.name || "";
 const fstImg = (x) => (x.films || []).map((f) => f.img).find(Boolean) || (x.g || []).map((r) => r[5]).find(Boolean) || "";
 const ST_L = { simdi: "Şimdi", yakin: "Yakında", bitti: "Bitti" };
-const fstCard = (x, city) => { const st = fstState(x), img = fstImg(x), nf = (x.films || []).length || new Set((x.g || []).map((r) => r[4] || fk(r[2]))).size;
+const fstKind = (x) => x.f === "etk" ? (x.kat || "Festival") : "Film";
+const fstWhen = (x) => { const st = fstState(x), t = nowIST().d; if (st === "simdi") return "Şimdi"; if (st !== "yakin") return ST_L[st] || ""; const n = Math.round((Date.parse(x.bas) - Date.parse(t)) / 864e5); return n <= 1 ? "Yarın" : n <= 30 ? `${n} gün sonra` : "Yakında"; };
+const fstCard = (x, city) => { if (x.f === "etk") { const st = fstState(x), img = fstImg(x), ne = new Set((x.g || []).map((r) => fold(r[2]) + r[0])).size;
+    return `<a class="fsc" href="#/${city}/festival/${esc(x.id)}"><div class="fsc-i">${img ? `<img decoding="async" src="${esc(img)}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}<span class="fsc-s ${st}">${esc(fstWhen(x))}</span></div><b>${esc(x.ad)}</b><small>${esc([fstRange(x), ilAd(x.il)].filter(Boolean).join(" · "))}</small><small>${esc(fstKind(x))} · ${ne} etkinlik</small></a>`; }
+  const st = fstState(x), img = fstImg(x), nf = (x.films || []).length || new Set((x.g || []).map((r) => r[4] || fk(r[2]))).size;
   return `<a class="fsc" href="#/${city}/festival/${esc(x.id)}"><div class="fsc-i">${img ? `<img decoding="async" src="${esc(img)}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}<span class="fsc-s ${st}">${ST_L[st] || ""}</span></div><b>${esc(x.ad)}</b><small>${esc([fstRange(x), ilAd(x.il)].filter(Boolean).join(" · "))}</small><small>${nf} film${x.g?.length ? ` · ${x.g.length} gösterim` : ""}</small></a>`; };
+/* Şehir sayfasında festival rafı (25.11.2026, kullanıcı: "Ankara'da festival varmış, haberim yok"): bu ilde şimdi süren ve 30 gün içinde başlayan her tür festival
+   (film, caz, tiyatro, gitar, komedi…), "Bu akşam"ın hemen altında; yoksa raf hiç görünmez */
+async function cityFest(city, el) {
+  const L = await festJ(); if (!el.isConnected) return; const t = nowIST().d;
+  const P = L.filter((x) => x.il === city && fstState(x) !== "bitti" && x.bas <= addD(t, 30)).sort((a, b) => (fstState(a) === "simdi" ? 0 : 1) - (fstState(b) === "simdi" ? 0 : 1) || a.bas.localeCompare(b.bas) || (b.g || []).length - (a.g || []).length).slice(0, 12);
+  if (!P.length) { el.remove(); return; } const ns = P.filter((x) => fstState(x) === "simdi").length;
+  el.innerHTML = `<div class="rh"><div><h3>Festivaller</h3><small>${ns ? `Şu an ${ns === 1 ? "bir festival sürüyor" : ns + " festival sürüyor"}${P.length > ns ? " · yakında başlayanlar da var" : ""}` : "Önümüzdeki günlerde başlıyor"}</small></div><a href="#/${city}/festivaller">Tümü →</a></div><div class="fsr">${P.map((x) => fstCard(x, city)).join("")}</div>`;
+}
 // Sinema sayfasının başındaki festival rafı: bu ilde şimdi/yakında olanlar, Türkiye'de süren büyük festivaller, sonra bu ilin son festivalleri
 async function fstRail(city, el) {
-  const L = await festJ(); if (!el.isConnected) return;
+  const L = (await festJ()).filter((x) => x.f !== "etk"); if (!el.isConnected) return;
   const t = nowIST().d, here = L.filter((x) => x.il === city), live = L.filter((x) => fstState(x) !== "bitti" && x.f !== "genel"), recent = here.filter((x) => fstState(x) === "bitti" && x.bit >= addD(t, -120));
   const pick = [...new Map([...here.filter((x) => fstState(x) !== "bitti"), ...live, ...recent].map((x) => [x.id, x])).values()].slice(0, 10);
   if (!pick.length) { el.remove(); return; }
   el.innerHTML = `<div class="rh"><h2>Festivaller</h2><a href="#/${city}/festivaller">Tümü</a></div><div class="fsr">${pick.map((x) => fstCard(x, city)).join("")}</div>`;
 }
-function viewFestivaller(city) {
-  setTop(city); document.title = "Film festivalleri · Ne Var Ne Yok";
-  V.innerHTML = `<div class="kh"><a class="back" href="#/${city}/sinema">${I.back}Sinema</a><h1>Festivaller</h1><p>Türkiye'deki film festivalleri: programlar, gösterimler ve geçmiş yıllar.</p></div><div id="fsl"><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div></div>${footer()}`;
-  festJ().then((L) => { const el = $("#fsl"); if (!el) return;
-    const g = (a) => a.length ? `<div class="fsg">${a.map((x) => fstCard(x, city)).join("")}</div>` : "";
-    const now = L.filter((x) => fstState(x) !== "bitti"), here = L.filter((x) => x.il === city && fstState(x) === "bitti"), rest = L.filter((x) => x.il !== city && fstState(x) === "bitti");
-    el.innerHTML = (now.length ? `<h2 class="fsh">Şimdi ve yakında</h2>${g(now)}` : "") + (here.length ? `<h2 class="fsh">${esc(ilAd(city))}: geçmiş festivaller</h2>${g(here)}` : "") + (rest.length ? `<h2 class="fsh">Türkiye: geçmiş festivaller</h2>${g(rest)}` : "") || `<div class="empty">Henüz festival kaydı yok.</div>`; });
+function viewFestivaller(city, Q = {}) {
+  setTop(city); document.title = "Festivaller · Ne Var Ne Yok";
+  V.innerHTML = `<div class="kh"><a class="back" href="#/${city}">${I.back}${esc(ilAd(city) || "Geri")}</a><h1>Festivaller</h1><p>Türkiye'deki festivaller: film, müzik, tiyatro, komedi ve daha fazlası. Programlar, etkinlikler ve geçmiş yıllar.</p></div><div id="fsl"><div class="skr">${'<div class="skc"></div>'.repeat(3)}</div></div>${footer()}`;
+  festJ().then((L0) => { const el = $("#fsl"); if (!el) return;
+    const KD = ["Film", "Müzik", "Tiyatro", "Komedi", "Dans", "Çocuk", "Lezzet", "Festival"].filter((k) => L0.some((x) => fstKind(x) === k)), tk = KD.includes(Q.t) ? Q.t : "";
+    const L = tk ? L0.filter((x) => fstKind(x) === tk) : L0, g = (a) => a.length ? `<div class="fsg">${a.map((x) => fstCard(x, city)).join("")}</div>` : "";
+    const by = (a) => a.sort((x, y) => (fstState(x) === "simdi" ? 0 : 1) - (fstState(y) === "simdi" ? 0 : 1) || (x.bas || "").localeCompare(y.bas || ""));
+    const hereNow = by(L.filter((x) => x.il === city && fstState(x) !== "bitti")), now = by(L.filter((x) => x.il !== city && fstState(x) !== "bitti")), here = L.filter((x) => x.il === city && fstState(x) === "bitti"), rest = L.filter((x) => x.il !== city && fstState(x) === "bitti");
+    el.innerHTML = `<div class="qk fsk"><a href="#/${city}/festivaller" class="${tk ? "" : "on"}">Tümü</a>${KD.map((k) => `<a href="#/${city}/festivaller?t=${encodeURIComponent(k)}" class="${k === tk ? "on" : ""}">${esc(k)}</a>`).join("")}</div>`
+      + ((hereNow.length ? `<h2 class="fsh">${esc(ilAd(city))}: şimdi ve yakında</h2>${g(hereNow)}` : "") + (now.length ? `<h2 class="fsh">Türkiye: şimdi ve yakında</h2>${g(now)}` : "") + (here.length ? `<h2 class="fsh">${esc(ilAd(city))}: geçmiş festivaller</h2>${g(here)}` : "") + (rest.length ? `<h2 class="fsh">Türkiye: geçmiş festivaller</h2>${g(rest)}` : "") || `<div class="empty">Henüz festival kaydı yok.</div>`); });
 }
 function viewFest(city, id, Q) {
   setTop(city); V.innerHTML = `<div class="skr">${'<div class="skc"></div>'.repeat(3)}</div>${footer()}`;
@@ -815,20 +834,23 @@ function viewFest(city, id, Q) {
     const { d: t, hm } = nowIST(), G = x.g || [], days = [...new Set(G.map((r) => r[0]))].sort(), tab = Q.s === "filmler" ? "filmler" : "program";
     const day = days.includes(Q.gun) ? Q.gun : days.includes(t) ? t : (days.find((d) => d >= t) || days[0]);
     const FB = new Map((x.films || []).map((f) => [f.k, f])), st = fstState(x), img = fstImg(x);
-    const row = (r) => { const past = r[0] < t || (r[0] === t && r[1] && r[1] < hm), f = FB.get(r[4]), href = f ? `#/${city}/ffilm/${esc(x.id)}/${encodeURIComponent(r[4])}` : "";
+    const isE = x.f === "etk", TIX = /bilet|ticket|passo|biletix|bubilet|mobilet|biletino|iticket|biletimgo|kultur\.istanbul|sanatcepte/i;
+    const rowE = (r) => { const past = r[0] < t || (r[0] === t && r[1] && r[1] < hm), href = past ? "" : `#/${r[7] || x.il}/e/${encodeURIComponent(r[0] + "-" + fold(r[2]).trim().replace(/\s+/g, "-").slice(0, 48))}`;
+      return `<div class="fpr${past ? " ps" : ""}"><b class="fpt">${esc(r[1] || "—")}</b><div class="fpm">${href ? `<a href="${href}">${esc(r[2])}</a>` : `<span>${esc(r[2])}</span>`}<small>${esc(r[3] || "")}</small></div>${past ? `<em class="fpg">Geçti</em>` : r[6] && TIX.test(r[6]) ? `<a class="fpb" href="${esc(r[6])}" target="_blank" rel="noopener">Bilet al</a>` : ""}</div>`; };
+    const row = (r) => { if (isE || r[8] === "e") return rowE(r); const past = r[0] < t || (r[0] === t && r[1] && r[1] < hm), f = FB.get(r[4]), href = f ? `#/${city}/ffilm/${esc(x.id)}/${encodeURIComponent(r[4])}` : "";
       return `<div class="fpr${past ? " ps" : ""}"><b class="fpt">${esc(r[1] || "—")}</b><div class="fpm">${href ? `<a href="${href}">${esc(r[2])}</a>` : `<span>${esc(r[2])}</span>`}<small>${esc([f?.dir, f?.cn, f?.y, f?.dur && f.dur + " dk"].filter(Boolean).join(" · ") || r[3])}</small>${f && r[3] ? `<small>${esc(r[3])}</small>` : ""}</div>${past ? `<em class="fpg">Gösterildi</em>` : r[6] && !/filmfestankara|repertuvar/.test(r[6]) ? `<a class="fpb" href="${esc(r[6])}" target="_blank" rel="noopener" data-buy="festival">Bilet</a>` : r[6] ? `<a class="fpb s" href="${esc(r[6])}" target="_blank" rel="noopener">Ayrıntı</a>` : ""}</div>`; };
     const secs = new Map(); for (const f of x.films || []) { const b = f.bol || "Program"; if (!secs.has(b)) secs.set(b, []); secs.get(b).push(f); }
     const fcd = (f) => `<a class="cd" href="#/${city}/ffilm/${esc(x.id)}/${encodeURIComponent(f.k)}"><div class="ph"><img decoding="async" class="p" src="${esc(f.img || "")}" alt="${esc(f.t)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')">${f.img ? `<span class="cr">Görsel: ${esc(hostOf(f.img))}</span>` : ""}<div class="tp"><small>Festival</small><b>${esc(f.t)}</b><small></small></div></div><div class="t">${esc(f.t)}</div><div class="m">${esc([f.dir, f.y].filter(Boolean).join(" · "))}</div><div class="m2">${esc([f.cn, f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div></a>`;
     V.innerHTML = `<article class="fst"><div class="bk">${img ? `<img decoding="async" src="${esc(img)}" alt="" referrerpolicy="no-referrer">` : ""}</div><div class="in">
       <a class="back" href="#/${city}/festivaller">${I.back}Festivaller</a>
       <div class="fsth"><span class="fsc-s ${st}">${ST_L[st] || ""}</span><h1>${esc(x.ad)}</h1><p>${esc([fstRange(x), ilAd(x.il), (x.mekan || []).map((m) => m.split(" · ")[0]).filter((m, i, a) => a.indexOf(m) === i).slice(0, 3).join(", ")].filter(Boolean).join(" · "))}</p>
-      <div class="fstn"><span><b>${(x.films || []).length}</b> film</span><span><b>${G.length}</b> gösterim</span><span><b>${days.length}</b> gün</span></div>
+      <div class="fstn">${isE ? `<span><b>${G.length}</b> etkinlik</span><span><b>${days.length}</b> gün</span><span><b>${(x.mekan || []).length}</b> mekân</span>` : `<span><b>${(x.films || []).length}</b> film</span><span><b>${G.length}</b> gösterim</span><span><b>${days.length}</b> gün</span>`}</div>
       ${x.site ? `<a class="fsts" href="${esc(x.url || x.site)}" target="_blank" rel="noopener">Festivalin sitesi ↗</a>` : ""}</div>
-      <div class="fsg2"><a class="${tab === "program" ? "on" : ""}" href="#/${city}/festival/${esc(x.id)}">Program</a><a class="${tab === "filmler" ? "on" : ""}" href="#/${city}/festival/${esc(x.id)}?s=filmler">Filmler</a></div>
+      ${isE ? "" : `<div class="fsg2"><a class="${tab === "program" ? "on" : ""}" href="#/${city}/festival/${esc(x.id)}">Program</a><a class="${tab === "filmler" ? "on" : ""}" href="#/${city}/festival/${esc(x.id)}?s=filmler">Filmler</a></div>`}
       ${tab === "program" ? (days.length ? `<div class="days">${days.map((d2) => { const dt = pd(d2); return `<button type="button" data-fd="${d2}" class="${d2 === day ? "on" : ""}${d2 < t ? " ps" : ""}">${d2 === t ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
-        <div class="fpl">${G.filter((r) => r[0] === day).map(row).join("")}</div>` : `<div class="empty">Gösterim çizelgesi henüz yok.${x.site ? " Festivalin sitesine bakabilirsin." : ""}</div>`)
+        <div class="fpl">${G.filter((r) => r[0] === day).map(row).join("")}</div>` : `<div class="empty">${isE ? "Etkinlik listesi henüz yok." : "Gösterim çizelgesi henüz yok."}${x.site ? " Festivalin sitesine bakabilirsin." : ""}</div>`)
       : [...secs].map(([b, L2]) => `<h2 class="fsh">${esc(b)}</h2><div class="grid">${L2.map(fcd).join("")}</div>`).join("") || `<div class="empty">Film listesi henüz yok.</div>`}
-      <p class="fsn">Bilgiler festivalin kendi sitesinden ve bilet sitelerinden derlenir. Son durumu festivalden kontrol et.</p>
+      <p class="fsn">${isE ? `${esc(fstKind(x))} festivali · Bilgiler bilet sitelerinden ve haberlerden derlenir; festivalin her etkinliği listede olmayabilir. Son durumu festivalden kontrol et.` : "Bilgiler festivalin kendi sitesinden ve bilet sitelerinden derlenir. Son durumu festivalden kontrol et."}</p>
     </div></article>${footer()}`;
     $$("[data-fd]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/festival/${x.id}?gun=${b.dataset.fd}`; }));
   });
@@ -1094,7 +1116,7 @@ function route() {
     else if (P[1] === "e") viewEvent(city, decodeURIComponent(P.slice(2).join("/")));
     else if (P[1] === "sinema") viewSinema(city, Q.gun);
     else if (P[1] === "film") viewFilm(city, P[2], Q.gun);
-    else if (P[1] === "festivaller") viewFestivaller(city);
+    else if (P[1] === "festivaller") viewFestivaller(city, Q);
     else if (P[1] === "festival") viewFest(city, decodeURIComponent(P[2] || ""), Q);
     else if (P[1] === "ffilm") viewFFilm(city, decodeURIComponent(P[2] || ""), decodeURIComponent(P[3] || ""));
     else if (P[1] === "gecmis") viewGecmis(city, Q);

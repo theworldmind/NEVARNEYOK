@@ -80,7 +80,7 @@ for (const [il, months] of Object.entries(gi)) for (const ay of months) for (con
 
 /* ---------- festival-yıl kayıtlarını kur ---------- */
 const prev = await rj(OUT, { festivals: [] });
-const byId = new Map((prev.festivals || []).filter((x) => x.f !== "genel").map((x) => [x.id, x])); // adsız/genel kayıtlar her çalışmada seanslardan (güncel + arşiv) yeniden kurulur
+const byId = new Map((prev.festivals || []).filter((x) => x.f !== "genel" && x.f !== "etk").map((x) => [x.id, x])); // adsız/genel kayıtlar her çalışmada seanslardan (güncel + arşiv) yeniden kurulur
 const notes = [];
 const slug = (s) => fold(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const ensure = (F, yil, il, name = "") => {
@@ -143,6 +143,34 @@ for (const x of byId.values()) {
   x.mekan = [...new Set(x.g.map((r) => r[3]).filter(Boolean))].slice(0, 12);
   if (!x.films.length && x.g.length) { const m = new Map(); for (const r of x.g) { const k = tkey(r[2]); if (!m.has(k)) m.set(k, { k, t: r[2], img: r[5] || "", auto: 1 }); r[4] = k; } x.films = [...m.values()]; }
 }
+/* ---------- Bütün festivaller (25.11.2026, kullanıcı: "Ankara'da festival varmış, haberim yok; festivalleri iyi ver"): caz, tiyatro, gitar, komedi, dans, müzik,
+   lezzet… Başlığında festival/fest/bienal/şenlik geçen her etkinlik (bütün iller, güncel + arşiv) adına göre toplanır; aynı il, aynı ayırt edici sözcükler,
+   aralarında 20 günden kısa boşluk = aynı festival. Film festivalleri yukarıda ayrıca kuruluyor (onlar burada atlanır). */
+const FW = /(^|[^a-zçğıöşü])(festivali?|fest|şenliği?|şenlik|bienali?|[a-zçğıöşü]{1,3}fest)(?![a-zçğıöşü])/i, NOFW = /manifest|film|sinema|belgesel|organizasyon|watch party/i;
+const fname = (t) => { const P = String(t || "").replace(/\s+/g, " ").trim().split(/\s*\|\s*|:\s+|\s+[-–]\s*|\s*[-–]\s+/); return (P.find((x) => FW.test(x)) || "").trim(); };
+const pad3 = (d, n) => new Date(Date.parse(d) + n * 864e5).toISOString().slice(0, 10);
+const FGEN = /^(uluslararasi|international|festivali|festival|fest|yil|yilda|yili|geleneksel|the|ve|of|bienali|senligi|senlik)$/;
+const fwords = (n) => fold(n).split(" ").filter((w) => w.length > 1 && !/^\d+$/.test(w) && !FGEN.test(w));
+const KTR = (n, cats) => { const f = fold(n); if (/caz|jazz|gitar|muzik|music|rock|blues|metal|piyano|senfoni|opera|klasik|folk|elektronik|ofest/.test(f)) return "Müzik"; if (/tiyatro|theatre|theater/.test(f)) return "Tiyatro"; if (/komedi|comedy|stand/.test(f)) return "Komedi";
+  if (/dans|dance|bale|salsa|tango/.test(f)) return "Dans"; if (/lezzet|gastronomi|yemek|kahve|bira|sarap|food|coffee/.test(f)) return "Lezzet"; if (/kitap|edebiyat|siir|book/.test(f)) return "Edebiyat"; if (/cocuk|kids|paw patrol|shrek|masal/.test(f)) return "Çocuk";
+  const c = Object.entries(cats).sort((a, b) => b[1] - a[1])[0]?.[0]; return { konser: "Müzik", tiyatro: "Tiyatro", standup: "Komedi", sahne: "Sahne", parti: "Parti", atolye: "Atölye", cocuk: "Çocuk" }[c] || "Festival"; };
+{ const grp = new Map();
+  for (const r of rows) { if (r[4] === "sinema") continue; const n = fname(r[2]) || (FW.test(r[8]) ? fname(r[8]) : ""); if (!n || NOFW.test(n)) continue; const w = fwords(n); if (!w.length) continue;
+    const k = r[7] + "|" + [...new Set(w)].sort().join(" "); if (!grp.has(k)) grp.set(k, []); grp.get(k).push([r, n]); }
+  let ne = 0;
+  for (const [k, L] of grp) { L.sort((a, b) => (a[0][0] + a[0][1]).localeCompare(b[0][0] + b[0][1]));
+    const C = []; for (const it of L) { const c = C.at(-1); if (c && Date.parse(it[0][0]) - Date.parse(c.at(-1)[0][0]) <= 20 * 864e5) c.push(it); else C.push([it]); }
+    for (const c of C) { const il = c[0][0][7], names = {}, cats = {}; for (const [r, n] of c) { names[n] = (names[n] || 0) + 1 + (/^\d+\./.test(n) ? 2 : 0) + (/uluslararas/i.test(n) ? 1 : 0); cats[r[4]] = (cats[r[4]] || 0) + 1; }
+      const ad = Object.entries(names).sort((a, b) => b[1] - a[1] || b[0].length - a[0].length)[0][0], bas = c[0][0][0], id = `etk-${il}-${slug(k.split("|")[1])}-${bas.slice(0, 7)}`;
+      const sn = new Set(), g = []; for (const [r] of c) { const kk = r[0] + r[1] + fold(r[2]) + fold(r[3]); if (sn.has(kk)) continue; sn.add(kk); g.push([r[0], r[1], r[2], r[3], "", r[5], r[6], r[7], "e"]); }
+      byId.set(id, { id, f: "etk", tur: "etkinlik", kat: KTR(ad, cats), ad, kisa: ad, il, yil: +bas.slice(0, 4), bas, bit: c.at(-1)[0][0], site: "", url: "", films: [], g, mekan: [...new Set(g.map((r) => r[3]).filter(Boolean))].slice(0, 12) }); ne++; } }
+  // "Zagon Tiyatro Ankara Tiyatro Festivali" gibi oyun adıyla birleşmiş başlıklar: aynı ilde, tarihleri yakın, sözcükleri daha az olan festivalin içine katılır
+  const EL = [...byId.values()].filter((x) => x.f === "etk"), W = new Map(EL.map((x) => [x, new Set(fwords(x.ad))])); let nm = 0;
+  for (const x of EL.sort((a, b) => W.get(b).size - W.get(a).size)) { if (!byId.has(x.id)) continue;
+    const into = EL.filter((y) => y !== x && byId.has(y.id) && y.il === x.il && (W.get(y).size >= 2 || y.g.length >= 5) && W.get(y).size < W.get(x).size && [...W.get(y)].every((w) => W.get(x).has(w)) && x.bas <= pad3(y.bit, 10) && y.bas <= pad3(x.bit, 10)).sort((a, b) => b.g.length - a.g.length)[0];
+    if (!into) continue; into.g.push(...x.g); into.g.sort((a, b) => (a[0] + a[1]).localeCompare(b[0] + b[1])); if (x.bas < into.bas) into.bas = x.bas; if (x.bit > into.bit) into.bit = x.bit;
+    into.mekan = [...new Set([...into.mekan, ...x.mekan])].slice(0, 12); byId.delete(x.id); nm++; }
+  console.log("Etkinlik festivalleri:", ne, "· birleşen", nm); }
 // Aynı ilde tarihleri çakışan (±2 gün) genel kayıtlar tek festival: kayıtlı festivale ya da en uzun adlı kayda katılır
 const pad2 = (d, n) => new Date(Date.parse(d) + n * 864e5).toISOString().slice(0, 10);
 const ov = (a, b) => a.bas && b.bas && a.il === b.il && a.bas <= pad2(b.bit || b.bas, 2) && b.bas <= pad2(a.bit || a.bas, 2);
@@ -156,7 +184,7 @@ for (const x of G2) { if (!byId.has(x.id)) continue;
   for (const f of x.films) if (!into.films.some((z) => z.k === f.k)) into.films.push(f);
   into.g.sort((a, b) => (a[0] + a[1]).localeCompare(b[0] + b[1])); if (x.bas < into.bas) into.bas = x.bas; if ((x.bit || "") > (into.bit || "")) into.bit = x.bit;
   into.mekan = [...new Set([...(into.mekan || []), ...(x.mekan || [])])].slice(0, 12); byId.delete(x.id); }
-const festivals = [...byId.values()].filter((x) => x.g.length || x.films.length).sort((a, b) => (b.bas || "").localeCompare(a.bas || "") || a.ad.localeCompare(b.ad, "tr"));
+const festivals = [...byId.values()].filter((x) => x.g.length || x.films.length || x.f === "etk").sort((a, b) => (b.bas || "").localeCompare(a.bas || "") || a.ad.localeCompare(b.ad, "tr"));
 await writeFile(OUT, JSON.stringify({ updated: new Date().toISOString(), festivals }));
 console.log(`Festivaller: ${festivals.length} festival-yıl · ${matched} yeni seans eşleşti · ${festivals.reduce((a, x) => a + x.g.length, 0)} seans`);
 for (const n of notes) console.log("  " + n);
