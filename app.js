@@ -95,14 +95,15 @@ async function boot() {
 }
 /* Ankara: data/events.json + films.json + buzz.json · diğer iller: data/c/<il>.json + data/c/<il>-films.json */
 const cityLoads = {}, pre = {};
+let ARC = null;
 function prefetch(city) { if (pre[city] || DATA.city === city) return; const ank = city === "ankara";
-  pre[city] = Promise.all([jget(ank ? "data/events.json" : `data/c/${city}.json`), jget(ank ? "data/films.json" : `data/c/${city}-films.json`), ank ? jget("data/buzz.json") : null]); }
+  pre[city] = Promise.all([jget(ank ? "data/events.json" : `data/c/${city}.json`), jget(ank ? "data/films.json" : `data/c/${city}-films.json`), ank ? jget("data/buzz.json") : null, (ARC ||= jget("data/filmler.json").catch(() => null))]); }
 function loadCity(city) { return (cityLoads[city] ||= load(city).catch((e) => { delete cityLoads[city]; throw e; })); }
 let venP = null;
 async function load(city) {
   const ank = city === "ankara";
   if (ank) venP ||= jget("data/venues.json").then((vn) => { if (vn) DATA.venues = vn.venues || vn; }); else venueTr();
-  prefetch(city); const [ev, fl, bz] = await pre[city]; delete pre[city]; if (!ev) throw new Error("veri"); // boş liste göstermek yerine yeniden denenir
+  prefetch(city); const [ev, fl, bz, arc] = await pre[city]; DATA.arc = arc?.films || DATA.arc || []; delete pre[city]; if (!ev) throw new Error("veri"); // boş liste göstermek yerine yeniden denenir
   DATA.base = ev?.baseline; DATA.updated = ev?.updated; DATA.films = fl; DATA.buzz = bz || {};
   const fresh = (x) => !!(x.price && !x.est && x.seen && x.seen !== DATA.base && (Date.now() - Date.parse(x.seen)) / 36e5 <= PRICE_MAX_H);
   const { d: today, hm } = nowIST();
@@ -123,7 +124,7 @@ async function load(city) {
     o.drop = o.price && e.prevPrice > o.price && e.priceChanged && (Date.now() - Date.parse(e.priceChanged)) / 864e5 <= 7 ? Math.round((1 - o.price / e.prevPrice) * 100) : 0;
     return o;
   }).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "99").localeCompare(b.t || "99"));
-  DATA.all = DATA.events; DATA.filmsAll = fl; kidApply();
+  DATA.all = DATA.events; DATA.filmsAll = evFilms(fl, DATA.events); kidApply();
   DATA.bySlug = new Map(DATA.all.map((e) => [e.slug, e]));
   DATA.city = city; DATA.ready = true;
 }
@@ -430,7 +431,7 @@ function filmRail(city) {
   const F = DATA.films?.films || [], today = nowIST().d;
   const L = F.filter((f) => f.img && f.s && f.s[today]?.length).sort((a, b) => (b.s[today]?.length || 0) - (a.s[today]?.length || 0)).slice(0, 14);
   if (!L.length) return "";
-  return `<section class="rail"><div class="rh"><div><h3>Vizyonda</h3><small>Bugün ${L.length}+ film · salon salon seanslar</small></div><a href="#/${city}/sinema">Tümü →</a></div><div class="rs">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[today].length} salonda bugün</div></a>`).join("")}</div></section>`;
+  return `<section class="rail"><div class="rh"><div><h3>Vizyonda</h3><small>Bugün ${L.length}+ film · salon salon seanslar</small></div><a href="#/${city}/sinema">Tümü →</a></div><div class="rs">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')">${f.img ? `<span class="cr">Görsel: ${esc(f.imgBy || "sinemalar.com")}</span>` : ""}<div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[today].length} salonda bugün</div></a>`).join("")}</div></section>`;
 }
 
 /* ---------- Keşfet + filtre ekranı ----------
@@ -444,6 +445,24 @@ const SIRA = { "": "Tarihe göre", populer: "Öne çıkanlar", fiyat: "Fiyat (do
 const list = (v) => (v ? String(v).split(",").filter(Boolean) : []);
 const ilceOf = (e) => { const v = vOf(e.venue); let i = String(v?.ilce || "").replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&amp;/g, "&").trim(); // HTML kodlu ya da sayı olan ilçe adı gösterilmez
   if (!/[A-Za-zÇĞİÖŞÜçğıöşü]{3}/.test(i)) return ""; if (i === i.toLocaleUpperCase("tr")) i = i[0] + i.slice(1).toLocaleLowerCase("tr"); return i; };
+/* Etkinlik olarak gelen film seansları Sinema'da (25.11.2026, kullanıcı: "hocamın attığı filmler yoktu; hepsi olacak"): Kült gibi kendi programını yayımlayan salonların
+   "sinema" kategorisindeki seansları aynı adlı filmin seansı olur (salon adı "v:<mekân>"); sinemalar.com'da hiç olmayan film yeni film kartı olarak eklenir. */
+const hostOf = (u) => { try { return new URL(u).host.replace(/^www\./, ""); } catch { return ""; } };
+function evFilms(fl, E) {
+  if (!fl?.films) fl = { films: [], cinemas: {} };
+  const T = new Date().toISOString().slice(0, 10), key = (t) => fold(String(t || "").split(/ [-–|:] |\(/)[0]).replace(/\b(altyazili|dublaj|2d|3d|imax|orijinal|film gosterimi|gosterimi|ozel gosterim|soylesi|soyleyisi)\b/g, "").replace(/\s+/g, " ").trim();
+  const F = fl.films.map((f) => ({ ...f, s: { ...f.s } })), C = { ...fl.cinemas }, by = new Map(F.map((f) => [key(f.title), f]));
+  for (const e of E || []) { if (e.cat !== "sinema" || !e.d || e.d < T || e.status === "iptal") continue;
+    const k = key(e.title); if (!k) continue; let f = by.get(k); if (!f && k.length > 6) for (const [kk, ff] of by) if (kk.length > 6 && !ff.ev && (k.endsWith(kk) || kk.endsWith(k))) { f = ff; break; }
+    if (!f) { f = { id: "e" + k.replace(/[^a-z0-9]+/g, "-").slice(0, 40), title: e.title.replace(/\s*\((altyazılı|dublaj)\)\s*$/i, ""), release: "", dur: 0, country: "", genre: "", url: e.url || "", ...(e.img ? { img: e.img } : {}), s: {}, ev: 1, ...(e.img ? { imgBy: e.imgBy || hostOf(e.img) } : {}) }; F.push(f); by.set(k, f); }
+    const cid = "v:" + fold(e.venue || "").slice(0, 40); if (!C[cid]) C[cid] = { name: e.venue || "", addr: "", url: e.url || "" };
+    const L = (f.s[e.d] = [...(f.s[e.d] || [])]), ex = L.find((x) => x[0] === cid), t = e.t || "";
+    if (ex) { if (t && !ex[1].split(/[;,|]/).includes(t)) ex[1] = [ex[1].split("|")[0], t].filter(Boolean).join(",") + (ex[1].includes("|") ? "|" + ex[1].split("|")[1] : ""); } else if (t) L.push([cid, t]); }
+  // Afişsiz salon filmlerine film arşivinden (bütün illerde görülen filmler) afiş ve bilgi
+  if (DATA.arc?.length) { const A = new Map(DATA.arc.map((a) => [key(a.title), a]));
+    for (const f of F) if (f.ev) { const a = A.get(key(f.title)); if (a) Object.assign(f, { ...(a.img && !f.img ? { img: a.img, imgBy: "sinemalar.com" } : {}), year: a.year, genre: a.genre || f.genre, country: a.country || f.country, dur: a.dur || f.dur, ...(a.url && !f.url ? { url: a.url } : {}) }); } }
+  return { ...fl, films: F, cinemas: C };
+}
 /* Çocuk içeriğini gösterme (19.11.2026, kullanıcı: "çok fazla çocuk içeriği var; filtrede ve kişiselleştirmede karşıma çıkmasın"): Kişiselleştir → "Çocuk etkinliklerini gösterme"
    (nvny-prefs.nokids) açıksa bütün raflarda, vitrinde, aramada, haritada ve sinemada çocuk içeriği yok; filtrede "Kimler için → Çocuksuz" bir seferlik aynısı.
    Çocuk sayılan: Çocuk kategorisi, 10 yaş ve altı, adında çocuk/masal/kukla/bilinen masal adları, sabah–öğle tiyatro/müzikal oyunu (14:30 öncesi), çocuk etkinliğiyle aynı adı taşıyanlar; filmde Animasyon. */
@@ -500,7 +519,7 @@ function viewKesfet(city, f) {
   <div class="frow"><div class="act">${chips.map(([k, l]) => `<button type="button" data-x="${esc(k)}">${esc(l)}</button>`).join("")}</div><button type="button" class="srtb" id="srt">${esc(SIRA[f.sira || ""])}<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div></div>
   <div class="wrap"><div class="seg vw" style="--n:3;--i:${VWI[f.gor || ""] || 0}"><span class="thumb" aria-hidden="true"></span><button type="button" data-vw="" class="${!f.gor ? "on" : ""}">Liste</button><button type="button" data-vw="harita" class="${f.gor === "harita" ? "on" : ""}">Harita</button><button type="button" data-vw="takvim" class="${f.gor === "takvim" ? "on" : ""}">Takvim</button></div></div>
   ${f.gor === "harita" ? `<div class="kmap"><div class="map" id="kmap"></div><p class="kmn" id="kmn"></p></div>` : f.gor === "takvim" ? calView(city, f, L) : `<div class="grid" id="gr"></div><div id="mr"></div>`}${L.length ? "" : `<div class="empty">Bu seçimle etkinlik bulunamadı.<br>Filtreleri gevşetmeyi dene.</div>`}${footer()}`;
-  { const FL = filmsFor(f); if (FL.length && !f.gor) { const box = document.createElement("section"); box.className = "kfl"; box.innerHTML = `<div class="rh"><div><h3>Filmler</h3><small>${FL.length} film · ${esc(f.gun ? dLong(f.gun) : f.t ? TIMES[f.t] : "bu hafta")}</small></div><a href="#/${city}/sinema">Sinema →</a></div><div class="rs">${FL.slice(0, 30).map(({ f: x, n, d }) => `<a class="cd" href="#/${city}/film/${x.id}?gun=${d}"><div class="ph"><img class="p" src="${esc(x.img || "")}" alt="${esc(x.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(x.title)}</b><small></small></div></div><div class="t">${esc(x.title)}</div><div class="m">${esc([filmGenre(x) || filmCountry(x), x.dur && x.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${n} seans</div></a>`).join("")}</div>`; $("#gr")?.before(box); } }
+  { const FL = filmsFor(f); if (FL.length && !f.gor) { const box = document.createElement("section"); box.className = "kfl"; box.innerHTML = `<div class="rh"><div><h3>Filmler</h3><small>${FL.length} film · ${esc(f.gun ? dLong(f.gun) : f.t ? TIMES[f.t] : "bu hafta")}</small></div><a href="#/${city}/sinema">Sinema →</a></div><div class="rs">${FL.slice(0, 30).map(({ f: x, n, d }) => `<a class="cd" href="#/${city}/film/${x.id}?gun=${d}"><div class="ph"><img class="p" src="${esc(x.img || "")}" alt="${esc(x.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')">${f.img ? `<span class="cr">Görsel: ${esc(f.imgBy || "sinemalar.com")}</span>` : ""}<div class="tp"><small>Sinema</small><b>${esc(x.title)}</b><small></small></div></div><div class="t">${esc(x.title)}</div><div class="m">${esc([filmGenre(x) || filmCountry(x), x.dur && x.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${n} seans</div></a>`).join("")}</div>`; $("#gr")?.before(box); } }
   $$("[data-vw]").forEach((b) => b.addEventListener("click", () => { snd.sel?.(); const nf = { ...f }; if (b.dataset.vw) nf.gor = b.dataset.vw; else delete nf.gor; history.replaceState(null, "", `#/${city}/kesfet?${toQ(nf)}`); viewKesfet(city, nf); }));
   $$("[data-cday]").forEach((b) => b.addEventListener("click", () => { const nf = { ...f }; delete nf.gor; delete nf.t; nf.gun = b.dataset.cday; go(nf); }));
   if (f.gor === "harita") mapView(city, L);
@@ -705,7 +724,7 @@ function viewSinema(city, day) {
   const L = F.filter((f) => f.s && f.s[d]?.length).sort((a, b) => (b.s[d]?.length || 0) - (a.s[d]?.length || 0));
   V.innerHTML = `<div class="kh"><h1>Vizyonda</h1><p>${L.length} film · ${dLong(d)}</p></div>
   <div class="days">${days.map((x) => { const dt = pd(x); return `<button type="button" data-d="${x}" class="${x === d ? "on" : ""}">${x === today ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
-  <div class="grid">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}?gun=${d}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[d].length} salon</div></a>`).join("")}</div>${L.length ? "" : `<div class="empty">Bu gün için seans bilgisi yok.</div>`}${footer()}`;
+  <div class="grid">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}?gun=${d}"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')">${f.img ? `<span class="cr">Görsel: ${esc(f.imgBy || "sinemalar.com")}</span>` : ""}<div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc([filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[d].length} salon</div></a>`).join("")}</div>${L.length ? "" : `<div class="empty">Bu gün için seans bilgisi yok.</div>`}${footer()}`;
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/sinema?gun=${b.dataset.d}`; }));
 }
 /* Değerlendirmeler bölümü (19.11.2026): etkinlik/film sayfasında bölüm ekrana yaklaşınca hesap.js yüklenir ve doldurulur; sayfanın açılışını bekletmez */
@@ -720,7 +739,7 @@ function viewFilm(city, id, day) {
   const rows = (f.s[d] || []).map(([cid, s]) => { const [times, fmt] = s.split("|"); return { cid, c: C[cid] || { name: "Salon " + cid }, times: times.split(","), fmt }; }).sort((a, b) => a.c.name.localeCompare(b.c.name, "tr"));
   V.innerHTML = `<article class="dt"><div class="bk"><img src="${esc(f.img)}" alt="" referrerpolicy="no-referrer"></div><div class="in">
   <a class="back" href="#/${city}/sinema">${I.back}Sinema</a>
-  <div class="dg"><div class="dp"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')"><span class="cr">Görsel: sinemalar.com</span><div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div></div><div>
+  <div class="dg"><div class="dp"><div class="ph"><img class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')">${f.img ? `<span class="cr">Görsel: ${esc(f.imgBy || "sinemalar.com")}</span>` : ""}<div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div></div><div>
   <div class="tags"><span>Sinema</span>${filmGenre(f) ? `<span>${esc(filmGenre(f))}</span>` : ""}${f.dur ? `<span>${f.dur} dk</span>` : ""}${filmCountry(f) ? `<span>${esc(filmCountry(f))}</span>` : ""}${f.year ? `<span>${f.year}</span>` : ""}</div>
   <h1>${esc(f.title)}</h1>
   <div class="meta">${f.release ? `<div>${I.cal}<span>Vizyon tarihi<small>${dLong(f.release)}</small></span></div>` : ""}<div>${I.pin}<span>${rows.length} salonda seans<small>${dLong(d)}</small></span></div></div>
@@ -728,7 +747,7 @@ function viewFilm(city, id, day) {
   <div class="ss">${rows.map((r) => `<div class="h"><b>${esc(r.c.name)}</b>${r.c.addr ? `<small>${esc(r.c.addr)}</small>` : ""}<div class="tm">${r.times.map((t) => d === today && t < hm ? `<span class="ps">${esc(t)}</span>` : `<button type="button" class="${follows()[sid(f, r.cid, d, t)] ? "on" : ""}" data-st="${esc(t)}" data-cid="${esc(r.cid)}">${esc(t)}</button>`).join("")}${r.fmt ? `<i>${esc(r.fmt)}</i>` : ""}</div></div>`).join("")}</div>
   <div class="shr"><button type="button" id="ffl" class="flw${ffol()[f.id] ? " on" : ""}">${ffol()[f.id] ? I.bellOn + "Film takipte" : I.bell + "Filmi takip et"}</button></div>
   <p class="flh">${rows.length ? "Seans saatine dokun: seansı takip et, takvimine ekle ya da biletini al." : "Bu filmin şehrinde henüz seansı yok. Takip edersen seanslar açılınca haber veririz."}</p>
-  <a class="buy" href="${esc(f.url)}" target="_blank" rel="noopener" data-buy="sinemalar.com">Seanslar ve bilet · sinemalar.com</a>
+  ${f.url ? `<a class="buy" href="${esc(f.url)}" target="_blank" rel="noopener" data-buy="${f.ev ? "salon" : "sinemalar.com"}">${f.ev ? "Bilet al" : "Seanslar ve bilet · sinemalar.com"}</a>` : ""}
   <section class="sec dgk" id="dgk" data-tur="film" data-il="tr" data-slug="film-${esc(String(f.id))}" data-baslik="${esc(f.title)}" data-mekan="" data-gun=""></section>
   </div></div></div></article>${footer()}`;
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/film/${id}?gun=${b.dataset.d}`; }));

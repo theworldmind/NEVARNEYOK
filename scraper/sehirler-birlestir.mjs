@@ -95,6 +95,16 @@ await writeJSON(join(ROOT, "data/cities.json"), index, true);
   for (let round = 0; round < 12 && top.length < 12; round++) for (const id of order) { const x = byCity[id].find((y) => !seen.has(fold(y.e.title))); if (!x || top.length >= 12) continue; seen.add(fold(x.e.title));
     const e = x.e; top.push({ title: e.title, d: e.d, t: e.t || "", venue: e.venue || "", cat: e.cat || "", img: e.img, imgBy: e.imgBy || "", city: x.C.id, cityName: x.C.name }); }
   await writeJSON(join(ROOT, "data/one-cikan.json"), { updated: index.updated, events: top }, true); }
+/* Film arşivi (25.11.2026, kullanıcı: "geçmiş filmleri hemen siliyorsun; hocamın filmleri yoktu"): bütün illerde görülen her film birikir, hiç silinmez.
+   data/filmler.json → { films: [{ id, title, img, url, year, genre, country, dur, release, first, last, cities }] }; uygulama afişsiz salon filmlerine afiş ve arşiv sayfası için kullanır. */
+{ const P = join(ROOT, "data/filmler.json"), A = await readJSON(P, { films: [] }), M = new Map((A.films || []).map((f) => [f.id, f])), T = todayIST();
+  const add = (f, il) => { if (!f?.id || !f.title) return; const o = M.get(f.id) || { id: f.id, title: f.title, first: T, cities: [] };
+    Object.assign(o, { title: f.title, ...(f.img ? { img: f.img } : {}), ...(f.url ? { url: f.url } : {}), ...(f.year ? { year: f.year } : {}), ...(f.genre ? { genre: f.genre } : {}), ...(f.country ? { country: f.country } : {}), ...(f.dur ? { dur: f.dur } : {}), ...(f.release ? { release: f.release } : {}) });
+    if (Object.keys(f.s || {}).length) { o.last = T; if (il && !o.cities.includes(il)) o.cities.push(il); } M.set(f.id, o); };
+  for (const f of (await readJSON(join(ROOT, "data/films.json"), { films: [] })).films || []) add(f, "ankara");
+  for (const C of CITIES) if (have.has(`${C.id}-films.json`)) for (const f of (await readJSON(join(ROOT, `data/c/${C.id}-films.json`), { films: [] })).films || []) add(f, C.id);
+  const films = [...M.values()].sort((a, b) => (b.last || "").localeCompare(a.last || "") || a.title.localeCompare(b.title, "tr"));
+  await writeJSON(P, { updated: new Date().toISOString(), films }, true); log(`Film arşivi: ${films.length} film`); }
 log(`Şehirler: başka ilin listesine düşmüş ${dropped} turne seansı asıl iline bırakıldı; mekân adı başka ili gösteren ${relocated} kayıt doğru ile taşındı`);
 const open = Object.values(index.cities).filter((c) => c.n || c.films);
 log(`Şehirler: ${open.length}/81 ilde etkinlik ya da film var · toplam ${Object.values(index.cities).reduce((a, c) => a + c.n, 0)} etkinlik`);
