@@ -16,6 +16,9 @@
   document.title = line + " · " + n; $("#inv").textContent = ic + " " + line; $("#nm").textContent = n; $("#sb").textContent = (E.near ? E.n + " yakınında" : s); if (E.near) $("#sb").textContent = s || E.n + " yakınında"; $("#wh").textContent = whenT(w0, h0); if (P.l && P.l.length) $("#ls").textContent = "Geliyor: " + P.l.slice(0, 12).map(function (x) { return c(x, 20); }).filter(Boolean).join(", ");
   if (w0 && w0 < today) { $("#nt").hidden = false; $("#nt").textContent = "Bu buluşmanın tarihi geçti. İstersen yeni bir zaman öner."; }
   var ad = "?yer=" + a + "," + o + "&ad=" + encodeURIComponent(n); if (has) { $("#rt").href = "/#/" + il + "/harita" + ad + "&rota=1"; $("#op").href = "/#/" + il + "/harita" + ad; } else { $("#rt").hidden = true; $("#op").href = "/#/" + il; }
+  /* Sokak görünümü (sokak.js): Panoramax sokak fotoğrafı; yoksa açıkça söylenir */
+  if ($("#sk")) { if (!has) $("#sk").hidden = true; else $("#sk").onclick = function () { var go = function () { window.NVSK.open({ lat: a, lng: o, name: n, three: function () { return adaJ0().then(function () { return window.NVA.three(); }); } }); };
+    if (window.NVSK) return go(); var x = document.createElement("script"); x.src = "/sokak.js?v=1"; x.onload = go; x.onerror = function () { toast("Sokak görünümü açılamadı"); }; document.head.append(x); }; }
   $("#gr").onclick = function () { $("#sh").classList.toggle("low"); setTimeout(function () { window.__nvDial && window.__nvDial(); }, 340); };
   /* cevap */
   var D = $("#dl"), mode = "", zd = "", zh = "", name = get("nvny-adim", "");
