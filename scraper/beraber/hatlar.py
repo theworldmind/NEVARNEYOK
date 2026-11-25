@@ -112,6 +112,22 @@ if cat:
     for r in csv.DictReader(io.StringIO(cat.decode("utf8", "replace"))):
         if (r.get("location.country_code") or "").upper() == "TR" and (r.get("data_type") or "gtfs") == "gtfs" and (r.get("status") or "") not in ("deprecated", "inactive"):
             feeds.append(r)
+# Katalogda olmayan ya da sayfa adresi verilen belediye kayıtları: açık veri portalının (CKAN) kendi listesinden zip bağlantısı çözülür
+EXTRA = [("ESHOT", "İzmir", "https://acikveri.bizizmir.com", "toplu-ulasim-gtfs-verileri"), ("İETT", "İstanbul", "https://data.ibb.gov.tr", "iett-gtfs-verisi"), ("Kocaeli BB", "Kocaeli", "https://veri.kocaeli.bel.tr", "toplu-ulasim-verisi")]
+def ckan(base, pid):
+    j = get(f"{base}/api/3/action/package_show?id={pid}", 90)
+    try: R = json.loads(j)["result"]["resources"]
+    except Exception: return []
+    return [r["url"] for r in R if re.search(r"gtfs|\.zip", (r.get("url") or "") + " " + (r.get("format") or "") + " " + (r.get("name") or ""), re.I) and re.search(r"zip", (r.get("url") or "") + (r.get("format") or ""), re.I)]
+have = {(r.get("provider") or "").lower() for r in feeds}
+for prov, il, base, pid in EXTRA:
+    if any(prov.lower() in h for h in have): continue
+    for u in ckan(base, pid)[:3]: feeds.append({"provider": prov, "location.municipality": il, "urls.direct_download": u, "urls.license": f"{base}/dataset/{pid}"})
+for r in feeds:  # katalogdaki adres bir veri sayfasıysa (zip değilse) aynı portalın listesinden çöz
+    u = r.get("urls.direct_download") or ""
+    m = re.match(r"(https?://[^/]+)(?:/\w\w)?/dataset/([\w-]+)/?$", u)
+    if m and not r.get("urls.latest"): z = ckan(m.group(1), m.group(2)); r["urls.direct_download"] = z[0] if z else u
+feeds = [r for r in feeds if not re.search(r"flixbus|obilet|şehirlerarası|intercity", (r.get("provider") or ""), re.I)]  # şehirlerarası otobüs şehir içi tarife girmez
 print("GTFS: Türkiye'de", len(feeds), "kayıt")
 for r in feeds:
     url = r.get("urls.latest") or r.get("urls.direct_download")
