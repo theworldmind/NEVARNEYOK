@@ -2863,6 +2863,17 @@ function viewHarita(city, Q = {}) {
   const yvAround = async (ll, r) => { const S = new Set(); for (const a of [-r, 0, r]) for (const o of [-r, 0, r]) S.add(yvCell(ll[0] + a, ll[1] + o)); let hk = 0; return (await Promise.all([...S].map(yvGet))).flat().map((x) => { const n = hukName(x[0], x[1], x[2]); return n === x[0] ? x : [n, 39.9347, 32.8282, x[3]]; }).filter((x) => x[0] !== HUKN || !hk++); };
   const YVE = new Map(), yvEk = (c) => { if (!YVE.has(c)) YVE.set(c, fetch(`/yv/ek/${c}.json`).then((r) => r.ok && /json/.test(r.headers.get("content-type") || "") ? r.json() : []).catch(() => [])); return YVE.get(c); };
   const yvAll = window.NVYV = async (ll, r) => { const S = new Set(); for (const a of [-r, 0, r]) for (const o of [-r, 0, r]) S.add(yvCell(ll[0] + a, ll[1] + o)); return (await Promise.all([...S].flatMap((c) => [yvGet(c), yvEk(c)]))).flat().map((x) => { const n = hukName(x[0], x[1], x[2]); return n === x[0] ? x : [n, 39.9347, 32.8282, x[3]]; }); };
+  /* sokak ve kapı numarası araması (25.11.2026): OpenStreetMap'teki adresler ve sokak adları, yalnızca aranan bölgenin küçük dosyası iner (yv/adr/<hücre>.json) */
+  const ADRC = new Map(), adrGet = (c) => { if (!ADRC.has(c)) ADRC.set(c, fetch(`/yv/adr/${c}.json`).then((r) => r.ok && /json/.test(r.headers.get("content-type") || "") ? r.json() : null).catch(() => null)); return ADRC.get(c); };
+  const ABR = [[/\b(sk|sok|skk)\b/g, "sokak"], [/\b(cd|cad|cadd)\b/g, "cadde"], [/\b(blv|bul|bulv)\b/g, "bulvar"], [/\b(mah|mh)\b/g, "mahalle"]];
+  const canon = (t) => ABR.reduce((z, [r, v]) => z.replace(r, v), fold(t).replace(/sokagi/g, "sokak").replace(/caddesi/g, "cadde").replace(/bulvari/g, "bulvar").replace(/mahallesi/g, "mahalle")).replace(/\s+/g, " ").trim();
+  const adrFind = async (raw, ll) => { const q = canon(raw), num = (q.match(/(?:^|\s)(?:no\s*)?(\d{1,4}[a-z]?)(?=\s|$)/) || [])[1] || "";
+    const W = q.split(" ").filter((w) => w && w !== num && w !== "no" && w.length > 1); if (!W.length || (!num && !W.some((w) => /^(sokak|cadde|bulvar)$/.test(w)))) return [];
+    const S = new Set(); for (const d of [-.1, 0, .1]) for (const e of [-.1, 0, .1]) S.add(yvCell(ll[0] + d, ll[1] + e));
+    const D = (await Promise.all([...S].map(adrGet))).filter(Boolean), R = [], ok = (st) => { const c = canon(st); return W.every((w) => c.includes(w)); };
+    for (const d of D) { if (num) for (const x of d.a || []) if ((x[1].match(/^\d+[a-z]?/i) || [""])[0].toLowerCase() === num && ok(x[0])) R.push({ n: `${x[0]} No:${x[1]}`, s: "Adres", ll: [x[2], x[3]], m: `${fold(raw)} ${q}`, adr: 1 });
+      if (!num) for (const x of d.s || []) if (ok(x[0])) R.push({ n: x[0], s: "Sokak", ll: [x[1], x[2]], m: `${fold(raw)} ${q}`, adr: 1 }); }
+    const sn = new Set(); return R.filter((x) => { const k = fold(x.n) + Math.round(x.ll[0] * 300) + Math.round(x.ll[1] * 230); if (sn.has(k)) return false; sn.add(k); return true; }).sort((u, v) => km(ll, u.ll) - km(ll, v.ll)).slice(0, 6); };
   const YVLM = /cami|mescit|kilise|sinagog|t[üu]rbe|an[ıi]t|heykel|m[üu]ze|kale|hastane|[üu]niversite|lise|okul|belediye|valilik|istasyon|gar[ıi]|meydan/i; let yvT = 0, yvQ = 0; const yvSync = () => { clearTimeout(yvT); yvT = setTimeout(async () => { if (!map?.getSource("yv") || map.getZoom() < 14.8) { map?.getSource("yv")?.setData({ type: "FeatureCollection", features: [] }); return; } const q = ++yvQ, c = map.getCenter(), b = map.getBounds(), zz = map.getZoom(), L = zz >= 16.3 ? await yvAll([c.lat, c.lng], .05).catch(() => yvAround([c.lat, c.lng], .1)) : await yvAround([c.lat, c.lng], .1); if (q !== yvQ || !map) return; /* 16,3+: hücrenin bütün yerleri (yv/ek dahil) */ const pr = (x) => YVLM.test(x[0]) ? 0 : x[3] !== 10 && x[3] > 2 ? 1 : x[3] !== 10 ? 2 : 3, V = L.filter((x) => x[0] !== HUKN && b.contains([x[2], x[1]])).map((x) => [x, pr(x)]).sort((x, y) => x[1] - y[1]).slice(0, zz >= 16.3 ? 3000 : 1600); map.getSource("yv").setData({ type: "FeatureCollection", features: V.map(([x, p]) => ({ type: "Feature", geometry: { type: "Point", coordinates: [x[2], x[1]] }, properties: { n: x[0], k: YVL[x[3]], c: /cami|mescit/i.test(x[0]) ? "#34c58a" : YVR[x[3]], p } })) }); }, 160); };
   // veriyi haritanın anlayacağı biçime çevir (filtre değişince yalnızca kaynaklar yenilenir; katmanlar yerinde kalır)
   const build = () => {
@@ -3170,7 +3181,7 @@ function viewHarita(city, Q = {}) {
     const W = raw.split(/\s+/).filter((w) => { const f = fold(w.replace(/['’].*$/, "")).trim(); const c = CITIES.find((c) => fold(c.name) === f); if (c && !cityHit) { cityHit = c; return false; } return true; });
     if (cityHit && ILLL[cityHit.id]) ll = ILLL[cityHit.id]; const q = W.join(" ") || raw, sig = W.map((w) => fold(w).trim()).filter((w) => w.length > 1);
     const key = W.filter((w) => { const f = fold(w).trim(); return f.length > 1 && !GEN.has(f); });
-    const full = (n) => { const f = fold(n); return sig.every((w) => f.includes(w)); };
+    const full = (n) => { const f = fold(n); return sig.every((w) => f.includes(w)); }, nm = (x) => x.m || x.n;
     // ad farklı yazılmış olabilir ("Özel Sıhhiye Öğrenci Yurdu" gibi): tam sorgu + çekirdek sorgu ("Sıhhiye Yurdu") + semt aynı anda aranır, kelime örtüşmesine göre sıralanır
     const gen = W.filter((w) => GEN.has(fold(w).trim())), core = key.length && gen.length ? [...key, gen[gen.length - 1]].join(" ") : "";
     const ov = (n) => { const f = fold(n); return sig.filter((w) => f.includes(w)).length / Math.max(1, sig.length); };
@@ -3180,22 +3191,22 @@ function viewHarita(city, Q = {}) {
     const wsig = (w) => !GEN.has(w) && w.length > 2; const lastW = [...sig].reverse().find(wsig) || "";
     setTimeout(async () => { if (my !== pq) return;
       const locP = Promise.all([...new Set([ll, cc].map((c) => c.map((v) => v.toFixed(1)).join(",")))].map((k) => yvAll(k.split(",").map(Number), .1).catch(() => []))).then((A) => A.flat().filter((y) => y && y[0]).map((y) => ({ n: hukName(y[0], y[1], y[2]), s: "Mekân", ll: [y[1], y[2]], loc: 1 })));
-      const [L0, L1, A0, LC] = await Promise.all([photon(q, ll, 12, BOX), core && core !== q ? photon(core, ll, 8, BOX) : [], key.length && key.length < sig.length ? photon(key.join(" "), ll, 4, BOX) : [], locP]); if (my !== pq || res.hidden) return;
-      let P0 = [...L0, ...L1]; if (!P0.some((x) => full(x.n)) && !LC.some((x) => full(x.n))) { const T = await photon(q, cc, 8); if (my !== pq || res.hidden) return; P0 = [...P0, ...T.filter((x) => full(x.n))]; }
+      const [L0, L1, A0, LC0, AD] = await Promise.all([photon(q, ll, 12, BOX), core && core !== q ? photon(core, ll, 8, BOX) : [], key.length && key.length < sig.length ? photon(key.join(" "), ll, 4, BOX) : [], locP, adrFind(q, cityHit ? cc : ll).catch(() => [])]); if (my !== pq || res.hidden) return; const LC = [...AD, ...LC0];
+      let P0 = [...L0, ...L1]; if (!P0.some((x) => full(x.n)) && !LC.some((x) => full(nm(x)))) { const T = await photon(q, cc, 8); if (my !== pq || res.hidden) return; P0 = [...P0, ...T.filter((x) => full(x.n))]; }
       const hit = (n) => { const f = fold(n); return sig.filter((w) => wsig(w) && f.includes(w)).length; };
-      const seen = new Set(), L = [...LC.filter((x) => hit(x.n)), ...P0].filter((x) => { if (!x.n) return false; const k = fold(x.n).replace(/[^a-z0-9]/g, ""); if ([...seen].some((z) => z[0] === k && km(z[1], x.ll) < .25)) return false; seen.add([k, x.ll]); return true; })
-        .filter((x) => full(x.n) || (hit(x.n) > 0 && km(cc, x.ll) < 70))
-        .map((x) => [x, (full(x.n) ? 0 : (sig.length - hit(x.n)) * 1e4 - (lastW && fold(x.n).includes(lastW) ? 5e3 : 0)) + km(ll, x.ll)]).sort((a, b) => a[1] - b[1]).map((x) => { const z = x[0]; if (z.loc) z.s = `Mekân · ${km(ll, z.ll) < 1 ? Math.round(km(ll, z.ll) * 1000) + " m" : km(ll, z.ll).toFixed(1).replace(".", ",") + " km"}`; return z; });
+      const seen = new Set(), L = [...LC.filter((x) => hit(nm(x))), ...P0].filter((x) => { if (!x.n) return false; const k = fold(x.n).replace(/[^a-z0-9]/g, ""); if ([...seen].some((z) => z[0] === k && km(z[1], x.ll) < .25)) return false; seen.add([k, x.ll]); return true; })
+        .filter((x) => full(nm(x)) || (hit(nm(x)) > 0 && km(cc, x.ll) < 70))
+        .map((x) => [x, (full(nm(x)) ? 0 : (sig.length - hit(nm(x))) * 1e4 - (lastW && fold(nm(x)).includes(lastW) ? 5e3 : 0)) + km(ll, x.ll)]).sort((a, b) => a[1] - b[1]).map((x) => { const z = x[0]; if (z.loc && !z.adr) z.s = `Mekân · ${km(ll, z.ll) < 1 ? Math.round(km(ll, z.ll) * 1000) + " m" : km(ll, z.ll).toFixed(1).replace(".", ",") + " km"}`; return z; });
       // "starbucks kızılay" gibi: sözcüklerden biri semt/ilçe ise öteki sözcükleri o semtin çevresinde ara
-      if (!L.some((x) => full(x.n)) && sig.filter(wsig).length > 1) { const AT = ["district", "locality", "city", "county", "other"];
+      if (!L.some((x) => full(nm(x))) && sig.filter(wsig).length > 1) { const AT = ["district", "locality", "city", "county", "other"];
         const AW = await Promise.all(sig.filter(wsig).map((w) => photon(w, cc, 6, BOX).then((R2) => [w, R2.find((x) => AT.includes(x.tp) && fold(x.n) === w)]))); if (my !== pq || res.hidden) return;
         const ar = AW.find((z) => z[1]); if (ar) { const rest = sig.filter((w) => w !== ar[0]), aL = ar[1].ll;
           const [LA, PA] = await Promise.all([yvAll(aL, .1).catch(() => []), photon(rest.join(" "), aL, 10, bx(aL, .15))]); if (my !== pq || res.hidden) return;
           const sn = new Set(), C = [...LA.filter((y) => y && y[0]).map((y) => ({ n: hukName(y[0], y[1], y[2]), s: "Mekân", ll: [y[1], y[2]] })), ...PA].filter((x) => x.n && rest.every((w) => fold(x.n).includes(w)) && km(aL, x.ll) < 3).filter((x) => { const k = fold(x.n).replace(/[^a-z0-9]/g, "") + x.ll.map((v) => v.toFixed(3)); if (sn.has(k)) return false; sn.add(k); return true; }).sort((u, v) => km(aL, u.ll) - km(aL, v.ll)).slice(0, 8);
           if (C.length) { const an = ar[1].n; C.forEach((x) => { const d = km(aL, x.ll); x.s = `Mekân · ${an} · ${d < 1 ? Math.round(d * 1000) + " m" : d.toFixed(1).replace(".", ",") + " km"}`; }); pickAt = aL; draw(C, true, q); return; } } }
-      const exact = L.some((x) => full(x.n)), area = exact ? [] : A0.filter((x) => ["district", "locality", "city", "county", "street", "other"].includes(x.tp)).slice(0, 1);
+      const exact = L.some((x) => full(nm(x))), area = exact ? [] : A0.filter((x) => ["district", "locality", "city", "county", "street", "other"].includes(x.tp)).slice(0, 1);
       pickAt = area[0]?.ll || (cityHit && ILLL[cityHit.id]) || ll;
-      draw([...L.filter((x) => full(x.n)), ...area, ...L.filter((x) => !full(x.n))].slice(0, 8), exact, q);
+      draw([...L.filter((x) => full(nm(x))), ...area, ...L.filter((x) => !full(nm(x)))].slice(0, 8), exact, q);
       if (!exact && autoDeep) $("[data-qd]", res)?.click(); autoDeep = false;
     }, 300);
     const draw = (R, exact, q) => { const box = $("#hmpl", res); if (!box) return; $("#hm0", res)?.remove();

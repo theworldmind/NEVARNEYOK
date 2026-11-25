@@ -29,19 +29,39 @@ def simp(g):
     R = g["coordinates"][0]; k = max(1, len(R) // 48); Q = R[::k]; Q = Q + [Q[0]] if Q[-1] != Q[0] else Q
     return {"type": "Polygon", "coordinates": [[[round(x, 6), round(y, 6)] for x, y in Q]]}
 P, imp = [], []
+# 25.11.2026 (kullanıcı: "her yolu dene, tüm verileri çekelim"): OSM'deki her adlı nesne (adlı apartman/bina, mahalle, semt, istasyon, doğa adları dahil),
+# sokak adları ve kapı numaralı adresler de alınır. Sokak ve adresler aramanın indirdiği ayrı dosyalarda (yv/adr/<hücre>.json).
+STREET = set("motorway trunk primary secondary tertiary unclassified residential living_street pedestrian service road footway path cycleway steps track".split())
+SK, AD = {}, []
+def mid(g):
+    c = g["coordinates"]
+    if g["type"] == "MultiLineString": c = max(c, key=len)
+    return c[len(c) // 2]
+EXK = ("place", "railway", "public_transport", "aeroway", "natural", "landuse", "man_made", "waterway", "boundary", "military", "power", "emergency")
 for line in open("/tmp/poi.seq", encoding="utf8"):
     try: f = json.loads(line.lstrip("\x1e"))
     except Exception: continue
     p = f.get("properties") or {}; g = f.get("geometry"); n = (p.get("name:tr") or p.get("name") or "").strip()
-    if not n or not g or not good(n): continue
+    if not g: continue
+    if p.get("highway"):
+        if n and p["highway"] in STREET and g["type"] in ("LineString", "MultiLineString") and 2 <= len(n) <= 60:
+            o, a = mid(g); SK.setdefault((fold(n), round(a * 300), round(o * 230)), [n, round(a, 5), round(o, 5)])
+        continue
+    if p.get("addr:housenumber") and p.get("addr:street"):
+        w0, e0, s0, n0 = bbox(g); AD.append([p["addr:street"].strip()[:60], str(p["addr:housenumber"]).strip()[:12], round((s0 + n0) / 2, 6), round((w0 + e0) / 2, 6)])
+    if not n or not good(n): continue
+    if p.get("boundary") and not p.get("place") and str(p.get("admin_level", "")) not in ("8", "9", "10"): continue
     t, kd = None, ""
     for k, m in OM.items():
         if p.get(k) in m: t, kd = m[p[k]], k + "/" + p[k]; break
     if LIB.search(n): t, kd = "kutuphane", kd or "ad/kutuphane"
     if not t:
-        for k in ("shop", "office", "healthcare", "craft", "club", "tourism", "leisure", "amenity", "historic", "building"):
+        for k in ("shop", "office", "healthcare", "craft", "club", "tourism", "leisure", "amenity", "historic"):
             v = p.get(k)
             if v and v not in OJ: t, kd = "yer", k + "/" + v; break
+    if not t:  # adı olan bina (apartman, yurt binası…), mahalle/semt, istasyon, doğa adı: aramada bulunsun, harita yazısında öncelik düşük
+        k = next((k for k in ("building",) + EXK if p.get(k)), None)
+        if k: w, e, s_, nn = bbox(g); P.append((n, (s_ + nn) / 2, (w + e) / 2, "yer", 1.5)); continue
     if not t: continue
     w, e, s, nn = bbox(g); a, o = (s + nn) / 2, (w + e) / 2; P.append((n, a, o, t, 3)); area = (nn - s) * (e - w) * 9.4e9
     sc = (40 if p.get("wikidata") else 0) + (30 if p.get("wikimedia_commons") or p.get("image") else 0) + {"avm": 28, "muze": 30, "sahne": 26, "sinema": 18, "kutuphane": 16, "gezi": 22, "park": 12, "spor": 8}.get(t, 0) + (min(20, math.log10(area + 1) * 4) if g["type"] != "Point" else 0)
@@ -49,11 +69,27 @@ for line in open("/tmp/poi.seq", encoding="utf8"):
     if sc >= 18: imp.append({"n": n, "a": round(a, 6), "o": round(o, 6), "t": t, "s": " · ".join(x for x in [TL[t], p.get("addr:district") or p.get("addr:city") or ""] if x), "g": simp(g), "wd": p.get("wikidata") or "", "cm": p.get("wikimedia_commons") or "", "sc": round(sc, 1)})
 print("OSM", len(P), len(imp))
 con = duckdb.connect(); cols = {r[0] for r in con.execute("DESCRIBE SELECT * FROM '/tmp/ov.parquet'").fetchall()}; cat = "categories.primary" if "categories" in cols else "taxonomy.primary"
-nov = 0; OVJ = re.compile(r"parking|atm|bus_stop|taxi|charging|toilet|vending|real_estate_agent|home_service|contractor|plumb|electrician|locksmith|structure_and_geography|road|highway|bridge", re.I)
-for n, a, o, c, cf in con.execute(f"""SELECT names."primary", bbox.ymin, bbox.xmin, {cat}, coalesce(confidence,0) FROM '/tmp/ov.parquet' WHERE addresses[1].country='TR' AND names."primary" IS NOT NULL AND (coalesce(confidence,0)>=(CASE WHEN coalesce(sources[1].dataset,'')='Foursquare' THEN .7 ELSE .45 END) OR coalesce({cat},'') ILIKE '%librar%' OR names."primary" ILIKE '%tüphane%' OR names."primary" ILIKE '%tuphane%') AND coalesce(operating_status,'open')='open'""").fetchall():
-    t = next((b for r, b in OV if c and r.search(c)), None) or ("yer" if c and not OVJ.search(c) else None); n = re.sub(r"\s+", " ", n).strip(); t = "kutuphane" if LIB.search(n) else (None if t == "kutuphane" and cf < .8 else t)
-    if t and good(n): P.append((n, a, o, t, 1)); nov += 1
-print("Overture", nov)
+# Overture: Türkiye'deki her açık kayıt (25.11.2026). Eşiğin (.45/.7) altındakiler de alınır: 270 bin kayıt, aralarında gerçek yurtlar, dükkânlar, ofisler vardı
+# (ör. "Özel Beşevler Yükseköğrenim Erkek Öğrenci Yurdu" .30). Düşük güvenliler yalnızca aramada (harita yazısında en sonda). Ülke alanı boş olanlar Türkiye sınırı içindeyse alınır.
+INTR = None
+try:
+    from shapely.geometry import Polygon, Point; from shapely.prepared import prep
+    R, cur = [], []
+    for ln in open("/tmp/turkey.poly", encoding="utf8"):
+        x = ln.split()
+        if len(x) == 2:
+            try: cur.append((float(x[0]), float(x[1])))
+            except ValueError: pass
+        elif ln.strip() == "END" and cur: R.append(Polygon(cur)); cur = []
+    TRP = prep(max(R, key=lambda q: q.area)); INTR = lambda a, o: TRP.contains(Point(o, a))
+except Exception as x: print("Türkiye sınırı okunamadı:", x)
+nov = nlow = 0; OVJ = re.compile(r"parking|atm|bus_stop|taxi|charging|toilet|vending|road|highway|bridge", re.I)
+for n, a, o, c, cf, ds, cc in con.execute(f"""SELECT names."primary", bbox.ymin, bbox.xmin, {cat}, coalesce(confidence,0), coalesce(sources[1].dataset,''), coalesce(addresses[1].country,'') FROM '/tmp/ov.parquet' WHERE names."primary" IS NOT NULL AND coalesce(operating_status,'open')='open'""").fetchall():
+    if cc != "TR" and (cc or not INTR or not INTR(a, o)): continue
+    hi = cf >= (.7 if ds == "Foursquare" else .45)
+    t = next((b for r, b in OV if c and r.search(c)), None) or (None if c and OVJ.search(c) else "yer"); n = re.sub(r"\s+", " ", n).strip(); t = "kutuphane" if LIB.search(n) else ("yer" if t == "kutuphane" and cf < .8 else t)
+    if t and good(n): P.append((n, a, o, t, 1 if hi else 0)); nov += 1; nlow += 0 if hi else 1
+print("Overture", nov, "düşük güvenli", nlow)
 nwd = 0
 if os.path.exists("/tmp/wd.json"):
     for n, a, o in json.load(open("/tmp/wd.json", encoding="utf8")):
@@ -80,6 +116,13 @@ for c, L in out.items():
     b = json.dumps(A, ensure_ascii=False, separators=(",", ":")); tot += len(b.encode()); open(f"{OUT}/yv/{c}.json", "w", encoding="utf8").write(b)
     if B: b = json.dumps(B, ensure_ascii=False, separators=(",", ":")); tot += len(b.encode()); open(f"{OUT}/yv/ek/{c}.json", "w", encoding="utf8").write(b); nek += 1
 print("ek hücre", nek)
+# sokaklar ve kapı numaralı adresler (yalnızca arama indirir)
+os.makedirs(OUT + "/yv/adr", exist_ok=True); AC = collections.defaultdict(lambda: {"s": [], "a": []})
+for x in SK.values(): AC[f"{math.floor(x[1] * 10)}_{math.floor(x[2] * 10)}"]["s"].append(x)
+for x in AD: AC[f"{math.floor(x[2] * 10)}_{math.floor(x[3] * 10)}"]["a"].append(x)
+for c, v in AC.items():
+    b = json.dumps(v, ensure_ascii=False, separators=(",", ":")); tot += len(b.encode()); open(f"{OUT}/yv/adr/{c}.json", "w", encoding="utf8").write(b)
+print("sokak", len(SK), "adres", len(AD), "adres hücresi", len(AC))
 # bizim mekânlar görsel listesinin başına
 V = []
 for f, tr in (("data/venues-tr.json", 1), ("data/venues.json", 0)):
@@ -90,4 +133,4 @@ for x in L:
     k = (fold(x["n"]), round(x["a"] * 500), round(x["o"] * 400))
     if k not in S: S.add(k); L2.append(x)
 json.dump(L2[:9000], open(f"{OUT}/onem.json", "w", encoding="utf8"), ensure_ascii=False, separators=(",", ":"))
-json.dump({"tipler": TY, "etiket": TL, "yer": nk, "hucre": len(out), "mb": round(tot / 1e6, 1), "onem": len(L2), "kaynak": {"osm": len(P) - nov - nwd - ngn, "overture": nov, "wikidata": nwd, "geonames": ngn}}, open(f"{OUT}/yv/ozet.json", "w", encoding="utf8"), ensure_ascii=False); print(nk, len(out), round(tot / 1e6, 1), len(L2))
+json.dump({"tipler": TY, "etiket": TL, "yer": nk, "hucre": len(out), "mb": round(tot / 1e6, 1), "onem": len(L2), "kaynak": {"osm": len(P) - nov - nwd - ngn, "overture": nov, "overture_dusuk": nlow, "wikidata": nwd, "geonames": ngn, "sokak": len(SK), "adres": len(AD)}}, open(f"{OUT}/yv/ozet.json", "w", encoding="utf8"), ensure_ascii=False); print(nk, len(out), round(tot / 1e6, 1), len(L2))
