@@ -1512,6 +1512,11 @@ h1,h2,.rh h3,.dt h1,.fsc b{text-wrap:balance}
 .fsc-c i{position:absolute;right:10px;top:6px;font-style:normal;font-size:54px;line-height:1;opacity:.85;transform:rotate(-8deg);filter:drop-shadow(0 8px 16px rgba(0,0,0,.4))}
 .fsc-c b{font:900 clamp(17px,4.6vw,22px)/.95 var(--fd);font-stretch:80%;letter-spacing:-.01em;text-transform:uppercase;color:#fff;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-width:86%}
 .fsc-c small{font:700 var(--ts-x) var(--f);letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+/* buzlu cam yükü (25.11.2026 ölçüm: üst/alt çubuk bulanıklığı kapatılınca kaydırmada takılan kare 10 → 0): yarıçap küçük, zemin biraz daha dolu; görünüm aynı cam */
+.top{-webkit-backdrop-filter:saturate(1.5) blur(12px)!important;backdrop-filter:saturate(1.5) blur(12px)!important}
+.tabs{-webkit-backdrop-filter:saturate(1.6) blur(14px)!important;backdrop-filter:saturate(1.6) blur(14px)!important}
+html.lowfx.scr .top,html.lowfx.scr .tabs{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.dt .dp .ph.wide img.p{object-fit:cover}
 </style>
 </head>
 <body>
