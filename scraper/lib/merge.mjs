@@ -6,7 +6,7 @@ import { geoOf } from "./vloc.mjs";
 import { cleanTitle, canonVenue, guessCat, fixCat, sameEvent, siteNameOf, factsFrom } from "./normalize.mjs";
 import { todayIST } from "./util.mjs";
 
-const KEEP_FIELDS = ["vg", "va", "age", "dur", "genre", "org", "door", "note", "img", "imgBy", "imgTried"];
+const KEEP_FIELDS = ["vg", "va", "age", "dur", "genre", "org", "door", "note", "img", "imgBy", "imgTried", "fest", "fo", "fdir", "fy", "fcn"];
 const STALE_TICKET_DAYS = 10; // bir bilet bağlantısı bu kadar gün görülmezse düşer
 const DROP_SHOW_DAYS = 7;     // "fiyatı düştü" rozeti kaç gün kalsın
 
@@ -37,7 +37,7 @@ export function rawToEvent(r, src) {
   if (r.cid) ev.city = r.cid; // il (bütün Türkiye taramasında)
   if (r.org) ev.org = r.org;
   if (r.free && !r.price) ev.note = "Ücretsiz";
-  for (const k of ["age", "dur", "genre", "door"]) if (r[k]) ev[k] = r[k];
+  for (const k of ["age", "dur", "genre", "door", "fest", "fo", "fdir", "fy", "fcn"]) if (r[k]) ev[k] = r[k]; // fest: festival adı; fo/fdir/fy/fcn: filmin özgün adı, yönetmeni, yılı, ülkesi
   // Afiş: yalnızca kaynaktaki adresi tutulur, dosya indirilmez ya da saklanmaz; sitede kaynağından gösterilir (gömme)
   const img = posterUrl(r.image);
   if (img) { ev.img = img; ev.imgBy = src.name; }

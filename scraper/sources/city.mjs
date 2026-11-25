@@ -66,6 +66,7 @@ if (CITY === "istanbul") ONE.push(
     link: /sehirtiyatrolari\.ibb\.istanbul\/oyun\/[a-z0-9-]+$/i, render: true, scrolls: 4, city: "istanbul", defaultCat: "tiyatro", maxDetail: 160, budgetMin: 25 });
 
 // İle özel resmî kaynaklar (belediyelerin kendi bilet siteleri)
+if (CITY === "istanbul" || CITY === "izmir") ONE.push({ id: "repertuvar", name: "Repertuvar", kind: "toplayici", home: "https://repertuvar.co", collect: P.repertuvarCollect, listings: [], link: null, city: CITY, defaultCat: "sinema" }); // bağımsız sinema (25.11.2026)
 if (CITY === "izmir") ONE.push({ id: "izmirks", name: "İzmir Kültürsanat", kind: "kurum", home: "https://kultursanat.izmir.bel.tr", collect: P.izmirKsCollect, listings: [], link: null, city: "izmir" });
 
 if (CITY === "istanbul") ONE.push({ id: "kulturistanbul", name: "Kültür AŞ", kind: "kurum", home: "https://kultur.istanbul", listings: ["https://kultur.istanbul/etkinlikler/"], link: /kultur\.istanbul\/etkinlik\/(?!\d+\/?$)[a-z0-9-]+\/?$/i, render: true, scrolls: 5, city: "istanbul", maxDetail: 180, budgetMin: 20 });

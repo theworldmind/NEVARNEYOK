@@ -107,10 +107,8 @@ export default [
   { id: "ankara-caz", enabled: false, /* alan adı artık çözülmüyor (06.11.2026) */ name: "Ankara Caz Festivali", kind: "mekan", home: "https://www.ankarajazzfestival.com",
     listings: ["https://www.ankarajazzfestival.com/program"],
     link: /ankarajazzfestival\.com\/(program|konser|etkinlik)[^?#]*/i, render: true, city: "ankara", defaultCat: "konser" },
-  { id: "film-ankara", enabled: false, /* sitede program sayfası yok (404); festival seansları Biletinial listesinden geliyor (12.11.2026) */ name: "Ankara Film Festivali", kind: "mekan", home: "https://www.filmfestankara.org.tr",
-    listings: ["https://www.filmfestankara.org.tr/program"],
-    // Program yayınlanınca seans sayfaları JSON-LD ile okunur; haber/başvuru sayfaları etkinlik sayılmaz
-    link: /filmfestankara\.org\.tr\/(program|gosterim|seans)\/[^?#]+/i, render: true, city: "ankara", forceCat: "sinema", heuristics: false },
+  { id: "film-ankara", name: "Ankara Film Festivali", kind: "kurum", home: "https://filmfestankara.org.tr", collect: P.affCollect, listings: [], link: null, city: "ankara", defaultCat: "sinema" }, // festivalin kendi programı (25.11.2026)
+  { id: "repertuvar", name: "Repertuvar", kind: "toplayici", home: "https://repertuvar.co", collect: P.repertuvarCollect, listings: [], link: null, city: "ankara", defaultCat: "sinema" }, // bağımsız salonlar (Kült vb.)
   { id: "if", enabled: false, /* Cloudflare bot koruması; korumayı aşmıyoruz (06.11.2026) */ name: "IF Performance Hall", kind: "mekan", home: "https://www.ifperformance.com",
     listings: ["https://www.ifperformance.com/ankara"],
     link: /ifperformance\.com\/[^?#]*(etkinlik|event|konser)[^?#]*/i, render: true, city: "tr" },

@@ -219,7 +219,7 @@ export async function biletinialCollect({ fetchText, getPage, today, src, city }
       if (!seances.length) { if (org === "sinema") noSeance.push(`${title}[${x.dateText || "-"}|${x.saloonName || "-"}|${x.saloonCount}]`); continue; }
       const base = { title, venue: org === "sinema" && multi ? `${cn} sinemaları` : clean(x.saloonName || ""), city: x.cityName || cn, url, via: "site", image,
         ...(x.isFree ? { free: true } : x.minTicketAmount > 0 ? { price: Math.round(x.minTicketAmount), pc: 1 } : {}),
-        catHint: cat, ...(fest ? { genre: "Film festivali" } : x.categoryName ? { genre: clean(x.categoryName) } : {}) };
+        catHint: cat, ...(fest ? { genre: "Film festivali", fest: clean(x.categoryName || "") || "Film festivali" } : x.categoryName ? { genre: clean(x.categoryName), ...(/festival/i.test(x.categoryName) ? { fest: clean(x.categoryName) } : {}) } : {}) };
       let list = seances.map((s) => ({ d: day(s), t: hhmm(s) }));
       if (org === "sinema" && !fest) {
         const seen = new Set();
@@ -341,4 +341,68 @@ export function akanselList(html, url) {
     out.push({ title, d: D.d, t: (w[2] || "").padStart(w[2] ? 5 : 0, "0"), venue: nice(venue), city: C.name, url: abs("seminerdetay.aspx?seminer=" + slug, url), image: img ? abs(img.replace(/ /g, "%20"), url) : "", via: "site", ...(pr ? { price: +pr.replace(/\./g, ""), pc: 3 } : { pc: 0 }), genre: "Söyleşi", catHint: "atolye" });
   }
   return out;
+}
+
+/* ---------- Ankara Film Festivali: festivalin kendi programı (25.11.2026) ----------
+   filmfestankara.org.tr/<no>-aff sayfasındaki her film kartında festivalin kendi seans satırı var: "15 Kasım Pazar 18.30 Salon 1".
+   Ad, afiş (festivalin kendi görseli), gün, saat ve salon alınır; biletler Biletinial'den aynı seansla birleşir. */
+const AYR = { ocak: 1, şubat: 2, mart: 3, nisan: 4, mayıs: 5, haziran: 6, temmuz: 7, ağustos: 8, eylül: 9, ekim: 10, kasım: 11, aralık: 12 };
+export async function affCollect({ fetchText, today }) {
+  const y = +today.slice(0, 4), out = []; let films = 0;
+  for (const yil of [y, y + 1]) {
+    const base = "https://filmfestankara.org.tr", r = await fetchText(`${base}/${yil - 1989}-aff`, { retries: 1 });
+    if (r.status !== 200) continue;
+    for (const c of r.text.split(/<div class="col-lg-3/).slice(1)) {
+      const a = c.match(/<h3[^>]*>\s*<a[^>]+href="(?:https?:\/\/filmfestankara\.org\.tr)?\/?([a-z0-9-]+)"[^>]*>([\s\S]*?)<\/a>/i); if (!a) continue;
+      const title = txt(a[2]).split(" / ")[0].trim(); if (!title) continue; films++;
+      const img = ((c.match(/background-image:url\(([^)]+)\)/i) || [])[1] || "").replace("/small/", "/large/");
+      const sch = txt((c.match(/class="list-group-item-warning[^"]*"[^>]*>([\s\S]*?)<\/p>/i) || [])[1]);
+      for (const m of sch.matchAll(/(\d{1,2})\s+(ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)\s+\S+\s+(\d{1,2})[.:](\d{2})/gi)) {
+        const d = `${yil}-${String(AYR[m[2].toLocaleLowerCase("tr")]).padStart(2, "0")}-${m[1].padStart(2, "0")}`;
+        if (d < today) continue;
+        out.push({ title, d, t: `${m[3].padStart(2, "0")}:${m[4]}`, venue: "Büyülü Fener Kızılay", city: "Ankara", url: `${base}/${a[1]}`, via: "site", pc: 0, image: img,
+          org: `${yil - 1989}. Ankara Film Festivali`, genre: "Film festivali", fest: `${yil - 1989}. Ankara Film Festivali`, catHint: "sinema" });
+      }
+    }
+  }
+  return { raws: out, note: `programda ${films} film` };
+}
+
+/* ---------- repertuvar.co: İstanbul, Ankara ve İzmir'deki bağımsız sinema gösterimleri (25.11.2026) ----------
+   Sinematekler, bağımsız salonlar, müzeler ve kültür merkezleri. Mekân sayfası bir aylık programı gün gün verir (<div data-day="2026-11-27">).
+   Her gösterimde Türkçe ad, özgün ad, yönetmen, yıl, süre, ülke, saat ve (varsa) bilet bağlantısı. Mekân listesi ve illeri, sayfanın açılırken
+   kendi yüklediği mekân listesinden okunur (anahtar kullanmayız; tarayıcının aldığı yanıt). Görselleri kullanılmaz (afiş değil, kare). */
+const REP_IL = { ankara: "ankara", istanbul: "istanbul", izmir: "izmir" };
+export async function repertuvarCollect({ getPage, city, today }) {
+  const il = REP_IL[city || "ankara"]; if (!il) return { raws: [] };
+  const base = "https://repertuvar.co", out = [];
+  let venues = [];
+  const pg = await getPage(`${base}/mekanlar`, { render: true, scrolls: 2 });
+  for (const j of pg.jsons || []) if (/\/venues\?/.test(j.url) && Array.isArray(j.data)) venues = j.data.filter((v) => (v.city?.slug || "") === il).map((v) => ({ slug: v.slug, name: v.name }));
+  if (!venues.length) { // yedek: o ilin gösterim sayfasındaki mekânlar
+    for (let i = 0; i < 7; i++) { const d = new Date(Date.parse(today) + i * 864e5).toISOString().slice(0, 10);
+      const p = await getPage(`${base}/gosterimler?sehir=${il}&tarih=${d}`, { render: true, scrolls: 2 });
+      for (const m of (p.html || "").matchAll(/href="\/mekan\/([a-z0-9-]+)">([^<]+)</g)) if (!venues.some((v) => v.slug === m[1])) venues.push({ slug: m[1], name: txt(m[2]) }); }
+  }
+  for (const v of venues.slice(0, 40)) {
+    const p = await getPage(`${base}/mekan/${v.slug}`, { render: true, scrolls: 4 }); const H = p.html || ""; if (!H) continue;
+    const vname = txt((H.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1]) || v.name;
+    for (const day of H.split(/<div data-day="/).slice(1)) {
+      const d = day.slice(0, 10); if (!/^\d{4}-\d\d-\d\d$/.test(d) || d < today) continue;
+      for (const art of day.split(/<article\b/).slice(1)) {
+        const href = (art.match(/href="(\/film\/[a-z0-9-]+)"/) || [])[1]; const title = txt((art.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i) || [])[1]); if (!title) continue;
+        const orig = txt((art.match(/<p class="mt-0\.5[^"]*">([\s\S]*?)<\/p>/i) || [])[1]);
+        const meta = txt((art.match(/class="card-meta[^"]*">([\s\S]*?)<\/p>/i) || [])[1]); // "Rodrigo Sorogoyen, 2026, 135 DK"
+        const my = meta.match(/^(.*?),\s*((?:18|19|20)\d\d)(?:,\s*(\d{1,3})\s*DK)?/i);
+        const cn = txt((art.match(/ÜLKE:<\/span>([\s\S]*?)<\/p>/i) || [])[1]);
+        const free = /ÜCRETSİZ/i.test(art);
+        for (const m of art.matchAll(/text-paper">(\d{1,2}:\d{2})<\/span><\/span>(?:<a href="([^"]+)")?/g)) {
+          out.push({ title, d, t: m[1], venue: vname, city: il === "istanbul" ? "İstanbul" : il === "izmir" ? "İzmir" : "Ankara", url: href ? base + href : `${base}/mekan/${v.slug}`, ...(m[2] && /^https?:/.test(m[2]) ? { buyUrl: m[2].replace(/&amp;/g, "&") } : {}),
+            via: "site", pc: 0, catHint: "sinema", genre: "Film", ...(free ? { free: true } : {}),
+            ...(orig && orig.toLocaleLowerCase("tr") !== title.toLocaleLowerCase("tr") ? { fo: orig } : {}), ...(my ? { fdir: my[1].trim().slice(0, 80), fy: +my[2], ...(my[3] ? { dur: `${+my[3]} dk` } : {}) } : {}), ...(cn ? { fcn: cn.slice(0, 60) } : {}) });
+        }
+      }
+    }
+  }
+  return { raws: out, note: `${venues.length} mekân` };
 }
