@@ -154,8 +154,11 @@ const SITEI = { Biletinial: "https://b6s54eznn8xq.merlincdn.net/dist/assets/img/
   "Ankara DOB": "https://www.operabale.gov.tr/favicon.ico", Mobilet: "https://www.mobilet.com/favicon.ico" };
 const siteIco = (x) => { if (SITEI[x.site]) return SITEI[x.site]; try { return `https://${new URL(x.url).host}/favicon.ico`; } catch { return ""; } };
 const SITEC = { Biletinial: "#e8424f", Biletix: "#0071ce", Passo: "#e30613", Bubilet: "#7b2ff7", "iTicket": "#00b26a", "Sanatçepte": "#c8102e", "Bilkent Bilet": "#003a70", "tiyatrolar.com.tr": "#f59e0b", Mobilet: "#ff6a00", Biletino: "#ff3d00" };
+// Haber bağlantısı bilet yerine geçmez (25.11.2026, kullanıcı: "haber sitesine yönlendirmişsin, bu olamaz; doğrudan bilet alma yerine"): yalnızca satış/resmî sayfalar; en ucuz üstte
+const tixOf = (e) => (e.tickets || []).filter((x) => x.src !== "haber" && x.url && !/ haberi$/.test(x.site || "")).sort((a, b) => (a.price || 1e12) - (b.price || 1e12));
 function pcmpHTML(e) {
-  const T = e.tickets, P = T.filter((x) => x.price), lo = P.length ? Math.min(...P.map((x) => x.price)) : 0, hi = P.length ? Math.max(...P.map((x) => x.price)) : 0, multi = P.length > 1;
+  const T = tixOf(e); if (!T.length) return "";
+  const P = T.filter((x) => x.price), lo = P.length ? Math.min(...P.map((x) => x.price)) : 0, hi = P.length ? Math.max(...P.map((x) => x.price)) : 0, multi = P.length > 1;
   const row = (x) => { const d = x.price && multi ? x.price - lo : 0, best = multi && x.price === lo;
     const sub = !x.price ? "Fiyat sitede" : best ? "En düşük fiyat" : multi ? `+${TL(d)} · %${Math.round((d / lo) * 100)} daha yüksek` : "Satış sitesinde doğrulandı";
     return `<a class="pr2${best ? " lo" : ""}${x.price ? "" : " na"}" href="${esc(x.url)}" target="_blank" rel="noopener" data-buy="${esc(x.site)}">
@@ -673,7 +676,7 @@ function viewEvent(city, slug) {
     V.innerHTML = `<div class="empty"><p>Bu etkinlik artık listede değil (tarihi geçmiş ya da kaldırılmış olabilir).</p><p style="margin-top:16px"><a class="more" style="display:inline-flex;align-items:center" href="#/${city}">Şehir sayfasına dön</a></p></div>${footer()}`; return; }
   document.title = `${e.title} · ${dShort(e.d)} · Ne Var Ne Yok`;
   const v = vOf(e.venue), st = e.status === "tukendi" ? "Biletler tükendi" : e.status === "iptal" ? "Bu etkinlik iptal edildi" : e.status === "ertelendi" ? "Bu etkinlik ertelendi" : "";
-  const T = e.tickets, best = T.find((x) => x.price);
+  const T = tixOf(e), best = T.find((x) => x.price), news = (e.tickets || []).find((x) => x.src === "haber");
   const tix = pcmpHTML(e);
   const checked = T.map((x) => x.checked).filter(Boolean).sort().pop();
   const same = uniq(DATA.events.filter((x) => x.venue === e.venue && x !== e && live(x)), 12);
@@ -690,6 +693,7 @@ function viewEvent(city, slug) {
     ${e.price ? `<div>${I.tag}<span>${TL(e.price)}'den başlayan fiyatlarla<small>${T.filter((x) => x.price).length > 1 ? T.filter((x) => x.price).length + " sitede satışta" : "Satış sitesinde doğrulandı"}</small></span></div>` : ""}</div>
     ${st ? `<div class="stb">${st}.${e.stNews ? " Haberlere göre: " + e.stNews.slice(0, 2).map((x) => `<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc((DATA.buzz.names || {})[x[0]] || x[0])} haberi ↗</a>`).join(" ") + " · Bilet sitesinden de kontrol edin." : ""}</div>` : ""}
     ${T.length && live(e) ? `<a class="buy" href="${esc((best || T[0]).url)}" target="_blank" rel="noopener" data-buy="${esc((best || T[0]).site)}">${buyLbl(e, best || T[0])} · ${esc((best || T[0]).site.replace(/ haberi$/, ""))}${best ? ` · ${TL(best.price)}` : ""}</a>` : ""}
+    ${!T.length && news && live(e) ? `<p class="flh">Bu etkinliğin satış sayfasını henüz bulamadık; her taramada yeniden aranır. Kayıt ya da ücretsizse girişi düzenleyen kurum yapar.</p>` : ""}
     ${T.length ? `${tix}<p class="chk">${checked ? `Fiyatlar satış sitelerinde ${ago(checked)} kontrol edildi. ` : ""}Hizmet bedeli ve son fiyat siteye göre değişebilir; satın alma ve iade bileti satan sitenin kurallarına tabidir.</p>` : ""}
     <div class="shr"><button type="button" id="flw" class="flw${isF(e) ? " on" : ""}">${isF(e) ? I.bellOn + "Takip ediliyor" : I.bell + "Takip et"}</button><button type="button" id="cal">${I.cal}${isF(e) ? "Takvimde" : "Takvime ekle"}</button><button type="button" id="grp">👥 Grup kur</button><button type="button" id="bld" aria-label="Yanlışlık bildir">⚑ Bildir</button><button type="button" id="inv" class="invb">✉️ Davet et</button><button type="button" id="shr">${I.share}Paylaş</button></div>
     ${aName(e) ? `<button type="button" class="afl${afol()[NV.akey(e.title)] ? " on" : ""}" id="afl">${cgIcon("standup")}<span><b>${esc(aName(e))}</b><small>${afol()[NV.akey(e.title)] ? "Yeni tarihleri takipte ✓" : "Yeni tarihlerini takip et · her ilde"}</small></span></button>` : ""}<div id="oth"></div>
@@ -1366,7 +1370,7 @@ document.addEventListener("pointermove", (ev) => { if (Math.abs(ev.clientX - lpX
 document.addEventListener("click", (ev) => { if (lpFired && ev.target.closest?.('.cd, .sps, a[href*="/e/"], a[href*="/film/"]')) { ev.preventDefault(); ev.stopPropagation(); lpFired = false; } }, true);
 document.addEventListener("contextmenu", (ev) => { if (ev.target.closest?.('.cd, .sps, a[href*="/e/"], a[href*="/film/"]')) ev.preventDefault(); });
 function peek(e, city, from) {
-  const href = `#/${city}/e/${encodeURIComponent(e.slug)}`, best = e.tickets.find((x) => x.price) || e.tickets[0];
+  const href = `#/${city}/e/${encodeURIComponent(e.slug)}`, best = tixOf(e)[0];
   const st = e.status === "tukendi" ? "Tükendi" : e.status === "iptal" ? "İptal edildi" : e.status === "ertelendi" ? "Ertelendi" : "";
   const o = document.createElement("div"); o.className = "pk"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", e.title + " önizleme");
   o.innerHTML = `<div class="pk-c"><a class="pk-p" href="${href}">${poster(e, { badge: false, lazy: false })}</a>
