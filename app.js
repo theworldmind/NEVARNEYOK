@@ -1750,19 +1750,18 @@ async function ptRoute(A, B) {
   const G = new Map(), gk = (p) => `${Math.floor(p[0] / .004)}_${Math.floor(p[1] / .005)}`; S.forEach((s, i) => { const k = gk(s.p); if (!G.has(k)) G.set(k, []); G.get(k).push(i); });
   const near = (p, m) => { const R2 = Math.ceil(m / 400) + 1, a0 = Math.floor(p[0] / .004), o0 = Math.floor(p[1] / .005), out = []; for (let a = a0 - R2; a <= a0 + R2; a++) for (let o = o0 - R2; o <= o0 + R2; o++) for (const i of G.get(`${a}_${o}`) || []) { const d = km(p, S[i].p) * 1000; if (d <= m) out.push([i, d]); } return out; };
   const at = S.map(() => []); L.forEach((l, li) => l.seq.forEach((s, j) => at[s].push([li, j])));
-  const K = 4, N = S.length * K, cost = new Float64Array(N).fill(Infinity), prev = new Array(N), done = new Uint8Array(N), H = [];
+  const K = 4, N = S.length * K;
+  const run = (o = {}) => { const ok = o.ok || (() => true), wf = o.wf || 1, bp = o.bp || 0, cost = new Float64Array(N).fill(Infinity), prev = new Array(N), done = new Uint8Array(N), H = [];
   const push = (st, c, pv) => { if (c < cost[st]) { cost[st] = c; prev[st] = pv; let i = H.length; H.push([c, st]); while (i) { const q = (i - 1) >> 1; if (H[q][0] <= H[i][0]) break; [H[q], H[i]] = [H[i], H[q]]; i = q; } } };
   const pop = () => { const top = H[0], last = H.pop(); if (H.length) { H[0] = last; let i = 0; for (;;) { const l = 2 * i + 1, r = l + 1; let m = i; if (l < H.length && H[l][0] < H[m][0]) m = l; if (r < H.length && H[r][0] < H[m][0]) m = r; if (m === i) break; [H[m], H[i]] = [H[i], H[m]]; i = m; } } return top; };
-  let ac = near(A, 900); if (!ac.length) ac = near(A, 1600); let eg = near(B, 900); if (!eg.length) eg = near(B, 1600); if (!ac.length || !eg.length) return { yok: 2 };
-  const EG = new Map(eg.map(([i, d]) => [i, d]));
-  for (const [i, d] of ac) push(i * K, d * 1.3 / 80, { w: 1, d });
+  for (const [i, d] of ac) push(i * K, d * 1.3 / 80 * wf, { w: 1, d });
   let best = Infinity, bst = -1, it = 0;
   while (H.length && it++ < 400000) { const [c, st] = pop(); if (done[st] || c > cost[st]) continue; done[st] = 1; if (c >= best) break; const s = Math.floor(st / K), k = st % K;
-    if (k > 0 && EG.has(s)) { const t = c + EG.get(s) * 1.3 / 80; if (t < best) { best = t; bst = st; } }
-    if (k > 0) for (const [t2, d] of near(S[s].p, 400)) if (t2 !== s) push(t2 * K + k, c + d * 1.3 / 80 + 1, { tr: st, d });
-    if (k < K - 1) for (const [li, j] of at[s]) { const l = L[li], M = PTM[l.mode] || PTM.otobus, w = (l.w ?? M[2]) + (k ? 2 : 0);
+    if (k > 0 && EG.has(s)) { const t = c + EG.get(s) * 1.3 / 80 * wf; if (t < best) { best = t; bst = st; } }
+    if (k > 0) for (const [t2, d] of near(S[s].p, 400)) if (t2 !== s) push(t2 * K + k, c + d * 1.3 / 80 * wf + 1, { tr: st, d });
+    if (k < K - 1) for (const [li, j] of at[s]) { const l = L[li]; if (!ok(l)) continue; const M = PTM[l.mode] || PTM.otobus, w = (l.w ?? M[2]) + (k ? 2 : 0) + bp;
       for (const dir of l.uni ? [1] : [1, -1]) { let r = 0; for (let x = j + dir; x >= 0 && x < l.seq.length; x += dir) { r += km(S[l.seq[x - dir]].p, S[l.seq[x]].p) * 1.25 / M[1] * 60 + .4; push(l.seq[x] * K + k + 1, c + w + r, { li, a: j, b: x, from: st }); } } } }
-  if (bst < 0) return { yok: 3 };
+  if (bst < 0) return null;
   const legs = []; let st = bst; legs.unshift({ t: "w", a: S[Math.floor(st / K)].p, b: B, d: EG.get(Math.floor(st / K)), to: S[Math.floor(st / K)].n });
   while (st != null) { const pv = prev[st]; if (!pv) break; const s = Math.floor(st / K);
     if (pv.w) { legs.unshift({ t: "w", a: A, b: S[s].p, d: pv.d, toStop: S[s].n, toRef: S[s].r }); break; }
@@ -1771,7 +1770,20 @@ async function ptRoute(A, B) {
     const sA = P[0], sB = P[P.length - 1], alt = []; // aynı duraktan aynı durağa giden başka hatlar (tarifeye göre en erken gelen seçilir)
     L.forEach((l2, j2) => { if (j2 === pv.li || alt.length >= 12) return; const i1 = l2.seq.indexOf(sA); if (i1 < 0) return; let i2 = l2.seq.indexOf(sB, i1 + 1); if (i2 < 0 && !l2.uni) { i2 = l2.seq.lastIndexOf(sB, i1 - 1); if (i2 < 0 || i2 >= i1) return; } else if (i2 < 0) return; alt.push({ l: l2, head: S[i2 > i1 ? l2.seq[l2.seq.length - 1] : l2.seq[0]].n || l2.name }); });
     legs.unshift({ t: "r", l, P: P.map((i) => S[i]), head: S[dir > 0 ? l.seq[l.seq.length - 1] : l.seq[0]].n || l.name, alt }); st = pv.from; }
-  return { legs, min: Math.round(best), walkMin: Math.round(ptWalk(A, B)) };
+  return legs; };
+  let ac = near(A, 900); if (!ac.length) ac = near(A, 1600); let eg = near(B, 900); if (!eg.length) eg = near(B, 1600); if (!ac.length || !eg.length) return { yok: 2 };
+  const EG = new Map(eg.map(([i, d]) => [i, d]));
+  // Gerçek süre tahmini (cezasız): yürüme + bekleme + yolculuk; aktarma yürüyüşüne +1 dk
+  const real = (legs) => legs.reduce((t, x) => { if (x.t === "w") return t + (x.d || 0) * 1.3 / 80 + (x.tr ? 1 : 0); const M = PTM[x.l.mode] || PTM.otobus; let r = x.l.w ?? M[2]; for (let i = 1; i < x.P.length; i++) r += km(x.P[i - 1].p, x.P[i].p) * 1.25 / M[1] * 60 + .4; return t + r; }, 0);
+  const RAILM = (l) => !["otobus", "dolmus", "metrobus"].includes(l.mode), BUSM = (l) => ["otobus", "dolmus", "metrobus"].includes(l.mode);
+  // Seçenekler (25.11.2026, kullanıcı: "aynı yere hem metro hem otobüs gidiyor olabilir; farklı opsiyonlar sun"): en hızlı, en az aktarma, en az yürüme, yalnız raylı, yalnız otobüs
+  const V = [["hizli", "En hızlı", {}], ["aktarma", "En az aktarma", { bp: 14 }], ["yurume", "En az yürüme", { wf: 3.2 }], ["rayli", "Raylı sistem", { ok: RAILM }], ["otobus", "Otobüsle", { ok: BUSM }]];
+  const opts = [], seen = new Set();
+  for (const [id, ad, o] of V) { const legs = run(o); if (!legs) continue; const R2 = legs.filter((x) => x.t === "r"), sig = R2.map((x) => x.l.ref + ":" + x.P[0].n + ">" + x.P[x.P.length - 1].n).join("|"); if (!R2.length || seen.has(sig)) { const same = opts.find((q) => q.sig === sig); if (same && !same.tags.includes(ad)) same.tags.push(ad); continue; } seen.add(sig);
+    const wm = legs.filter((x) => x.t === "w").reduce((a, x) => a + (x.d || 0), 0); opts.push({ id, tags: [ad], sig, legs, min: Math.round(real(legs)), tr: Math.max(0, R2.length - 1), walkM: Math.round(wm) }); }
+  if (!opts.length) return { yok: 3 };
+  opts.sort((a, b) => a.min - b.min); const legs = opts[0].legs, best = opts[0].min;
+  return { legs, min: Math.round(best), walkMin: Math.round(ptWalk(A, B)), opts };
 }
 /* EGO hareket saatleri (19.11.2026, kullanıcı: "Ankara'da otobüs ve metroların tahmini geliş saatlerinden yararlan"):
    scraper/ego-saat.mjs → yv/ego/<hat>.json {n, km, dk, k, t:[hafta içi, cumartesi, pazar] (ilk duraktan kalkış, dakika), s:[[durak no, ad]]}.
@@ -1859,14 +1871,18 @@ function routeSheet(e, v, city) {
     let j = 0; sIdx = S.map((s) => { const p = [s.maneuver.location[1], s.maneuver.location[0]]; let b = j, bd = 1e9; for (let i = j; i < C.length; i++) { const d = km(p, C[i]); if (d < bd) { bd = d; b = i; } if (bd < .005 && i > b + 5) break; } j = b; return b; });
     ni = 0; lastStep = -1; warned = -1;
   };
-  const ptPaint = async (A, B) => { R = null; C = [];
-    let P; try { P = await ptRoute(A, B); } catch { P = { yok: 9 }; } if (mode !== "pt") return;
+  let ptLast = null, ptSel = 0;
+  const ptPaint = async (A, B, pick) => { R = null; C = [];
+    let P; if (pick != null && ptLast && ptLast.A === A && ptLast.B === B) { ptSel = pick; const o = ptLast.P.opts[pick]; P = { ...ptLast.P, legs: o.legs, min: o.min }; }
+    else { try { P = await ptRoute(A, B); } catch { P = { yok: 9 }; } ptSel = 0; ptLast = P.opts ? { A, B, P } : null; }
+    if (mode !== "pt") return;
     if (P.yok || !P.legs) { sum.innerHTML = `<div class="rerr">${P.yok === 1 ? "Bu bölgede açık hat verisi yok." : "Bu iki nokta arasında hat bulamadık."} Yürüyerek ~${durTxt(Math.max(1, Math.round(ptWalk(A, B))))}.</div>`; ptDraw([]); return; }
     const rides = P.legs.filter((x) => x.t === "r"), tr = Math.max(0, rides.length - 1);
     const paint = (E) => { if (E?.yarin) E = { ...E, arrive: null }; const LN = (x, i) => E?.legs[i]?.l || x.l, HD = (x, i) => E?.legs[i]?.head || x.head;
       const at = E?.arrive != null ? hm(E.arrive) : new Date(Date.now() + P.min * 60e3).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" }), dur = E?.arrive != null ? Math.max(1, Math.round(E.arrive - E.now)) : P.min;
     const pill = (l, noE) => { const M = PTM[l.mode] || PTM.otobus; return `<span class="ptl" style="--c:${l.col || (l.mode === "metro" ? "#e11d48" : l.mode === "tram" ? "#0ea5e9" : l.mode === "otobus" ? "#2563eb" : "#64748b")}">${noE ? "" : M[0] + " "}<b>${esc(l.ref || M[3])}</b></span>`; };
-    sum.innerHTML = `<div class="rs1"><b>~${durTxt(dur)}</b><span>${tr ? `${tr} aktarma` : "Aktarmasız"} · varış ~${at}</span></div><div class="ptc">${P.legs.map((x, i) => x.t === "r" ? pill(LN(x, i)) : "").filter(Boolean).join('<i>›</i>')}</div>${E?.yarin ? `<small class="go ptz2">Bu yolda bugün için sefer kalmamış olabilir; saatlere bak.</small>` : ""}${P.walkMin <= dur ? `<small class="go">Yürüyerek ~${durTxt(P.walkMin)}; yürümek daha kısa sürebilir.</small>` : ""}<small class="ptn">${E ? "Saatler EGO hareket saatlerine göre tahmindir; trafik hesaba girmez." : "Saatler gösterilmez; süre tahminidir."} Hat bilgisi: OpenStreetMap${E ? ", EGO" : ""}.</small>`;
+    const OP = P.opts || [], opH = OP.length > 1 ? `<div class="pto" role="tablist">${OP.map((o, i) => `<button type="button" role="tab" data-po="${i}" class="${i === ptSel ? "on" : ""}" aria-selected="${i === ptSel}"><b>~${durTxt(o.min)}</b><small>${esc(o.tags.join(" · "))}</small><span class="ptc">${o.legs.filter((x) => x.t === "r").map((x) => pill(x.l)).join("<i>›</i>")}</span><small>${o.tr ? o.tr + " aktarma" : "Aktarmasız"} · ${mTxt(o.walkM)} yürüme</small></button>`).join("")}</div>` : "";
+    sum.innerHTML = opH + `<div class="rs1"><b>~${durTxt(dur)}</b><span>${tr ? `${tr} aktarma` : "Aktarmasız"} · varış ~${at}</span></div><div class="ptc">${P.legs.map((x, i) => x.t === "r" ? pill(LN(x, i)) : "").filter(Boolean).join('<i>›</i>')}</div>${E?.yarin ? `<small class="go ptz2">Bu yolda bugün için sefer kalmamış olabilir; saatlere bak.</small>` : ""}${P.walkMin <= dur ? `<small class="go">Yürüyerek ~${durTxt(P.walkMin)}; yürümek daha kısa sürebilir.</small>` : ""}<small class="ptn">${E ? "Saatler EGO hareket saatlerine göre tahmindir; trafik hesaba girmez." : "Saatler gösterilmez; süre tahminidir."} Hat bilgisi: OpenStreetMap${E ? ", EGO" : ""}.</small>`;
     const RAIL = (l) => l && !["otobus", "dolmus"].includes(l.mode), yer = (l) => !l ? "durak" : l.mode === "vapur" ? "iskele" : RAIL(l) ? "istasyon" : "durak", noB = (r, l) => r ? ` <span class="ptd">Durak no ${esc(r)}</span>` : RAIL(l) ? ` <span class="ptd">${esc(l.ref || (PTM[l.mode] || PTM.otobus)[3])} ${{ istasyon: "istasyonu", iskele: "iskelesi", durak: "durağı" }[yer(l)]}</span>` : "";
     st.innerHTML = P.legs.map((x, i) => { if (x.t === "w") { const last = i === P.legs.length - 1, nx = P.legs[i + 1]?.l, wm = `${mTxt(x.d)} · ~${durTxt(Math.max(1, Math.round(x.d * 1.3 / 80)))}`;
         if (last) return `<li class="ptw pte"><i>🏁</i><span>Varış: <b>${esc(toName() || "varış yeri")}</b><small>${x.d >= 40 ? `İnince ${wm} yürü · ` : ""}varış ~${at}</small></span></li>`;
@@ -1875,6 +1891,7 @@ function routeSheet(e, v, city) {
       const g = E?.legs[i], tm = g ? `<em class="pts${g.yarin ? " ptz" : ""}">🕒 ${g.yarin ? `Bugün sefer kalmadı · yarın ~${hm(g.arr)}` : `Durağa tarifeye göre ~${hm(g.arr)}${g.nx != null ? ` · sonra ${hm(g.nx)}` : " · son sefer"}`}</em>` : "";
       const xl = LN(x, i);
       return `<li class="ptr" style="--c:${xl.col || "#8b5cf6"}"><i>${(PTM[xl.mode] || PTM.otobus)[0]}</i><span>${pill(xl, 1)} <b>${esc(HD(x, i))}</b> yönü${tm}<small>Biniş: ${esc(x.P[0].n || "—")}${x.P[0].r ? ` (durak no ${esc(x.P[0].r)})` : ""} · İniş: <b>${esc(x.P[x.P.length - 1].n || "—")}</b>${x.P[x.P.length - 1].r ? ` (durak no ${esc(x.P[x.P.length - 1].r)})` : ""} · ${x.P.length - 1} ${RAIL(x.l) ? "istasyon" : "durak"}</small>${x.l.mode === "otobus" || x.l.mode === "dolmus" ? `<details class="ptdl"><summary>Duraklar</summary><ol>${x.P.map((q) => `<li>${esc(q.n || "Durak")}${q.r ? ` <span class="ptd">${esc(q.r)}</span>` : ""}</li>`).join("")}</ol></details>` : ""}</span></li>`; }).join("");
+    sum.querySelectorAll("[data-po]").forEach((b) => b.addEventListener("click", (ev) => { ev.stopPropagation(); const i = +b.dataset.po; if (i === ptSel) return; haptic(6); snd.sel?.(); ptPaint(A, B, i); }));
     }; paint(null);
     C = [A, ...rides.flatMap((r) => r.P.map((q) => q.p)), B]; ptDraw(P.legs); cSet(cOpen, false); fitRoute();
     // tarife saatleri arkada gelir; ekran açık kaldıkça dakikada bir tazelenir (hesap küçük, takılma yok)
