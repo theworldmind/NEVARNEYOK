@@ -25,5 +25,5 @@ export const FEST = [
   { f: "bodrum", ad: "Bodrum Film Festivali", il: "mugla", site: "", re: /bodrum (uluslararasi )?film festival/ },
   { f: "antakya", ad: "Antakya Film Festivali", il: "hatay", site: "", re: /antakya (uluslararasi )?film festival/ },
   { f: "kayseri", ad: "Kayseri Film Festivali", il: "kayseri", site: "", re: /kayseri (uluslararasi )?film festival/ },
-  { f: "genel", ad: "Film festivali", il: "", site: "", re: /\bfilm festival|\bfestival\s*[-–:]\s/ }, // tanınmayan festival: Biletinial "Festival - <film>"
+  { f: "genel", ad: "Film festivali", il: "", site: "", re: /\bfilm festival|\bfestival\s*[-–:]\s|\bfilm gunleri|\bfilm haftasi|\bsinema gunleri|\bbelgesel gunleri/ }, // tanınmayan festival: Biletinial "Festival - <film>"
 ];

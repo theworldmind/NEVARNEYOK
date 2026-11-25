@@ -29,6 +29,7 @@ const which = (s) => { const x = fold(s); if (!x) return null; return FEST.find(
    Program sayfasındaki her film kartında ad, küçük afiş ve festivalin kendi seans satırı var:
    <h3><a href="mutter-…">MUTTER: … / MUTTER: The Diary of a Mother</a></h3> … <p class="list-group-item-warning …">15 Kasım Pazar 18.30 Salon 1<br> 17 Kasım …</p>
    Filmin sayfasındaki açıklama etiketinden ülke, yıl, süre ve yönetmen; <h5>'ten bölüm okunur. */
+const NOTFILM = /basvuru|yonetmelik|kurumsal|haberler|tarihce|ekip|sponsor|odul|iletisim|contact|^filmler$|-aff$|^index|search|user_|ustalik|atolye|soylesi|panel|masterclass|konser|acilis|kapanis|toren/;
 const EN_C = /\b(France|Germany|Belgium|Italy|Spain|Iran|Poland|Brazil|USA|United States|UK|United Kingdom|Japan|Greece|Romania|Netherlands|Denmark|Sweden|Norway|Austria|Switzerland|Portugal|Mexico|Argentina|Chile|Canada|China|South Korea|Korea|India|Russia|Ukraine|Georgia|Turkey|Türkiye|Bulgaria|Hungary|Czechia|Czech Republic|Slovakia|Serbia|Croatia|Bosnia and Herzegovina|Lebanon|Palestine|Israel|Egypt|Tunisia|Morocco|Algeria|Iraq|Syria|Jordan|Finland|Iceland|Ireland|Luxembourg|Estonia|Latvia|Lithuania|Colombia|Peru|Uruguay|Venezuela|Cuba|Philippines|Indonesia|Thailand|Vietnam|Taiwan|Hong Kong|Kazakhstan|Azerbaijan|Armenia|Afghanistan|Pakistan|Bangladesh|Nepal|Senegal|Nigeria|South Africa|Kenya|Cyprus|Albania|Kosovo|North Macedonia|Slovenia|Montenegro|Qatar|Saudi Arabia)\b/g;
 const country = (s) => { s = String(s || "").replace(EN_C, "").replace(/\s*,\s*(,\s*)*/g, ", ").replace(/^[\s,]+|[\s,]+$/g, ""); const w = s.split(" "); return w.length % 2 === 0 && w.slice(0, w.length / 2).join(" ") === w.slice(w.length / 2).join(" ") ? w.slice(0, w.length / 2).join(" ") : s; };
 const AYR = "ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık";
@@ -78,7 +79,7 @@ const byId = new Map((prev.festivals || []).map((x) => [x.id, x]));
 const notes = [];
 const slug = (s) => fold(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const ensure = (F, yil, il, name = "") => {
-  const gn = F.f === "genel" ? (name.match(/(?:\d+\.\s*)?([^:–|]*?film festival\S*)/i)?.[1] || "").trim() : "";
+  const gn = F.f === "genel" ? (name.match(/(?:\d+\.\s*)?([^:–|]*?(?:film festival|film günleri|film haftası|sinema günleri|belgesel günleri)\S*)/i)?.[1] || "").trim() : "";
   const id = F.f === "genel" ? `genel-${il}-${slug(gn || "gosterim")}-${yil}` : `${F.f}-${yil}`;
   let x = byId.get(id);
   if (!x) { const no = F.no ? F.no(yil) : 0; x = { id, f: F.f, ad: `${no ? no + ". " : ""}${F.f === "genel" ? (gn || "Film festivali gösterimleri") : F.ad}`, kisa: F.f === "genel" ? (gn || "Film festivali") : F.ad, il: F.il || il, yil, ...(no ? { no } : {}), site: F.site || "", url: F.program ? F.program(yil) : F.site || "", films: [], g: [] }; byId.set(id, x); }

@@ -83,7 +83,7 @@ function MORE() {
   return out;
 }
 
-const EVW = /festival|şenli[gğ]|konser|gösteri|sergi|tiyatro|oyun(u|unu)? sahnelen|sahnelenecek|sahne alacak|dinleti|resital|gala|fuar|panayır|söyleşi|seminer|konferans|panel|imza gün|konuşmacı|konuşacak|konuk olacak|buluşacak|buluşuyor|atölye|etkinli[gğ]|kutlama|anma töreni|yarışma|turnuva|maraton|uzatıldı|ek gösterim|biletler tükendi|ücretsiz/i;
+const EVW = /film gösterim|film günleri|film haftası|sinema günleri|belgesel gösterim|seyirciyle buluş|izleyiciyle buluş|perde açıl|festival|şenli[gğ]|konser|gösteri|sergi|tiyatro|oyun(u|unu)? sahnelen|sahnelenecek|sahne alacak|dinleti|resital|gala|fuar|panayır|söyleşi|seminer|konferans|panel|imza gün|konuşmacı|konuşacak|konuk olacak|buluşacak|buluşuyor|atölye|etkinli[gğ]|kutlama|anma töreni|yarışma|turnuva|maraton|uzatıldı|ek gösterim|biletler tükendi|ücretsiz/i;
 const NOT = /deprem|kaza|cinayet|gözaltı|tutuklan|yaralı|öldü|hayatını kaybet|operasyon|seçim|mahkeme|dolandır|yangın|sel |fırtına|trafik kazası|maç sonucu|transfer|borsa|dolar|enflasyon/i;
 const AY = ["ocak", "subat", "mart", "nisan", "mayis", "haziran", "temmuz", "agustos", "eylul", "ekim", "kasim", "aralik"];
 const AYR = "(ocak|şubat|subat|mart|nisan|mayıs|mayis|haziran|temmuz|ağustos|agustos|eylül|eylul|ekim|kasım|kasim|aralık|aralik)";
@@ -159,7 +159,7 @@ export function fixItem(x) {
 }
 const catOf = (name, title) => {
   const t = fold(title + " " + name);
-  const hint = /sergi/.test(t) ? "atolye" : /festival|senlik|fuar|panayir/.test(t) ? "festival" : /tiyatro|oyun|sahnelen/.test(t) ? "tiyatro" : /konser|dinleti|resital/.test(t) ? "konser"
+  const hint = /film (festival|gunleri|haftasi|gosterim)|sinema gunleri|belgesel gosterim|kisa film/.test(t) ? "sinema" : /sergi/.test(t) ? "atolye" : /festival|senlik|fuar|panayir/.test(t) ? "festival" : /tiyatro|oyun|sahnelen/.test(t) ? "tiyatro" : /konser|dinleti|resital/.test(t) ? "konser"
     : /gosteri|dans|bale|opera|sema/.test(t) ? "sahne" : /cocuk|aile/.test(t) ? "cocuk" : /soylesi|seminer|konferans|imza gun|atolye|panel/.test(t) ? "atolye" : "";
   return hint || fixCat({ cat: guessCat({ title: name + " " + title }), title: name, venue: "" });
 };
