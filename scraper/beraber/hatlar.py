@@ -92,6 +92,77 @@ for ref, name, fr, to, W in H1.fr:
 for ref, name, a, b in G1.fway: fline(ref, name, [a, b])
 print("vapur hattı (iskeleden)", nf, "iskele", len(G1.term))
 print("durak no olan", sum(1 for x in S if len(x) > 3)); print("hat", len(lines), "durak", len(S), collections.Counter(l[2] for l in lines).most_common())
+# ---- Belediyelerin açık GTFS verileri (25.11.2026, kullanıcı: "Ankara dışında iyi hizmet vermiyor; Samsun'da tramvay otobüs, başka illerde de opsiyonlar"):
+# Türkiye'deki bütün GTFS kayıtları MobilityDatabase'in açık kataloğundan (anahtarsız) kendiliğinden bulunur; yeni bir belediye veri yayınlayınca kendiliğinden girer.
+# Her hat ve yön için en çok duraklı sefer temsilîdir; günlük sefer sayısından ortalama bekleme (aralığın yarısı, 3–60 dk). Aynı karodaki aynı numaralı
+# OSM otobüs hattı GTFS varsa bırakılır (GTFS durak sırası daha eksiksiz). Kaynak ve lisans rapora yazılır.
+import csv, io, zipfile, urllib.request
+def get(u, t=120):
+    try: return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "NeVarNeYokBot/1.0 (+https://nevarneyok.net.tr)"}), timeout=t).read()
+    except Exception as e: print("  indirilemedi:", u, str(e)[:80]); return None
+GT_MODE = {0: "tram", 1: "metro", 2: "tren", 3: "otobus", 4: "vapur", 5: "teleferik", 6: "teleferik", 7: "teleferik", 11: "otobus", 12: "hafif"}
+def gmode(rt):
+    rt = int(rt or 3)
+    if rt in GT_MODE: return GT_MODE[rt]
+    return "tren" if 100 <= rt < 200 else "otobus" if 200 <= rt < 300 or 700 <= rt < 800 else "metro" if 400 <= rt < 500 else "tram" if 900 <= rt < 1000 else "vapur" if 1000 <= rt < 1300 else "teleferik" if 1300 <= rt < 1500 else "otobus"
+gsrc, glines = [], []
+cat = get("https://files.mobilitydatabase.org/feeds_v2.csv") or get("https://bit.ly/catalogs-csv")
+feeds = []
+if cat:
+    for r in csv.DictReader(io.StringIO(cat.decode("utf8", "replace"))):
+        if (r.get("location.country_code") or "").upper() == "TR" and (r.get("data_type") or "gtfs") == "gtfs" and (r.get("status") or "") not in ("deprecated", "inactive"):
+            feeds.append(r)
+print("GTFS: Türkiye'de", len(feeds), "kayıt")
+for r in feeds:
+    url = r.get("urls.latest") or r.get("urls.direct_download")
+    z = get(url, 300) if url else None
+    if not z and r.get("urls.direct_download") and url != r.get("urls.direct_download"): z = get(r["urls.direct_download"], 300)
+    if not z: gsrc.append({"ad": r.get("provider"), "il": r.get("location.municipality") or r.get("location.subdivision_name"), "durum": "indirilemedi"}); continue
+    try: Z = zipfile.ZipFile(io.BytesIO(z))
+    except Exception: gsrc.append({"ad": r.get("provider"), "durum": "bozuk"}); continue
+    names = {n.split("/")[-1]: n for n in Z.namelist()}
+    rd = lambda f: csv.DictReader(io.TextIOWrapper(Z.open(names[f]), encoding="utf-8-sig", errors="replace")) if f in names else []
+    if not all(f in names for f in ("stops.txt", "routes.txt", "trips.txt", "stop_times.txt")): gsrc.append({"ad": r.get("provider"), "durum": "eksik dosya"}); continue
+    ST = {}
+    for x in rd("stops.txt"):
+        try: ST[x["stop_id"]] = ((x.get("stop_name") or "").strip(), round(float(x["stop_lat"]), 5), round(float(x["stop_lon"]), 5), (x.get("stop_code") or "").strip()[:12])
+        except Exception: pass
+    RT = {x["route_id"]: ((x.get("route_short_name") or "").strip(), (x.get("route_long_name") or "").strip(), gmode(x.get("route_type")), (x.get("route_color") or "").strip()) for x in rd("routes.txt")}
+    TR = {}
+    for x in rd("trips.txt"): TR[x["trip_id"]] = (x["route_id"], x.get("direction_id") or "0", x.get("trip_headsign") or "", x.get("service_id") or "")
+    seqs = collections.defaultdict(list)
+    for x in rd("stop_times.txt"):
+        t = x.get("trip_id")
+        if t in TR:
+            try: seqs[t].append((int(x.get("stop_sequence") or 0), x["stop_id"]))
+            except Exception: pass
+    # hat+yön: en çok duraklı sefer; sefer sayısı = en kalabalık hizmet gününün seferleri
+    best, cnt = {}, collections.Counter()
+    for t, L in seqs.items():
+        rid, d, hs, sv = TR[t]; k = (rid, d); cnt[(rid, d, sv)] += 1
+        if k not in best or len(L) > len(best[k][1]): best[k] = (hs, L)
+    n0 = 0
+    for (rid, d), (hs, L) in best.items():
+        if rid not in RT: continue
+        ref, ln, mode, col = RT[rid]; seq = []
+        for _, sid0 in sorted(L):
+            p = ST.get(sid0)
+            if not p: continue
+            i = sid(p[0], p[1], p[2], p[3])
+            if not seq or seq[-1] != i: seq.append(i)
+        if len(seq) < 2: continue
+        trips = max([c for (a, b, sv), c in cnt.items() if a == rid and b == d] or [0])
+        w = min(60, max(3, round(960 / trips / 2))) if trips else 0
+        glines.append([ref or ln[:12], (hs or ln or ref), mode, ("#" + col) if col and not col.startswith("#") else col, 1, seq, w]); n0 += 1
+    gsrc.append({"ad": r.get("provider"), "il": r.get("location.municipality") or r.get("location.subdivision_name"), "hat": n0, "lisans": r.get("urls.license") or "", "kaynak": r.get("urls.direct_download") or url})
+    print("  GTFS", r.get("provider"), "·", r.get("location.municipality") or r.get("location.subdivision_name"), "·", n0, "hat-yön")
+if glines:
+    cell = lambda i: f"{math.floor(S[i][1])}_{math.floor(S[i][2])}"
+    gk = {(L[0], cell(L[5][0])) for L in glines if L[2] in ("otobus", "dolmus")}
+    before = len(lines); lines = [L for L in lines if not (L[2] in ("otobus", "dolmus") and (L[0], cell(L[5][0])) in gk)]
+    print("GTFS:", len(glines), "hat-yön eklendi;", before - len(lines), "OSM otobüs hattı GTFS ile değişti")
+    lines += glines
+json.dump(gsrc, open(f"{OUT}/gtfs.json", "w"), ensure_ascii=False)
 # 1° karolara böl: hattın dokunduğu her karoya hattın tamamı (duraklarıyla) yazılır
 T = collections.defaultdict(set)
 for li, L in enumerate(lines):
@@ -104,12 +175,12 @@ for c, LI in T.items():
         for i in L[5]:
             if i not in idx: idx[i] = len(ss); ss.append(S[i])
             q.append(idx[i])
-        hh.append(L[:5] + [q])
+        hh.append(L[:5] + [q] + ([L[6]] if len(L) > 6 and L[6] else []))
     b = json.dumps({"s": ss, "h": hh}, ensure_ascii=False, separators=(",", ":")); tot += len(b); open(f"{OUT}/{c}.json", "w", encoding="utf8").write(b)
 # şehir şehir kapsam raporu
-C = {"ankara": (39.93, 32.86), "istanbul": (41.02, 28.98), "izmir": (38.42, 27.14), "bursa": (40.19, 29.06), "antalya": (36.9, 30.7), "konya": (37.87, 32.49), "kayseri": (38.72, 35.49), "eskisehir": (39.78, 30.52), "gaziantep": (37.07, 37.38), "kocaeli": (40.77, 29.92), "samsun": (41.29, 36.33), "adana": (37.0, 35.32), "mersin": (36.8, 34.63), "trabzon": (41.0, 39.72), "erzurum": (39.9, 41.27), "diyarbakir": (37.91, 40.24)}
+C = json.load(open(os.path.join(os.path.dirname(__file__), "il-merkez.json"))) if os.path.exists(os.path.join(os.path.dirname(__file__), "il-merkez.json")) else {"ankara": (39.93, 32.86), "istanbul": (41.02, 28.98), "izmir": (38.42, 27.14), "bursa": (40.19, 29.06), "antalya": (36.9, 30.7), "konya": (37.87, 32.49), "kayseri": (38.72, 35.49), "eskisehir": (39.78, 30.52), "gaziantep": (37.07, 37.38), "kocaeli": (40.77, 29.92), "samsun": (41.29, 36.33), "adana": (37.0, 35.32), "mersin": (36.8, 34.63), "trabzon": (41.0, 39.72), "erzurum": (39.9, 41.27), "diyarbakir": (37.91, 40.24)}
 rep = {}
 for k, (a, o) in C.items():
     near = [L for L in lines if any(abs(S[i][1] - a) < .35 and abs(S[i][2] - o) < .45 for i in L[5][:3] + L[5][-3:])]
     rep[k] = dict(collections.Counter(l[2] for l in near))
-print(json.dumps(rep, ensure_ascii=False)); json.dump({"hat": len(lines), "durak": len(S), "karo": len(T), "mb": round(tot / 1e6, 1), "il": rep}, open(f"{OUT}/rapor.json", "w"), ensure_ascii=False)
+print(json.dumps(rep, ensure_ascii=False)); json.dump({"hat": len(lines), "durak": len(S), "karo": len(T), "mb": round(tot / 1e6, 1), "il": rep, "gtfs": gsrc}, open(f"{OUT}/rapor.json", "w"), ensure_ascii=False)
