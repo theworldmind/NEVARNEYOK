@@ -7,6 +7,10 @@ on:
       urls:
         description: "Boşlukla ayrılmış adresler (boş bırakılabilir)"
         required: false
+      sinema:
+        description: "Sinema zincirlerinin halk günü/indirim/fiyat sayfalarını incele (sinema-kesif.mjs)"
+        type: boolean
+        default: false
       denetim:
         description: "Kapsam denetimini de çalıştır (yalnızca günlüğe yazar, depoya kaydetmez)"
         type: boolean
@@ -36,7 +40,12 @@ jobs:
         env:
           URLS: ${{ github.event.inputs.urls }}
           PROBE_FULL: "1"
-        run: '[ -z "$URLS" ] || node probe.mjs $URLS'
+        run: '[ -z "$URLS" ] || [ "${{ github.event.inputs.sinema }}" = "true" ] || node probe.mjs $URLS'
+      - name: Sinema indirimleri (keşif)
+        if: github.event.inputs.sinema == 'true'
+        working-directory: scraper
+        env: { URLS: "${{ github.event.inputs.urls }}", RENDER: "1" }
+        run: node sinema-kesif.mjs
       - name: Kapsam denetimi (deneme)
         if: github.event.inputs.denetim == 'true'
         working-directory: scraper
