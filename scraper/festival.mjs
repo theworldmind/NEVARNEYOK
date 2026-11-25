@@ -30,8 +30,12 @@ const which = (s) => { const x = fold(s); if (!x) return null; return FEST.find(
    <h3><a href="mutter-…">MUTTER: … / MUTTER: The Diary of a Mother</a></h3> … <p class="list-group-item-warning …">15 Kasım Pazar 18.30 Salon 1<br> 17 Kasım …</p>
    Filmin sayfasındaki açıklama etiketinden ülke, yıl, süre ve yönetmen; <h5>'ten bölüm okunur. */
 const NOTFILM = /basvuru|yonetmelik|kurumsal|haberler|tarihce|ekip|sponsor|odul|iletisim|contact|^filmler$|-aff$|^index|search|user_|ustalik|atolye|soylesi|panel|masterclass|konser|acilis|kapanis|toren/;
-const EN_C = /\b(France|Germany|Belgium|Italy|Spain|Iran|Poland|Brazil|USA|United States|UK|United Kingdom|Japan|Greece|Romania|Netherlands|Denmark|Sweden|Norway|Austria|Switzerland|Portugal|Mexico|Argentina|Chile|Canada|China|South Korea|Korea|India|Russia|Ukraine|Georgia|Turkey|Türkiye|Bulgaria|Hungary|Czechia|Czech Republic|Slovakia|Serbia|Croatia|Bosnia and Herzegovina|Lebanon|Palestine|Israel|Egypt|Tunisia|Morocco|Algeria|Iraq|Syria|Jordan|Finland|Iceland|Ireland|Luxembourg|Estonia|Latvia|Lithuania|Colombia|Peru|Uruguay|Venezuela|Cuba|Philippines|Indonesia|Thailand|Vietnam|Taiwan|Hong Kong|Kazakhstan|Azerbaijan|Armenia|Afghanistan|Pakistan|Bangladesh|Nepal|Senegal|Nigeria|South Africa|Kenya|Cyprus|Albania|Kosovo|North Macedonia|Slovenia|Montenegro|Qatar|Saudi Arabia)\b/g;
-const country = (s) => { s = String(s || "").replace(EN_C, "").replace(/\s*,\s*(,\s*)*/g, ", ").replace(/^[\s,]+|[\s,]+$/g, ""); const w = s.split(" "); return w.length % 2 === 0 && w.slice(0, w.length / 2).join(" ") === w.slice(w.length / 2).join(" ") ? w.slice(0, w.length / 2).join(" ") : s; };
+const ULKE = ["Türkiye","ABD","Amerika Birleşik Devletleri","İngiltere","Birleşik Krallık","Fransa","Almanya","Belçika","İtalya","İspanya","Portekiz","Hollanda","Lüksemburg","İsviçre","Avusturya","Danimarka","İsveç","Norveç","Finlandiya","İzlanda","İrlanda","Polonya","Çekya","Çek Cumhuriyeti","Slovakya","Macaristan","Romanya","Bulgaristan","Yunanistan","Kıbrıs","Sırbistan","Hırvatistan","Bosna Hersek","Slovenya","Karadağ","Arnavutluk","Kosova","Kuzey Makedonya","Estonya","Letonya","Litvanya","Ukrayna","Rusya","Belarus","Gürcistan","Ermenistan","Azerbaycan","Kazakistan","Kırgızistan","Özbekistan","Türkmenistan","Tacikistan","İran","Irak","Suriye","Lübnan","Ürdün","Filistin","İsrail","Mısır","Tunus","Fas","Cezayir","Libya","Suudi Arabistan","Katar","Birleşik Arap Emirlikleri","Afganistan","Pakistan","Hindistan","Bangladeş","Nepal","Sri Lanka","Çin","Tayvan","Hong Kong","Japonya","Güney Kore","Kore","Filipinler","Endonezya","Malezya","Singapur","Tayland","Vietnam","Kamboçya","Moğolistan","Avustralya","Yeni Zelanda","Kanada","Meksika","Brezilya","Arjantin","Şili","Kolombiya","Peru","Uruguay","Venezuela","Küba","Senegal","Nijerya","Güney Afrika","Kenya","Etiyopya","Gana","Kamerun","Tanzanya","Uganda","Ruanda","Mali","Burkina Faso","Fildişi Sahili","Kongo","Somali","Sudan"];
+const country = (s) => { s = String(s || ""); const hit = ULKE.map((u) => [u, s.indexOf(u)]).filter(([u, i]) => i >= 0 && !ULKE.some((v) => v !== u && v.includes(u) && s.includes(v))).sort((a, b) => a[1] - b[1]).map(([u]) => u); return [...new Set(hit)].join(", "); };
+const smallW = new Set(["ve", "ile", "ya", "da", "de", "ki", "mi", "bir", "için", "and", "of", "the", "a", "an", "in", "on", "to", "for", "at", "from", "with"]);
+const tcase = (t, eng = false) => { t = String(t || "").trim(); const lo = (x) => eng ? x.toLowerCase() : x.toLocaleLowerCase("tr"), up = (x) => eng ? x.toUpperCase() : x.toLocaleUpperCase("tr");
+  const l = t.replace(/[^A-Za-zÇĞİÖŞÜçğıöşü]/g, ""); if (!l || l !== up(l)) return t;
+  return lo(t).split(/(\s+|-|“|")/).map((w, i) => !w.trim() || (i > 0 && smallW.has(w)) ? w : up(w.charAt(0)) + w.slice(1)).join("").replace(/(^|[:.!?]\s+)([a-zçğıöşü])/g, (m, a, c) => a + up(c)); };
 const AYR = "ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık";
 async function affProgram(url, base, yil, venue) {
   const r = await fetchText(url, { retries: 1 }); if (r.status !== 200 || !r.text) return { films: [], g: [], err: `program ${r.status || r.error}` };
@@ -41,7 +45,7 @@ async function affProgram(url, base, yil, venue) {
   for (const c of cards) {
     const a = c.match(/<h3[^>]*>\s*<a[^>]+href="(?:https?:\/\/filmfestankara\.org\.tr\/)?\/?([a-z0-9-]+)"[^>]*>([\s\S]*?)<\/a>/i); if (!a) continue;
     const slug = a[1], title = txt(a[2]); if (seen.has(slug) || NOTFILM.test(slug)) continue; seen.add(slug);
-    const [tr, en] = title.split(" / ").map((x) => x.trim()); const k = tkey(tr);
+    const [tr0, en0] = title.split(" / ").map((x) => x.trim()); const tr = tcase(tr0), en = en0 ? tcase(en0, true) : ""; const k = tkey(tr);
     const img = (c.match(/background-image:url\(([^)]+)\)/i) || [])[1] || "";
     const sch = txt((c.match(/class="list-group-item-warning[^"]*"[^>]*>([\s\S]*?)<\/p>/i) || [])[1]);
     for (const m of sch.matchAll(new RegExp(`(\\d{1,2})\\s+(${AYR})\\s+\\S+\\s+(\\d{1,2})[.:](\\d{2})\\s*(salon\\s*\\d+)?`, "gi"))) {
@@ -56,9 +60,10 @@ async function affProgram(url, base, yil, venue) {
     const h = p.text, md = ent((h.match(/<meta name="description" content="([^"]*)"/i) || [])[1]);
     const parts = md.split("/").map((x) => x.trim());
     const yr = +(md.match(/\/\s*((?:19|20)\d\d)\s*\//) || [])[1] || 0, dur = +(md.match(/\/\s*(\d{1,3})\s*[’']/) || [])[1] || 0;
-    const dir = (md.match(/Yönetmen\s*(?:Director)?\s*:\s*(.+?)(?:\s+(?:Senaryo|Screenplay|Oyuncular|Cast|Görüntü|Yapımcı)\b|\.\.\.|$)/i) || [])[1] || "";
+    const body = txt(h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " "));
+    const dir = ((body + " " + md).match(/Yönetmen\s*(?:Director)?\s*:\s*(.+?)(?=\s+(?:Senaryo|Screenplay|Oyuncular|Cast|Görüntü|Cinematography|Yapımcı|Producer|Müzik|Music|Kurgu|Editor|Yapım|Production)\b|\.\.\.|$)/i) || [])[1] || "";
     const bol = txt((h.match(/<h5>([\s\S]*?)<\/h5>/i) || [])[1]), tur = txt((h.match(/<div class="d-none">\s*<h4>([\s\S]*?)<\/h4>/i) || [])[1]);
-    Object.assign(f, { ...(parts[0] && yr ? { cn: country(parts[0]) } : {}), ...(yr ? { y: yr } : {}), ...(dur > 0 && dur < 400 ? { dur } : {}), ...(dir ? { dir: dir.trim().slice(0, 90) } : {}), ...(bol ? { bol } : {}), ...(tur ? { tur } : {}) });
+    Object.assign(f, { ...(yr ? { cn: country(md.split(String(yr))[0]) } : {}), ...(yr ? { y: yr } : {}), ...(dur > 0 && dur < 400 ? { dur } : {}), ...(dir ? { dir: dir.trim().slice(0, 90) } : {}), ...(bol ? { bol } : {}), ...(tur ? { tur } : {}) });
   }
   return { films: films.filter((f) => f.bol || f.y || !f.nos), g, range };
 }
@@ -89,10 +94,10 @@ const ensure = (F, yil, il, name = "") => {
 for (const F of FEST.filter((F) => F.program)) {
   for (const yil of [Y, Y - 1, Y - 2, Y - 3, Y - 4]) {
     const x = ensure(F, yil, F.il);
-    const fresh = x.films?.length && x.pAt && (yil < Y || (x.bit && x.bit < T && x.pAt > x.bit)); // biten festivalin programı bir daha çekilmez
+    const fresh = x.pv === 2 && x.films?.length && x.pAt && (yil < Y || (x.bit && x.bit < T && x.pAt > x.bit)); // biten festivalin programı bir daha çekilmez
     if (fresh) continue;
     const p = await affProgram(x.url, F.site, yil, "Büyülü Fener Kızılay");
-    if (p.films.length) { x.films = p.films; x.pAt = T; }
+    if (p.films.length) { x.films = p.films; x.pAt = T; x.pv = 2; }
     if (p.g.length) { x.resmi = p.g; const ds = p.g.map((r) => r[0]).sort(); if (!p.range) { x.bas = ds[0]; x.bit = ds.at(-1); } } // festivalin kendi seans çizelgesi
     if (p.range) { const [, a, b, ay, y] = p.range, m = AYL[fold(ay)]; x.bas = iso(y, m, a); x.bit = iso(y, m, b); }
     notes.push(`${x.ad}: programda ${p.films.length} film, ${p.g.length} resmî seans${p.err ? " · " + p.err : ""}${p.range ? ` · ${x.bas}–${x.bit}` : ""}`);
