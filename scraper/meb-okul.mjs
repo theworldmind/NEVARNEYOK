@@ -8,19 +8,23 @@ await mkdir(OUT, { recursive: true });
 let DB = {}; try { DB = JSON.parse(await readFile(`${OUT}/okullar.json`, "utf8")); } catch {}
 const today = new Date().toISOString().slice(0, 10), ago = (d) => (Date.parse(today) - Date.parse(d || "2000-01-01")) / 864e5;
 const dec = (s) => s.replace(/&amp;/g, "&").replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
-// 1) il il liste
+// 1) il il liste: sayfanın kendi kullandığı okullar_ajax.php (DataTables, sayfa sayfa)
+import { robotsAllows, BOT } from "./lib/net.mjs";
+const LU = "https://www.meb.gov.tr/baglantilar/okullar/okullar_ajax.php", UA = `Mozilla/5.0 (compatible; ${BOT}/1.0; +https://nevarneyok.net.tr/#/bilgi/iletisim)`;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const page = async (il, start, len) => { for (let k = 0; k < 3; k++) { try { const body = new URLSearchParams({ draw: "1", start: String(start), length: String(len), "search[value]": "", "search[regex]": "false", "order[0][column]": "0", "order[0][dir]": "asc", "columns[0][data]": "OKUL_ADI", il: String(il), ilce: "0" });
+  const r = await fetch(LU, { method: "POST", body, headers: { "user-agent": UA, "content-type": "application/x-www-form-urlencoded; charset=UTF-8", "x-requested-with": "XMLHttpRequest", referer: `https://www.meb.gov.tr/baglantilar/okullar/index.php?ILKODU=${il}` }, signal: AbortSignal.timeout(30000) });
+  if (r.ok) return await r.json(); } catch {} await sleep(4000 * (k + 1)); } return null; };
 let seen = 0;
-for (let il = 1; il <= 81 && Date.now() < END; il++) {
-  const r = await fetchText(`https://www.meb.gov.tr/baglantilar/okullar/index.php?ILKODU=${il}`, { gap: 1500, retries: 2 });
-  let n = 0;
-  for (const m of (r.text || "").matchAll(/<a href="https?:\/\/([a-z0-9-]+\.meb\.k12\.tr)\/?"[^>]*>\s*([^<]+?)\s*<\/a>/gi)) {
-    const host = m[1].toLowerCase(), parts = dec(m[2]).split(" - ");
-    if (parts.length < 3) continue;
-    const [pil, pilce, ...rest] = parts, ad = rest.join(" - ");
-    const x = DB[host] || [ad, pil, pilce, null, null, ""]; x[0] = ad; x[1] = pil; x[2] = pilce; DB[host] = x; n++;
-  }
-  seen += n; if (!n) console.log("liste boş: il", il, r.status, r.error || "");
-}
+if ((await robotsAllows(LU)).ok) for (let il = 1; il <= 81 && Date.now() < END; il++) {
+  let start = 0, total = 1, n = 0; const LEN = 250;
+  while (start < total && Date.now() < END) { const j = await page(il, start, LEN); await sleep(1500); if (!j) { console.log("liste alınamadı: il", il, "başlangıç", start); break; }
+    total = +j.recordsFiltered || +j.recordsTotal || 0; const D = j.data || [];
+    for (const x of D) { const host = String(x.HOST || "").toLowerCase().replace(/\.meb\.k12\.tr$/, ""); if (!/^[a-z0-9-]+$/.test(host)) continue; const parts = dec(String(x.OKUL_ADI || "")).split(" - "); if (parts.length < 3) continue;
+      const [pil, pilce, ...rest] = parts, h = host + ".meb.k12.tr", y = DB[h] || [rest.join(" - "), pil, pilce, null, null, ""]; y[0] = rest.join(" - "); y[1] = pil; y[2] = pilce; DB[h] = y; n++; }
+    if (!D.length) break; start += D.length; }
+  seen += n; if (il === 1 || il === 6 || !n) console.log("il", il, "kurum", n, "/", total);
+} else console.log("robots.txt liste adresine izin vermiyor");
 console.log("listede kurum:", seen, "· toplam kayıt:", Object.keys(DB).length);
 // 2) konumu olmayanlar (ya da 90 günden eski denemeler) — kendi harita sayfalarından
 const todo = Object.entries(DB).filter(([, x]) => x[3] == null && ago(x[5]) > 20 || x[3] != null && ago(x[5]) > 90).sort((a, b) => (a[1][5] || "").localeCompare(b[1][5] || "")).slice(0, MAX);
