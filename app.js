@@ -2869,9 +2869,9 @@ function viewHarita(city, Q = {}) {
   const ADRC = new Map(), adrGet = (c) => { if (!ADRC.has(c)) ADRC.set(c, fetch(`/yv/adr/${c}.json`).then((r) => r.ok && /json/.test(r.headers.get("content-type") || "") ? r.json() : null).catch(() => null)); return ADRC.get(c); };
   const ABR = [[/\b(sk|sok|skk)\b/g, "sokak"], [/\b(cd|cad|cadd)\b/g, "cadde"], [/\b(blv|bul|bulv)\b/g, "bulvar"], [/\b(mah|mh)\b/g, "mahalle"]];
   const canon = (t) => ABR.reduce((z, [r, v]) => z.replace(r, v), fold(t).replace(/sokagi/g, "sokak").replace(/caddesi/g, "cadde").replace(/bulvari/g, "bulvar").replace(/mahallesi/g, "mahalle")).replace(/\s+/g, " ").trim();
-  const adrFind = async (raw, ll) => { const q = canon(raw), num = (q.match(/(?:^|\s)(?:no\s*)?(\d{1,4}[a-z]?)(?=\s|$)/) || [])[1] || "";
+  const adrFind = async (raw, ll, ll2) => { const q = canon(raw), num = (q.match(/(?:^|\s)(?:no\s*)?(\d{1,4}[a-z]?)(?=\s|$)/) || [])[1] || "";
     const W = q.split(" ").filter((w) => w && w !== num && w !== "no" && w.length > 1); if (!W.length || (!num && !W.some((w) => /^(sokak|cadde|bulvar)$/.test(w)))) return [];
-    const S = new Set(); for (const d of [-.1, 0, .1]) for (const e of [-.1, 0, .1]) S.add(yvCell(ll[0] + d, ll[1] + e));
+    const S = new Set(); for (const c of [ll, ...(ll2 ? [ll2] : [])]) for (const d of [-.1, 0, .1]) for (const e of [-.1, 0, .1]) S.add(yvCell(c[0] + d, c[1] + e));
     const D = (await Promise.all([...S].map(adrGet))).filter(Boolean), R = [], ok = (st) => { const c = canon(st); return W.every((w) => c.includes(w)); };
     for (const d of D) { if (num) for (const x of d.a || []) if ((x[1].match(/^\d+[a-z]?/i) || [""])[0].toLowerCase() === num && ok(x[0])) R.push({ n: `${x[0]} No:${x[1]}`, s: "Adres", ll: [x[2], x[3]], m: `${fold(raw)} ${q}`, adr: 1 });
       if (!num) for (const x of d.s || []) if (ok(x[0])) R.push({ n: x[0], s: "Sokak", ll: [x[1], x[2]], m: `${fold(raw)} ${q}`, adr: 1 }); }
@@ -3193,7 +3193,7 @@ function viewHarita(city, Q = {}) {
     const wsig = (w) => !GEN.has(w) && w.length > 2; const lastW = [...sig].reverse().find(wsig) || "";
     setTimeout(async () => { if (my !== pq) return;
       const locP = Promise.all([...new Set([ll, cc].map((c) => c.map((v) => v.toFixed(1)).join(",")))].map((k) => yvAll(k.split(",").map(Number), .1).catch(() => []))).then((A) => A.flat().filter((y) => y && y[0]).map((y) => ({ n: hukName(y[0], y[1], y[2]), s: "Mekân", ll: [y[1], y[2]], loc: 1 })));
-      const [L0, L1, A0, LC0, AD] = await Promise.all([photon(q, ll, 12, BOX), core && core !== q ? photon(core, ll, 8, BOX) : [], key.length && key.length < sig.length ? photon(key.join(" "), ll, 4, BOX) : [], locP, adrFind(q, cityHit ? cc : ll).catch(() => [])]); if (my !== pq || res.hidden) return; const LC = [...AD, ...LC0];
+      const [L0, L1, A0, LC0, AD] = await Promise.all([photon(q, ll, 12, BOX), core && core !== q ? photon(core, ll, 8, BOX) : [], key.length && key.length < sig.length ? photon(key.join(" "), ll, 4, BOX) : [], locP, adrFind(q, ll, cc).catch(() => [])]); if (my !== pq || res.hidden) return; const LC = [...AD, ...LC0];
       let P0 = [...L0, ...L1]; if (!P0.some((x) => full(x.n)) && !LC.some((x) => full(nm(x)))) { const T = await photon(q, cc, 8); if (my !== pq || res.hidden) return; P0 = [...P0, ...T.filter((x) => full(x.n))]; }
       const hit = (n) => { const f = fold(n); return sig.filter((w) => wsig(w) && f.includes(w)).length; };
       const seen = new Set(), L = [...LC.filter((x) => hit(nm(x))), ...P0].filter((x) => { if (!x.n) return false; const k = fold(x.n).replace(/[^a-z0-9]/g, ""); if ([...seen].some((z) => z[0] === k && km(z[1], x.ll) < .25)) return false; seen.add([k, x.ll]); return true; })
