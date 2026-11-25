@@ -133,6 +133,7 @@ for r in feeds:
     url = r.get("urls.latest") or r.get("urls.direct_download")
     z = get(url, 300) if url else None
     if not z and r.get("urls.direct_download") and url != r.get("urls.direct_download"): z = get(r["urls.direct_download"], 300)
+    if not z and r.get("id"): url = f"https://files.mobilitydatabase.org/{r['id']}/latest.zip"; z = get(url, 300)  # belediye sunucusu yurt dışına kapalıysa katalogdaki kopya
     if not z: gsrc.append({"ad": r.get("provider"), "il": r.get("location.municipality") or r.get("location.subdivision_name"), "durum": "indirilemedi"}); continue
     try: Z = zipfile.ZipFile(io.BytesIO(z))
     except Exception: gsrc.append({"ad": r.get("provider"), "durum": "bozuk"}); continue
