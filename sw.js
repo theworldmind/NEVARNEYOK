@@ -24,18 +24,21 @@ async function run() {
   for (const c of [...new Set(Object.values(fl).map((f) => f.city || "ankara"))]) { try { const fd = await (await fetch(c === "ankara" ? "data/films.json" : `data/c/${c}-films.json`, { cache: "no-store" })).json(); const r = NV.watchF(Object.fromEntries(Object.entries(fl).filter(([, f]) => (f.city || "ankara") === c)), fd.films || [], c, ""); Object.assign(fl, r.films); msgs = msgs.concat(r.msgs); } catch {} }
   await NV.set("films", fl);
   const cfg = await NV.get("ncfg"); msgs = msgs.filter((m) => NV.allow(m, cfg));
-  for (const m of msgs.slice(0, 4)) await self.registration.showNotification(m.title, { body: m.body, tag: m.tag, icon: "icons/icon-192.png", badge: "icons/icon-192.png", data: { url: m.url } });
+  let shown = 0;
+  for (const m of msgs.slice(0, 4)) shown++, await self.registration.showNotification(m.title, { body: m.body, tag: m.tag, icon: "icons/icon-192.png", badge: "icons/icon-192.png", data: { url: m.url } });
   // gün içinde beş güzel söz (arada bir etkinlik önerisi); her dilimde en çok bir, veri inmese de gider (NV.digest)
   const last = await NV.get("dgSlots"), dg = NV.digest(mine || [], prefs, last, city);
   if (dg && !msgs.length && NV.allow(dg, cfg)) { await self.registration.showNotification(dg.title, { body: dg.body, tag: dg.tag + "-" + dg.slot, icon: "icons/icon-192.png", badge: "icons/icon-192.png", ...(dg.image ? { image: dg.image } : {}), vibrate: [40, 60, 40], data: { url: dg.url } });
-    const t = NV.today(); await NV.set("dgSlots", { d: t, s: [...(last && last.d === t ? last.s || [] : []), dg.slot] }); }
+    const t = NV.today(); await NV.set("dgSlots", { d: t, s: [...(last && last.d === t ? last.s || [] : []), dg.slot] }); shown++; }
+  return shown;
 }
 self.addEventListener("periodicsync", (e) => { if (e.tag === "nvny-takip") e.waitUntil(run().catch(() => {})); });
 self.addEventListener("message", (e) => { if (e.data === "nvny-check") e.waitUntil(run().catch(() => {})); });
-/* Grup sohbeti bildirimi (Web Push, yükü boş): gelince kendi yeni mesajlarını sunucudan çeker; her grup tek bildirim, üstte "Kişi: mesaj". */
+/* Anlık bildirim (Web Push, yükü boş; 25.11.2026: takip, hatırlatma ve günün sözleri de buradan, gerçek saatinde). Grup sohbeti: gelince kendi yeni mesajlarını sunucudan çeker; her grup tek bildirim, üstte "Kişi: mesaj". */
 self.addEventListener("push", (e) => e.waitUntil((async () => {
   let L = []; try { const s = await self.registration.pushManager.getSubscription(); const r = await fetch("https://nvny-yer.nevarneyok.workers.dev/api/push/son", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ep: s ? s.endpoint : "" }) }); L = ((await r.json()) || {}).ogeler || []; } catch (x) {}
-  if (!L.length) return self.registration.showNotification("Ne Var Ne Yok", { body: "Grubunda yeni mesaj var 💬", icon: "icons/icon-192.png?v=3", badge: "icons/icon-192.png?v=3", tag: "grup-mesaj" });
+  // grup mesajı yoksa bu bir uyandırmadır (Worker zamanlayıcısı: günün dilimi ya da "az kaldı"): takip değişiklikleri, hatırlatmalar ve günün sözü
+  if (!L.length) { await run().catch(() => 0); return; }
   for (const x of L) await self.registration.showNotification("👥 " + x.baslik, { body: x.kim + ": " + x.yazi + (x.n > 1 ? "  (+" + (x.n - 1) + ")" : ""), icon: "icons/icon-192.png?v=3", badge: "icons/icon-192.png?v=3", tag: "g-" + x.grup, renotify: true, data: { url: "/#/g/" + x.grup } });
 })()));
 self.addEventListener("notificationclick", (e) => {
