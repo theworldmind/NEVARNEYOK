@@ -61,9 +61,9 @@ for line in open("/tmp/poi.seq", encoding="utf8"):
             if v and v not in OJ: t, kd = "yer", k + "/" + v; break
     if not t:  # adı olan bina (apartman, yurt binası…), mahalle/semt, istasyon, doğa adı: aramada bulunsun, harita yazısında öncelik düşük
         k = next((k for k in ("building",) + EXK if p.get(k)), None)
-        if k: w, e, s_, nn = bbox(g); P.append((n, (s_ + nn) / 2, (w + e) / 2, "yer", 1.5)); continue
+        if k: w, e, s_, nn = bbox(g); P.append((n, (s_ + nn) / 2, (w + e) / 2, "yer", 1.5, 1)); continue
     if not t: continue
-    w, e, s, nn = bbox(g); a, o = (s + nn) / 2, (w + e) / 2; P.append((n, a, o, t, 3)); area = (nn - s) * (e - w) * 9.4e9
+    w, e, s, nn = bbox(g); a, o = (s + nn) / 2, (w + e) / 2; P.append((n, a, o, t, 3, 1)); area = (nn - s) * (e - w) * 9.4e9
     sc = (40 if p.get("wikidata") else 0) + (30 if p.get("wikimedia_commons") or p.get("image") else 0) + {"avm": 28, "muze": 30, "sahne": 26, "sinema": 18, "kutuphane": 16, "gezi": 22, "park": 12, "spor": 8}.get(t, 0) + (min(20, math.log10(area + 1) * 4) if g["type"] != "Point" else 0)
     if t in ("kafe", "yemek", "bar") and not p.get("wikidata"): sc -= 8
     if sc >= 18: imp.append({"n": n, "a": round(a, 6), "o": round(o, 6), "t": t, "s": " · ".join(x for x in [TL[t], p.get("addr:district") or p.get("addr:city") or ""] if x), "g": simp(g), "wd": p.get("wikidata") or "", "cm": p.get("wikimedia_commons") or "", "sc": round(sc, 1)})
@@ -83,38 +83,41 @@ try:
         elif ln.strip() == "END" and cur: R.append(Polygon(cur)); cur = []
     TRP = prep(max(R, key=lambda q: q.area)); INTR = lambda a, o: TRP.contains(Point(o, a))
 except Exception as x: print("Türkiye sınırı okunamadı:", x)
-nov = nlow = 0; OVJ = re.compile(r"parking|atm|bus_stop|taxi|charging|toilet|vending|road|highway|bridge", re.I)
+nov = nlow = 0; MAPCF = .8  # haritada yazı olarak yalnızca güveni yüksek Overture kaydı (25.11.2026, kullanıcı: "pek çok yerin adı yanlış"); düşükler yalnızca aramada
+OVJ = re.compile(r"parking|atm|bus_stop|taxi|charging|toilet|vending|road|highway|bridge", re.I)
 for n, a, o, c, cf, ds, cc in con.execute(f"""SELECT names."primary", bbox.ymin, bbox.xmin, {cat}, coalesce(confidence,0), coalesce(sources[1].dataset,''), coalesce(addresses[1].country,'') FROM '/tmp/ov.parquet' WHERE names."primary" IS NOT NULL AND coalesce(operating_status,'open')='open'""").fetchall():
     if cc != "TR" and (cc or not INTR or not INTR(a, o)): continue
     hi = cf >= (.7 if ds == "Foursquare" else .45)
     t = next((b for r, b in OV if c and r.search(c)), None) or (None if c and OVJ.search(c) else "yer"); n = re.sub(r"\s+", " ", n).strip(); t = "kutuphane" if LIB.search(n) else ("yer" if t == "kutuphane" and cf < .8 else t)
-    if t and good(n): P.append((n, a, o, t, 1 if hi else 0)); nov += 1; nlow += 0 if hi else 1
+    if t and good(n): P.append((n, a, o, t, 1 if hi else 0, 1 if cf >= MAPCF else 0)); nov += 1; nlow += 0 if hi else 1
 print("Overture", nov, "düşük güvenli", nlow)
 nwd = 0
 if os.path.exists("/tmp/wd.json"):
     for n, a, o in json.load(open("/tmp/wd.json", encoding="utf8")):
         n = re.sub(r"\s+", " ", n).strip()
-        if good(n) and not re.search(r"^Q\d+$", n): P.append((n, a, o, "kutuphane" if LIB.search(n) else "yer", 2)); nwd += 1
+        if good(n) and not re.search(r"^Q\d+$", n): P.append((n, a, o, "kutuphane" if LIB.search(n) else "yer", 2, 1)); nwd += 1
 ngn = 0; GNC = set("S L T H V U".split())
 if os.path.exists("/tmp/TR.txt"):
     for line in open("/tmp/TR.txt", encoding="utf8"):
         f = line.rstrip("\n").split("\t")
         if len(f) < 8 or not (f[6] in GNC or f[7] in ("PPLX", "PPLL")): continue
         n = f[1].strip()
-        if good(n): P.append((n, float(f[4]), float(f[5]), "yer", 0)); ngn += 1
+        if good(n): P.append((n, float(f[4]), float(f[5]), "yer", 0, 0)); ngn += 1
 print("Wikidata", nwd, "GeoNames", ngn)
 # MEB'in açık okul/kurum listesi, konumu kurumun kendi harita sayfasından (scraper/meb-okul.mjs, meb-okul dalı)
 nmeb = 0
 if os.path.exists("/tmp/mo/okullar.json"):
     for h, x in json.load(open("/tmp/mo/okullar.json", encoding="utf8")).items():
-        if isinstance(x, list) and x[3] is not None and good(x[0]): P.append((x[0], x[3], x[4], "yer", 2.5)); nmeb += 1
+        if isinstance(x, list) and x[3] is not None and good(x[0]): P.append((x[0], x[3], x[4], "yer", 2.5, 1)); nmeb += 1
 print("MEB", nmeb)
 # yakın ve aynı adlı kayıtlar teke iner; OSM önce
-P.sort(key=lambda x: -x[4]); seen = {}; out = collections.defaultdict(list); nk = 0
-for n, a, o, t, s in P:
+# 5. alan 0 = yalnızca aramada, haritada yazı olmaz (güveni düşük Overture, GeoNames, kod gibi adlar)
+MAPOK = lambda n: bool(re.search(r"[^\W\d_]{3}", n)) and not re.fullmatch(r"[A-Za-z]{0,3}[-\s]?\d[\d\s/-]*", n) and not re.search(r"\bT[üu]rkiye$|\bTurkey$", n)
+P.sort(key=lambda x: -x[4]); seen = {}; out = collections.defaultdict(list); nk = nmap = 0
+for n, a, o, t, s, m in P:
     k = (fold(n), round(a * 700), round(o * 550))
     if k in seen: continue
-    seen[k] = 1; out[f"{math.floor(a * 10)}_{math.floor(o * 10)}"].append((s * 2 + (t != "yer"), [n, round(a, 5), round(o, 5), TI[t]])); nk += 1
+    seen[k] = 1; m = m and MAPOK(n); nmap += bool(m); out[f"{math.floor(a * 10)}_{math.floor(o * 10)}"].append((m * 100 + s * 2 + (t != "yer"), [n, round(a, 5), round(o, 5), TI[t]] + ([] if m else [0]))); nk += 1
 # Yoğun hücrelerde harita yazıları için en önemli 12.000 yer yv/<hücre>.json'da; geri kalanı yalnızca aramanın indirdiği yv/ek/<hücre>.json'da (telefon az veri indirsin)
 tot = 0; CAP = 12000; os.makedirs(OUT + "/yv/ek", exist_ok=True); nek = 0
 for c, L in out.items():
@@ -139,4 +142,4 @@ for x in L:
     k = (fold(x["n"]), round(x["a"] * 500), round(x["o"] * 400))
     if k not in S: S.add(k); L2.append(x)
 json.dump(L2[:9000], open(f"{OUT}/onem.json", "w", encoding="utf8"), ensure_ascii=False, separators=(",", ":"))
-json.dump({"tipler": TY, "etiket": TL, "yer": nk, "hucre": len(out), "mb": round(tot / 1e6, 1), "onem": len(L2), "kaynak": {"osm": len(P) - nov - nwd - ngn - nmeb, "meb": nmeb, "overture": nov, "overture_dusuk": nlow, "wikidata": nwd, "geonames": ngn, "sokak": len(SK), "adres": len(AD)}}, open(f"{OUT}/yv/ozet.json", "w", encoding="utf8"), ensure_ascii=False); print(nk, len(out), round(tot / 1e6, 1), len(L2))
+json.dump({"tipler": TY, "etiket": TL, "yer": nk, "hucre": len(out), "mb": round(tot / 1e6, 1), "onem": len(L2), "harita": nmap, "kaynak": {"osm": len(P) - nov - nwd - ngn - nmeb, "meb": nmeb, "overture": nov, "overture_dusuk": nlow, "wikidata": nwd, "geonames": ngn, "sokak": len(SK), "adres": len(AD)}}, open(f"{OUT}/yv/ozet.json", "w", encoding="utf8"), ensure_ascii=False); print(nk, len(out), round(tot / 1e6, 1), len(L2))
