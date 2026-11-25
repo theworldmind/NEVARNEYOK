@@ -18,7 +18,7 @@
   var ad = "?yer=" + a + "," + o + "&ad=" + encodeURIComponent(n); if (has) { $("#rt").href = "/#/" + il + "/harita" + ad + "&rota=1"; $("#op").href = "/#/" + il + "/harita" + ad; } else { $("#rt").hidden = true; $("#op").href = "/#/" + il; }
   /* Sokak görünümü (sokak.js): Panoramax sokak fotoğrafı; yoksa açıkça söylenir */
   if ($("#sk")) { if (!has) $("#sk").hidden = true; else $("#sk").onclick = function () { var go = function () { window.NVSK.open({ lat: a, lng: o, name: n, three: function () { return adaJ0().then(function () { return window.NVA.three(); }); } }); };
-    if (window.NVSK) return go(); var x = document.createElement("script"); x.src = "/sokak.js?v=1"; x.onload = go; x.onerror = function () { toast("Sokak görünümü açılamadı"); }; document.head.append(x); }; }
+    if (window.NVSK) return go(); var x = document.createElement("script"); x.src = "/sokak.js?v=2"; x.onload = go; x.onerror = function () { toast("Sokak görünümü açılamadı"); }; document.head.append(x); }; }
   $("#gr").onclick = function () { $("#sh").classList.toggle("low"); setTimeout(function () { window.__nvDial && window.__nvDial(); }, 340); };
   /* cevap */
   var D = $("#dl"), mode = "", zd = "", zh = "", name = get("nvny-adim", "");
