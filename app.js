@@ -2344,7 +2344,7 @@ function infoBlock(e, city) {
   if (e.manual && e.desc) return `<p>${esc(e.desc)}</p>`;
   const org = e.org && !SALES.test(e.org.trim()) ? e.org : "", v = vOf(e.venue), cat = CATS[e.cat] || "Etkinlik", g = e.genre && e.genre !== cat ? e.genre : "";
   const others = DATA.events.filter((x) => x !== e && live(x) && NV.key(x.title) === NV.key(e.title)).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "").localeCompare(b.t || ""));
-  const sites = e.tickets.map((x) => x.site), days = e.firstSeen ? Math.floor((Date.now() - Date.parse(e.firstSeen)) / 864e5) : null;
+  const sites = e.tickets.filter((x) => x.src !== "haber" && !/ haberi$/.test(x.site || "")).map((x) => x.site), days = e.firstSeen ? Math.floor((Date.now() - Date.parse(e.firstSeen)) / 864e5) : null;
   const cn = CITIES.find((c) => c.id === city)?.name || "", deI = (w) => { const vv = (w.toLocaleLowerCase("tr").match(/[aıoueiöü](?=[^aıoueiöü]*$)/) || ["a"])[0]; return w + "'" + (/[fsthçşkp]$/i.test(w) ? "t" : "d") + ("aıou".includes(vv) ? "a" : "e"); };
   const lead = `${g ? g + " · " : ""}${cat}${v?.ilce ? ", " + v.ilce : ""}. ${others.length ? `${deI(cn)} ${others.length + 1} tarihi var.` : `${deI(cn)} tek tarihi var.`}`;
   const row = (k, v2) => v2 ? `<div><dt>${k}</dt><dd>${v2}</dd></div>` : "";
