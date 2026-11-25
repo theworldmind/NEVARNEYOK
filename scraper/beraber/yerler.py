@@ -103,6 +103,12 @@ if os.path.exists("/tmp/TR.txt"):
         n = f[1].strip()
         if good(n): P.append((n, float(f[4]), float(f[5]), "yer", 0)); ngn += 1
 print("Wikidata", nwd, "GeoNames", ngn)
+# MEB'in açık okul/kurum listesi, konumu kurumun kendi harita sayfasından (scraper/meb-okul.mjs, meb-okul dalı)
+nmeb = 0
+if os.path.exists("/tmp/mo/okullar.json"):
+    for h, x in json.load(open("/tmp/mo/okullar.json", encoding="utf8")).items():
+        if x[3] is not None and good(x[0]): P.append((x[0], x[3], x[4], "yer", 2.5)); nmeb += 1
+print("MEB", nmeb)
 # yakın ve aynı adlı kayıtlar teke iner; OSM önce
 P.sort(key=lambda x: -x[4]); seen = {}; out = collections.defaultdict(list); nk = 0
 for n, a, o, t, s in P:
@@ -133,4 +139,4 @@ for x in L:
     k = (fold(x["n"]), round(x["a"] * 500), round(x["o"] * 400))
     if k not in S: S.add(k); L2.append(x)
 json.dump(L2[:9000], open(f"{OUT}/onem.json", "w", encoding="utf8"), ensure_ascii=False, separators=(",", ":"))
-json.dump({"tipler": TY, "etiket": TL, "yer": nk, "hucre": len(out), "mb": round(tot / 1e6, 1), "onem": len(L2), "kaynak": {"osm": len(P) - nov - nwd - ngn, "overture": nov, "overture_dusuk": nlow, "wikidata": nwd, "geonames": ngn, "sokak": len(SK), "adres": len(AD)}}, open(f"{OUT}/yv/ozet.json", "w", encoding="utf8"), ensure_ascii=False); print(nk, len(out), round(tot / 1e6, 1), len(L2))
+json.dump({"tipler": TY, "etiket": TL, "yer": nk, "hucre": len(out), "mb": round(tot / 1e6, 1), "onem": len(L2), "kaynak": {"osm": len(P) - nov - nwd - ngn - nmeb, "meb": nmeb, "overture": nov, "overture_dusuk": nlow, "wikidata": nwd, "geonames": ngn, "sokak": len(SK), "adres": len(AD)}}, open(f"{OUT}/yv/ozet.json", "w", encoding="utf8"), ensure_ascii=False); print(nk, len(out), round(tot / 1e6, 1), len(L2))

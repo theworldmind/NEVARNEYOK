@@ -1,0 +1,32 @@
+# MEB okul ve kurum konumları (il il liste + kurumun kendi harita sayfası). Günde bir; her çalışmada en çok MAX kurum, sonuç meb-okul dalında birikir.
+name: MEB okullari
+
+on:
+  workflow_dispatch:
+    inputs:
+      max: { description: "bu çalışmada en çok kurum", default: "9000" }
+  schedule:
+    - cron: "20 1 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: meb-okul
+  cancel-in-progress: false
+
+jobs:
+  okul:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env: { TZ: Europe/Istanbul, OUT: /tmp/mo, MAX: "${{ github.event.inputs.max || '9000' }}", DK: "75" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: git clone -q --depth 1 -b meb-okul "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" /tmp/mo || mkdir -p /tmp/mo
+      - working-directory: scraper
+        run: node meb-okul.mjs
+      - name: Dala yaz
+        run: |
+          cd /tmp/mo && rm -rf .git && git init -q -b meb-okul && git add okullar.json && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "MEB okulları" && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" meb-okul

@@ -42,6 +42,7 @@ jobs:
       - name: Wikidata
         timeout-minutes: 30
         run: python scraper/beraber/wd-yerler.py || echo "Wikidata alınamadı"
+      - run: git clone -q --depth 1 -b meb-okul "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" /tmp/mo || echo "MEB okulları dalı yok"
       - run: python scraper/beraber/yerler.py
       - name: Toplu taşıma hatları
         run: python scraper/beraber/hatlar.py
