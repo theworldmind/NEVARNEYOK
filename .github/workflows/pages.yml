@@ -32,6 +32,11 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
         run: node scraper/build-pages.mjs
+      - name: 81 il ve festival sayfaları (arama motorları için)
+        continue-on-error: true
+        env:
+          SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+        run: node scraper/seo-tr.mjs
       # Hikâye görselleri: afişini telefona çizdirmeyen sitelerin etkinlikleri için (scraper/share-img.mjs); önceki yayının görselleri saklanır
       - name: Beraber yer verisi ve görselleri (ayrı dallardan)
         continue-on-error: true
