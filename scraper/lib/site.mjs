@@ -26,8 +26,9 @@ export function onlyFreshPrices(events, baseline, now = Date.now()) {
 
 // Site adresi: CNAME dosyası > SITE_URL ortam değişkeni > boş (göreli bağlantılar)
 export async function siteUrl() {
-  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");
+  // Alan adı (CNAME) önce: iş akışının varsayılan SITE_URL'i github.io adresi, site ise nevarneyok.net.tr'de yayında (canonical/sitemap doğru adrese gitsin)
   try { const c = (await readFile(join(ROOT, "CNAME"), "utf8")).trim(); if (c) return "https://" + c; } catch {}
+  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");
   return "";
 }
 export async function siteConfig() {
