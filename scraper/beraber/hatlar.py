@@ -96,9 +96,28 @@ print("durak no olan", sum(1 for x in S if len(x) > 3)); print("hat", len(lines)
 # Türkiye'deki bütün GTFS kayıtları MobilityDatabase'in açık kataloğundan (anahtarsız) kendiliğinden bulunur; yeni bir belediye veri yayınlayınca kendiliğinden girer.
 # Her hat ve yön için en çok duraklı sefer temsilîdir; günlük sefer sayısından ortalama bekleme (aralığın yarısı, 3–60 dk). Aynı karodaki aynı numaralı
 # OSM otobüs hattı GTFS varsa bırakılır (GTFS durak sırası daha eksiksiz). Kaynak ve lisans rapora yazılır.
-import csv, io, zipfile, urllib.request
+import csv, io, zipfile, urllib.request, urllib.parse
+UAH = {"User-Agent": "NeVarNeYokBot/1.0 (+https://nevarneyok.net.tr)"}
+ROB = {}
+def allowed(u):
+    """robots.txt kuralı (CLAUDE.md: her sitenin robots.txt'ine uyulur): * ve NeVarNeYokBot grupları, Disallow önekleri; robots yoksa izin var"""
+    P = urllib.parse.urlsplit(u); h = P.scheme + "://" + P.netloc
+    if h not in ROB:
+        rules, on = [], False
+        try:
+            txt = urllib.request.urlopen(urllib.request.Request(h + "/robots.txt", headers=UAH), timeout=20).read().decode("utf8", "replace")
+            for ln in txt.splitlines():
+                ln = ln.split("#")[0].strip(); k, _, v = ln.partition(":"); k, v = k.strip().lower(), v.strip()
+                if k == "user-agent": on = v == "*" or "nevarneyok" in v.lower()
+                elif on and k == "disallow" and v: rules.append(v)
+                elif on and k == "allow" and v == "/": rules = [r for r in rules if r != "/"]
+        except Exception: pass
+        ROB[h] = rules
+    path = P.path or "/"
+    return not any(path.startswith(r.rstrip("*")) for r in ROB[h])
 def get(u, t=120):
-    try: return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "NeVarNeYokBot/1.0 (+https://nevarneyok.net.tr)"}), timeout=t).read()
+    if not allowed(u): print("  robots.txt izin vermiyor, alınmadı:", u); return None
+    try: return urllib.request.urlopen(urllib.request.Request(u, headers=UAH), timeout=t).read()
     except Exception as e: print("  indirilemedi:", u, str(e)[:80]); return None
 GT_MODE = {0: "tram", 1: "metro", 2: "tren", 3: "otobus", 4: "vapur", 5: "teleferik", 6: "teleferik", 7: "teleferik", 11: "otobus", 12: "hafif"}
 def gmode(rt):
@@ -106,12 +125,21 @@ def gmode(rt):
     if rt in GT_MODE: return GT_MODE[rt]
     return "tren" if 100 <= rt < 200 else "otobus" if 200 <= rt < 300 or 700 <= rt < 800 else "metro" if 400 <= rt < 500 else "tram" if 900 <= rt < 1000 else "vapur" if 1000 <= rt < 1300 else "teleferik" if 1300 <= rt < 1500 else "otobus"
 gsrc, glines = [], []
-cat = get("https://files.mobilitydatabase.org/feeds_v2.csv") or get("https://bit.ly/catalogs-csv")
+cat = get("https://files.mobilitydatabase.org/feeds_v2.csv")  # robots.txt izin verirse (25.11.2026: vermiyor)
 feeds = []
 if cat:
     for r in csv.DictReader(io.StringIO(cat.decode("utf8", "replace"))):
         if (r.get("location.country_code") or "").upper() == "TR" and (r.get("data_type") or "gtfs") == "gtfs" and (r.get("status") or "") not in ("deprecated", "inactive"):
             feeds.append(r)
+# Doğrudan kaynaklar (robots izinli): KentKart'tan üretilmiş açık GTFS deposu (her il/ilçe için dosya varsa), İzmir metro ve tramvayın kendi dosyaları, Türkiye demiryolları
+import json as _j
+_IL = list(_j.load(open(os.path.join(os.path.dirname(__file__), "il-merkez.json"))).keys()) + ["safranbolu", "bodrum", "alanya", "fethiye", "marmaris", "manavgat", "iskenderun", "tarsus", "eregli", "inegol", "nazilli", "edremit", "bandirma", "siverek", "cizre"]
+have0 = {(r.get("urls.direct_download") or "") for r in feeds}
+for il in _IL:
+    u = f"https://raw.githubusercontent.com/Egezenn/kk-gtfs/main/data/{il}.zip"
+    if u.replace("raw.githubusercontent.com/Egezenn/kk-gtfs/main", "github.com/Egezenn/kk-gtfs/raw/main") not in have0: feeds.append({"provider": f"KentKart {il} (kk-gtfs)", "location.municipality": il, "urls.direct_download": u, "urls.license": "https://github.com/Egezenn/kk-gtfs/blob/main/DATA_LICENSE", "kk": 1})
+for prov, il, u in [("METRO İZMİR", "İzmir", "https://www.izmirmetro.com.tr/gtfs/rail-metro-gtfs.zip"), ("TRAM İZMİR", "İzmir", "https://www.tramizmir.com/gtfs/rail-tramizmir-gtfs.zip"), ("ESHOT", "İzmir", "https://www.eshot.gov.tr/gtfs/bus-eshot-gtfs.zip"), ("Ray Atlas — Türkiye Demiryollar", "Türkiye", "https://ttezer.github.io/tr-railways/gtfs/latest.zip")]:
+    if u not in have0: feeds.append({"provider": prov, "location.municipality": il, "urls.direct_download": u})
 # Katalogda olmayan ya da sayfa adresi verilen belediye kayıtları: açık veri portalının (CKAN) kendi listesinden zip bağlantısı çözülür
 EXTRA = [("ESHOT", "İzmir", "https://acikveri.bizizmir.com", "toplu-ulasim-gtfs-verileri"), ("İETT", "İstanbul", "https://data.ibb.gov.tr", "iett-gtfs-verisi"), ("Kocaeli BB", "Kocaeli", "https://veri.kocaeli.bel.tr", "toplu-ulasim-verisi")]
 def ckan(base, pid):
@@ -130,11 +158,14 @@ for r in feeds:  # katalogdaki adres bir veri sayfasıysa (zip değilse) aynı p
 feeds = [r for r in feeds if not re.search(r"flixbus|obilet|şehirlerarası|intercity", (r.get("provider") or ""), re.I)]  # şehirlerarası otobüs şehir içi tarife girmez
 print("GTFS: Türkiye'de", len(feeds), "kayıt")
 for r in feeds:
-    url = r.get("urls.latest") or r.get("urls.direct_download")
-    z = get(url, 300) if url else None
-    if not z and r.get("urls.direct_download") and url != r.get("urls.direct_download"): z = get(r["urls.direct_download"], 300)
-    mid = r.get("id") or (("mdb-" + r["mdb_source_id"]) if r.get("mdb_source_id") else "")
-    if not z and mid: url = f"https://files.mobilitydatabase.org/{mid}/latest.zip"; z = get(url, 300)  # belediye sunucusu yurt dışına kapalıysa katalogdaki kopya
+    url = r.get("urls.direct_download") or r.get("urls.latest")  # önce kurumun/üreticinin kendi dosyası
+    if r.get("kk"):
+        try: z = urllib.request.urlopen(urllib.request.Request(url, headers=UAH), timeout=120).read() if allowed(url) else None
+        except Exception: z = None
+        if not z: continue  # o il için dosya yok
+    else: z = get(url, 300) if url else None
+    if not z and r.get("urls.latest") and url != r.get("urls.latest"): url = r["urls.latest"]; z = get(url, 300)
+  # belediye sunucusu yurt dışına kapalıysa katalogdaki kopya
     if not z: gsrc.append({"ad": r.get("provider"), "il": r.get("location.municipality") or r.get("location.subdivision_name"), "durum": "indirilemedi"}); continue
     try: Z = zipfile.ZipFile(io.BytesIO(z))
     except Exception: gsrc.append({"ad": r.get("provider"), "durum": "bozuk"}); continue
