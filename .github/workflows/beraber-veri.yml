@@ -4,7 +4,8 @@ name: Beraber veri
 on:
   workflow_dispatch:
     inputs:
-      is: { description: "veri, gorsel ya da ikisi", default: ikisi }
+      is: { description: "veri, gorsel, ikisi, hat ya da tani (yer teşhisi)", default: ikisi }
+      q: { description: "tani: aranacak ad (düzenli ifade)", default: "sıhhiye.*yurd|sihhiye.*yurd|sıhhıye.*yurd" }
       adet: { description: "bu çalışmada en çok görsel", default: "350" }
   schedule:
     - cron: "40 2 * * 1"
@@ -69,9 +70,26 @@ jobs:
           rm -rf /tmp/bv/yh && mv /tmp/veri/yh /tmp/bv/yh && cd /tmp/bv && git add -A && git -c user.name=nvny -c user.email=nvny@users.noreply.github.com commit -qm "Hatlar" && git push -q origin beraber-veri
       - env: { GH_TOKEN: "${{ github.token }}" }
         run: gh workflow run pages.yml --ref main
+  tani:
+    # yer verisi teşhisi: açık kaynaklarda ne var, biz neyi eliyoruz (yalnızca günlük)
+    if: github.event.inputs.is == 'tani'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - env: { Q: "${{ github.event.inputs.q }}" }
+        run: |
+          pip install -q overturemaps duckdb && sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+          overturemaps download --bbox=25.6,35.8,44.9,42.2 -f geoparquet --type=place -o /tmp/ov.parquet
+          (curl -fsSL --retry 4 --retry-delay 20 --retry-all-errors -o /tmp/tr.pbf https://download.geofabrik.de/europe/turkey-latest.osm.pbf || curl -fsSL --retry 3 -o /tmp/tr.pbf https://download.openstreetmap.fr/extracts/europe/turkey-latest.osm.pbf)
+          osmium tags-filter /tmp/tr.pbf nwr/name nwr/addr:housenumber -o /tmp/named.pbf --overwrite
+          osmium export /tmp/named.pbf -f geojsonseq -o /tmp/named.seq --overwrite
+          python scraper/beraber/yer-tani.py
   gorsel:
     needs: [veri]
-    if: always() && github.event_name == 'workflow_dispatch' && github.event.inputs.is != 'veri' && github.event.inputs.is != 'hat'
+    if: always() && github.event_name == 'workflow_dispatch' && github.event.inputs.is != 'veri' && github.event.inputs.is != 'hat' && github.event.inputs.is != 'tani'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env: { TZ: Europe/Istanbul, OUT: /tmp/yg, ONEM: /tmp/v/onem.json, GORSEL_MAX: "${{ github.event.inputs.adet || '350' }}" }
