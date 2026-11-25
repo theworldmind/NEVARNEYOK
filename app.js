@@ -387,18 +387,6 @@ function viewCities() {
   const start = ALL.indexOf(saved || liveC[0]); if (start > 0) to(start, false); paint();
 }
 
-/* Sıradaki (25.11.2026, kullanıcı: "cilala, derinlik kat"): Bugün sayfasında tek büyük kart. Saate göre değişir:
-   bir saat içinde başlayan → "Az sonra · 42 dk", bu akşam → "Bu akşam · 20:30", akşam bittiyse → "Yarın akşam". Yalnızca afişli, iptal/tükenmemiş etkinlik. */
-function nextHero(city, E, today, hm) {
-  const mn = (t) => +t.slice(0, 2) * 60 + +t.slice(3, 5), now = mn(hm || "00:00"), ok = (e) => e.img && e.t && /^\d\d:\d\d/.test(e.t) && !e.status && e.cat !== "sinema";
-  const best = (L) => L.sort((a, b) => b.score - a.score || a.t.localeCompare(b.t))[0];
-  let e = best(E.filter((x) => ok(x) && x.d === today && mn(x.t) > now && mn(x.t) - now <= 60)), lab;
-  if (e) lab = `Az sonra · ${mn(e.t) - now} dk`;
-  else if ((e = best(E.filter((x) => ok(x) && x.d === today && mn(x.t) > now && x.t >= "17:00")))) lab = `Bu akşam · ${e.t.slice(0, 5)}`;
-  else if ((e = best(E.filter((x) => ok(x) && x.d === addD(today, 1) && x.t >= "17:00")))) lab = `Yarın akşam · ${e.t.slice(0, 5)}`;
-  if (!e) return "";
-  return `<a class="nxh" href="#/${city}/e/${encodeURIComponent(e.slug)}"><img class="nxh-b" src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async" aria-hidden="true"><span class="nxh-p">${poster(e, { badge: false })}</span><span class="nxh-x"><small class="nxh-k"><i></i>${esc(lab)}</small><b>${esc(e.title)}</b><span>${esc(e.venue || "")}</span><em>Ayrıntılar ›</em></span></a>`;
-}
 function viewCity(city) {
   turAt("ana"); setTop(city); const cname = CITIES.find((c) => c.id === city)?.name || city; document.title = `${cname} · Ne Var Ne Yok`;
   const { d: today, hm } = nowIST(), E = DATA.events.filter(live), wk = addD(today, 6);
@@ -417,7 +405,6 @@ function viewCity(city) {
   <div class="qk"><a href="${k("t=bugun")}">Bugün</a><a href="${k("t=yarin")}">Yarın</a><a href="${k("t=haftasonu")}">Hafta sonu</a><a href="#/${city}/sinema">Sinema</a>${Object.keys(CATS).filter((c) => c !== "sinema" && weekL.some((e) => e.cat === c)).map((c) => `<a href="${k("k=" + c)}">${esc(CATS[c])}</a>`).join("")}</div>
   ${notifAsk(city)}
   ${prefs() ? rail("Senin için", "İlgi alanlarına göre bu hafta", uniq([...weekL.filter((e) => e.img)].sort((a, b) => pscore(b) - pscore(a)), 16), city, k("sira=sen&t=hafta")) : ""}
-  ${nextHero(city, E, today, hm)}
   ${rail("Bu akşam", `${dLong(today)} · ${tonight.length} etkinlik`, uniq(tonight.filter((e) => e.img).sort((a, b) => (a.t || "").localeCompare(b.t || "")), 16), city, k("t=bugun"))}
   <section class="rail" id="fsr1"></section>
   <div id="mid"></div>
@@ -811,13 +798,17 @@ const fstImg = (x) => { if (x.f === "etk") { const n = fold(x.ad), G = (x.g || [
     return (G.find((r) => fold(r[2]).startsWith(n) && r[0] >= t) || G.sort((a, b) => c[b[5]] - c[a[5]])[0] || [])[5] || ""; }
   return (x.films || []).map((f) => f.img).find(Boolean) || (x.g || []).map((r) => r[5]).find(Boolean) || ""; };
 const ST_L = { simdi: "Şimdi", yakin: "Yakında", bitti: "Bitti" };
+/* görseli olmayan (ya da görseli açılmayan) festivalde boş kutu değil, tasarlanmış kapak: türün renginde, büyük ad, tarih (25.11.2026, kullanıcı: "cilala") */
+const FKC = { Film: ["#ff375f", "#5b0f2a", "🎬"], Müzik: ["#bf5af2", "#2a0f6b", "🎵"], Tiyatro: ["#ff6b4a", "#4a1208", "🎭"], Komedi: ["#ff9f0a", "#4a2a00", "🎤"], Dans: ["#ff2d92", "#4a0a2e", "💃"], Çocuk: ["#ffd60a", "#4a3a00", "🎈"], Lezzet: ["#30d158", "#0b3a1a", "🍽️"] };
+const fstCover = (x) => { const k = x.f === "etk" ? fstKind(x) : "Film", [c1, c2, em] = FKC[k] || ["#8b5cf6", "#2a0f6b", "✨"];
+  return `<span class="fsc-c" style="--c1:${c1};--c2:${c2}"><i aria-hidden="true">${em}</i><b>${esc(x.ad.replace(/^\d+\.\s*/, ""))}</b><small>${esc(fstRange(x))}</small></span>`; };
 const fstW = (x) => (/^\d+\.|uluslararas|international/i.test(x.ad) ? 60 : 0) + (x.f !== "etk" ? 20 : 0) + Math.min(40, (x.g || []).length * 2) + (x.site ? 10 : 0);
 const fstKind = (x) => x.f === "etk" ? (x.kat || "Festival") : "Film";
 const fstWhen = (x) => { const st = fstState(x), t = nowIST().d; if (st === "simdi") return "Şimdi"; if (st !== "yakin") return ST_L[st] || ""; const n = Math.round((Date.parse(x.bas) - Date.parse(t)) / 864e5); return n <= 1 ? "Yarın" : n <= 30 ? `${n} gün sonra` : "Yakında"; };
 const fstCard = (x, city) => { if (x.f === "etk") { const st = fstState(x), img = fstImg(x), ne = new Set((x.g || []).map((r) => fold(r[2]) + r[0])).size;
-    return `<a class="fsc" href="#/${city}/festival/${esc(x.id)}"><div class="fsc-i">${img ? `<img decoding="async" src="${esc(img)}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}<span class="fsc-s ${st}">${esc(fstWhen(x))}</span></div><b>${esc(x.ad)}</b><small>${esc([fstRange(x), ilAd(x.il)].filter(Boolean).join(" · "))}</small><small>${esc(fstKind(x))} · ${ne} etkinlik</small></a>`; }
+    return `<a class="fsc" href="#/${city}/festival/${esc(x.id)}"><div class="fsc-i">${fstCover(x)}${img ? `<img decoding="async" src="${esc(img)}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}<span class="fsc-s ${st}">${esc(fstWhen(x))}</span></div><b>${esc(x.ad)}</b><small>${esc([fstRange(x), ilAd(x.il)].filter(Boolean).join(" · "))}</small><small>${esc(fstKind(x))} · ${ne} etkinlik</small></a>`; }
   const st = fstState(x), img = fstImg(x), nf = (x.films || []).length || new Set((x.g || []).map((r) => r[4] || fk(r[2]))).size;
-  return `<a class="fsc" href="#/${city}/festival/${esc(x.id)}"><div class="fsc-i">${img ? `<img decoding="async" src="${esc(img)}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}<span class="fsc-s ${st}">${ST_L[st] || ""}</span></div><b>${esc(x.ad)}</b><small>${esc([fstRange(x), ilAd(x.il)].filter(Boolean).join(" · "))}</small><small>${nf} film${x.g?.length ? ` · ${x.g.length} gösterim` : ""}</small></a>`; };
+  return `<a class="fsc" href="#/${city}/festival/${esc(x.id)}"><div class="fsc-i">${fstCover(x)}${img ? `<img decoding="async" src="${esc(img)}" alt="" referrerpolicy="no-referrer" loading="lazy" onerror="this.remove()">` : ""}<span class="fsc-s ${st}">${ST_L[st] || ""}</span></div><b>${esc(x.ad)}</b><small>${esc([fstRange(x), ilAd(x.il)].filter(Boolean).join(" · "))}</small><small>${nf} film${x.g?.length ? ` · ${x.g.length} gösterim` : ""}</small></a>`; };
 /* Şehir sayfasında festival rafı (25.11.2026, kullanıcı: "Ankara'da festival varmış, haberim yok"): bu ilde şimdi süren ve 30 gün içinde başlayan her tür festival
    (film, caz, tiyatro, gitar, komedi…), "Bu akşam"ın hemen altında; yoksa raf hiç görünmez */
 async function cityFest(city, el) {
