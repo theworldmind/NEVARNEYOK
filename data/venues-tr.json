@@ -22631,5 +22631,41 @@
   "src": "osm",
   "v": 2,
   "osm": "amenity/restaurant"
+ },
+ "denizli|Denizli Merkezefendi Belediyesi K M Petek Salonu": {
+  "lat": 37.7667403,
+  "lng": 29.0562291,
+  "addr": "Merkez Efendi, 20010 Merkezefendi/Denizli",
+  "ilce": "Merkezefendi",
+  "src": "biletinial",
+  "v": 2
+ },
+ "istanbul|Beyoğlu Sineması": {
+  "lat": 41.03501,
+  "lng": 28.97922,
+  "addr": "Büyük Bayram Sokağı 12, Hüseyinağa Mahallesi, Beyoğlu, İstanbul",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "antalya|Dada Tiyatro 2": {
+  "lat": 36.87635,
+  "lng": 30.708664,
+  "addr": "Fevzi Çakmak Cd. GÜNAY APT NO:57/A",
+  "ilce": "Muratpaşa",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|BEYOĞLU SİNEMASI": {
+  "lat": 41.03501,
+  "lng": 28.97922,
+  "addr": "Büyük Bayram Sokağı 12, Hüseyinağa Mahallesi, Beyoğlu, İstanbul",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
  }
 }
