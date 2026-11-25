@@ -6,7 +6,8 @@ export const isTestEvent = (e) => { const t = fold(e.title || "").trim(), v = fo
   return /^(test|deneme|demo|dummy|sample|asdf+|qwerty|x{3,})( ?\d+)?$/.test(t) || /\btest webbox\b|\bwebbox deneme\b|\bkampanyasi test$/.test(t) || /^(ilgili urunler|tarihiebrusanattasarimi venue|incele|detaylar?|bilet al|satin al)$/.test(v)
     || /^(tum )?(etkinlikleri?|biletleri?) (kesfet|gor|incele|listele)$|^(daha fazla|tumunu gor|hepsini gor)$/.test(t); }; // site düğmeleri etkinlik sanılmasın (25.11.2026: biletimGO "Etkinlikleri Keşfet" / "İncele")
 export const isOnlineVenue = (v) => /^online\b|\bonline etkinlik|\bcurrently online\b|\bzoom\b|\bstreamyard\b|\bwebinar\b|^cevrim ?ici/.test(fold(v || "").trim());
-export const isForeignVenue = (e) => FOREIGN.test([e.venue, e.address].filter(Boolean).join(" "));
+// AllEvents Türkiye adreslerine ABD eyaleti gibi kısaltma ekliyor ("Gaziantep, GA, Turkey"): adreste Türkiye yazıyorsa yurt dışı sayılmaz (25.11.2026)
+export const isForeignVenue = (e) => { const x = [e.venue, e.address].filter(Boolean).join(" "); return !/\b(turkey|t[üu]rkiye)\b/i.test(x) && FOREIGN.test(x); };
 export const badEvent = (e) => !e.manual && (isTestEvent(e) || isOnlineVenue(e.venue) || isForeignVenue(e));
 // Mekân adına karışan tarih yazısı, adres ve ülke ayıklanır; yalnızca adres olan kayda dokunulmaz
 export function cleanVenueText(name) {

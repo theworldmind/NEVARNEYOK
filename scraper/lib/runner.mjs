@@ -129,10 +129,10 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
     notes.push(`afiş: ${Object.keys(got).length}/${urls.length} etkinlik sayfasından`);
   }
   // filtre: Ankara + gelecek tarih + tekrarsız
-  const seen = new Set();
+  const seen = new Set(), why = {}, ex = {}; const no = (k, r) => { why[k] = (why[k] || 0) + 1; if (!ex[k]) ex[k] = `${r.title || "?"} | ${r.venue || ""} | ${String(r.address || "").slice(0, 60)} | ${r.city || ""} | ${r.d || ""}`; return false; };
   const out = raws.filter((r) => {
-    if (!r.d || r.d < today || !r.title) return false;
-    if (isJunk(r)) return false;
+    if (!r.title) return no("adsız", r); if (!r.d) return no("tarihsiz", r); if (r.d < today) return no("geçmiş", r);
+    if (isJunk(r)) return no(badEvent(r) ? "kalite" : "etkinlik değil", r);
     if (CITY === "ankara") {
       if (src.city !== "ankara" && !looksAnkara(r)) return false;
       if (src.city === "ankara" && r.city && !/ankara/i.test(r.city) && !looksAnkara(r)) return false;
@@ -143,11 +143,11 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
     } else {
       // tek il: kaynak o ilin listesini veriyor; başka il yazan kayıt alınmaz
       const C = cityById(CITY), other = r.city && cityOfText(r.city);
-      if (other && other !== C.id) return false;
+      if (other && other !== C.id) return no("başka il (il alanı)", r);
       // Turne: bilet sitesinin etkinlik sayfası bütün illerdeki seansları verir (15.11.2026: Rize'de Bandırma, Ankara, Bursa seansları görünüyordu).
       // Adresi ya da mekânın adı başka ili gösteren seans bu ile yazılmaz.
-      { const oa = cityOfText(r.address || "") || cityOfText(r.venue || ""); if (oa && oa !== C.id) return false; }
-      if (src.city === "tr" && !C.re.test(cfold([r.venue, r.address, r.city, r.url].join(" ")))) return false;
+      { const oa = cityOfText(r.address || "") || cityOfText(r.venue || ""); if (oa && oa !== C.id) return no("başka il (adres/mekân)", r); }
+      if (src.city === "tr" && !C.re.test(cfold([r.venue, r.address, r.city, r.url].join(" ")))) return no("il bulunamadı", r);
       r.cid = C.id;
     }
     const k = r.d + r.t + r.title + (r.url || "");
@@ -155,6 +155,7 @@ export async function runSource(src, { known = [], mode = "full", debug = true, 
     seen.add(k);
     return true;
   });
+  if (Object.keys(why).length && raws.length) { const w = "elenen: " + Object.entries(why).map(([k, n]) => `${k} ${n} (ör. ${ex[k]})`).join("; "); notes.push(w); if (!out.length) log("  " + w); } // neden boş kaldığı sağlık kaydında görünsün
   const ms = Date.now() - t0;
   if (skipped) notes.push(`süre doldu: ${skipped} detay sayfası bu tur atlandı`);
   log(`  ${src.name}: ${out.length} kayıt (${detail.size} aday, ${okDetail} detay okundu${skipped ? `, ${skipped} atlandı` : ""}, ${Math.round(ms / 1000)} sn)`);
