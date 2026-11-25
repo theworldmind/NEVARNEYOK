@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T21:23:59.757Z",
+ "runAt": "2026-11-25T07:31:57.930Z",
  "mode": "full",
- "total": 51,
+ "total": 50,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 49,
-   "prevCount": 61,
+   "count": 48,
+   "prevCount": 49,
    "error": "",
    "notes": [
     "açık veri: 42 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kutahya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
+   "seconds": 81,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:23:59.757Z"
+   "lastOk": "2026-11-25T07:31:57.930Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 151,
+   "seconds": 146,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:23:59.757Z"
+   "lastOk": "2026-11-25T07:31:57.930Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/kutahya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 155,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/kutahya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   }
  }

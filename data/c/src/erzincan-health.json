@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:06:59.963Z",
+ "runAt": "2026-11-25T07:13:21.943Z",
  "mode": "full",
  "total": 63,
  "written": true,
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 14,
-   "prevCount": 45,
+   "count": 13,
+   "prevCount": 41,
    "error": "",
    "notes": [
     "açık veri: 11 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
-   "failStreak": 19,
+   "seconds": 90,
+   "failStreak": 20,
    "lastOk": "2026-11-15T10:29:01.995Z"
   },
   "radar": {
@@ -37,7 +37,7 @@
    "prevCount": 23,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/erzincan-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/erzincan-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/erzincan-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/erzincan-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/erzincan-hafta-sonu-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -48,7 +48,7 @@
    ],
    "seconds": 644,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:06:59.963Z"
+   "lastOk": "2026-11-25T07:13:21.943Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/erzincan/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/erzincan/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 17,
+   "seconds": 157,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 7,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   }
  }

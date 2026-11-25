@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:37:43.740Z",
+ "runAt": "2026-11-25T07:46:47.590Z",
  "mode": "full",
  "total": 92,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 81,
-   "prevCount": 86,
+   "prevCount": 85,
    "error": "",
    "notes": [
     "açık veri: 73 seans, 1 detay sayfası",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/van: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 91,
+   "seconds": 98,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:37:43.740Z"
+   "lastOk": "2026-11-25T07:46:47.590Z"
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 9,
-   "prevCount": 6,
+   "prevCount": 8,
    "error": "",
    "notes": [
     "www.radarturkiye.com/van-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 153,
+   "seconds": 156,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:37:43.740Z"
+   "lastOk": "2026-11-25T07:46:47.590Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/van/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 155,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 5,
-   "failStreak": 6,
+   "seconds": 6,
+   "failStreak": 7,
    "lastOk": "2026-11-21T12:15:52.341Z"
   }
  }

@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:00:49.773Z",
+ "runAt": "2026-11-25T07:06:43.775Z",
  "mode": "full",
  "total": 31,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 17,
-   "prevCount": 20,
+   "prevCount": 17,
    "error": "",
    "notes": [
     "açık veri: 13 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/adiyaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/adiyaman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 78,
+   "seconds": 91,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:49.773Z"
+   "lastOk": "2026-11-25T07:06:43.775Z"
   },
   "radar": {
    "id": "radar",
@@ -46,8 +46,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=adiyaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=adiyaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 199,
-   "failStreak": 6,
+   "seconds": 169,
+   "failStreak": 7,
    "lastOk": "2026-11-21T11:40:21.489Z"
   },
   "bugece": {
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -78,16 +78,16 @@
    "notes": [
     "allevents.in/adiyaman: 11 bağlantı, 10 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adiyaman/all: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/adiyaman/concerts: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/adiyaman/parties: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/adiyaman/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/adiyaman/performances: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/adiyaman/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/adiyaman/concerts: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/adiyaman/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/adiyaman/comedy: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/adiyaman/performances: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/adiyaman/workshops: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adiyaman/kids: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 192,
+   "seconds": 184,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:49.773Z"
+   "lastOk": "2026-11-25T07:06:43.775Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/adiyaman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   }
  }

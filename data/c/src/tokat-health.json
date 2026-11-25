@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:36:16.110Z",
+ "runAt": "2026-11-25T07:45:45.382Z",
  "mode": "full",
  "total": 49,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 47,
-   "prevCount": 54,
+   "prevCount": 47,
    "error": "",
    "notes": [
     "açık veri: 40 seans, 1 detay sayfası",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/tokat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/tokat: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 101,
+   "seconds": 98,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:36:16.110Z"
+   "lastOk": "2026-11-25T07:45:45.382Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=tokat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tokat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 184,
+   "seconds": 173,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:36:16.110Z"
+   "lastOk": "2026-11-25T07:45:45.382Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -78,16 +78,16 @@
    "notes": [
     "allevents.in/tokat: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tokat/all: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/tokat/concerts: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/tokat/concerts: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tokat/parties: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tokat/comedy: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tokat/performances: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/tokat/workshops: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/tokat/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tokat/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 165,
+   "seconds": 167,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:36:16.110Z"
+   "lastOk": "2026-11-25T07:45:45.382Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/tokat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 17,
+   "seconds": 7,
+   "failStreak": 18,
    "lastOk": null
   }
  }

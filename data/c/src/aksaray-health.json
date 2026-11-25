@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:00:51.449Z",
+ "runAt": "2026-11-25T07:06:43.013Z",
  "mode": "full",
  "total": 102,
  "written": true,
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 20,
-   "prevCount": 98,
+   "count": 22,
+   "prevCount": 94,
    "error": "",
    "notes": [
     "açık veri: 17 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/aksaray: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
-   "failStreak": 19,
+   "seconds": 81,
+   "failStreak": 20,
    "lastOk": "2026-11-15T10:26:54.551Z"
   },
   "radar": {
@@ -33,8 +33,8 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 9,
-   "prevCount": 8,
+   "count": 2,
+   "prevCount": 9,
    "error": "",
    "notes": [
     "www.radarturkiye.com/aksaray-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
+   "seconds": 158,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:51.449Z"
+   "lastOk": "2026-11-25T07:06:43.013Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/aksaray/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
-   "failStreak": 12,
+   "seconds": 172,
+   "failStreak": 13,
    "lastOk": "2026-11-18T13:07:51.872Z"
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/aksaray: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:51.449Z"
+   "lastOk": "2026-11-25T07:06:43.013Z"
   }
  }
 }

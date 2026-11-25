@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T21:06:45.734Z",
+ "runAt": "2026-11-25T07:12:42.292Z",
  "mode": "full",
- "total": 225,
+ "total": 228,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 53,
-   "prevCount": 184,
+   "count": 54,
+   "prevCount": 177,
    "error": "",
    "notes": [
-    "açık veri: 45 seans",
+    "açık veri: 46 seans",
     "biletinial.com/tr-tr/tiyatro/denizli: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/denizli: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/denizli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
-   "failStreak": 19,
+   "seconds": 94,
+   "failStreak": 20,
    "lastOk": "2026-11-15T10:29:07.857Z"
   },
   "radar": {
@@ -37,7 +37,7 @@
    "prevCount": 49,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/denizli-etkinlikleri: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/denizli-etkinlikleri: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/denizli-muzik-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/denizli-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/denizli-hafta-sonu-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=denizli: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 938,
+   "seconds": 926,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:06:45.734Z"
+   "lastOk": "2026-11-25T07:12:42.292Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -72,22 +72,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 2,
+   "count": 7,
    "prevCount": 2,
    "error": "",
    "notes": [
-    "allevents.in/denizli: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/all: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/concerts: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/parties: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/comedy: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/performances: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/denizli: 4 bağlantı, 4 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/all: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/concerts: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/parties: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/comedy: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/performances: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/workshops: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 171,
+   "seconds": 176,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:06:45.734Z"
+   "lastOk": "2026-11-25T07:12:42.292Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:06:45.734Z"
+   "lastOk": "2026-11-25T07:12:42.292Z"
   }
  }
 }

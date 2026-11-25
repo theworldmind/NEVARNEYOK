@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:37:53.766Z",
+ "runAt": "2026-11-25T07:46:41.573Z",
  "mode": "full",
  "total": 135,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 72,
-   "prevCount": 44,
+   "prevCount": 72,
    "error": "",
    "notes": [
     "açık veri: 70 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 82,
+   "seconds": 87,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:37:53.766Z"
+   "lastOk": "2026-11-25T07:46:41.573Z"
   },
   "radar": {
    "id": "radar",
@@ -34,10 +34,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 63,
-   "prevCount": 35,
+   "prevCount": 63,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/yalova-etkinlikleri: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/yalova-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/yalova-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/yalova-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/yalova-hafta-sonu-etkinlikleri: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yalova: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 866,
+   "seconds": 1064,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:37:53.766Z"
+   "lastOk": "2026-11-25T07:46:41.573Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/yalova/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 155,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/yalova: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:37:53.766Z"
+   "lastOk": "2026-11-25T07:46:41.573Z"
   }
  }
 }

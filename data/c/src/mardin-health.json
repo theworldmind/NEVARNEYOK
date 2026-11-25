@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T21:24:36.732Z",
+ "runAt": "2026-11-25T07:33:14.178Z",
  "mode": "full",
- "total": 49,
+ "total": 56,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 39,
-   "prevCount": 49,
+   "count": 45,
+   "prevCount": 39,
    "error": "",
    "notes": [
-    "açık veri: 35 seans",
+    "açık veri: 39 seans",
     "biletinial.com/tr-tr/tiyatro/mardin: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mardin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 87,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:24:36.732Z"
+   "lastOk": "2026-11-25T07:33:14.178Z"
   },
   "radar": {
    "id": "radar",
@@ -33,7 +33,7 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 11,
+   "count": 7,
    "prevCount": 10,
    "error": "",
    "notes": [
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 162,
+   "seconds": 158,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:24:36.732Z"
+   "lastOk": "2026-11-25T07:33:14.178Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/mardin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:24:36.732Z"
+   "lastOk": "2026-11-25T07:33:14.178Z"
   }
  }
 }

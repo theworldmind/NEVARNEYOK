@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:00:55.137Z",
+ "runAt": "2026-11-25T07:06:44.466Z",
  "mode": "full",
  "total": 12,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 11,
-   "prevCount": 14,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "açık veri: 9 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
+   "seconds": 82,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:55.137Z"
+   "lastOk": "2026-11-25T07:06:44.466Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
+   "seconds": 161,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:55.137Z"
+   "lastOk": "2026-11-25T07:06:44.466Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/bilecik/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bilecik/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
-   "failStreak": 17,
+   "seconds": 156,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 7,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   }
  }

@@ -1,17 +1,17 @@
 {
- "runAt": "2026-11-24T21:00:59.824Z",
+ "runAt": "2026-11-25T07:06:41.283Z",
  "mode": "full",
- "total": 139,
- "written": true,
+ "total": 62,
+ "written": false,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
+   "ok": true,
+   "status": "calisiyor",
    "count": 53,
-   "prevCount": 139,
+   "prevCount": 129,
    "error": "",
    "notes": [
     "açık veri: 43 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
-   "failStreak": 1,
-   "lastOk": "2026-11-24T08:31:27.323Z"
+   "seconds": 94,
+   "failStreak": 0,
+   "lastOk": "2026-11-25T07:06:41.283Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
+   "seconds": 169,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:59.824Z"
+   "lastOk": "2026-11-25T07:06:41.283Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/bolu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:59.824Z"
+   "lastOk": "2026-11-25T07:06:41.283Z"
   }
  }
 }

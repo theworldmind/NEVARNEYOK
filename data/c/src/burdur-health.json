@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T21:00:52.888Z",
+ "runAt": "2026-11-25T07:06:43.731Z",
  "mode": "full",
- "total": 33,
+ "total": 35,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 33,
-   "prevCount": 40,
+   "count": 35,
+   "prevCount": 33,
    "error": "",
    "notes": [
     "açık veri: 27 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/burdur: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 90,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:52.888Z"
+   "lastOk": "2026-11-25T07:06:43.731Z"
   },
   "radar": {
    "id": "radar",
@@ -42,13 +42,13 @@
     "www.radarturkiye.com/burdur-tiyatro-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/burdur-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 503",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
+   "seconds": 168,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:52.888Z"
+   "lastOk": "2026-11-25T07:06:43.731Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -86,7 +86,7 @@
     "allevents.in/burdur/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/burdur: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   }
  }

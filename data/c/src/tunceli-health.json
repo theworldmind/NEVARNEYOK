@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T21:36:42.800Z",
+ "runAt": "2026-11-25T07:45:34.918Z",
  "mode": "full",
- "total": 43,
+ "total": 42,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 10,
-   "prevCount": 12,
+   "count": 9,
+   "prevCount": 10,
    "error": "",
    "notes": [
     "açık veri: 7 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/tunceli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 76,
+   "seconds": 80,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:36:42.800Z"
+   "lastOk": "2026-11-25T07:45:34.918Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 157,
+   "seconds": 150,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:36:42.800Z"
+   "lastOk": "2026-11-25T07:45:34.918Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "allevents": {
@@ -72,8 +72,8 @@
    "kind": "toplayici",
    "ok": false,
    "status": "dustu",
-   "count": 0,
-   "prevCount": 33,
+   "count": 2,
+   "prevCount": 32,
    "error": "",
    "notes": [
     "allevents.in/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -85,8 +85,8 @@
     "allevents.in/tunceli/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tunceli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 174,
-   "failStreak": 11,
+   "seconds": 172,
+   "failStreak": 12,
    "lastOk": "2026-11-18T13:48:17.224Z"
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/tunceli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   }
  }

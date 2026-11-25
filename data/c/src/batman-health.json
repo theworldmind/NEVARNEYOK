@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:00:51.583Z",
+ "runAt": "2026-11-25T07:06:52.269Z",
  "mode": "full",
  "total": 73,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 33,
-   "prevCount": 42,
+   "prevCount": 33,
    "error": "",
    "notes": [
     "açık veri: 28 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/batman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 93,
+   "seconds": 91,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:51.583Z"
+   "lastOk": "2026-11-25T07:06:52.269Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
+   "seconds": 173,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:51.583Z"
+   "lastOk": "2026-11-25T07:06:52.269Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/batman/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/batman/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 186,
-   "failStreak": 12,
+   "seconds": 183,
+   "failStreak": 13,
    "lastOk": "2026-11-18T13:02:04.821Z"
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/batman: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 24,
+   "seconds": 21,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:51.583Z"
+   "lastOk": "2026-11-25T07:06:52.269Z"
   }
  }
 }

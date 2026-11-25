@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:18:46.912Z",
+ "runAt": "2026-11-25T07:26:15.781Z",
  "mode": "full",
  "total": 11,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 9,
-   "prevCount": 11,
+   "prevCount": 9,
    "error": "",
    "notes": [
     "açık veri: 7 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kars: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 85,
+   "seconds": 92,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:18:46.912Z"
+   "lastOk": "2026-11-25T07:26:15.781Z"
   },
   "radar": {
    "id": "radar",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 166,
+   "seconds": 168,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:18:46.912Z"
+   "lastOk": "2026-11-25T07:26:15.781Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kars/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kars/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 17,
+   "seconds": 156,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kars: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 17,
+   "seconds": 6,
+   "failStreak": 18,
    "lastOk": null
   }
  }

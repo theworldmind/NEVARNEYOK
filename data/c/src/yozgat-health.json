@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T21:38:08.370Z",
+ "runAt": "2026-11-25T07:49:22.350Z",
  "mode": "full",
- "total": 87,
+ "total": 88,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 20,
-   "prevCount": 63,
+   "prevCount": 56,
    "error": "",
    "notes": [
     "açık veri: 15 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/yozgat: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 108,
-   "failStreak": 19,
+   "seconds": 83,
+   "failStreak": 20,
    "lastOk": "2026-11-15T10:35:57.526Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 33,
-   "prevCount": 32,
+   "prevCount": 33,
    "error": "",
    "notes": [
     "www.radarturkiye.com/yozgat-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yozgat: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 877,
+   "seconds": 853,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:38:08.370Z"
+   "lastOk": "2026-11-25T07:49:22.350Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/yozgat/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/yozgat/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
-   "failStreak": 17,
+   "seconds": 170,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   }
  }

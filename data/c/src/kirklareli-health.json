@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:21:04.185Z",
+ "runAt": "2026-11-25T07:27:34.400Z",
  "mode": "full",
  "total": 167,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 33,
-   "prevCount": 146,
+   "prevCount": 133,
    "error": "",
    "notes": [
     "açık veri: 28 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kirklareli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
-   "failStreak": 19,
+   "seconds": 85,
+   "failStreak": 20,
    "lastOk": "2026-11-15T10:31:19.700Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 37,
-   "prevCount": 35,
+   "prevCount": 37,
    "error": "",
    "notes": [
     "www.radarturkiye.com/kirklareli-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirklareli: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 916,
+   "seconds": 908,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:21:04.185Z"
+   "lastOk": "2026-11-25T07:27:34.400Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/kirklareli/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/kirklareli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 17,
+   "seconds": 155,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -101,9 +101,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kirklareli: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:21:04.185Z"
+   "lastOk": "2026-11-25T07:27:34.400Z"
   }
  }
 }

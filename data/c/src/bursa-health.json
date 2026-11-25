@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T21:00:48.832Z",
+ "runAt": "2026-11-25T07:06:45.806Z",
  "mode": "full",
- "total": 1150,
+ "total": 1165,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": false,
    "status": "dustu",
-   "count": 404,
-   "prevCount": 1019,
+   "count": 398,
+   "prevCount": 1040,
    "error": "",
    "notes": [
-    "açık veri: 369 seans, 4 detay sayfası",
+    "açık veri: 370 seans, 4 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/bursa: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bursa: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bursa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/bursa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bursa: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 172,
-   "failStreak": 19,
+   "seconds": 176,
+   "failStreak": 20,
    "lastOk": "2026-11-15T10:28:55.678Z"
   },
   "radar": {
@@ -33,22 +33,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 133,
-   "prevCount": 121,
+   "count": 137,
+   "prevCount": 134,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/bursa-etkinlikleri: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/bursa-etkinlikleri: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/bursa-muzik-etkinlikleri: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/bursa-tiyatro-etkinlikleri: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/bursa-hafta-sonu-etkinlikleri: 55 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/bursa-tiyatro-etkinlikleri: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/bursa-hafta-sonu-etkinlikleri: 65 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=bursa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=bursa: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=bursa: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bursa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 811,
+   "seconds": 1102,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:48.832Z"
+   "lastOk": "2026-11-25T07:06:45.806Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -72,22 +72,22 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 40,
+   "count": 41,
    "prevCount": 25,
    "error": "",
    "notes": [
-    "allevents.in/bursa: 15 bağlantı, 15 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/bursa/all: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/bursa/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/bursa: 21 bağlantı, 16 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/bursa/all: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/bursa/concerts: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/bursa/parties: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/bursa/comedy: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/bursa/performances: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/bursa/comedy: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/bursa/performances: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/bursa/workshops: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/bursa/kids: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/bursa/kids: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 181,
+   "seconds": 188,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:00:48.832Z"
+   "lastOk": "2026-11-25T07:06:45.806Z"
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -101,8 +101,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bursa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 4,
+   "seconds": 7,
+   "failStreak": 5,
    "lastOk": "2026-11-22T18:17:46.714Z"
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-24T21:07:41.044Z",
+ "runAt": "2026-11-25T07:18:40.439Z",
  "mode": "full",
- "total": 68,
+ "total": 69,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 38,
-   "prevCount": 47,
+   "prevCount": 38,
    "error": "",
    "notes": [
     "açık veri: 34 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 124,
+   "seconds": 85,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:07:41.044Z"
+   "lastOk": "2026-11-25T07:18:40.439Z"
   },
   "radar": {
    "id": "radar",
@@ -34,10 +34,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 29,
-   "prevCount": 28,
+   "prevCount": 29,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/giresun-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/giresun-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/giresun-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/giresun-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/giresun-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=giresun: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 871,
+   "seconds": 847,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:07:41.044Z"
+   "lastOk": "2026-11-25T07:18:40.439Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/giresun/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/giresun/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 17,
+   "seconds": 155,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -95,15 +95,15 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1,
+   "count": 2,
    "prevCount": 1,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/giresun: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:07:41.044Z"
+   "lastOk": "2026-11-25T07:18:40.439Z"
   }
  }
 }

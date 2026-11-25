@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:06:50.953Z",
+ "runAt": "2026-11-25T07:13:10.648Z",
  "mode": "full",
  "total": 155,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 100,
-   "prevCount": 80,
+   "prevCount": 100,
    "error": "",
    "notes": [
     "açık veri: 93 seans, 1 detay sayfası",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/edirne: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 102,
+   "seconds": 91,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:06:50.953Z"
+   "lastOk": "2026-11-25T07:13:10.648Z"
   },
   "radar": {
    "id": "radar",
@@ -33,11 +33,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 54,
+   "count": 22,
    "prevCount": 48,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/edirne-etkinlikleri: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/edirne-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/edirne-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/edirne-tiyatro-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/edirne-hafta-sonu-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=edirne: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 932,
+   "seconds": 941,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:06:50.953Z"
+   "lastOk": "2026-11-25T07:13:10.648Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 17,
+   "failStreak": 18,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/edirne/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/edirne/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 17,
+   "seconds": 155,
+   "failStreak": 18,
    "lastOk": null
   },
   "biletimgo": {
@@ -103,7 +103,7 @@
    ],
    "seconds": 23,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:06:50.953Z"
+   "lastOk": "2026-11-25T07:13:10.648Z"
   }
  }
 }

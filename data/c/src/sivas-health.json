@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-24T21:32:20.838Z",
+ "runAt": "2026-11-25T07:44:01.641Z",
  "mode": "full",
  "total": 99,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": false,
    "status": "dustu",
    "count": 34,
-   "prevCount": 99,
+   "prevCount": 96,
    "error": "",
    "notes": [
     "açık veri: 30 seans",
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sivas: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
-   "failStreak": 18,
+   "seconds": 89,
+   "failStreak": 19,
    "lastOk": "2026-11-15T10:34:03.415Z"
   },
   "radar": {
@@ -34,7 +34,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 10,
-   "prevCount": 10,
+   "prevCount": 9,
    "error": "",
    "notes": [
     "www.radarturkiye.com/sivas-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -46,9 +46,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 170,
+   "seconds": 154,
    "failStreak": 0,
-   "lastOk": "2026-11-24T21:32:20.838Z"
+   "lastOk": "2026-11-25T07:44:01.641Z"
   },
   "bugece": {
    "id": "bugece",
@@ -63,7 +63,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   },
   "allevents": {
@@ -85,8 +85,8 @@
     "allevents.in/sivas/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sivas/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 16,
+   "seconds": 154,
+   "failStreak": 17,
    "lastOk": null
   },
   "biletimgo": {
@@ -102,7 +102,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/sivas: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 5,
-   "failStreak": 16,
+   "failStreak": 17,
    "lastOk": null
   }
  }
