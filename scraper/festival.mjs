@@ -80,7 +80,7 @@ for (const [il, months] of Object.entries(gi)) for (const ay of months) for (con
 
 /* ---------- festival-yıl kayıtlarını kur ---------- */
 const prev = await rj(OUT, { festivals: [] });
-const byId = new Map((prev.festivals || []).map((x) => [x.id, x]));
+const byId = new Map((prev.festivals || []).filter((x) => x.f !== "genel").map((x) => [x.id, x])); // adsız/genel kayıtlar her çalışmada seanslardan (güncel + arşiv) yeniden kurulur
 const notes = [];
 const slug = (s) => fold(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const ensure = (F, yil, il, name = "") => {
@@ -143,6 +143,19 @@ for (const x of byId.values()) {
   x.mekan = [...new Set(x.g.map((r) => r[3]).filter(Boolean))].slice(0, 12);
   if (!x.films.length && x.g.length) { const m = new Map(); for (const r of x.g) { const k = tkey(r[2]); if (!m.has(k)) m.set(k, { k, t: r[2], img: r[5] || "", auto: 1 }); r[4] = k; } x.films = [...m.values()]; }
 }
+// Aynı ilde tarihleri çakışan (±2 gün) genel kayıtlar tek festival: kayıtlı festivale ya da en uzun adlı kayda katılır
+const pad2 = (d, n) => new Date(Date.parse(d) + n * 864e5).toISOString().slice(0, 10);
+const ov = (a, b) => a.bas && b.bas && a.il === b.il && a.bas <= pad2(b.bit || b.bas, 2) && b.bas <= pad2(a.bit || a.bas, 2);
+const G2 = [...byId.values()].filter((x) => x.f === "genel");
+for (const x of G2) { if (!byId.has(x.id)) continue;
+  const GEN = /^(film|filmleri|festivali|festival|uluslararasi|gunleri|haftasi|sinema|turkiye|gosterimleri|gosterim)$/, words = (a) => fold(a).replace(/^\d+\s*/, "").split(" ").filter((w) => w.length > 3 && !GEN.test(w));
+  const into = [...byId.values()].find((y) => y !== x && ov(x, y) && (/gosterimleri$/.test(fold(x.ad)) || (words(x.ad).some((w) => words(y.ad).includes(w) || fold(y.ad).includes(w)) && (y.f !== "genel" || fold(y.ad).length >= fold(x.ad).length))));
+  if (!into) continue;
+  const key = (r) => r[0] + r[1] + fold(r[2]); const have = new Set(into.g.map(key));
+  for (const r of x.g) if (!have.has(key(r))) into.g.push(r);
+  for (const f of x.films) if (!into.films.some((z) => z.k === f.k)) into.films.push(f);
+  into.g.sort((a, b) => (a[0] + a[1]).localeCompare(b[0] + b[1])); if (x.bas < into.bas) into.bas = x.bas; if ((x.bit || "") > (into.bit || "")) into.bit = x.bit;
+  into.mekan = [...new Set([...(into.mekan || []), ...(x.mekan || [])])].slice(0, 12); byId.delete(x.id); }
 const festivals = [...byId.values()].filter((x) => x.g.length || x.films.length).sort((a, b) => (b.bas || "").localeCompare(a.bas || "") || a.ad.localeCompare(b.ad, "tr"));
 await writeFile(OUT, JSON.stringify({ updated: new Date().toISOString(), festivals }));
 console.log(`Festivaller: ${festivals.length} festival-yıl · ${matched} yeni seans eşleşti · ${festivals.reduce((a, x) => a + x.g.length, 0)} seans`);

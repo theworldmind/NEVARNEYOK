@@ -784,7 +784,7 @@ const fk = (t) => fold(String(t || "").split(" / ")[0].replace(/^festival\s*[-�
 let FSTP = null; const festJ = () => FSTP ||= jget("data/festival.json").then((j) => j?.festivals || []).catch(() => { FSTP = null; return []; });
 const GCP = new Map(); const gAy = (il, ay) => { const k = il + "/" + ay; if (!GCP.has(k)) GCP.set(k, jget(`data/gecmis/${il}/${ay}.json`).then((j) => j || { e: [], f: [] }).catch(() => { GCP.delete(k); return { e: [], f: [] }; })); return GCP.get(k); };
 let GIP = null; const gIdx = () => GIP ||= jget("data/gecmis/index.json").then((j) => j || {}).catch(() => { GIP = null; return {}; });
-const fstState = (x) => { const t = nowIST().d; return !x.bas ? "" : t < x.bas ? "yakin" : t > (x.bit || x.bas) ? "bitti" : "simdi"; };
+const fstState = (x) => { const t = nowIST().d; return !x.bas ? "bitti" : t < x.bas ? "yakin" : t > (x.bit || x.bas) ? "bitti" : "simdi"; };
 const fstRange = (x) => { if (!x.bas) return ""; const a = pd(x.bas), b = pd(x.bit || x.bas); return x.bas === x.bit || !x.bit ? `${a.getDate()} ${AY[a.getMonth()]} ${a.getFullYear()}` : a.getMonth() === b.getMonth() ? `${a.getDate()}–${b.getDate()} ${AY[a.getMonth()]} ${b.getFullYear()}` : `${a.getDate()} ${AY[a.getMonth()]} – ${b.getDate()} ${AY[b.getMonth()]} ${b.getFullYear()}`; };
 const ilAd = (id) => CITIES.find((c) => c.id === id)?.name || "";
 const fstImg = (x) => (x.films || []).map((f) => f.img).find(Boolean) || (x.g || []).map((r) => r[5]).find(Boolean) || "";
