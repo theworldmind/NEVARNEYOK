@@ -7,6 +7,7 @@ on:
       max: { description: "bu çalışmada en çok kurum", default: "9000" }
   schedule:
     - cron: "20 1 * * *"
+    - cron: "40 12 * * *"
 
 permissions:
   contents: write

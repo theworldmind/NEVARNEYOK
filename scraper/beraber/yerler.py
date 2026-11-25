@@ -107,7 +107,7 @@ print("Wikidata", nwd, "GeoNames", ngn)
 nmeb = 0
 if os.path.exists("/tmp/mo/okullar.json"):
     for h, x in json.load(open("/tmp/mo/okullar.json", encoding="utf8")).items():
-        if x[3] is not None and good(x[0]): P.append((x[0], x[3], x[4], "yer", 2.5)); nmeb += 1
+        if isinstance(x, list) and x[3] is not None and good(x[0]): P.append((x[0], x[3], x[4], "yer", 2.5)); nmeb += 1
 print("MEB", nmeb)
 # yakın ve aynı adlı kayıtlar teke iner; OSM önce
 P.sort(key=lambda x: -x[4]); seen = {}; out = collections.defaultdict(list); nk = 0
