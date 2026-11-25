@@ -112,7 +112,7 @@ if os.path.exists("/tmp/mo/okullar.json"):
 print("MEB", nmeb)
 # yakın ve aynı adlı kayıtlar teke iner; OSM önce
 # 5. alan 0 = yalnızca aramada, haritada yazı olmaz (güveni düşük Overture, GeoNames, kod gibi adlar)
-MAPOK = lambda n: len(n) <= 42 and ";" not in n and bool(re.search(r"[^\W\d_]{3}", n)) and not re.fullmatch(r"[A-Za-z]{0,3}[-\s]?\d[\d\s/-]*", n) and not re.search(r"\bT[üu]rkiye$|\bTurkey$|S[ıi]n[ıi]r[ıi]?$|\bLine \d|\bHatt[ıi]$|^(?!.*(Park|Cad|Hastane|Okul|Lise|Sok|Bulvar|Cami|Kolej|Merkez)).*\b(Op\.? ?Dr|Dr|Uzm|Av)\.|https?:|www\.|\.com\b", n, re.I)
+MAPOK = lambda n: len(n) <= 50 and ";" not in n and bool(re.search(r"[^\W\d_]{3}", n)) and not re.fullmatch(r"[A-Za-z]{0,3}[-\s]?\d[\d\s/-]*", n) and not re.search(r"\bT[üu]rkiye$|\bTurkey$|S[ıi]n[ıi]r[ıi]?$|\bLine \d|\bHatt[ıi]$|^(?!.*(Park|Cad|Hastane|Okul|Lise|Sok|Bulvar|Cami|Kolej|Merkez)).*\b(Op\.? ?Dr|Dr|Uzm|Av)\.|https?:|www\.|\.com\b", n, re.I)
 P.sort(key=lambda x: -x[4]); seen = {}; out = collections.defaultdict(list); nk = nmap = 0
 for n, a, o, t, s, m in P:
     k = (fold(n), round(a * 700), round(o * 550))
