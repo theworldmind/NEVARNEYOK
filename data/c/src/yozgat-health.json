@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T20:59:16.050Z",
+ "runAt": "2026-11-26T07:31:06.481Z",
  "mode": "full",
  "total": 50,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/yozgat: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 82,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:59:16.050Z",
+   "lastOk": "2026-11-26T07:31:06.481Z",
    "okCount": 18
   },
   "radar": {
@@ -34,11 +34,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 58,
-   "prevCount": 33,
+   "count": 33,
+   "prevCount": 58,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/yozgat-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/yozgat-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/yozgat-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/yozgat-tiyatro-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/yozgat-hafta-sonu-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,10 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yozgat: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 331,
+   "seconds": 846,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:59:16.050Z",
-   "okCount": 58
+   "lastOk": "2026-11-26T07:31:06.481Z",
+   "okCount": 33
   },
   "bugece": {
    "id": "bugece",
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/yozgat/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/yozgat/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 161,
-   "failStreak": 20,
+   "seconds": 169,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   }

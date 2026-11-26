@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:30:30.156Z",
+ "runAt": "2026-11-26T07:02:31.757Z",
  "mode": "full",
- "total": 35,
+ "total": 42,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 34,
+   "count": 41,
    "prevCount": 34,
    "error": "",
    "notes": [
-    "açık veri: 31 seans",
+    "açık veri: 38 seans",
     "biletinial.com/tr-tr/tiyatro/agri: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/agri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/agri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 84,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:30:30.156Z",
-   "okCount": 34
+   "lastOk": "2026-11-26T07:02:31.757Z",
+   "okCount": 41
   },
   "radar": {
    "id": "radar",
@@ -38,7 +38,7 @@
    "prevCount": 1,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/agri-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/agri-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/agri-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/agri-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/agri-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 158,
+   "seconds": 152,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:30:30.156Z",
+   "lastOk": "2026-11-26T07:02:31.757Z",
    "okCount": 1
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/agri/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/agri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 20,
+   "seconds": 7,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   }

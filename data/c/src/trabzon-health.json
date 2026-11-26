@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:56:41.326Z",
+ "runAt": "2026-11-26T07:27:42.009Z",
  "mode": "full",
- "total": 74,
+ "total": 116,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 62,
-   "prevCount": 66,
+   "count": 64,
+   "prevCount": 62,
    "error": "",
    "notes": [
     "açık veri: 56 seans",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/trabzon: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 98,
+   "seconds": 97,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:56:41.326Z",
-   "okCount": 62
+   "lastOk": "2026-11-26T07:27:42.009Z",
+   "okCount": 64
   },
   "radar": {
    "id": "radar",
@@ -34,23 +34,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 46,
-   "prevCount": 45,
+   "count": 45,
+   "prevCount": 46,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/trabzon-etkinlikleri: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/trabzon-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/trabzon-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/trabzon-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/trabzon-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/trabzon-hafta-sonu-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=trabzon: 40 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 315,
+   "seconds": 243,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:56:41.326Z",
-   "okCount": 46
+   "lastOk": "2026-11-26T07:27:42.009Z",
+   "okCount": 45
   },
   "bugece": {
    "id": "bugece",
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -81,16 +81,16 @@
    "notes": [
     "allevents.in/trabzon: 8 bağlantı, 8 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/all: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/performances: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/trabzon/concerts: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/parties: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/comedy: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/performances: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/workshops: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/kids: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 175,
+   "seconds": 186,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:56:41.326Z",
+   "lastOk": "2026-11-26T07:27:42.009Z",
    "okCount": 9
   },
   "biletimgo": {
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 20,
+   "seconds": 7,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   }

@@ -1,30 +1,30 @@
 {
- "runAt": "2026-11-25T20:48:48.978Z",
+ "runAt": "2026-11-26T07:20:53.709Z",
  "mode": "full",
- "total": 224,
- "written": false,
+ "total": 472,
+ "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 174,
-   "prevCount": 177,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
+   "prevCount": 174,
    "error": "",
    "notes": [
-    "açık veri: 148 seans, 7 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/mersin: 65 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/mersin: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/stand-up/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/cocuk-aktiviteleri/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/opera-bale/mersin: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/festival/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/mersin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "açık veri: 0 seans, şehir numarası bulunamadı: mersin",
+    "liste açılmadı: https://biletinial.com/tr-tr/tiyatro/mersin (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/tiyatro/mersin\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/tiyatro/mersin\", waiting until \"domcontentloaded\"\n)",
+    "liste açılmadı: https://biletinial.com/tr-tr/muzik/mersin (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/muzik/mersin\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/muzik/mersin\", waiting until \"domcontentloaded\"\n)",
+    "liste açılmadı: https://biletinial.com/tr-tr/stand-up/mersin (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/stand-up/mersin\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/stand-up/mersin\", waiting until \"domcontentloaded\"\n)",
+    "liste açılmadı: https://biletinial.com/tr-tr/cocuk-aktiviteleri/mersin (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/cocuk-aktiviteleri/mersin\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/cocuk-aktiviteleri/mersin\", waiting until \"domcontentloaded\"\n)",
+    "liste açılmadı: https://biletinial.com/tr-tr/opera-bale/mersin (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/opera-bale/mersin\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/opera-bale/mersin\", waiting until \"domcontentloaded\"\n)",
+    "liste açılmadı: https://biletinial.com/tr-tr/festival/mersin (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/festival/mersin\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/festival/mersin\", waiting until \"domcontentloaded\"\n)",
+    "liste açılmadı: https://biletinial.com/tr-tr/egitim/mersin (page.goto: net::ERR_TIMED_OUT at https://biletinial.com/tr-tr/egitim/mersin\nCall log:\n  - navigating to \"https://biletinial.com/tr-tr/egitim/mersin\", waiting until \"domcontentloaded\"\n)"
    ],
-   "seconds": 128,
-   "failStreak": 0,
+   "seconds": 2092,
+   "failStreak": 1,
    "lastOk": "2026-11-25T20:48:48.978Z",
    "okCount": 174
   },
@@ -34,23 +34,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 50,
+   "count": 52,
    "prevCount": 50,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/mersin-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/mersin-muzik-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/mersin-tiyatro-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mersin-etkinlikleri: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mersin-muzik-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/mersin-tiyatro-etkinlikleri: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/mersin-hafta-sonu-etkinlikleri: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=mersin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=mersin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=mersin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 269,
+   "seconds": 252,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:48:48.978Z",
-   "okCount": 50
+   "lastOk": "2026-11-26T07:20:53.709Z",
+   "okCount": 52
   },
   "bugece": {
    "id": "bugece",
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -75,23 +75,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 27,
-   "prevCount": 25,
+   "count": 25,
+   "prevCount": 27,
    "error": "",
    "notes": [
-    "allevents.in/mersin: 19 bağlantı, 14 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/mersin/all: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/mersin/concerts: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/mersin/parties: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mersin: 18 bağlantı, 12 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mersin/all: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mersin/concerts: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mersin/parties: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 179,
+   "seconds": 175,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:48:48.978Z",
-   "okCount": 27
+   "lastOk": "2026-11-26T07:20:53.709Z",
+   "okCount": 25
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/mersin: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 25,
+   "seconds": 22,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:48:48.978Z",
+   "lastOk": "2026-11-26T07:20:53.709Z",
    "okCount": 11
   }
  }

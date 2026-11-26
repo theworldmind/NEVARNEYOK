@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T20:25:02.048Z",
+ "runAt": "2026-11-26T06:57:32.816Z",
  "mode": "full",
  "total": 12,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 12,
-   "prevCount": 14,
+   "prevCount": 12,
    "error": "",
    "notes": [
     "açık veri: 10 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bayburt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:25:02.048Z",
+   "lastOk": "2026-11-26T06:57:32.816Z",
    "okCount": 12
   },
   "radar": {
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 164,
-   "failStreak": 20,
+   "seconds": 160,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/bayburt/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   }

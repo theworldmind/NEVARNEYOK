@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T20:49:47.778Z",
+ "runAt": "2026-11-26T07:20:54.618Z",
  "mode": "full",
  "total": 10,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/mus: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mus: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 75,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:49:47.778Z",
+   "lastOk": "2026-11-26T07:20:54.618Z",
    "okCount": 8
   },
   "radar": {
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mus: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mus: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 158,
+   "seconds": 147,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:49:47.778Z",
+   "lastOk": "2026-11-26T07:20:54.618Z",
    "okCount": 2
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/mus/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/mus/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 20,
+   "seconds": 155,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/mus: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 20,
+   "seconds": 6,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   }

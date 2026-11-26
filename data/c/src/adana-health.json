@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:24:47.459Z",
+ "runAt": "2026-11-26T06:57:57.691Z",
  "mode": "full",
- "total": 302,
+ "total": 303,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 150,
-   "prevCount": 157,
+   "count": 158,
+   "prevCount": 150,
    "error": "",
    "notes": [
-    "açık veri: 138 seans",
+    "açık veri: 148 seans",
     "biletinial.com/tr-tr/tiyatro/adana: 64 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/adana: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/adana: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 112,
+   "seconds": 115,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:47.459Z",
-   "okCount": 150
+   "lastOk": "2026-11-26T06:57:57.691Z",
+   "okCount": 158
   },
   "radar": {
    "id": "radar",
@@ -34,23 +34,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 123,
-   "prevCount": 128,
+   "count": 128,
+   "prevCount": 123,
    "error": "",
    "notes": [
     "www.radarturkiye.com/adana-etkinlikleri: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/adana-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 503",
-    "www.radarturkiye.com/adana-tiyatro-etkinlikleri: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/adana-hafta-sonu-etkinlikleri: 62 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/adana-muzik-etkinlikleri: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/adana-tiyatro-etkinlikleri: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/adana-hafta-sonu-etkinlikleri: 65 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=adana: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=adana: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=adana: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=adana: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1221,
+   "seconds": 1191,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:47.459Z",
-   "okCount": 123
+   "lastOk": "2026-11-26T06:57:57.691Z",
+   "okCount": 128
   },
   "bugece": {
    "id": "bugece",
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -75,12 +75,12 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 35,
+   "count": 34,
    "prevCount": 35,
    "error": "",
    "notes": [
-    "allevents.in/adana: 16 bağlantı, 16 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/adana/all: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/adana: 15 bağlantı, 15 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/adana/all: 30 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/parties: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -88,10 +88,10 @@
     "allevents.in/adana/workshops: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/adana/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
+   "seconds": 173,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:47.459Z",
-   "okCount": 35
+   "lastOk": "2026-11-26T06:57:57.691Z",
+   "okCount": 34
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -107,7 +107,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:47.459Z",
+   "lastOk": "2026-11-26T06:57:57.691Z",
    "okCount": 2
   }
  }

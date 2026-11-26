@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T20:25:20.692Z",
+ "runAt": "2026-11-26T06:57:35.578Z",
  "mode": "full",
  "total": 9,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 8,
-   "prevCount": 10,
+   "prevCount": 8,
    "error": "",
    "notes": [
     "açık veri: 6 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:25:20.692Z",
+   "lastOk": "2026-11-26T06:57:35.578Z",
    "okCount": 8
   },
   "radar": {
@@ -49,7 +49,7 @@
    ],
    "seconds": 166,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:25:20.692Z",
+   "lastOk": "2026-11-26T06:57:35.578Z",
    "okCount": 3
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bilecik/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bilecik/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 20,
+   "seconds": 157,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 20,
+   "seconds": 6,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   }

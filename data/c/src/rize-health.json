@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:52:31.296Z",
+ "runAt": "2026-11-26T07:23:28.552Z",
  "mode": "full",
- "total": 73,
+ "total": 74,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 26,
+   "count": 27,
    "prevCount": 26,
    "error": "",
    "notes": [
-    "açık veri: 20 seans",
-    "biletinial.com/tr-tr/tiyatro/rize: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 21 seans",
+    "biletinial.com/tr-tr/tiyatro/rize: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/rize: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/rize: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 83,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:52:31.296Z",
-   "okCount": 26
+   "lastOk": "2026-11-26T07:23:28.552Z",
+   "okCount": 27
   },
   "radar": {
    "id": "radar",
@@ -34,11 +34,11 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 41,
+   "count": 42,
    "prevCount": 41,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/rize-etkinlikleri: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/rize-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/rize-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/rize-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/rize-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,10 +47,10 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=rize: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=rize: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 377,
+   "seconds": 173,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:52:31.296Z",
-   "okCount": 41
+   "lastOk": "2026-11-26T07:23:28.552Z",
+   "okCount": 42
   },
   "bugece": {
    "id": "bugece",
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/rize/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/rize/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 20,
+   "seconds": 155,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:52:31.296Z",
+   "lastOk": "2026-11-26T07:23:28.552Z",
    "okCount": 6
   }
  }

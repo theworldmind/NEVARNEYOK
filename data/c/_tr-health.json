@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:24:40.780Z",
+ "runAt": "2026-11-26T06:57:51.029Z",
  "mode": "full",
- "total": 4801,
+ "total": 4855,
  "written": true,
  "sources": {
   "sanatcepte": {
@@ -11,14 +11,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 887,
-   "prevCount": 894,
+   "prevCount": 887,
    "error": "",
    "notes": [
     "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 348 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 100,
+   "seconds": 82,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:40.780Z",
+   "lastOk": "2026-11-26T06:57:51.029Z",
    "okCount": 887
   },
   "akansel": {
@@ -33,9 +33,9 @@
    "notes": [
     "akanselegitimdanismanlik.com/seminerler.aspx: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 7 takvim satırı, durum 200"
    ],
-   "seconds": 8,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:40.780Z",
+   "lastOk": "2026-11-26T06:57:51.029Z",
    "okCount": 7
   },
   "dob": {
@@ -50,9 +50,9 @@
    "notes": [
     "açık veri: 208 seans"
    ],
-   "seconds": 21,
+   "seconds": 24,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:40.780Z",
+   "lastOk": "2026-11-26T06:57:51.029Z",
    "okCount": 208
   },
   "tiyatrolar": {
@@ -61,22 +61,22 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 38,
-   "prevCount": 37,
+   "count": 39,
+   "prevCount": 38,
    "error": "",
    "notes": [
-    "tiyatrolar.com.tr/: 222 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=1: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=2: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/: 223 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=1: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=2: 54 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "tiyatrolar.com.tr/sahnedekiler/?tip=3: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/sahnedekiler/?tip=4: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "tiyatrolar.com.tr/sahnedekiler/?tip=4: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "site haritası: 2000 adres",
-    "elenen: etkinlik değil 38 (ör. Aşk Olsun Shakespeare |  |  |  | 2026-12-08); geçmiş 345 (ör. Jan Dark | Üniversiteler, Bilkent Center AST Bilkent Sahne, 1597. Cd. 3/86, 06430 |  |  | 2025-09-27)"
+    "elenen: geçmiş 366 (ör. ANNA K. |  |  |  | 2026-11-18); etkinlik değil 38 (ör. Little Night |  |  |  | 2026-11-28)"
    ],
-   "seconds": 213,
+   "seconds": 209,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:40.780Z",
-   "okCount": 38
+   "lastOk": "2026-11-26T06:57:51.029Z",
+   "okCount": 39
   },
   "iticket": {
    "id": "iticket",
@@ -97,8 +97,8 @@
     "iticket.com.tr/etkinlikler/tumu?page=7: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "iticket.com.tr/etkinlikler/tumu?page=8: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 377,
-   "failStreak": 2,
+   "seconds": 347,
+   "failStreak": 3,
    "lastOk": "2026-11-25T07:06:29.502Z",
    "okCount": null
   },
@@ -108,17 +108,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 6506,
-   "prevCount": 6543,
+   "count": 6512,
+   "prevCount": 6506,
    "error": "",
    "notes": [
-    "açık veri: 3463 seans, 3393 detay sayfası, dizinde 3463 kayıt",
-    "elenen: etkinlik değil 49 (ör. XI. Gastromasa Istanbul Uluslararası Gastronomi Konferansı & Fuarı Kombine | Haliç Kongre Merkezi |  | İstanbul | 2026-11-27); kalite 31 (ör. Fırat Devecioğlu ile Mevlana - Rubailer Atölyesi - Online Katılım | Online Etkinlikler |  | İstanbul | 2026-11-27); geçmiş 60 (ör. Tufting Atölyesi - Kasım | Highlights in Antalya Workshops | MURATPAŞA, Antalya |  | 2026-11-01)"
+    "açık veri: 3468 seans, 3398 detay sayfası, dizinde 3468 kayıt",
+    "elenen: etkinlik değil 49 (ör. XI. Gastromasa Istanbul Uluslararası Gastronomi Konferansı & Fuarı Kombine | Haliç Kongre Merkezi |  | İstanbul | 2026-11-27); kalite 31 (ör. Fırat Devecioğlu ile Mevlana - Rubailer Atölyesi - Online Katılım | Online Etkinlikler |  | İstanbul | 2026-11-27); geçmiş 58 (ör. Olimpik Go Kart | Olimpik Go Kart | BAĞCILAR, İstanbul |  | 2026-10-21)"
    ],
-   "seconds": 3670,
+   "seconds": 3253,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:40.780Z",
-   "okCount": 6506
+   "lastOk": "2026-11-26T06:57:51.029Z",
+   "okCount": 6512
   }
  }
 }

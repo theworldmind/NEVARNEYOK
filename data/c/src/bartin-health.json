@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T20:24:49.659Z",
+ "runAt": "2026-11-26T06:57:30.704Z",
  "mode": "full",
  "total": 25,
  "written": false,
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 21,
+   "count": 22,
    "prevCount": 21,
    "error": "",
    "notes": [
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
+   "seconds": 81,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:49.659Z",
-   "okCount": 21
+   "lastOk": "2026-11-26T06:57:30.704Z",
+   "okCount": 22
   },
   "radar": {
    "id": "radar",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 166,
+   "seconds": 149,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:49.659Z",
+   "lastOk": "2026-11-26T06:57:30.704Z",
    "okCount": 1
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bartin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bartin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 20,
+   "seconds": 155,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -99,16 +99,16 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 4,
+   "count": 5,
    "prevCount": 4,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bartin: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 16,
+   "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:49.659Z",
-   "okCount": 4
+   "lastOk": "2026-11-26T06:57:30.704Z",
+   "okCount": 5
   }
  }
 }

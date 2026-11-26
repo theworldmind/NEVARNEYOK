@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:30:40.854Z",
+ "runAt": "2026-11-26T07:03:17.161Z",
  "mode": "full",
- "total": 72,
+ "total": 71,
  "written": false,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 52,
-   "prevCount": 53,
+   "prevCount": 52,
    "error": "",
    "notes": [
     "açık veri: 44 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:30:40.854Z",
+   "lastOk": "2026-11-26T07:03:17.161Z",
    "okCount": 52
   },
   "radar": {
@@ -39,17 +39,17 @@
    "error": "",
    "notes": [
     "www.radarturkiye.com/canakkale-etkinlikleri: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/canakkale-muzik-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/canakkale-tiyatro-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/canakkale-muzik-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/canakkale-tiyatro-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/canakkale-hafta-sonu-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 173,
+   "seconds": 162,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:30:40.854Z",
+   "lastOk": "2026-11-26T07:03:17.161Z",
    "okCount": 9
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/canakkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/canakkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 177,
-   "failStreak": 20,
+   "seconds": 169,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -100,14 +100,15 @@
    "ok": true,
    "status": "calisiyor",
    "count": 12,
-   "prevCount": 11,
+   "prevCount": 12,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/canakkale: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/canakkale: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 2 (ör. COWBOY NİGHT |  |  |  | 2026-11-25)"
    ],
-   "seconds": 28,
+   "seconds": 29,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:30:40.854Z",
+   "lastOk": "2026-11-26T07:03:17.161Z",
    "okCount": 12
   }
  }

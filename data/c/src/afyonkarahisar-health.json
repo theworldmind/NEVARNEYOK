@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:24:48.455Z",
+ "runAt": "2026-11-26T06:57:32.666Z",
  "mode": "full",
- "total": 85,
+ "total": 84,
  "written": false,
  "sources": {
   "biletinial": {
@@ -15,7 +15,7 @@
    "error": "",
    "notes": [
     "açık veri: 0 seans, şehir numarası bulunamadı: afyonkarahisar",
-    "biletinial.com/tr-tr/tiyatro/afyonkarahisar: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/tiyatro/afyonkarahisar: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/afyonkarahisar: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/afyonkarahisar: 58 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 104,
+   "seconds": 110,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:48.455Z",
+   "lastOk": "2026-11-26T06:57:32.666Z",
    "okCount": 2
   },
   "radar": {
@@ -38,7 +38,7 @@
    "prevCount": 79,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/afyonkarahisar-etkinlikleri: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/afyonkarahisar-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/afyonkarahisar-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/afyonkarahisar-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/afyonkarahisar-hafta-sonu-etkinlikleri: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=afyonkarahisar: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 1074,
+   "seconds": 1076,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:48.455Z",
+   "lastOk": "2026-11-26T06:57:32.666Z",
    "okCount": 79
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/afyonkarahisar/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/afyonkarahisar/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 20,
+   "seconds": 156,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/afyonkarahisar: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 20,
+   "seconds": 7,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   }

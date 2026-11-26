@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-25T20:24:56.402Z",
+ "runAt": "2026-11-26T07:02:55.194Z",
  "mode": "full",
  "total": 64,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 24,
-   "prevCount": 29,
+   "prevCount": 24,
    "error": "",
    "notes": [
     "açık veri: 19 seans",
@@ -25,7 +25,7 @@
    ],
    "seconds": 84,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:56.402Z",
+   "lastOk": "2026-11-26T07:02:55.194Z",
    "okCount": 24
   },
   "radar": {
@@ -38,7 +38,7 @@
    "prevCount": 2,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/batman-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 503",
+    "www.radarturkiye.com/batman-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/batman-muzik-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/batman-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/batman-hafta-sonu-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -47,9 +47,9 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 151,
+   "seconds": 152,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:56.402Z",
+   "lastOk": "2026-11-26T07:02:55.194Z",
    "okCount": 2
   },
   "bugece": {
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/batman/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/batman/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 178,
-   "failStreak": 15,
+   "seconds": 173,
+   "failStreak": 16,
    "lastOk": "2026-11-18T13:02:04.821Z",
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 20,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:24:56.402Z",
+   "lastOk": "2026-11-26T07:02:55.194Z",
    "okCount": 8
   }
  }

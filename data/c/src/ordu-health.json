@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:50:08.848Z",
+ "runAt": "2026-11-26T07:22:42.236Z",
  "mode": "full",
- "total": 168,
+ "total": 180,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 85,
+   "count": 97,
    "prevCount": 85,
    "error": "",
    "notes": [
-    "açık veri: 76 seans, 2 detay sayfası",
+    "açık veri: 87 seans, 2 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/ordu: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/ordu: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/ordu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 98,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:50:08.848Z",
-   "okCount": 85
+   "lastOk": "2026-11-26T07:22:42.236Z",
+   "okCount": 97
   },
   "radar": {
    "id": "radar",
@@ -34,23 +34,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 43,
-   "prevCount": 44,
+   "count": 44,
+   "prevCount": 43,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/ordu-etkinlikleri: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/ordu-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/ordu-muzik-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/ordu-tiyatro-etkinlikleri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/ordu-tiyatro-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/ordu-hafta-sonu-etkinlikleri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=ordu: 38 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=ordu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 380,
+   "seconds": 249,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:50:08.848Z",
-   "okCount": 43
+   "lastOk": "2026-11-26T07:22:42.236Z",
+   "okCount": 44
   },
   "bugece": {
    "id": "bugece",
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/ordu/workshops: 0 bağlantı, 11 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/ordu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 183,
-   "failStreak": 14,
+   "seconds": 194,
+   "failStreak": 15,
    "lastOk": "2026-11-18T13:37:00.563Z",
    "okCount": null
   },
@@ -106,8 +106,8 @@
     "www.biletimgo.com/sehir-etkinlikleri/ordu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "elenen: başka il (adres/mekân) 1 (ör. ODÜ.LÜLER DRESS CODE | Teras Restaurant Ordu | Taşbaşı Mahallesi Taşbaşı Atatürk Bulvarı Ordu - Giresun Kar |  | 2026-11-27)"
    ],
-   "seconds": 11,
-   "failStreak": 19,
+   "seconds": 9,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   }

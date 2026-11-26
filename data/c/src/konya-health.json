@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-25T20:45:11.228Z",
+ "runAt": "2026-11-26T07:17:18.522Z",
  "mode": "full",
- "total": 238,
+ "total": 245,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 184,
-   "prevCount": 156,
+   "count": 193,
+   "prevCount": 184,
    "error": "",
    "notes": [
-    "açık veri: 171 seans, 3 detay sayfası",
+    "açık veri: 180 seans, 3 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/konya: 48 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/konya: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 115,
+   "seconds": 106,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:45:11.228Z",
-   "okCount": 184
+   "lastOk": "2026-11-26T07:17:18.522Z",
+   "okCount": 193
   },
   "radar": {
    "id": "radar",
@@ -34,23 +34,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 47,
+   "count": 48,
    "prevCount": 47,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/konya-etkinlikleri: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/konya-etkinlikleri: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/konya-muzik-etkinlikleri: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/konya-tiyatro-etkinlikleri: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "www.radarturkiye.com/konya-tiyatro-etkinlikleri: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/konya-hafta-sonu-etkinlikleri: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=1&city=konya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=2&city=konya: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=3&city=konya: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "www.radarturkiye.com/etkinlikler?genre=4&city=konya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 337,
+   "seconds": 201,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:45:11.228Z",
-   "okCount": 47
+   "lastOk": "2026-11-26T07:17:18.522Z",
+   "okCount": 48
   },
   "bugece": {
    "id": "bugece",
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 20,
+   "failStreak": 21,
    "lastOk": null,
    "okCount": null
   },
@@ -79,18 +79,18 @@
    "prevCount": 6,
    "error": "",
    "notes": [
-    "allevents.in/konya: 19 bağlantı, 10 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/all: 35 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/konya/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya: 20 bağlantı, 12 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/all: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/konya/concerts: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/parties: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/comedy: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/performances: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/konya/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 176,
+   "seconds": 178,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:45:11.228Z",
+   "lastOk": "2026-11-26T07:17:18.522Z",
    "okCount": 6
   },
   "biletimgo": {
@@ -107,7 +107,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-25T20:45:11.228Z",
+   "lastOk": "2026-11-26T07:17:18.522Z",
    "okCount": 1
   }
  }
