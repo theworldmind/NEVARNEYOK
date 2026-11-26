@@ -2293,5 +2293,39 @@
   "v": 2,
   "osm": "amenity/community_centre",
   "m": "ov"
+ },
+ "House Blend Coffee Shop": {
+  "lat": 39.8924515,
+  "lng": 32.8709649,
+  "addr": "Gaziosmanpaşa, Uğur Mumcu Cd. No:17/A, 06000 &#199;ankaya/Ankara",
+  "ilce": "&#199;ankaya",
+  "src": "biletinial",
+  "v": 2
+ },
+ "El Paso Taurus": {
+  "lat": 39.8890513,
+  "lng": 32.8106187,
+  "addr": "&#199;ukurambar, Muhsin Yazıcıoğlu Cd., 06530 &#199;ankaya/Ankara",
+  "ilce": "&#199;ankaya",
+  "src": "biletinial",
+  "v": 2
+ },
+ "Loop Hole": {
+  "lat": 39.930978,
+  "lng": 32.8298236,
+  "addr": "Mareşal Fevzi &#199;akmak Caddesi No:18 Beşevler, &#199;ankaya Ankara",
+  "ilce": "",
+  "src": "biletinial",
+  "v": 2
+ },
+ "CSO Ada Ankara Bankkart Mavi Salon": {
+  "lat": 39.9329551,
+  "lng": 32.8505724,
+  "addr": "Talatpaşa Blv. No:38, Opera, Altındağ",
+  "ilce": "Altındağ",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
  }
 }
