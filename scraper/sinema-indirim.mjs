@@ -3,7 +3,7 @@
 // Uydurma yok: sayfa okunamazsa ya da kalıp tutmazsa o zincir için hiçbir şey yazılmaz (eski kayıt 7 gün sonra düşer).
 // robots.txt'e uyulur (fetchText); bot koruması aşılmaz. Çıktı: data/sinema-indirim.json
 import fs from "node:fs";
-import { getPage } from "./lib/net.mjs";
+import { getPage, closeBrowser } from "./lib/net.mjs";
 
 const OUT = new URL("../data/sinema-indirim.json", import.meta.url);
 const NOW = new Date(), ISO = NOW.toISOString();
@@ -85,3 +85,4 @@ for (const z of ZINCIR) {
 }
 fs.writeFileSync(OUT, JSON.stringify(res, null, 1));
 console.log(`→ data/sinema-indirim.json: ${res.zincir.length} zincir`);
+await closeBrowser(); process.exit(0); // açık tarayıcı süreci bekletmesin
