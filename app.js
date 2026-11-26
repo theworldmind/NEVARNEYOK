@@ -399,8 +399,9 @@ function viewCity(city) {
   const featured = pick(E.filter((e) => e.img && e.d <= addD(today, 10)), 8);
   const byCat = (c) => pick(weekL.filter((e) => e.cat === c && e.img), 14).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "").localeCompare(b.t || ""));
   const k = (q) => `#/${city}/kesfet?${q}`;
-  V.innerHTML = `<div class="wash" aria-hidden="true">${featured.map((e, k) => `<img src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async"${k ? "" : ' style="opacity:.42"'}>`).join("")}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1><div class="fsq" id="fsq"></div><div class="sdq" id="sdq"></div><div id="tdy"></div>${yilHome(city)}
-  <form class="sbar sbtop" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, film, mekân ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
+  V.innerHTML = `<div class="wash" aria-hidden="true">${featured.map((e, k) => `<img src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async"${k ? "" : ' style="opacity:.42"'}>`).join("")}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1>
+  <form class="sbar sbtop sbx" id="sf" role="search"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, film, mekân ara" enterkeyhint="search" autocomplete="off" aria-label="Ara"><button type="button" class="sclr" id="sclr" aria-label="Temizle" hidden><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="m6.6 6.6 6.8 6.8m0-6.8-6.8 6.8" stroke="#1c1c22" stroke-width="1.9" stroke-linecap="round"/></svg></button></label><a class="fbtn" href="${k("f=1")}" aria-label="Filtrele">${I.flt}</a></form>
+  <div class="fsq" id="fsq"></div><div class="sdq" id="sdq"></div><div id="tdy"></div>${yilHome(city)}
   <button type="button" class="pz" id="pz">${prefs() ? `<span class="dot"></span>Senin için kişiselleştirildi<em>Düzenle</em>` : `${I.spark}Kişiselleştir<em>İlgi alanlarını seç, sana uygun etkinlikler öne çıksın</em>`}</button></section>
   <div class="qk2"><button type="button" id="tnt">${cgIcon("haftaiciaksam")}Bu akşam ne yapsak?</button><button type="button" id="nrb"><span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span>Yakınımda</button></div>
   ${stories(featured, (e) => `#/${city}/e/${encodeURIComponent(e.slug)}`)}
@@ -430,6 +431,7 @@ function viewCity(city) {
     const step = () => { if (!document.body.contains(lt)) return; if (mids.length) { md.insertAdjacentHTML("beforebegin", mids.shift()()); return idle(step, { timeout: 400 }); } if (!parts.length) return; lt.insertAdjacentHTML("beforebegin", parts.shift()()); idle(step, { timeout: 600 }); };
     idle(step, { timeout: 600 }); }
   $("#sf").addEventListener("submit", (ev) => { ev.preventDefault(); $("#q").blur(); searchGo(city, $("#q").value.trim()); });
+  { const q = $("#q"), c = $("#sclr"); q.addEventListener("input", () => { c.hidden = !q.value; }); c.addEventListener("click", () => { q.value = ""; c.hidden = true; q.focus(); }); }
   $("#pz").addEventListener("click", () => openPrefs(city, () => viewCity(city)));
   $("#tnt").addEventListener("click", () => tonightSheet(city)); $("#nrb").addEventListener("click", () => nearMe(city));
   kacamak(city);

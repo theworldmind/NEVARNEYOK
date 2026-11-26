@@ -1544,6 +1544,19 @@ html.lowfx.scr .top,html.lowfx.scr .tabs{-webkit-backdrop-filter:none!important;
 .sdq:empty{display:none}
 .sdq a{display:flex;align-items:center;gap:10px;margin:10px 0 0;padding:10px 14px;border-radius:16px;background:linear-gradient(100deg,rgba(52,199,89,.2),rgba(52,199,89,.06));box-shadow:inset 0 0 0 .5px rgba(52,199,89,.4);color:#fff;transition:transform .25s var(--spring)}
 .sdq a:active{transform:scale(.97)}.sdq i{font-style:normal;font-size:20px}.sdq b{font:800 14px/1.2 var(--f)}.sdq span{margin-left:auto;font-size:var(--ts-x);color:rgba(255,255,255,.65);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45%}
+/* Bugün sayfası araması (27.11.2026, kullanıcı: "girildiğinde hemen görülsün, konumu iyi olsun, tamamen Apple kalitesinde"): il adının hemen altında, iOS arama alanı gibi kapsül cam */
+.city .sbx{max-width:640px;margin:14px 0 6px;padding:0;gap:10px;align-items:center}
+.city .sbx .sin{height:46px;padding:0 10px 0 14px;gap:8px;border-radius:999px;background:rgba(118,118,128,.24);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14),0 10px 30px -18px rgba(0,0,0,.7);transition:background .25s,box-shadow .25s}
+.city .sbx .sin>svg{width:19px;height:19px;flex:none;color:rgba(235,235,245,.6)}
+.city .sbx .sin input{font:400 17px/1 -apple-system,BlinkMacSystemFont,"Inter Tight",system-ui,sans-serif;letter-spacing:-.01em;color:#fff;-webkit-appearance:none;appearance:none}
+.city .sbx .sin input::placeholder{color:rgba(235,235,245,.55)}
+.city .sbx .sin input::-webkit-search-cancel-button,.city .sbx .sin input::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+.city .sbx .sin:focus-within{background:rgba(118,118,128,.32);box-shadow:inset 0 0 0 1px rgba(167,139,250,.55),0 0 0 4px rgba(139,92,246,.16)}
+.city .sbx .sclr{flex:none;display:grid;place-items:center;width:28px;height:28px;margin-right:-2px;padding:0;border:0;background:none;color:rgba(235,235,245,.55)}
+.city .sbx .sclr svg{width:17px;height:17px}.city .sbx .sclr[hidden]{display:none}
+.city .sbx .fbtn{flex:none;width:46px;height:46px;padding:0;justify-content:center;border-radius:999px;background:rgba(118,118,128,.24);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14)}
+.city .sbx .fbtn svg{width:20px;height:20px}
+.city .sbx .fbtn:active,.city .sbx .sin:active{transform:scale(.97)}
 </style>
 </head>
 <body>
