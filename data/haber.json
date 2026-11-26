@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-26T12:56:26.997Z",
+ "updated": "2026-11-26T22:07:01.839Z",
  "notes": [
   "trt: 0 aday",
-  "aa: 4 aday",
+  "aa: 5 aday",
   "yeniankara: 0 aday",
   "evrensel: 0 aday",
   "hurriyet: 0 aday",
-  "haberturk: 4 aday",
+  "haberturk: 5 aday",
   "sabah: 2 aday",
   "cumhuriyet: 14 aday",
   "sozcu: 0 aday",
@@ -29,13 +29,13 @@
   "milliyet-gundem: 0 aday",
   "yenisafak-kultur: 0 aday",
   "t24-kultur: 403",
-  "birgun: 3 aday",
+  "birgun: 4 aday",
   "duvar: 403",
   "karar: 410",
-  "star: 0 aday",
-  "haberler-kultur: 18 aday",
+  "star: 1 aday",
+  "haberler-kultur: 15 aday",
   "haberler-yasam: 0 aday",
-  "haber7-kultur: 0 aday",
+  "haber7-kultur: 1 aday",
   "iha-kultur: 404",
   "aa-yasam: 0 aday",
   "trt-yasam: 0 aday",
@@ -45,12 +45,12 @@
   "mansetankara-1: robots kapalı",
   "mansetankara-2: robots kapalı",
   "mansetankara-3: robots kapalı",
-  "ankaranethaber: 1 aday",
+  "ankaranethaber: 0 aday",
   "ankaramasasi: 404",
   "ankaramasasi-1: 404",
   "baskentpostasi: fetch failed",
   "baskentpostasi-1: fetch failed",
-  "baskentgazete: 1 aday",
+  "baskentgazete: 0 aday",
   "yeniasir: akış değil",
   "yeniasir-1: 0 aday",
   "egedesonsoz: 0 aday",
@@ -60,11 +60,11 @@
   "izmirtime24: fetch failed",
   "olay: 0 aday",
   "olay-1: 0 aday",
-  "bursahakimiyet: 1 aday",
+  "bursahakimiyet: 0 aday",
   "bursahakimiyet-1: 404",
   "bursadabugun: akış değil",
   "bursadabugun-1: 404",
-  "antalyakorfez: 1 aday",
+  "antalyakorfez: 0 aday",
   "antalyasondakika: 0 aday",
   "akdenizgazetesi: fetch failed",
   "yeniadana: 404",
@@ -104,7 +104,7 @@
   "boluolay: 403",
   "duzcehaber: akış değil",
   "orduolay: 403",
-  "giresunhaber: 404",
+  "giresunhaber: 429",
   "rizehaber: fetch failed",
   "kastamonuhaber: 404",
   "urfanatik: 0 aday",
@@ -342,8 +342,8 @@
    "t": "",
    "img": "https://im.haberturk.com/l/2026/11/15/ver1794753445/3927518/jpg/1200x628",
    "site": "Habertürk",
-   "url": "https://www.haberturk.com/kultur-sanat/trabzon-altin-taka-film-festivali-nde-56-film-yarisacak-3927518",
-   "seen": "2026-11-18T12:40:21.322Z"
+   "url": "https://www.haberturk.com/kultur-sanat/altin-taka-film-festivali-jurisi-belli-oldu-3930360",
+   "seen": "2026-11-26T22:07:01.839Z"
   },
   {
    "id": "sanat-lezzetli-resimler-antalya",
@@ -450,7 +450,6 @@
    "cat": "festival",
    "venue": "",
    "days": [
-    "2026-11-26",
     "2026-12-06"
    ],
    "until": "",
@@ -459,22 +458,6 @@
    "site": "BirGün",
    "url": "https://www.birgun.net/haber/locarno-film-festivali-istanbul-da-sanat-bir-fanusun-icinde-var-olamaz-747735",
    "seen": "2026-11-22T11:44:21.947Z"
-  },
-  {
-   "id": "bir-ogretmen-bin-yurek-edirne",
-   "city": "edirne",
-   "title": "Bir Öğretmen Bin Yürek",
-   "cat": "konser",
-   "venue": "Rumeli Müzikleri Topluluğu Konser Salonu",
-   "days": [
-    "2026-11-26"
-   ],
-   "until": "",
-   "from": "",
-   "t": "20:00",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/kultur-sanat/edirne-devlet-turk-muzigi-toplulugu-bir-ogretmen-20453147-haberi/",
-   "seen": "2026-11-23T13:21:10.497Z"
   },
   {
    "id": "ankara-film-festivali-ankara",
@@ -522,7 +505,6 @@
    "cat": "tiyatro",
    "venue": "Müze Gazhane Prof. Dr. Sev",
    "days": [
-    "2026-11-26",
     "2026-11-28"
    ],
    "until": "",
@@ -622,7 +604,6 @@
    "cat": "konser",
    "venue": "Kültür Merkezi Özel Harekât Polisi İlyas Kaygusuz Salonu",
    "days": [
-    "2026-11-26",
     "2026-11-27"
    ],
    "until": "",
@@ -732,7 +713,6 @@
    "cat": "festival",
    "venue": "İBB Beyoğlu Sineması Pera Salonu",
    "days": [
-    "2026-11-26",
     "2026-11-27",
     "2026-11-28",
     "2026-11-29",
@@ -745,8 +725,10 @@
    "t": "",
    "free": true,
    "site": "Haberler.com",
-   "url": "https://www.haberler.com/guncel/16-suc-ve-ceza-film-festivali-26-kasim-da-35-20457396-haberi/",
-   "seen": "2026-11-25T13:15:31.981Z"
+   "url": "https://www.haberler.com/guncel/16-suc-ve-ceza-film-festivali-35-filmle-basladi-31-20466729-haberi/",
+   "seen": "2026-11-26T22:07:01.839Z",
+   "img": "https://foto.haberler.com/haber/2026/11/26/16-suc-ve-ceza-film-festivali-35-filmle-basla-20466729_amp.jpg",
+   "imgBy": "Haberler.com"
   },
   {
    "id": "tiyatro-festivali-istanbul",
