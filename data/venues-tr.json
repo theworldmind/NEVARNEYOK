@@ -22815,5 +22815,244 @@
   "v": 2,
   "osm": "amenity/theatre",
   "m": "ov"
+ },
+ "kars|Kars Halk Eğitim Merkezi Konferans Salonu": {
+  "lat": 40.6080893,
+  "lng": 43.095935,
+  "addr": "Yusufpaşa, Karadağ Cad., 36000 Kars Merkez/Kars",
+  "ilce": "Merkez",
+  "src": "biletinial",
+  "v": 2
+ },
+ "kars|Kars Halk Eğitim Merkezi": {
+  "lat": 40.6080893,
+  "lng": 43.095935,
+  "addr": "Yusufpaşa, Karadağ Cad., 36000 Kars Merkez/Kars",
+  "ilce": "Merkez",
+  "src": "biletinial",
+  "v": 2
+ },
+ "bilecik|Bilecik Şeyh Edebali Kültür ve Kongre Merkezi": {
+  "lat": 40.154382,
+  "lng": 29.977667,
+  "addr": "Bilecik-Eskişehir Yolu, Bahçelievler Mahallesi, Bilecik Merkez, Bilecik",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "bingol|Bingöl Belediyesi Konferans Salonu": {
+  "lat": 38.881722,
+  "lng": 40.50009,
+  "addr": "Yenişehir Mahallesi İstiklal Marşı Caddesi No:3, Bingöl, Bingöl",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "eskisehir|Grand Art Sahne": {
+  "lat": 39.792338,
+  "lng": 30.468811,
+  "addr": "Eskişehir Büyükşehir Belediyesi Zincirlikuyu Mezarlığı, Zincirlikuyu Mahallesi, Tepebaşı, Eskişehir",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "gaziantep|devlet tiyatroları şehitkamil sahnesi": {
+  "lat": 37.074918,
+  "lng": 37.341168,
+  "addr": "Adnan İnanıcı Caddesi 3/C, Batıkent Mahallesi, Şehitkamil, Gaziantep",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|Joanna Istanbul": {
+  "lat": 41.067389,
+  "lng": 29.043035,
+  "addr": "Bebek Arnavutköy Caddesi 71, Arnavutköy Mahallesi, Beşiktaş, İstanbul",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "istanbul|Türkan Saylan Kültür Merkezi Kardelen 1 Salonu": {
+  "lat": 40.924669,
+  "lng": 29.157092,
+  "addr": "Gülsuyu, No: 34050, Gülsuyu Kavşağı No:100, 34848 Maltepe/İstanbul, İstanbul Anadolu, İstanbul Anadolu",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "izmir|Kalt Izmir": {
+  "lat": 38.447945,
+  "lng": 27.209325,
+  "addr": "372. Sokak, Kazımdirik Mahallesi, Bornova, İzmir",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "kocaeli|Büyükşehir Belediyesi Kocaeli Kongre Merkezi": {
+  "lat": 40.761873,
+  "lng": 29.895899,
+  "addr": "Yenidoğan Mahallesi Salim Dervişoğlu Caddesi No : 16 Sekapark, 41100 İzmit/Kocaeli, Kocaeli, Kocaeli",
+  "ilce": "",
+  "src": "jsonld",
+  "v": 2
+ },
+ "amasya|Merzifon Kültür Sineması": {
+  "lat": 40.874645,
+  "lng": 35.461269,
+  "addr": "Şair Eşref Sokak 2a",
+  "ilce": "Merzifon",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "antalya|Demre Belediyesi Kültür Sanat Salonu": {
+  "lat": 36.2448043,
+  "lng": 29.9882408,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall",
+  "m": "ov"
+ },
+ "bilecik|Şeyh Edebali Kültür ve Kongre": {
+  "lat": 40.154382,
+  "lng": 29.977667,
+  "addr": "Bilecik-Eskişehir Yolu, Bahçelievler Mahallesi, Bilecik Merkez, Bilecik",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "bingol|Genç · Şehit Hakan Akdere Kültür Merkezi": {
+  "lat": 38.7495512,
+  "lng": 40.5559583,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/townhall",
+  "m": "ov"
+ },
+ "eskisehir|SPR Pub": {
+  "lat": 39.780903,
+  "lng": 30.513269,
+  "addr": "Vural Sokak 27",
+  "ilce": "Tepebaşı",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Taksim Sanat": {
+  "lat": 41.036617,
+  "lng": 28.986477,
+  "addr": "Metro Girişi, Tak-ı Zafer Cd.",
+  "ilce": "Beyoğlu",
+  "src": "overture",
+  "v": 2,
+  "osm": "tourism/gallery",
+  "m": "ov"
+ },
+ "istanbul|Suma Han · Milo Stage": {
+  "lat": 41.025043,
+  "lng": 28.971556,
+  "addr": "SUMA HAN, Yanık Kapı Sok. No:3",
+  "ilce": "Beyoğlu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "istanbul|Büyükada": {
+  "lat": 40.874466,
+  "lng": 29.127668,
+  "addr": "Adalar",
+  "ilce": "Adalar",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/restaurant",
+  "m": "ov"
+ },
+ "izmir|KALT İzmir": {
+  "lat": 38.447945,
+  "lng": 27.209325,
+  "addr": "372. Sokak, Kazımdirik Mahallesi, Bornova, İzmir",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "izmir|Monk Community": {
+  "lat": 38.4195481,
+  "lng": 27.1337416,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/bar",
+  "m": "ov"
+ },
+ "karabuk|Karabük 100. Yıl Kültür Merkezi": {
+  "lat": 41.224339,
+  "lng": 32.668396,
+  "addr": "Safranbolu",
+  "ilce": "Safranbolu",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/theatre",
+  "m": "ov"
+ },
+ "mus|Malazgirt Kültür Merkezi": {
+  "lat": 39.142864,
+  "lng": 42.536514,
+  "addr": "Malazgirt",
+  "ilce": "Malazgirt",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/arts_centre",
+  "m": "ov"
+ },
+ "tokat|Tokat Erbaa Aile Sineması": {
+  "lat": 40.671196,
+  "lng": 36.56781,
+  "addr": "İsmet Paşa Mah.",
+  "ilce": "Erbaa",
+  "src": "overture",
+  "v": 2,
+  "osm": "amenity/cinema",
+  "m": "ov"
+ },
+ "yozgat|Erdoğan Akdağ Kongre ve Kültür Merkezi": {
+  "lat": 39.7723818,
+  "lng": 34.8008396,
+  "addr": "",
+  "ilce": "",
+  "src": "osm",
+  "v": 2,
+  "osm": "building/university",
+  "m": "ov"
+ },
+ "istanbul|İstanbul Üniversitesi Prof. Dr. Mehmet Oluç Oditoryumu": {
+  "lat": 40.9956167,
+  "lng": 28.7225743,
+  "addr": "Üniversite, Üniversite Yolu, 34322 Avcılar/İstanbul, İstanbul",
+  "ilce": "Avcılar",
+  "src": "osm",
+  "v": 2,
+  "osm": "office/research",
+  "adr": 1
+ },
+ "sirnak|Silopi Amerikan Kültür Koleji": {
+  "lat": 37.2522508,
+  "lng": 42.4323392,
+  "addr": "178. Sokak No:25, Yenişehir Mahallesi, Silopi",
+  "ilce": "Silopi",
+  "src": "osm",
+  "v": 2,
+  "osm": "amenity/school"
  }
 }
