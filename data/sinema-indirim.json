@@ -1,0 +1,58 @@
+{
+ "updated": "2026-11-26T01:26:58.331Z",
+ "kaynak": "Zincirlerin kendi kampanya sayfaları",
+ "zincir": [
+  {
+   "id": "cineverse",
+   "ad": "Paribu Cineverse",
+   "re": "paribu|cineverse|cinemaximum|\\bcgv\\b",
+   "url": "https://www.paribucineverse.com/kampanyalar",
+   "dogrulandi": "2026-11-26T01:26:58.331Z",
+   "kampanya": [
+    {
+     "ad": "Halk Günü",
+     "gun": [
+      1
+     ],
+     "bitis": "2026-12-31",
+     "tatil": true
+    },
+    {
+     "ad": "Sinema Günü",
+     "gun": [
+      3
+     ],
+     "fiyat": {
+      "2D": 160,
+      "3D": 170
+     },
+     "bitis": "2026-12-31",
+     "tatil": true
+    }
+   ],
+   "diger": [
+    "Sinema Keyfini Sevdiklerinle Paylaş Diye 2. Biletin Hediye!"
+   ]
+  },
+  {
+   "id": "cinetime",
+   "ad": "Cinetime",
+   "re": "cinetime",
+   "url": "https://www.cinetime.com.tr/kampanyalar",
+   "dogrulandi": "2026-11-26T01:26:58.331Z",
+   "kampanya": [
+    {
+     "ad": "İndirimli bilet",
+     "gun": [
+      3
+     ],
+     "bitis": "2026-12-31"
+    }
+   ],
+   "diger": [
+    "GNÇ Kullanan Tüm Turkcell Kullanıcılarına Özel Sinema Ayrıcalıkları 1 Sinema Bileti Alana 1 Sinema Bileti Hediye!"
+   ]
+  }
+ ],
+ "notlar": []
+}
