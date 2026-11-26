@@ -27,7 +27,11 @@ async function run() {
   let shown = 0;
   for (const m of msgs.slice(0, 4)) shown++, await self.registration.showNotification(m.title, { body: m.body, tag: m.tag, icon: "icons/icon-192.png", badge: "icons/icon-192.png", data: { url: m.url } });
   // gün içinde beş güzel söz (arada bir etkinlik önerisi); her dilimde en çok bir, veri inmese de gider (NV.digest)
-  const last = await NV.get("dgSlots"), dg = NV.digest(mine || [], prefs, last, city);
+  // sinemada indirimli gün (bugün / yarın), ildeki salonlara göre; okunamazsa sessizce yok sayılır
+  let disc = null; try { const [sd, fd] = await Promise.all([fetch("data/sinema-indirim.json", { cache: "no-store" }).then((r) => r.json()), fetch(city === "ankara" ? "data/films.json" : `data/c/${city}-films.json`, { cache: "no-store" }).then((r) => r.json())]);
+    const names = Object.values(fd.cinemas || {}).map((c) => c.name || ""), t0 = NV.today(), t1 = new Date(Date.parse(t0 + "T12:00:00Z") + 864e5).toISOString().slice(0, 10);
+    disc = { bugun: NV.indirim(sd, names, t0), yarin: NV.indirim(sd, names, t1) }; } catch {}
+  const last = await NV.get("dgSlots"), dg = NV.digest(mine || [], prefs, last, city, disc);
   if (dg && !msgs.length && NV.allow(dg, cfg)) { await self.registration.showNotification(dg.title, { body: dg.body, tag: dg.tag + "-" + dg.slot, icon: "icons/icon-192.png", badge: "icons/icon-192.png", ...(dg.image ? { image: dg.image } : {}), vibrate: [40, 60, 40], data: { url: dg.url } });
     const t = NV.today(); await NV.set("dgSlots", { d: t, s: [...(last && last.d === t ? last.s || [] : []), dg.slot] }); shown++; }
   return shown;

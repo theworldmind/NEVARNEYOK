@@ -84,7 +84,16 @@ var NV = (function () {
 
   /* Gün içinde bildirimler (kullanıcı isteği, 16.11.2026 12:11: "arada bildirim göndersin, gün içinde"): her gün beş dilim, her dilimde en çok bir.
      21:30–09:00 arası sessiz. İlgi alanı varsa etkinlik önerisi ona göre. `last` = { d: gün, s: [gönderilen dilimler] }. Ne zaman uyanacağına telefon karar verir (Android). */
-  function digest(events, prefs, last, city) {
+  /* Sinemada indirimli günler (26.11.2026, kullanıcı: "halk günleri, indirimler; o günlerde bildir"): data/sinema-indirim.json (zincirin kendi sayfasından, sinema-indirim.mjs).
+     names: ildeki salon adları (zincir o ilde yoksa gösterilmez). Kayıt 7 günden eskiyse yok sayılır; fiyat yalnızca 36 saat içinde doğrulandıysa. */
+  function indirim(sd, names, d) {
+    if (!sd || !sd.zincir) return []; var wd = new Date(d + "T12:00:00").getDay(), out = [], now = Date.now();
+    sd.zincir.forEach(function (z) { var age = now - Date.parse(z.dogrulandi); if (!(age >= 0 && age <= 7 * 864e5)) return;
+      var re = new RegExp(z.re, "i"); if (names && !names.some(function (n) { return re.test(n); })) return;
+      (z.kampanya || []).forEach(function (k) { if (k.gun.indexOf(wd) >= 0 && (!k.bitis || k.bitis >= d)) out.push({ ad: k.ad, zincir: z.ad, id: z.id, re: z.re, url: z.url, tatil: !!k.tatil, fiyat: age <= 36 * 36e5 && k.fiyat ? k.fiyat : null }); }); });
+    return out;
+  }
+  function digest(events, prefs, last, city, disc) {
     var t0 = today(), d = new Date(t0 + "T12:00:00").getDay(), hm = new Date().toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit", hour12: false });
     /* günde beş dilim (17.11.2026 02:19, kullanıcı: "bildirim sayısı az"): sabah, kuşluk, öğle, akşamüstü, gece */
     var slot = hm >= "09:00" && hm < "11:00" ? "sabah" : hm >= "11:00" && hm < "13:00" ? "kusluk" : hm >= "13:00" && hm < "16:00" ? "ogle" : hm >= "16:00" && hm < "19:00" ? "aksam" : hm >= "19:00" && hm < "21:30" ? "gece" : null; if (!slot) return null;
@@ -101,6 +110,11 @@ var NV = (function () {
     var we = d === 0 || d === 6;
     if (slot === "sabah" && we) return say([["Günaydın ☀️", "Bugün kendine güzel bir plan yap."], ["İyi hafta sonları 🌤️", "Acele yok, güne yavaş başla."], ["Günaydın 🌿", "Bugün nereye gitsen sana iyi gelir. Fikir lazımsa buradayız."]]);
     if (slot === "sabah") return say([["Günaydın ☀️", "Bugün güzel geçsin. Akşam için bir planın yoksa biz buradayız."], ["Günaydın 🌤️", "Yeni bir gün başladı. Kendine iyi bak."], ["Güzel bir gün dileriz 🌿", "Sakin başla, acele etme."], ["Günaydın 👋", "Bugün şehirde neler olduğunu merak edersen bir dokunuş yeter."], ["Günaydın 🌞", "Güne iyi başlaman dileğiyle."], ["Yeni gün, yeni plan 🗓️", "Bu akşam ne yapacağını henüz bilmiyorsan, birlikte bakarız."]]);
+    var dz = function (L) { var by = {}; L.forEach(function (x) { (by[x.ad] = by[x.ad] || []).push(x.zincir); }); return Object.keys(by).map(function (a) { return by[a].filter(function (v, i, A) { return A.indexOf(v) === i; }).join(", ") + ": " + (a === "İndirimli bilet" ? "indirimli bilet" : a); }).join(" · "); };
+    var dk = disc && disc.bugun && disc.bugun.length ? disc.bugun : null, dy = disc && disc.yarin && disc.yarin.length ? disc.yarin : null, sn = home + "/sinema";
+    var dt = function (L, w) { var h = L.some(function (x) { return x.ad === "Halk Günü"; }) ? "Halk Günü" : L.some(function (x) { return x.ad === "Sinema Günü"; }) ? "Sinema Günü" : "indirimli gün"; return w + " sinemada " + h + " 🎬"; };
+    if (slot === "kusluk" && dk) return out({ title: dt(dk, "Bugün"), body: dz(dk) + ". Seanslara göz at 🍿", url: sn });
+    if (slot === "aksam" && dy) return out({ title: dt(dy, "Yarın"), body: dz(dy) + ". Film planı için güzel bir gün 🍿", url: sn + "?gun=" + addD(t0, 1) });
     if (slot === "kusluk") { if (dn % 3 === 0) { var Nw = mine(events.filter(function (e) { return e.d >= t0 && ok(e) && e.img && e.firstSeen && e.firstSeen.slice(0, 10) >= addD(t0, -2); })); if (Nw.length) { var f1 = Nw[dn % Nw.length]; return out({ title: "Yeni eklendi 🆕", body: f1.title + " · " + dLong(f1.d) + (f1.venue ? " · " + f1.venue : ""), image: f1.img, url: base + "?yeni=1" }); } }
       if (we) return say([["Güne nasıl başladın? 😊", "Hafta sonunun tadını çıkar."], ["Bugün için bir planın var mı? 🗓️", "Yoksa şehirde neler olduğuna bakmak bir dokunuş uzakta."], ["Keyifli bir gün dileriz 🌤️", "Bugün biraz da kendin için."]]);
       return say([["Kısa bir mola ver 🍃", "Biraz su iç, birkaç dakika kendine ayır."], ["Günün nasıl gidiyor? 😊", "Umarız her şey yolundadır."], ["Biraz nefes al 🌤️", "İşler bekleyebilir, iki dakikalık mola iyi gelir."], ["Selam 👋", "Günün güzel geçsin diye uğradık."], ["İyi çalışmalar 💪", "Öğlene az kaldı."]]); }
@@ -156,5 +170,5 @@ var NV = (function () {
     for (i = 0; i < str.length; i++) { ch = str.charCodeAt(i); h1 = Math.imul(h1 ^ ch, 2654435761); h2 = Math.imul(h2 ^ ch, 1597334677); }
     h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507); h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909); h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507); h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
     var n = 4294967296 * (2097151 & h2) + (h1 >>> 0), B = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", out = ""; for (i = 0; i < 7; i++) { out += B[n % 62]; n = Math.floor(n / 62); } return out; }
-  return { scode: scode, fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, today: today, allow: allow, NK: NK, akey: akey, ahits: ahits, watchA: watchA, watchF: watchF };
+  return { scode: scode, fold: fold, key: key, get: get, set: set, snap: snap, check: check, digest: digest, indirim: indirim, today: today, allow: allow, NK: NK, akey: akey, ahits: ahits, watchA: watchA, watchF: watchF };
 })();

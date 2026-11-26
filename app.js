@@ -399,7 +399,7 @@ function viewCity(city) {
   const featured = pick(E.filter((e) => e.img && e.d <= addD(today, 10)), 8);
   const byCat = (c) => pick(weekL.filter((e) => e.cat === c && e.img), 14).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "").localeCompare(b.t || ""));
   const k = (q) => `#/${city}/kesfet?${q}`;
-  V.innerHTML = `<div class="wash" aria-hidden="true">${featured.map((e, k) => `<img src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async"${k ? "" : ' style="opacity:.42"'}>`).join("")}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1><div class="fsq" id="fsq"></div><div id="tdy"></div>${yilHome(city)}
+  V.innerHTML = `<div class="wash" aria-hidden="true">${featured.map((e, k) => `<img src="${esc(e.img)}" alt="" referrerpolicy="no-referrer" decoding="async"${k ? "" : ' style="opacity:.42"'}>`).join("")}</div><section class="city"><h1 style="--L:${[...cname].length}">${esc(cname)}</h1><div class="fsq" id="fsq"></div><div class="sdq" id="sdq"></div><div id="tdy"></div>${yilHome(city)}
   <form class="sbar sbtop" id="sf"><label class="sin">${I.srch}<input id="q" type="search" placeholder="Etkinlik, film, mekân ara…" enterkeyhint="search"></label><a class="fbtn" href="${k("f=1")}">${I.flt}<span class="fl">Filtrele</span></a></form>
   <button type="button" class="pz" id="pz">${prefs() ? `<span class="dot"></span>Senin için kişiselleştirildi<em>Düzenle</em>` : `${I.spark}Kişiselleştir<em>İlgi alanlarını seç, sana uygun etkinlikler öne çıksın</em>`}</button></section>
   <div class="qk2"><button type="button" id="tnt">${cgIcon("haftaiciaksam")}Bu akşam ne yapsak?</button><button type="button" id="nrb"><span class="cgi" style="background:#0a84ff"><svg viewBox="0 0 24 24"><path d="M19.5 4.5 4.5 11l6.5 2 2 6.5z" fill="#fff"/></svg></span>Yakınımda</button></div>
@@ -416,7 +416,7 @@ function viewCity(city) {
   const later = () => `${order.map((c) => rail(CATS[c], "Bu hafta", byCat(c), city, k("k=" + c))).join("")}
   ${rail("Festival", "Yaklaşan", pick(E.filter((e) => e.cat === "festival" && e.img), 12), city, k("k=festival"))}
   ${rail("Yeni eklenenler", "Son 3 günde", uniq(E.filter((e) => e.isNew && e.img).sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || "")), 16), city, k("yeni=1"))}`;
-  cityFest(city, $("#fsr1")).catch(() => $("#fsr1")?.remove());
+  cityFest(city, $("#fsr1")).catch(() => $("#fsr1")?.remove()); sindStrip(city).catch(() => {});
   { const lt = $("#later"), idle = window.requestIdleCallback || ((f) => setTimeout(f, 120));
     // (11:08 akıcılık) ilk ekranda görünmeyen raflar açılıştan sonra, tarayıcı boşaldıkça teker teker eklenir (açılışta tek büyük iş olmasın)
     const md = $("#mid"), mids = [() => filmRail(city), () => rail("Hafta sonu", wkend.length + " etkinlik", pick(wkend.filter((e) => e.img), 16), city, k("t=haftasonu")),
@@ -744,17 +744,57 @@ function mapInit(lat, lng) {
 }
 
 /* ---------- Sinema ---------- */
+/* ---------- Sinema indirimleri ve bilet fiyatları (26.11.2026, kullanıcı: "sinemalarda biletleri, fiyatları; halk günleri, indirimler; o günlerde bildir") ----------
+   data/sinema-indirim.json: zincirin kendi kampanya sayfasından (sinema-indirim.mjs). Hesap NV.indirim (takip.js; bildirim işçisi de aynısını kullanır).
+   Fiyat: Biletinial'in il sinema listesindeki en düşük bilet fiyatı ("<İl> sinemaları" kayıtları), yalnızca 36 saatte doğrulanmışsa (fiyat kuralı). */
+let SINDP = null; const sindJ = () => SINDP ||= jget("data/sinema-indirim.json").catch(() => { SINDP = null; return null; });
+const cinNames = () => Object.values(DATA.films?.cinemas || {}).map((c) => c.name || "");
+const ftk = (t) => fold(String(t || "")).replace(/[^a-z0-9ğüşıöç]+/g, " ").trim();
+const filmTix = (f) => { const k = ftk(f.title); let best = null;
+  for (const e of DATA.all || []) { if (e.cat !== "sinema" || ftk(e.title) !== k) continue; for (const x of e.tickets || []) if (x.price && x.url && (!best || x.price < best.price)) best = { price: x.price, url: x.url, site: x.site || "Biletinial" }; }
+  return best; };
+const fyTxt = (F) => F ? Object.entries(F).map(([k, v]) => `${k} ${v} TL`).join(" · ") : "";
+const sdLbl = (x) => (x.ad === "İndirimli bilet" ? "İndirimli bilet" : x.ad) + (x.fiyat ? " · " + fyTxt(x.fiyat) : "");
+// Sinema sayfası: seçili günün indirimleri, haftanın indirimli günleri, günsüz kampanyalar; gün sekmelerinde işaret
+async function sindCard(city, d, days) {
+  const el = $("#sind"), sd = await sindJ(); if (!el?.isConnected) return; if (!sd || !window.NV?.indirim) { el.remove(); return; }
+  const names = cinNames(), today = nowIST().d, W = days.map((x) => [x, NV.indirim(sd, names, x)]), cur = (W.find((w) => w[0] === d) || [d, []])[1];
+  $$(".days [data-d]").forEach((b) => { const w = W.find((x) => x[0] === b.dataset.d); if (w && w[1].length) { b.classList.add("dsc"); b.title = w[1].map((x) => x.zincir + ": " + x.ad).join(", "); } });
+  const Z = (sd.zincir || []).filter((z) => names.some((n) => new RegExp(z.re, "i").test(n)) && (z.diger || []).length);
+  const wk = W.filter((w) => w[1].length && w[0] !== d);
+  if (!cur.length && !wk.length && !Z.length) { el.remove(); return; }
+  const gl = (x) => x === today ? "Bugün" : x === addD(today, 1) ? "Yarın" : GUN[pd(x).getDay()];
+  el.innerHTML = `${cur.length ? `<div class="sdh"><span class="sdi">🎟️</span><div><b>${esc(gl(d))} sinemada ${esc(cur.some((x) => x.ad === "Halk Günü") ? "Halk Günü" : cur.some((x) => x.ad === "Sinema Günü") ? "Sinema Günü" : "indirimli bilet")}</b><small>Rozetli salonlarda biletler indirimli</small></div></div>
+    ${cur.map((x) => `<a class="sdr" href="${esc(x.url)}" target="_blank" rel="noopener"><b>${esc(x.zincir)}</b><span>${esc(sdLbl(x))}</span>${x.tatil ? `<small>Resmî tatile denk gelirse geçerli değil</small>` : ""}<i>›</i></a>`).join("")}`
+    : `<div class="sdh"><span class="sdi">🗓️</span><div><b>Haftanın indirimli günleri</b><small>Bu şehirdeki salonlara göre</small></div></div>`}
+    ${wk.length ? `<div class="sdw">${wk.map(([x, L]) => `<button type="button" data-sd="${x}"><b>${esc(gl(x))}</b><span>${esc([...new Set(L.map((y) => y.zincir + " · " + (y.ad === "İndirimli bilet" ? "indirimli" : y.ad)))].join(", "))}</span></button>`).join("")}</div>` : ""}
+    ${Z.length ? `<div class="sdo">${Z.flatMap((z) => z.diger.slice(0, 2).map((t) => `<a href="${esc(z.url)}" target="_blank" rel="noopener"><i>🎁</i><span>${esc(t.replace(/!$/, ""))}</span><small>${esc(z.ad)}</small></a>`)).join("")}</div>` : ""}
+    <p class="sdn">Zincirlerin kendi kampanya sayfalarından. Koşullar salona ve seansa göre değişebilir.</p>`;
+  $$("[data-sd]", el).forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/sinema?gun=${b.dataset.sd}`; }));
+}
+// Film sayfası: o gün indirimde olan zincirin salonlarına rozet
+async function sindRows(d) { const sd = await sindJ(); if (!sd || !window.NV?.indirim) return; const names = cinNames();
+  $$(".days [data-d]").forEach((b) => { const w = NV.indirim(sd, names, b.dataset.d); if (w.length) { b.classList.add("dsc"); b.title = w.map((x) => x.zincir + ": " + x.ad).join(", "); } });
+  const L = NV.indirim(sd, null, d); if (!L.length) return;
+  $$(".ss .h[data-cn]").forEach((h) => { const n = h.dataset.cn, M = L.filter((x) => new RegExp(x.re, "i").test(n)); if (!M.length || h.querySelector(".dsb")) return;
+    h.querySelector("b")?.insertAdjacentHTML("afterend", M.map((x) => `<em class="dsb">${esc(sdLbl(x))}</em>`).join("")); }); }
+// Bugün sayfası: bugün ya da yarın sinemada indirim varsa tek satır
+async function sindStrip(city) { const el = $("#sdq"), sd = await sindJ(); if (!el?.isConnected || !sd || !window.NV?.indirim) return;
+  const names = cinNames(), t = nowIST().d, A = NV.indirim(sd, names, t), B = A.length ? [] : NV.indirim(sd, names, addD(t, 1)), L = A.length ? A : B; if (!L.length) return;
+  const h = L.some((x) => x.ad === "Halk Günü") ? "Halk Günü" : L.some((x) => x.ad === "Sinema Günü") ? "Sinema Günü" : "indirimli bilet günü";
+  el.innerHTML = `<a href="#/${city}/sinema${A.length ? "" : "?gun=" + addD(t, 1)}"><i>🎟️</i><b>${A.length ? "Bugün" : "Yarın"} sinemada ${esc(h)}</b><span>${esc([...new Set(L.map((x) => x.zincir))].join(", "))}</span></a>`; }
 function viewSinema(city, day) {
   turAt("sinema"); setTop(city); document.title = `Sinema · ${CITIES.find((c) => c.id === city)?.name} · Ne Var Ne Yok`;
   const F = DATA.films?.films || [], today = nowIST().d, days = [...Array(7)].map((_, i) => addD(today, i)), d = days.includes(day) ? day : today;
   const L = F.filter((f) => f.s && f.s[d]?.length).sort((a, b) => (b.s[d]?.length || 0) - (a.s[d]?.length || 0));
   V.innerHTML = `<div class="kh"><h1>Sinema</h1><p>${L.length} film · ${dLong(d)}</p></div>
   <div class="sqk"><a href="#/${city}/festivaller">🎬 Festivaller</a><a href="#/${city}/gecmis?t=film">🕰️ Geçmiş gösterimler</a><a href="#/${city}/kesfet?k=sinema">🔎 Film ara</a></div>
+  <section class="sdc" id="sind"></section>
   <section class="rail" id="fsr0"></section>
   <div class="days">${days.map((x) => { const dt = pd(x); return `<button type="button" data-d="${x}" class="${x === d ? "on" : ""}">${x === today ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
-  <div class="grid">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}?gun=${d}"><div class="ph"><img decoding="async" class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')">${f.img ? `<span class="cr">Görsel: ${esc(f.imgBy || "sinemalar.com")}</span>` : ""}<div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc(f.dir ? [f.dir, f.year].filter(Boolean).join(", ") : [filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[d].length} salon</div></a>`).join("")}</div>${L.length ? "" : `<div class="empty">Bu gün için seans bilgisi yok.</div>`}${footer()}`;
+  <div class="grid">${L.map((f) => `<a class="cd" href="#/${city}/film/${f.id}?gun=${d}"><div class="ph"><img decoding="async" class="p" src="${esc(f.img)}" alt="${esc(f.title)} afişi" referrerpolicy="no-referrer" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.parentNode.classList.add('no')">${f.img ? `<span class="cr">Görsel: ${esc(f.imgBy || "sinemalar.com")}</span>` : ""}<div class="tp"><small>Sinema</small><b>${esc(f.title)}</b><small></small></div></div><div class="t">${esc(f.title)}</div><div class="m">${esc(f.dir ? [f.dir, f.year].filter(Boolean).join(", ") : [filmGenre(f) || filmCountry(f), f.dur && f.dur + " dk"].filter(Boolean).join(" · "))}</div><div class="m2">${f.s[d].length} salon${(() => { const p = filmTix(f); return p ? ` · <span class="fpr">₺${p.price}'den</span>` : ""; })()}</div></a>`).join("")}</div>${L.length ? "" : `<div class="empty">Bu gün için seans bilgisi yok.</div>`}${footer()}`;
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/sinema?gun=${b.dataset.d}`; }));
-  fstRail(city, $("#fsr0"));
+  fstRail(city, $("#fsr0")); sindCard(city, d, days);
 }
 /* Değerlendirmeler bölümü (19.11.2026): etkinlik/film sayfasında bölüm ekrana yaklaşınca hesap.js yüklenir ve doldurulur; sayfanın açılışını bekletmez */
 function dgkWire() { const b = $("#dgk", V); if (!b) return; const fill = () => hesapJS().then(() => window.NVH?.degerKutu?.(b)).catch(() => { b.remove(); });
@@ -773,17 +813,18 @@ function viewFilm(city, id, day) {
   <h1>${esc(f.title)}</h1>${f.o ? `<p class="fo">${esc(f.o)}</p>` : ""}${f.dir ? `<p class="fdr">Yönetmen <b>${esc(f.dir)}</b></p>` : ""}${f.cast?.length ? `<p class="fdr">Oyuncular <b>${esc(f.cast.slice(0, 4).join(", "))}</b></p>` : ""}<div class="fbds" id="ffs"></div>
   <div class="meta">${f.release ? `<div>${I.cal}<span>Vizyon tarihi<small>${dLong(f.release)}</small></span></div>` : ""}<div>${I.pin}<span>${rows.length} salonda seans<small>${dLong(d)}</small></span></div></div>
   <div class="days" style="padding:18px 0 0">${days.map((x) => { const dt = pd(x); return `<button type="button" data-d="${x}" class="${x === d ? "on" : ""}">${x === today ? "Bugün" : GUNK[dt.getDay()]}<b>${dt.getDate()}</b></button>`; }).join("")}</div>
-  <div class="ss">${rows.map((r) => `<div class="h"><b>${esc(r.c.name)}</b>${r.c.addr ? `<small>${esc(r.c.addr)}</small>` : ""}<div class="tm">${r.times.map((t) => d === today && t < hm ? `<span class="ps">${esc(t)}</span>` : `<button type="button" class="${follows()[sid(f, r.cid, d, t)] ? "on" : ""}" data-st="${esc(t)}" data-cid="${esc(r.cid)}">${esc(t)}</button>`).join("")}${r.fmt ? `<i>${esc(r.fmt)}</i>` : ""}</div></div>`).join("")}</div>
+  <div class="ss">${rows.map((r) => `<div class="h" data-cn="${esc(r.c.name)}"><b>${esc(r.c.name)}</b>${r.c.addr ? `<small>${esc(r.c.addr)}</small>` : ""}<div class="tm">${r.times.map((t) => d === today && t < hm ? `<span class="ps">${esc(t)}</span>` : `<button type="button" class="${follows()[sid(f, r.cid, d, t)] ? "on" : ""}" data-st="${esc(t)}" data-cid="${esc(r.cid)}">${esc(t)}</button>`).join("")}${r.fmt ? `<i>${esc(r.fmt)}</i>` : ""}</div></div>`).join("")}</div>
   <div class="shr"><button type="button" id="ffl" class="flw${ffol()[f.id] ? " on" : ""}">${ffol()[f.id] ? I.bellOn + "Film takipte" : I.bell + "Filmi takip et"}</button>${izBtn(f.title, f.img)}</div>
   <p class="flh">${rows.length ? "Seans saatine dokun: seansı takip et, takvimine ekle ya da biletini al." : "Bu filmin şehrinde henüz seansı yok. Takip edersen seanslar açılınca haber veririz."}</p>
-  ${f.url ? `<a class="buy" href="${esc(f.url)}" target="_blank" rel="noopener" data-buy="${f.ev ? "salon" : "sinemalar.com"}">${f.ev ? "Bilet al" : "Seanslar ve bilet · sinemalar.com"}</a>` : ""}
+  ${(() => { const p = !f.ev && filmTix(f); return p ? `<div class="buyw"><a class="buy" href="${esc(p.url)}" target="_blank" rel="noopener" data-buy="${esc(p.site)}">Bilet al · ${esc(p.site)} · ₺${p.price}'den</a></div><p class="fpn">${esc(p.site)}'de bu şehirdeki en düşük bilet fiyatı; salona, seansa ve güne göre değişir.</p>` : ""; })()}
+  ${f.url ? `<a class="${!f.ev && filmTix(f) ? "fsl" : "buy"}" href="${esc(f.url)}" target="_blank" rel="noopener" data-buy="${f.ev ? "salon" : "sinemalar.com"}">${f.ev ? "Bilet al" : "Bütün salonlar ve bilet · sinemalar.com"}</a>` : ""}
   <section class="sec" id="fgh"></section>
   <section class="sec dgk" id="dgk" data-tur="film" data-il="tr" data-slug="film-${esc(String(f.id))}" data-baslik="${esc(f.title)}" data-mekan="" data-gun=""></section>
   </div></div></div></article>${footer()}`;
   $$("[data-d]").forEach((b) => b.addEventListener("click", () => { location.hash = `#/${city}/film/${id}?gun=${b.dataset.d}`; }));
   dgkWire();
   $("#ffl").addEventListener("click", (ev) => toggleFilm(f, city, ev.currentTarget));
-  izWire(); filmFests(f, city, $("#ffs")); filmHist(city, f, $("#fgh")).catch(() => $("#fgh")?.remove());
+  sindRows(d); izWire(); filmFests(f, city, $("#ffs")); filmHist(city, f, $("#fgh")).catch(() => $("#fgh")?.remove());
   $$("[data-st]").forEach((b) => b.addEventListener("click", () => seansSheet(f, city, d, b.dataset.st, b.dataset.cid, C[b.dataset.cid] || { name: "Salon" }, b)));
 }
 
@@ -2306,7 +2347,7 @@ async function wxSheet(city) {
 async function todayCard(city, box, n, nT, nF) {
   if (!box) return; const { d: today, hm } = nowIST(), dt = pd(today);
   const L = DATA.events.filter((e) => live(e) && ((e.d === today && e.t && e.t >= hm) || e.d === addD(today, 1))).sort((a, b) => a.d.localeCompare(b.d) || (a.t || "99").localeCompare(b.t || "99"));
-  const up = uniq(L.filter((e) => e.img), 3);
+  const up = uniq(L.filter((e) => e.img && !/ sinemaları$/i.test(e.venue || "")), 3); // "<İl> sinemaları" (Biletinial film kaydı) bir mekân değil, Sıradaki'de gösterilmez
   const mins = (e) => { if (e.d !== today || !e.t) return ""; const m = (+e.t.slice(0, 2) * 60 + +e.t.slice(3, 5)) - (+hm.slice(0, 2) * 60 + +hm.slice(3, 5)); return m < 60 ? `${m} dk sonra` : `${Math.floor(m / 60)} sa ${m % 60 ? (m % 60) + " dk " : ""}sonra`; };
   const nextH = up.length ? `<div class="nx"><h6>${up[0].d === today ? "Sıradaki" : "Yarın"}</h6>${up.map((e) => `<a class="nxi" href="#/${city}/e/${encodeURIComponent(e.slug)}"><span class="nxp">${poster(e, { badge: false })}</span><span class="nxt"><b>${esc(e.title)}</b><small>${e.d === today ? `<em>${esc(e.t)}</em> · ${mins(e)}` : `<em>${esc(e.t || "")}</em>`}</small><small>${esc(e.venue || "")}</small></span></a>`).join("")}</div>` : "";
   const line = `<a class="tln" href="#/${city}/kesfet?t=bugun">Bugün <b>${n}</b> etkinlik · akşam <b>${nT}</b>${nF ? ` · <b>${nF}</b> film` : ""}</a>`;
