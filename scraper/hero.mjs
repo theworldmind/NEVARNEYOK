@@ -16,7 +16,7 @@ const PRI = ["istanbul", "ankara", "izmir", "antalya", "bursa", "eskisehir", "ad
 const pick = [...ev].sort((a, b) => ((PRI.indexOf(a.city) + 99) % 99) - ((PRI.indexOf(b.city) + 99) % 99));
 const LOGO = "data:image/png;base64," + (await readFile(join(ROOT, "brand/logo.png"))).toString("base64");
 const esc = (t) => String(t || "").replace(/[&<>"]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[m]);
-const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M275 104C275 214 318 261 428 261H275Z"/><path d="M261 434C261 320 222 275 99 275H261Z"/></svg>`;
+const OS = `<svg viewBox="0 0 537 537" aria-hidden="true"><rect x="261" y="0" width="14" height="537"/><rect x="0" y="261" width="537" height="14"/><path d="M262 113C262 215 215 262 113 262H262Z"/><path d="M274 424C274 321 321 274 424 274H274Z"/></svg>`;
 const open = Object.values(IDX).filter((c) => c.n || c.films).length;
 
 const html = `<!doctype html><html lang="tr"><head><meta charset="utf-8"><style>
