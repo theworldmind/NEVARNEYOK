@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T07:03:39.608Z",
+ "runAt": "2026-11-26T20:07:10.913Z",
  "mode": "full",
- "total": 127,
+ "total": 117,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 103,
-   "prevCount": 96,
+   "count": 92,
+   "prevCount": 103,
    "error": "",
    "notes": [
-    "açık veri: 96 seans, 1 detay sayfası",
+    "açık veri: 85 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/edirne: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/edirne: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,32 +23,32 @@
     "biletinial.com/tr-tr/festival/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/edirne: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
+   "seconds": 102,
    "failStreak": 0,
-   "lastOk": "2026-11-26T07:03:39.608Z",
-   "okCount": 103
+   "lastOk": "2026-11-26T20:07:10.913Z",
+   "okCount": 92
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 22,
-   "prevCount": 21,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
+   "prevCount": 22,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/edirne-etkinlikleri: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/edirne-muzik-etkinlikleri: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/edirne-tiyatro-etkinlikleri: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/edirne-hafta-sonu-etkinlikleri: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=1&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=edirne: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.radarturkiye.com/etkinlikler?genre=4&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.radarturkiye.com/edirne-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
+    "www.radarturkiye.com/edirne-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
+    "www.radarturkiye.com/edirne-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
+    "www.radarturkiye.com/edirne-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
+    "www.radarturkiye.com/etkinlikler?genre=1&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
+    "www.radarturkiye.com/etkinlikler?genre=2&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
+    "www.radarturkiye.com/etkinlikler?genre=3&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
+    "www.radarturkiye.com/etkinlikler?genre=4&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 945,
-   "failStreak": 0,
+   "seconds": 156,
+   "failStreak": 1,
    "lastOk": "2026-11-26T07:03:39.608Z",
    "okCount": 22
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 21,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/edirne/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/edirne/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 21,
+   "seconds": 156,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -100,14 +100,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 11,
-   "prevCount": 10,
+   "prevCount": 11,
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/edirne: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 23,
+   "seconds": 24,
    "failStreak": 0,
-   "lastOk": "2026-11-26T07:03:39.608Z",
+   "lastOk": "2026-11-26T20:07:10.913Z",
    "okCount": 11
   }
  }
