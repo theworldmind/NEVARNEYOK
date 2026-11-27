@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:38:47.960Z",
+ "runAt": "2026-11-27T07:28:39.565Z",
  "mode": "full",
- "total": 140,
+ "total": 122,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 60,
-   "prevCount": 71,
+   "count": 73,
+   "prevCount": 60,
    "error": "",
    "notes": [
-    "açık veri: 58 seans",
+    "açık veri: 71 seans",
     "biletinial.com/tr-tr/tiyatro/yalova: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/yalova: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
+   "seconds": 92,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:38:47.960Z",
-   "okCount": 60
+   "lastOk": "2026-11-27T07:28:39.565Z",
+   "okCount": 73
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yalova: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 1063,
-   "failStreak": 1,
+   "seconds": 1042,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:30:28.872Z",
    "okCount": 79
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 21,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/yalova/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/yalova/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 21,
+   "seconds": 157,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:38:47.960Z",
+   "lastOk": "2026-11-27T07:28:39.565Z",
    "okCount": 3
   }
  }

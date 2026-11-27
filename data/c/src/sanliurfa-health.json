@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:34:44.930Z",
+ "runAt": "2026-11-27T07:25:33.012Z",
  "mode": "full",
- "total": 58,
+ "total": 63,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 49,
-   "prevCount": 33,
+   "count": 55,
+   "prevCount": 49,
    "error": "",
    "notes": [
-    "açık veri: 43 seans",
+    "açık veri: 49 seans",
     "biletinial.com/tr-tr/tiyatro/sanliurfa: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sanliurfa: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sanliurfa: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 88,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:34:44.930Z",
-   "okCount": 49
+   "lastOk": "2026-11-27T07:25:33.012Z",
+   "okCount": 55
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 142,
-   "failStreak": 1,
+   "seconds": 149,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:27:04.786Z",
    "okCount": 9
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 21,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/sanliurfa/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sanliurfa/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 21,
+   "seconds": 155,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/sanliurfa: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 21,
+   "seconds": 5,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   }

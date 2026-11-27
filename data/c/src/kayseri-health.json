@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:19:52.098Z",
+ "runAt": "2026-11-27T07:09:54.432Z",
  "mode": "full",
- "total": 101,
+ "total": 109,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 76,
-   "prevCount": 85,
+   "count": 85,
+   "prevCount": 76,
    "error": "",
    "notes": [
-    "açık veri: 71 seans",
+    "açık veri: 78 seans",
     "biletinial.com/tr-tr/tiyatro/kayseri: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kayseri: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 100,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:19:52.098Z",
-   "okCount": 76
+   "lastOk": "2026-11-27T07:09:54.432Z",
+   "okCount": 85
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kayseri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 160,
-   "failStreak": 1,
+   "seconds": 138,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:15:07.254Z",
    "okCount": 16
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -75,23 +75,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 19,
+   "count": 20,
    "prevCount": 19,
    "error": "",
    "notes": [
-    "allevents.in/kayseri: 13 bağlantı, 8 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kayseri/all: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/kayseri/concerts: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kayseri: 15 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kayseri/all: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/kayseri/concerts: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/parties: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/performances: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/kayseri/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 173,
+   "seconds": 185,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:19:52.098Z",
-   "okCount": 19
+   "lastOk": "2026-11-27T07:09:54.432Z",
+   "okCount": 20
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -105,26 +105,26 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/kayseri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:19:52.098Z",
+   "lastOk": "2026-11-27T07:09:54.432Z",
    "okCount": 1
   },
   "kayseribld": {
    "id": "kayseribld",
    "name": "Kayseri Büyükşehir",
    "kind": "kurum",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1,
-   "prevCount": 0,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
+   "prevCount": 1,
    "error": "",
    "notes": [
     "www.kayseri.bel.tr/etkinlikler: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "elenen: geçmiş 16 (ör. Şehir Akademi 2026 Güz Dönemi |  |  |  | 2026-09-17); etkinlik değil 1 (ör. 2. Çocuk Kitap Fuarı ve Şenliği |  |  |  | 2027-04-27)"
+    "elenen: geçmiş 17 (ör. Şehir Akademi 2026 Güz Dönemi |  |  |  | 2026-09-17); etkinlik değil 1 (ör. 2. Çocuk Kitap Fuarı ve Şenliği |  |  |  | 2027-04-27)"
    ],
-   "seconds": 12,
-   "failStreak": 0,
+   "seconds": 13,
+   "failStreak": 1,
    "lastOk": "2026-11-26T20:19:52.098Z",
    "okCount": 1
   }

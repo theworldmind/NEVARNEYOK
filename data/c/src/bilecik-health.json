@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:00:35.798Z",
+ "runAt": "2026-11-27T06:51:27.619Z",
  "mode": "full",
- "total": 18,
+ "total": 21,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 17,
-   "prevCount": 8,
+   "count": 20,
+   "prevCount": 17,
    "error": "",
    "notes": [
-    "açık veri: 15 seans",
+    "açık veri: 18 seans",
     "biletinial.com/tr-tr/tiyatro/bilecik: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:35.798Z",
-   "okCount": 17
+   "lastOk": "2026-11-27T06:51:27.619Z",
+   "okCount": 20
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 120,
-   "failStreak": 1,
+   "seconds": 146,
+   "failStreak": 2,
    "lastOk": "2026-11-26T06:57:35.578Z",
    "okCount": 3
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bilecik/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bilecik/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
-   "failStreak": 22,
+   "seconds": 155,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
-   "failStreak": 22,
+   "seconds": 6,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   }

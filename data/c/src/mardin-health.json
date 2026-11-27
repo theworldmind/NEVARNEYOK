@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:25:44.564Z",
+ "runAt": "2026-11-27T07:16:22.483Z",
  "mode": "full",
- "total": 78,
+ "total": 88,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 67,
-   "prevCount": 33,
+   "count": 77,
+   "prevCount": 67,
    "error": "",
    "notes": [
-    "açık veri: 60 seans",
+    "açık veri: 70 seans",
     "biletinial.com/tr-tr/tiyatro/mardin: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mardin: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:25:44.564Z",
-   "okCount": 67
+   "lastOk": "2026-11-27T07:16:22.483Z",
+   "okCount": 77
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mardin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 140,
-   "failStreak": 1,
+   "seconds": 138,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:20:29.488Z",
    "okCount": 7
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/mardin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -103,11 +103,12 @@
    "prevCount": 1,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/mardin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/mardin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: başka il (adres/mekân) 1 (ör. “E OLSUN “ Stand up Metin Omuzlar | PRİVADO ROOF | Diyarbakır Kapı, Antik kent avm B blok teras, 47100 Artuklu/ |  | 2026-12-06)"
    ],
-   "seconds": 9,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:25:44.564Z",
+   "lastOk": "2026-11-27T07:16:22.483Z",
    "okCount": 1
   }
  }

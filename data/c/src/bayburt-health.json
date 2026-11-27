@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-26T20:00:40.274Z",
+ "runAt": "2026-11-27T06:51:34.280Z",
  "mode": "full",
- "total": 13,
+ "total": 44,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 4,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 44,
    "prevCount": 12,
    "error": "",
    "notes": [
-    "açık veri: 2 seans",
+    "açık veri: 42 seans",
     "biletinial.com/tr-tr/tiyatro/bayburt: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bayburt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bayburt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
-   "failStreak": 1,
-   "lastOk": "2026-11-26T06:57:32.816Z",
-   "okCount": 12
+   "seconds": 91,
+   "failStreak": 0,
+   "lastOk": "2026-11-27T06:51:34.280Z",
+   "okCount": 44
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 111,
-   "failStreak": 22,
+   "seconds": 137,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bayburt/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bayburt/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 158,
-   "failStreak": 22,
+   "seconds": 157,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/bayburt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 8,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   }

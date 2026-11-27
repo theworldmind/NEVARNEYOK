@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:36:38.916Z",
+ "runAt": "2026-11-27T07:27:32.538Z",
  "mode": "full",
- "total": 192,
+ "total": 206,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 180,
-   "prevCount": 184,
+   "count": 194,
+   "prevCount": 180,
    "error": "",
    "notes": [
-    "açık veri: 136 seans, 13 detay sayfası",
+    "açık veri: 153 seans, 13 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/tekirdag: 64 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/tekirdag: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/tekirdag: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 118,
+   "seconds": 116,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:36:38.916Z",
-   "okCount": 180
+   "lastOk": "2026-11-27T07:27:32.538Z",
+   "okCount": 194
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 800,
-   "failStreak": 1,
+   "seconds": 787,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:27:08.454Z",
    "okCount": 47
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 21,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/tekirdag/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tekirdag/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 169,
-   "failStreak": 21,
+   "seconds": 163,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:36:38.916Z",
+   "lastOk": "2026-11-27T07:27:32.538Z",
    "okCount": 2
   }
  }

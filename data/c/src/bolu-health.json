@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:06:29.049Z",
+ "runAt": "2026-11-27T06:51:24.912Z",
  "mode": "full",
- "total": 79,
+ "total": 86,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 73,
-   "prevCount": 77,
+   "count": 79,
+   "prevCount": 73,
    "error": "",
    "notes": [
-    "açık veri: 61 seans",
+    "açık veri: 70 seans",
     "biletinial.com/tr-tr/tiyatro/bolu: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bolu: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
+   "seconds": 91,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:06:29.049Z",
-   "okCount": 73
+   "lastOk": "2026-11-27T06:51:24.912Z",
+   "okCount": 79
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 149,
-   "failStreak": 1,
+   "seconds": 120,
+   "failStreak": 2,
    "lastOk": "2026-11-26T06:57:30.495Z",
    "okCount": 9
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bolu/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bolu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 22,
+   "seconds": 155,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:06:29.049Z",
+   "lastOk": "2026-11-27T06:51:24.912Z",
    "okCount": 1
   }
  }

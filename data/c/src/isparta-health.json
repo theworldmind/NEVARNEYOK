@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-26T20:13:22.743Z",
+ "runAt": "2026-11-27T07:03:51.082Z",
  "mode": "full",
  "total": 47,
  "written": false,
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 40,
-   "prevCount": 29,
+   "count": 41,
+   "prevCount": 40,
    "error": "",
    "notes": [
     "açık veri: 33 seans",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 87,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:22.743Z",
-   "okCount": 40
+   "lastOk": "2026-11-27T07:03:51.082Z",
+   "okCount": 41
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 398,
-   "failStreak": 1,
+   "seconds": 421,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:09:45.545Z",
    "okCount": 18
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,9 +88,9 @@
     "allevents.in/isparta/workshops: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/isparta/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
+   "seconds": 167,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:22.743Z",
+   "lastOk": "2026-11-27T07:03:51.082Z",
    "okCount": 1
   },
   "biletimgo": {
@@ -106,9 +106,9 @@
     "www.biletimgo.com/sehir-etkinlikleri/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "elenen: geçmiş 1 (ör. NEON PARTİ |  |  |  | 2026-11-25)"
    ],
-   "seconds": 10,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:22.743Z",
+   "lastOk": "2026-11-27T07:03:51.082Z",
    "okCount": 1
   }
  }

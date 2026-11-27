@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:13:29.993Z",
+ "runAt": "2026-11-27T07:04:40.467Z",
  "mode": "full",
- "total": 1028,
+ "total": 894,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 687,
-   "prevCount": 705,
+   "count": 699,
+   "prevCount": 687,
    "error": "",
    "notes": [
-    "açık veri: 547 seans, 31 detay sayfası",
+    "açık veri: 561 seans, 31 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/izmir: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/izmir: 64 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/izmir: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 214,
+   "seconds": 210,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:29.993Z",
-   "okCount": 687
+   "lastOk": "2026-11-27T07:04:40.467Z",
+   "okCount": 699
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "kind": "toplayici",
    "ok": false,
    "status": "dustu",
-   "count": 1,
+   "count": 0,
    "prevCount": 296,
    "error": "",
    "notes": [
@@ -48,7 +48,7 @@
     "www.radarturkiye.com/etkinlikler?genre=4&city=izmir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
    "seconds": 2138,
-   "failStreak": 1,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:10:16.461Z",
    "okCount": 296
   },
@@ -66,7 +66,7 @@
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:29.993Z",
+   "lastOk": "2026-11-27T07:04:40.467Z",
    "okCount": 6
   },
   "allevents": {
@@ -75,23 +75,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 69,
-   "prevCount": 70,
+   "count": 75,
+   "prevCount": 69,
    "error": "",
    "notes": [
-    "allevents.in/izmir: 24 bağlantı, 21 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/all: 61 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/concerts: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/parties: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/comedy: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/performances: 41 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/workshops: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/izmir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/izmir: 36 bağlantı, 29 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/all: 63 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/concerts: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/parties: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/comedy: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/performances: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/workshops: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/izmir/kids: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 204,
+   "seconds": 210,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:29.993Z",
-   "okCount": 69
+   "lastOk": "2026-11-27T07:04:40.467Z",
+   "okCount": 75
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -99,17 +99,16 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 31,
-   "prevCount": 29,
+   "count": 30,
+   "prevCount": 31,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/izmir: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "elenen: etkinlik değil 1 (ör. CHARM & CHILL workshop |  |  |  | 2026-11-26)"
+    "www.biletimgo.com/sehir-etkinlikleri/izmir: 29 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 57,
+   "seconds": 52,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:29.993Z",
-   "okCount": 31
+   "lastOk": "2026-11-27T07:04:40.467Z",
+   "okCount": 30
   },
   "repertuvar": {
    "id": "repertuvar",
@@ -121,11 +120,11 @@
    "prevCount": 2,
    "error": "",
    "notes": [
-    "açık veri: 2 seans, 1 gün okundu, 48 mekân adı"
+    "açık veri: 2 seans, 1 gün okundu, 0 mekân adı"
    ],
-   "seconds": 75,
+   "seconds": 71,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:29.993Z",
+   "lastOk": "2026-11-27T07:04:40.467Z",
    "okCount": 2
   },
   "izmirks": {
@@ -134,17 +133,17 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 25,
-   "prevCount": 28,
+   "count": 26,
+   "prevCount": 25,
    "error": "",
    "notes": [
-    "açık veri: 38 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate",
-    "elenen: geçmiş 13 (ör. Ulusal Genç Solist Yarışması 2027 | Ahmed Adnan Saygun Sanat Merkezi |  | İzmir | 2026-11-23)"
+    "açık veri: 40 seans, seans alanları: entityStatus,sessionType,shortDescription,longDescription,eventRule,eventDate,eventEndDate,saleStartDate,eventImageUrl,maxBuyQuantity,isBlockPrice,serviceFeePercent,event,venue,company,categories,id,modifierId,createdDate,updatedDate",
+    "elenen: geçmiş 14 (ör. Efes'ten Mimas'a Giden Yol Ⅰ Meryem Ana'dan Kolophan'a Fotoğraf Sergisi | Ahmed Adnan Saygun Sanat Merkezi Giriş Kat Doğu Galeri |  | İzmir | 2026-11-26)"
    ],
-   "seconds": 25,
+   "seconds": 41,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:13:29.993Z",
-   "okCount": 25
+   "lastOk": "2026-11-27T07:04:40.467Z",
+   "okCount": 26
   }
  }
 }

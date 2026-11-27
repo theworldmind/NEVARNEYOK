@@ -1,20 +1,20 @@
 {
- "runAt": "2026-11-26T20:32:48.995Z",
+ "runAt": "2026-11-27T07:22:45.526Z",
  "mode": "full",
- "total": 14,
+ "total": 54,
  "written": true,
  "sources": {
   "biletinial": {
    "id": "biletinial",
    "name": "Biletinial",
    "kind": "bilet",
-   "ok": false,
-   "status": "dustu",
-   "count": 4,
+   "ok": true,
+   "status": "calisiyor",
+   "count": 54,
    "prevCount": 13,
    "error": "",
    "notes": [
-    "açık veri: 1 seans",
+    "açık veri: 51 seans",
     "biletinial.com/tr-tr/tiyatro/siirt: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/siirt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/siirt: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
-   "failStreak": 1,
-   "lastOk": "2026-11-26T07:25:25.511Z",
-   "okCount": 13
+   "seconds": 89,
+   "failStreak": 0,
+   "lastOk": "2026-11-27T07:22:45.526Z",
+   "okCount": 54
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 166,
-   "failStreak": 21,
+   "seconds": 153,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 21,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/siirt/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/siirt/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 21,
+   "seconds": 156,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/siirt: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 21,
+   "failStreak": 22,
    "lastOk": null,
    "okCount": null
   }

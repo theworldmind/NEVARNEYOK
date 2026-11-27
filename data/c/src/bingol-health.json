@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:00:39.939Z",
+ "runAt": "2026-11-27T06:51:26.552Z",
  "mode": "full",
- "total": 15,
+ "total": 23,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 12,
-   "prevCount": 9,
+   "count": 23,
+   "prevCount": 12,
    "error": "",
    "notes": [
-    "açık veri: 7 seans, 1 detay sayfası",
+    "açık veri: 18 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/bingol: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 87,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:39.939Z",
-   "okCount": 12
+   "lastOk": "2026-11-27T06:51:26.552Z",
+   "okCount": 23
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 121,
-   "failStreak": 1,
+   "seconds": 120,
+   "failStreak": 2,
    "lastOk": "2026-11-26T06:57:27.320Z",
    "okCount": 2
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/bingol/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 8,
-   "failStreak": 22,
+   "seconds": 7,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   }

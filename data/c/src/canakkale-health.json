@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:06:34.424Z",
+ "runAt": "2026-11-27T06:57:13.958Z",
  "mode": "full",
- "total": 71,
+ "total": 68,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 53,
-   "prevCount": 52,
+   "count": 51,
+   "prevCount": 53,
    "error": "",
    "notes": [
     "açık veri: 43 seans",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/canakkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 92,
+   "seconds": 103,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:06:34.424Z",
-   "okCount": 53
+   "lastOk": "2026-11-27T06:57:13.958Z",
+   "okCount": 51
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=canakkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 142,
-   "failStreak": 1,
+   "seconds": 159,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:03:17.161Z",
    "okCount": 9
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/canakkale/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/canakkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 168,
-   "failStreak": 22,
+   "seconds": 176,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -104,11 +104,11 @@
    "error": "",
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/canakkale: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "elenen: geçmiş 2 (ör. COWBOY NİGHT |  |  |  | 2026-11-25); etkinlik değil 1 (ör. O Ses Sensin ÇOMÜ All-Star |  |  |  | 2026-11-26)"
+    "elenen: geçmiş 3 (ör. COWBOY NİGHT |  |  |  | 2026-11-25)"
    ],
-   "seconds": 29,
+   "seconds": 32,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:06:34.424Z",
+   "lastOk": "2026-11-27T06:57:13.958Z",
    "okCount": 12
   }
  }

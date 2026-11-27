@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:07:19.397Z",
+ "runAt": "2026-11-27T06:57:28.581Z",
  "mode": "full",
- "total": 82,
+ "total": 89,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 77,
-   "prevCount": 48,
+   "count": 84,
+   "prevCount": 77,
    "error": "",
    "notes": [
-    "açık veri: 69 seans",
+    "açık veri: 78 seans",
     "biletinial.com/tr-tr/tiyatro/elazig: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/elazig: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/elazig: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 101,
+   "seconds": 98,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:07:19.397Z",
-   "okCount": 77
+   "lastOk": "2026-11-27T06:57:28.581Z",
+   "okCount": 84
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 145,
-   "failStreak": 1,
+   "seconds": 133,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:09:17.537Z",
    "okCount": 6
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/elazig/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/elazig/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 22,
+   "seconds": 157,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/elazig: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 11,
+   "failStreak": 12,
    "lastOk": "2026-11-21T11:46:50.684Z",
    "okCount": null
   }

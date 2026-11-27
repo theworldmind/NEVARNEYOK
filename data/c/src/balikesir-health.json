@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:00:35.083Z",
+ "runAt": "2026-11-27T06:51:30.052Z",
  "mode": "full",
- "total": 359,
+ "total": 292,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 180,
-   "prevCount": 166,
+   "count": 185,
+   "prevCount": 180,
    "error": "",
    "notes": [
-    "açık veri: 157 seans, 6 detay sayfası",
+    "açık veri: 160 seans, 6 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/balikesir: 61 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/balikesir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/balikesir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 114,
+   "seconds": 120,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:35.083Z",
-   "okCount": 180
+   "lastOk": "2026-11-27T06:51:30.052Z",
+   "okCount": 185
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 1046,
-   "failStreak": 1,
+   "seconds": 1051,
+   "failStreak": 2,
    "lastOk": "2026-11-26T06:57:30.736Z",
    "okCount": 149
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -76,21 +76,21 @@
    "ok": true,
    "status": "calisiyor",
    "count": 1,
-   "prevCount": 2,
+   "prevCount": 1,
    "error": "",
    "notes": [
-    "allevents.in/balikesir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/all: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/concerts: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/parties: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/comedy: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/performances: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/balikesir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/all: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/concerts: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/parties: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/comedy: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/performances: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/workshops: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 178,
+   "seconds": 176,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:35.083Z",
+   "lastOk": "2026-11-27T06:51:30.052Z",
    "okCount": 1
   },
   "biletimgo": {
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/balikesir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 14,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:35.083Z",
+   "lastOk": "2026-11-27T06:51:30.052Z",
    "okCount": 3
   }
  }

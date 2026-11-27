@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-26T20:06:37.279Z",
+ "runAt": "2026-11-27T06:57:43.209Z",
  "mode": "full",
  "total": 1,
  "written": true,
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/cankiri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/cankiri: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
-   "failStreak": 26,
+   "seconds": 94,
+   "failStreak": 27,
    "lastOk": null,
    "okCount": null
   },
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=cankiri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=cankiri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 138,
-   "failStreak": 22,
+   "seconds": 149,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/cankiri/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 157,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:06:37.279Z",
+   "lastOk": "2026-11-27T06:57:43.209Z",
    "okCount": 1
   }
  }

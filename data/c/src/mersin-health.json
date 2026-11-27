@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:26:08.928Z",
+ "runAt": "2026-11-27T07:17:01.419Z",
  "mode": "full",
- "total": 228,
+ "total": 224,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 174,
+   "count": 180,
    "prevCount": 174,
    "error": "",
    "notes": [
-    "açık veri: 153 seans, 4 detay sayfası",
+    "açık veri: 163 seans, 4 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/mersin: 63 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/mersin: 25 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/mersin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 125,
+   "seconds": 120,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:26:08.928Z",
-   "okCount": 174
+   "lastOk": "2026-11-27T07:17:01.419Z",
+   "okCount": 180
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "kind": "toplayici",
    "ok": false,
    "status": "dustu",
-   "count": 8,
+   "count": 6,
    "prevCount": 52,
    "error": "",
    "notes": [
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=mersin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 271,
-   "failStreak": 1,
+   "seconds": 253,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:20:53.709Z",
    "okCount": 52
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -75,23 +75,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 25,
+   "count": 29,
    "prevCount": 25,
    "error": "",
    "notes": [
-    "allevents.in/mersin: 18 bağlantı, 12 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/mersin/all: 33 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mersin: 20 bağlantı, 14 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mersin/all: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/concerts: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/mersin/parties: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/mersin/parties: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/mersin/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 204,
+   "seconds": 176,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:26:08.928Z",
-   "okCount": 25
+   "lastOk": "2026-11-27T07:17:01.419Z",
+   "okCount": 29
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -99,16 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 11,
+   "count": 10,
    "prevCount": 11,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/mersin: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/mersin: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 1 (ör. Dozy Cocktail Behzat Ç. Quiz Night |  |  |  | 2026-11-26)"
    ],
    "seconds": 25,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:26:08.928Z",
-   "okCount": 11
+   "lastOk": "2026-11-27T07:17:01.419Z",
+   "okCount": 10
   }
  }
 }

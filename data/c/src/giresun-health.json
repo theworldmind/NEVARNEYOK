@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:12:33.463Z",
+ "runAt": "2026-11-27T07:03:29.660Z",
  "mode": "full",
- "total": 90,
+ "total": 72,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 59,
-   "prevCount": 69,
+   "count": 69,
+   "prevCount": 59,
    "error": "",
    "notes": [
-    "açık veri: 55 seans",
+    "açık veri: 65 seans",
     "biletinial.com/tr-tr/tiyatro/giresun: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/giresun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 98,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:12:33.463Z",
-   "okCount": 59
+   "lastOk": "2026-11-27T07:03:29.660Z",
+   "okCount": 69
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=giresun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 816,
-   "failStreak": 1,
+   "seconds": 815,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:08:47.529Z",
    "okCount": 29
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/giresun/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/giresun/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 22,
+   "seconds": 157,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/giresun: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 13,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:12:33.463Z",
+   "lastOk": "2026-11-27T07:03:29.660Z",
    "okCount": 2
   }
  }

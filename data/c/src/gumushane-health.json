@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:12:26.353Z",
+ "runAt": "2026-11-27T07:03:35.308Z",
  "mode": "full",
- "total": 13,
+ "total": 15,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 12,
-   "prevCount": 14,
+   "count": 14,
+   "prevCount": 12,
    "error": "",
    "notes": [
-    "açık veri: 10 seans",
+    "açık veri: 12 seans",
     "biletinial.com/tr-tr/tiyatro/gumushane: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
+   "seconds": 77,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:12:26.353Z",
-   "okCount": 12
+   "lastOk": "2026-11-27T07:03:35.308Z",
+   "okCount": 14
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=gumushane: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 122,
-   "failStreak": 22,
+   "seconds": 111,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/gumushane/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/gumushane: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:12:26.353Z",
+   "lastOk": "2026-11-27T07:03:35.308Z",
    "okCount": 1
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:00:35.834Z",
+ "runAt": "2026-11-27T06:57:07.462Z",
  "mode": "full",
- "total": 68,
+ "total": 72,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 39,
-   "prevCount": 30,
+   "count": 43,
+   "prevCount": 39,
    "error": "",
    "notes": [
-    "açık veri: 34 seans",
+    "açık veri: 38 seans",
     "biletinial.com/tr-tr/tiyatro/amasya: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/amasya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/amasya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
+   "seconds": 85,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:35.834Z",
-   "okCount": 39
+   "lastOk": "2026-11-27T06:57:07.462Z",
+   "okCount": 43
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=amasya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 139,
-   "failStreak": 1,
+   "seconds": 141,
+   "failStreak": 2,
    "lastOk": "2026-11-26T06:57:29.491Z",
    "okCount": 5
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/amasya/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/amasya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 195,
-   "failStreak": 17,
+   "seconds": 198,
+   "failStreak": 18,
    "lastOk": "2026-11-18T13:02:05.936Z",
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:35.834Z",
+   "lastOk": "2026-11-27T06:57:07.462Z",
    "okCount": 1
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:24:39.768Z",
+ "runAt": "2026-11-27T07:15:11.185Z",
  "mode": "full",
- "total": 74,
+ "total": 83,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 68,
-   "prevCount": 41,
+   "count": 78,
+   "prevCount": 68,
    "error": "",
    "notes": [
-    "açık veri: 64 seans",
+    "açık veri: 73 seans",
     "biletinial.com/tr-tr/tiyatro/malatya: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/malatya: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/malatya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 95,
+   "seconds": 100,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:24:39.768Z",
-   "okCount": 68
+   "lastOk": "2026-11-27T07:15:11.185Z",
+   "okCount": 78
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=malatya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 152,
-   "failStreak": 1,
+   "seconds": 137,
+   "failStreak": 2,
    "lastOk": "2026-11-26T07:19:31.374Z",
    "okCount": 11
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/malatya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:24:39.768Z",
+   "lastOk": "2026-11-27T07:15:11.185Z",
    "okCount": 1
   }
  }

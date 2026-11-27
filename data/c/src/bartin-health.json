@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-26T20:00:37.713Z",
+ "runAt": "2026-11-27T06:51:35.296Z",
  "mode": "full",
- "total": 40,
+ "total": 45,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 36,
-   "prevCount": 22,
+   "count": 41,
+   "prevCount": 36,
    "error": "",
    "notes": [
-    "açık veri: 31 seans",
+    "açık veri: 36 seans",
     "biletinial.com/tr-tr/tiyatro/bartin: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bartin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 88,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:37.713Z",
-   "okCount": 36
+   "lastOk": "2026-11-27T06:51:35.296Z",
+   "okCount": 41
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 144,
-   "failStreak": 1,
+   "seconds": 132,
+   "failStreak": 2,
    "lastOk": "2026-11-26T06:57:30.704Z",
    "okCount": 1
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bartin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bartin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 22,
+   "seconds": 156,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bartin: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 17,
+   "seconds": 14,
    "failStreak": 0,
-   "lastOk": "2026-11-26T20:00:37.713Z",
+   "lastOk": "2026-11-27T06:51:35.296Z",
    "okCount": 5
   }
  }
