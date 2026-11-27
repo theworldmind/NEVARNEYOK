@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T06:57:24.873Z",
+ "runAt": "2026-11-27T19:56:00.107Z",
  "mode": "full",
- "total": 65,
+ "total": 68,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 39,
+   "count": 42,
    "prevCount": 39,
    "error": "",
    "notes": [
-    "açık veri: 33 seans",
-    "biletinial.com/tr-tr/tiyatro/corum: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 35 seans",
+    "biletinial.com/tr-tr/tiyatro/corum: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/corum: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/corum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 100,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:57:24.873Z",
-   "okCount": 39
+   "lastOk": "2026-11-27T19:56:00.107Z",
+   "okCount": 42
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 1062,
-   "failStreak": 2,
+   "seconds": 1018,
+   "failStreak": 3,
    "lastOk": "2026-11-26T07:03:26.778Z",
    "okCount": 44
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/corum/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/corum/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 23,
+   "seconds": 156,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/corum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 6,
-   "failStreak": 23,
+   "seconds": 5,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T06:51:27.619Z",
+ "runAt": "2026-11-27T19:55:47.969Z",
  "mode": "full",
- "total": 21,
+ "total": 18,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 20,
-   "prevCount": 17,
+   "count": 17,
+   "prevCount": 20,
    "error": "",
    "notes": [
-    "açık veri: 18 seans",
+    "açık veri: 15 seans",
     "biletinial.com/tr-tr/tiyatro/bilecik: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bilecik: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 82,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:51:27.619Z",
-   "okCount": 20
+   "lastOk": "2026-11-27T19:55:47.969Z",
+   "okCount": 17
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 146,
-   "failStreak": 2,
+   "seconds": 184,
+   "failStreak": 3,
    "lastOk": "2026-11-26T06:57:35.578Z",
    "okCount": 3
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/bilecik/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 155,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/bilecik: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T07:28:19.525Z",
+ "runAt": "2026-11-27T20:20:43.964Z",
  "mode": "full",
- "total": 107,
+ "total": 94,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 79,
-   "prevCount": 66,
+   "count": 66,
+   "prevCount": 79,
    "error": "",
    "notes": [
-    "açık veri: 74 seans",
+    "açık veri: 61 seans",
     "biletinial.com/tr-tr/tiyatro/usak: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/usak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/usak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 84,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:28:19.525Z",
-   "okCount": 79
+   "lastOk": "2026-11-27T20:20:43.964Z",
+   "okCount": 66
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=usak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 153,
-   "failStreak": 2,
+   "seconds": 138,
+   "failStreak": 3,
    "lastOk": "2026-11-26T07:29:57.225Z",
    "okCount": 7
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/usak/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/usak/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 178,
-   "failStreak": 17,
+   "seconds": 182,
+   "failStreak": 18,
    "lastOk": "2026-11-18T13:48:36.810Z",
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/usak: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 15,
+   "seconds": 14,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:28:19.525Z",
+   "lastOk": "2026-11-27T20:20:43.964Z",
    "okCount": 4
   }
  }

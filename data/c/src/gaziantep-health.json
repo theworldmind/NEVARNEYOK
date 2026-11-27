@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T06:58:09.857Z",
+ "runAt": "2026-11-27T19:56:49.507Z",
  "mode": "full",
- "total": 197,
+ "total": 185,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 148,
-   "prevCount": 134,
+   "count": 135,
+   "prevCount": 148,
    "error": "",
    "notes": [
-    "açık veri: 136 seans",
-    "biletinial.com/tr-tr/tiyatro/gaziantep: 43 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 126 seans",
+    "biletinial.com/tr-tr/tiyatro/gaziantep: 44 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/gaziantep: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/gaziantep: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 112,
+   "seconds": 109,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:58:09.857Z",
-   "okCount": 148
+   "lastOk": "2026-11-27T19:56:49.507Z",
+   "okCount": 135
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 226,
-   "failStreak": 2,
+   "seconds": 167,
+   "failStreak": 3,
    "lastOk": "2026-11-26T07:08:26.718Z",
    "okCount": 57
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -76,10 +76,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 18,
-   "prevCount": 19,
+   "prevCount": 18,
    "error": "",
    "notes": [
-    "allevents.in/gaziantep: 23 bağlantı, 18 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/gaziantep: 24 bağlantı, 18 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/all: 39 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/concerts: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/parties: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -88,9 +88,9 @@
     "allevents.in/gaziantep/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/gaziantep/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 184,
+   "seconds": 180,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:58:09.857Z",
+   "lastOk": "2026-11-27T19:56:49.507Z",
    "okCount": 18
   },
   "biletimgo": {
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/gaziantep: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   }

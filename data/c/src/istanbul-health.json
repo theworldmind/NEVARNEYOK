@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T07:03:58.796Z",
+ "runAt": "2026-11-27T20:02:28.668Z",
  "mode": "full",
- "total": 5052,
+ "total": 5073,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,23 +10,23 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 4427,
-   "prevCount": 4089,
+   "count": 4133,
+   "prevCount": 4427,
    "error": "",
    "notes": [
-    "açık veri: 2827 seans, 286 detay sayfası",
+    "açık veri: 2804 seans, 286 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/istanbul: 154 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/istanbul: 155 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/istanbul: 156 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/istanbul: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/egitim/istanbul: 75 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "biletinial.com/tr-tr/egitim/istanbul: 72 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 529,
+   "seconds": 536,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
-   "okCount": 4427
+   "lastOk": "2026-11-27T20:02:28.668Z",
+   "okCount": 4133
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=istanbul: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 256,
-   "failStreak": 2,
+   "seconds": 267,
+   "failStreak": 3,
    "lastOk": "2026-11-26T07:09:57.483Z",
    "okCount": 651
   },
@@ -66,7 +66,7 @@
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
+   "lastOk": "2026-11-27T20:02:28.668Z",
    "okCount": 60
   },
   "allevents": {
@@ -75,23 +75,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 370,
+   "count": 403,
    "prevCount": 370,
    "error": "",
    "notes": [
-    "allevents.in/istanbul: 351 bağlantı, 65 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/all: 74 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/concerts: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/parties: 57 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/comedy: 53 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/performances: 54 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/workshops: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/istanbul/kids: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/istanbul: 261 bağlantı, 65 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/all: 81 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/concerts: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/parties: 55 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/comedy: 50 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/performances: 56 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/workshops: 46 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/istanbul/kids: 23 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 648,
+   "seconds": 601,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
-   "okCount": 370
+   "lastOk": "2026-11-27T20:02:28.668Z",
+   "okCount": 403
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -99,17 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 425,
-   "prevCount": 442,
+   "count": 426,
+   "prevCount": 425,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/istanbul: 428 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "elenen: başka il (adres/mekân) 2 (ör. POP BAND PARTY | Deli Sahne Bursa | Görükle Mahallesi Atatürk Caddesi Trio Eğlence Merkezi Sites |  | 2026-11-28); etkinlik değil 1 (ör. Beşiktaş Standup Gecesi - Boğaziçi Komedi Kulübü | Maltica Gastropub Beşiktaş | Sinanpaşa Mahallesi Şht. Asım Caddesi No: 42 - Beşiktaş / İs |  | 2026-11-30); kalite 3 (ör. Ziya Selçuk ile Öğretmenin Seyir Defteri - 2026 | Online / Zoom | Katılım İçin Link İletilecektir., İstanbul |  | 2026-12-06)"
+    "www.biletimgo.com/sehir-etkinlikleri/istanbul: 427 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: etkinlik değil 4 (ör. Beşiktaş Standup Gecesi - Boğaziçi Komedi Kulübü | Maltica Gastropub Beşiktaş | Sinanpaşa Mahallesi Şht. Asım Caddesi No: 42 - Beşiktaş / İs |  | 2026-11-30); başka il (adres/mekân) 1 (ör. Mozaik Lambası Atölyesi İstanbul Workshops - Aralık Etkinlikleri | Bağımsız Sanat Vakfı | Hobyar Mahallesi Ankara Caddesi No; 3 - Fatih / İstanbul, İs |  | 2026-12-01); kalite 6 (ör. Ziya Selçuk ile Öğretmenin Seyir Defteri - 2026 | Online / Zoom | Katılım İçin Link İletilecektir., İstanbul |  | 2026-12-06)"
    ],
-   "seconds": 655,
+   "seconds": 674,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
-   "okCount": 425
+   "lastOk": "2026-11-27T20:02:28.668Z",
+   "okCount": 426
   },
   "iksv": {
    "id": "iksv",
@@ -117,16 +117,16 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 26,
+   "count": 24,
    "prevCount": 26,
    "error": "",
    "notes": [
-    "açık veri: 26 seans, alanlar: articleId,category,headline,date,date1,enddate,place,alias,thumb,ticket,flag1,activity,zoneName,zoneGroupName,zoneGroupId,zoneId,zone,endDate,time,dateFormatted,endDateFormatted,files,programs,order,tags,tagIds,section,director,description,day,dayString,monthString,month,year,flag2,flag3,flag4,flag5"
+    "açık veri: 24 seans, alanlar: articleId,category,headline,date,date1,enddate,place,alias,thumb,ticket,flag1,activity,zoneName,zoneGroupName,zoneGroupId,zoneId,zone,endDate,time,dateFormatted,endDateFormatted,files,programs,order,tags,tagIds,section,director,description,day,dayString,monthString,month,year,flag2,flag3,flag4,flag5"
    ],
-   "seconds": 45,
+   "seconds": 44,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
-   "okCount": 26
+   "lastOk": "2026-11-27T20:02:28.668Z",
+   "okCount": 24
   },
   "zorlupsm": {
    "id": "zorlupsm",
@@ -142,7 +142,7 @@
    ],
    "seconds": 22,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
+   "lastOk": "2026-11-27T20:02:28.668Z",
    "okCount": 34
   },
   "ibbst": {
@@ -159,7 +159,7 @@
    ],
    "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
+   "lastOk": "2026-11-27T20:02:28.668Z",
    "okCount": 10
   },
   "repertuvar": {
@@ -168,16 +168,16 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 32,
+   "count": 25,
    "prevCount": 32,
    "error": "",
    "notes": [
-    "açık veri: 32 seans, 12 gün okundu, 0 mekân adı"
+    "açık veri: 25 seans, 11 gün okundu, 48 mekân adı"
    ],
-   "seconds": 80,
+   "seconds": 78,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
-   "okCount": 32
+   "lastOk": "2026-11-27T20:02:28.668Z",
+   "okCount": 25
   },
   "kulturistanbul": {
    "id": "kulturistanbul",
@@ -185,17 +185,17 @@
    "kind": "kurum",
    "ok": true,
    "status": "calisiyor",
-   "count": 17,
-   "prevCount": 18,
+   "count": 18,
+   "prevCount": 17,
    "error": "",
    "notes": [
-    "kultur.istanbul/etkinlikler/: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "kultur.istanbul/etkinlikler/: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "elenen: geçmiş 3 (ör. Mutluluk Garanti |  |  |  | 2026-10-23)"
    ],
-   "seconds": 19,
+   "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:58.796Z",
-   "okCount": 17
+   "lastOk": "2026-11-27T20:02:28.668Z",
+   "okCount": 18
   }
  }
 }

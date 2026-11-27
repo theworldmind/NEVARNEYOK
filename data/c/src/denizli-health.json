@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T06:57:51.213Z",
+ "runAt": "2026-11-27T19:56:13.215Z",
  "mode": "full",
- "total": 91,
+ "total": 88,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 76,
-   "prevCount": 69,
+   "count": 71,
+   "prevCount": 76,
    "error": "",
    "notes": [
-    "açık veri: 68 seans",
-    "biletinial.com/tr-tr/tiyatro/denizli: 26 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 62 seans",
+    "biletinial.com/tr-tr/tiyatro/denizli: 27 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/denizli: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/denizli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 103,
+   "seconds": 101,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:57:51.213Z",
-   "okCount": 76
+   "lastOk": "2026-11-27T19:56:13.215Z",
+   "okCount": 71
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=denizli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 900,
-   "failStreak": 2,
+   "seconds": 154,
+   "failStreak": 3,
    "lastOk": "2026-11-26T07:03:25.976Z",
    "okCount": 49
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -76,21 +76,21 @@
    "ok": true,
    "status": "calisiyor",
    "count": 2,
-   "prevCount": 7,
+   "prevCount": 2,
    "error": "",
    "notes": [
-    "allevents.in/denizli: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/all: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/concerts: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/parties: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/comedy: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/performances: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/workshops: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/denizli/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/denizli: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/all: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/concerts: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/parties: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/comedy: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/performances: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/denizli/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 166,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:57:51.213Z",
+   "lastOk": "2026-11-27T19:56:13.215Z",
    "okCount": 2
   },
   "biletimgo": {
@@ -99,16 +99,16 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1,
+   "count": 2,
    "prevCount": 1,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/denizli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/denizli: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 18,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:57:51.213Z",
-   "okCount": 1
+   "lastOk": "2026-11-27T19:56:13.215Z",
+   "okCount": 2
   }
  }
 }

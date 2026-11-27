@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T07:03:48.409Z",
+ "runAt": "2026-11-27T20:02:19.662Z",
  "mode": "full",
- "total": 74,
+ "total": 68,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 70,
-   "prevCount": 45,
+   "count": 64,
+   "prevCount": 70,
    "error": "",
    "notes": [
-    "açık veri: 57 seans, 2 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/hatay: 32 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 51 seans, 2 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/hatay: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/hatay: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/hatay: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 99,
+   "seconds": 92,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:03:48.409Z",
-   "okCount": 70
+   "lastOk": "2026-11-27T20:02:19.662Z",
+   "okCount": 64
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 130,
-   "failStreak": 2,
+   "seconds": 133,
+   "failStreak": 3,
    "lastOk": "2026-11-26T07:10:49.255Z",
    "okCount": 8
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/hatay/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/hatay/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 23,
+   "seconds": 156,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/hatay: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T07:26:54.804Z",
+ "runAt": "2026-11-27T20:17:04.456Z",
  "mode": "full",
- "total": 58,
+ "total": 50,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 54,
-   "prevCount": 46,
+   "count": 45,
+   "prevCount": 54,
    "error": "",
    "notes": [
-    "açık veri: 45 seans, 2 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/sirnak: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 36 seans, 2 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/sirnak: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/sirnak: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 87,
+   "seconds": 100,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:26:54.804Z",
-   "okCount": 54
+   "lastOk": "2026-11-27T20:17:04.456Z",
+   "okCount": 45
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 123,
-   "failStreak": 2,
+   "seconds": 151,
+   "failStreak": 3,
    "lastOk": "2026-11-26T07:26:40.818Z",
    "okCount": 6
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/sirnak/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sirnak/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 23,
+   "seconds": 157,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/sirnak: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   }

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T13:15:32.532Z",
+ "updated": "2026-11-27T20:43:53.698Z",
  "films": [
   {
    "id": 284806,
@@ -564,7 +564,7 @@
     "antalya"
    ],
    "img": "https://cdn.sinemalar.com/images/movie/225593/poster/avengers-endgame-1660923683_225x336.jpg",
-   "url": "https://www.sinemalar.com/seans/225593/yenilmezler-4/ankara",
+   "url": "https://www.sinemalar.com/seans/225593/yenilmezler-4/antalya",
    "genre": "Macera, Bilim Kurgu, Aksiyon",
    "country": "ABD",
    "dur": 182,
@@ -777,7 +777,8 @@
     "tekirdag",
     "trabzon",
     "van",
-    "yalova"
+    "yalova",
+    "isparta"
    ],
    "img": "https://cdn.sinemalar.com/images/movie/290156/poster/buddy-1794852906_225x336.jpg",
    "url": "https://www.sinemalar.com/seans/290156/buddy/zonguldak",
@@ -1377,6 +1378,48 @@
    ]
   },
   {
+   "id": 300845,
+   "title": "Güneşin Altında Yeni Bir Şey Yok",
+   "first": "2026-11-27",
+   "cities": [
+    "istanbul"
+   ],
+   "img": "https://cdn.sinemalar.com/images/movie/300845/poster/gunesin-altinda-yeni-bir-sey-yok-1791222599_225x336.jpg",
+   "url": "https://www.sinemalar.com/seans/300845/gunesin-altinda-yeni-bir-sey-yok/istanbul",
+   "genre": "Dram",
+   "country": "Türkiye",
+   "dur": 126,
+   "release": "2026-10-02",
+   "last": "2026-11-27",
+   "kAt": "2026-11-27",
+   "dir": "Murad Zaloğlu",
+   "cast": [
+    "Mustafa Özer",
+    "Musa Kadan",
+    "Hüseyin Güvenen",
+    "Onur Yar"
+   ]
+  },
+  {
+   "id": 287444,
+   "title": "Harika Kanatlar: Dünya Turu",
+   "first": "2026-11-27",
+   "cities": [
+    "afyonkarahisar"
+   ],
+   "img": "https://cdn.sinemalar.com/images/movie/287444/poster/harika-kanatlar-dunya-turu-1726559174_225x336.jpg",
+   "url": "https://www.sinemalar.com/seans/287444/harika-kanatlar-dunya-turu/afyon",
+   "genre": "Animasyon, Fantastik, Macera",
+   "country": "Çin",
+   "dur": 80,
+   "release": "2024-09-20",
+   "last": "2026-11-27",
+   "kAt": "2026-11-27",
+   "o": "Super Wings: Journey to the Center of the World",
+   "dir": "Zhang Chao",
+   "year": 2023
+  },
+  {
    "id": 299368,
    "title": "Harika Kanatlar: Macera Adası",
    "first": "2026-11-25",
@@ -1421,7 +1464,9 @@
     "trabzon",
     "usak",
     "yalova",
-    "yozgat"
+    "yozgat",
+    "izmir",
+    "kars"
    ],
    "img": "https://cdn.sinemalar.com/images/movie/299368/poster/happylittle-submarine-the-adventure-with-dragon-1795251906_225x336.jpg",
    "url": "https://www.sinemalar.com/seans/299368/happylittle-submarine-the-adventure-with-dragon/zonguldak",
@@ -1779,7 +1824,8 @@
     "kayseri",
     "kocaeli",
     "mugla",
-    "samsun"
+    "samsun",
+    "usak"
    ],
    "img": "https://cdn.sinemalar.com/images/movie/287814/poster/paper-tiger-1794938344_225x336.jpg",
    "url": "https://www.sinemalar.com/seans/287814/paper-tiger/zonguldak",
@@ -1823,6 +1869,32 @@
     "İlda Özgürel"
    ],
    "last": "2026-11-27"
+  },
+  {
+   "id": 289558,
+   "title": "Kefaret",
+   "first": "2026-11-27",
+   "cities": [
+    "istanbul"
+   ],
+   "img": "https://cdn.sinemalar.com/images/movie/289558/poster/atonement-1790019971_225x336.jpg",
+   "url": "https://www.sinemalar.com/seans/289558/atonement/istanbul",
+   "genre": "Savaş, Dram",
+   "country": "ABD",
+   "dur": 118,
+   "release": "2026-10-16",
+   "last": "2026-11-27",
+   "kAt": "2026-11-27",
+   "o": "Atonement",
+   "dir": "Reed Van Dyk",
+   "cast": [
+    "Hiam Abbass",
+    "Boyd Holbrook",
+    "Kenneth Branagh",
+    "Majd Eid",
+    "Khris Davis"
+   ],
+   "year": 2026
   },
   {
    "id": 291225,
@@ -2037,7 +2109,9 @@
     "trabzon",
     "usak",
     "van",
-    "yalova"
+    "yalova",
+    "giresun",
+    "zonguldak"
    ],
    "img": "https://cdn.sinemalar.com/images/movie/299229/poster/mutter-bir-annenin-hatira-defteri-1793018608_225x336.jpg",
    "url": "https://www.sinemalar.com/seans/299229/mutter-bir-annenin-hatira-defteri/zonguldak",

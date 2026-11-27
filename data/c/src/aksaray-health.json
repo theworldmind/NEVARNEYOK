@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-27T06:51:33.454Z",
+ "runAt": "2026-11-27T19:50:15.049Z",
  "mode": "full",
  "total": 31,
  "written": false,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 25,
-   "prevCount": 26,
+   "prevCount": 25,
    "error": "",
    "notes": [
     "açık veri: 21 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/aksaray: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 102,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:51:33.454Z",
+   "lastOk": "2026-11-27T19:50:15.049Z",
    "okCount": 25
   },
   "radar": {
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=aksaray: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 143,
-   "failStreak": 2,
+   "seconds": 137,
+   "failStreak": 3,
    "lastOk": "2026-11-26T06:57:31.079Z",
    "okCount": 2
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -82,15 +82,15 @@
     "allevents.in/aksaray: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/all: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/concerts: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/aksaray/parties: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/aksaray/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/comedy: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/performances: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aksaray/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 191,
+   "seconds": 165,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:51:33.454Z",
+   "lastOk": "2026-11-27T19:50:15.049Z",
    "okCount": 2
   },
   "biletimgo": {
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/aksaray: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 10,
+   "seconds": 30,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:51:33.454Z",
+   "lastOk": "2026-11-27T19:50:15.049Z",
    "okCount": 1
   }
  }

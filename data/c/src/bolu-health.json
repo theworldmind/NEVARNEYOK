@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T06:51:24.912Z",
+ "runAt": "2026-11-27T19:50:15.393Z",
  "mode": "full",
- "total": 86,
+ "total": 79,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 79,
-   "prevCount": 73,
+   "count": 71,
+   "prevCount": 79,
    "error": "",
    "notes": [
-    "açık veri: 70 seans",
+    "açık veri: 63 seans",
     "biletinial.com/tr-tr/tiyatro/bolu: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bolu: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 91,
+   "seconds": 89,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:51:24.912Z",
-   "okCount": 79
+   "lastOk": "2026-11-27T19:50:15.393Z",
+   "okCount": 71
   },
   "radar": {
    "id": "radar",
@@ -48,7 +48,7 @@
     "www.radarturkiye.com/etkinlikler?genre=4&city=bolu: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
    "seconds": 120,
-   "failStreak": 2,
+   "failStreak": 3,
    "lastOk": "2026-11-26T06:57:30.495Z",
    "okCount": 9
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bolu/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bolu/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 155,
-   "failStreak": 23,
+   "seconds": 156,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/bolu: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 11,
+   "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:51:24.912Z",
+   "lastOk": "2026-11-27T19:50:15.393Z",
    "okCount": 1
   }
  }

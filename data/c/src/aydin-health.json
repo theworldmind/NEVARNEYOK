@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T06:51:45.449Z",
+ "runAt": "2026-11-27T19:50:15.042Z",
  "mode": "full",
- "total": 135,
+ "total": 129,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,23 +10,23 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 127,
-   "prevCount": 119,
+   "count": 116,
+   "prevCount": 127,
    "error": "",
    "notes": [
-    "açık veri: 95 seans, 10 detay sayfası",
+    "açık veri: 81 seans, 11 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/aydin: 49 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/aydin: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/aydin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/aydin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/aydin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 113,
+   "seconds": 109,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:51:45.449Z",
-   "okCount": 127
+   "lastOk": "2026-11-27T19:50:15.042Z",
+   "okCount": 116
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=aydin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 666,
-   "failStreak": 2,
+   "seconds": 641,
+   "failStreak": 3,
    "lastOk": "2026-11-26T06:57:30.435Z",
    "okCount": 38
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/aydin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/aydin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 166,
-   "failStreak": 23,
+   "seconds": 167,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/aydin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 13,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-27T06:51:45.449Z",
+   "lastOk": "2026-11-27T19:50:15.042Z",
    "okCount": 2
   }
  }

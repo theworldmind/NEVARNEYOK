@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T07:27:32.538Z",
+ "runAt": "2026-11-27T20:17:57.479Z",
  "mode": "full",
- "total": 206,
+ "total": 194,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 194,
-   "prevCount": 180,
+   "count": 180,
+   "prevCount": 194,
    "error": "",
    "notes": [
-    "açık veri: 153 seans, 13 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/tekirdag: 64 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 133 seans, 13 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/tekirdag: 62 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/tekirdag: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/tekirdag: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 116,
+   "seconds": 126,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:27:32.538Z",
-   "okCount": 194
+   "lastOk": "2026-11-27T20:17:57.479Z",
+   "okCount": 180
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=tekirdag: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 787,
-   "failStreak": 2,
+   "seconds": 785,
+   "failStreak": 3,
    "lastOk": "2026-11-26T07:27:08.454Z",
    "okCount": 47
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 22,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/tekirdag/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/tekirdag/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 163,
-   "failStreak": 22,
+   "seconds": 171,
+   "failStreak": 23,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:27:32.538Z",
+   "lastOk": "2026-11-27T20:17:57.479Z",
    "okCount": 2
   }
  }

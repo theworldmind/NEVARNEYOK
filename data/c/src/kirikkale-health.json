@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-27T07:10:45.898Z",
+ "runAt": "2026-11-27T20:07:27.799Z",
  "mode": "full",
  "total": 1,
  "written": true,
@@ -23,8 +23,8 @@
     "biletinial.com/tr-tr/festival/kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kirikkale: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 78,
-   "failStreak": 27,
+   "seconds": 79,
+   "failStreak": 28,
    "lastOk": null,
    "okCount": null
   },
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirikkale: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 136,
-   "failStreak": 23,
+   "seconds": 157,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/kirikkale/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 9,
    "failStreak": 0,
-   "lastOk": "2026-11-27T07:10:45.898Z",
+   "lastOk": "2026-11-27T20:07:27.799Z",
    "okCount": 1
   }
  }
