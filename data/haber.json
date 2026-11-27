@@ -1,21 +1,21 @@
 {
- "updated": "2026-11-27T12:51:58.433Z",
+ "updated": "2026-11-27T21:48:43.554Z",
  "notes": [
   "trt: 0 aday",
   "aa: 5 aday",
   "yeniankara: 0 aday",
   "evrensel: 0 aday",
   "hurriyet: 0 aday",
-  "haberturk: 6 aday",
+  "haberturk: 5 aday",
   "sabah: 2 aday",
-  "cumhuriyet: 10 aday",
+  "cumhuriyet: 11 aday",
   "sozcu: 0 aday",
   "aa-guncel: 0 aday",
   "trt-turkiye: 0 aday",
   "trt-gundem: 0 aday",
   "haberturk-gundem: 0 aday",
   "sabah-yasam: 0 aday",
-  "cumhuriyet-turkiye: 0 aday",
+  "cumhuriyet-turkiye: 1 aday",
   "mansetankara: 0 aday",
   "mansetankara2: 404",
   "ankarahaber: fetch failed",
@@ -25,15 +25,15 @@
   "ntv-turkiye: 0 aday",
   "cnnturk-kultur: 0 aday",
   "cnnturk-turkiye: 0 aday",
-  "milliyet-kultur: 404",
+  "milliyet-kultur: işlem 25 sn içinde bitmedi",
   "milliyet-gundem: 0 aday",
   "yenisafak-kultur: 0 aday",
   "t24-kultur: 403",
-  "birgun: 4 aday",
+  "birgun: 2 aday",
   "duvar: 403",
   "karar: 410",
-  "star: 0 aday",
-  "haberler-kultur: 18 aday",
+  "star: 1 aday",
+  "haberler-kultur: 15 aday",
   "haberler-yasam: 0 aday",
   "haber7-kultur: 0 aday",
   "iha-kultur: 404",
@@ -60,16 +60,16 @@
   "izmirtime24: fetch failed",
   "olay: 0 aday",
   "olay-1: 0 aday",
-  "bursahakimiyet: 523",
-  "bursahakimiyet-1: 523",
+  "bursahakimiyet: 0 aday",
+  "bursahakimiyet-1: 404",
   "bursadabugun: akış değil",
   "bursadabugun-1: 404",
   "antalyakorfez: 1 aday",
-  "antalyasondakika: 403",
+  "antalyasondakika: 0 aday",
   "akdenizgazetesi: fetch failed",
   "yeniadana: 404",
   "adanamedya: 403",
-  "konyayenigun: 0 aday",
+  "konyayenigun: 1 aday",
   "yenikonya: 0 aday",
   "esanadolugazetesi: fetch failed",
   "sakaryayenigun: fetch failed",
@@ -79,7 +79,7 @@
   "olaygazetesi: fetch failed",
   "samsunhaber: 0 aday",
   "takagazete: 0 aday",
-  "mersinhaber: 2 aday",
+  "mersinhaber: 1 aday",
   "hataygazetesi: fetch failed",
   "denizlihaber: 403",
   "muglahaber: 0 aday",
@@ -87,7 +87,7 @@
   "pusulahaber: 0 aday",
   "diyarbakirsoz: 0 aday",
   "vanhaber: fetch failed",
-  "malatyahaber: 1 aday",
+  "malatyahaber: 0 aday",
   "elazighaber: robots kapalı",
   "sivashaber: akış değil",
   "tokathaber: 0 aday",
@@ -121,21 +121,6 @@
   "karabukhaber: fetch failed"
  ],
  "items": [
-  {
-   "id": "ude-ogretmenler-gununde-hasan-tulukun-soylesisi-eskisehir",
-   "city": "eskisehir",
-   "title": "Ü'de Öğretmenler Günü'nde Hasan Tuluk'un söyleşisi",
-   "cat": "atolye",
-   "venue": "Kültür Merkezi",
-   "days": [],
-   "until": "2026-11-27",
-   "from": "",
-   "t": "",
-   "img": "https://foto.haberler.com/haber/2026/11/24/esogu-de-ogretmenler-gunu-nde-hasan-tuluk-un-20457639_amp.jpg",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/egitim/esogu-de-ogretmenler-gunu-nde-hasan-tuluk-un-20457639-haberi/",
-   "seen": "2026-11-24T14:02:20.360Z"
-  },
   {
    "id": "performans-gosterdigi-parlayan-yildizlar-konseri-istanbul",
    "city": "istanbul",
@@ -241,23 +226,6 @@
    "seen": "2026-11-18T12:40:21.322Z"
   },
   {
-   "id": "artvin-borckada-halklarin-turkuleri-artvin",
-   "city": "artvin",
-   "title": "Artvin Borçka'da Halkların Türküleri",
-   "cat": "konser",
-   "venue": "",
-   "days": [
-    "2026-11-27"
-   ],
-   "until": "",
-   "from": "",
-   "t": "20:00",
-   "img": "https://media.cumhuriyet.com.tr/Archive//48dacaaf-c5fd-4858-9ae5-a7bfe6d79898.jpg",
-   "site": "Cumhuriyet",
-   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/artvin-borcka-da-halklarin-turkuleri-konseri-duzenlenecek-2557248",
-   "seen": "2026-11-18T13:17:39.473Z"
-  },
-  {
    "id": "15-uluslararasi-kisa-film-festivali-malatya",
    "city": "malatya",
    "title": "15. Uluslararası Kısa Film Festivali",
@@ -273,23 +241,6 @@
    "site": "Mersin Haber",
    "url": "https://www.mersinhaber.com/haber-malatyada-duzenlenen-15-uluslararasi-kisa-film-festivaline-115-ulkeden-1328-film-basvurdu/858882",
    "seen": "2026-11-24T14:02:20.360Z"
-  },
-  {
-   "id": "mutter-bir-annenin-hatira-defteri-ankara",
-   "city": "ankara",
-   "title": "MUTTER: Bir Annenin Hatıra Defteri",
-   "cat": "sahne",
-   "venue": "",
-   "days": [
-    "2026-11-27"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://iasbh.tmgrup.com.tr/48fdaa/1200/675/0/0/827/465?u=https://isbh.tmgrup.com.tr/sbh/2026/11/21/mutter-bir-annenin-hatira-defterinden-ozel-gosterim-1795227065756.jpeg",
-   "site": "Sabah",
-   "url": "https://www.sabah.com.tr/magazin/mutter-bir-annenin-hatira-defterinden-ozel-gosterim-7706205",
-   "seen": "2026-11-21T04:19:40.755Z"
   },
   {
    "id": "hilalin-isiginda-konya-buyuksehir-konya",
@@ -313,7 +264,6 @@
    "cat": "atolye",
    "venue": "Inspera Kültür Sanat Merkezi",
    "days": [
-    "2026-11-27",
     "2026-11-28",
     "2026-11-29"
    ],
@@ -324,23 +274,6 @@
    "site": "Bodrum Haber",
    "url": "https://bodrumhaber.com/bodrumda-cocuk-edebiyati-gunleri-burasi-benim-yerim-sergisiyle-basladi/",
    "seen": "2026-11-27T12:51:58.433Z"
-  },
-  {
-   "id": "23-uluslararasi-film-festivali-eskisehir",
-   "city": "eskisehir",
-   "title": "23. Uluslararası Film Festivali",
-   "cat": "festival",
-   "venue": "Üniversitenin Yunus Emre Yerleşkesi",
-   "days": [
-    "2026-11-27"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://foto.haberler.com/haber/2026/11/19/eskisehir-de-23-uluslararasi-film-festivali-3-20443989_amp.jpg",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/kultur-sanat/eskisehir-de-23-uluslararasi-film-festivali-34-20443989-haberi/",
-   "seen": "2026-11-20T04:21:55.141Z"
   },
   {
    "id": "tarihinde-noel-baba-festivali-antalya",
@@ -368,7 +301,6 @@
    "cat": "sinema",
    "venue": "MEGA Silk Way Alışveriş Merkezi",
    "days": [
-    "2026-11-27",
     "2026-11-28",
     "2026-11-29",
     "2026-11-30"
@@ -381,6 +313,23 @@
    "site": "Haberler.com",
    "url": "https://www.haberler.com/kultur-sanat/astana-da-turk-film-gunleri-chaplin-sinemasi-nda-20467360-haberi/",
    "seen": "2026-11-27T12:51:58.433Z"
+  },
+  {
+   "id": "tum-turkiye-bunu-konusacak-ankara",
+   "city": "ankara",
+   "title": "Tüm Türkiye bunu konuşacak",
+   "cat": "konser",
+   "venue": "",
+   "days": [
+    "2026-12-04"
+   ],
+   "until": "",
+   "from": "",
+   "t": "",
+   "img": "https://konyayeniguncom.teimg.com/crop/1280x720/konyayenigun-com/uploads/2025/07/ozgur-ozelden-cumhurbaskani-erdogana-tepki-mezhepcilik-uzerinden-hesap-yaptirmayiz-yv1h.webp",
+   "site": "Konya Yenigün",
+   "url": "https://www.konyayenigun.com/tum-turkiye-bunu-konusacak-ozgur-ozelden-dikkat-ceken-aciklama",
+   "seen": "2026-11-27T21:48:43.554Z"
   },
   {
    "id": "altin-taka-film-festivali-trabzon",
@@ -464,7 +413,6 @@
    "cat": "festival",
    "venue": "Atatürk Kültür Merkezi Aspendos Salonu",
    "days": [
-    "2026-11-27",
     "2026-11-28",
     "2026-11-29",
     "2026-12-01",
@@ -560,7 +508,6 @@
    "cat": "tiyatro",
    "venue": "",
    "days": [
-    "2026-11-27",
     "2026-11-28",
     "2026-12-05",
     "2026-12-12",
@@ -615,7 +562,6 @@
    "cat": "konser",
    "venue": "Yenimahalle Fuar Alanı",
    "days": [
-    "2026-11-27",
     "2026-12-06"
    ],
    "until": "2026-12-06",
@@ -642,6 +588,23 @@
    "site": "Haberler.com",
    "url": "https://www.haberler.com/guncel/istanbul-photo-awards-sergisi-washington-da-ilk-20462330-haberi/",
    "seen": "2026-11-25T22:08:21.375Z"
+  },
+  {
+   "id": "ekmek-adalet-ozgurluk-istanbul",
+   "city": "istanbul",
+   "title": "Ekmek adalet özgürlük",
+   "cat": "konser",
+   "venue": "",
+   "days": [
+    "2026-11-29"
+   ],
+   "until": "",
+   "from": "",
+   "t": "13:00",
+   "img": "https://media.cumhuriyet.com.tr/Archive/54772c5e-a8b1-4d01-8230-5921a8cc7ea5.jpg",
+   "site": "Cumhuriyet",
+   "url": "https://www.cumhuriyet.com.tr/turkiye/muhalif-kesimler-ekmek-adalet-ozgurluk-mitinginde-bulusuyor-birlesik-metal-is-baskani-ozkan-atar-29-kasim-kartal-mitingine-cagri-yapti-2559968",
+   "seen": "2026-11-27T21:48:43.554Z"
   },
   {
    "id": "cocuk-film-festivali-istanbul",
@@ -674,24 +637,6 @@
    "site": "Ankara Net Haber",
    "url": "https://www.ankaranethaber.com/yapay-zeka-akademik-yayinciligi-nasil-degistiriyor-ankaradaki-seminerin-tarihi-belli-oldu",
    "seen": "2026-11-24T14:02:20.360Z"
-  },
-  {
-   "id": "belene-toplama-kampi-bursa",
-   "city": "bursa",
-   "title": "Belene Toplama Kampı",
-   "cat": "konser",
-   "venue": "Kültür Merkezi Özel Harekât Polisi İlyas Kaygusuz Salonu",
-   "days": [
-    "2026-11-27"
-   ],
-   "until": "",
-   "from": "",
-   "t": "19:30",
-   "free": true,
-   "img": "https://cdn.olay.com.tr/2026/11/belene-toplama-kampinin-son-tutsaklari-belgeseli-bursada-izleyiciyle-bulusacak_aba0d4e2fbe0.jpg",
-   "site": "Olay",
-   "url": "https://www.olay.com.tr/belene-toplama-kampinin-son-tutsaklari-belgeseli-bursada-izleyiciyle-bulusacak-1815194",
-   "seen": "2026-11-24T22:54:46.546Z"
   },
   {
    "id": "iran-dostluk-konseri-ankara",
@@ -751,47 +696,12 @@
    "seen": "2026-11-18T13:17:39.473Z"
   },
   {
-   "id": "doha-film-festivali-kocaeli",
-   "city": "kocaeli",
-   "title": "Doha Film Festivali",
-   "cat": "festival",
-   "venue": "",
-   "days": [
-    "2026-11-27"
-   ],
-   "until": "",
-   "from": "",
-   "t": "",
-   "img": "https://foto.haberler.com/haber/2026/11/19/doha-film-festivali-2026-60-ulkeden-104-yapim-20444208_amp.jpg",
-   "site": "Haberler.com",
-   "url": "https://www.haberler.com/guncel/doha-film-festivali-2026-60-ulkeden-104-yapimla-ve-20444208-haberi/",
-   "seen": "2026-11-20T04:21:55.141Z"
-  },
-  {
-   "id": "askida-kalan-asklar-istanbul",
-   "city": "istanbul",
-   "title": "Askıda Kalan Aşklar",
-   "cat": "konser",
-   "venue": "Bari Konservatuvarı",
-   "days": [
-    "2026-11-27"
-   ],
-   "until": "",
-   "from": "",
-   "t": "20:00",
-   "img": "https://im.haberturk.com/l/2026/11/23/ver1795441003/3929485/jpg/1200x628",
-   "site": "Habertürk",
-   "url": "https://www.haberturk.com/kultur-sanat/askida-kalan-asklar-konseri-crr-de-3929485",
-   "seen": "2026-11-24T00:35:15.828Z"
-  },
-  {
    "id": "ceza-film-festivali-istanbul",
    "city": "istanbul",
    "title": "Ceza Film Festivali",
    "cat": "festival",
    "venue": "İBB Beyoğlu Sineması Pera Salonu",
    "days": [
-    "2026-11-27",
     "2026-11-28",
     "2026-11-29",
     "2026-11-30",
@@ -802,9 +712,9 @@
    "from": "",
    "t": "",
    "free": true,
-   "site": "BirGün",
-   "url": "https://www.birgun.net/haber/16-uluslararasi-suc-ve-ceza-film-festivali-adalet-cagrisiyla-basladi-748753",
-   "seen": "2026-11-27T12:51:58.433Z",
+   "site": "Haberler.com",
+   "url": "https://www.haberler.com/guncel/16-suc-ve-ceza-film-festivali-35-filmle-basladi-31-20466729-haberi/",
+   "seen": "2026-11-27T21:48:43.554Z",
    "img": "https://foto.haberler.com/haber/2026/11/26/16-suc-ve-ceza-film-festivali-35-filmle-basla-20466729_amp.jpg",
    "imgBy": "Haberler.com"
   },
@@ -815,7 +725,6 @@
    "cat": "festival",
    "venue": "Zorlu PSM Turkcell Sahnesi",
    "days": [
-    "2026-11-27",
     "2026-11-28",
     "2026-11-29",
     "2026-11-30",
@@ -936,21 +845,6 @@
    "seen": "2026-11-18T12:40:21.322Z"
   },
   {
-   "id": "sehrin-nabzi-istanbul",
-   "city": "istanbul",
-   "title": "Şehrin Nabzı",
-   "cat": "atolye",
-   "venue": "Galeri FE",
-   "days": [],
-   "until": "2026-11-27",
-   "from": "",
-   "t": "",
-   "img": "https://media.cumhuriyet.com.tr/Archive/da12ba99-1643-4eae-a88c-cc610da1fb71.jpg",
-   "site": "Cumhuriyet",
-   "url": "https://www.cumhuriyet.com.tr/kultur-sanat/elde-edilecek-tum-gelir-tegv-e-bagislanacak-sehrin-nabzi-sergisi-cocuklara-destek-olacak-2556442",
-   "seen": "2026-11-18T12:40:21.322Z"
-  },
-  {
    "id": "tunelin-ucu-edirne",
    "city": "edirne",
    "title": "Tünelin Ucu",
@@ -974,7 +868,6 @@
    "cat": "tiyatro",
    "venue": "Ankara Kült Sahne",
    "days": [
-    "2026-11-27",
     "2026-12-04",
     "2026-12-05",
     "2026-12-06",

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T12:53:04.683Z",
- "mode": "full",
- "total": 2758,
+ "runAt": "2026-11-27T21:49:48.646Z",
+ "mode": "refresh",
+ "total": 2657,
  "written": true,
  "sources": {
   "biletix": {
@@ -10,17 +10,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 682,
-   "prevCount": 557,
+   "count": 550,
+   "prevCount": 682,
    "error": "",
    "notes": [
-    "açık veri: 427 seans, 418 detay sayfası, dizinde 3518 kayıt",
-    "elenen: etkinlik değil 2 (ör. Ofest Ankara - Kombine | Milyon Performance Hall Ankara |  | Ankara | 2026-12-11)"
+    "açık veri: 409 seans, 401 detay sayfası, dizinde 3456 kayıt",
+    "elenen: etkinlik değil 2 (ör. Ofest Ankara - Kombine | Milyon Performance Hall Ankara |  | Ankara | 2026-12-11); geçmiş 7 (ör. Parfüm Workshop - Ankara Parfüm Atölyesi | Bo Essences & Workshop Studio | YENİMAHALLE, Ankara |  | 2026-11-27)"
    ],
-   "seconds": 541,
+   "seconds": 276,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
-   "okCount": 682
+   "lastOk": "2026-11-27T21:49:48.646Z",
+   "okCount": 550
   },
   "biletinial": {
    "id": "biletinial",
@@ -28,21 +28,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 1874,
-   "prevCount": 1749,
+   "count": 1869,
+   "prevCount": 1874,
    "error": "",
    "notes": [
-    "açık veri: 1270 seans, 111 detay sayfası",
-    "biletinial.com/tr-tr/sehrineozel/ankara: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/tiyatro/ankara: 152 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/ankara: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/opera-bale/ankara: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "elenen: etkinlik değil 1 (ör. Beşiktaş - Galatasaray Derbi Heyecanı | Nergiz Gösteri Merkezi Salon 1-svgli |  | Ankara | 2026-11-30)"
+    "açık veri: 1284 seans, 110 detay sayfası",
+    "elenen: etkinlik değil 1 (ör. Beşiktaş - Galatasaray Derbi Heyecanı | Nergiz Gösteri Merkezi Salon 1-svgli |  | Ankara | 2026-11-30); geçmiş 21 (ör. Mutter: Bir Annenin Hatıra Defteri |  |  |  | 2026-11-27)"
    ],
-   "seconds": 165,
+   "seconds": 70,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
-   "okCount": 1874
+   "lastOk": "2026-11-27T21:49:48.646Z",
+   "okCount": 1869
   },
   "sanatcepte": {
    "id": "sanatcepte",
@@ -50,17 +46,14 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 356,
-   "prevCount": 264,
+   "count": 327,
+   "prevCount": 356,
    "error": "",
-   "notes": [
-    "www.sanatcepte.gov.tr/etkinlik/etkinlikler?search=ankara: 142 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "www.sanatcepte.gov.tr/etkinlik/etkinlikler: 378 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 99,
+   "notes": [],
+   "seconds": 39,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
-   "okCount": 356
+   "lastOk": "2026-11-27T21:49:48.646Z",
+   "okCount": 327
   },
   "bubilet": {
    "id": "bubilet",
@@ -71,11 +64,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "www.bubilet.com.tr/ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
-   ],
-   "seconds": 14,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 9,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -88,14 +79,10 @@
    "count": 20,
    "prevCount": 20,
    "error": "",
-   "notes": [
-    "www.passo.com.tr/tr/kategori/konser/4615: 20 bağlantı, 0 yapısal, 35 JSON kaydı, durum 200",
-    "www.passo.com.tr/tr/arama?city=Ankara: 17 bağlantı, 0 yapısal, 69 JSON kaydı, durum 200, daha fazla düğmesi sınıra ulaştı (liste kesilmiş olabilir)",
-    "elenen: geçmiş 52 (ör. Trendyol 1.Lig Karşılaşmaları |  |  |  | 0001-01-01); etkinlik değil 56 (ör. SMS Grup Sarıyer - İstanbulspor A.Ş. | Yusuf Ziya Öniş Stadyumu |  |  | 2026-11-27)"
-   ],
-   "seconds": 297,
+   "notes": [],
+   "seconds": 60,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
+   "lastOk": "2026-11-27T21:49:48.646Z",
    "okCount": 20
   },
   "mobilet": {
@@ -107,12 +94,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "www.mobilet.com/tr/search/?city=ankara: 20 bağlantı, 0 yapısal, 20 JSON kaydı, durum 200",
-    "elenen: geçmiş 20 (ör. Tarihi Haliç’te Kano Deneyimi |  |  |  | 2026-11-01)"
-   ],
-   "seconds": 84,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -125,12 +109,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "iticket.com.tr/tr/events: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
-    "iticket.com.tr/en/events/music: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
-   ],
-   "seconds": 26,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 15,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -140,16 +121,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 11,
+   "count": 9,
    "prevCount": 11,
    "error": "",
    "notes": [
-    "açık veri: 11 seans"
+    "açık veri: 11 seans",
+    "elenen: geçmiş 2 (ör. ZAPRAVKA RETURNS TO THE CAPITAL | Backyard Secrets |  | Ankara | 2026-11-27)"
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
-   "okCount": 11
+   "lastOk": "2026-11-27T21:49:48.646Z",
+   "okCount": 9
   },
   "tiyatrolar": {
    "id": "tiyatrolar",
@@ -158,17 +140,14 @@
    "ok": true,
    "status": "calisiyor",
    "count": 1,
-   "prevCount": 0,
+   "prevCount": 1,
    "error": "",
    "notes": [
-    "tiyatrolar.com.tr/ankara-tiyatro-oyunlari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "tiyatrolar.com.tr/tiyatro-oyunlari?sehir=ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "site haritası: 2000 adres",
-    "elenen: geçmiş 73 (ör. Üç Kız Kardeş |  |  |  | 2016-05-11); etkinlik değil 1 (ör. Bi |  |  |  | 2026-12-17)"
+    "elenen: etkinlik değil 1 (ör. Mahşer-i Cümbüş |  |  |  | 2026-11-28)"
    ],
-   "seconds": 107,
+   "seconds": 3,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
+   "lastOk": "2026-11-27T21:49:48.646Z",
    "okCount": 1
   },
   "bilkent": {
@@ -180,12 +159,10 @@
    "count": 14,
    "prevCount": 14,
    "error": "",
-   "notes": [
-    "ticket.bilkent.edu.tr/: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
+   "notes": [],
    "seconds": 8,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
+   "lastOk": "2026-11-27T21:49:48.646Z",
    "okCount": 14
   },
   "biletino": {
@@ -197,11 +174,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "biletino.com/tr/ankara/: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 10,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -217,9 +192,9 @@
    "notes": [
     "açık veri: 33 seans"
    ],
-   "seconds": 42,
+   "seconds": 24,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
+   "lastOk": "2026-11-27T21:49:48.646Z",
    "okCount": 33
   },
   "cso": {
@@ -231,11 +206,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "liste açılmadı: https://www.cso.gov.tr/tr/konserler (page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://www.cso.gov.tr/tr/konserler\nCall log:\n  - navigating to \"https://www.cso.gov.tr/tr/konserler\", waiting until \"domcontentloaded\"\n)"
-   ],
-   "seconds": 4,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -248,11 +221,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "www.ankara.bel.tr/sehir-tiyatrolari: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 9,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -265,12 +236,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "www.ankara.bel.tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 20 takvim satırı, durum 200",
-    "elenen: geçmiş 20 (ör. Anneler Günü Kadınlar Matinesi | Ankara Büyükşehir Belediyesi Başkent Sosyal Tesisi Salonu |  | Ankara | 2026-05-10)"
-   ],
-   "seconds": 7,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -283,11 +251,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "www.cankaya.bel.tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 7,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -300,11 +266,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "www.yenimahalle.bel.tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 9,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -317,11 +281,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "www.kecioren.bel.tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
-   ],
-   "seconds": 7,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -329,17 +291,16 @@
    "id": "etimesgut",
    "name": "Etimesgut Belediyesi",
    "kind": "kurum",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
    "prevCount": 1,
    "error": "",
    "notes": [
-    "www.etimesgut.bel.tr/etkinlikler: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "elenen: geçmiş 6 (ör. VATAN KURTARAN ŞABAN |  |  | Ankara | 2026-11-06)"
+    "elenen: geçmiş 1 (ör. YUNUS EMRE BİR TASAVVUF MÜZİKALİ |  |  | Ankara | 2026-11-27)"
    ],
-   "seconds": 12,
-   "failStreak": 0,
+   "seconds": 1,
+   "failStreak": 1,
    "lastOk": "2026-11-27T12:53:04.683Z",
    "okCount": 1
   },
@@ -356,8 +317,8 @@
     "açık veri: 6 seans",
     "elenen: geçmiş 6 (ör. Cumhuriyet Bayramı Özel Musiki Muallim Mektebi Öğrencileri Konseri | Musiki Muallim Mektebi |  | Ankara | 2026-11-01)"
    ],
-   "seconds": 9,
-   "failStreak": 6,
+   "seconds": 8,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -370,11 +331,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "kkm.metu.edu.tr/tr/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
-   ],
-   "seconds": 11,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   },
@@ -382,16 +341,14 @@
    "id": "akansel",
    "name": "Akansel",
    "kind": "mekan",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 2,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
    "prevCount": 2,
    "error": "",
-   "notes": [
-    "akanselegitimdanismanlik.com/seminerler.aspx: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 7 takvim satırı, durum 200"
-   ],
-   "seconds": 9,
-   "failStreak": 0,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 1,
    "lastOk": "2026-11-27T12:53:04.683Z",
    "okCount": 2
   },
@@ -404,11 +361,9 @@
    "count": 0,
    "prevCount": 7,
    "error": "",
-   "notes": [
-    "www.cermodern.org/etkinlikler: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 0 takvim satırı, durum 200"
-   ],
-   "seconds": 6,
-   "failStreak": 2,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 3,
    "lastOk": "2026-11-26T12:57:36.487Z",
    "okCount": 7
   },
@@ -416,19 +371,14 @@
    "id": "erimtan",
    "name": "Erimtan Müzesi",
    "kind": "mekan",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 11,
-   "prevCount": 7,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
+   "prevCount": 11,
    "error": "",
-   "notes": [
-    "erimtanmuseum.org/tr/takvim?&month=11&year=2026: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 20 takvim satırı, durum 200",
-    "erimtanmuseum.org/tr/takvim?&month=12&year=2026: 0 bağlantı, 0 yapısal, 0 JSON kaydı, 9 takvim satırı, durum 200",
-    "afiş: 11/11 etkinlik sayfasından",
-    "elenen: geçmiş 18 (ör. Eski Ankara Hafıza Rotaları | Erimtan Arkeoloji ve Sanat Müzesi |  | Ankara | 2026-11-01)"
-   ],
-   "seconds": 26,
-   "failStreak": 0,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 1,
    "lastOk": "2026-11-27T12:53:04.683Z",
    "okCount": 11
   },
@@ -444,8 +394,8 @@
    "notes": [
     "açık veri: 0 seans, programda 69 film"
    ],
-   "seconds": 3,
-   "failStreak": 10,
+   "seconds": 2,
+   "failStreak": 11,
    "lastOk": null,
    "okCount": null
   },
@@ -455,40 +405,33 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 7,
-   "prevCount": 8,
+   "count": 6,
+   "prevCount": 7,
    "error": "",
    "notes": [
-    "açık veri: 7 seans, 4 gün okundu, 0 mekân adı"
+    "açık veri: 6 seans, 3 gün okundu, 0 mekân adı"
    ],
-   "seconds": 82,
+   "seconds": 69,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
-   "okCount": 7
+   "lastOk": "2026-11-27T21:49:48.646Z",
+   "okCount": 6
   },
   "radar": {
    "id": "radar",
    "name": "Radar Türkiye",
    "kind": "toplayici",
-   "ok": false,
-   "status": "dustu",
+   "ok": true,
+   "status": "calisiyor",
    "count": 2,
    "prevCount": 371,
    "error": "",
    "notes": [
-    "www.radarturkiye.com/ankara-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
-    "www.radarturkiye.com/ankara-muzik-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
-    "www.radarturkiye.com/ankara-tiyatro-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
-    "www.radarturkiye.com/ankara-hafta-sonu-etkinlikleri: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
-    "www.radarturkiye.com/etkinlikler?genre=1&city=ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
-    "www.radarturkiye.com/etkinlikler?genre=2&city=ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
-    "www.radarturkiye.com/etkinlikler?genre=3&city=ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
-    "www.radarturkiye.com/etkinlikler?genre=4&city=ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
+    "elenen: geçmiş 1 (ör. AĞAÇKAKAN (hybrid live rap) | Ankara | 27.11.2026 |  |  |  | 2026-11-27)"
    ],
-   "seconds": 717,
-   "failStreak": 2,
-   "lastOk": "2026-11-26T12:57:36.487Z",
-   "okCount": 371
+   "seconds": 565,
+   "failStreak": 0,
+   "lastOk": "2026-11-27T21:49:48.646Z",
+   "okCount": 2
   },
   "allevents": {
    "id": "allevents",
@@ -496,23 +439,14 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 149,
-   "prevCount": 98,
+   "count": 99,
+   "prevCount": 149,
    "error": "",
-   "notes": [
-    "allevents.in/ankara: 65 bağlantı, 52 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/all: 66 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/concerts: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/music: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/parties: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/comedy: 31 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/performances: 49 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/ankara/theatre: 19 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
-   ],
-   "seconds": 403,
+   "notes": [],
+   "seconds": 34,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
-   "okCount": 149
+   "lastOk": "2026-11-27T21:49:48.646Z",
+   "okCount": 99
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -520,16 +454,16 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 117,
-   "prevCount": 109,
+   "count": 98,
+   "prevCount": 117,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/ankara: 110 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "elenen: geçmiş 18 (ör. AYNA BOYAMA WORKSHOP ANKARA |  |  |  | 2026-11-27)"
    ],
-   "seconds": 190,
+   "seconds": 176,
    "failStreak": 0,
-   "lastOk": "2026-11-27T12:53:04.683Z",
-   "okCount": 117
+   "lastOk": "2026-11-27T21:49:48.646Z",
+   "okCount": 98
   },
   "ra": {
    "id": "ra",
@@ -540,11 +474,9 @@
    "count": 0,
    "prevCount": 0,
    "error": "",
-   "notes": [
-    "ra.co/events/tr/ankara: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
-   ],
-   "seconds": 5,
-   "failStreak": 6,
+   "notes": [],
+   "seconds": 0,
+   "failStreak": 7,
    "lastOk": null,
    "okCount": null
   }
