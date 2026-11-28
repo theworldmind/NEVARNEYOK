@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T20:20:17.610Z",
+ "runAt": "2026-11-28T06:55:32.358Z",
  "mode": "full",
- "total": 147,
+ "total": 145,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 135,
-   "prevCount": 132,
+   "prevCount": 135,
    "error": "",
    "notes": [
     "açık veri: 129 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/trabzon: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 97,
+   "seconds": 101,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:20:17.610Z",
+   "lastOk": "2026-11-28T06:55:32.358Z",
    "okCount": 135
   },
   "radar": {
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 137,
-   "failStreak": 3,
+   "seconds": 150,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:27:42.009Z",
    "okCount": 45
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -79,18 +79,18 @@
    "prevCount": 8,
    "error": "",
    "notes": [
-    "allevents.in/trabzon: 10 bağlantı, 8 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/all: 22 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/concerts: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon: 9 bağlantı, 7 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/all: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/concerts: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/performances: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/trabzon/performances: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/trabzon/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/trabzon/kids: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/trabzon/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
+   "seconds": 175,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:20:17.610Z",
+   "lastOk": "2026-11-28T06:55:32.358Z",
    "okCount": 8
   },
   "biletimgo": {
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/trabzon: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 24,
+   "seconds": 6,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   }

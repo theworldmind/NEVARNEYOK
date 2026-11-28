@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:50:15.972Z",
+ "runAt": "2026-11-28T06:26:25.525Z",
  "mode": "full",
- "total": 92,
+ "total": 98,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 52,
-   "prevCount": 60,
+   "count": 61,
+   "prevCount": 52,
    "error": "",
    "notes": [
-    "açık veri: 47 seans",
+    "açık veri: 56 seans",
     "biletinial.com/tr-tr/tiyatro/batman: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/batman: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/batman: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 90,
+   "seconds": 95,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:15.972Z",
-   "okCount": 52
+   "lastOk": "2026-11-28T06:26:25.525Z",
+   "okCount": 61
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=batman: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 135,
-   "failStreak": 3,
+   "seconds": 126,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:02:55.194Z",
    "okCount": 2
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/batman/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/batman/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 200,
-   "failStreak": 19,
+   "seconds": 171,
+   "failStreak": 20,
    "lastOk": "2026-11-18T13:02:04.821Z",
    "okCount": null
   },
@@ -99,16 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 9,
+   "count": 8,
    "prevCount": 9,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/batman: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/batman: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 1 (ör. 90’lar Türkçe Pop Party |  |  |  | 2026-11-27)"
    ],
    "seconds": 24,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:15.972Z",
-   "okCount": 9
+   "lastOk": "2026-11-28T06:26:25.525Z",
+   "okCount": 8
   }
  }
 }

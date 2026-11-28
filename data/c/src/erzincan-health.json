@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:56:38.044Z",
+ "runAt": "2026-11-28T06:31:59.066Z",
  "mode": "full",
- "total": 24,
+ "total": 20,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,7 +10,7 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 20,
+   "count": 18,
    "prevCount": 20,
    "error": "",
    "notes": [
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzincan: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 98,
+   "seconds": 86,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:38.044Z",
-   "okCount": 20
+   "lastOk": "2026-11-28T06:31:59.066Z",
+   "okCount": 18
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 124,
-   "failStreak": 3,
+   "seconds": 136,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:04:06.383Z",
    "okCount": 23
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/erzincan/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -105,8 +105,8 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/erzincan: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 7,
-   "failStreak": 24,
+   "seconds": 6,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   }

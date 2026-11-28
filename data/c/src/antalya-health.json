@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-27T19:50:11.161Z",
+ "runAt": "2026-11-28T06:25:55.823Z",
  "mode": "full",
  "total": 683,
  "written": true,
@@ -10,12 +10,12 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 577,
-   "prevCount": 575,
+   "count": 589,
+   "prevCount": 577,
    "error": "",
    "notes": [
-    "açık veri: 499 seans, 21 detay sayfası",
-    "biletinial.com/tr-tr/tiyatro/antalya: 150 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "açık veri: 519 seans, 21 detay sayfası",
+    "biletinial.com/tr-tr/tiyatro/antalya: 151 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/antalya: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/antalya: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 154,
+   "seconds": 160,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:11.161Z",
-   "okCount": 577
+   "lastOk": "2026-11-28T06:25:55.823Z",
+   "okCount": 589
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=antalya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 415,
-   "failStreak": 3,
+   "seconds": 421,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:03:15.347Z",
    "okCount": 216
   },
@@ -66,7 +66,7 @@
    ],
    "seconds": 2,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:11.161Z",
+   "lastOk": "2026-11-28T06:25:55.823Z",
    "okCount": 3
   },
   "allevents": {
@@ -76,21 +76,21 @@
    "ok": true,
    "status": "calisiyor",
    "count": 34,
-   "prevCount": 33,
+   "prevCount": 34,
    "error": "",
    "notes": [
     "allevents.in/antalya: 26 bağlantı, 20 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/antalya/all: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/antalya/concerts: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/antalya/parties: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/antalya/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/antalya/performances: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya/all: 45 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya/concerts: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya/parties: 12 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya/comedy: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/antalya/performances: 18 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/workshops: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/antalya/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 182,
+   "seconds": 179,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:11.161Z",
+   "lastOk": "2026-11-28T06:25:55.823Z",
    "okCount": 34
   },
   "biletimgo": {
@@ -99,16 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 7,
-   "prevCount": 6,
+   "count": 5,
+   "prevCount": 7,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/antalya: 6 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/antalya: 5 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 2 (ör. After Exam Party ( Alanya Robin Hood Club ) | Robinhood Club Alanya |  |  | 2026-11-27)"
    ],
-   "seconds": 18,
+   "seconds": 17,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:11.161Z",
-   "okCount": 7
+   "lastOk": "2026-11-28T06:25:55.823Z",
+   "okCount": 5
   },
   "antalya-bel": {
    "id": "antalya-bel",
@@ -123,7 +124,7 @@
     "www.antalya.bel.tr/tr/etkinlikler: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 14,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": null,
    "okCount": null
   }

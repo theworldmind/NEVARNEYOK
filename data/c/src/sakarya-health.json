@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T20:15:23.899Z",
+ "runAt": "2026-11-28T06:51:23.300Z",
  "mode": "full",
- "total": 146,
+ "total": 148,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 132,
-   "prevCount": 146,
+   "count": 136,
+   "prevCount": 132,
    "error": "",
    "notes": [
-    "açık veri: 116 seans",
+    "açık veri: 123 seans",
     "biletinial.com/tr-tr/tiyatro/sakarya: 68 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/sakarya: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -25,8 +25,8 @@
    ],
    "seconds": 122,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:15:23.899Z",
-   "okCount": 132
+   "lastOk": "2026-11-28T06:51:23.300Z",
+   "okCount": 136
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=sakarya: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 1067,
-   "failStreak": 3,
+   "seconds": 1053,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:23:53.544Z",
    "okCount": 98
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 23,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/sakarya/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/sakarya/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 23,
+   "seconds": 156,
+   "failStreak": 24,
    "lastOk": null,
    "okCount": null
   },
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/sakarya: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 9,
+   "seconds": 10,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:15:23.899Z",
+   "lastOk": "2026-11-28T06:51:23.300Z",
    "okCount": 1
   }
  }

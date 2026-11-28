@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:56:39.671Z",
+ "runAt": "2026-11-28T06:32:04.628Z",
  "mode": "full",
- "total": 353,
+ "total": 347,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,23 +10,23 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 233,
-   "prevCount": 250,
+   "count": 246,
+   "prevCount": 233,
    "error": "",
    "notes": [
-    "açık veri: 215 seans, 1 detay sayfası",
+    "açık veri: 230 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/eskisehir: 90 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "biletinial.com/tr-tr/muzik/eskisehir: 21 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "biletinial.com/tr-tr/muzik/eskisehir: 20 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/cocuk-aktiviteleri/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/opera-bale/eskisehir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/festival/eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/eskisehir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 128,
+   "seconds": 136,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:39.671Z",
-   "okCount": 233
+   "lastOk": "2026-11-28T06:32:04.628Z",
+   "okCount": 246
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=eskisehir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 1097,
-   "failStreak": 3,
+   "seconds": 1124,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:04:55.269Z",
    "okCount": 124
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -75,23 +75,23 @@
    "kind": "toplayici",
    "ok": true,
    "status": "calisiyor",
-   "count": 31,
-   "prevCount": 28,
+   "count": 28,
+   "prevCount": 31,
    "error": "",
    "notes": [
-    "allevents.in/eskisehir: 20 bağlantı, 16 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/eskisehir/all: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/eskisehir/concerts: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir: 18 bağlantı, 14 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir/all: 28 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/eskisehir/concerts: 14 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/parties: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/comedy: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/performances: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/workshops: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/eskisehir/kids: 9 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 177,
+   "seconds": 186,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:39.671Z",
-   "okCount": 31
+   "lastOk": "2026-11-28T06:32:04.628Z",
+   "okCount": 28
   },
   "biletimgo": {
    "id": "biletimgo",
@@ -99,16 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 12,
-   "prevCount": 10,
+   "count": 11,
+   "prevCount": 12,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/eskisehir: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/eskisehir: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 1 (ör. PANDAMI MUSIC | 27 Kasım Cuma |  |  | 2026-11-27)"
    ],
-   "seconds": 25,
+   "seconds": 26,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:39.671Z",
-   "okCount": 12
+   "lastOk": "2026-11-28T06:32:04.628Z",
+   "okCount": 11
   },
   "efkm": {
    "id": "efkm",
@@ -122,9 +123,9 @@
    "notes": [
     "www.efkm.com.tr/etkinlikler: 15 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 14,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:39.671Z",
+   "lastOk": "2026-11-28T06:32:04.628Z",
    "okCount": 15
   }
  }

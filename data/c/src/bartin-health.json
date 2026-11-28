@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:50:16.431Z",
+ "runAt": "2026-11-28T06:31:57.230Z",
  "mode": "full",
- "total": 40,
+ "total": 43,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 35,
-   "prevCount": 41,
+   "count": 40,
+   "prevCount": 35,
    "error": "",
    "notes": [
-    "açık veri: 30 seans",
+    "açık veri: 35 seans",
     "biletinial.com/tr-tr/tiyatro/bartin: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bartin: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bartin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 96,
+   "seconds": 97,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:16.431Z",
-   "okCount": 35
+   "lastOk": "2026-11-28T06:31:57.230Z",
+   "okCount": 40
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bartin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 120,
-   "failStreak": 3,
+   "seconds": 167,
+   "failStreak": 4,
    "lastOk": "2026-11-26T06:57:30.704Z",
    "okCount": 1
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bartin/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bartin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 24,
+   "seconds": 156,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -99,16 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 5,
+   "count": 4,
    "prevCount": 5,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/bartin: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/bartin: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 1 (ör. WINTER PARTY BARTIN |  |  |  | 2026-11-27)"
    ],
-   "seconds": 51,
+   "seconds": 15,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:16.431Z",
-   "okCount": 5
+   "lastOk": "2026-11-28T06:31:57.230Z",
+   "okCount": 4
   }
  }
 }

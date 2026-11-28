@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T20:20:56.799Z",
+ "runAt": "2026-11-28T06:56:53.836Z",
  "mode": "full",
- "total": 131,
+ "total": 140,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 125,
-   "prevCount": 96,
+   "count": 134,
+   "prevCount": 125,
    "error": "",
    "notes": [
-    "açık veri: 113 seans, 2 detay sayfası",
+    "açık veri: 122 seans, 2 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/van: 42 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/van: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -25,8 +25,8 @@
    ],
    "seconds": 108,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:20:56.799Z",
-   "okCount": 125
+   "lastOk": "2026-11-28T06:56:53.836Z",
+   "okCount": 134
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 136,
-   "failStreak": 3,
+   "seconds": 133,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:33:39.333Z",
    "okCount": 8
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 26,
+   "failStreak": 27,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/van/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/van/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 156,
-   "failStreak": 26,
+   "seconds": 157,
+   "failStreak": 27,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/van: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 13,
+   "failStreak": 14,
    "lastOk": "2026-11-21T12:15:52.341Z",
    "okCount": null
   }

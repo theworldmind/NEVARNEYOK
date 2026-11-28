@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T20:07:37.409Z",
+ "runAt": "2026-11-28T06:43:28.799Z",
  "mode": "full",
- "total": 47,
+ "total": 53,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 44,
-   "prevCount": 50,
+   "count": 50,
+   "prevCount": 44,
    "error": "",
    "notes": [
-    "açık veri: 39 seans",
+    "açık veri: 45 seans",
     "biletinial.com/tr-tr/tiyatro/kirklareli: 13 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/kirklareli: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/kirklareli: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 86,
+   "seconds": 93,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:07:37.409Z",
-   "okCount": 44
+   "lastOk": "2026-11-28T06:43:28.799Z",
+   "okCount": 50
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=kirklareli: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 897,
-   "failStreak": 3,
+   "seconds": 909,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:15:58.276Z",
    "okCount": 37
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/kirklareli/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 156,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -107,7 +107,7 @@
    ],
    "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:07:37.409Z",
+   "lastOk": "2026-11-28T06:43:28.799Z",
    "okCount": 3
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:56:30.326Z",
+ "runAt": "2026-11-28T06:32:09.159Z",
  "mode": "full",
- "total": 83,
+ "total": 88,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 72,
-   "prevCount": 68,
+   "count": 80,
+   "prevCount": 72,
    "error": "",
    "notes": [
-    "açık veri: 69 seans",
+    "açık veri: 75 seans",
     "biletinial.com/tr-tr/tiyatro/erzurum: 17 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/erzurum: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 82,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:30.326Z",
-   "okCount": 72
+   "lastOk": "2026-11-28T06:32:09.159Z",
+   "okCount": 80
   },
   "radar": {
    "id": "radar",
@@ -48,7 +48,7 @@
     "www.radarturkiye.com/etkinlikler?genre=4&city=erzurum: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
    "seconds": 146,
-   "failStreak": 3,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:03:52.970Z",
    "okCount": 53
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 25,
+   "failStreak": 26,
    "lastOk": null,
    "okCount": null
   },
@@ -83,14 +83,14 @@
     "allevents.in/erzurum/all: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/erzurum/concerts: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/erzurum/parties: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/erzurum/comedy: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/erzurum/comedy: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/erzurum/performances: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/erzurum/workshops: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/erzurum/kids: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 185,
+   "seconds": 178,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:30.326Z",
+   "lastOk": "2026-11-28T06:32:09.159Z",
    "okCount": 2
   },
   "biletimgo": {
@@ -105,9 +105,9 @@
    "notes": [
     "www.biletimgo.com/sehir-etkinlikleri/erzurum: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 12,
+   "seconds": 13,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:30.326Z",
+   "lastOk": "2026-11-28T06:32:09.159Z",
    "okCount": 3
   }
  }

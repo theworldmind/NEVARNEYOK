@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-27T19:50:37.561Z",
+ "runAt": "2026-11-28T06:25:58.502Z",
  "mode": "full",
  "total": 23,
  "written": true,
@@ -11,7 +11,7 @@
    "ok": true,
    "status": "calisiyor",
    "count": 20,
-   "prevCount": 24,
+   "prevCount": 20,
    "error": "",
    "notes": [
     "açık veri: 18 seans",
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/artvin: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 76,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:37.561Z",
+   "lastOk": "2026-11-28T06:25:58.502Z",
    "okCount": 20
   },
   "radar": {
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 148,
-   "failStreak": 3,
+   "seconds": 120,
+   "failStreak": 4,
    "lastOk": "2026-11-26T06:57:34.481Z",
    "okCount": 1
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -88,9 +88,9 @@
     "allevents.in/artvin/workshops: 0 bağlantı, 9 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/artvin/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 167,
+   "seconds": 184,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:37.561Z",
+   "lastOk": "2026-11-28T06:25:58.502Z",
    "okCount": 1
   },
   "biletimgo": {
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/artvin: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": "2026-11-18T13:02:12.245Z",
    "okCount": null
   }

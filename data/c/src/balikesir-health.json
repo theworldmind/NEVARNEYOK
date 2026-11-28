@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:50:15.713Z",
+ "runAt": "2026-11-28T06:25:59.325Z",
  "mode": "full",
- "total": 284,
+ "total": 281,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 177,
-   "prevCount": 185,
+   "count": 180,
+   "prevCount": 177,
    "error": "",
    "notes": [
-    "açık veri: 157 seans, 5 detay sayfası",
+    "açık veri: 161 seans, 5 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/balikesir: 61 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/balikesir: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/balikesir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 107,
+   "seconds": 113,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:15.713Z",
-   "okCount": 177
+   "lastOk": "2026-11-28T06:25:59.325Z",
+   "okCount": 180
   },
   "radar": {
    "id": "radar",
@@ -34,7 +34,7 @@
    "kind": "toplayici",
    "ok": false,
    "status": "dustu",
-   "count": 2,
+   "count": 0,
    "prevCount": 149,
    "error": "",
    "notes": [
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 1080,
-   "failStreak": 3,
+   "seconds": 1056,
+   "failStreak": 4,
    "lastOk": "2026-11-26T06:57:30.736Z",
    "okCount": 149
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -73,23 +73,23 @@
    "id": "allevents",
    "name": "AllEvents",
    "kind": "toplayici",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
    "prevCount": 1,
    "error": "",
    "notes": [
-    "allevents.in/balikesir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/all: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/concerts: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/parties: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/comedy: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/performances: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/workshops: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/balikesir/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "allevents.in/balikesir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/all: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/concerts: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/comedy: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/performances: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/balikesir/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 175,
-   "failStreak": 0,
+   "seconds": 169,
+   "failStreak": 1,
    "lastOk": "2026-11-27T19:50:15.713Z",
    "okCount": 1
   },
@@ -99,16 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 3,
+   "count": 1,
    "prevCount": 3,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/balikesir: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/balikesir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 2 (ör. Manifam & Crush Party / Lemon Bandırma |  |  |  | 2026-11-27)"
    ],
-   "seconds": 10,
+   "seconds": 12,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:15.713Z",
-   "okCount": 3
+   "lastOk": "2026-11-28T06:25:59.325Z",
+   "okCount": 1
   }
  }
 }

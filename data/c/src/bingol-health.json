@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:50:21.756Z",
+ "runAt": "2026-11-28T06:25:59.161Z",
  "mode": "full",
- "total": 30,
+ "total": 36,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 30,
-   "prevCount": 23,
+   "count": 36,
+   "prevCount": 30,
    "error": "",
    "notes": [
-    "açık veri: 25 seans, 1 detay sayfası",
+    "açık veri: 31 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/bingol: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/bingol: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 89,
+   "seconds": 77,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:50:21.756Z",
-   "okCount": 30
+   "lastOk": "2026-11-28T06:25:59.161Z",
+   "okCount": 36
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 154,
-   "failStreak": 3,
+   "seconds": 138,
+   "failStreak": 4,
    "lastOk": "2026-11-26T06:57:27.320Z",
    "okCount": 2
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/bingol/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/bingol/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 24,
+   "seconds": 155,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/bingol: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   }

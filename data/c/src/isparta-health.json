@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T20:02:28.022Z",
+ "runAt": "2026-11-28T06:37:56.897Z",
  "mode": "full",
- "total": 45,
+ "total": 42,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,8 +10,8 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 38,
-   "prevCount": 41,
+   "count": 36,
+   "prevCount": 38,
    "error": "",
    "notes": [
     "açık veri: 30 seans",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 98,
+   "seconds": 96,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:02:28.022Z",
-   "okCount": 38
+   "lastOk": "2026-11-28T06:37:56.897Z",
+   "okCount": 36
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=isparta: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 432,
-   "failStreak": 3,
+   "seconds": 451,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:09:45.545Z",
    "okCount": 18
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -82,15 +82,15 @@
     "allevents.in/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/isparta/all: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/isparta/concerts: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/isparta/parties: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "allevents.in/isparta/comedy: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/isparta/parties: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "allevents.in/isparta/comedy: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/isparta/performances: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/isparta/workshops: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/isparta/kids: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 169,
+   "seconds": 167,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:02:28.022Z",
+   "lastOk": "2026-11-28T06:37:56.897Z",
    "okCount": 1
   },
   "biletimgo": {
@@ -106,9 +106,9 @@
     "www.biletimgo.com/sehir-etkinlikleri/isparta: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "elenen: geçmiş 1 (ör. NEON PARTİ |  |  |  | 2026-11-25)"
    ],
-   "seconds": 12,
+   "seconds": 11,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:02:28.022Z",
+   "lastOk": "2026-11-28T06:37:56.897Z",
    "okCount": 1
   }
  }

@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:56:18.471Z",
+ "runAt": "2026-11-28T06:31:49.781Z",
  "mode": "full",
- "total": 118,
+ "total": 121,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 93,
-   "prevCount": 103,
+   "count": 106,
+   "prevCount": 93,
    "error": "",
    "notes": [
-    "açık veri: 86 seans, 1 detay sayfası",
+    "açık veri: 97 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/edirne: 34 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/edirne: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/edirne: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 98,
+   "seconds": 96,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:18.471Z",
-   "okCount": 93
+   "lastOk": "2026-11-28T06:31:49.781Z",
+   "okCount": 106
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=edirne: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 166,
-   "failStreak": 3,
+   "seconds": 148,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:03:39.608Z",
    "okCount": 22
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/edirne/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404",
     "allevents.in/edirne/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
-   "seconds": 157,
-   "failStreak": 24,
+   "seconds": 156,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -99,16 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 11,
+   "count": 10,
    "prevCount": 11,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/edirne: 11 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/edirne: 10 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 1 (ör. Manifam & Crushers Party | Cherry Lounge |  |  | 2026-11-27)"
    ],
    "seconds": 23,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:18.471Z",
-   "okCount": 11
+   "lastOk": "2026-11-28T06:31:49.781Z",
+   "okCount": 10
   }
  }
 }

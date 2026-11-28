@@ -1,5 +1,5 @@
 {
- "runAt": "2026-11-27T20:02:42.923Z",
+ "runAt": "2026-11-28T06:37:52.771Z",
  "mode": "full",
  "total": 11,
  "written": true,
@@ -23,9 +23,9 @@
     "biletinial.com/tr-tr/festival/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/igdir: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 80,
+   "seconds": 79,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:02:42.923Z",
+   "lastOk": "2026-11-28T06:37:52.771Z",
    "okCount": 9
   },
   "radar": {
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 129,
-   "failStreak": 3,
+   "seconds": 130,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:09:37.835Z",
    "okCount": 2
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/igdir/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 404"
    ],
    "seconds": 155,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/igdir: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   }

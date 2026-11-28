@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T20:16:02.481Z",
+ "runAt": "2026-11-28T06:51:05.173Z",
  "mode": "full",
- "total": 140,
+ "total": 144,
  "written": false,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 126,
-   "prevCount": 134,
+   "count": 133,
+   "prevCount": 126,
    "error": "",
    "notes": [
-    "açık veri: 110 seans, 1 detay sayfası",
+    "açık veri: 120 seans, 1 detay sayfası",
     "biletinial.com/tr-tr/tiyatro/samsun: 47 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/samsun: 4 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/samsun: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 115,
+   "seconds": 100,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:16:02.481Z",
-   "okCount": 126
+   "lastOk": "2026-11-28T06:51:05.173Z",
+   "okCount": 133
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=samsun: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 169,
-   "failStreak": 3,
+   "seconds": 156,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:25:16.616Z",
    "okCount": 14
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 26,
+   "failStreak": 27,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/samsun/workshops: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/samsun/kids: 3 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 182,
-   "failStreak": 15,
+   "seconds": 177,
+   "failStreak": 16,
    "lastOk": "2026-11-20T12:22:54.268Z",
    "okCount": null
   },
@@ -99,17 +99,17 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 10,
-   "prevCount": 9,
+   "count": 9,
+   "prevCount": 10,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/samsun: 8 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
-    "elenen: geçmiş 2 (ör. Game Night! | Pablo Artisan Coffee |  |  | 2026-11-25)"
+    "www.biletimgo.com/sehir-etkinlikleri/samsun: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 3 (ör. Game Night! | Pablo Artisan Coffee |  |  | 2026-11-25)"
    ],
    "seconds": 28,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:16:02.481Z",
-   "okCount": 10
+   "lastOk": "2026-11-28T06:51:05.173Z",
+   "okCount": 9
   }
  }
 }

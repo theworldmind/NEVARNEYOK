@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T20:22:13.464Z",
+ "runAt": "2026-11-28T06:57:02.669Z",
  "mode": "full",
- "total": 28,
+ "total": 26,
  "written": true,
  "sources": {
   "biletinial": {
@@ -11,10 +11,10 @@
    "ok": true,
    "status": "calisiyor",
    "count": 25,
-   "prevCount": 26,
+   "prevCount": 25,
    "error": "",
    "notes": [
-    "açık veri: 18 seans",
+    "açık veri: 20 seans",
     "biletinial.com/tr-tr/tiyatro/yozgat: 7 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/yozgat: 2 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -25,7 +25,7 @@
    ],
    "seconds": 82,
    "failStreak": 0,
-   "lastOk": "2026-11-27T20:22:13.464Z",
+   "lastOk": "2026-11-28T06:57:02.669Z",
    "okCount": 25
   },
   "radar": {
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 153,
-   "failStreak": 3,
+   "seconds": 133,
+   "failStreak": 4,
    "lastOk": "2026-11-26T07:31:06.481Z",
    "okCount": 33
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -88,8 +88,8 @@
     "allevents.in/yozgat/workshops: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "allevents.in/yozgat/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 180,
-   "failStreak": 24,
+   "seconds": 160,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -106,7 +106,7 @@
     "www.biletimgo.com/sehir-etkinlikleri/yozgat: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 6,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   }

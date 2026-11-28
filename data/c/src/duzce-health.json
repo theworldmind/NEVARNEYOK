@@ -1,7 +1,7 @@
 {
- "runAt": "2026-11-27T19:56:11.795Z",
+ "runAt": "2026-11-28T06:31:49.992Z",
  "mode": "full",
- "total": 115,
+ "total": 125,
  "written": true,
  "sources": {
   "biletinial": {
@@ -10,11 +10,11 @@
    "kind": "bilet",
    "ok": true,
    "status": "calisiyor",
-   "count": 81,
-   "prevCount": 95,
+   "count": 95,
+   "prevCount": 81,
    "error": "",
    "notes": [
-    "açık veri: 75 seans",
+    "açık veri: 89 seans",
     "biletinial.com/tr-tr/tiyatro/duzce: 16 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/muzik/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/stand-up/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
@@ -23,10 +23,10 @@
     "biletinial.com/tr-tr/festival/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
     "biletinial.com/tr-tr/egitim/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
-   "seconds": 94,
+   "seconds": 90,
    "failStreak": 0,
-   "lastOk": "2026-11-27T19:56:11.795Z",
-   "okCount": 81
+   "lastOk": "2026-11-28T06:31:49.992Z",
+   "okCount": 95
   },
   "radar": {
    "id": "radar",
@@ -47,8 +47,8 @@
     "www.radarturkiye.com/etkinlikler?genre=3&city=duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403",
     "www.radarturkiye.com/etkinlikler?genre=4&city=duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 403"
    ],
-   "seconds": 141,
-   "failStreak": 4,
+   "seconds": 115,
+   "failStreak": 5,
    "lastOk": "2026-11-25T20:31:08.961Z",
    "okCount": 1
   },
@@ -65,7 +65,7 @@
     "açık veri: 0 seans"
    ],
    "seconds": 1,
-   "failStreak": 24,
+   "failStreak": 25,
    "lastOk": null,
    "okCount": null
   },
@@ -89,7 +89,7 @@
     "allevents.in/duzce/kids: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
    ],
    "seconds": 173,
-   "failStreak": 19,
+   "failStreak": 20,
    "lastOk": "2026-11-18T13:09:02.792Z",
    "okCount": null
   },
@@ -97,16 +97,17 @@
    "id": "biletimgo",
    "name": "biletimGO",
    "kind": "bilet",
-   "ok": true,
-   "status": "calisiyor",
-   "count": 1,
+   "ok": false,
+   "status": "dustu",
+   "count": 0,
    "prevCount": 1,
    "error": "",
    "notes": [
-    "www.biletimgo.com/sehir-etkinlikleri/duzce: 1 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200"
+    "www.biletimgo.com/sehir-etkinlikleri/duzce: 0 bağlantı, 0 yapısal, 0 JSON kaydı, durum 200",
+    "elenen: geçmiş 1 (ör. Akustik Sahne & DJ 90’s Gecesi |  |  |  | 2026-11-27)"
    ],
-   "seconds": 10,
-   "failStreak": 0,
+   "seconds": 11,
+   "failStreak": 1,
    "lastOk": "2026-11-27T19:56:11.795Z",
    "okCount": 1
   }
