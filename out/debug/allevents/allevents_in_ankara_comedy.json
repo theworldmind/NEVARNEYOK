@@ -1,0 +1,870 @@
+[
+ {
+  "url": "https://allevents.in/actracker/record/event",
+  "sample": "{\"error\":0,\"message\":\"ok\",\"data\":\"\"}"
+ },
+ {
+  "url": "https://allevents.in/api/index.php/categorization/profile_tags/type=json?static=true",
+  "sample": "{\"item\":[{\"id\":\"1\",\"slug\":\"conference\",\"type\":\"format\",\"name\":\"Conference or Convention\",\"search_pattern\":\"convention,\\\"Summit !Lake\\\", \\\"!(zoom|web) conference\\\", konference,Konferenz, conferencia, konverents,konferenssi,konferencia,conferenza, konferencija, conferentie, konferanse,konferencja, conferinta, konferencie, konferens, konferans\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"2\",\"slug\":\"concert\",\"type\":\"format\",\"name\":\"Concert\",\"search_pattern\":\"concert,koncert,Konzert,concierto,kontsert,konsertti,concerto,koncertas,konsert,konser\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"3\",\"slug\":\"seminar\",\"type\":\"format\",\"name\":\"Seminar or Talk\",\"search_pattern\":\"seminar,\\\"live talk\\\",\\\"talk show\\\"\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"4\",\"slug\":\"expo\",\"type\":\"format\",\"name\":\"Tradeshow, Consumer Show or Expo\",\"search_pattern\":\"\\\"trade fair\\\", \\\"tech fair\\\", \\\"trade show\\\", expo,\\\"jewellery show\\\"\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"5\",\"slug\":\"festival\",\"type\":\"format\",\"name\":\"Festival or Fair\",\"search_pattern\":\"festival,fiesta,carnival,litfest, \\\"book fair\\\"\",\"negative_search_pattern\":\"\\\"job fair\\\", \\\"career fair\\\",\\\"hiring fair\\\",\\\"jobs fair\\\",\\\"hiring fairs\\\", \\\"to be fair\\\",\\\"make it fair\\\"\",\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"6\",\"slug\":\"performance\",\"type\":\"format\",\"name\":\"Performance or Live Show\",\"search_pattern\":\"drama, \\\"live concert\\\", performer, performing,\\\"live night\\\",\\\"karaoke night\\\", theatre, \\\"stand-up\\\",\\\"stand up comedy\\\",\\\"live music\\\",\\\"ft NEAR/8 music\\\",\\\"fashion show\\\",\\\"open mic\\\",\\\"live NEAR/5 show\\\",\\\"standup comedy\\\"\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"7\",\"slug\":\"screening\",\"type\":\"format\",\"name\":\"Screening\",\"search_pattern\":\"screening, \\\"live stream\\\", \\\"live streaming\\\", \\\"live screen\\\",\\\"viewing party\\\"\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"8\",\"slug\":\"gala\",\"type\":\"format\",\"name\":\"Gala or Dinner\",\"search_pattern\":\"gala, \\\"gala NEAR/3 award\\\",\\\"gala event\\\",\\\"de gala\\\",\\\"gala NEAR/3 concert\\\",(valentine|valentines) dinner,\\\"special dinner\\\",\\\"valentine NEAR/10 dinner\\\",\\\"ceremony NEAR/5 dinner\\\",dinner\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"9\",\"slug\":\"workshop\",\"type\":\"format\",\"name\":\"Class, Training, or Workshop\",\"search_pattern\":\"workshop, webinar, training, class,\\\"Free NEAR/2 Session\\\",course\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"10\",\"slug\":\"networking\",\"type\":\"format\",\"name\":\"Meeting or Networking Event\",\"search_pattern\":\"networking,meetup, \\\"meet-up\\\",\\\"meeting\\\"\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"12\",\"slug\":\"rally\",\"type\":\"format\",\"name\":\"Rally\",\"search_pattern\":\"rally,\\\"bike rally\\\",\\\"#place rally\\\"\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"13\",\"slug\":\"competition\",\"type\":\"format\",\"name\":\"Tournament or Competition\",\"search_pattern\":\"tournament,competition,championship,\\\"world cup\\\",\\\"#Adjective competition\\\",\\\"#Adjective tournament\\\",\\\"team NEAR/6 wins\\\",\\\"Quiz Night\\\"\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"14\",\"slug\":\"race\",\"type\":\"format\",\"name\":\"Race or Endurance Event\",\"search_pattern\":\"race,marathon, triathlon,\\\"marathons\\\",\\\"marathon\\\",\\\"5k run\\\",\\\"10k run\\\",\\\"charity run\\\",\\\"triathlon\\\",\\\"cyclothon\\\",\\\"virtual run\\\",\\\"virtual NEAR/3 running\\\"\",\"negative_search_pattern\":null,\"display_in_listing\":\"1\",\"params\":{},\"tag_display\":null},{\"id\":\"15\",\"slug\":\"tour\",\"type\":\"format\",\"name\":\"Tours & Walks\",\"search_pattern\":\"tour,walk,\\\"walking\\\",\\\" walking to"
+ },
+ {
+  "url": "https://allevents.in/api/index.php/categorization/tags/type=json?static=true",
+  "sample": "{\"item\":[{\"tag_text\":\"Business\",\"tag_slug\":\"business\",\"category_name\":\"Business\",\"tag_query\":\"Entrepreneur| \\\"business model\\\"| \\\"venture capital\\\"| \\\"business development\\\"| \\\"business plan\\\"|  \\\"small business owners\\\"| \\\"business networking\\\"| \\\"business network\\\"| \\\"tech fair\\\"| \\\"trade show\\\"| expo| forum| summit|  \\\"venture finance\\\"| negocio| affaires| Afaceri| foretag|\\\"trading\\\"|\\\"own business\\\"|\\\"stock market\\\"|\\\"market strategies\\\"|\\\"panel discussion\\\"|\\\"start up\\\"|\\\"startup\\\"|\\\"jewellery show\\\"|\\\"financial management\\\"|\\\"cyber security\\\"|Conclave|\\\"Strategic Business\\\"|\\\"Business Meet\\\"|\\\"marketing strategy\\\"|(!(\\\"web conference\\\"|\\\"web conferencing\\\") conference)\",\"tag_type\":\"category\"},{\"tag_text\":\"Concerts\",\"tag_slug\":\"concerts\",\"category_name\":\"Concerts\",\"tag_query\":\"concert|koncert|Konzert|concierto|kontsert|konsertti|concerto|koncertas|konsert|konser\",\"tag_type\":\"format\"},{\"tag_text\":\"Parties\",\"tag_slug\":\"parties\",\"category_name\":\"Parties\",\"tag_query\":\"!(\\\"third party\\\"|\\\"any party\\\"|\\\"both party\\\") party| disco| nightlife| \\\"pub night\\\"| MASQUERADE|\\\"bar night\\\"|\\\"pub crawl\\\"|\\\"bar crawl\\\"\",\"tag_type\":\"format\"},{\"tag_text\":\"Performances\",\"tag_slug\":\"performances\",\"category_name\":\"Performances\",\"tag_query\":\"drama| \\\"live concert\\\"| performer| performing|\\\"Live Night\\\"|\\\"karaoke night\\\"\",\"tag_type\":\"format\"},{\"tag_text\":\"Sports\",\"tag_slug\":\"sports\",\"category_name\":\"Sports\",\"tag_query\":\"sport| cricket| football| hockey| tournament| championship| rugby|superbowl| nba| Archery| Athletics| Badminton| Boxing| Slalom| Canoe| \\\"sprint race\\\" |Cycling| BMX| \\\"sky Diving\\\"|\\\"ice Diving\\\"|\\\"cliff Diving\\\"| Equestrian| Fencing| Golf| Gymnastics| Handball| Hockey| Judo| Pentathlon| Rowing| Rugby| Shooting| Swimming| Tennis| Taekwondo| Trampoline|Triathlon|Volleyball| Polo| Weightlifting| Wrestling| Skiing| Biathlon| Bobsleigh| Curling| SkatingLuge| Snowboard| Marathon| \\\"Horse Racing\\\"| race|softball|\\\"Cuernos Chuecos\\\"\",\"tag_type\":\"category\"},{\"tag_text\":\"Festivals\",\"tag_slug\":\"festivals\",\"category_name\":\"Festivals\",\"tag_query\":\"\\\"festivals\\\"|\\\"fest\\\"|\\\"festival\\\"|\\\"annual NEAR/4 (fair|fest|festival)\\\"\",\"tag_type\":\"category\"},{\"tag_text\":\"Workshops\",\"tag_slug\":\"workshops\",\"category_name\":\"Workshops\",\"tag_query\":\"workshop| seminar| webinar| training| class|Course\",\"tag_type\":\"format\"},{\"tag_text\":\"Meetups\",\"tag_slug\":\"meetups\",\"category_name\":\"Meetups\",\"tag_query\":\"meetup| \\\"meet & greet\\\"| \\\"club meeting\\\"|\\\"meeting\\\"\",\"tag_type\":\"format\"},{\"tag_text\":\"Music\",\"tag_slug\":\"music\",\"category_name\":\"Music\",\"tag_query\":\"cello| \\\"music industry\\\"| \\\"music festival\\\"| \\\"music scene\\\"| \\\"classical music\\\"| \\\"grammy award\\\"| lyrics| piano| casio| vocalist| concert| choir| band| orchestra| violin| guitar| jazz| \\\"hard rock metal\\\"| keyboard| musician| singer| concertina| \\\"live music\\\"| \\\"music class\\\"| guitar|\\\"musicians\\\"|\\\"live night\\\"|\\\"karaoke night\\\"|karaoke|\\\"song NEAR/12 vocals\\\"| MASQUERADE|\\\"(pop|rock) songs\\\"|\\\"live music\\\"|\\\"Musica en vivo\\\"|\\\"sounds NEAR/5 (electro|house|indie|melodies|jazz|pop|deep|boogie)\\\"|\\\"Music Rhymes\\\"|\\\"Drum N Bass\\\"|\\\"Drum & Bass\\\"\",\"tag_type\":\"category\"},{\"tag_text\":\"Exhibitions\",\"tag_slug\":\"exhibitions\",\"category_name\":\"Exhibitions\",\"tag_query\":\"Exhibition| \\\"tech fair\\\"| \\\"trade show\\\"| expo|\\\"jewellery show\\\"|\\\"Bridal Show\\\"\",\"tag_type\":\"format\"},{\"tag_text\":\"IT\",\"tag_slug\":\"it\",\"category_name\":\"IT\",\"tag_query\":\"hackathon| \\\"Information Technology\\\"| \\\"technical festival\\\"| infotech| techfest| codejam| coding| \\\"IT expo\\\"| Programming| ieee| computing| aws| java| \\\"open source\\\"| \\\"IT Conference\\\"\",\"tag_type\":\"other\"},{\"tag_text\":\"Valentine's Day\",\"tag_slug\":\"valentines-day\",\"category_name\":\"Valentine's Day\",\"tag_query\":\"\\\"Valentines Day\\\"| Valentines| \\\"prom night\\\"|Valentine| \\\"Valentines Restaurants\\\"| \\\"Valentines Dinner\\\"| valentin| valentinstag| cupid| Valentijn\",\"tag_type\":\"other\"},{\"tag_text\":\"Weekend\",\"tag_slug\":\"this-weekend\",\"category_name\":\"Weekend\",\"tag_query\":\"0\",\"tag_type\":\""
+ },
+ {
+  "url": "https://allevents.in/api/events/list",
+  "sample": "{\"message\":\"\",\"error\":0,\"data\":[{\"event_id\":\"200031050254729\",\"eventname\":\"Hande Yener\",\"eventname_raw\":\"Hande Yener\",\"owner_id\":\"157818227614661\",\"thumb_url\":\"https://cdn-az.allevents.in/events9/banners/cc984f70b9cf540d31f4a9202830c82b4a435a60c06aef468ffb11414da4f3c0-rimg-w300-h300-dc080808-gmir?v=1794708028\",\"thumb_url_large\":\"https://cdn-az.allevents.in/events9/banners/cc984f70b9cf540d31f4a9202830c82b4a435a60c06aef468ffb11414da4f3c0-rimg-w300-h300-dc080808-gmir?v=1794708028\",\"start_time\":\"1796504400\",\"start_time_display\":\"Sat Dec 05 2026 at 09:00 pm\",\"end_time\":\"1796504400\",\"end_time_display\":\"Sat Dec 05 2026 at 09:00 pm\",\"location\":\"Jolly Joker Ankara\",\"location_raw\":\"Jolly Joker Ankara\",\"venue\":{\"street\":\"Kızılırmak Sokak. No:14 Kızılay ,Beytepe, Ankara, Turkey\",\"city\":\"Ankara\",\"state\":\"AN\",\"country\":\"Turkey\",\"latitude\":\"39.785397\",\"longitude\":\"32.761036\",\"full_address\":\"Jolly Joker Ankara, Kızılırmak Sokak. No:14 Kızılay ,Beytepe, Ankara, Turkey\"},\"label\":\"Upcoming\",\"featured\":\"1\",\"event_url\":\"https://allevents.in/ankara/hande-yener/200031050254729\",\"share_url\":\"https://allevents.in/ankara/200031050254729\",\"banner_url\":\"https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czkvYmFubmVycy9jMjAwNmY2ZDI3Mzk0ZDQzZGRhZTQyNjJjZmU4ZDJhMTNmOWMxNTlhYjM3NmNlMzNlY2FiY2JlMGUwOTE3YzExLXJpbWctdzEyMDAtaDY3NS1kYzA4MDgwOC1nbWlyP3Y9MTc5NDcwODAyOA.avif\",\"organizer\":{\"org_id\":\"594799\",\"name\":\"Jolly Joker Ankara\"},\"score\":\"71.120003\",\"categories\":[],\"tags\":[],\"formats\":[],\"tickets\":{\"has_tickets\":false,\"ticket_url\":\"\"},\"custom_params\":{\"merged_lookup\":[\"performances\"],\"total_interested_count\":1,\"gemma_categories\":[\"performances\"],\"label_type\":{\"text\":\"Featured\",\"label\":\"featured\",\"icon\":\" ⭐\",\"img\":\"<img src='https://cdn2.allevents.in/transup/e0/98f47c69394d00951cdb2528a1bca1/fi_2107957featured-star.svg' class='label_img' alt='Featured icon '\\t/>\",\"web_icon\":\"icon-featured\",\"web_icon_color\":\"#FFCE38\",\"bg_color\":\"#FFF8E3\",\"text_color\":\"#554000\",\"border_color\":\"#775B05\",\"web_border_color\":\"#F7EFD9\",\"app_img\":\"https://cdn2.allevents.in/transup/e0/98f47c69394d00951cdb2528a1bca1/fi_2107957featured-star.svg\",\"dark_bg_color\":\"#382A00\"}},\"display_day\":\"05\",\"display_month\":\"Dec\",\"display_end_day\":null,\"app_display_time\":\"Sat, 05 Dec, 2026 - 09:00 PM\",\"display_time_label\":\"Sat, 05 Dec\",\"timezone\":\"+03:00\",\"affiliate_id\":\"2\"},{\"event_id\":\"3300030713497822\",\"eventname\":\"UZI in Ankara\",\"eventname_raw\":\"UZI in Ankara\",\"owner_id\":\"\",\"thumb_url\":\"https://cdn-az.allevents.in/events8/banners/cbfbc660-b365-11f1-acb2-b7b6568f5104-rimg-w300-h300-dc182828-gmir.webp?v=1789738522\",\"thumb_url_large\":\"https://cdn-az.allevents.in/events8/banners/cbfbc660-b365-11f1-acb2-b7b6568f5104-rimg-w300-h300-dc182828-gmir.webp?v=1789738522\",\"start_time\":\"1795901400\",\"start_time_display\":\"Sat Nov 28 2026 at 09:30 pm\",\"end_time\":\"1795908600\",\"end_time_display\":\"Sat Nov 28 2026 at 11:30 pm\",\"location\":\"Milyon Performance Hall Ankara\",\"location_raw\":\"Milyon Performance Hall Ankara\",\"venue\":{\"street\":\"Milyon Performance Hall Ankara, Ankara, AN, Turkey\",\"city\":\"Ankara\",\"state\":\"AN\",\"country\":\"Turkey\",\"latitude\":\"39.933365\",\"longitude\":\"32.859741\",\"full_address\":\"Milyon Performance Hall Ankara, Milyon Performance Hall Ankara, Ankara, AN, Turkey\"},\"label\":\"Today\",\"featured\":\"0\",\"event_url\":\"https://allevents.in/ankara/uzi-in-ankara/3300030713497822\",\"share_url\":\"https://allevents.in/ankara/3300030713497822\",\"banner_url\":\"https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czYvYmFubmVycy9jYmM0ZDdlMC1iMzY1LTExZjEtYWNiMi1iN2I2NTY4ZjUxMDQtcmltZy13MTIwMC1oNTE0LWRjMTgxODE4LWdtaXIud2VicD92PTE3ODk3Mzg1MjE.avif\",\"organizer\":{\"org_id\":\"24523268\",\"name\":\"Melody Mapper\"},\"score\":\"70.849998\",\"categories\":[\"entertainment\",\"concerts\",\"music\",\"performances\",\"live-music\"],\"tags\":[\"concert\",\"performer\"],\"formats\":[\"concert\",\"performance\"],\"tickets\":{\"has_tickets\":false,\"ticket_url\":\"\"},\"custom_params\":{\"x_cate"
+ },
+ {
+  "url": "https://bam.nr-data.net/browser/connect/2/ea025ea6a0?a=339581800&v=1.324.1&s=895b3a8cf292d1f6",
+  "sample": "{\"config\":{\"err\":1,\"ins\":1,\"spa\":1,\"sr\":0,\"srs\":0,\"st\":1,\"sts\":0,\"log\":0,\"logapi\":0},\"app\":{\"agents\":[{\"entityGuid\":\"MzY3MzcyfEJST1dTRVJ8QVBQTElDQVRJT058MzM5NTgyMTA2\"}],\"igp\":\"\",\"nrServerTime\":1795868057833}}"
+ },
+ {
+  "url": "https://cdn.adpushup.com/adpushupAdroRules/37646/PLATFORM_ADUNIT_WISE/DESKTOP/rules.json",
+  "sample": "{\"ADP_37646_300X250_0138acfb-bba5-4fb9-863a-0aa44f38d988\":{\"totalUnfilledTrigger\":1},\"ADP_37646_300X250_0138acfb-bba5-4fb9-863a-0aa44f38d988_3\":{\"totalUnfilledTrigger\":2},\"ADP_37646_300X250_07e83dfd-6699-4b78-a12f-80c3a03caf1c\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_07e83dfd-6699-4b78-a12f-80c3a03caf1c_2\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_150b739f-9812-468b-a820-a881c1d141e9\":{\"totalUnfilledTrigger\":1},\"ADP_37646_300X250_28f271f4-3bc1-4f9d-a9cb-a1040a52c46b\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_28f271f4-3bc1-4f9d-a9cb-a1040a52c46b_1\":{\"totalUnfilledTrigger\":1},\"ADP_37646_300X250_2bfcbc93-0d35-4562-bf31-7963fb106598\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_1\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_10\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_2\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_3\":{\"totalUnfilledTrigger\":3},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_4\":{\"totalUnfilledTrigger\":5},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_5\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_6\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_7\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_8\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_3a34a8ff-b14c-44cc-bd63-f09cebd9eec9_9\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869\":{\"totalUnfilledTrigger\":1},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_10\":{\"consecutiveUnfilledTrigger\":2},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_2\":{\"totalUnfilledTrigger\":1},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_3\":{\"totalUnfilledTrigger\":5},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_4\":{\"consecutiveUnfilledTrigger\":5},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_5\":{\"consecutiveUnfilledTrigger\":4},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_6\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_7\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_8\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_6baaff4a-e025-422c-b808-6bb8b825a869_9\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_a9bc5360-62be-4c5f-a707-02b53613b7ab\":{\"totalUnfilledTrigger\":5},\"ADP_37646_300X250_a9bc5360-62be-4c5f-a707-02b53613b7ab_3\":{\"totalUnfilledTrigger\":1},\"ADP_37646_300X250_bd63a09e-3729-40d1-90c9-90b014daa153\":{\"consecutiveUnfilledTrigger\":1},\"ADP_37646_300X250_bd63a09e-3729-40d1-90c9-90b014daa153_1\":{\"totalUnfilledTrigger\":1}}"
+ },
+ {
+  "url": "https://http-intake.logs.datadoghq.com/api/v2/logs?dd-api-key=pub6b45632781dd758b20e9d8357c39efab&ddsource=nodejs&service=adpushup.js",
+  "sample": "{}"
+ },
+ {
+  "url": "https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json?date=20261128",
+  "sample": "{\"generatedAt\":\"2026-11-27T16:00:29.806Z\",\"dataAsOf\":\"2026-11-27T00:00:00.000Z\",\"conversions\":{\"USD\":{\"EUR\":0.9126585744273068,\"USD\":1,\"JPY\":159.5418453956375,\"CZK\":22.300812266131242,\"DKK\":6.820936387697363,\"GBP\":0.7621064159897782,\"HUF\":337.43725472300815,\"PLN\":4.077575978826322,\"RON\":4.876973624167199,\"SEK\":10.229077302181254,\"CHF\":0.8357214566030848,\"ISK\":125.21675641142649,\"NOK\":9.751756867755773,\"TRY\":50.78707675458611,\"AUD\":1.4995893036415078,\"BRL\":5.498402847494753,\"CAD\":1.4244775029661405,\"CNY\":6.654376197864379,\"HKD\":7.8282376562927825,\"IDR\":18378.050561285025,\"ILS\":3.309391256730857,\"INR\":93.00355936844026,\"KRW\":1334.9000638861003,\"MXN\":19.512092726111163,\"MYR\":4.122478780688145,\"NZD\":1.8244044902801864,\"PHP\":63.729122935109984,\"SGD\":1.28976909738067,\"THB\":33.92990782148399,\"ZAR\":17.335858355389252},\"GBP\":{\"EUR\":1.197547422877946,\"USD\":1.3121527112473652,\"JPY\":209.34326499329373,\"CZK\":29.262071278022606,\"DKK\":8.950110174362905,\"GBP\":1,\"HUF\":442.76920866066297,\"PLN\":5.350402375934087,\"RON\":6.399334163632879,\"SEK\":13.422111515616018,\"CHF\":1.096594175129335,\"ISK\":164.30350641885417,\"NOK\":12.795794213450852,\"TRY\":66.6404004598582,\"AUD\":1.967690170530753,\"BRL\":7.214744203870473,\"CAD\":1.869132017627898,\"CNY\":8.73155776968768,\"HKD\":10.271843264993294,\"IDR\":24114.80887143131,\"ILS\":4.34242671009772,\"INR\":122.0348725809542,\"KRW\":1751.5927380724277,\"MXN\":25.602845372676757,\"MYR\":5.409321709139682,\"NZD\":2.393897298333014,\"PHP\":83.62234144472121,\"SGD\":1.692374018011113,\"THB\":44.521220540333395,\"ZAR\":22.747293542824295}}}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://gum.criteo.com/sid/json?origin=prebid&topUrl=https%3A%2F%2Fallevents.in%2F&domain=allevents.in&cw=1&lsw=1",
+  "sample": "{\"bundle\":\"LzlAeF9TaWFYemFQanlaTGNBTjJ4Sm5sVzU4NlpLa2dNdUJRWFpsQVZLa2RpUEhrREh5UHR6OFhGY2g3ekVaSkl0T0N6OGgzczN3M0ozWUN3JTJGTE1LTWVTUXVJWXBBRGYlMkJUZlNYYURwMk10WGF3WXA0REdnazNhZGVDVDVYU29xTGJRT1Y\",\"bidId\":\"T7Zhal9PcU8wVFRFY2RZMnF5eG5qYm81TENkJTJGdUhNbkZrTGE5d3dqck5JZ2g5MFlvaXJHclYzQUd1UkQ4Vk1qZGNETGJsVVRneDB6OEJYYXA2b0ZQaGtxMnp3JTNEJTNE\",\"pixels\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=128fa95905adc809&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=1257cd055fd3dee&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=121f0aa33726585b8&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=1222a9d977006fc88&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=12792cc189bdc44f&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=12604bb8ebb05a35&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=120c3fe7bfc6405c&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=123e6fe40deac3b&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=124f45d30f6308b78&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=129f5bb928e22b5a8&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://match.adsrvr.org/track/rid?ttd_pid=pubmatic&fmt=json",
+  "sample": "{\"TDID\":\"33dc5816-c8de-4194-9bbe-2c87d72c9d55\",\"TDID_LOOKUP\":\"FALSE\",\"TDID_CREATED_AT\":\"2026-11-28T12:14:19\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://htlb.casalemedia.com/openrtb/pbjs?s=377566",
+  "sample": "{\"id\":\"24782f468c13377e\",\"ext\":{\"features\":{\"pbjs_allow_all_eids\":{\"activated\":true},\"pbjs_enable_multiformat\":{\"activated\":true}}}}"
+ },
+ {
+  "url": "https://targeting.unrulymedia.com/unruly_prebid",
+  "sample": "{\"bids\":[]}"
+ },
+ {
+  "url": "https://htlb.casalemedia.com/openrtb/pbjs?s=377566",
+  "sample": "{\"id\":\"24782f468c13377e\",\"ext\":{\"features\":{\"pbjs_allow_all_eids\":{\"activated\":true},\"pbjs_enable_multiformat\":{\"activated\":true}}}}"
+ },
+ {
+  "url": "https://prebid-server.rubiconproject.com/openrtb2/auction",
+  "sample": "{\"id\":\"fa512da1-0839-4d2f-89c0-a38929969c7f\",\"seatbid\":[],\"cur\":\"USD\",\"nbr\":0,\"ext\":{\"responsetimemillis\":{\"rubicon\":3},\"tmaxrequest\":2000,\"prebid\":{\"auctiontimestamp\":1795868059528}}}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://htlb.casalemedia.com/openrtb/pbjs?s=377566",
+  "sample": "{\"id\":\"24782f468c13377e\",\"ext\":{\"features\":{\"pbjs_allow_all_eids\":{\"activated\":true},\"pbjs_enable_multiformat\":{\"activated\":true}}}}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://a.teads.tv/hb/bid-request",
+  "sample": "{\"responses\":[]}"
+ },
+ {
+  "url": "https://tlx.3lift.com/header/auction?lib=prebid&v=9.41.0&referrer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&tmax=2400",
+  "sample": "{\"status\":\"no_bid\"}"
+ },
+ {
+  "url": "https://prebid.a-mo.net/a/c",
+  "sample": "{\"r\":{},\"p\":{\"hreq\":[\"https://use3-sync.a-mo.net/isyn?__st=iframe&gdpr=0&us_privacy=1---&_e=TVAxMALs7b5qXGgDNNq7UwVK-KbpgPkdrF1yyrTn6Ei1ycDpZtYSpgHgyeGDsjaaiagbD0_9VUZI22qLtEU7_jQJG_EYTARz5Bz1ZQ862u-Mk8VIH4UEt3K7b2SQyXg5DiVjBEGV8W2vueLSiwpPVvhUC00X89gVpDNtYE6EtPeqF5p4Vy7Mk_kKLMFztDAksiETh3Gxtwm81z3euVi5F4Qd0ejyfNeAMy9U6IQ8LVyhf5PwmUd-r32LCH5VXPAgz7EZoDYeLCcOwkGi1L-GV5EDQdKJohWbTbUF2iOarOfgrALrJ0Br_WEgOPqMK2ATzsbOqNoXRli6s2ICyPeCfZOGR29FCgx0W0WLM1hTWlxoYiDS7wU-FTH6ZbqLSaogzvuPlikfxxKi1wgJBPNWwqGrgPP5VOQGKJO6C94f4uhgwVlr2m2v6kLpAY-J4iCDayQaspvC8pS4_y_m142pdEcT3w05C6gELAX4iB0Uy6BXJrm2TbnC1yS3\",\"https://pixel.rubiconproject.com/exchange/sync.php?p=pbs-adaptmx&gdpr=0&us_privacy=1---\"]},\"x\":\"_e=TVAxMALs7b5qXGgDNNq7UwVK-KbpgPkdrF1yyrTn6Ei1ycDpZtYSpgHgyeGDsjaaiagbD0_9VUZI22qLtEU7_jQJG_EYTARz5Bz1ZQ862u-Mk8VIH4UEt3K7b2SQyXg5DiVjBEGV8W2vueLSiwpPVvhUC00X89gVpDNtYE6EtPeqF5p4Vy7Mk_kKLMFztDAksiETh3Gxtwm81z3euVi5F4Qd0ejyfNeAMy9U6IQ8LVyhf5PwmUd-r32LCH5VXPAgz7EZoDYeLCcOwkGi1L-GV5EDQdKJohWbTbUF2iOarOfgrALrJ0Br_WEgOPqMK2ATzsbOqNoXRli6s2ICyPeCfZOGR29FCgx0W0WLM1hTWlxoYiDS7wU-FTH6ZbqLSaogzvuPlikfxxKi1wgJBPNWwqGrgPP5VOQGKJO6C94f4uhgwVlr2m2v6kLpAY-J4iCDayQaspvC8pS4_y_m142pdEcT3w05C6gELAX4iB0Uy6BXJrm2TbnC1yS3\",\"am\":\"f16d6beb-e573-4df6-a028-19a49fc81a28\"}"
+ },
+ {
+  "url": "https://bid.sparteo.com/auction",
+  "sample": "{\"id\":\"c5a2f5d1-1644-462d-9935-50bb78037c3f\",\"cur\":\"USD\",\"seatbid\":[]}"
+ },
+ {
+  "url": "https://prebid.trustedstack.com/rtb/trustedstack?cid=TSK7RNPG1",
+  "sample": "{\"id\":\"a336377cd884aaf783687e19f353dd4c\",\"ext\":{\"csUrl\":[{\"type\":\"image\",\"url\":\"https://hb.trustedstack.com//cksync.php?cs=8\"},{\"type\":\"iframe\",\"url\":\"https://hb.trustedstack.com/checksync.php?vsSync=1&cs=8&cv=31&https=1&cid=TSVIQK64Q&prvid=99%2C2130%2C572%2C2118%2C2117%2C2248%2C2115%2C2114%2C533%2C544%2C537%2C548%2C735%2C516%2C517%2C529%2C738&itype=TRUSTED_STACK&purpose1=1&gdprconsent=1&gdpr=0&usp_status=0&usp_consent=1&dn=allevents.in\"}]}}"
+ },
+ {
+  "url": "https://fastlane.rubiconproject.com/a/api/fastlane.json?account_id=20616&site_id=395944&zone_id=2209384&size_id=15&alt_size_ids=13%2C14%2C19%2C44&rp_schain=1.0,1!adpushup.com,9baa7a7e0082c71c40b2d907fb75f42b,1,,,&eid_pubcid.org=f72dd991-a711-47ac-8f73-109180b41580%5E1%5E%5E%5E%5E%5E&rf=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&kw=ComedyeventsinAnkara%2CComedyeventsinAnkaratoday%2CComedyeventsinAnkarathisweekend%2CComedyeventsinAnkarathisweek%2CComedyeventsactivitiesinAnkara%2CthingstodoforComedyeventsinAnkara%2CAnkaraComedyevents%2CComedyeventsinAnkaraNovember%2CComedyeventsinAnkaraDecember%2CComedyeventsinAnkara2026&tg_i.domain=allevents.in&tg_i.page=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&tg_i.documentLang=en&tk_flint=pbjs_lite_v9.41.0&l_pb_bid_id=376157e41f1c581d%3B377051f745f920bd8%3B378f47d8a61d7d378%3B3791f94f698d740e%3B380fbfb611c6f595%3B381980217d26c1788%3B382edcef57f6cdd5%3B3835f02ac201d6aa8%3B38431811573b5e3%3B385c26f6db0cdfec8&p_screen_res=1366x900&rp_secure=1&rp_maxbids=1&m_ch_ua=%22HeadlessChrome%22%7Cv%3D%22153%22%2C%22Not_A%20Brand%22%7Cv%3D%228%22%2C%22Chromium%22%7Cv%3D%22153%22&m_ch_mobile=%3F0&m_ch_platform=Windows&slots=10&rand=0.4708764383328016",
+  "sample": "{\"status\":\"ok\",\"account_id\":20616,\"site_id\":395944,\"zone_id\":2209384,\"tracking\":\"\",\"inventory\":{\"page\":\"https://allevents.in/ankara/comedy\",\"domain\":\"allevents.in\",\"documentLang\":\"en\"},\"ads\":[{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"302d1b1a-8fc9-488f-9d59-872e623dbaf3\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"e42b95e1-323c-49e8-a6be-71ff8321c4ca\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"01604d73-451c-4182-8db1-0197be1643df\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"1b2d4617-6cbe-4f5b-b06f-9459b5e117a6\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"55d12a43-2c7b-4b3d-8083-264c5aafd204\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"13e2dd9c-b963-434a-a76d-87f2fc4766cd\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"84c2775f-be0b-48f8-9173-8a894d0e5bbb\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"ce8e1bd5-234f-48ce-a2e2-44719f34a4f8\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"96339939-9cad-45c2-965f-69afe9238a29\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"88b0ec21-9eec-409c-82cd-9ec6180883b8\"}]}"
+ },
+ {
+  "url": "https://pixel.quantserve.com/cs?a=p-54Nt-1NAaEEe0&gdpr=0&sf2=1&__qcmcs=1",
+  "sample": "{\"partners\":[\"https://idsync.rlcdn.com/380609.gif?gdpr=0&partner_uid=OBTA_m1Dyf0jE8WnOkLdqj9AlqkjTsiraELGsY6y\",\"https://dsum-sec.casalemedia.com/rum?cm_dsp_id=81&gdpr=0&external_user_id=BJsd_lHMFP0fnBinBs0AqgPPS6kfwRWrVM1Zcdj3\",\"https://image2.pubmatic.com/AdServer/Pug?gdpr=0&vcode=bz0yJnR5cGU9MSZjb2RlPTExMTMmdGw9NDMyMDA=&piggybackCookie=IubP8HexxvM54cqpILDSpCWymac5vMelcrBLhAGm\",\"https://pixel.rubiconproject.com/tap.php?v=4939&nid=1902&gdpr=0&put=uXvXEews3hKifNJIuy3KRb4vgUaiId9E6S0AXcFw\",\"https://cm.g.doubleclick.net/pixel?gdpr=0&google_nid=B765081F39B1F7&google_push=&google_hm=9Wp1bQ2CnWXcsl3A911thg\"]}"
+ },
+ {
+  "url": "https://web-banner.ads.aps.amazon-adsystem.com/e/dtb/bid",
+  "sample": "{\"requestId\":\"d9251cd6-9fc8-4d87-af2c-cf4096944a59\",\"contextual\":{\"cb\":\"1\",\"cmp\":\"https://s.amazon-adsystem.com/iu3?cm3ppd=1&d=dtb-pub&csif=t&gdpr=0&dl=n-adobe3pb_n-rtbhouse_rbd_cnv_3lift_n-start_n-Rise_n-inmobi_rx_n-ConnectAdv2_pm-db5_ppt_n-smaato_n-index_pm-db5_n-nativo_n-simpli.fi_bf_n-Ogury_n-LoopMe_n-cadent_an-db5_n-MediaNet_n-onetag_n-adman-v2_smrt_n-acuityads_n-vmg_pm-db5_sovrn_n-EXTE3pb_kg_n-Beeswax_ox-db5\"}}"
+ },
+ {
+  "url": "https://id5-sync.com/api/config/prebid",
+  "sample": "{\"fetchCall\":{\"url\":\"https://id5-sync.com/g/v2/711.json\",\"overrides\":{\"pbExtensions\":{\"bounce\":{\"setCookie\":true}}}},\"extensionsCall\":{\"url\":\"https://lb.eu-1-id5-sync.com/lb/v1\",\"method\":\"GET\"}}"
+ },
+ {
+  "url": "https://api.id5-sync.com/analytics/711/pbjs",
+  "sample": "{\"sampling\":1,\"ingestUrl\":\"https://analytics.id5-tech.io/v1/events/pbjs/711\",\"additionalCleanupRules\":{\"auctionEnd\":[{\"match\":[[\"adUnits\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"bids\"],[\"*\"],[\"params\",\"ortb2Imp\",\"mediaTypes\",\"sizes\",\"metrics\",\"rtd\",\"nativeParams\",\"nativeOrtbRequest\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"bids\"],[\"*\"],[\"ortb2\"],[\"!user\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"bids\"],[\"*\"],[\"ortb2\"],[\"user\"],[\"!ext\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"bids\"],[\"*\"],[\"ortb2\"],[\"user\"],[\"ext\"],[\"!eids\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"bids\"],[\"*\"],[\"ortb2\"],[\"user\"],[\"ext\"],[\"eids\"],[\"*\"],[\"uids\"],[\"*\"],[\"id\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"refererInfo\",\"metrics\",\"gdprConsent\",\"adUnitsS2SCopy\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"ortb2\"],[\"!user\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"ortb2\"],[\"user\"],[\"!ext\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"ortb2\"],[\"user\"],[\"ext\"],[\"!eids\"]],\"apply\":\"erase\"},{\"match\":[[\"bidderRequests\"],[\"*\"],[\"ortb2\"],[\"user\"],[\"ext\"],[\"eids\"],[\"*\"],[\"uids\"],[\"*\"],[\"id\"]],\"apply\":\"erase\"},{\"match\":[[\"noBids\"],[\"*\"],[\"!bidId\"]],\"apply\":\"erase\"},{\"match\":[[\"metrics\"]],\"apply\":\"erase\"},{\"match\":[[\"bidsReceived\"],[\"*\"],[\"meta\",\"metrics\",\"adserverTargeting\"]],\"apply\":\"erase\"}],\"bidWon\":[{\"match\":[[\"meta\",\"metrics\",\"adserverTargeting\",\"pbsWurl\",\"params\"]],\"apply\":\"erase\"}]}}"
+ },
+ {
+  "url": "https://web-banner.ads.aps.amazon-adsystem.com/e/dtb/bid",
+  "sample": "{\"requestId\":\"3d1eb90d-74fb-4c31-8cdf-3c4b3daa9885\",\"contextual\":{\"cb\":\"0\",\"cmp\":\"https://s.amazon-adsystem.com/iu3?cm3ppd=1&d=dtb-pub&csif=t&gdpr=0&dl=n-vmg_3lift_n-Rise_n-index_bf_kg_ox-db5_pm-db5_n-adobe3pb_n-inmobi_pm-db5_n-simpli.fi_n-onetag_n-Ogury_rx_n-rtbhouse_smrt_rbd_n-acuityads_n-nativo_n-adman-v2_n-LoopMe_cnv_n-start_n-Beeswax_n-ConnectAdv2_sovrn_ppt_n-cadent_n-MediaNet_pm-db5_n-EXTE3pb_an-db5_n-smaato\"}}"
+ },
+ {
+  "url": "https://ep1.adtrafficquality.google/getconfig/sodar?sv=200&tid=gpt&tv=m202611120201&st=env&sjk=8549682567322585",
+  "sample": "{\"sodar_query_id\":\"nMUKa8ibDqCF-NMP3Z_AwAk\",\"injector_basename\":\"sodar2\",\"bg_hash_basename\":\"XmnnX5zmlCqF9ze0osNRx80LC2gwoq0EGiIFpO-DhmM\",\"bg_binary\":\"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"
+ },
+ {
+  "url": "https://gum.criteo.com/sid/json?origin=publishertagids&domain=allevents.in&sn=ChromeSyncframe&so=3&topUrl=allevents.in&bundle=LzlAeF9TaWFYemFQanlaTGNBTjJ4Sm5sVzU4NlpLa2dNdUJRWFpsQVZLa2RpUEhrREh5UHR6OFhGY2g3ekVaSkl0T0N6OGgzczN3M0ozWUN3JTJGTE1LTWVTUXVJWXBBRGYlMkJUZlNYYURwMk10WGF3WXA0REdnazNhZGVDVDVYU29xTGJRT1Y",
+  "sample": "{\"sid\":null,\"removeSid\":false,\"bundle\":\"ZW5MV19TaWFYemFQanlaTGNBTjJ4Sm5sVzU4R0Zid0JvZUsxVHVKOTEwczQwMjVDWmF6QjNoZkM1Uk1CWlBOSk4lMkY1OFhwODhoYnJCalFrSTJ4MUpVQ2pGc3UyMkZVYmY1QWxLMCUyRm1nb2xLU2kyVVNwJTJGQnh4STN5MW5ucTlqcUVJZFdZU2RyZ05SVE5idVlEeXB5WVZiZkxDa1ElM0QlM0Q\",\"info\":\"eLIHUl9TaWFYemFQanlaTGNBTjJ4Sm5sVzU4R0Zid0JvZUsxVHVKOTEwczQwMjVDWmF6QjNoZkM1Uk1CWlBOSk4lMkY1OFhsUXNnUGs4WWVEJTJCTW5lSGJiMUZxSGclM0QlM0Q\",\"optout\":false}"
+ },
+ {
+  "url": "https://bcp.crwdcntrl.net/6/map?xcid=16589",
+  "sample": "{\"pid\":\"4de5ddd2ca1fc101f3d6a47defd7a777\",\"c\":[{\"k\":\"_cc_id\",\"v\":\"4de5ddd2ca1fc101f3d6a47defd7a777\",\"e\":23328000}],\"ids\":[{\"c\":\"core\",\"e\":\"1795954460401\"}]}"
+ },
+ {
+  "url": "https://lb.eu-1-id5-sync.com/lb/v1",
+  "sample": "{\"lb\":\"B3/il+75I6vQsMiv3md2DA==\",\"ttl\":28800}"
+ },
+ {
+  "url": "https://proc.ad.cpe.dotomi.com/cvx/client/direct/launcher?version=1.2.1&lid=681",
+  "sample": "{\"tid\":681,\"solution\":[{\"name\":\"publink\",\"src\":\"https://secure.cdn.fastclick.net/js/cnvr-coreid/latest/coreid.min.js\",\"configName\":\"publink_options\",\"config\":{\"pubcid\":{},\"loadAts\":false}}]}"
+ },
+ {
+  "url": "https://ups.im-apps.net/9001/pid?ref=null&page=https://allevents.in/ankara/comedy",
+  "sample": "{\"vid\":\"01M8H17TT4MGJD2TZRHMFQ1QDF\",\"uid\":\"b.83272efcc0f88be7\",\"ppid\":\"b47660fec8b4fa4ca165084de96a475a\"}"
+ },
+ {
+  "url": "https://id5-sync.com/g/v2/711.json",
+  "sample": "{\"signature\":\"ID5_AvBo2gObR4AuPtZcxhzUBYp7N5yDOdyA6x6Zfik_hMrO3KIrPAGWNUvnRRoP_jAMOv-syd7jc3Y1JXO23sDKzSh-FglVoauWvVLaLs2S8yicygYUze_xVVECTmqN-HXL4ICkIerYFjSelLuTlpgd0ZNGQ7NbHknc4K4Jw2VZ3BPGvvYLvKM\",\"created_at\":\"2026-11-28T12:14:20.548326426Z\",\"id5_consent\":true,\"original_uid\":\"ID5*cJ1Uxi0yi6K00P1smyjpPd48uHjKbf1smyjpPd48uHj__2sKxZxaAQEBCmsKxZwAAPLNSpIx2LACgdD1VPTzvA\",\"universal_uid\":\"0\",\"link_type\":0,\"cascade_needed\":false,\"privacy\":{\"jurisdiction\":\"other\",\"id5_consent\":true},\"ext\":{\"linkType\":0,\"pba\":\"qdkDLpErAPvRtUnzGYRQs1XFqvQpK9gF6xXF1hSVmhrtdsssxkQxX/5eSCVEmPN+p657MvaN5aJf2Uv7YxJLqA==\"},\"ab_testing\":{\"result\":\"control\"},\"cache_control\":{\"max_age_sec\":7200},\"ids\":{\"id5id\":{\"eid\":{\"source\":\"id5-sync.com\",\"uids\":[{\"id\":\"0\",\"atype\":1,\"ext\":{\"linkType\":0,\"pba\":\"qdkDLpErAPvRtUnzGYRQs1XFqvQpK9gF6xXF1hSVmhrtdsssxkQxX/5eSCVEmPN+p657MvaN5aJf2Uv7YxJLqA==\",\"abTestingControlGroup\":true}}]}}},\"tags\":{\"ab\":\"c\"}}"
+ },
+ {
+  "url": "https://id.hadronid.net/v1/hadron.json?_it=amazon&partner_id=777&sync=0&domain=allevents.in&url=https://allevents.in/ankara/comedy&v=06",
+  "sample": "{\"base_id\":\"wn1BDWaZ313638313832303537340000\",\"guid\":\"3WHtxsWB5k6\",\"addr\":\"100.62.139.158\",\"domain\":\"allevents.in\",\"debug_info\":{},\"hadron_id\":\"0602t7hj2g5979c9e979e98969b9d9a6666sg2swsqy626i6m626m64606g6k6e00\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.omni-dex.io/prebid/multi/6a206db889e2e92ef99d63fe",
+  "sample": "{\"results\":[],\"cid\":\"6810d0c7f163277130f3d7a9\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://exchange.kueezrtb.com/prebid/multi/67cff780fa98701c67ee3fbe",
+  "sample": "{\"results\":[],\"cid\":\"62ce79e7dd15099534ae5e04\"}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=5093c5a0a805ea038&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=51028d06b88c1c658&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=511aca5eaf01e78a&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://tlx.3lift.com/header/auction?lib=prebid&v=9.41.0&referrer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&tmax=2400",
+  "sample": "{\"status\":\"no_bid\"}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=513d41e2d6a96d02&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=512c8b4d2ae8215b&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://server.cpmstar.com/view.aspx?media=banner&json=c_b&mv=1&poolid=89721&reachedTop=true&requestid=51454289548031aa&referer=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&schain=1.0%2C1%21adpushup.com%2C9baa7a7e0082c71c40b2d907fb75f42b%2C1%2C%2C%2C",
+  "sample": "{\"creatives\":[],\"syncs\":[]}"
+ },
+ {
+  "url": "https://targeting.unrulymedia.com/unruly_prebid",
+  "sample": "{\"bids\":[]}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://prebid-server.rubiconproject.com/openrtb2/auction",
+  "sample": "{\"id\":\"58b52ebb-e41a-4fa1-8a1a-53fe74816972\",\"seatbid\":[],\"cur\":\"USD\",\"nbr\":0,\"ext\":{\"responsetimemillis\":{\"rubicon\":2},\"tmaxrequest\":2000,\"prebid\":{\"auctiontimestamp\":1795868059664}}}"
+ },
+ {
+  "url": "https://prebid.cootlogix.com/prebid/multi/64c61cb262f8702f546423e8",
+  "sample": "{\"results\":[],\"cid\":\"62b2e9a58f6bf7c75caae5e4\"}"
+ },
+ {
+  "url": "https://a.teads.tv/hb/bid-request",
+  "sample": "{\"responses\":[]}"
+ },
+ {
+  "url": "https://htlb.casalemedia.com/openrtb/pbjs?s=377566",
+  "sample": "{\"id\":\"62766888f36f7c708\",\"ext\":{\"features\":{\"pbjs_allow_all_eids\":{\"activated\":true},\"pbjs_enable_multiformat\":{\"activated\":true}}}}"
+ },
+ {
+  "url": "https://fastlane.rubiconproject.com/a/api/fastlane.json?account_id=20616&site_id=395944&zone_id=2209384&size_id=15%3B15%3B15%3B15%3B15%3B2&alt_size_ids=13%2C14%2C19%2C44%3B13%2C14%2C19%2C44%3B13%2C14%2C19%2C44%3B13%2C14%2C19%2C44%3B13%2C14%2C19%2C44%3B1%2C43%2C44%2C55&rp_schain=1.0,1!adpushup.com,9baa7a7e0082c71c40b2d907fb75f42b,1,,,&eid_pubcid.org=f72dd991-a711-47ac-8f73-109180b41580%5E1%5E%5E%5E%5E%5E&rf=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&kw=ComedyeventsinAnkara%2CComedyeventsinAnkaratoday%2CComedyeventsinAnkarathisweekend%2CComedyeventsinAnkarathisweek%2CComedyeventsactivitiesinAnkara%2CthingstodoforComedyeventsinAnkara%2CAnkaraComedyevents%2CComedyeventsinAnkaraNovember%2CComedyeventsinAnkaraDecember%2CComedyeventsinAnkara2026&tg_i.domain=allevents.in&tg_i.page=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&tg_i.documentLang=en&tk_flint=pbjs_lite_v9.41.0&l_pb_bid_id=672d3d0c60320a6%3B6732f2024c1a940c8%3B67459bf09390c905%3B67589cbdbdf56fda%3B676caee59538aef18%3B67730da331b112eb&p_screen_res=1366x900&rp_secure=1&rp_maxbids=1&m_ch_ua=%22HeadlessChrome%22%7Cv%3D%22153%22%2C%22Not_A%20Brand%22%7Cv%3D%228%22%2C%22Chromium%22%7Cv%3D%22153%22&m_ch_mobile=%3F0&m_ch_platform=Windows&slots=6&rand=0.09866097068703661",
+  "sample": "{\"status\":\"ok\",\"account_id\":20616,\"site_id\":395944,\"zone_id\":2209384,\"tracking\":\"\",\"inventory\":{\"page\":\"https://allevents.in/ankara/comedy\",\"domain\":\"allevents.in\",\"documentLang\":\"en\"},\"ads\":[{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"e1e652d2-c3ce-4225-9a78-24e6f17fc339\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"1df85d9e-57d7-43bd-9eaa-1c2c1f82fddb\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"59fec397-6795-4bb4-a6ab-8d03b233609e\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"cd9948bf-a0db-4a2b-9023-da415d43a443\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"e23c30bb-4927-4f78-a96a-e24fe220836f\"},{\"status\":\"no-ads\",\"reason\":\"no-compatible-ads\",\"error_code\":\"62\",\"impression_id\":\"47b4397d-8931-49f4-96bc-0052ed81382a\"}]}"
+ },
+ {
+  "url": "https://http-intake.logs.datadoghq.com/api/v2/logs?dd-api-key=pub6b45632781dd758b20e9d8357c39efab&ddsource=nodejs&service=adpushup.js",
+  "sample": "{}"
+ },
+ {
+  "url": "https://prebid.a-mo.net/a/c",
+  "sample": "{\"r\":{},\"p\":{\"hreq\":[\"https://use3-sync.a-mo.net/isyn?__st=iframe&gdpr=0&us_privacy=1---&_e=TVAxtd9SBLSryWIO26-cERQnWyL0k1tlbhO3IQdAQVBiwyURByYO9D6TnsKoSu1lIVN0CC3ZsuN33kHR0AlNaGQn7jATiVps-Re3TI1s8TvhxEf1ny715vIUEwTPN3uG0Z9KsKD5jdmmjznmMNNSigwyp_k-wDwpQygKcsO6I1Ko7zs38wgtGQHPBFGYxJs2DeJ45ffvjyjqzNAaCSIN1v7YsxYGcNfGIZASYvt5CcgISUe1zLTBBsysJpgYzzD2tWQFtRR1cJSWIrAhFdLo7jmSNuySY5QkHA8pMybptmE25IGgtrfxcLOvYL4GR8qS6z0ZebY5ZYkXd3NKtrwOkhppA4HjvfhsGKsw5qNxi7dQtZIHEZYPq_JXLmWGRregWYnSQ0-3sBumsERUoeBIBOTEyqHzebT1dkjQkp3P4dcgI_sGnQcSqCwNBRirA1IljSTNnnt3C-50DGto1H4SIfQhusP0-q73qRed5AwbI71AQy3rBOwboGEU\",\"https://pixel.rubiconproject.com/exchange/sync.php?p=pbs-adaptmx&gdpr=0&us_privacy=1---\"]},\"x\":\"_e=TVAxtd9SBLSryWIO26-cERQnWyL0k1tlbhO3IQdAQVBiwyURByYO9D6TnsKoSu1lIVN0CC3ZsuN33kHR0AlNaGQn7jATiVps-Re3TI1s8TvhxEf1ny715vIUEwTPN3uG0Z9KsKD5jdmmjznmMNNSigwyp_k-wDwpQygKcsO6I1Ko7zs38wgtGQHPBFGYxJs2DeJ45ffvjyjqzNAaCSIN1v7YsxYGcNfGIZASYvt5CcgISUe1zLTBBsysJpgYzzD2tWQFtRR1cJSWIrAhFdLo7jmSNuySY5QkHA8pMybptmE25IGgtrfxcLOvYL4GR8qS6z0ZebY5ZYkXd3NKtrwOkhppA4HjvfhsGKsw5qNxi7dQtZIHEZYPq_JXLmWGRregWYnSQ0-3sBumsERUoeBIBOTEyqHzebT1dkjQkp3P4dcgI_sGnQcSqCwNBRirA1IljSTNnnt3C-50DGto1H4SIfQhusP0-q73qRed5AwbI71AQy3rBOwboGEU\",\"am\":\"f16d6beb-e573-4df6-a028-19a49fc81a28\"}"
+ },
+ {
+  "url": "https://bid.sparteo.com/auction",
+  "sample": "{\"id\":\"1ec5e8ae-66be-4e29-84a2-b65434d54802\",\"cur\":\"USD\",\"seatbid\":[]}"
+ },
+ {
+  "url": "https://prebid.trustedstack.com/rtb/trustedstack?cid=TSK7RNPG1",
+  "sample": "{\"id\":\"02f7f7bee1940bae53b686e00415ca14\",\"ext\":{\"csUrl\":[{\"type\":\"image\",\"url\":\"https://hb.trustedstack.com//cksync.php?cs=8\"},{\"type\":\"iframe\",\"url\":\"https://hb.trustedstack.com/checksync.php?vsSync=1&cs=8&cv=31&https=1&cid=TSVIQK64Q&prvid=99%2C2130%2C572%2C2118%2C2117%2C2248%2C2115%2C2114%2C533%2C544%2C537%2C548%2C735%2C516%2C517%2C529%2C738&itype=TRUSTED_STACK&purpose1=1&gdprconsent=1&gdpr=0&usp_status=0&usp_consent=1&dn=allevents.in\"}]}}"
+ },
+ {
+  "url": "https://http-intake.logs.datadoghq.com/api/v2/logs?dd-api-key=pub6b45632781dd758b20e9d8357c39efab&ddsource=nodejs&service=adpushup.js",
+  "sample": "{}"
+ },
+ {
+  "url": "https://http-intake.logs.datadoghq.com/api/v2/logs?dd-api-key=pub6b45632781dd758b20e9d8357c39efab&ddsource=nodejs&service=adpushup.js",
+  "sample": "{}"
+ },
+ {
+  "url": "https://gum.criteo.com/sid/json?origin=criteoPrebidAdapter&domain=allevents.in&sn=ChromeSyncframe&so=0&topUrl=allevents.in",
+  "sample": "{\"bundle\":\"CBjj5F9kUWp2NE5mSEcxNnl3TFU5ZlIwTUdQSVJnYzBqVzNCMlR6Q0x6eEh6MEFQc2lsVjVpelZlbUk3RzNvTWRLUnhqdnNITnVRc0xnczRBdTNQckJJeXJkeVZmemJ0YU1UeWE2T3R0dHprNlRmYWpNRldDcEtmTU1PT0xsQlJ4N3ZXOEVISkFMWW55ek0lMkZ2NFZSbE05JTJGbWF3JTNEJTNE\",\"bidId\":\"L_ksbl9PcU8wVFRFY2RZMnF5eG5qYm81TENkJTJGdUhNbkZrTGE5d3dqck5JZ2g5MFlvaXJHclYzQUd1UkQ4Vk1qZGNETGJRNDNrTzExclh2JTJGa1RpYzYlMkJsZjZmNFZjbTZXWElraDBSaEhsVFQ4aERIQSUzRA\",\"pixels\":[{\"pixelUrl\":\"https://x.bidswitch.net/sync?ssp=criteo&custom_data=0VMx219HcUZnMEFGMGZNS1V4WXFEaVBPMmhleHJoYjQ0NGNHTkprSFNhYXViYWlVJTNE&gpp=&gpp_sid=&gdpr=0&gdpr_consent=&us_privacy=&cr_user_id=k-B1r5_D1FcbZkg0Z7Ze8Rdfl51y79QH1NkwwuNw\",\"writeBundleInStorage\":false},{\"pixelUrl\":\"https://secure.adnxs.com/getuid?https%3a%2f%2fssp-sync.criteo.com%2fuser-sync%2fmatch%3fp%3du_OGPF9Ud3VXeGprU3pjNFBXUzNmQXFaUG53RnZ1V2paekhFRTkyd3R1QXRodEFzJTNE%26u%3d%24UID&gdpr=0&gdpr_consent=\",\"writeBundleInStorage\":false},{\"pixelUrl\":\"https://cm.g.doubleclick.net/pixel?google_nid=commerce_grid_dbm&google_hm=k-B1r5_D1FcbZkg0Z7Ze8Rdfl51y79QH1NkwwuNw&google_cm&google_redir=https%3a%2f%2fssp-sync.criteo.com%2fuser-sync%2fmatch%3fp%3dUdlCh18lMkJJWElxS1FvJTJCJTJGZ2J3JTJGc1clMkYzcXltNWdmSmpHaHR3USUyQkNqdGZwSWdpWUVBJTNE%26u%3d%25%25GOOGLE_GID%25%25&gdpr=0&gdpr_consent=\",\"writeBundleInStorage\":false},{\"pixelUrl\":\"https://ad.turn.com/r/cs?pid=75&us_privacy=&gdpr=0&gdpr_consent= \",\"writeBundleInStorage\":false},{\"pixelUrl\":\"https://cs.admanmedia.com/e805be652c9053b8f771665f0ac3c361.gif?puid=k-B1r5_D1FcbZkg0Z7Ze8Rdfl51y79QH1NkwwuNw&redir=https%3a%2f%2fssp-sync.criteo.com%2fuser-sync%2fmatch%3fp%3dhgX4gV9Fb3hEZ0I0MGQ2aDElMkJRTGtqcm5TQ3I5UDhhaWxSN25lYjB5WEp3aE1aTWMlM0Q%26u%3d%5bUID%5d&gdpr=0&gdpr_consent=&ccpa=\",\"writeBundleInStorage\":false},{\"pixelUrl\":\"https://tr.blismedia.com/v1/api/sync/commercegrid?criteo_payload=8-tKiV82cXZINm41c00lMkY1c2JxTG5EaXZyaFdFRGx0c01PeTBvaGRHeXJvVVlXbVElM0Q\",\"writeBundleInStorage\":false},{\"pixelUrl\":\"https://t.adx.opera.com/pub/sync?pubid=pub13186530141056&gdpr=0&consent=&us_privacy=&gpp=&gpp_sid=&custom_data=kR0ejF9YNXV3eXViUkElMkJXbTlPbGhsTlVhJTJCRiUyRmtvNEx1dXglMkI5dnBvUXliOSUyRjUlMkY4JTNE\",\"writeBundleInStorage\":false},{\"pixelUrl\":\"https://trace.us.rtbwise.com/api/v1/cookie/sync?partner=criteo&cb=https%3a%2f%2fssp-sync.criteo.com%2fuser-sync%2fmatch%3fp%3dlzQkrV80S0h1Y3VDYWNNMTFsJTJCZ2FLV245RnpvUE9IVEI1Vmd4TG5naiUyRmsyVVU4USUzRA%26u%3d%24%7bUSER_ID%7d\",\"writeBundleInStorage\":false},{\"pixelUrl\":\"https://go.mediagotechnology.com/cs/criteo?gdpr=0&gdpr_consent=&p=5G9Xyl8wYlE5NFd3Mnd3QlJSZU90V3E2a1Y2JTJGdEpsaXBFOWZnUEJjbExON2lDTkUlM0Q\",\"writeBundleInStorage\":false}]}"
+ },
+ {
+  "url": "https://pbs.optidigital.com/cookie_sync",
+  "sample": "{\"status\":\"ok\",\"bidder_status\":[{\"bidder\":\"outbrain\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://b1-use1.outbrain.com/usersync/prebid?gdpr=&gdpr_consent=&us_privacy=&cb=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Doutbrain%26uid%3D__ZUID__\",\"type\":\"redirect\"}},{\"bidder\":\"smartadserver\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://ssbsync-global.smartadserver.com/api/sync?callerId=5&gdpr=&gdpr_consent=&us_privacy=&redirectUri=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Dsmartadserver%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Di%26uid%3D%5Bssb_sync_pid%5D\",\"type\":\"redirect\"}},{\"bidder\":\"triplelift\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://eb2.3lift.com/sync?gdpr=&cmp_cs=&us_privacy=&gpp=&gpp_sid=&redir=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Dtriplelift%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D%24UID\",\"type\":\"iframe\"}},{\"bidder\":\"ix\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://ssum-sec.casalemedia.com/usermatch?s=184674&gdpr=&gdpr_consent=&us_privacy=&gpp=&gppsid=&cb=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Dix%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D\",\"type\":\"iframe\"}},{\"bidder\":\"onetag\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://onetag-sys.com/usync/?redir=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Donetag%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D%24%7BUSER_TOKEN%7D&gdpr=&gdpr_consent=&us_privacy=\",\"type\":\"iframe\"}},{\"bidder\":\"illumin\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://cs.admanmedia.com/2a71b804d03ac71dc568777df2b536e9.gif?puid=2316&redir=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Dillumin%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Di%26uid%3D%5BUID%5D&gdpr=&gdpr_consent=&gpp=&gpp_sid=\",\"type\":\"redirect\"}},{\"bidder\":\"criteo\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://ssp-sync.criteo.com/user-sync/iframe?gdprapplies=&gdpr=&ccpa=&gpp=&gpp_sid=&redir=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Dcriteo%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D%24%7BCRITEO_USER_ID%7D&profile=230\",\"type\":\"iframe\"}},{\"bidder\":\"adyoulike\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://visitor.omnitagjs.com/visitor/isync?uid=19340f4f097d16f41f34fc0274981ca4&name=PrebidServer&gdpr=&gdpr_consent=&us_privacy=&url=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Dadyoulike%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D%5BBUYER_USERID%5D\",\"type\":\"iframe\"}},{\"bidder\":\"pubmatic\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://ads.pubmatic.com/AdServer/js/user_sync.html?gdpr=&gdpr_consent=&us_privacy=&predirect=https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Dpubmatic%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D\",\"type\":\"iframe\"}},{\"bidder\":\"rubicon\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://pixel.rubiconproject.com/exchange/sync.php?p=pbs-optidigital&gdpr=&gdpr_consent=&us_privacy=\",\"type\":\"redirect\"}},{\"bidder\":\"appnexus\",\"no_cookie\":true,\"usersync\":{\"url\":\"https://ib.adnxs.com/getuid?https%3A%2F%2Fpbs.optidigital.com%2Fsetuid%3Fbidder%3Dappnexus%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Di%26uid%3D%24UID\",\"type\":\"redirect\"}}]}"
+ },
+ {
+  "url": "https://sync.sparteo.com/sync?gdpr=0&gdpr_consent=&us_privacy=1---&cb=0.7308913722760695&if=1&origin=https%3A%2F%2Fsync.sparteo.com%2F&src=meetscale&type=f&la[]=https://allevents.in",
+  "sample": "{\"sync_status\":false}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=0",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://allevents.in/api/index.php/geo/ip2location",
+  "sample": "{\"city\":\"Ashburn\",\"country_code\":\"US\",\"region\":\"Virginia\",\"region_name\":\"Virginia\",\"postal_code\":\"20147\",\"latitude\":39.04372,\"longitude\":-77.48749,\"raw_obj\":{\"city\":{\"names\":{\"en\":\"Ashburn\"}},\"country\":{\"iso_code\":\"US\",\"names\":{\"en\":\"\"}},\"continent\":{\"code\":\"\"},\"subdivisions\":[{\"iso_code\":\"Virginia\",\"names\":{\"en\":\"Virginia\"}}],\"postal\":{\"code\":\"20147\"},\"location\":{\"latitude\":39.04372,\"longitude\":-77.48749}}}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=160295",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?gdpr=0",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?gdpr=0",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?gdpr=0",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=95054",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://prebidsrvr.cootlogix.com/openrtb/&gdpr=0&gdpr_consent=&us_privacy=1YN-&&redirect=https%3A/ads.servenobid.com/sync%3Fpid%3D1035%26uid%3D%24%7BuserId%7D%26origin%3Dhttps%253A%252F%252Fvisitor.omnitagjs.com%252F",
+  "sample": "{\"id\":\"\",\"seatbid\":[],\"nbr\":0}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=0",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://u-ams.4dex.io/usync.json?it=ortb&gdpr=&gdpr_consent=&us_privacy=&publisher_id=1593&domain=https%3A%2F%2Fsync.adkernel.com%2F&r=https%3A%2F%2Fstatic.cdn.admatic.de%2Fcookie.html%3Fbidder%3Dadagio_ortb%26gdpr%3D%26gdpr_consent%3D%26f%3Db%26uid%3D%7BUID%7D",
+  "sample": "{\"b\":[2,9,0,13],\"uid\":\"76555cce-867b-4094-aa0c-56c88d95c29c\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=156423",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=160295",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=156578",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=162412",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=160295",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=162270",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=160295",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://u-las.4dex.io/usync.json?it=ortb&gdpr=&gdpr_consent=&us_privacy=&publisher_id=1543&domain=programmaticx.ai&r=https%3A%2F%2Fsync.programmaticx.ai%2Fapi%2Fcookie%3FpartnerId%3Dprogx-adagio%26userId%3D%7BUID%7D%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D",
+  "sample": "{\"b\":[2,9,0,13],\"uid\":\"76555cce-867b-4094-aa0c-56c88d95c29c\"}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=157743",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=162270",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=160295",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=0",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://u-ams.4dex.io/usync.json?it=ortb&gdpr=&gdpr_consent=&us_privacy=&publisher_id=1593&domain=https%3A%2F%2Fsync.adkernel.com%2F&r=https%3A%2F%2Fstatic.cdn.admatic.de%2Fcookie.html%3Fbidder%3Dadagio_ortb%26gdpr%3D%26gdpr_consent%3D%26f%3Db%26uid%3D%7BUID%7D",
+  "sample": "{\"b\":[29,18,5,1],\"uid\":\"76555cce-867b-4094-aa0c-56c88d95c29c\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=156344",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=160295",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=160295",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=160295",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=0",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://compare.allevents.in/api/integrations/v1/constrain?h=3e7126ae2aaa469fba7a972e0f68103c&u=https%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&_ctuid=df78de20-36fb-4566-8db2-5e0518ee618a",
+  "sample": "{\"status\":\"success\",\"message\":\"Success\",\"data\":{\"useResourceEncoding\":\"br\",\"AdServerModule\":{\"status\":\"success\",\"useAdServer\":true},\"userOptedOut\":false,\"cpid\":\"1c42af66-de24-47bd-8475-8b857f5ae81f\",\"dmn\":\"allevents.in\",\"PageViewTrackerModule\":{\"status\":\"success\",\"pageViewUuid\":\"7e99885b-c6c8-49a5-b8d1-bbfeb43df1c1\"},\"PublisherMetadataModule\":{\"status\":\"success\",\"publisherAlias\":\"3e7126ae2aaa469fba7a972e0f68103c_allevents.in\",\"siteName\":\"allevents.in\"}}}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://id.a-mx.com/sync?tao=1&&uid=f16d6beb-e573-4df6-a028-19a49fc81a28",
+  "sample": "{\"version\":\"v3\",\"id\":\"amx*3*f16d6beb-e573-4df6-a028-19a49fc81a28*0fbb8a09f77f4b41aee6fa25cbab746a\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=0",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=156344",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://compare.allevents.in/c11g/v0/a/3e7126ae2aaa469fba7a972e0f68103c_allevents.in",
+  "sample": "{\"policy-engine\":{\"@type\":\"PolicyEngine\",\"runFor\":\"InlineContext\",\"#cti1\":{\"pageMap\":{\"^.*$\":{\"pageType\":\"default\",\"adSlotSelectors\":[\"\"],\"watcher\":{\"name\":\"UCO\",\"enableBackgroundClick\":true}}}},\"@source\":[\"ConstrainModule\"]},\"config\":{\"@type\":\"Config\",\"#cti1\":{},\"@source\":[\"ConstrainModule\"],\"runFor\":\"InlineContext\"},\"watcher\":{\"@type\":\"page-scraper\",\"runFor\":\"InlineContext\",\"pageType\":\"{$policy-engine/pageType}\",\"isUCO\":true,\"@source\":[\"ConstrainModule\"]},\"bootloader\":{\"scripts\":{\"bundles\":{\"__adslot-bundle\":[\"sdk\",\"PolicyEngine\",\"Config\",\"page-scraper\",\"RecordSession\",\"Campaigns\",\"Popunder\",\"DDU\"]},\"mappings\":{\"Parallax\":\"2.1.1\",\"Config\":\"6.0.6\",\"PolicyEngine\":\"6.1.3\",\"RecordSession\":\"4.1.3\",\"Campaigns\":\"6.3.8\",\"Popunder\":\"4.10.4\",\"sdk\":\"4.8.12\",\"Tabunder\":\"5.7.8\",\"InterstitialBackButton\":\"4.3.7\",\"DDU\":\"2.12.0\",\"page-scraper\":\"3.1.10\",\"ct-core\":\"4.3.0\",\"Watcher\":\"4.0.7\",\"PlacementContainer\":\"4.2.0\",\"Products\":\"5.5.3\",\"Creatives\":\"4.0.5\",\"InsertPlacement\":\"5.11.2\"},\"main\":\"sdk\",\"bundleMappings\":{\"__adslot-bundle\":{\"version\":\"e4ea963430ab6e25257464879cacee9c1d96d988\",\"mappings\":{\"sdk\":\"4.8.12\",\"PolicyEngine\":\"6.1.3\",\"Config\":\"6.0.6\",\"page-scraper\":\"3.1.10\",\"RecordSession\":\"4.1.3\",\"Campaigns\":\"6.3.8\",\"Popunder\":\"4.10.4\",\"DDU\":\"2.12.0\"}}}},\"@type\":\"Bootloader\",\"loadOnAny\":[],\"runFor\":\"InlineContext\",\"@source\":[\"ConstrainModule\"]},\"__adslot-171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder-config\":{\"@type\":\"Config\",\"runFor\":\"InlineContext\",\"#cti1\":{\"adslot\":{\"@type\":\"AdSlot\",\"@id\":\"171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder\",\"injectionTarget\":{\"offpageRelation\":\"under\",\"type\":\"popunder\"},\"format\":\"popunder\",\"eligible\":{\"device\":\"desktop\"},\"launchTriggers\":[{\"type\":\"backgroundclick\",\"excluding\":[]}],\"legacy\":{\"comparison\":{\"hardLimitSearchCap\":\"2\",\"hardLimitSearchCapSeconds\":\"86400\"}},\"enabled\":true}},\"experimentResults\":{},\"pageType\":\"{$policy-engine/pageType}\",\"@source\":[\"TowerModule\"]},\"__adslot-record-session\":{\"@type\":\"RecordSession\",\"#cti1\":{\"<-\":\"{$config/#cti1}\"},\"search\":\"{$watcher/#cti1/search}\",\"@source\":[\"TowerModule\"],\"runFor\":\"InlineContext\"},\"__adslot-171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder-campaigns\":{\"@type\":\"Campaigns\",\"runFor\":\"InlineContext\",\"#cti1\":{\"<-\":\"{$__adslot-171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder-config/#cti1}\",\"inheritComparison\":\"exit_unit\",\"comparison\":{\"hardLimitSearchCap\":\"2\",\"hardLimitSearchCapSeconds\":\"86400\"}},\"search\":\"{$watcher/#cti1/search}\",\"@source\":[\"TowerModule\"]},\"__adslot-171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder-popunder\":{\"@type\":\"Popunder\",\"runFor\":\"InlineContext\",\"#cti1\":{\"<-\":\"{$__adslot-171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder-config/#cti1}\"},\"comparison\":\"{$__adslot-171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder-campaigns/#cti1/comparison}\",\"searchEvents\":\"{$watcher/#cti1/searchEvents}\",\"@source\":[\"TowerModule\"]},\"__adslot-303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox-config\":{\"@type\":\"Config\",\"runFor\":\"InlineContext\",\"#cti1\":{\"adslot\":{\"@type\":\"AdSlot\",\"@id\":\"303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox\",\"format\":\"lightbox\",\"eligible\":{\"device\":\"desktop\"},\"launchTriggers\":[{\"type\":\"inactivity\",\"launchTimer\":30000},{\"type\":\"blur\",\"leaveTime\":3000}],\"injectionTarget\":{\"creative\":{\"impression\":{\"placement\":\"lightbox\",\"product\":\"lightbox\"}},\"domTarget\":\"body\",\"domRelation\":\"APPEND\"},\"legacy\":{\"comparison\":{\"hardLimitSearchCap\":\"2\",\"hardLimitSearchCapSeconds\":\"86400\",\"optOutDuration\":\"1800\"}},\"enabled\":true}},\"experimentResults\":{},\"pageType\":\"{$policy-engine/pageType}\",\"@source\":[\"TowerModule\"]},\"__adslot-303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox-campaigns\":{\"@type\":\"Campaigns\",\"runFor\":\"InlineContext\",\"#cti1\":{\"<-\":\"{$__adslot-303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox-config/#cti1}\",\"inheritComparison\":\"ddu\",\"comparison\":{\"hardLimitSearchCap\":\"2\",\"hardLimitSearchCapSeconds\":\"86400\",\"optOutDuration\":\"1800\"}},\"search\":\"{$watcher/#cti1/search}\",\"@source\":[\"TowerModule"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=137711",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://ut.pubmatic.com/geo?pubid=159110",
+  "sample": "{\"cc\":\"US\",\"sc\":\"wa\"}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://compare.allevents.in/b9s/v0/logs",
+  "sample": "{}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://token.rubiconproject.com/khaos.json?khaos=MX0DH3FL-1U-HHEC",
+  "sample": "{\"c\":1}"
+ },
+ {
+  "url": "https://compare.allevents.in/x/pas?format=json&siteId=3e7126ae2aaa469fba7a972e0f68103c_allevents.in&publisherHash=3e7126ae2aaa469fba7a972e0f68103c&aid=171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder&ref=usingRuntimeExperiments%7C%7Cfalse%3A%3A%3AvscVersion%7C%7C388%3A%3A%3Ahttps%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&optLocalization=en&ctzpid=1c42af66-de24-47bd-8475-8b857f5ae81f&alias=3e7126ae2aaa469fba7a972e0f68103c_allevents.in&siteName=allevents.in&adults=3&startDate=11%2F30%2F2026&endDate=12%2F02%2F2026&destination=Ankara%2C%20AN%2C%20Turkey%2C%20TR&contextSource=uco&pageViewUuid=7e99885b-c6c8-49a5-b8d1-bbfeb43df1c1&tabbedMode=1&userForcedTabbedMode=1",
+  "sample": "{\"id\":\"171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder_default_checkbox\",\"redirectBaseID\":\"171f698c-85c7-4e0e-8f3e-d47df9caa541_desktop_popunder_redirect_base\",\"redirectBase\":\"https://www.clicktripz.com/\",\"userSearchHistory\":[],\"isPseudoPopUnderRedirecting\":false,\"isEdgeBroken\":false,\"serverTimestamp\":1795868072,\"searchKey\":\"5432dd22efafad31dae9a27005c98e95\",\"recommendedDisplayMode\":null,\"auctionType\":100,\"providers\":[],\"strategy\":{\"publisherId\":3105,\"auction_id\":\"dbf19a17-9335-4567-a20d-ad42a3b09760\",\"creative_strategy_id\":0,\"search_display_type\":0,\"searchParams\":{\"type\":1,\"city\":\"\",\"checkInDate\":\"12/06/2026\",\"checkOutDate\":\"12/07/2026\",\"guests\":1,\"rooms\":1}}}"
+ },
+ {
+  "url": "https://compare.allevents.in/x/pas?format=json&siteId=3e7126ae2aaa469fba7a972e0f68103c_allevents.in&publisherHash=3e7126ae2aaa469fba7a972e0f68103c&aid=303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox&ref=usingRuntimeExperiments%7C%7Cfalse%3A%3A%3AvscVersion%7C%7C388%3A%3A%3Ahttps%3A%2F%2Fallevents.in%2Fankara%2Fcomedy&optLocalization=en&ctzpid=1c42af66-de24-47bd-8475-8b857f5ae81f&alias=3e7126ae2aaa469fba7a972e0f68103c_allevents.in&siteName=allevents.in&adults=3&startDate=11%2F30%2F2026&endDate=12%2F02%2F2026&destination=Ankara%2C%20AN%2C%20Turkey%2C%20TR&contextSource=uco&pageViewUuid=7e99885b-c6c8-49a5-b8d1-bbfeb43df1c1&tabbedMode=1&userForcedTabbedMode=1",
+  "sample": "{\"id\":\"303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox_default_checkbox\",\"redirectBaseID\":\"303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox_redirect_base\",\"redirectBase\":\"https://www.clicktripz.com/\",\"userSearchHistory\":[],\"isPseudoPopUnderRedirecting\":false,\"isEdgeBroken\":false,\"serverTimestamp\":1795868072,\"searchKey\":\"b8965ac7413986366e91f52babd9532a\",\"recommendedDisplayMode\":\"tabbed\",\"auctionType\":100,\"providers\":[{\"name\":\"Tennessee Tourism\",\"smallThumb\":\"https://images.clicktripz.com/emptyLogo90x22.png\",\"mediumThumb\":\"https://images.clicktripz.com/emptyLogo120x60.png\",\"smallAltThumb\":\"https://images.clicktripz.com/emptyLogo96x24.png\",\"checked\":false,\"hidden\":false,\"id\":\"303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox_provider_1\",\"redirectID\":\"1071259620\",\"windowName\":\"ct_window_32064\",\"campaignID\":\"303e172a-759f-4cfc-b6d6-272f2e698fa5_desktop_lightbox_provider_1_32064\",\"campaign\":\"32064\",\"campaignType\":\"1\",\"ifb\":true}],\"strategy\":{\"publisherId\":3106,\"auction_id\":\"e0ee390b-f5fb-49a9-94f3-6c404d009afb\",\"creative_strategy_id\":14,\"search_display_type\":1,\"searchParams\":{\"type\":1,\"city\":\"Ankara, AN, Turkey, TR\",\"checkInDate\":\"11/30/2026\",\"checkOutDate\":\"12/02/2026\",\"guests\":3,\"rooms\":2},\"aurl\":\"https://compare.allevents.in/c24k/v1/render?t=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3OTU4NjgwNzIsImF1cmwiOiJodHRwczovL3d3dy5jbGlja3RyaXB6LmNvbS94L2FwaS92MC9hcmVzdWx0P2F1aWQ9ZTBlZTM5MGItZjVmYi00OWE5LTk0ZjMtNmM0MDRkMDA5YWZiJl9jdHVpZD1kZjc4ZGUyMC0zNmZiLTQ1NjYtOGRiMi01ZTA1MThlZTYxOGEiLCJoZyI6eyJpZCI6ImUwZWUzOTBiLWY1ZmItNDlhOS05NGYzLTZjNDA0ZDAwOWFmYiIsInBpZCI6MTc5NTg2ODA3Miwib3AiOiJHZXRUcmF2ZWxEaXJlY3QiLCJ2IjoiMjAyMC40OSIsInR5cGUiOiJ0cmF2ZWxfZGlyZWN0In19.K0OzcM-kom5-8n5Azy9v-avK8Ud9rN0II9OI6eZGhIg\"}}"
+ },
+ {
+  "url": "https://compare.allevents.in/b9s/v0/logs",
+  "sample": "{}"
+ }
+]

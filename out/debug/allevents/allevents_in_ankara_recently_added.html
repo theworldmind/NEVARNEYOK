@@ -1,0 +1,1702 @@
+<!DOCTYPE html><html lang="en" class="fonts-loaded"><head><script src="https://accounts.google.com/gsi/client"></script>
+    <meta charset="utf-8"><script type="text/javascript" async="" defer="" src="//na.allevents.in/matomo.js"></script><script type="text/javascript" async="" src="https://d2r1yp2w7bby2u.cloudfront.net/js/clevertap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5NVQN6R"></script><script type="text/javascript">(window.NREUM||(NREUM={})).init={"ajax":{"deny_list":["bam.nr-data.net"]},"feature_flags":["rum_v2"]};(window.NREUM||(NREUM={})).loader_config={"licenseKey":"ea025ea6a0","applicationID":"339581800","browserID":"339582106"};;/*! For license information please see nr-loader-rum-1.324.1.min.js.LICENSE.txt */
+(()=>{var e={8122(e,t,r){"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(r).length?e:r;for(let s in a)if(void 0!==e[s])try{if(null===e[s]){r[s]=null;continue}Array.isArray(e[s])&&Array.isArray(t[s])?r[s]=Array.from(new Set([...e[s],...t[s]])):e[s]instanceof Map||e[s]instanceof Set||e[s]instanceof Date||e[s]instanceof RegExp?r[s]=e[s]:"object"==typeof e[s]&&null!==t[s]&&"object"==typeof t[s]?r[s]=i(e[s],t[s]):r[s]=e[s]}catch(e){r[s]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555(e,t,r){"use strict";r.d(t,{f:()=>s});var n=r(384),i=r(8122);const a={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function s(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}r.d(t,["D",0,e=>(0,i.a)(e,a)])},7699(e,t,r){"use strict";var n=r(860);const i=1e6,a={[n.K7.logging]:!0,[n.K7.genericEvents]:!0,[n.K7.jserrors]:!0,[n.K7.ajax]:!0};r.d(t,["It",0,i,"KC",0,a,"qh",0,"SESSION_ERROR","zd",0,5e5])},9324(e,t,r){"use strict";r.d(t,["xv",0,"1.324.1"])},981(e,t,r){"use strict";r.d(t,["R",0,{AJAX:"AjaxRequest",PA:"PageAction",UA:"UserAction",BP:"BrowserPerformance",WS:"WebSocket",SPV:"SecurityPolicyViolation",JSE:"JavaScriptError",LOG:"Log",PVE:"PageView",PVT:"PageViewTiming",SR:"SessionReplay",ST:"SessionTrace",BI:"BrowserInteraction"}])},6154(e,t,r){"use strict";var n=r(1863);const i="undefined"!=typeof window&&!!window.document,a="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),s=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=Boolean("hidden"===s?.document?.visibilityState),c=""+s?.location,u=/iPad|iPhone|iPod/.test(s.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=((()=>{const e=s.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)());r.d(t,["OF",0,u,"RI",0,i,"WN",0,l,"bv",0,a,"gm",0,s,"m",0,c,"mw",0,o,"sb",0,d,"zk",0,()=>{const e=s?.performance?.getEntriesByType?.("navigation")?.[0];if(e&&e.responseStart>0&&e.responseStart<s.performance.now())return e}])},3241(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(6154);function i(e={}){try{n.gm.dispatchEvent(new CustomEvent("newrelic",{detail:e}))}catch(e){}}},1687(e,t,r){"use strict";r.d(t,{Ak:()=>o,Ze:()=>u,x3:()=>c});var n=r(3241),i=r(3606),a=r(860),s=r(2646);function o(e,t){if(!e)return;const r={staged:!1,priority:a.P3[t]||0};e.runtime.drainRegistry.get(t)||e.runtime.drainRegistry.set(t,r)}function c(e,t){if(!e)return;const r=e.runtime.drainRegistry;r&&(r.get(t)&&r.delete(t),l(e,t,!1),r.size&&d(e))}function u(e,t="feature",r=!1){if(e){if(!e.runtime.drainRegistry.get(t)||r)return l(e,t);e.runtime.drainRegistry.get(t).staged=!0,d(e)}}function d(e){if(!e)return;const t=Array.from(e.runtime.drainRegistry);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{e.runtime.drainRegistry.delete(t),l(e,t)}))}function l(e,t,r=!0){if(!e)return;const a=e.ee,o=i.i.handlers;if(a&&!a.aborted&&a.backlog&&o){if((0,n.W)({type:"lifecycle",name:"drain",feature:t}),r){const e=a.backlog[t],r=o[t];if(r){for(let t=0;e&&t<e.length;++t)f(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0].context()instanceof s.y&&!t[0].listeners(e).includes(t[1])&&t[0].on(e,t[1])})})}}a.isolatedBacklog||delete o[t],a.backlog[t]=null,a.emit("drain-"+t,[])}}function f(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],a=e[2];n.apply(i,a)}})}},7836(e,t,r){"use strict";var n=r(384),i=r(8990),a=r(2646),s=r(5607);const o="nr@context:".concat(s.W),c=function e(t,r){var n={},s={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,a){!1!==a&&(a=!0);if(c.aborted&&!i)return;t&&a&&t.emit(e,r,n);var o=g(n);m(e).forEach(e=>{e.apply(o,r)});var u=v()[s[e]];u&&u.push([f,e,r,o]);return o},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{s[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[s[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof a.y?e:e?(0,i.I)(e,o,()=>new a.y(o)):new a.y(o)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c),r.d(t,["P",0,o,"ee",0,c])},2646(e,t,r){"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908(e,t,r){"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,a){a?(a.buffer([e],i),a.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(9908);a.on=s;var i=a.handlers={};function a(e,t,r,a){s(a||n.d,i,e,t,r)}function s(e,t,r,i,a){a||(a="feature"),e||(e=n.d);var s=t[a]=t[a]||{};(s[r]=s[r]||[]).push([e,i])}},3878(e,t,r){"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function a(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>a,jT:()=>n,sp:()=>i})},5607(e,t,r){"use strict";const n=(0,r(9566).bz)();r.d(t,["W",0,n])},9566(e,t,r){"use strict";r.d(t,{LA:()=>s,bz:()=>a});var n=r(6154);function i(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("").map(e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e).join("")}function s(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,a=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const s=[];for(var o=0;o<e;o++)s.push(i(r,a++).toString(16));return s.join("")}},2614(e,t,r){"use strict";r.d(t,["BB",0,18e5,"Wt",0,"NRBA_SESSION::","iL",0,{SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},"tS",0,{STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},"wk",0,144e5])},1863(e,t,r){"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944(e,t,r){"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},8990(e,t,r){"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389(e,t,r){"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},1910(e,t,r){"use strict";r.d(t,{i:()=>a});var n=r(944);const i=new Map;function a(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e?e.toString():"",r=t.includes("[native code]"),a=t.includes("nrWrapper");return r||a||(0,n.R)(64,e?.name||t),i.set(e,r),r})}},5289(e,t,r){"use strict";r.d(t,{GG:()=>s,Qr:()=>c,sB:()=>o});var n=r(3878),i=r(6389);function a(){return"undefined"==typeof document||"complete"===document.readyState}function s(e,t){if(a())return e();const r=(0,i.J)(e),s=setInterval(()=>{a()&&(clearInterval(s),r())},500);(0,n.sp)("load",r,t)}function o(e){if(a())return e();(0,n.DD)("DOMContentLoaded",e)}function c(e){if(a())return e();(0,n.sp)("popstate",e)}},384(e,t,r){"use strict";r.d(t,{Zm:()=>c,bQ:()=>d,dV:()=>u,pV:()=>l});var n=r(6154),i=r(1863),a=r(944),s=r(1910);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function c(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function u(){let e=c();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,s.i)(...Object.values(e.o))),e}function d(e,t){let r=c();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t,2===Object.keys(r.initializedAgents).length&&(0,a.R)(69)}function l(){return function(){let e=c();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=c();const t=e.init||{};e.init={...t}}(),u(),function(){let e=c();const t=e.loader_config||{};e.loader_config={...t}}(),c()}r.d(t,["NT",0,o])},2843(e,t,r){"use strict";r.d(t,{G:()=>a,u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}function a(e,t,r){(0,n.sp)("pagehide",e,t,r)}},9300(e,t,r){"use strict";r(860).K7.ajax;r.d(t,["mo",0,{NONE:"none",FAILURES:"failures",ALL:"all"}])},3969(e,t,r){"use strict";const n=r(860).K7.metrics;r.d(t,["TZ",0,n,"XG",0,"storeEventMetrics","xV",0,"storeSupportabilityMetrics"])},6630(e,t,r){"use strict";const n=r(860).K7.pageViewEvent;r.d(t,["T",0,n])},782(e,t,r){"use strict";const n=r(860).K7.pageViewTiming;r.d(t,["T",0,n])},4234(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(1687);class i{constructor(e,t){this.agentRef=e,this.ee=e?.ee,this.featureName=t,this.blocked=!1}deregisterDrain(){(0,n.x3)(this.agentRef,this.featureName)}}},7767(e,t,r){"use strict";var n=r(6154);r.d(t,["V",0,e=>n.RI&&!0===e?.privacy.cookies_enabled])},8362(e,t,r){"use strict";r.d(t,{d:()=>a});var n=r(9566),i=r(1741);class a extends i.W{agentIdentifier=(0,n.LA)(16)}},1741(e,t,r){"use strict";r.d(t,{W:()=>a});var n=r(944),i=r(4261);class a{#e(e,...t){if(this[e]!==a.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e,t=!1){return this.#e(i.Dl,e,t)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e("log",e,t)}start(){return this.#e("start")}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},4261(e,t,r){"use strict";r.d(t,["BL",0,"finished","CH",0,"recordReplay","Dl",0,"setUserId","Fw",0,"setPageViewName","PA",0,"setCurrentRouteName","Pv",0,"consent","Tb",0,"pauseReplay","U2",0,"addToTrace","V1",0,"measure","Wb",0,"wrapLogger","bt",0,"setErrorHandler","cD",0,"setCustomAttribute","dT",0,"interaction","eY",0,"register","fF",0,"recordCustomEvent","hG",0,"addPageAction","k6",0,"addRelease","nb",0,"setApplicationVersion","o5",0,"noticeError"])},1738(e,t,r){"use strict";r.d(t,{U:()=>l,Y:()=>d});var n=r(3241),i=r(9908),a=r(1863),s=r(944),o=r(3969),c=r(8362),u=r(860);function d(e,t,r,a){const d=a||r;!d||d[e]&&d[e]!==c.d.prototype[e]||(d[e]=function(){(0,i.p)(o.xV,["API/"+e+"/called"],void 0,u.K7.metrics,r.ee),(0,n.W)({drained:!!r.runtime?.activatedFeatures,type:"data",name:"api",feature:"api-"+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,s.R)(23,e)}})}function l(e,t,r,n,s){const o=e.info;null===r?delete o.jsAttributes[t]:o.jsAttributes[t]=r,(s||null===r)&&(0,i.p)("api-"+n,[(0,a.t)(),t,r],void 0,"session",e.ee)}},8374(e,t,r){r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860(e,t,r){"use strict";const n="events",i="jserrors",a="browser/blobs",s="browser/logs",o={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations"},c={[o.pageViewEvent]:1,[o.pageViewTiming]:2,[o.metrics]:3,[o.jserrors]:4,[o.softNav]:5,[o.ajax]:6,[o.sessionTrace]:7,[o.sessionReplay]:8,[o.logging]:9,[o.genericEvents]:10},u={[o.pageViewEvent]:"rum",[o.pageViewTiming]:n,[o.ajax]:n,[o.softNav]:n,[o.metrics]:i,[o.jserrors]:i,[o.sessionTrace]:a,[o.sessionReplay]:a,[o.logging]:s,[o.genericEvents]:"ins"};r.d(t,["$J",0,u,"K7",0,o,"P3",0,c,"XX",0,i,"Yy",0,s,"df",0,a,"hg",0,"connect"])}};const t={};function r(n){const i=t[n];if(void 0!==i)return i.exports;const a=t[n]={exports:{}};return e[n](a,a.exports,r),a.exports}r.m=e,r.d=(e,t)=>{if(Array.isArray(t))for(var n=0;n<t.length;){var i=t[n++],a=t[n++];r.o(e,i)?0===a&&n++:0===a?Object.defineProperty(e,i,{enumerable:!0,value:t[n++]}):Object.defineProperty(e,i,{enumerable:!0,get:a})}else for(var i in t)r.o(t,i)&&!r.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((t,n)=>(r.f[n](e,t),t),[])),r.u=e=>"nr-rum-1.324.1.min.js",r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{const e={},t="NRBA-1.324.1.PROD:";r.l=(n,i,a,s)=>{if(e[n])return void e[n].push(i);let o,c;if(void 0!==a){const e=document.getElementsByTagName("script");for(var u=0;u<e.length;u++){const r=e[u];if(r.getAttribute("src")==n||r.getAttribute("data-webpack")==t+a){o=r;break}}}if(!o){c=!0;var d={296:"sha512-zuv39xzZ8AH/HwpVrtkixvcBuOFo2ydcFzMtXjx+3Iwr5g++inX+6YDH7J/8fOCAtBetz8aDyaYCRkGy2nnG/w=="};o=document.createElement("script"),o.charset="utf-8",r.nc&&o.setAttribute("nonce",r.nc),o.setAttribute("data-webpack",t+a),o.src=n,0!==o.src.indexOf(window.location.origin+"/")&&(o.crossOrigin="anonymous"),d[s]&&(o.integrity=d[s])}e[n]=[i];const l=(t,r)=>{o.onerror=o.onload=null,clearTimeout(f);const i=e[n];if(delete e[n],o.parentNode?.removeChild(o),i?.forEach(e=>e(r)),t)return t(r)},f=setTimeout(l.bind(null,void 0,{type:"timeout",target:o}),12e4);o.onerror=l.bind(null,o.onerror),o.onload=l.bind(null,o.onload),c&&document.head.appendChild(o)}})(),r.r=e=>{Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.p="https://js-agent.newrelic.com/",(()=>{const e={374:0,840:0};r.f.j=(t,n)=>{let i=r.o(e,t)?e[t]:void 0;if(0!==i)if(i)n.push(i[2]);else{const a=new Promise((r,n)=>i=e[t]=[r,n]);n.push(i[2]=a);const s=r.p+r.u(t),o=new Error,c=n=>{if(r.o(e,t)&&(i=e[t],0!==i&&(e[t]=void 0),i)){const e=n&&("load"===n.type?"missing":n.type),r=n&&n.target&&n.target.src;o.message="Loading chunk "+t+" failed: ("+e+": "+r+")",o.name="ChunkLoadError",o.type=e,o.request=r,i[1](o)}};r.l(s,c,"chunk-"+t,t)}};const t=(t,n)=>{let[i,a,s]=n;var o,c,u=0;if(i.some(t=>0!==e[t])){for(o in a)r.o(a,o)&&(r.m[o]=a[o]);if(s)s(r)}for(t&&t(n);u<i.length;u++)c=i[u],r.o(e,c)&&e[c]&&e[c][0](),e[c]=0},n=self["webpackChunk:NRBA-1.324.1.PROD"]=self["webpackChunk:NRBA-1.324.1.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{"use strict";r(8374);var e=r(8362),t=r(860);const n=Object.values(t.K7);var i=r(384),a=r(1741);var s=r(2555),o=r(981);t.K7.genericEvents,o.R.PA,o.R.UA,o.R.BP;const c={RESOURCES:"experimental.resources",REGISTER:"register"};var u=r(9300);const d=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var l=r(2614),f=r(944),g=r(8122);const p="[data-nr-mask]",m=e=>(0,g.a)(e,(()=>{const e={feature_flags:[],experimental:{register:!1,resources:!1,iframe_bridge:!1,iframe_domains:[]},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0,capture_payloads:u.mo.NONE},api:{register:{get enabled(){return e.feature_flags.includes(c.REGISTER)||e.experimental.register},set enabled(t){e.experimental.register=t},duplicate_data_to_container:!1,get allow_iframe_bridge(){return e.feature_flags.includes(c.IFRAME_BRIDGE)||e.experimental.iframe_bridge},set allow_iframe_bridge(t){e.experimental.iframe_bridge=t},get iframe_domains(){return e.experimental.iframe_domains},set iframe_domains(t){Array.isArray(t)?e.experimental.iframe_domains=t:(0,f.R)(1,t)}}},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c.RESOURCES)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:l.wk,inactiveMs:l.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){d(t)?e.mask_selector="".concat(t,",").concat(p):""===t||null===t?e.mask_selector=p:(0,f.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){d(t)?e.block_selector+=",".concat(t):""!==t&&(0,f.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,f.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]},web_sockets:{enabled:!1}}})());var h=r(6154),v=r(9324);let b=0;const y={buildEnv:"PROD",distMethod:"CDN",version:v.xv,originTime:h.WN},_={consented:!1},w={activatedFeatures:void 0,appMetadata:{},configured:!1,get consented(){return this.session?.state?.consent||_.consented},set consented(e){_.consented=e},customTransaction:void 0,denyList:[],disabled:!1,drainRegistry:new Map,connector:void 0,harvester:void 0,v2Target:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++b},listeningForIframeMessages:!1},R="BA";var A=r(7836),x=r(3241);const E={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0};var S=r(9908);const k="newrelic-iframe-";function T(e,t={},n,o){let{init:c,info:u,loader_config:d,runtime:l={},exposed:f=!0}=t;if(!u){const e=(0,i.pV)();c=e.init,u=e.info,d=e.loader_config}var p;e.init=m(c||{}),e.loader_config=(p=d||{},(0,g.a)(p,E)),u.jsAttributes??={},h.bv&&(u.jsAttributes.isWorker=!0),e.info=(0,s.D)(u);const v=e.init;e.runtime??=(e=>{const t=(0,g.a)(e,w),r=Object.keys(y).reduce((e,t)=>(e[t]={value:y[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)})(l),e.runtime.v2Target??={type:R,instance:e.agentIdentifier,get id(){return e.runtime.appMetadata?.agents?.[0]?.entityGuid},get attributes(){return{"entity.guid":this.id,appId:e.info.applicationID}}},v.proxy.assets&&(e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e})(v.proxy.assets),e.runtime.configured||(Object.defineProperty(e,"beacons",{get:()=>[e.info.beacon,e.info.errorBeacon,e.init.proxy.assets,e.init.proxy.beacon].filter(Boolean)}),Object.defineProperty(e.runtime,"denyList",{get:()=>[...e.init.ajax.deny_list||[],...e.init.ajax.block_internal?e.beacons:[]]}),e.runtime.ptid=e.agentIdentifier,function(e){const t=(0,i.pV)();Object.getOwnPropertyNames(a.W.prototype).forEach(r=>{const n=a.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let i=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return i?i(...t):n})})}(e),e.runtime.loaderType=n,e.ee=A.ee.get(e.agentIdentifier),e.exposed=f,(0,x.W)({drained:!!e.runtime.activatedFeatures,type:"lifecycle",name:"initialize",feature:void 0,data:e.config}),e.init.api.register.allow_iframe_bridge&&h.gm.addEventListener("message",t=>{"string"==typeof t.data?.type&&t.data.type.startsWith(k)&&(0,S.p)("iframe-message",[t],void 0,"IFRAME",e.ee)}),e.runtime.configured=!0)}var j=r(1863),P=r(4261),N=r(1738);var O=r(1687),M=r(4234),I=r(5289),D=r(7767);function V(e){return!!(0,i.dV)().o.MO&&(0,D.V)(e)&&!0===e?.session_trace.enabled}var W=r(6389),B=r(7699);const C=new WeakSet,K=new WeakMap;class U extends M.W{constructor(e,t){super(e,t),this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,W.J)(()=>{(0,O.Ak)(e,this.featureName),t()}))}):(0,O.Ak)(e,t)}importAggregator(e,t,n={}){if(this.featAggregate)return;const i=async()=>{if(await this.deferred,this.#t(e),!(0,s.f)(e.info))return(0,f.R)(43),e.ee.abort(),void this.loadedSuccessfully(!1);try{await async function(e,t,n){if(K.has(e))return K.get(e);const i=(async()=>{if((0,D.V)(e.init))try{const{setupAgentSession:t}=await r.e(296).then(r.bind(r,1768));t(e)}catch(e){(0,f.R)(20,e),t.emit("internal-error",[e]),(0,S.p)(B.qh,[e],void 0,n,t)}if(e.init.api.register.allow_iframe_bridge)try{const{setupIframeMFEMessageListener:t}=await Promise.resolve().then(function(){const e=new Error("Cannot find module '../../loaders/configure/iframe-message-handler'");throw e.code="MODULE_NOT_FOUND",e});t(e)}catch(e){(0,f.R)(23,e)}const[{Connector:i},{Harvester:a}]=await Promise.all([r.e(296).then(r.bind(r,6589)),r.e(296).then(r.bind(r,5237))]);e.runtime.connector=new i(e),e.runtime.harvester=new a(e);const s=Object.values(e.features).filter(t=>e.runtime.drainRegistry.has(t.featureName));Promise.all(s.map(e=>e.onAggregateImported)).then(()=>e.runtime.harvester.startTimer())})();K.set(e,i),await i}(e,this.ee,this.featureName)}catch(e){return(0,f.R)(79,e),this.ee.abort(),void this.loadedSuccessfully(!1)}try{if(!this.#r(this.featureName,e.runtime.session,e.init))return this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:r}=await t();this.featAggregate=new r(e,n),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,f.R)(34,e),this.abortHandler?.(),(0,O.Ze)(this.agentRef,this.featureName,!0),this.loadedSuccessfully(!1)}};h.RI?(0,I.GG)(()=>i(),!0):i()}#r(e,r,n){if(this.blocked)return!1;switch(e){case t.K7.sessionReplay:return V(n)&&!!r;case t.K7.sessionTrace:return!!r;default:return!0}}#t(e){if(!C.has(e)&&(C.add(e),!(0,s.f)(e.info))){const t=(0,i.pV)();let r={...t.info?.jsAttributes};try{r={...r,...e.info?.jsAttributes}}catch(e){}T(e,{...t,info:{...t.info,jsAttributes:r},runtime:e.runtime},e.runtime.loaderType)}}}var L=r(6630);class F extends U{static featureName=L.T;constructor(e){var t;super(e,L.T),this.setupInspectionEvents(),t=e,(0,N.Y)(P.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,S.p)("api-"+P.Fw,[(0,j.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>e.init.feature_flags.includes("rum_v2")?r.e(296).then(r.bind(r,908)):r.e(296).then(r.bind(r,7927)))}setupInspectionEvents(){const e=(e,t)=>{e&&(0,x.W)({timeStamp:e.timeStamp,loaded:"complete"===e.target.readyState,type:"window",name:t,data:e.target.location+""})};(0,I.sB)(t=>{e(t,"DOMContentLoaded")}),(0,I.GG)(t=>{e(t,"load")}),(0,I.Qr)(t=>{e(t,"navigate")}),this.ee.on(l.tS.UPDATE,(e,t)=>{(0,x.W)({type:"lifecycle",name:"session",data:t})})}}class G extends e.d{constructor(e){var t;(super(),h.gm)?(this.features={},(0,i.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(F),T(this,e,e.loaderType||"agent"),t=this,(0,N.Y)(P.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return(0,N.U)(t,e,r,P.cD,n);(0,f.R)(40,typeof r)}else(0,f.R)(39,typeof e)},t),function(e){(0,N.Y)(P.Dl,function(t,r=!1){if("string"!=typeof t&&null!==t)return void(0,f.R)(41,typeof t);const n=e.info.jsAttributes["enduser.id"];r&&null!=n&&n!==t?(0,S.p)("api-setUserIdAndResetSession",[t],void 0,"session",e.ee):(0,N.U)(e,"enduser.id",t,P.Dl,!0)},e)}(this),function(e){(0,N.Y)(P.nb,function(t){if("string"==typeof t||null===t)return(0,N.U)(e,"application.version",t,P.nb,!1);(0,f.R)(42,typeof t)},e)}(this),function(e){(0,N.Y)("start",function(){e.ee.emit("manual-start-all")},e)}(this),function(e){(0,N.Y)(P.Pv,function(t=!0){if("boolean"==typeof t){if((0,S.p)("api-"+P.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum?.()})}}else(0,f.R)(65,typeof t)},e)}(this),this.run()):(0,f.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return n.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),r=[...this.desiredFeatures],i=this.init.feature_flags.includes("rum_v2");r.sort((e,r)=>t.P3[e.featureName]-t.P3[r.featureName]),r.forEach(r=>{if(!e[r.featureName]&&(i||r.featureName!==t.K7.pageViewEvent))return;const n=function(e){switch(e){case t.K7.ajax:return[t.K7.jserrors];case t.K7.sessionTrace:return[t.K7.ajax,t.K7.pageViewEvent];case t.K7.sessionReplay:return[t.K7.sessionTrace];case t.K7.pageViewTiming:return[t.K7.pageViewEvent];default:return[]}}(r.featureName).filter(e=>!(e in this.features));n.length>0&&(0,f.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)})}catch(e){(0,f.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,i.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}var H=r(2843),z=r(782);class Y extends U{static featureName=z.T;constructor(e){super(e,z.T),h.RI&&((0,H.u)(()=>(0,S.p)("docHidden",[(0,j.t)()],void 0,z.T,this.ee),!0),(0,H.G)(()=>(0,S.p)("winPagehide",[(0,j.t)()],void 0,z.T,this.ee)),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9981))))}}var Z=r(3969);class q extends U{static featureName=Z.TZ;constructor(e){super(e,Z.TZ),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9623)))}}new G({features:[F,Y,q],loaderType:"lite"})})()})();</script>
+    <title>Latest Events in Ankara | Allevents.in</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Newly created events in Ankara on Allevents.in | Get Tickets">
+    <meta name="author" content="">
+	<link rel="canonical" href="https://allevents.in/ankara/recently-added">
+			<!-- styles -->
+
+
+
+
+      
+          <link href="//allevents.in/css/combined-responsive.css?v=v11795787057v11795787057" rel="stylesheet">
+    
+
+  
+
+ <!--[if IE 7]>
+   <link rel="stylesheet" href="https://allevents.in/css/font-awesome-ie7.min.css">
+ <![endif]-->
+  <!--[if lt IE 9]>
+     <link rel="stylesheet" href="https://allevents.in/css/ie.css">
+  <![endif]-->
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--touch icons -->
+<link rel="manifest" href="//allevents.in/manifest.json">
+<link rel="shortcut icon" href="//allevents.in/img/favicon.ico">
+<link rel="mask-icon" href="//allevents.in/img/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#20c0e8">
+<meta name="msapplication-config" content="https://allevents.in/browserconfig.xml">
+<link rel="apple-touch-icon" sizes="180x180" href="https://allevents.in/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://allevents.in/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://allevents.in/img/favicon-16x16.png">
+<meta name="theme-color" content="#2e363f">
+<script type="text/javascript">var eventPage = {"show_promo_status": false, "show_order_status": false }; var actracker = {action:[], global:[]}; </script>
+<script type="text/javascript">window.__cst = "eyJzaWQiOiJkNTAxY2Q0MTRhZTIzZWJmOTk2NGMzYmQzNGE4ZWE5NCIsImlwaCI6ImNkNWNjZjcxMTA3NiIsImV4cCI6MTc5NTg2ODgyMiwibiI6IjZmMjY0NDk3In0.8279a46ba14d7d4c4285cc5de1f02b952813c9a2a4b665c1f009575ca9278bda";</script>
+
+  <script>
+  !function(e){function t(e){return"[object Function]"==Object.prototype.toString.call(e)}function n(e){return"[object Array]"==Object.prototype.toString.call(e)}function r(e,t){var n=/^\w+\:\/\//;return/^\/\/\/?/.test(e)?e=location.protocol+e:n.test(e)||"/"==e.charAt(0)||(e=(t||"")+e),n.test(e)?e:("/"==e.charAt(0)?m:g)+e}function i(e,t){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n]);return t}function s(e){for(var t=!1,n=0;n<e.scripts.length;n++)e.scripts[n].ready&&e.scripts[n].exec_trigger&&(t=!0,e.scripts[n].exec_trigger(),e.scripts[n].exec_trigger=null);return t}function a(e,t,n,r){e.onload=e.onreadystatechange=function(){e.readyState&&"complete"!=e.readyState&&"loaded"!=e.readyState||t[n]||(e.onload=e.onreadystatechange=null,r())}}function c(e){e.ready=e.finished=!0;for(var t=0;t<e.finished_listeners.length;t++)e.finished_listeners[t]();e.ready_listeners=[],e.finished_listeners=[]}function o(e,t,n,r,i){setTimeout(function(){var s,c,o=t.real_src;if("item"in _){if(!_[0])return setTimeout(arguments.callee,25),void 0;_=_[0]}s=document.createElement("script"),t.type&&(s.type=t.type),t.charset&&(s.charset=t.charset),i?S?(n.elem=s,b?(s.preload=!0,s.onpreload=r):s.onreadystatechange=function(){"loaded"==s.readyState&&r()},s.src=o):i&&0==o.indexOf(m)&&e[f]?(c=new XMLHttpRequest,c.onreadystatechange=function(){4==c.readyState&&(c.onreadystatechange=function(){},n.text=c.responseText+"\n//@ sourceURL="+o,r())},c.open("GET",o),c.send()):(s.type="text/cache-script",a(s,n,"ready",function(){_.removeChild(s),r()}),s.src=o,_.insertBefore(s,_.firstChild)):w?(s.async=!1,a(s,n,"finished",r),s.src=o,_.insertBefore(s,_.firstChild)):(a(s,n,"finished",r),s.src=o,_.insertBefore(s,_.firstChild))},0)}function u(){function g(e,t,n){function r(){null!=i&&(i=null,c(n))}var i;A[t.src].finished||(e[h]||(A[t.src].finished=!0),i=n.elem||document.createElement("script"),t.type&&(i.type=t.type),t.charset&&(i.charset=t.charset),a(i,n,"finished",r),n.elem?n.elem=null:n.text?(i.onload=i.onreadystatechange=null,i.text=n.text):i.src=t.real_src,_.insertBefore(i,_.firstChild),n.text&&r())}function m(e,t,n,i){var s,a,u=function(){t.ready_cb(t,function(){g(e,t,s)})},l=function(){t.finished_cb(t,n)};t.src=r(t.src,e[y]),t.real_src=t.src+(e[p]?(/\?.*$/.test(t.src)?"&_":"?_")+~~(1e9*Math.random())+"=":""),A[t.src]||(A[t.src]={items:[],finished:!1}),a=A[t.src].items,e[h]||0==a.length?(s=a[a.length]={ready:!1,finished:!1,ready_listeners:[u],finished_listeners:[l]},o(e,t,s,i?function(){s.ready=!0;for(var e=0;e<s.ready_listeners.length;e++)s.ready_listeners[e]();s.ready_listeners=[]}:function(){c(s)},i)):(s=a[0],s.finished?l():s.finished_listeners.push(l))}function v(){function e(e,t){e.ready=!0,e.exec_trigger=t,a()}function r(e,t){e.ready=e.finished=!0,e.exec_trigger=null;for(var n=0;n<t.scripts.length;n++)if(!t.scripts[n].finished)return;t.finished=!0,a()}function a(){for(;h<f.length;)if(t(f[h]))try{f[h++]()}catch(e){}else{if(!f[h].finished){if(s(f[h]))continue;break}h++}h==f.length&&(p=!1,u=!1)}function c(){u&&u.scripts||f.push(u={scripts:[],finished:!0})}var o,u,l=i(b,{}),f=[],h=0,p=!1;return o={script:function(){for(var s=0;s<arguments.length;s++)!function(s,a){var f;n(s)||(a=[s]);for(var h=0;h<a.length;h++)c(),s=a[h],t(s)&&(s=s()),s&&(n(s)?(f=[].slice.call(s),f.unshift(h,1),[].splice.apply(a,f),h--):("string"==typeof s&&(s={src:s}),s=i(s,{ready:!1,ready_cb:e,finished:!1,finished_cb:r}),u.finished=!1,u.scripts.push(s),m(l,s,u,w&&p),p=!0,l[d]&&o.wait()))}(arguments[s],arguments[s]);return o},wait:function(){if(arguments.length>0){for(var e=0;e<arguments.length;e++)f.push(arguments[e]);u=f[f.length-1]}else u=!1;return a(),o}},{script:o.script,wait:o.wait,setOptions:function(e){return i(e,l),o}}}var x,b={},w=S||O,B=[],A={};return b[f]=!0,b[d]=!1,b[h]=!1,b[p]=!1,b[y]="",x={setGlobalDefaults:function(e){return i(e,b),x},setOptions:function(){return v().setOptions.apply(null,arguments)},script:function(){return v().script.apply(null,arguments)},wait:function(){return v().wait.apply(null,arguments)},queueScript:function(){return B[B.length]={type:"script",args:[].slice.call(arguments)},x},queueWait:function(){return B[B.length]={type:"wait",args:[].slice.call(arguments)},x},runQueue:function(){for(var e,t=x,n=B.length,r=n;--r>=0;)e=B.shift(),t=t[e.type].apply(null,e.args);return t},noConflict:function(){return e.$LAB=l,x},sandbox:function(){return u()}}}var l=e.$LAB,f="UseLocalXHR",d="AlwaysPreserveOrder",h="AllowDuplicates",p="CacheBust",y="BasePath",g=/^[^?#]*\//.exec(location.href)[0],m=/^\w+\:\/\/\/?[^\/]+/.exec(g)[0],_=document.head||document.getElementsByTagName("head"),v=e.opera&&"[object Opera]"==Object.prototype.toString.call(e.opera)||"MozAppearance"in document.documentElement.style,x=document.createElement("script"),b="boolean"==typeof x.preload,S=b||x.readyState&&"uninitialized"==x.readyState,w=!S&&x.async===!0,O=!S&&!w&&!v;e.$LAB=u(),function(e,t,n){null==document.readyState&&document[e]&&(document.readyState="loading",document[e](t,n=function(){document.removeEventListener(t,n,!1),document.readyState="complete"},!1))}("addEventListener","DOMContentLoaded")}(this);</script>
+
+  <script type="text/javascript" src="//allevents.in/scripts/combined.js"></script>  <script type="text/javascript" src="//allevents.in/scripts/common.js?v=v11795787057"></script>
+
+<!-- GA4 Scripts Configuration Starts -->
+<script defer="" src="https://www.googletagmanager.com/gtag/js?id=G-DZD3QFXNY7"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+  gtag('config', 'G-DZD3QFXNY7');
+</script>
+<!-- GA4 Scripts Configuration Ends -->
+
+<!-- GTM Script Starts -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5NVQN6R');</script>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NVQN6R"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- GTM Script Ends -->
+<script type="text/javascript">
+      var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};clevertap.account.push({"id": "69R-556-545Z"});
+                      </script>
+  
+	<style type="text/css">
+	.up-month { color: #FD3B08; text-transform: uppercase; display: block; font-family: "pn-semibold"; font-size: 16px; text-align: center; padding-right: 10px; }@media (max-width: 486px) {.up-day { padding-right: 5px; }}.up-day { color: #555; display: block; font-weight: 600; font-size: 14px; text-align: center; padding-right: 10px; }@media(min-width: 986px){ .events-style-resgrid .item{ width: 30%!important; min-height: 280px; margin: 1.5%!important;}}.events-style-resgrid .item{background:#fff;width:30.8%;float:none;text-align:left;margin:1.25%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;overflow:hidden;padding:0;margin-bottom:10px;display:inline-block;white-space:normal;position:relative;border-radius:2px;box-shadow: 0 1px 5px #ddd;}.events-style-resgrid .item .meta{padding:15px 10px 10px;line-height:20px;float:left;background:#fff;width:100%;box-sizing:border-box;border-top:1px inset rgba(0,0,0,0.1); height: 130px;}.events-style-resgrid .thumb img{width:100%}.events-style-resgrid .title{font-size:14px;color:#2e363f;width:100%;display:block;line-height:20px;max-height:40px;overflow:hidden;text-overflow:ellipsis;margin-bottom: 5px;}.eventlist-1 .event-item .right .title h3{color:#2e363f;height:70px;text-decoration:none;font-size:15px;padding:5px 0;line-height:20px;text-transform:none;margin:0;display:inline;font-weight:600;white-space:nowrap}.events-style-resgrid .venue{font-size:13px;width:100%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;float:left;color:#888}.events-style-resgrid .title a,.events-style-resgrid .title a h3{color:#2e363f;height:70px;text-decoration:none;font-size:16px;padding:5px 0;line-height:20px;text-transform:none;margin:0;display:inline;font-weight:600;}.events-style-resgrid .meta2{padding: 0;text-transform:uppercase;color:#49525c;font-size:12px;}.events-style-resgrid .thumb{height:160px;min-height: 160px; opacity:1;overflow:hidden;background:#3E4B55;background:url(//cdn-az.allevents.in/banners/e6fac29…);background:#f5f5f5;background-size:cover;position:relative;background-position: center top;background-repeat: no-repeat;width: 100%; padding-top: 50%; margin-left: 0px; margin-right: 0px; height: unset; min-height: unset;}#events .up-header{color:#2e363f;margin-bottom:10px;font-weight:600;font-size:18px;margin-left:32px}.style-hz-past{float:left;width:100%}.event-thumb-div{display:none}.tick-price{float:left;display:inline-block;font-size:13px;color:#777;font-weight:600;text-transform:none;margin-top:4px}.tick-btn{float:right;display:inline-block}.tick-meta{width:100%;box-sizing:border-box;padding-bottom:0}.meta-left{float:left;width:20%;box-sizing:border-box;line-height:1.5;}.meta-right{float:left;width:80%;box-sizing:border-box;line-height:1.5;}.eventlist-1 .event-item:hover .btn-right{background:#21c0e8;color:#fff}@media (min-width: 1200px){.eventlist-1 .new-item{width:31.3%;padding-left:10px;margin-bottom:5px}.style-hz-past{float:left;width:97.5%;margin:0}.event-thumb-div{display:none}.eventlist-1 .event-item .right{max-width:70%}}@media(max-width: 1200px){.eventlist-1 .event-item .left{max-height:70px;max-width:70px}.eventlist-1 .event-item .right{width:64%}.eventlist-1 .new-item{width:30.3%;min-height:98px}}@media (max-width: 986px){.events-style-resgrid .item{width:45%; min-height: 280px; margin: 2%; margin-right: 2%!important; margin-left: 2%!important;}.eventlist-1 .new-item{width:48%;padding-left:10px;padding-right:10px}.eventlist-1 .event-item .left{max-width:70px;max-height:70px}.eventlist-1 .event-item .right{width:75%}#events .up-header{margin-left:25px}.style-hz-past{float:left;width:97%}.event-thumb-div{display:none}.meta-left{width:18%}.meta-right{width:82%;padding-left:20px}}@media (max-width: 767px){.featured-event-title{text-align: center!important;}.eventlist-1 .event-item .up-time{padding-right:0}#events .up-header{margin-left:18px;margin-bottom:10px}.events-style-resgrid .item{width:47.5%;margin-bottom:10px}.eventlist-1 .event-item .title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.eventlist-1 .event-item .right{width:80%;padding:5px 10px}.eventlist-1 .event-item .left{margin-left:0;width:85px;max-width:85px;min-height:85px}.events-style-resgrid{padding-left:0}.eventlist-1 .new-item{width:96%;box-sizing:border-box;padding:0;margin:0 2%;max-height:85px;min-height:85px}.eventlist-1{padding:0}.bd{border:1px solid #ddd}.style-hz-past{float:left;width:100%;margin:0}.event-thumb-div{display:none}.eventlist-1-parent-past{margin:0}.tick-btn,.btn-right{width:100%}}@media (max-width: 486px){.meta-left { width: 20%; }.meta-right { width: 80%; padding-left: 10px; }.up-day{padding-right: 5px;}.events-style-resgrid .venue{display: block;}.event-banner-div{display:none}.tick-price{display:block}.tick-btn,.btn-right{width:auto}.event-thumb-div{display:block}#events .up-header{margin-left:10px;font-size:14px}.eventlist-1 .event-item .up-venue{height:auto}.events-style-resgrid .item{width:100%;margin:0;margin-bottom:-1px;vertical-align:top;border-top:none;border-bottom:none;border-radius:0; box-shadow: none;}.events-style-resgrid .thumb{width:100%;display:inline-block;margin:0;margin-top:0;height: 140px;height: unset;}.events-style-resgrid .item .meta{width:100%;display:inline-block;padding:10px 10px 20px 10px;top:0;height:100%;border:0; position: relative; margin-top: 5px;}.events-style-resgrid{padding-left:0;margin-top:0}.eventlist-1 .event-item{float:left;width:95.5%;cursor:pointer;background:#fff;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;padding:0;min-height:80px;margin:2%}.eventlist-1 .event-item .left{box-sizing:border-box;display:inline-block;width:80px;margin-left:0;max-width:80px;max-height:80px}.eventlist-1 .event-item .right{display:inline-block;box-sizing:border-box;width:78%;margin-left:0;position:absolute;left:80px;padding:5px 10px}.eventlist-1 .event-item .title a h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}.events-style-resgrid .item.hover{box-shadow: 0 1px 5px #aaa} .meta-right .up-venue, .meta-right .up-time-display{width: 100%; float: left; font-size: 12px; color: #999; line-height: 1.5; margin: 2px 0;} #sidebar-days li button:hover, #sidebar-pop li button:hover{text-decoration: none; color: #ffffff; background-color: #1dbae2!important;}li.item.ad-list { float: left; min-height: 280px; max-height: 280px; }
+				.events-style-resgrid .resgrid-row { position: relative; float: left; width: 100%; }.events-style-resgrid .resgrid-ul { margin: 0; }@media (max-width: 486px) {.eventlist-custom .events-style-resgrid .item { padding: 0; margin: 3%!important; margin-left: 5%!important; margin-right: 5%!important; width: 90%; box-shadow: 0 1px 4px #ddd;box-sizing: border-box; }}@media (max-width: 486px) {.eventlist-custom .events-style-resgrid .item { min-height: 305px; }}@media (max-width: 486px){ .events-style-resgrid .item { padding: 0; margin: 3%!important; margin-left: 5%!important; margin-right: 5%!important; width: 90%; box-shadow: 0 1px 4px #ddd; }}
+			</style>
+  <script type="text/javascript" src="https://eu1.clevertap-prod.com/a?t=96&amp;type=push&amp;d=N4IgLgngDgpiBcIYDcYDswgDROWAcgIYC2ciA7gF4BOA1gPoBmMYAxgBba5gAihYhBKEzwALAF8cASwAmCEADYAnACUAtAFYNCzaI0AtLlADmCAIw5CjISAA2UgEbzyMB2oDOM2muQBmAHQBZkbUAPZgoayhtvLsYGBQ7ly2kYS2ZODU9AAqKiCSIADq%2BioA0vQAwgCCALIACjbkUsRQCAAMOE1gtqwIANoAup3uvfAdIOSMo8AF5JFCsy3tnWgyI8sTq1MLKzLz8DPi4kAAAA%3D%3D&amp;rn=2&amp;i=1795868223&amp;sn=0&amp;gc=c29a52f994ec474d898fd977206853d3&amp;arp=&amp;tries=1&amp;origin=https%3A%2F%2Fallevents.in&amp;useIP=false&amp;r=1795868223217" class="ct-jp-cb" rel="nofollow" async=""></script><style id="googleidentityservice_button_styles">.qJTHM{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;color:#202124;direction:ltr;-webkit-touch-callout:none;font-family:Roboto-Regular,arial,sans-serif;-webkit-font-smoothing:antialiased;font-weight:400;margin:0;overflow:hidden;-webkit-text-size-adjust:100%}.ynRLnc{left:-9999px;position:absolute;top:-9999px}.L6cTce{display:none}.bltWBb{overflow-wrap:break-word;word-break:break-word}.hSRGPd{color:#1a73e8;cursor:pointer;font-weight:500;text-decoration:none}.Bz112c-W3lGp{height:16px;width:16px}.Bz112c-E3DyYd{height:20px;width:20px}.Bz112c-r9oPif{height:24px;width:24px}.Bz112c-u2z5K{height:36px;width:36px}.Bz112c-uaxL4e{border-radius:10px}.LgbsSe-Bz112c{display:block}.S9gUrf-YoZ4jf{border:none;margin:0;padding:0}.S9gUrf-YoZ4jf *{border:none;margin:0;padding:0}.fFW7wc-ibnC6b>.aZ2wEe>div{border-color:#4285f4}.P1ekSe-ZMv3u{transition:height .2s linear}.P1ekSe-ZMv3u>div:first-child{background-color:#1a73e8!important;transition:width .3s linear}.P1ekSe-ZMv3u>div:nth-child(2){background-image:linear-gradient(90deg,rgba(255,255,255,.7),rgba(255,255,255,.7)),linear-gradient(90deg,#1a73e8,#1a73e8)!important}.P1ekSe-ZMv3u>div:nth-child(3){background-image:linear-gradient(90deg,rgba(255,255,255,.7),rgba(255,255,255,.7)),linear-gradient(90deg,#1a73e8,#1a73e8)!important}.haAclf{display:inline-block}.nsm7Bb-HzV7m-LgbsSe{border-radius:4px;box-sizing:border-box;transition:background-color .218s,border-color .218s;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;-webkit-appearance:none;background-color:#fff;background-image:none;border:1px solid #dadce0;color:#3c4043;cursor:pointer;font-family:Google Sans,arial,sans-serif;font-size:.875rem;height:40px;letter-spacing:.25px;outline:none;overflow:hidden;padding:0 12px;position:relative;text-align:center;vertical-align:middle;white-space:nowrap;width:auto}.nsm7Bb-HzV7m-LgbsSe.TzA9Ye-LgbsSe{font-size:14px}@media screen and (-ms-high-contrast:active){.nsm7Bb-HzV7m-LgbsSe{border:2px solid windowText;color:windowText}}@media screen and (preferes-contrast:more){.nsm7Bb-HzV7m-LgbsSe{color:#000}}.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe{font-size:.875rem;height:32px;letter-spacing:.25px;padding:0 10px}.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe.TzA9Ye-LgbsSe{font-size:14px}.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe{font-size:.6875rem;height:20px;letter-spacing:.3px;padding:0 8px}.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe.TzA9Ye-LgbsSe{font-size:11px}.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe{padding:0;width:40px}.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.pSzOP-SxQuSe{width:32px}.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.purZT-SxQuSe{width:20px}.nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK{border-radius:20px}.nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK.pSzOP-SxQuSe{border-radius:16px}.nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK.purZT-SxQuSe{border-radius:10px}.nsm7Bb-HzV7m-LgbsSe.i5vt6e-to915-Ia7Qfc{border:1px solid #8e918f;background-color:#131314;color:#e3e3e3}.nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc{border:none;color:#fff}.nsm7Bb-HzV7m-LgbsSe.MFS4be-v3pZbf-Ia7Qfc{background-color:#1a73e8}.nsm7Bb-HzV7m-LgbsSe.MFS4be-JaPV2b-Ia7Qfc{background-color:#202124;color:#e8eaed}@media screen and (prefers-contrast:more){.nsm7Bb-HzV7m-LgbsSe.MFS4be-JaPV2b-Ia7Qfc{color:#fff}}.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c{height:18px;margin-right:8px;min-width:18px;width:18px}.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c{height:14px;min-width:14px;width:14px}.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c{height:10px;min-width:10px;width:10px}.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-Bz112c{margin-left:8px;margin-right:-4px}.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c{margin:0;padding:10px}.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c{padding:8px}.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c{padding:4px}.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{border-top-left-radius:3px;border-bottom-left-radius:3px;display:flex;justify-content:center;align-items:center;background-color:#fff;height:36px;margin-left:-10px;margin-right:12px;min-width:36px;width:36px}.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf .nsm7Bb-HzV7m-LgbsSe-Bz112c,.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf .nsm7Bb-HzV7m-LgbsSe-Bz112c{margin:0;padding:0}.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{height:28px;margin-left:-8px;margin-right:10px;min-width:28px;width:28px}.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{height:16px;margin-left:-6px;margin-right:8px;min-width:16px;width:16px}.nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{border-radius:3px;margin-left:2px;margin-right:0;padding:0}.nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{border-radius:18px}.nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{border-radius:14px}.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{border-radius:8px}.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb{display:flex;align-items:center;flex-direction:row;justify-content:space-between;flex-wrap:nowrap;height:100%;position:relative;width:100%}.nsm7Bb-HzV7m-LgbsSe .oXtfBe-l4eHX{justify-content:center}.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-BPrWId{flex-grow:1;font-family:Google Sans,arial,sans-serif;font-weight:500;overflow:hidden;text-overflow:ellipsis;vertical-align:top}.nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-BPrWId{font-weight:300}.nsm7Bb-HzV7m-LgbsSe .oXtfBe-l4eHX .nsm7Bb-HzV7m-LgbsSe-BPrWId{flex-grow:0}.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-MJoBVe{transition:background-color .218s;bottom:0;left:0;position:absolute;right:0;top:0}.nsm7Bb-HzV7m-LgbsSe:focus,.nsm7Bb-HzV7m-LgbsSe:hover{box-shadow:none;border-color:rgb(210,227,252);outline:none}.nsm7Bb-HzV7m-LgbsSe:focus-within{outline:2px solid #00639b;border-color:transparent}.nsm7Bb-HzV7m-LgbsSe:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe{background:rgba(66,133,244,.08)}.nsm7Bb-HzV7m-LgbsSe:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe,.nsm7Bb-HzV7m-LgbsSe:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe{background:rgba(66,133,244,.1)}.nsm7Bb-HzV7m-LgbsSe.i5vt6e-to915-Ia7Qfc:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe{background:rgba(255,255,255,.08)}.nsm7Bb-HzV7m-LgbsSe.i5vt6e-to915-Ia7Qfc:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe,.nsm7Bb-HzV7m-LgbsSe.i5vt6e-to915-Ia7Qfc:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe{background:rgba(255,255,255,.12)}.nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe{background:rgba(255,255,255,.24)}.nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe,.nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe{background:rgba(255,255,255,.32)}.nsm7Bb-HzV7m-LgbsSe .n1UuX-DkfjY{border-radius:50%;display:flex;height:20px;margin-left:-4px;margin-right:8px;min-width:20px;width:20px}.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId{font-family:Roboto;font-size:12px;text-align:left}.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff .fmcmS,.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .ssJRIf{overflow:hidden;text-overflow:ellipsis}.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff{display:flex;align-items:center;color:#5f6368;fill:#5f6368;font-size:11px;font-weight:400}.nsm7Bb-HzV7m-LgbsSe.jVeSEe.i5vt6e-to915-Ia7Qfc .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff{color:#c4c7c5;fill:#c4c7c5}.nsm7Bb-HzV7m-LgbsSe.jVeSEe.MFS4be-Ia7Qfc .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff{color:#e8eaed;fill:#e8eaed}@media screen and (prefers-contrast:more){.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff,.nsm7Bb-HzV7m-LgbsSe.jVeSEe.MFS4be-Ia7Qfc .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff{color:#000;fill:#000}}.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff .Bz112c{height:18px;margin:-3px -3px -3px 2px;min-width:18px;width:18px}.nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{border-top-left-radius:0;border-bottom-left-radius:0;border-top-right-radius:3px;border-bottom-right-radius:3px;margin-left:12px;margin-right:-10px}.nsm7Bb-HzV7m-LgbsSe.jVeSEe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf{border-radius:18px}.L5Fo6c-sM5MNb{border:0;display:block;left:0;position:relative;top:0}.L5Fo6c-bF1uUb{border-radius:4px;bottom:0;cursor:pointer;left:0;position:absolute;right:0;top:0}.L5Fo6c-bF1uUb:focus{border:none;outline:none}sentinel{}</style><link id="googleidentityservice" type="text/css" media="all" href="https://accounts.google.com/gsi/style" rel="stylesheet"></head>
+
+  <body>
+<!-- topbar -->
+	<style type="text/css"> 
+	/* Topbar Base Styles */
+	.topbar.topbar--white {background: var(--header-head-primary) !important;}
+	.topbar.topbar--transparent {background: transparent !important;}
+	
+	/* Smooth transitions for topbar variants */
+	.topbar {
+		transition: background-color 0.3s ease;
+	}
+	
+	/* Scrolled state for transparent topbar */
+	.topbar--transparent.scrolled {
+		background: var(--header-head-primary) !important;
+	}
+	
+	.tbsearch .input-append{border-radius: 83px;border: 1.5px solid var(--gray-300, #D9D9D9);background: rgba(255, 255, 255, 0.53);}
+	.topbar .top-cont{height: 100%;background: transparent !important;}
+	.topbar .top-cont .top-cont-row{height: 100%;display: flex;align-items: center;justify-content: space-between;}
+	.topbar .rspan{width: auto;}
+	.logo{margin-top: 0;}
+	.tbhide.hidden-phone{display: flex; align-items: center;}
+	
+	/* Logo Styles */
+	.city-select-wrapper {display: flex;align-items: center;}
+	
+	/* Button Overrides */
+	.btn-group.open .dropdown-toggle{box-shadow: none !important; background: none !important}
+	.btn-group.open .dropdown-toggle:hover{box-shadow:none !important;background: none !important}
+	.btn-group.open .btn-primary.dropdown-toggle{background-color: transparent !important}
+	.btn-group.open .btn-warning.dropdown-toggle{background-color: transparent !important}
+	.btn-group.open .btn-danger.dropdown-toggle{background-color: transparent !important}
+	.btn-group.open .btn-success.dropdown-toggle{background-color: transparent !important}
+	.btn-group.open .btn-info.dropdown-toggle{background-color: transparent !important}
+	.btn-group.open .btn-inverse.dropdown-toggle{background-color: transparent;}
+	
+	.btn:focus{box-shadow: none !important;background-color: transparent !important; border: none !important; outline: none !important;}
+	.create-btn-style:focus, .events-for-you-btn:focus, .city-select-button:focus, .user-dropdown-btn:focus {outline: 2px solid var(--primary-default, #0A74BF) !important; outline-offset: 2px !important; border-radius: var(--radius-lg) !important;}
+	.topuserinfo .open:after{border: none !important;}
+	
+	/* Mobile Navbar Styles */
+	.mobile-navbar--custom{padding: 4px!important;} 
+	.tbsearch_manage_drover_btn{
+		display: none;
+		position: absolute;
+		top: 12px;
+		left: 15px;
+		z-index: 30;
+	}
+	.tbsearch_manage_drover_btn #manage-drover-btn{
+		background: transparent;
+		border: none;
+		outline: none;
+		box-shadow: none;
+		padding: 7px 10px;
+		font-size: 20px;
+		margin: 0;
+	}
+	.tbsearch_manage_drover_btn .btn:focus{
+		outline: none;
+		box-shadow: none;
+	}
+	.mobile-navbar-container {width: auto;}
+	.mobile-avatar-btn {position: relative;box-shadow: none;border:none;outline: none;}
+	.mobile-burger-btn {position: relative;box-shadow: none;border:none;outline: none;}
+	.tb-mobile__profile-img-bg {background-image: url('');}
+	.red-dot-avatar {width: 7px; height: 7px; background: red; display: block; border-radius: var(--radius-xl); position: absolute; top: 1px; left: 30px;}
+	.red-dot-burger {width: 7px; height: 7px; background: red; display: block; border-radius: var(--radius-xl); position: absolute; top: -1px; left: 19px;}
+	.screen-reader-only {position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;}
+	
+	/* Navigation Menu Styles */
+	div.user-only{overflow: hidden;padding-left: 20px;min-height: 260px;}
+	#ae-mobile-navbar .li1{border: none;}
+	.dropdown-menu li a {display: inherit;} .dropdown-menu li a:hover{text-decoration: none;}
+	#ae-mobile-navbar .btn-navbar.tb-mobile--avatar {float: right;top: 4px;right: 20px;margin-top: 3px;}
+	#ae-mobile-navbar .btn-navbar.tb-mobile--avatar .tb-mobile__profile-img {width: 28px;height: 28px;background-size: contain;border: 1px solid white;border-radius: 50%;}
+	#ae-mobile-navbar .btn-navbar.tb-mobile--burger {float: right;top: 14px;right: 14px;margin:auto;position:relative;outline:none;}
+	.li-breaker{border-bottom: 1px solid #3b4249 !important;}
+	#ae-mobile-navbar .navbar-inner {background: transparent;}
+	#ae-mobile-navbar .btn-navbar{background: transparent;}
+	
+	/* City Select Styles */
+	.city-select-mobile-text {text-transform: none;margin-left: 0!important;max-width: 500px;}
+	.city-select-v-middle {vertical-align: middle;}
+	.city-select-width {width: 60%; max-width: 200px;}
+	.city-select-button{font-size: 16px !important;}
+	.city-select-button:hover{background: transparent;border} 
+	.city-select-button i{margin-left: 0 !important;padding-left: 7px !important;}
+	.city-select-desktop {text-transform: capitalize;margin-left: 0;padding: 7px 0px;margin-top:2px;color: var(--topbar-text);
+		border: none;
+		background: none;}
+	.city-select-icon-marker {margin-right: 3px;font-size: 16px !important;}
+	.city-select-icon-down {margin-left: 3px;color:#000;margin-right: 5px}
+	
+	/* Search Styles */
+	#searchd-input{height: 36px;max-width: 100%;width: 280px;border-radius: 0 20px 20px 0;margin-right: 10px;box-shadow: none;font-size: 14px;}
+	.search-icon-desktop {height: 39px; display: inline-flex; border-radius: 20px 0 0 20px;align-items: center;padding-left: 15px;}
+	.search-icon-mobile {
+		margin-top: 3px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 1001;
+	}
+	
+	/* Topbar Options */
+	.topbar-options {display: flex !important; justify-content: flex-end;gap:24px;align-items: center;}
+	.topbar-options-logged-out {padding-top: 3px;margin-left: 15px;}
+	.topbar-options a:focus{color:#fff;outline:unset;}
+	
+	/* Create Button Styles */
+	.create-btn-style {padding-right:0;text-decoration: none; color: var(--gray-800);}
+	.create-btn-icon {font-size: 14px; font-weight: 600; color: var(--gray-600)}
+	.topbar--transparent .create-btn-icon {color: var(--gray-400) !important}
+	.events-for-you-btn {padding-left: 24px;text-decoration: none;color: var(--gray-800);}
+	.events-for-you-icon {margin-right: 7px; font-size: 14px; font-weight: 600; color: var(--gray-600)}
+	.topbar--transparent .events-for-you-icon {color: var(--gray-400) !important}
+	
+	/* User Profile Styles */
+	.topuserinfo {width: auto;}
+	.topuserinfo:hover{background-color: #F0F9FF;border-radius: 20px;}
+	.topuserinfo .tthumb {height: 28px;width: 28px;vertical-align: middle;display: inline-block;background-size: cover !important;background-position: 50% 50% !important;background-repeat: no-repeat !important;margin-top: -2px;}
+	.user-dropdown-btn {line-height: 33px; width: 58px; height: 36px;border:none;border-radius: var(--radius-lg);}
+	.user-avatar-bg {background-size: 100%;background-size: cover;-moz-background-size: 100%;-moz-background-size: cover;border-radius: 50%;}
+	.user-angle-down {margin-left: 2px;}
+	.user-notification-badge {position: absolute;top: -2px;left: 2px;padding: 0px 5px;z-index: 4;}
+	
+	/* B2B Styles */
+	.b2b-dropdown-btn {outline: none; vertical-align: top;border:none;height: 34px;width: 34px;background-color: unset;box-shadow: unset;border:none;outline: none;}
+	.b2b-dropdown-cursor {cursor: pointer;}
+	.b2b-chatbot-transparent {background-color: transparent !important;filter: none !important;}
+	
+	/* Profile Menu Styles */
+	.profile-main-title {position: initial; display: contents;}
+	.profile-flex-container {width: 100%; display: flex; gap: 10px; align-items: center;}
+	.profile-name-weight {font-weight: 500;}
+	.profile-arrow-margin {margin-right:10px;}
+	.divider-margin-1 {margin: 10px 0px 18px 0px;}
+	.divider-margin-2 {margin: 10px 0px 12px 0px;}
+	.section-padding-0 {padding: 0;}
+	.app-download-bg {background:#F5F5F5;}
+	.app-download-color {color:#0A74BF}
+	.logout-line-height {line-height: normal;}
+	
+	/* Modal Styles */
+	.modal-subtitle {font-size: 15px;text-transform: none;}
+	.nearby-cities-title {text-transform: none;}
+	
+	/* Country Flag Styles */
+	.count-flag-display {display: inline-block;border-top: 1px dashed #ddd;}
+	
+	/* Hide Mode Styles */
+	.hide-mode-elements div.bluenavbar, .hide-mode-elements div.topbar, .hide-mode-elements div.footer1, .hide-mode-elements .aeblog #sidebar1{display: none;} 
+	.hide-mode-elements div.non-overlay{margin-top: 0;}
+	
+	/* Hide tbdapp on desktop */
+	.topbar .tbdapp {display: none;}
+
+	#login-top{color: var(--topbar-text)}
+		
+	@media(max-width: 767px){
+		.topbar {box-shadow:none !important;}
+		.page-head .container{width: 100% !important;}
+		.tbsearch .input-append{border: none; background: transparent;margin-right: -4px;border: none !important; } 
+		.topbar .tbhide.visible-desktop { display: none !important; } 
+		.topuserinfo.visible-desktop { display: none !important; } 
+		.tbsearch { 
+			position: absolute; 
+			top: 12px; 
+			left: 15px; 
+			z-index: 1001;
+			width: auto;
+			right: auto;
+		} 
+		#searchd-input { display: none; } 
+		#sd-in-btn { box-shadow: none; background: no-repeat; border: none; } 
+		.mob-left-bar ul { display: flex; flex-wrap: nowrap; background: whitesmoke; margin-bottom: 0; }
+		.topbar .top-cont{width: auto;}
+		.logo-cont { 
+			position: relative; 
+			z-index: 1001; 
+			display: block; 
+		}
+		.logo-span { 
+			position: relative; 
+			z-index: 1001; 
+		}
+		/* Manage drawer button styles for mobile */
+		.tbsearch_manage_drover_btn{
+			display: block !important;
+			position: absolute;
+			top: 12px;
+			left: 15px;
+			z-index: 1001;
+		}
+		.tbsearch_manage_drover_btn #manage-drover-btn{
+			background: transparent;
+			border: none;
+			outline: none;
+			box-shadow: none;
+			padding: 7px 10px;
+			font-size: 20px;
+			margin: 0;
+			color: #333;
+		}
+		.tbsearch_manage_drover_btn .btn:focus{
+			outline: none;
+			box-shadow: none;
+		}
+		
+				
+		#ae-mobile-navbar li>a{color:#333; margin: 0;padding: 8px 0px;}
+		#ae-mobile-navbar .mcity-select{background:#F3F5F7 !important;font-size:14px;padding: 0 !important; top:0; margin: 0 !important;text-transform:none;color:#0A74BF;}
+		#ae-nav-collapse,#ae-mobile-navbar .li1{background:#fff;border-radius:var(--radius-xl);}
+		#ae-nav-collapse ul{border:none;box-sizing: border-box;}
+		#ae-mobile-navbar .li1{box-shadow:unset;height: 36px; display: flex; align-items: center;}
+		.ae-top-visible-city{background: #F3F5F7 !important; border-radius: var(--radius-lg) !important; font-size:14px !important;margin-bottom: 10px;}
+		.ae-top-visible-city a{text-transform: capitalize;}
+
+		/* Overlay styles for mobile navigation */
+		body.nav-overlay::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1000; pointer-events: none; }
+
+		/* Ensure the overlay appears when navigation is open */
+		#ae-nav-collapse.in::before { pointer-events: auto; }
+		
+		/* Ensure tbdapp button stays above overlay */
+		.topbar .tbdapp {
+			z-index: 1001 !important;
+			position: relative;
+		}
+		
+		/* Fix mobile search icon positioning */
+		.search-icon-mobile {
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			padding-left: 0;
+			margin: 10px -5px;
+		}
+		
+		/* Ensure proper spacing between logo and search */
+		.logo-span-flex {
+			margin-right: 60px; /* Give space for search icon */
+		}
+		
+		/* Adjust search container positioning: clear of the avatar / menu button at the right edge
+		   (they sit at right:14-20px), otherwise the two overlap — hero pages set their own offset */
+		.tbsearch {
+			position: absolute;
+			top: 12px;
+			right: 60px;
+			left: auto;
+			z-index: 1001;
+		}
+	}
+	@media(max-width: 1000px){
+		.logo-span .logo-cont img {width: 105px;height: auto; margin-top:12px;}
+		/* Show manage drawer button on tablet and mobile */
+		.tbsearch_manage_drover_btn{
+			display: block !important;
+		}
+		
+	}
+
+	
+	@media (max-width: 767px) {
+		.navbar .btn-navbar {display: block;}
+		.show_for_b2b{margin-right: 60px; z-index: 1001 !important}
+	}
+
+	/* For the user dropdown button */
+	.btn-topbar .icon-angle-down {display: inline-block;transition: transform 0.2s ease-in-out;text-decoration: none !important; box-shadow: none !important}
+	.btn-topbar:hover .icon-angle-down {transform: rotate(180deg);}
+	
+	/* SVG Icon Styles */
+	.ae-icon-settings{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTkuMzk1MDQgMTkuMzcxMUw5Ljk3OTQ5IDIwLjY4NTZDMTAuMTUzMiAyMS4wNzY4IDEwLjQzNjggMjEuNDA5MyAxMC43OTU3IDIxLjY0MjZDMTEuMTU0NyAyMS44NzU5IDExLjU3MzYgMjIuMDAwMSAxMi4wMDE3IDIyQzEyLjQyOTggMjIuMDAwMSAxMi44NDg4IDIxLjg3NTkgMTMuMjA3NyAyMS42NDI2QzEzLjU2NjcgMjEuNDA5MyAxMy44NTAyIDIxLjA3NjggMTQuMDIzOSAyMC42ODU2TDE0LjYwODQgMTkuMzcxMUMxNC44MTY0IDE4LjkwNDcgMTUuMTY2NCAxOC41MTU5IDE1LjYwODQgMTguMjZDMTYuMDUzMiAxOC4wMDM0IDE2LjU2NzcgMTcuODk0MSAxNy4wNzg0IDE3Ljk0NzhMMTguNTA4NCAxOC4xQzE4LjkzNCAxOC4xNDUgMTkuMzYzNiAxOC4wNjU2IDE5Ljc0NTEgMTcuODcxM0MyMC4xMjY1IDE3LjY3NzEgMjAuNDQzNCAxNy4zNzYzIDIwLjY1NzMgMTcuMDA1NkMyMC44NzE0IDE2LjYzNSAyMC45NzM1IDE2LjIxMDMgMjAuOTUxIDE1Ljc4MjlDMjAuOTI4NSAxNS4zNTU1IDIwLjc4MjUgMTQuOTQzOCAyMC41MzA2IDE0LjU5NzhMMTkuNjgzOSAxMy40MzQ0QzE5LjM4MjUgMTMuMDE3MSAxOS4yMjE0IDEyLjUxNDggMTkuMjIzOSAxMkMxOS4yMjM4IDExLjQ4NjYgMTkuMzg2NCAxMC45ODY0IDE5LjY4ODQgMTAuNTcxMUwyMC41MzUgOS40MDc3OEMyMC43ODY5IDkuMDYxNzUgMjAuOTMzIDguNjUwMDcgMjAuOTU1NCA4LjIyMjY3QzIwLjk3NzkgNy43OTUyOCAyMC44NzU5IDcuMzcwNTQgMjAuNjYxNyA3QzIwLjQ0NzggNi42MjkyMyAyMC4xMzA5IDYuMzI4NDkgMTkuNzQ5NSA2LjEzNDIzQzE5LjM2ODEgNS45Mzk5NyAxOC45Mzg1IDUuODYwNTMgMTguNTEyOCA1LjkwNTU2TDE3LjA4MjggNi4wNTc3OEMxNi41NzIyIDYuMTExNDEgMTYuMDU3NiA2LjAwMjEyIDE1LjYxMjggNS43NDU1NkMxNS4xNjk5IDUuNDg4MjUgMTQuODE5OSA1LjA5NzM2IDE0LjYxMjggNC42Mjg4OUwxNC4wMjM5IDMuMzE0NDRDMTMuODUwMiAyLjkyMzE3IDEzLjU2NjcgMi41OTA3MiAxMy4yMDc3IDIuMzU3NEMxMi44NDg4IDIuMTI0MDggMTIuNDI5OCAxLjk5OTkzIDEyLjAwMTcgMkMxMS41NzM2IDEuOTk5OTMgMTEuMTU0NyAyLjEyNDA4IDEwLjc5NTcgMi4zNTc0QzEwLjQzNjggMi41OTA3MiAxMC4xNTMyIDIuOTIzMTcgOS45Nzk0OSAzLjMxNDQ0TDkuMzk1MDQgNC42Mjg4OUM5LjE4Nzk3IDUuMDk3MzYgOC44Mzc5MiA1LjQ4ODI1IDguMzk1MDQgNS43NDU1NkM3Ljk1MDI2IDYuMDAyMTIgNy40MzU3MSA2LjExMTQxIDYuOTI1MDQgNi4wNTc3OEw1LjQ5MDYgNS45MDU1NkM1LjA2NDkzIDUuODYwNTMgNC42MzUzNCA1LjkzOTk3IDQuMjUzOTEgNi4xMzQyM0MzLjg3MjQ5IDYuMzI4NDkgMy41NTU2MSA2LjYyOTIzIDMuMzQxNzEgN0MzLjEyNzUzIDcuMzcwNTQgMy4wMjU0OSA3Ljc5NTI4IDMuMDQ3OTggOC4yMjI2N0MzLjA3MDQ2IDguNjUwMDcgMy4yMTY1IDkuMDYxNzUgMy40NjgzOCA5LjQwNzc4TDQuMzE1MDQgMTAuNTcxMUM0LjYxNjk4IDEwLjk4NjQgNC43Nzk1OCAxMS40ODY2IDQuNzc5NDkgMTJDNC43Nzk1OCAxMi41MTM0IDQuNjE2OTggMTMuMDEzNyA0LjMxNTA0IDEzLjQyODlMMy40NjgzOCAxNC41OTIyQzMuMjE2NSAxNC45MzgyIDMuMDcwNDYgMTUuMzQ5OSAzLjA0Nzk4IDE1Ljc3NzNDMy4wMjU0OSAxNi4yMDQ3IDMuMTI3NTMgMTYuNjI5NSAzLjM0MTcxIDE3QzMuNTU1ODIgMTcuMzcwNiAzLjg3Mjc0IDE3LjY3MTIgNC4yNTQxMSAxNy44NjU0QzQuNjM1NDggMTguMDU5NiA1LjA2NDk2IDE4LjEzOTIgNS40OTA2IDE4LjA5NDRMNi45MjA2IDE3Ljk0MjJDNy40MzEyNyAxNy44ODg2IDcuOTQ1ODEgMTcuOTk3OSA4LjM5MDYgMTguMjU0NEM4LjgzNTEzIDE4LjUxMSA5LjE4NjgxIDE4LjkwMiA5LjM5NTA0IDE5LjM3MTFaIiBzdHJva2U9IiM2NjcwODUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+IDxwYXRoIGQ9Ik0xMS45OTk5IDE1QzEzLjY1NjggMTUgMTQuOTk5OSAxMy42NTY5IDE0Ljk5OTkgMTJDMTQuOTk5OSAxMC4zNDMxIDEzLjY1NjggOSAxMS45OTk5IDlDMTAuMzQzMSA5IDguOTk5OTIgMTAuMzQzMSA4Ljk5OTkyIDEyQzguOTk5OTIgMTMuNjU2OSAxMC4zNDMxIDE1IDExLjk5OTkgMTVaIiBzdHJva2U9IiM2NjcwODUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+IDwvc3ZnPg==');}
+	.ae-icon-cal{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTIxIDEwSDNNMjEgMTEuNVY4LjhDMjEgNy4xMTk4NCAyMSA2LjI3OTc2IDIwLjY3MyA1LjYzODAzQzIwLjM4NTQgNS4wNzM1NCAxOS45MjY1IDQuNjE0NiAxOS4zNjIgNC4zMjY5OEMxOC43MjAyIDQgMTcuODgwMiA0IDE2LjIgNEg3LjhDNi4xMTk4NCA0IDUuMjc5NzYgNCA0LjYzODAzIDQuMzI2OThDNC4wNzM1NCA0LjYxNDYgMy42MTQ2IDUuMDczNTQgMy4zMjY5OCA1LjYzODAzQzMgNi4yNzk3NiAzIDcuMTE5ODQgMyA4LjhWMTcuMkMzIDE4Ljg4MDIgMyAxOS43MjAyIDMuMzI2OTggMjAuMzYyQzMuNjE0NiAyMC45MjY1IDQuMDczNTQgMjEuMzg1NCA0LjYzODAzIDIxLjY3M0M1LjI3OTc2IDIyIDYuMTE5ODQgMjIgNy44IDIySDEyLjVNMTYgMlY2TTggMlY2TTE3LjQ5NzYgMTUuNzExOUMxNi43OTc4IDE0LjkzMjggMTUuNjMwOSAxNC43MjMyIDE0Ljc1NDEgMTUuNDM2N0MxMy44Nzc0IDE2LjE1MDEgMTMuNzUzOSAxNy4zNDMgMTQuNDQyNSAxOC4xODY4QzE1LjEzMSAxOS4wMzA2IDE3LjQ5NzYgMjEgMTcuNDk3NiAyMUMxNy40OTc2IDIxIDE5Ljg2NDIgMTkuMDMwNiAyMC41NTI3IDE4LjE4NjhDMjEuMjQxMyAxNy4zNDMgMjEuMTMyOSAxNi4xNDI2IDIwLjI0MTEgMTUuNDM2N0MxOS4zNDkyIDE0LjczMDcgMTguMTk3NCAxNC45MzI4IDE3LjQ5NzYgMTUuNzExOVoiIHN0cm9rZT0iIzY2NzA4NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4gPC9zdmc+');}
+	.ae-icon-inbox{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTIuNSAxMkg1Ljg4MTk3QzYuNTY3MTcgMTIgNy4xOTM1NyAxMi4zODcxIDcuNSAxM0M3LjgwNjQzIDEzLjYxMjkgOC40MzI4MyAxNCA5LjExODAzIDE0SDE0Ljg4MkMxNS41NjcyIDE0IDE2LjE5MzYgMTMuNjEyOSAxNi41IDEzQzE2LjgwNjQgMTIuMzg3MSAxNy40MzI4IDEyIDE4LjExOCAxMkgxOS41TTguOTY2NTYgNEgxNS4wMzM0QzE2LjExMDMgNCAxNi42NDg3IDQgMTcuMTI0MSA0LjE2Mzk2QzE3LjU0NDUgNC4zMDg5NiAxNy45Mjc0IDQuNTQ1NiAxOC4yNDUxIDQuODU2NzVDMTguNjA0MyA1LjIwODYgMTguODQ1MSA1LjY5MDIgMTkuMzI2NyA2LjY1MzM3TDIxLjQ5MzIgMTAuOTg2NUMyMS42ODIyIDExLjM2NDUgMjEuNzc2NyAxMS41NTM1IDIxLjg0MzQgMTEuNzUxNUMyMS45MDI2IDExLjkyNzUgMjEuOTQ1MyAxMi4xMDg1IDIxLjk3MSAxMi4yOTIzQzIyIDEyLjQ5OTIgMjIgMTIuNzEwNSAyMiAxMy4xMzMxVjE1LjJDMjIgMTYuODgwMiAyMiAxNy43MjAyIDIxLjY3MyAxOC4zNjJDMjEuMzg1NCAxOC45MjY1IDIwLjkyNjUgMTkuMzg1NCAyMC4zNjIgMTkuNjczQzE5LjcyMDIgMjAgMTguODgwMiAyMCAxNy4yIDIwSDYuOEM1LjExOTg0IDIwIDQuMjc5NzYgMjAgMy42MzgwMyAxOS42NzNDMy4wNzM1NCAxOS4zODU0IDIuNjE0NiAxOC45MjY1IDIuMzI2OTggMTguMzYyQzIgMTcuNzIwMiAyIDE2Ljg4MDIgMiAxNS4yVjEzLjEzMzFDMiAxMi43MTA1IDIgMTIuNDk5MiAyLjAyODk3IDEyLjI5MjNDMi4wNTQ3MSAxMi4xMDg1IDIuMDk3NDQgMTEuOTI3NSAyLjE1NjYyIDExLjc1MTVDMi4yMjMyNiAxMS41NTM1IDIuMzE3NzYgMTEuMzY0NSAyLjUwNjc1IDEwLjk4NjVMNC42NzMzMSA2LjY1MzM3QzUuMTU0OSA1LjY5MDE5IDUuMzk1NyA1LjIwODYgNS43NTQ5NSA0Ljg1Njc1QzYuMDcyNjMgNC41NDU2IDYuNDU1NTEgNC4zMDg5NiA2Ljg3NTg5IDQuMTYzOTZDNy4zNTEyNSA0IDcuODg5NjkgNCA4Ljk2NjU2IDRaIiBzdHJva2U9IiM2NjcwODUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+IDwvc3ZnPg==');} 
+	.ae-icon-plus-2 { background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDhWMTZNOCAxMkgxNk03LjggMjFIMTYuMkMxNy44ODAyIDIxIDE4LjcyMDIgMjEgMTkuMzYyIDIwLjY3M0MxOS45MjY1IDIwLjM4NTQgMjAuMzg1NCAxOS45MjY1IDIwLjY3MyAxOS4zNjJDMjEgMTguNzIwMiAyMSAxNy44ODAyIDIxIDE2LjJWNy44QzIxIDYuMTE5ODQgMjEgNS4yNzk3NiAyMC42NzMgNC42MzgwM0MyMC4zODU0IDQuMDczNTQgMTkuOTI2NSAzLjYxNDYgMTkuMzYyIDMuMzI2OThDMTguNzIwMiAzIDE3Ljg4MDIgMyAxNi4yIDNINy44QzYuMTE5ODQgMyA1LjI3OTc2IDMgNC42MzgwMyAzLjMyNjk4QzQuMDczNTQgMy42MTQ2IDMuNjE0NiA0LjA3MzU0IDMuMzI2OTggNC42MzgwM0MzIDUuMjc5NzYgMyA2LjExOTg0IDMgNy44VjE2LjJDMyAxNy44ODAyIDMgMTguNzIwMiAzLjMyNjk4IDE5LjM2MkMzLjYxNDYgMTkuOTI2NSA0LjA3MzU0IDIwLjM4NTQgNC42MzgwMyAyMC42NzNDNS4yNzk3NiAyMSA2LjExOTg0IDIxIDcuOCAyMVoiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo='); }
+	.ae-icon-plus{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTEwIDYuNjY2NjdWMTMuMzMzM002LjY2NjY3IDEwSDEzLjMzMzNNNi41IDE3LjVIMTMuNUMxNC45MDAxIDE3LjUgMTUuNjAwMiAxNy41IDE2LjEzNSAxNy4yMjc1QzE2LjYwNTQgMTYuOTg3OCAxNi45ODc4IDE2LjYwNTQgMTcuMjI3NSAxNi4xMzVDMTcuNSAxNS42MDAyIDE3LjUgMTQuOTAwMSAxNy41IDEzLjVWNi41QzE3LjUgNS4wOTk4NyAxNy41IDQuMzk5OCAxNy4yMjc1IDMuODY1MDJDMTYuOTg3OCAzLjM5NDYyIDE2LjYwNTQgMy4wMTIxNyAxNi4xMzUgMi43NzI0OEMxNS42MDAyIDIuNSAxNC45MDAxIDIuNSAxMy41IDIuNUg2LjVDNS4wOTk4NyAyLjUgNC4zOTk4IDIuNSAzLjg2NTAyIDIuNzcyNDhDMy4zOTQ2MiAzLjAxMjE3IDMuMDEyMTcgMy4zOTQ2MiAyLjc3MjQ4IDMuODY1MDJDMi41IDQuMzk5OCAyLjUgNS4wOTk4NyAyLjUgNi41VjEzLjVDMi41IDE0LjkwMDEgMi41IDE1LjYwMDIgMi43NzI0OCAxNi4xMzVDMy4wMTIxNyAxNi42MDU0IDMuMzk0NjIgMTYuOTg3OCAzLjg2NTAyIDE3LjIyNzVDNC4zOTk4IDE3LjUgNS4wOTk4NyAxNy41IDYuNSAxNy41WiIgc3Ryb2tlPSIjNjY3MDg1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPiA8L3N2Zz4=');}
+	.ae-icon-anotation-heart{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTIuNSA2LjVDMi41IDUuMDk5ODcgMi41IDQuMzk5OCAyLjc3MjQ4IDMuODY1MDJDMy4wMTIxNyAzLjM5NDYyIDMuMzk0NjIgMy4wMTIxNyAzLjg2NTAyIDIuNzcyNDhDNC4zOTk4IDIuNSA1LjA5OTg3IDIuNSA2LjUgMi41SDEzLjVDMTQuOTAwMSAyLjUgMTUuNjAwMiAyLjUgMTYuMTM1IDIuNzcyNDhDMTYuNjA1NCAzLjAxMjE3IDE2Ljk4NzggMy4zOTQ2MiAxNy4yMjc1IDMuODY1MDJDMTcuNSA0LjM5OTggMTcuNSA1LjA5OTg3IDE3LjUgNi41VjExLjI1QzE3LjUgMTIuNDE0OSAxNy41IDEyLjk5NzMgMTcuMzA5NyAxMy40NTY3QzE3LjA1NiAxNC4wNjkzIDE2LjU2OTMgMTQuNTU2IDE1Ljk1NjcgMTQuODA5N0MxNS40OTczIDE1IDE0LjkxNDkgMTUgMTMuNzUgMTVDMTMuMzQyOSAxNSAxMy4xMzkzIDE1IDEyLjk1MDQgMTUuMDQ0NkMxMi42OTg2IDE1LjEwNCAxMi40NjQxIDE1LjIyMTMgMTIuMjY1NCAxNS4zODcxQzEyLjExNjQgMTUuNTExNCAxMS45OTQzIDE1LjY3NDMgMTEuNzUgMTZMMTAuNTMzMyAxNy42MjIyQzEwLjM1MjQgMTcuODYzNSAxMC4yNjE5IDE3Ljk4NDEgMTAuMTUxIDE4LjAyNzJDMTAuMDUzOSAxOC4wNjUgOS45NDYxMSAxOC4wNjUgOS44NDg5NyAxOC4wMjcyQzkuNzM4MDcgMTcuOTg0MSA5LjY0NzYgMTcuODYzNSA5LjQ2NjY3IDE3LjYyMjJMOC4yNSAxNkM4LjAwNTcxIDE1LjY3NDMgNy44ODM1NyAxNS41MTE0IDcuNzM0NTggMTUuMzg3MUM3LjUzNTkzIDE1LjIyMTMgNy4zMDE0MSAxNS4xMDQgNy4wNDk1OSAxNS4wNDQ2QzYuODYwNzIgMTUgNi42NTcxNSAxNSA2LjI1IDE1QzUuMDg1MTUgMTUgNC41MDI3MiAxNSA0LjA0MzI5IDE0LjgwOTdDMy40MzA3MiAxNC41NTYgMi45NDQwNCAxNC4wNjkzIDIuNjkwMyAxMy40NTY3QzIuNSAxMi45OTczIDIuNSAxMi40MTQ5IDIuNSAxMS4yNVY2LjVaIiBzdHJva2U9IiM2NjcwODUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+IDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNOS45OTc3MiA2Ljk0MjE2QzkuMzMxMjcgNi4xODQ2NyA4LjIxOTkyIDUuOTgwOSA3LjM4NDkgNi42NzQ1NEM2LjU0OTg4IDcuMzY4MTggNi40MzIzMiA4LjUyNzkxIDcuMDg4MDcgOS4zNDgyOEM3LjQ3OCA5LjgzNjExIDguNDMzMDcgMTAuNzEwOSA5LjE0MzI3IDExLjMzOTlDOS40MzY0NCAxMS41OTk2IDkuNTgzMDIgMTEuNzI5NCA5Ljc1OTQ2IDExLjc4MjFDOS45MTA0MiAxMS44MjcxIDEwLjA4NSAxMS44MjcxIDEwLjIzNiAxMS43ODIxQzEwLjQxMjQgMTEuNzI5NCAxMC41NTkgMTEuNTk5NiAxMC44NTIyIDExLjMzOTlDMTEuNTYyNCAxMC43MTA5IDEyLjUxNzQgOS44MzYxMSAxMi45MDc0IDkuMzQ4MjhDMTMuNTYzMSA4LjUyNzkxIDEzLjQ1OTkgNy4zNjA4OCAxMi42MTA1IDYuNjc0NTRDMTEuNzYxMiA1Ljk4ODIgMTAuNjY0MiA2LjE4NDY3IDkuOTk3NzIgNi45NDIxNloiIHN0cm9rZT0iIzY2NzA4NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4gPC9zdmc+');}
+	.ae-icon-time{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTkuOTk5ODQgMS42NjY2M0MxNC42MDIyIDEuNjY2NjMgMTguMzMzMiA1LjM5NzU4IDE4LjMzMzIgOS45OTk5NkMxOC4zMzMyIDE0LjYwMjMgMTQuNjAyMiAxOC4zMzMzIDkuOTk5ODQgMTguMzMzM0M1LjM5NzQ2IDE4LjMzMzMgMS42NjY1IDE0LjYwMjMgMS42NjY1IDkuOTk5OTZIMy4zMzMxN0MzLjMzMzE3IDEzLjY4MTkgNi4zMTc5NCAxNi42NjY2IDkuOTk5ODQgMTYuNjY2NkMxMy42ODE4IDE2LjY2NjYgMTYuNjY2NSAxMy42ODE5IDE2LjY2NjUgOS45OTk5NkMxNi42NjY1IDYuMzE4MDYgMTMuNjgxOCAzLjMzMzI5IDkuOTk5ODQgMy4zMzMyOUM3LjcwODM1IDMuMzMzMjkgNS42ODY4OSA0LjQ4OTQxIDQuNDg2OTMgNi4yNTAxNkw2LjY2NjUgNi4yNDk5NlY3LjkxNjYzSDEuNjY2NVYyLjkxNjYzSDMuMzMzMTdMMy4zMzMwOCA0Ljk5OTI4QzQuODUzNDUgMi45NzU1OCA3LjI3Mzc4IDEuNjY2NjMgOS45OTk4NCAxLjY2NjYzWk0xMC44MzMyIDUuODMzMjlMMTAuODMzIDkuNjU0MTJMMTMuNTM1MyAxMi4zNTdMMTIuMzU2OCAxMy41MzU1TDkuMTY2MzQgMTAuMzQ0MUw5LjE2NjUgNS44MzMyOUgxMC44MzMyWiIgZmlsbD0iIzY2NzA4NSIvPiA8L3N2Zz4=');}
+	.ae-icon-square-question{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTcuNTc1IDcuNUM3Ljc3MDkyIDYuOTQzMDYgOC4xNTc2MyA2LjQ3MzQyIDguNjY2NjMgNi4xNzQyOEM5LjE3NTYzIDUuODc1MTMgOS43NzQwOCA1Ljc2NTc4IDEwLjM1NiA1Ljg2NTU5QzEwLjkzNzkgNS45NjU0IDExLjQ2NTcgNi4yNjc5NCAxMS44NDU5IDYuNzE5NjFDMTIuMjI2MSA3LjE3MTI4IDEyLjQzNDIgNy43NDI5NCAxMi40MzMzIDguMzMzMzNDMTIuNDMzMyAxMCA5LjkzMzMzIDEwLjgzMzMgOS45MzMzMyAxMC44MzMzTTEwIDE0LjE2NjdIMTAuMDA4M002LjUgMTcuNUgxMy41QzE0LjkwMDEgMTcuNSAxNS42MDAyIDE3LjUgMTYuMTM1IDE3LjIyNzVDMTYuNjA1NCAxNi45ODc4IDE2Ljk4NzggMTYuNjA1NCAxNy4yMjc1IDE2LjEzNUMxNy41IDE1LjYwMDIgMTcuNSAxNC45MDAxIDE3LjUgMTMuNVY2LjVDMTcuNSA1LjA5OTg3IDE3LjUgNC4zOTk4IDE3LjIyNzUgMy44NjUwMkMxNi45ODc4IDMuMzk0NjIgMTYuNjA1NCAzLjAxMjE3IDE2LjEzNSAyLjc3MjQ4QzE1LjYwMDIgMi41IDE0LjkwMDEgMi41IDEzLjUgMi41SDYuNUM1LjA5OTg3IDIuNSA0LjM5OTggMi41IDMuODY1MDIgMi43NzI0OEMzLjM5NDYyIDMuMDEyMTcgMy4wMTIxNyAzLjM5NDYyIDIuNzcyNDggMy44NjUwMkMyLjUgNC4zOTk4IDIuNSA1LjA5OTg3IDIuNSA2LjVWMTMuNUMyLjUgMTQuOTAwMSAyLjUgMTUuNjAwMiAyLjc3MjQ4IDE2LjEzNUMzLjAxMjE3IDE2LjYwNTQgMy4zOTQ2MiAxNi45ODc4IDMuODY1MDIgMTcuMjI3NUM0LjM5OTggMTcuNSA1LjA5OTg3IDE3LjUgNi41IDE3LjVaIiBzdHJva2U9IiM2NjcwODUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+IDwvc3ZnPg==');} 
+	.ae-icon-marker{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTEyIDIyQzEzIDE3IDIwIDE2LjQxODMgMjAgMTBDMjAgNS41ODE3MiAxNi40MTgzIDIgMTIgMkM3LjU4MTcyIDIgNCA1LjU4MTcyIDQgMTBDNCAxNi40MTgzIDExIDE3IDEyIDIyWiIgc3Ryb2tlPSIjNjY3MDg1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPiA8cGF0aCBkPSJNMTIgMTNDMTMuNjU2OSAxMyAxNSAxMS42NTY5IDE1IDEwQzE1IDguMzQzMTUgMTMuNjU2OSA3IDEyIDdDMTAuMzQzMSA3IDkgOC4zNDMxNSA5IDEwQzkgMTEuNjU2OSAxMC4zNDMxIDEzIDEyIDEzWiIgc3Ryb2tlPSIjNjY3MDg1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPiA8L3N2Zz4=');}
+	.ae-icon-logout{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTEzLjMzMzMgMTQuMTY2N0wxNy41IDEwTTE3LjUgMTBMMTMuMzMzMyA1LjgzMzMzTTE3LjUgMTBINy41TTcuNSAyLjVINi41QzUuMDk5ODcgMi41IDQuMzk5OCAyLjUgMy44NjUwMiAyLjc3MjQ4QzMuMzk0NjIgMy4wMTIxNyAzLjAxMjE3IDMuMzk0NjIgMi43NzI0OCAzLjg2NTAyQzIuNSA0LjM5OTggMi41IDUuMDk5ODcgMi41IDYuNVYxMy41QzIuNSAxNC45MDAxIDIuNSAxNS42MDAyIDIuNzcyNDggMTYuMTM1QzMuMDEyMTcgMTYuNjA1NCAzLjM5NDYyIDE2Ljk4NzggMy44NjUwMiAxNy4yMjc1QzQuMzk5OCAxNy41IDUuMDk5ODcgMTcuNSA2LjUgMTcuNUg3LjUiIHN0cm9rZT0iIzY2NzA4NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4gPC9zdmc+');}
+	.ae-icon-left-arrow{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE3IDE2IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTYuNSAxMkwxMC41IDhMNi41IDQiIHN0cm9rZT0iIzY2NzA4NSIgc3Ryb2tlLXdpZHRoPSIxLjY2NjY3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+');}
+	.ae-icon-login{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gPHBhdGggZD0iTTYgMTdDNiAxNy45MyA2IDE4LjM5NSA2LjEwMjIyIDE4Ljc3NjVDNi4zNzk2MiAxOS44MTE3IDcuMTg4MjcgMjAuNjIwNCA4LjIyMzU0IDIwLjg5NzhDOC42MDUwNCAyMSA5LjA3MDAzIDIxIDEwIDIxSDE2LjJDMTcuODgwMiAyMSAxOC43MjAyIDIxIDE5LjM2MiAyMC42NzNDMTkuOTI2NSAyMC4zODU0IDIwLjM4NTQgMTkuOTI2NSAyMC42NzMgMTkuMzYyQzIxIDE4LjcyMDIgMjEgMTcuODgwMiAyMSAxNi4yVjcuOEMyMSA2LjExOTg0IDIxIDUuMjc5NzYgMjAuNjczIDQuNjM4MDNDMjAuMzg1NCA0LjA3MzU0IDE5LjkyNjUgMy42MTQ2IDE5LjM2MiAzLjMyNjk4QzE4LjcyMDIgMyAxNy44ODAyIDMgMTYuMiAzSDEwQzkuMDcwMDMgMyA4LjYwNTA0IDMgOC4yMjM1NCAzLjEwMjIyQzcuMTg4MjcgMy4zNzk2MiA2LjM3OTYyIDQuMTg4MjcgNi4xMDIyMiA1LjIyMzU0QzYgNS42MDUwNCA2IDYuMDcwMDMgNiA3TTEyIDhMMTYgMTJNMTYgMTJMMTIgMTZNMTYgMTJIMyIgc3Ryb2tlPSIjNjY3MDg1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPiA8L3N2Zz4=');}
+	.for-phone {background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTkuOTk5ODQgMTQuNTgzNEgxMC4wMDgyTTYuODMzMTcgMTguMzMzNEgxMy4xNjY1QzE0LjA5OTkgMTguMzMzNCAxNC41NjY2IDE4LjMzMzQgMTQuOTIzMiAxOC4xNTE3QzE1LjIzNjggMTcuOTkxOSAxNS40OTE3IDE3LjczNjkgMTUuNjUxNSAxNy40MjMzQzE1LjgzMzIgMTcuMDY2OCAxNS44MzMyIDE2LjYwMDEgMTUuODMzMiAxNS42NjY3VjQuMzMzMzVDMTUuODMzMiAzLjM5OTkzIDE1LjgzMzIgMi45MzMyMiAxNS42NTE1IDIuNTc2N0MxNS40OTE3IDIuMjYzMSAxNS4yMzY4IDIuMDA4MTMgMTQuOTIzMiAxLjg0ODM0QzE0LjU2NjYgMS42NjY2OSAxNC4wOTk5IDEuNjY2NjkgMTMuMTY2NSAxLjY2NjY5SDYuODMzMTdDNS44OTk3NSAxLjY2NjY5IDUuNDMzMDQgMS42NjY2OSA1LjA3NjUyIDEuODQ4MzRDNC43NjI5MiAyLjAwODEzIDQuNTA3OTUgMi4yNjMxIDQuMzQ4MTYgMi41NzY3QzQuMTY2NSAyLjkzMzIyIDQuMTY2NSAzLjM5OTkzIDQuMTY2NSA0LjMzMzM1VjE1LjY2NjdDNC4xNjY1IDE2LjYwMDEgNC4xNjY1IDE3LjA2NjggNC4zNDgxNiAxNy40MjMzQzQuNTA3OTUgMTcuNzM2OSA0Ljc2MjkyIDE3Ljk5MTkgNS4wNzY1MiAxOC4xNTE3QzUuNDMzMDQgMTguMzMzNCA1Ljg5OTc1IDE4LjMzMzQgNi44MzMxNyAxOC4zMzM0Wk0xMC40MTY1IDE0LjU4MzRDMTAuNDE2NSAxNC44MTM1IDEwLjIzIDE1IDkuOTk5ODQgMTVDOS43Njk3MiAxNSA5LjU4MzE3IDE0LjgxMzUgOS41ODMxNyAxNC41ODM0QzkuNTgzMTcgMTQuMzUzMiA5Ljc2OTcyIDE0LjE2NjcgOS45OTk4NCAxNC4xNjY3QzEwLjIzIDE0LjE2NjcgMTAuNDE2NSAxNC4zNTMyIDEwLjQxNjUgMTQuNTgzNFoiIHN0cm9rZT0iIzJEOUNEQiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+');}
+	.ae-icon-ticket{background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTYuNjY2ODMgNS4zMzI2OFY0LjY2NjAyTTYuNjY2ODMgOC4zMzI2OFY3LjY2NjAyTTYuNjY2ODMgMTEuMzMyN1YxMC42NjZNMy40NjY4MyAyLjY2NjAySDEyLjUzMzVDMTMuMjgwMiAyLjY2NjAyIDEzLjY1MzYgMi42NjYwMiAxMy45Mzg4IDIuODExMzRDMTQuMTg5NyAyLjkzOTE3IDE0LjM5MzcgMy4xNDMxNSAxNC41MjE1IDMuMzk0MDNDMTQuNjY2OCAzLjY3OTI0IDE0LjY2NjggNC4wNTI2MSAxNC42NjY4IDQuNzk5MzVWNS42NjYwMkMxMy4zNzgyIDUuNjY2MDIgMTIuMzMzNSA2LjcxMDY4IDEyLjMzMzUgNy45OTkzNUMxMi4zMzM1IDkuMjg4MDEgMTMuMzc4MiAxMC4zMzI3IDE0LjY2NjggMTAuMzMyN1YxMS4xOTkzQzE0LjY2NjggMTEuOTQ2MSAxNC42NjY4IDEyLjMxOTUgMTQuNTIxNSAxMi42MDQ3QzE0LjM5MzcgMTIuODU1NiAxNC4xODk3IDEzLjA1OTUgMTMuOTM4OCAxMy4xODc0QzEzLjY1MzYgMTMuMzMyNyAxMy4yODAyIDEzLjMzMjcgMTIuNTMzNSAxMy4zMzI3SDMuNDY2ODNDMi43MjAwOSAxMy4zMzI3IDIuMzQ2NzIgMTMuMzMyNyAyLjA2MTUxIDEzLjE4NzRDMS44MTA2MyAxMy4wNTk1IDEuNjA2NjUgMTIuODU1NiAxLjQ3ODgyIDEyLjYwNDdDMS4zMzM1IDEyLjMxOTUgMS4zMzM1IDExLjk0NjEgMS4zMzM1IDExLjE5OTNWMTAuMzMyN0MyLjYyMjE2IDEwLjMzMjcgMy42NjY4MyA5LjI4ODAxIDMuNjY2ODMgNy45OTkzNUMzLjY2NjgzIDYuNzEwNjggMi42MjIxNiA1LjY2NjAyIDEuMzMzNSA1LjY2NjAyVjQuNzk5MzVDMS4zMzM1IDQuMDUyNjEgMS4zMzM1IDMuNjc5MjQgMS40Nzg4MiAzLjM5NDAzQzEuNjA2NjUgMy4xNDMxNSAxLjgxMDYzIDIuOTM5MTcgMi4wNjE1MSAyLjgxMTM0QzIuMzQ2NzIgMi42NjYwMiAyLjcyMDA5IDIuNjY2MDIgMy40NjY4MyAyLjY2NjAyWiIgc3Ryb2tlPSIjNjY3MDg1IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==')}
+
+/* Base topbar styles */
+.topbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Transparent variant (light text on dark/image backgrounds) */
+.topbar--transparent {
+    background: transparent;
+}
+
+.topbar--transparent .top-cont {
+    background: transparent;
+}
+
+.topbar--transparent .top-cont-row {
+    background: transparent;
+}
+
+/* Light theme elements for transparent variant */
+.topbar--transparent {
+    --topbar-text: #ffffff;
+    --topbar-icon: #ffffff;
+    --topbar-border: rgba(255, 255, 255, 0.3);
+    --topbar-input-bg: rgba(255, 255, 255, 0.1);
+    --topbar-hover: rgba(255, 255, 255, 0.8);
+}
+
+/* Dark theme elements for white variant */
+.topbar--white {
+    --topbar-text: var(--gray-800);
+    --topbar-icon: var(--gray-600);
+    --topbar-border: #E5E7EB;
+    --topbar-input-bg: #ffffff;
+    --topbar-hover: #0A74BF;
+}
+
+/* Common elements with variable colors */
+.topbar .icon-map-marker-2,
+.topbar .icon-angle-down {
+    color: var(--topbar-icon);
+}
+
+.topbar .tbsearch .input-append {
+    border: 1.5px solid var(--topbar-border);
+    background: var(--topbar-input-bg);
+}
+
+.topbar #searchd-input {
+    color: var(--topbar-text);
+}
+
+.topbar #searchd-input::placeholder {
+    color: var(--topbar-text);
+    opacity: 0.7;
+}
+
+/* Logo variants: transparent bar (over the hero) uses the white logo, /img/ae-logo-website-v2.svg;
+   the white-background and scrolled states use the dark one */
+.topbar--transparent .logo-light {
+    display: block;
+}
+
+.topbar--transparent .logo-dark {
+    display: none;
+}
+
+.topbar--white .logo-light {
+    display: none;
+}
+
+.topbar--white .logo-dark {
+    display: block;
+}
+
+/* nav overlay open: on a see-through bar the dark overlay shows behind the logo (logo-cont z-index
+   1001), so it switches to the white artwork while the panel is open. A white bar (manage pages,
+   scrolled pages) keeps its own dark logo — the bar itself still covers the overlay there. */
+body.nav-overlay .topbar--transparent.topbar--hero:not(.scrolled) .logo-dark { display: none !important; }
+body.nav-overlay .topbar--transparent.topbar--hero:not(.scrolled) .logo-light { display: block !important; }
+
+/* SVG icon colors */
+.topbar--transparent .new-svg-icon {
+    filter: none !important;
+}
+
+.topbar--white .new-svg-icon {
+    filter: none; /* Original colors */
+}
+
+/* Search icon colors */
+.topbar--transparent .search-icon-desktop svg path {
+    stroke: #ffffff;
+}
+
+.topbar--white .search-icon-desktop svg path {
+    stroke: #30363E;
+}
+
+/* Button styles */
+.topbar--transparent .create-btn-style,
+.topbar--transparent .events-for-you-btn {
+    color: var(--topbar-text) !important;
+}
+
+/* Hover states */
+.topbar--transparent .city-select-button:hover {
+    color: var(--topbar-hover) !important;
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Semi-transparent white */
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+/* Topuserinfo hover states for transparent variant */
+.topbar--transparent .topuserinfo:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Semi-transparent white */
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+.events-for-you-btn:hover, .create-btn-style:hover{text-decoration: none !important; color: var(--gray-900)}
+
+/* Scrolled state for transparent variant */
+.topbar--transparent.scrolled {
+    background: var(--white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.topbar--transparent.scrolled {
+    --topbar-text: #333333;
+    --topbar-icon: #667085;
+    --topbar-border: #E5E7EB;
+    --topbar-input-bg: #ffffff;
+    --topbar-hover: #0A74BF;
+	--city-hover: #F0F9FF;
+}
+
+.topbar--transparent.scrolled .logo-light {
+    display: none;
+}
+
+.topbar--transparent.scrolled .logo-dark {
+    display: block;
+}
+
+.topbar--transparent.scrolled .new-svg-icon {
+    filter: none;
+}
+
+/* Mobile styles */
+@media(max-width: 767px) {
+    .topbar--transparent,
+    .topbar--white {
+        background: var(--white);
+    }
+    
+    /* Force dark theme on mobile regardless of variant */
+    .topbar--transparent {
+        --topbar-text: #333333;
+        --topbar-icon: #667085;
+        --topbar-border: #E5E7EB;
+        --topbar-input-bg: #ffffff;
+        --topbar-hover: #0A74BF;
+    }
+    
+    .topbar--transparent .logo-light {
+        display: none;
+    }
+    
+    .topbar--transparent .logo-dark {
+        display: block;
+    }
+    
+    /* homepage / category pages: the bar stays see-through over the hero on mobile, so it keeps the
+       white logo — until it scrolls, where the bar turns solid and the dark logo is the readable one */
+    .topbar--transparent.topbar--hero:not(.scrolled) .logo-light {
+        display: block;
+    }
+    
+    .topbar--transparent.topbar--hero:not(.scrolled) .logo-dark {
+        display: none;
+    }
+    
+    .topbar--transparent .new-svg-icon {
+        filter: none;
+    }
+
+	.navbar-inner{min-height: 55px !important}
+}
+
+/* Mobile specific styles */
+@media(max-width: 767px) {
+    .topbar--transparent {
+        background: var(--white);
+    }
+    
+    .topbar--white .tbdapp,
+    .topbar--transparent .tbdapp {
+        font-size: 12px;
+        display: block;
+        padding: 7px 12px;
+        color: var(--primary-default);
+        background-color: transparent;
+        border: 1px solid var(--primary-default);
+        border-radius: 9999px;
+        cursor: pointer;
+        font-weight: 700;
+        position: absolute;
+        top: 13px;
+        right: 100px;
+        line-height: normal;
+        font-family: "Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+        z-index: 1001 !important;
+    }
+    
+    /* Adjust positions when logged in */
+    .lg1.topbar--white .tbdapp,
+    .lg1.topbar--transparent .tbdapp {
+        right: 115px;
+    }
+    
+    .lg1.topbar--white .tbsearch,
+    .lg1.topbar--transparent .tbsearch {
+        top: 13px;
+        right: 80px;
+    }
+	.topbar .tbsearch .input-append{
+		background: none !important;
+	}
+	
+	/* Responsive adjustments for different screen sizes */
+	@media (max-width: 480px) {
+		.logo-span-flex {
+			margin-right: 50px;
+		} 
+		.tbsearch {
+			right: 10px;
+		}
+	}
+	
+	@media (min-width: 481px) and (max-width: 767px) {
+		.logo-span-flex {
+			margin-right: 60px;
+		}
+		.tbsearch {
+			right: 15px;
+		}
+	}
+}
+
+/* Hover states */
+.city-select-button:hover .city-select-icon-marker{
+    color: var(--primary-default, #0A74BF);
+}
+.city-select-button:hover{
+    background-color: var(--city-hover);
+	border-radius: 20px;
+	transition: all 0.2s ease;
+}
+
+/* Button styles for both variants */
+.topbar--white .topbar-btn,
+.topbar--transparent .topbar-btn {
+    background: none !important;
+    font-size: 14px !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Search input styles for both variants */
+.topbar--white #searchd-input,
+.topbar--transparent #searchd-input {
+    height: 38px;
+    max-width: 100%;
+    width: 240px;
+    border-radius: 0 20px 20px 0;
+    margin-right: 10px;
+    box-shadow: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+/* Add this to the existing CSS section */
+
+/* Vertical line divider styles */
+.vertical-line {
+    display: inline-block;
+    color: var(--gray-300, #D9D9D9);
+    margin: 1px 7px 0px 14px;
+    font-size: 15px;
+    line-height: 36px;
+    vertical-align: middle;
+}
+
+/* Ensure proper alignment of surrounding elements */
+.logo-span-flex {
+    display: flex;
+    align-items: start;
+	flex: 1;
+}
+
+.logo-cont {
+    display: inline-flex;
+    align-items: center;
+}
+
+.city-select-wrapper {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* manage-area breadcrumb: organizer page chip › event chip, each with a switcher menu */
+.tb-context {
+    display: inline-flex;
+    align-items: center;
+    align-self: center; /* .logo-span-flex aligns its children to start */
+    gap: 4px;
+    margin-left: 14px;
+    min-width: 0;
+    max-width: 60vw;
+}
+.tb-context .tb-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 5px 9px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 1px 2px rgba(16,24,40,.04);
+    font-size: var(--font-sm);
+    line-height: 18px;
+    font-weight: var(--medium);
+    color: var(--gray-700);
+    cursor: pointer;
+}
+.tb-context .tb-chip:hover { background: var(--gray-100); border-color: var(--gray-300); }
+.tb-context a.tb-chip, .tb-context a.tb-chip:hover { text-decoration: none; color: var(--gray-700); } /* left-menu fallback renders a link */
+.tb-context .tb-chip-name:empty { display: none; } /* no name resolved: don't leave dead space in the pill */
+.tb-context .tb-chip-dot { width: 8px; height: 8px; border-radius: var(--radius-xl); flex: none; background: var(--gray-400); }
+/* status colours; the cascade that picks the class is $tb_event_status_cls above */
+.tb-context .tb-chip-dot.is-live { background: var(--success-dark); }
+.tb-context .tb-chip-dot.is-draft { background: var(--warning-light); }
+.tb-context .tb-chip-dot.is-orange { background: var(--warning-dark); }
+.tb-context .tb-chip-dot.is-blue { background: var(--primary-dark); }
+.tb-context .tb-chip-dot.is-red { background: var(--danger-dark); }
+.tb-context .tb-chip-dot.is-purple { background: #5925DC; }
+.tb-context .tb-chip-name { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tb-context .tb-chip-event .tb-chip-name { max-width: 340px; } /* event names run long — give them the room */
+.tb-context .tb-chip-text { display: flex; flex-direction: column; min-width: 0; gap: 0; }
+.tb-context .tb-chip-meta { max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+	font-size: var(--font-xs); line-height: 14px; font-weight: var(--regular); color: var(--gray-500); }
+/* organizer avatar + › in front of the event chip. a.class: outranks .bootstrap-iso a on promote pages */
+.tb-context a.tb-org-avatar { position: relative; display: inline-block; flex: 0 0 32px; width: 32px; height: 32px; min-width: 32px;
+	padding: 0; box-sizing: border-box; line-height: 0; text-decoration: none; border: none; border-radius: 50%; background: transparent; }
+/* photo, white gap and ring are one element (border + box-shadow), so they can never drift apart at
+   sub-pixel positions: 1px ring outside a 2px white border around the image, 32px overall */
+.tb-context a.tb-org-avatar .tb-org-avatar-img { position: absolute; top: 1px; right: 1px; bottom: 1px; left: 1px; box-sizing: border-box;
+	border: 2px solid var(--white, #fff); border-radius: 50%; box-shadow: 0 0 0 1px var(--gray-200, #F0F0F0);
+	background-color: var(--white, #fff); background-position: center; background-size: cover; background-repeat: no-repeat; background-clip: padding-box;
+	transition: box-shadow .2s ease, transform .3s cubic-bezier(.4, 0, .2, 1); }
+/* hover / keyboard focus: the image eases back and a home icon pops in — "go to the organizer's All Events" */
+.tb-context a.tb-org-avatar .tb-org-avatar-home { position: absolute; top: 3px; right: 3px; bottom: 3px; left: 3px; display: flex;
+	align-items: center; justify-content: center; border-radius: 50%; color: var(--white, #fff); background: rgba(0, 98, 168, .78);
+	opacity: 0; transform: scale(.5); transition: opacity .2s ease, transform .3s cubic-bezier(.34, 1.56, .64, 1); }
+.tb-context a.tb-org-avatar:hover .tb-org-avatar-img, .tb-context a.tb-org-avatar:focus-visible .tb-org-avatar-img { box-shadow: 0 0 0 1px var(--primary-default, #0A74BF); }
+.tb-context a.tb-org-avatar:hover .tb-org-avatar-home, .tb-context a.tb-org-avatar:focus-visible .tb-org-avatar-home { opacity: 1; transform: none; }
+.tb-context a.tb-org-avatar:focus { outline: none; }
+.tb-context a.tb-org-avatar:focus-visible { outline: 2px solid var(--primary-default, #0A74BF); outline-offset: 2px; }
+.tb-context .tb-context-sep { flex: none; margin: 0 var(--spacing-2xs, 6px) 0 2px; font-size: var(--font-sm, 14px); color: var(--gray-400, #B3B4B7); }
+@media (prefers-reduced-motion: reduce) {
+	.tb-context a.tb-org-avatar, .tb-context a.tb-org-avatar .tb-org-avatar-img, .tb-context a.tb-org-avatar .tb-org-avatar-home, .tb-context .tb-chip-caret i { transition: none; }
+}
+.tb-context .tb-chip-event.tb-chip-has-meta { padding-top: 4px; padding-bottom: 4px; align-items: center; }
+
+/* ── event chip: split pill (link + caret) with an expandable detail card ───────── */
+.tb-context .tb-evc-wrap { position: relative; display: inline-flex; min-width: 0; }
+.tb-context button.tb-chip { font-family: inherit; text-align: left; }
+.tb-context .tb-chip-split { padding: 5px 8px 5px 9px; gap: 7px; }
+.tb-context .tb-chip-split .tb-chip-main { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
+.tb-context .tb-chip-caret { flex: none; color: var(--gray-500); font-size: var(--font-sm); line-height: 18px; }
+.tb-context .tb-chip-split:hover .tb-chip-caret { color: var(--gray-900); }
+.tb-context .tb-chip-caret i { display: inline-block; transition: transform .3s cubic-bezier(.4, 0, .2, 1); }
+.tb-context .tb-evc-wrap.is-open .tb-chip-caret i { transform: rotate(180deg); }
+
+/* preview action: the pill frame moves to the wrapper so the toggle and the preview link
+   read as one control, split by a hairline divider */
+.tb-context .tb-evc-wrap.tb-evc-framed { background: var(--white); border: 1px solid var(--gray-200);
+	border-radius: var(--radius-xl); box-shadow: 0 1px 2px rgba(16,24,40,.04); }
+.tb-context .tb-evc-framed:hover { border-color: var(--gray-300); }
+.tb-context .tb-evc-framed > .tb-chip-event { background: transparent; border: none; box-shadow: none; }
+/* the toggle is the left end of the framed control: same corners as the frame, and no focus ring
+   on mouse click (the global focus outline drew a dark pill around it) — keyboard focus still shows */
+.tb-context .tb-evc-framed > .tb-chip-event { border-radius: var(--radius-xl) 0 0 var(--radius-xl); }
+.tb-context .tb-chip:focus, .tb-context .tb-evc-preview:focus { outline: none; }
+.tb-context .tb-chip:focus-visible, .tb-context .tb-evc-preview:focus-visible { outline: 2px solid var(--primary-default); outline-offset: -2px; }
+/* logo: same treatment — no dark ring on click (a.class also outranks .bootstrap-iso a:focus), keyboard ring kept */
+a.logo-cont:focus { outline: none; }
+a.logo-cont:focus-visible { outline: 2px solid var(--primary-default); outline-offset: 2px; }
+.tb-context .tb-evc-preview { display: inline-flex; align-items: center; justify-content: center; flex: none;
+	padding: 0 10px 0 9px; border-left: 1px solid var(--gray-200); border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+	text-decoration: none; opacity: .55; }
+.tb-context .tb-evc-preview:hover { background: var(--gray-100); opacity: 1; text-decoration: none; }
+.tb-context .tb-evc-preview .new-svg-icon { width: 13px; height: 13px; }
+
+
+/* ── organizer page switcher (organizer page level) ─────────────────────────────────────
+   framed chip (photo · name · caret) + preview arrow; the card holds the page's details, its
+   Edit / Preview / Copy actions and a server-rendered, client-filtered list of the user's pages */
+.tb-context .tb-chip-thumb { display: inline-block; width: 20px; height: 20px; flex: none; border-radius: 50%;
+	background-position: center; background-size: cover; background-repeat: no-repeat; }
+.tb-context .tb-orgsw { position: relative; display: inline-flex; min-width: 0; }
+.tb-context .tb-orgsw.tb-org-framed { background: var(--white, #fff); border: 1px solid var(--gray-200, #F0F0F0);
+	border-radius: var(--radius-xl, 10px); box-shadow: 0 1px 2px rgba(16, 24, 40, .04); }
+.tb-context .tb-orgsw.tb-org-framed:hover { border-color: var(--gray-300, #D9D9D9); }
+.tb-context .tb-orgsw.tb-org-framed > .tb-chip { background: transparent; border: none; box-shadow: none; border-radius: var(--radius-xl, 10px) 0 0 var(--radius-xl, 10px); }
+.tb-context .tb-orgsw.is-open .tb-chip-caret i { transform: rotate(180deg); }
+.tb-context a.tb-org-preview { display: inline-flex; align-items: center; justify-content: center; flex: none; padding: 0 10px 0 9px;
+	border-left: 1px solid var(--gray-200, #F0F0F0); border-radius: 0 var(--radius-xl, 10px) var(--radius-xl, 10px) 0; text-decoration: none; opacity: .55; }
+.tb-context a.tb-org-preview:hover { background: var(--gray-100, #FCFCFC); opacity: 1; text-decoration: none; }
+.tb-context a.tb-org-preview .new-svg-icon { width: 13px; height: 13px; }
+
+.tb-context .tb-orgsw-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; z-index: 1050; width: 300px; box-sizing: border-box;
+	padding: var(--spacing-xs, 8px); background: var(--white, #fff); border: 1px solid var(--gray-200, #F0F0F0); border-radius: var(--radius-xl, 10px);
+	box-shadow: 0 12px 28px rgba(16, 24, 40, .14); text-align: left; cursor: default; }
+.tb-context .tb-orgsw-menu::before { content: ''; position: absolute; left: 0; right: 0; top: -10px; height: 10px; } /* hover bridge over the gap */
+.tb-context .tb-orgsw.is-open .tb-orgsw-menu { display: block; }
+
+.tb-context .tb-orgsw-head { display: flex; align-items: center; gap: 10px; padding: 4px 4px 10px; }
+.tb-context .tb-orgsw-avatar { width: 40px; height: 40px; flex: none; border-radius: 50%; background-position: center; background-size: cover; background-repeat: no-repeat;
+	box-shadow: 0 0 0 1px var(--gray-200, #F0F0F0); }
+.tb-context .tb-orgsw-headmeta { min-width: 0; }
+.tb-context .tb-orgsw-headname, .tb-context .tb-orgsw-name { display: flex; align-items: center; gap: 5px; min-width: 0;
+	font-size: var(--font-sm, 14px); font-weight: var(--semibold, 600); line-height: 18px; color: var(--gray-900, #0E1017); }
+.tb-context .tb-orgsw-nametext { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tb-context .tb-orgsw-verified { flex: none; font-size: var(--font-xs, 12px); line-height: 1; color: var(--primary-light, #0086E6); }
+.tb-context .tb-orgsw-pro { flex: none; font-size: var(--font-2xs, 10px); color: var(--warning-light, #FFAE36); }
+.tb-context .tb-orgsw-followers { font-size: var(--font-xs, 12px); line-height: 16px; color: var(--gray-500, #8B8C8F); }
+
+.tb-context .tb-orgsw-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.tb-context .tb-orgsw-actions a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: var(--spacing-xs, 8px) 4px;
+	border: 1px solid var(--gray-200, #F0F0F0); border-radius: var(--radius-xl, 10px); font-size: var(--font-xs, 12px); color: var(--gray-700, #44464B); text-decoration: none; }
+.tb-context .tb-orgsw-actions a:hover { background: var(--gray-100, #FCFCFC); border-color: var(--gray-300, #D9D9D9); color: var(--gray-900, #0E1017); text-decoration: none; }
+.tb-context .tb-orgsw-actions .new-svg-icon { width: 16px; height: 16px; }
+
+.tb-context .tb-orgsw-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: var(--spacing-xs, 8px);
+	padding: 10px 4px 8px; border-top: 1px solid var(--gray-200, #F0F0F0); font-size: var(--font-2xs, 10px); font-weight: var(--semibold, 600);
+	letter-spacing: .04em; text-transform: uppercase; color: var(--gray-500, #8B8C8F); }
+.tb-context .tb-orgsw-count { padding: 1px 7px; border-radius: var(--radius-xl, 10px); background: var(--gray-200, #F0F0F0); color: var(--gray-600, #6E6F73); letter-spacing: 0; text-transform: none; }
+.tb-context .tb-orgsw-search { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid var(--gray-300, #D9D9D9); border-radius: var(--radius-xl, 10px); }
+.tb-context .tb-orgsw-search:focus-within { border-color: var(--primary-default, #0A74BF); }
+.tb-context .tb-orgsw-search .new-svg-icon { width: 15px; height: 15px; flex: none; opacity: .6; }
+.tb-context .tb-orgsw-search input { flex: 1; min-width: 0; height: auto; margin: 0; padding: 0; border: none; outline: none; box-shadow: none; background: transparent;
+	font-size: var(--font-sm, 14px); line-height: 20px; color: var(--gray-900, #0E1017); }
+.tb-context .tb-orgsw-list { max-height: 236px; overflow-y: auto; margin-top: 6px; }
+.tb-context a.tb-orgsw-item { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: var(--radius-xl, 10px); text-decoration: none; }
+.tb-context a.tb-orgsw-item:hover { background: var(--gray-100, #FCFCFC); text-decoration: none; }
+.tb-context a.tb-orgsw-item.is-current { background: var(--primary-bg-default, #F0F7FB); }
+.tb-context a.tb-orgsw-item.is-current .tb-orgsw-name { color: var(--primary-dark, #0062A8); }
+.tb-context .tb-orgsw-item .tb-orgsw-avatar { width: 32px; height: 32px; }
+.tb-context .tb-orgsw-meta { min-width: 0; display: flex; flex-direction: column; }
+.tb-context .tb-orgsw-empty { display: none; padding: 14px 8px; font-size: var(--font-sm, 14px); color: var(--gray-500, #8B8C8F); }
+.tb-context a.tb-orgsw-create { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 6px; padding: 10px;
+	border-top: 1px solid var(--gray-200, #F0F0F0); font-size: var(--font-sm, 14px); font-weight: var(--semibold, 600); color: var(--primary-default, #0A74BF); text-decoration: none; }
+.tb-context a.tb-orgsw-create:hover { color: var(--primary-dark, #0062A8); text-decoration: none; }
+.tb-context a.tb-orgsw-create .new-svg-icon { width: 15px; height: 15px; }
+.tb-context .tb-orgsw a:focus, .tb-context .tb-orgsw button:focus { outline: none; }
+.tb-context .tb-orgsw a:focus-visible, .tb-context .tb-orgsw button:focus-visible { outline: 2px solid var(--primary-default, #0A74BF); outline-offset: -2px; }
+
+.tb-context .tb-evc-card { display: none; position: absolute; top: calc(100% + 8px); left: 0; z-index: 1050;
+	width: 300px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-xl);
+	box-shadow: 0 12px 28px rgba(16,24,40,.14); cursor: default; text-align: left;
+	/* inner radius the shared partial rounds its banner to (card radius minus the border).
+	   no overflow:hidden here — it would clip the status / ⋯ dropdowns */
+	--evc3-radius: calc(var(--radius-xl) - 1px); }
+.tb-context .tb-evc-wrap.is-open .tb-evc-card { display: block; }
+.tb-context .tb-evc-card::before { content: ''; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+
+@media (max-width: 1400px) { .tb-context .tb-chip-event .tb-chip-name, .tb-context .tb-chip-meta { max-width: 240px; } }
+@media (max-width: 1200px) { .tb-context .tb-chip-name { max-width: 130px; } .tb-context .tb-chip-event .tb-chip-name, .tb-context .tb-chip-meta { max-width: 170px; } }
+@media (max-width: 1023px) { .tb-context { display: none; } }
+
+/* the .new-svg-icon base lives in the left menu's stylesheet — keep a fallback here */
+.tb-context .new-svg-icon { display: inline-block; background-size: cover; background-repeat: no-repeat; vertical-align: middle; }
+
+
+/* Hide divider on mobile */
+@media (max-width: 767px) {
+    .vertical-line {
+        display: none;
+    }
+}
+
+.topbar--white .tbdapp {
+    color: var(--primary-default);
+    border-color: var(--primary-default);
+}
+
+.topbar--transparent .tbdapp {
+    color: #fff;
+    border-color: #fff;
+}
+
+.topbar--white .search-icon-mobile svg path {
+    stroke: #333;
+}
+
+.topbar--transparent .search-icon-mobile svg path {
+    stroke: #fff;
+}
+
+/* Mobile-specific styles for cityhome */
+@media (max-width: 767px) {
+	.topbar--transparent {
+		background: transparent !important;
+	}
+}
+
+/* Active/Clicked states for both variants */
+.events-for-you-btn:active, 
+.events-for-you-btn:focus,
+.create-btn-style:active, 
+.create-btn-style:focus {
+    text-decoration: none !important;
+    color: var(--gray-900) !important;
+}
+
+/* Active/Clicked states for transparent variant */
+.topbar--transparent .events-for-you-btn:active,
+.topbar--transparent .events-for-you-btn:focus,
+.topbar--transparent .create-btn-style:active,
+.topbar--transparent .create-btn-style:focus {
+    text-decoration: none !important;
+    color: var(--topbar-hover) !important;
+}
+
+/* Active/Clicked states for scrolled transparent variant */
+.topbar--transparent.scrolled .events-for-you-btn:active,
+.topbar--transparent.scrolled .events-for-you-btn:focus,
+.topbar--transparent.scrolled .create-btn-style:active,
+.topbar--transparent.scrolled .create-btn-style:focus {
+    text-decoration: none !important;
+    color: var(--gray-900) !important;
+}
+
+/* Scrolled state hover for transparent variant */
+.topbar--transparent.scrolled .city-select-button:hover {
+    color: var(--topbar-hover) !important;
+    background-color: var(--city-hover) !important; /* Use the defined variable */
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+/* Scrolled state hover for topuserinfo in transparent variant */
+.topbar--transparent.scrolled .topuserinfo:hover {
+    background-color: var(--city-hover) !important; /* Use the defined variable */
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+</style>
+
+
+<div class="topbar fixed lg0 topbar--white shadow-on-scroll">
+    <div class="container top-cont">
+    	<div class="row top-cont-row">
+    		<div class="span5 logo-span logo-span-flex">
+    				    			<div id="ae-mobile-navbar" class="navbar navbar-static pull-left visible-phone">
+					    <div class="navbar-inner">
+					        <div class="container ae-mobile-navbar-container mobile-navbar-container">
+								
+																	<button class="btn btn-navbar mnv tb-mobile--burger mobile-navbar--custom mobile-burger-btn" data-toggle="collapse" data-target="#ae-nav-collapse" aria-label="Open Menu">
+										<span class="screen-reader-only">Open Menu</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+																					<span class="red-dot-burger"></span>
+																			</button>
+																<div class="nav-collapse collapse" id="ae-nav-collapse">
+									<nav role="navigation" aria-label="Main Navigation">
+									<ul class="nav topuserinfomobile">
+					                							                    <li class="ae-top-visible-city li1">
+						                        <a data-track="Topbar|clicks|mobile-events-in-city" href="https://allevents.in/ankara">
+													<div class="ae-icon-marker new-svg-icon"></div>
+													<span class="toh city-select-width">Ankara</span>
+						                        		<button data-html="true" data-placement="bottom" class="city-select-button tltp mcity-select">
+						                        		<span class="city-select-v-middle">Change City</span>
+													</button>
+												</a>	
+						                    </li>
+										
+																						<li class="svg-item-box">
+												<a data-track="Topbar|clicks|mobile-login" id="login-top-mob" href="#" class="login-action e_main_title1 track"><div class="ae-icon-login new-svg-icon"></div><span class="e_nav_item">Login</span></a>
+											</li>
+											
+																						
+											
+											<li class="divider divider-margin-1"></li>
+											<li class="section-padding-0"><p class="e_main_title">Host Control</p></li>
+											<li class="svg-item-box"><a class="create-action e_main_title1 track" data-track="CreateEvent|ClicksFromMenu|mobile-topbar" rel="nofollow" href="https://allevents.in/manage/create.php?ref=topbar-dropdown"><div class="ae-icon-plus-2 new-svg-icon"></div><span class="e_nav_item">Create an event</span></a></li>
+											<li class="svg-item-box"><a class="e_main_title1 track" data-track="Topbar|clicks|mobile-my-events" title="" href="https://allevents.in/manage/manage-events.php?ref=topbar-dropdown"><div class="ae-icon-cal new-svg-icon"></div><span class="e_nav_item">Manage events</span></a></li> 
+											<li class="divider divider-margin-2"></li>
+											<li class="svg-item-box app-download-bg"><a class="e_main_title1 track app-download-color" data-track="download_app|topbar|clicks" href="https://allevents.in/app?ref=topbar-dropdown&amp;utm_source=allevents&amp;utm_medium=topbar&amp;utm_campaign=topbar_get_app&amp;utm_content=topbar-dropdown&amp;ct=topbar-dropdown" target="_blank"><div class="for-phone new-svg-icon"></div><span class="e_nav_item">Get the AllEventsApp</span><span class="badge badge-important">New</span></a></li>
+											<li class="svg-item-box"><a class="e_main_title1 track" data-track="Topbar|clicks|mobile-support-redirection" href="https://allevents.in/pages/support?ref=topbar-dropdown" target="_blank"><div class="ae-icon-square-question new-svg-icon"></div><span class="e_nav_item">Need help?</span></a></li>
+																					
+					                </ul>
+									</nav>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				    			<a href="https://allevents.in/ankara" class="logo-cont">
+									<img class="logo logo-dark" width="135" height="37" src="https://cdn2.allevents.in/media-kit/svg/ae-logo-vector.svg" title="AllEvents" alt="AllEvents logo" fetchpriority="high">
+					<img class="logo logo-light" width="135" height="37" src="https://allevents.in/img/ae-logo-website-v2.svg" title="AllEvents" alt="AllEvents logo">
+									<script type="text/javascript">
+						$(document).ready(function() {
+							$('.logo-cont').on('mouseenter', function(event) {
+								event.preventDefault();
+							});
+							
+							// Add click handler to ensure logo clicks work properly
+							$('.logo-cont').on('click', function(event) {
+								// Stop event propagation to prevent search from triggering
+								event.stopPropagation();
+								startskyload();
+								// Allow the default link behavior to work
+								return true;
+							});
+						});
+					</script>
+    			</a>
+												<!-- <span class="vertical-line visible-desktop">|</span> -->
+									<div class="city-select-wrapper" style="margin-left: 10px;">
+						<button data-html="true" data-placement="bottom" data-title="Ankara, Ankara, Turkey&lt;br/&gt;  ( Click to change the city. )" title="Ankara, Ankara, Turkey Events" class="city-select-button toh tltp ae-top-hide-city hidden-phone city-select-desktop" tabindex="0"><i class="icon-map-marker-2 city-select-icon-marker"></i>Ankara<i class="icon-angle-down city-select-icon-down" style="font-size: 16px; vertical-align: middle;padding-left: 4px ;border: none;background: none;"></i></button>
+					</div>
+	    		    		</div>
+    		<div class="span7 pull-right rspan topbar-options topbar-options-logged-out"> 
+				<div class="tbsearch hide_for_b2b">
+					<div class="input-append">
+						<span class="hidden-phone search-icon-desktop">
+							<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M15.75 15.75L11.25 11.25M2.25 7.5C2.25 8.18944 2.3858 8.87213 2.64963 9.50909C2.91347 10.146 3.30018 10.7248 3.78769 11.2123C4.2752 11.6998 4.85395 12.0865 5.49091 12.3504C6.12787 12.6142 6.81056 12.75 7.5 12.75C8.18944 12.75 8.87213 12.6142 9.50909 12.3504C10.146 12.0865 10.7248 11.6998 11.2123 11.2123C11.6998 10.7248 12.0865 10.146 12.3504 9.50909C12.6142 8.87213 12.75 8.18944 12.75 7.5C12.75 6.81056 12.6142 6.12787 12.3504 5.49091C12.0865 4.85395 11.6998 4.2752 11.2123 3.78769C10.7248 3.30018 10.146 2.91347 9.50909 2.64963C8.87213 2.3858 8.18944 2.25 7.5 2.25C6.81056 2.25 6.12787 2.3858 5.49091 2.64963C4.85395 2.91347 4.2752 3.30018 3.78769 3.78769C3.30018 4.2752 2.91347 4.85395 2.64963 5.49091C2.3858 6.12787 2.25 6.81056 2.25 7.5Z" stroke="#30363E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+							</svg>
+						</span>
+						<span class="visible-phone search-icon-mobile" style="pointer-events: auto; cursor: pointer;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" style="pointer-events: auto;">
+								<path d="M10.5 19.5C15.1944 19.5 19 15.6944 19 11C19 6.3056 15.1944 2.5 10.5 2.5C5.8056 2.5 2 6.3056 2 11C2 15.6944 5.8056 19.5 10.5 19.5Z" stroke="#fff" stroke-linejoin="round"></path>
+								<path d="M16.6094 17.1108L20.852 21.3535" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></path>
+							</svg>
+						</span>
+						<input class="span3" id="searchd-input" style="pointer-evnts: auto;" size="16" type="text" placeholder="Music partie" autocomplete="off">
+					</div>
+				</div>
+
+				<div class="tbhide  hidden-phone">
+											<a class="create-b2b create-action track popo topbar-btn create-btn-style" rel="nofollow" data-trigger="hover" data-placement="bottom" data-content="Start selling in minutes, at no cost." data-track="CreateEvent|clicks|topbar" href="https://allevents.in/manage/create.php?ref=eventlist-topbar" tabindex="0" data-original-title="" title="">
+							<i class="icon-plus-2 mr5 create-btn-icon" style="font-size: 16px; color: var(--gray-600);"></i>Create Event</a>
+		    													<a class="hide hidden-phone" title="Recommended Events For You" rel="nofollow" href="https://allevents.in/recommended?ref=eventlist-topbar"><i class="icon-magic"></i></a>
+													   
+											
+						<button id="login-top" class="track hidden-phone topbar-btn lazy" data-track="Login|clicks|topbar" title="Sign in to AllEvents">
+							<img src="https://cdn2.allevents.in/transup/ab/ced64bf76d429aaa513418ff72f873/profile.png" alt="User Profile" class="login-user-icon lazy" style="width: 22px; height: 22px; vertical-align: middle;margin-right: 2px;margin-bottom: 2px;">
+							Sign in
+						</button>
+									</div>
+
+				
+				
+				<div data-external="true" class="tbdapp track" data-track="download_app|topbar_chip_other|open-app" data-link="/ankara/recently-added">Open App</div>
+				
+				    		</div>
+    	</div>
+    </div>
+</div>
+
+<script>const city = "Ankara"; const state = "AN";const country = "Turkey";</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.mnv').on('click', function() {
+        $('body').toggleClass('nav-overlay');
+    });
+
+    // Remove overlay when navigation is closed
+    $('#ae-nav-collapse').on('hidden.bs.collapse', function () {
+        $('body').removeClass('nav-overlay');
+    });
+});
+
+$(document).ready(function() {
+	try{
+		$(document).click(function (event) {
+	        var clickover = $(event.target);
+	        var _opened = $(".nav-collapse").hasClass("nav-collapse in");
+	        if (_opened === true) {
+	            $(".mnv").click();
+	        }
+	    });
+
+		$(".city-select-button").on('click', function() {
+			setTimeout(function(){
+			  bindlazy();
+			}, 500);
+		});
+	}catch(e){}
+
+	$(document).on('click', ".ae-mobile-navbar-container .tb-mobile--burger, .ae-mobile-navbar-container .tb-mobile--avatar" ,function() {
+		var expirationDate = new Date();
+		expirationDate.setFullYear(expirationDate.getFullYear() + 10); // Set expiration to 10 years from now
+		document.cookie = "showreddot=true; expires=" + expirationDate.toUTCString() + "; path=/";
+	})
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    const placeholderWords = ["Business events", "Art events", "Music festivals", "Standup comedy", "Music parties", "Live concerts", "Food festivals"];
+    
+    let currentWordIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    let animationTimeout = null; // Add this to track the timeout
+    const typeSpeed = 60; // Speed of typing (milliseconds)
+    const deleteSpeed = 50; // Speed of deleting (milliseconds)
+    const pauseTime = 2000; // Pause between words (milliseconds)
+    
+    function typeAnimation() {
+        const currentWord = placeholderWords[currentWordIndex];
+        const searchInput = document.getElementById('searchd-input');
+        
+        if (!searchInput) return;
+        
+        if (isDeleting) {
+            searchInput.placeholder = currentWord.substring(0, currentCharIndex - 1);
+            currentCharIndex--;
+            
+            if (currentCharIndex === 0) {
+                isDeleting = false;
+                currentWordIndex = (currentWordIndex + 1) % placeholderWords.length;
+                animationTimeout = setTimeout(typeAnimation, 500); // Store timeout reference
+            } else {
+                animationTimeout = setTimeout(typeAnimation, deleteSpeed); // Store timeout reference
+            }
+        } else {
+            searchInput.placeholder = currentWord.substring(0, currentCharIndex + 1);
+            currentCharIndex++;
+            
+            if (currentCharIndex === currentWord.length) {
+                isDeleting = true;
+                animationTimeout = setTimeout(typeAnimation, pauseTime); // Store timeout reference
+            } else {
+                animationTimeout = setTimeout(typeAnimation, typeSpeed); // Store timeout reference
+            }
+        }
+    }
+    
+    function startAnimation() {
+        if (animationTimeout) {
+            clearTimeout(animationTimeout);
+            animationTimeout = null;
+        }
+        typeAnimation();
+    }
+    
+    function stopAnimation() {
+        if (animationTimeout) {
+            clearTimeout(animationTimeout);
+            animationTimeout = null;
+        }
+    }
+
+    setTimeout(startAnimation, 1000); // Initial delay before starting
+    
+    $('#searchd-input').on('focus', function() {
+        stopAnimation();
+        $(this).attr('placeholder', 'Search All Events');
+    });
+    
+    $('#searchd-input').on('blur', function() {
+        if ($(this).val() === '') {
+            setTimeout(startAnimation, 500);
+        }
+    });
+});
+</script>
+
+
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const topbar = document.querySelector('.topbar');
+    let lastScrollTop = 0;
+    
+    let shadowThreshold = 100; 
+    const specialPage = false; 
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (specialPage && !isMobile) {
+        shadowThreshold = 400;
+    }
+    
+    const isEventPage = false; // Don't give topbar shadow on event page
+    
+    if (!isEventPage) {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > shadowThreshold) {
+                topbar.classList.add('shadow-on-scroll');
+            } else {
+                topbar.classList.remove('shadow-on-scroll');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    }
+});
+
+</script><!-- topbar -->
+
+<!-- blue navbar -->
+	<div class="bluenavbar fixed minheight-5"></div>
+<!--End navbar -->
+	
+<!--next-prev-->
+<a href="#" id="prev-link"><div class="nav-icon"></div></a>
+<a href="#" id="next-link"><div class="nav-icon"></div></a>
+<!--next-prev end-->
+
+<!-- non-overlay -->	
+<div class="non-overlay gray-trans-back">
+	<div class="events-style-resgrid gray-trans-back" style="padding-top: 40px;">
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<center><h1 id="event-list-title" style="margin-bottom: 30px;margin-top: 30px;">Events Recently Added in Ankara</h1></center>
+				
+					<!-- Event list start -->
+					<div class="resgrid-row">
+														
+							<ul class="resgrid-ul"><li class="item event-item " data-tix="" data-id="200031155013251" data-link="" data-share-link="https://allevents.in/ankara/200031155013251" data-name="Yüksek Sadakat">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Y%C3%BCksek+Sadakat&amp;date=Fri%2C+12+Feb+at+09%3A00+pm&amp;bg=2" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Feb</span>
+		        	<span class="up-day">12		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/yüksek-sadakat/200031155013251?ref=recently-added" title="Yüksek Sadakat" target="_blank">
+		                <h3>Yüksek Sadakat</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 Jolly Joker Ankara 	        	</span>
+	        						<span class="up-time-display">
+			        	Fri, 12 Feb at 09:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="200031152182500" data-link="" data-share-link="https://allevents.in/ankara/200031152182500" data-name="Anadolu Ateşi">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Anadolu+Ate%C5%9Fi&amp;date=Thu%2C+04+Feb+at+08%3A30+pm&amp;bg=1" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Feb</span>
+		        	<span class="up-day">04		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/anadolu-ateşi/200031152182500?ref=recently-added" title="Anadolu Ateşi" target="_blank">
+		                <h3>Anadolu Ateşi</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 Söğütözü Cad. No:1/A, Ankara, Turkey 	        	</span>
+	        						<span class="up-time-display">
+			        	Thu, 04 Feb at 08:30 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="2700031140582057" data-link="" data-share-link="https://allevents.in/ankara/2700031140582057" data-name="Candlelight: Sezen Aksu Şarkıları">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Candlelight%3A+Sezen+Aksu+%C5%9Eark%C4%B1lar%C4%B1&amp;date=Sat%2C+30+Jan+at+07%3A00+pm&amp;bg=3" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Jan</span>
+		        	<span class="up-day">30		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/candlelight-sezen-aksu-Şarkıları/2700031140582057?ref=recently-added" title="Candlelight: Sezen Aksu Şarkıları" target="_blank">
+		                <h3>Candlelight: Sezen Aksu Şarkıları</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 Tatbikat Sahnesi Ankara 	        	</span>
+	        						<span class="up-time-display">
+			        	Sat, 30 Jan at 07:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="2700031140581956" data-link="" data-share-link="https://allevents.in/ankara/2700031140581956" data-name="Candlelight: Ed Sheeran &amp; Coldplay">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Candlelight%3A+Ed+Sheeran+%26+Coldplay&amp;date=Sat%2C+30+Jan+at+09%3A00+pm&amp;bg=2" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Jan</span>
+		        	<span class="up-day">30		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/candlelight-ed-sheeran-and-coldplay/2700031140581956?ref=recently-added" title="Candlelight: Ed Sheeran &amp; Coldplay" target="_blank">
+		                <h3>Candlelight: Ed Sheeran &amp; Coldplay</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 Tatbikat Sahnesi Ankara 	        	</span>
+	        						<span class="up-time-display">
+			        	Sat, 30 Jan at 09:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="200031131193840" data-link="" data-share-link="https://allevents.in/ankara/200031131193840" data-name="Paşa Konağına Kaç Talip">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Pa%C5%9Fa+Kona%C4%9F%C4%B1na+Ka%C3%A7+Talip&amp;date=Sat%2C+12+Dec+at+08%3A00+pm&amp;bg=1" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Dec</span>
+		        	<span class="up-day">12		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/paşa-konağına-kaç-talip/200031131193840?ref=recently-added" title="Paşa Konağına Kaç Talip" target="_blank">
+		                <h3>Paşa Konağına Kaç Talip</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 CerModern 	        	</span>
+	        						<span class="up-time-display">
+			        	Sat, 12 Dec at 08:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="200031131193439" data-link="" data-share-link="https://allevents.in/ankara/200031131193439" data-name="Sihhoye Tariff Review Public Consultations">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Sihhoye+Tariff+Review+Public+Consultations&amp;date=Thu%2C+26+Nov+at+11%3A00+am&amp;bg=5" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Nov</span>
+		        	<span class="up-day">26		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/sihhoye-tariff-review-public-consultations/200031131193439?ref=recently-added" title="Sihhoye Tariff Review Public Consultations" target="_blank">
+		                <h3>Sihhoye Tariff Review Public Consultations</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 Sihhoye KDDP Hall 	        	</span>
+	        						<span class="up-time-display">
+			        	Thu, 26 Nov at 11:00 am			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="200031131192837" data-link="" data-share-link="https://allevents.in/ankara/200031131192837" data-name="Hisseli Harikalar Kumpanyası">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Hisseli+Harikalar+Kumpanyas%C4%B1&amp;date=Thu%2C+17+Dec+at+08%3A00+pm&amp;bg=3" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Dec</span>
+		        	<span class="up-day">17		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/hisseli-harikalar-kumpanyası/200031131192837?ref=recently-added" title="Hisseli Harikalar Kumpanyası" target="_blank">
+		                <h3>Hisseli Harikalar Kumpanyası</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 CerModern 	        	</span>
+	        						<span class="up-time-display">
+			        	Thu, 17 Dec at 08:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="200031131192436" data-link="" data-share-link="https://allevents.in/ankara/200031131192436" data-name="Badem">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Badem&amp;date=Fri%2C+08+Jan+at+09%3A00+pm&amp;bg=2" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Jan</span>
+		        	<span class="up-day">08		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/badem/200031131192436?ref=recently-added" title="Badem" target="_blank">
+		                <h3>Badem</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 IF PERFORMANCE Hall 	        	</span>
+	        						<span class="up-time-display">
+			        	Fri, 08 Jan at 09:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="200031124265147" data-link="" data-share-link="https://allevents.in/ankara/200031124265147" data-name="Brazzaville">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Brazzaville&amp;date=Fri%2C+12+Feb+at+09%3A00+pm&amp;bg=3" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Feb</span>
+		        	<span class="up-day">12		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/brazzaville/200031124265147?ref=recently-added" title="Brazzaville" target="_blank">
+		                <h3>Brazzaville</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 IF Tepe Prime 	        	</span>
+	        						<span class="up-time-display">
+			        	Fri, 12 Feb at 09:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="200031122794612" data-link="" data-share-link="https://allevents.in/ankara/200031122794612" data-name="Paşa Konağına Kaç Talip Sığar?">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Pa%C5%9Fa+Kona%C4%9F%C4%B1na+Ka%C3%A7+Talip+S%C4%B1%C4%9Far%3F&amp;date=Fri%2C+25+Dec+at+08%3A00+pm&amp;bg=3" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Dec</span>
+		        	<span class="up-day">25		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/paşa-konağına-kaç-talip-sığar/200031122794612?ref=recently-added" title="Paşa Konağına Kaç Talip Sığar?" target="_blank">
+		                <h3>Paşa Konağına Kaç Talip Sığar?</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 CerModern 	        	</span>
+	        						<span class="up-time-display">
+			        	Fri, 25 Dec at 08:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li><li class="item event-item " data-tix="" data-id="200031122794912" data-link="" data-share-link="https://allevents.in/ankara/200031122794912" data-name="Ahiyan">
+	    		<div class="thumb lazy" data-src="https://dyn-image.allevents.in/generate-image?v=4&amp;title=Ahiyan&amp;date=Fri%2C+25+Dec+at+10%3A00+pm&amp;bg=3" style="background-size:cover;"></div>
+	    <div class="meta">
+        <div> 
+	        		    	<div class="meta-left">
+		        	<span class="up-month">Dec</span>
+		        	<span class="up-day">25		        			        		</span>
+		        </div>
+		            	<div class="meta-right">
+        		<div class="title" property="summary" style="word-wrap: break-word;">
+		            <a href="https://allevents.in/ankara/ahiyan/200031122794912?ref=recently-added" title="Ahiyan" target="_blank">
+		                <h3>Ahiyan</h3>
+		            </a>
+		        </div>
+
+		        <span class="up-venue toh">
+		        	 Milyon Performance Hall 	        	</span>
+	        						<span class="up-time-display">
+			        	Fri, 25 Dec at 10:00 pm			        </span>
+					        </div>
+        </div>
+    </div>
+</li></ul>					</div><!-- End Eventlist-->
+				
+
+					<div class="pagination elist-pager mt20" style="text-align: center;float: left;width: 100%;">
+					  <ul>
+					   
+					  						  	
+					  						  </ul>
+					</div>	
+
+					<div style="clear: both;text-align: center;margin: 35px 0;">
+						<a class="btn btn-large skyload" href="https://allevents.in/ankara">Explore All Events in Ankara</a>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Rich-Schema-markup -->
+<script type="application/ld+json">
+[{"@context":"https:\/\/schema.org","@type":"Event","name":"Y\u00fcksek Sadakat","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Y%C3%BCksek+Sadakat&date=Fri%2C+12+Feb+at+09%3A00+pm&bg=2","startDate":"2027-02-12","url":"https:\/\/allevents.in\/ankara\/y\u00fcksek-sadakat\/200031155013251","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"Jolly Joker Ankara","address":{"@type":"PostalAddress","streetAddress":"K\u0131z\u0131l\u0131rmak Sokak. No:14 K\u0131z\u0131lay ,Beytepe, Ankara, Turkey","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.785396","longitude":"32.7610373"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Anadolu Ate\u015fi","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Anadolu+Ate%C5%9Fi&date=Thu%2C+04+Feb+at+08%3A30+pm&bg=1","startDate":"2027-02-04","url":"https:\/\/allevents.in\/ankara\/anadolu-ate\u015fi\/200031152182500","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"S\u00f6\u011f\u00fct\u00f6z\u00fc Cad. No:1\/A, Ankara, Turkey","address":{"@type":"PostalAddress","streetAddress":"S\u00f6\u011f\u00fct\u00f6z\u00fc Caddesi 1A, 06530, S\u00f6\u011f\u00fct\u00f6z\u00fc, \u00c7ankaya\/Ankara, T\u00fcrkiye","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.91089","longitude":"32.80342"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Candlelight: Sezen Aksu \u015eark\u0131lar\u0131","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Candlelight%3A+Sezen+Aksu+%C5%9Eark%C4%B1lar%C4%B1&date=Sat%2C+30+Jan+at+07%3A00+pm&bg=3","startDate":"2027-01-30","endDate":"2027-01-30","url":"https:\/\/allevents.in\/ankara\/candlelight-sezen-aksu-\u015eark\u0131lar\u0131\/2700031140582057","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"Tatbikat Sahnesi Ankara","address":{"@type":"PostalAddress","streetAddress":"G\u00fcvenevler, G\u00fcne\u015f Sk. No:21, \u00c7ankaya\/\/ 06690","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.933364868164","longitude":"32.859741210938"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Candlelight: Ed Sheeran &amp; Coldplay","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Candlelight%3A+Ed+Sheeran+%26+Coldplay&date=Sat%2C+30+Jan+at+09%3A00+pm&bg=2","startDate":"2027-01-30","endDate":"2027-01-30","url":"https:\/\/allevents.in\/ankara\/candlelight-ed-sheeran-and-coldplay\/2700031140581956","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"Tatbikat Sahnesi Ankara","address":{"@type":"PostalAddress","streetAddress":"G\u00fcvenevler, G\u00fcne\u015f Sk. No:21, \u00c7ankaya\/\/ 06690","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.933364868164","longitude":"32.859741210938"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Pa\u015fa Kona\u011f\u0131na Ka\u00e7 Talip","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Pa%C5%9Fa+Kona%C4%9F%C4%B1na+Ka%C3%A7+Talip&date=Sat%2C+12+Dec+at+08%3A00+pm&bg=1","startDate":"2026-12-12","url":"https:\/\/allevents.in\/ankara\/pa\u015fa-kona\u011f\u0131na-ka\u00e7-talip\/200031131193840","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"CerModern","address":{"@type":"PostalAddress","streetAddress":"Cer Modern,Ankara, Turkey","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.931845079453","longitude":"32.849514112165"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Sihhoye Tariff Review Public Consultations","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Sihhoye+Tariff+Review+Public+Consultations&date=Thu%2C+26+Nov+at+11%3A00+am&bg=5","startDate":"2026-11-26","endDate":"2026-11-26","url":"https:\/\/allevents.in\/ankara\/sihhoye-tariff-review-public-consultations\/200031131193439","location":{"@type":"Place","name":"Sihhoye KDDP Hall","address":{"@type":"PostalAddress","streetAddress":"M. Rauf \u0130nan Sokak 9, 06420, Sa\u011fl\u0131k, \u00c7ankaya\/Ankara, T\u00fcrkiye","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.92809","longitude":"32.8578"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Hisseli Harikalar Kumpanyas\u0131","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Hisseli+Harikalar+Kumpanyas%C4%B1&date=Thu%2C+17+Dec+at+08%3A00+pm&bg=3","startDate":"2026-12-17","url":"https:\/\/allevents.in\/ankara\/hisseli-harikalar-kumpanyas\u0131\/200031131192837","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"CerModern","address":{"@type":"PostalAddress","streetAddress":"Cer Modern,Ankara, Turkey","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.931845079453","longitude":"32.849514112165"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Badem","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Badem&date=Fri%2C+08+Jan+at+09%3A00+pm&bg=2","startDate":"2027-01-08","url":"https:\/\/allevents.in\/ankara\/badem\/200031131192436","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"IF PERFORMANCE Hall","address":{"@type":"PostalAddress","streetAddress":"Tunus Cad. No: 14\/A Kavakl\u0131dere,Ankara, Turkey","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.911686626608","longitude":"32.855936050546"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Brazzaville","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Brazzaville&date=Fri%2C+12+Feb+at+09%3A00+pm&bg=3","startDate":"2027-02-12","url":"https:\/\/allevents.in\/ankara\/brazzaville\/200031124265147","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"IF Tepe Prime","address":{"@type":"PostalAddress","streetAddress":"Mustafa Kemal Mah. Tepe Prime No:266,Beytepe, Ankara, Turkey","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.90982127397","longitude":"32.755687734507"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Pa\u015fa Kona\u011f\u0131na Ka\u00e7 Talip S\u0131\u011far?","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Pa%C5%9Fa+Kona%C4%9F%C4%B1na+Ka%C3%A7+Talip+S%C4%B1%C4%9Far%3F&date=Fri%2C+25+Dec+at+08%3A00+pm&bg=3","startDate":"2026-12-25","url":"https:\/\/allevents.in\/ankara\/pa\u015fa-kona\u011f\u0131na-ka\u00e7-talip-s\u0131\u011far\/200031122794612","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"CerModern","address":{"@type":"PostalAddress","streetAddress":"Cer Modern,Ankara, Turkey","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.931845079453","longitude":"32.849514112165"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]},{"@context":"https:\/\/schema.org","@type":"Event","name":"Ahiyan","image":"https:\/\/dyn-image.allevents.in\/generate-image?v=4&title=Ahiyan&date=Fri%2C+25+Dec+at+10%3A00+pm&bg=3","startDate":"2026-12-25","url":"https:\/\/allevents.in\/ankara\/ahiyan\/200031122794912","eventStatus":"https:\/\/schema.org\/EventScheduled","location":{"@type":"Place","name":"Milyon Performance Hall","address":{"@type":"PostalAddress","streetAddress":"Bah\u00e7elievler Mah. 3. Cadde (Azerbaycan Cad.) No:41 ,Ankara, Turkey","addressLocality":"Ankara","addressRegion":"AN","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":"39.92768","longitude":"32.82684"}},"eventAttendanceMode":"https:\/\/schema.org\/OfflineEventAttendanceMode","offers":[]}]</script>
+	<script type="text/javascript">
+	// try{ga('set', 'dimension1', '');}catch(e){console.log(e);}
+</script>
+
+
+
+<script type="text/javascript">
+ (function () {
+		 var wzrk = document.createElement('script');
+		 wzrk.type = 'text/javascript';
+		 wzrk.async = true;
+		 wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/clevertap.min.js';
+		 var s = document.getElementsByTagName('script')[0];
+		 s.parentNode.insertBefore(wzrk, s);
+  })();
+</script>
+    <!-- Footer-->
+    <div id="fb-root"></div>
+    <footer class="footer">
+    	<!-- Trending Searches Start -->
+    	<h2 class="hide">Site Navigation</h2>
+			   	<div class="custom-footer-section">
+	   		<div class="container">
+		   		<div class="row">
+		   			<div class="span footer-links-cont"> 
+						<h3 class="footer-head-title custom-footer-head-title">Trending <strong>Searches</strong></h3>
+						<ul class="footer-links gray-links custom-footer-ul">
+
+												
+																							<li>
+										<a href="https://allevents.in/balikesir" title="Events in Balikesir">
+											Balikesir Events
+										</a>
+									</li>
+																																<li>
+										<a href="https://allevents.in/mersin" title="Events in Mersin">
+											Mersin Events
+										</a>
+									</li>
+																																<li>
+										<a href="https://allevents.in/diyarbakir" title="Events in Diyarbakir">
+											Diyarbakir Events
+										</a>
+									</li>
+																																<li>
+										<a href="https://allevents.in/konya" title="Events in Konya">
+											Konya Events
+										</a>
+									</li>
+																																											<li><a href="https://allevents.in/istanbul/plastic-exhibition-in-tuyap-istanbul/200031121712902" title="Plastic Exhibition in Tuyap Istanbul ">Plastic Exhibition in Tuyap Istanbul </a></li>
+													<li><a href="https://allevents.in/gaziantep/emir-can-İğrek/200031000930034" title="Emir Can İğrek">Emir Can İğrek</a></li>
+													<li><a href="https://allevents.in/ankara/hande-yener/200031050254729" title="Hande Yener">Hande Yener</a></li>
+													<li><a href="https://allevents.in/dalyan/İngİltere-and-londra-ve-noel-pazarlari/200030974580333" title="İNGİLTERE &amp; LONDRA ve NOEL PAZARLARI">İNGİLTERE &amp; LONDRA ve NOEL PAZARLARI</a></li>
+													<li><a href="https://allevents.in/istanbul/interstellar-funk-and-Ögem-yılmaz/200031129237018" title="Interstellar Funk &amp; Ögem Yılmaz">Interstellar Funk &amp; Ögem Yılmaz</a></li>
+													<li><a href="https://allevents.in/istanbul/kara-kız-ecem-erkek/200031047434117" title="Kara Kız - Ecem Erkek">Kara Kız - Ecem Erkek</a></li>
+													<li><a href="https://allevents.in/ankara/sıla/200031049132734" title="Sıla">Sıla</a></li>
+													<li><a href="https://allevents.in/istanbul/gömercin-kuşları-sahnede-ayşe-balıbey-ve-kaan-sekban/200031080968754" title="Gömercin Kuşları Sahnede - Ayşe Balıbey ve Kaan Sekban">Gömercin Kuşları Sahnede - Ayşe Balıbey ve Kaan Sekban</a></li>
+													<li><a href="https://allevents.in/istanbul/29-kasım-2026da-İstanbulda-k-pop-forever-gösterisi/200030442650748" title="29 Kasım 2026'da İstanbul'da &quot;K-POP FOREVER!&quot; gösterisi!">29 Kasım 2026'da İstanbul'da "K-POP FOREVER!" gösterisi!</a></li>
+													<li><a href="https://allevents.in/istanbul/candlelight-coldplay-and-imagine-dragons/2700029494579830" title="Candlelight: Coldplay &amp; Imagine Dragons">Candlelight: Coldplay &amp; Imagine Dragons</a></li>
+												</ul>
+				     </div>
+		   		</div>
+		   	</div>
+	   	</div>
+	   	<!-- Trending Searches End -->
+
+	   	<!-- Common Footer is Loaded -->
+    	<div class="home-footer1">   
+	      <div class="container">
+		     <div class="row" style="float: left;text-align: left;border-bottom: 1px dashed #444; border-top: 1px dashed #444; padding: 40px 0;">
+			     <div class="span3 ft1span3"> 
+		     	 	<h3 class="footer-head-title" style="margin-left: 10px;">Host Events</h3>
+			        <ul class="home-footer-links">
+				        <li><a href="https://allevents.in/pages/publish-events" target="_blank" title="Publish Your Events">Publish Your Events</a></li>
+				        <li><a href="https://allevents.in/pages/event-marketing" title="Promote Your Events">Promote Your Events</a></li> 
+				        <li><a href="https://allevents.in/pages/event-ticketing" title="Sell Tickets Online">Sell Tickets Online</a></li> 
+				        <li><a href="https://allevents.in/pages/events-on-demand" target="_blank" title="Host Recorded Events">Host Recorded Events</a></li>
+				        <li><a href="https://allevents.in/pages/pricing" target="_blank" title="Pricing Plans">Pricing Plans</a></li>
+						<li><a href="https://allevents.in/pages/event-manager-app" title="Event Manager App">Event Manager App</a></li>
+						<li><a href="https://allevents.in/pages/events-api" target="_blank" title="Events Api">Events API</a></li>
+						<li><a href="https://allevents.in/pages/event-listing" title="Event Listing">Event Listing</a></li>
+						<li><a href="https://allevents.in/pages/event-promotion" title="Learn Event Marketing">Learn Event Marketing</a></li>
+						<li><a href="https://support.allevents.in/article/198-event-creation-guidelines" title="Event Creation Guidelines">Event Creation Guidelines</a></li>
+				    </ul>
+				</div>
+				<div class="span3 ft1span3"> 
+		     	 	<h3 class="footer-head-title" style="margin-left: 10px;">Discover Events</h3>
+			        <ul class="home-footer-links">
+					  <li><a href="https://allevents.in/recommended" title="Events for You">Events for You</a></li>
+					  <li><a href="https://allevents.in/online" title="Virtual Events">Virtual Events</a></li>
+					  <li><a href="https://allevents.in/pages/subscribe" title="Get Event Updates">Get Event Updates</a></li>
+					  <li><a href="https://allevents.in/app" title="Online Event Ticketing">Event Discovery App</a></li>
+					  <li><a href="https://allevents.in/pages/write-for-us" title="Write for Us">Write for Us</a></li>
+					 </ul>
+				</div>
+				<div class="span3 ft1span3"> 
+		     	 	<h3 class="footer-head-title" style="margin-left: 10px;">Explore</h3>
+			        <ul class="home-footer-links">
+			          <li><a href="https://allevents.in/pages/events-listing-plugin" title="Event Plugins for websites">Event Listing Plugin</a></li>
+					  <li><a rel="nofollow" class="tltp" href="https://allevents.in/blog/media-kit" title="All Events Logo Media Kit">Media Kit</a></li>
+					  <li><a rel="nofollow" target="_blank" class="tltp track" data-track="Footer|click|Affiliate-eventlist" href="https://allevents.in/pages/affiliate-program" title="Join AllEvents Affiliate Program">Affiliate Program</a></li>
+					  <li><a rel="nofollow" class="tltp" href="https://support.allevents.in" title="Support Center">Support Center</a></li>
+					  <li><a class="tltp" href="https://allevents.in/blog" title="Blog ">Blog</a></li>
+					</ul>
+				</div>
+				 
+				<div class="span3 ft1span3">
+					<div class="mb10">
+						<h3 class="footer-head-title">#StayHappening</h3>
+						<div class="footer-mb-center" style=" font-size: 13px; text-transform: none; color: #999; ">Go-to place to discover events for more than 20M people globally.</div>
+					 </div>
+					<div style="margin-left:0;display: flex;" class="span3">
+												<a style="margin: 5px;" target="_blank" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.amitech.allevents" title="Download Android App from Google Play">
+							<img style="width: 100%;" width="85" height="30" alt="Allevents on Google Play" class="lazy" data-original="//cdn2.allevents.in/transup/3f/31c255b0f24c979f4204217a40f45f/google_play_badge.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+						</a>
+												<a style="margin: 5px;" target="_blank" rel="nofollow" href="https://itunes.apple.com/app/apple-store/id488116646?pt=505903&amp;ct=footer&amp;mt=8" title="Download iOS App from AppStore">
+							<img style="width: 100%;" width="85" height="30" alt="Allevents on AppStore" class="lazy" data-original="//cdn2.allevents.in/transup/bd/a63499965c4e439620ffab185f11e5/apple_store_badge.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+						</a>
+					</div>
+					<div>
+						<a href="https://allevents.in/pages/careers" style="padding: 15px 5px; float: left;">
+							<img class="lazy" style="display: inline; max-width: 160px;" width="160" height="40" data-original="https://cdn2.allevents.in/transup/75/d8bdc27f394d3085044746fbc7c88d/we-are-hiring.png" alt="We're Hiring" title="Join Us" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+						</a>
+					</div>
+				</div>
+			     
+		     </div>
+	      </div>
+	  	</div>
+	  	<!-- Common Footer is ended -->
+
+	  	<div class="custom-footer-section">
+	  		<div class="container">
+	  			<div class="row">
+	  				<div class="span12 footer-links-cont"> 
+				     								<h3 class="footer-head-title custom-footer-head-title">Upcoming Events in Ankara</h3>
+												<ul class="footer-links gray-links custom-footer-ul">
+													<li><a href="https://allevents.in/ankara/paşa-konağına-kaç-talip-sığar/200031122794612" title="Paşa Konağına Kaç Talip Sığar?">Paşa Konağına Kaç Talip Sığar?</a></li>
+													<li><a href="https://allevents.in/ankara/paşa-konağına-kaç-talip/200031131193840" title="Paşa Konağına Kaç Talip">Paşa Konağına Kaç Talip</a></li>
+													<li><a href="https://allevents.in/ankara/badem/200031131192436" title="Badem">Badem</a></li>
+													<li><a href="https://allevents.in/ankara/ahiyan/200031122794912" title="Ahiyan">Ahiyan</a></li>
+													<li><a href="https://allevents.in/ankara/candlelight-sezen-aksu-Şarkıları/2700031140582057" title="Candlelight: Sezen Aksu Şarkıları">Candlelight: Sezen Aksu Şarkıları</a></li>
+													<li><a href="https://allevents.in/ankara/hisseli-harikalar-kumpanyası/200031131192837" title="Hisseli Harikalar Kumpanyası">Hisseli Harikalar Kumpanyası</a></li>
+																	</ul>
+			     </div>
+	  			</div>
+	  		</div>
+	  	</div>
+
+	  	<div class="home-footer3">
+	  		<div class="container">
+	  			<div class="row" style="padding: 0 0 20px 0; margin: 0;">
+		  			<ul style="margin: 0;margin-left: 10px;">
+		  				<li><a href="/about" title="About Us and the All Events in City team">About</a></li>
+					    <li><a href="https://allevents.in/pages/careers">Careers</a></li>
+					    <li><a href="https://support.allevents.in" target="_blank" title="Frequently Asked Questions and Support">Support</a></li>
+						<li><a href="https://allevents.in/pages/media-coverage" title="Media Coverage Page">Media Coverage</a></li>
+						<li><a rel="nofollow" href="https://allevents.in/conditions" title="Terms &amp; Conditions">Terms of Service</a></li>
+						<li><a rel="nofollow" href="https://allevents.in/privacy" title="Privacy">Privacy</a></li>
+					    <li><a rel="nofollow" href="https://allevents.in/contact" title="Contact Us">Contact Us</a></li>	
+				    </ul>
+				</div>
+	  		</div>	      	
+      	</div>
+
+      <div class="footer2">
+      	<div class="container footer-copyright">
+      		<div class="span3"><span class="footer-copyright-child">© Copyright 2026. All Rights Reserved.</span></div>
+      				
+      		<p class="footer-social pull-right footer-copyright-child" style="margin: 0">
+      			<a class="btn btn-topbar tltp" title="Go to Homepage" data-original-title="Go to Homepage" href="https://allevents.in"><i class="icon-home"></i></a>
+      			<a rel="nofollow noopener noreferrer" class="btn btn-topbar tltp" title="Like us Facebook" data-original-title="Like us Facebook" target="_blank" href="https://facebook.com/allevents.in"><i class="icon-facebook"></i></a>
+    			<a rel="nofollow noopener noreferrer" class="btn btn-topbar tltp" title="Follow on Twitter" data-original-title="Follow on Twitter" target="_blank" href="https://twitter.com/allevents_in"><i class="icon icon-twitter" style="font-size:11px;"></i></a>
+    			<a rel="nofollow noopener noreferrer" class="btn btn-topbar tltp" title="Follow us on Instagram" data-original-title="Follow us on Instagram" target="_blank" href="https://www.instagram.com/allevents_official/"><i class="icon-instagram"></i></a>
+				<a rel="nofollow noopener noreferrer" class="btn btn-topbar tltp" title="Follow us on Youtube" data-original-title="Follow us on Youtube" target="_blank" href="https://www.youtube.com/@allevents-in"><i class="icon-youtube"></i></a>
+    			<a rel="nofollow noopener noreferrer" class="btn btn-topbar tltp" title="Follow us on Pinterest" data-original-title="Follow us on Pinterest" target="_blank" href="https://in.pinterest.com/allevents_in/"><i class="icon-pinterest-sign"></i></a>
+    			    				<a rel="nofollow noopener noreferrer" class="btn btn-topbar tltp" title="Subscribe RSS Feeds" data-original-title="Subscribe RSS Feeds" href="https://allevents.in/ankara/RSS"><i class="icon-rss"></i></a>
+    							<a rel="nofollow" id="back-to-top" class="btn btn-small btn-inverse tltp" title="Back to Top" data-original-title="Back to Top" href="#"><i class="icon-chevron-up icon-white"></i></a>
+			</p>
+      	</div>
+      </div>
+    </footer>
+    <!--End Footer-->
+
+    	
+	
+
+    <!-- Piwik -->
+	<script type="text/javascript">
+	  var _paq = _paq || [];
+		  	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  _paq.push(['trackAllContentImpressions']);
+
+	  (function() {
+	    var u="//na.allevents.in/";
+	    _paq.push(['setTrackerUrl', u+'matomo.php']);
+	    _paq.push(['setSiteId', 1]);
+	    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	  		    		window.cf_ip_country = "US";
+	    		</script>
+	<noscript><p><img src="//na.allevents.in/matomo.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+	<!-- End Piwik Code -->     	
+	
+<!-- End non-overlay -->
+
+
+<!-- javascript-->
+<script type="text/javascript">
+
+try{
+	var current_city="ankara"; 
+	var current_city_query ="ankara"; 
+	var city_url = "https:\/\/allevents.in\/ankara";
+	var paging =false;var tdate=0;
+			var current_event_id="";
+}catch(err){console.log(err);}
+
+</script>
+
+
+  <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ea025ea6a0","applicationID":"339581800","transactionName":"Y1VbZRNQXRdQURFdX1ofbEMIHkUFQx0SQ0cbUVVdBEdWCkVBSkdZQFUWVBdUXRBdWxZAHkRYSQ==","queueTime":0,"applicationTime":64,"atts":"TxJYE1tKThk=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+
+<div class="bluebarbd" style="height: 250px; position: absolute; left: 0px; right: 0px; top: 100px; z-index: 123; display: none; opacity: 1; background: linear-gradient(rgba(255, 255, 255, 0.611765) 0%, rgba(0, 0, 0, 0) 100%);"></div></body></html>

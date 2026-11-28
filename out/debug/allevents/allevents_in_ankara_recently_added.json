@@ -1,0 +1,10 @@
+[
+ {
+  "url": "https://bam.nr-data.net/browser/connect/2/ea025ea6a0?a=339581800&v=1.324.1&s=514f97c507c27906",
+  "sample": "{\"config\":{\"err\":1,\"ins\":1,\"spa\":1,\"sr\":0,\"srs\":0,\"st\":1,\"sts\":0,\"log\":0,\"logapi\":0},\"app\":{\"agents\":[{\"entityGuid\":\"MzY3MzcyfEJST1dTRVJ8QVBQTElDQVRJT058MzM5NTgyMTA2\"}],\"igp\":\"\",\"nrServerTime\":1795868223393}}"
+ },
+ {
+  "url": "https://allevents.in/api/index.php/geo/ip2location",
+  "sample": "{\"city\":\"Ashburn\",\"country_code\":\"US\",\"region\":\"Virginia\",\"region_name\":\"Virginia\",\"postal_code\":\"20147\",\"latitude\":39.04372,\"longitude\":-77.48749,\"raw_obj\":{\"city\":{\"names\":{\"en\":\"Ashburn\"}},\"country\":{\"iso_code\":\"US\",\"names\":{\"en\":\"\"}},\"continent\":{\"code\":\"\"},\"subdivisions\":[{\"iso_code\":\"Virginia\",\"names\":{\"en\":\"Virginia\"}}],\"postal\":{\"code\":\"20147\"},\"location\":{\"latitude\":39.04372,\"longitude\":-77.48749}}}"
+ }
+]
